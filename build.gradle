@@ -1,0 +1,235 @@
+def traceDocbook = hasProperty('traceDocbook') ? true : false
+
+ext {
+    traceDocbook = traceDocbook
+    asciidocDependencies = []
+    importDirs = [:]
+    asciidocDependencies.each { dep ->
+        def tokens = dep.tokenize(":")
+        def artifactName = tokens[1]
+        def version = tokens[2]
+        def parts = tokens[3].split('@')
+        def classifier = parts[0]
+        def extension = parts[1]
+
+        importDirs["import-$artifactName-$classifier"] = "${prepareDocsContent.outputDir}/$artifactName/$version/$classifier"
+    }
+}
+
+dependencies {
+    asciidocDependencies.each {
+        asciidoc it
+    }
+    olinkdb "org.neo4j.doc:cypher-manual:${versions.doc.neo4j}:olinkdb@jar"
+    olinkdb "org.neo4j.doc:driver-manual:${versions.doc.driver}:olinkdb@jar"
+    olinkdb "org.neo4j.doc:http-api:${versions.doc.neo4j}:olinkdb@jar"
+    olinkdb "org.neo4j.doc:java-reference:${versions.doc.neo4j}:olinkdb@jar"
+    olinkdb "org.neo4j.doc:operations-manual:${versions.doc.neo4j}:olinkdb@jar"
+}
+
+configurePrepareDocsContent.ext.dependencies = asciidocDependencies
+
+task toDocbook (dependsOn: prepareDocsContent) {
+    description 'Build DocBook.'
+    def sourceDir = "${projectDir}/asciidoc"
+    ext.sourceDir = "$projectDir/asciidoc"
+    def sourceFile = new File("${sourceDir}/index.adoc")
+    def imagesDir = '../images'
+    def outputDir = "${buildDir}/docbook/${version}"
+    def templateDir = "${rootProject.projectDir}/common/templates/docbook"
+    inputs.dir "${projectDir}/asciidoc"
+    outputs.dir outputDir
+    doFirst {
+        println "importDirs:"
+        importDirs.each {
+            println "    $it"
+        }
+    }
+    doLast {
+        def attrs = project.ext.commonAsciidoctorAttributes + project.ext.docbookAsciidoctorAttributes +
+                [
+                    'project-root'           : "${rootProject.projectDir}",
+                    'initial-leveloffset'    : '0',
+                    'docinfo1'                : '',
+                    'imagesdir'             : imagesDir,
+                    'stylesheet'            : 'github.css',
+                    'stylesdir'             : '../css',
+                    'linkcss'               : '',
+                ] + importDirs
+        def opts = org.asciidoctor.OptionsBuilder.options()
+                .backend('docbook5')
+                .safe(org.asciidoctor.SafeMode.UNSAFE)
+                .toDir(new File(outputDir))
+                .templateDir(new File(templateDir))
+                .mkDirs(true)
+                .attributes(attrs)
+        def asciidoctor = getAsciidoctor(sourceDir, imagesDir, false)
+        asciidoctor.convertFile(sourceFile, opts.get())
+    }
+    doLast {
+        copy {
+            from(projectDir) {
+                include 'images/**'
+            }
+            into outputDir
+        }
+    }
+    doLast {
+        exec {
+            executable "sed"
+            args "-i.bak",
+                '-e', "s#<book#<book xml:id=\"$docId\"#",
+                '-e', 's#\\(<literal>[^<]*\\)<emphasis[^>]*>#\\1*#g',
+                '-e', 's#\\(<literal>[^<]*\\)</emphasis[^>]*>#\\1*#g',
+                '-e', 's#<preface>##g',
+                '-e', 's#</preface>##g',
+                "$outputDir/index.xml"
+        }
+    }
+}
+
+html {
+    dependsOn prepareOlinkDb, toDocbook
+    description 'Build Neo4j 4.0 Aura Guide to multi-page HTML based on TOC.'
+    doFirst { println "[+] Building 4.0 Aura Guide multi-page HTML" }
+    def docbookInputDir = "${buildDir}/docbook/${version}"
+    def docbookSourceDir = "${projectDir}/docbook"
+    def sourceFile = "${docbookInputDir}/index.xml"
+    def contentMap = "${docbookSourceDir}/content-map.xml"
+    ext.outputDir = "${buildDir}/html/${version}"
+    def toolsDir = "${rootProject.projectDir}/docbook"
+    def css = [
+        '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
+        '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css',
+        '//fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,300italic',
+        "//cdnjs.cloudflare.com/ajax/libs/codemirror/$codeMirrorVersion/codemirror.min.css",
+        "//cdnjs.cloudflare.com/ajax/libs/codemirror/$codeMirrorVersion/theme/neo.min.css",
+        'css/chunked-base.css',
+        'css/extra.css',
+    ].join(" ")
+    def scripts = [
+        '//ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js',
+        '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
+        "//cdnjs.cloudflare.com/ajax/libs/codemirror/$codeMirrorVersion/codemirror.min.js",
+        "//cdnjs.cloudflare.com/ajax/libs/codemirror/$codeMirrorVersion/addon/runmode/runmode.min.js",
+        "//cdnjs.cloudflare.com/ajax/libs/codemirror/$codeMirrorVersion/mode/javascript/javascript.min.js",
+        "//cdnjs.cloudflare.com/ajax/libs/codemirror/$codeMirrorVersion/mode/shell/shell.min.js",
+        "//cdnjs.cloudflare.com/ajax/libs/codemirror/$codeMirrorVersion/mode/python/python.min.js",
+        "//cdnjs.cloudflare.com/ajax/libs/codemirror/$codeMirrorVersion/mode/xml/xml.min.js",
+        "//cdnjs.cloudflare.com/ajax/libs/codemirror/$codeMirrorVersion/mode/clike/clike.min.js",
+        "//cdnjs.cloudflare.com/ajax/libs/codemirror/$codeMirrorVersion/mode/cypher/cypher.min.js",
+        "//cdnjs.cloudflare.com/ajax/libs/codemirror/$codeMirrorVersion/mode/properties/properties.min.js",
+        "//cdnjs.cloudflare.com/ajax/libs/codemirror/$codeMirrorVersion/mode/groovy/groovy.min.js",
+        'javascript/colorize.js',
+        'javascript/tabs-for-chunked.js',
+        'javascript/mp-nav.js',
+        'javascript/version.js',
+        'javascript/versionswitcher.js',
+        '//s3-eu-west-1.amazonaws.com/alpha.neohq.net/docs/new-manual/assets/search.js',
+    ].join(" ")
+
+    // Task configuration
+    inputs.dir docbookInputDir
+    outputs.dir outputDir
+    input sourceFile
+
+    // Stylesheet parameters
+    parameters([
+        "base.dir": "${outputDir}",
+        "html.ext": ".html",
+        "make.clean.html": "1",
+        "chunker.output.method": "html",
+        "chunker.output.encoding": "UTF-8",
+        "chunker.output.indent": "yes",
+        "use.id.as.dirname": "1",
+        "html.stylesheet": "${css}",
+        "html.script": "${scripts}",
+        "neo.newsearch": "1",
+        "toc-filename": "${outputDir}/toc.html",
+        "generate.toc": "''",
+        "chunk.toc": "${contentMap}",
+        "header.rule": "0",
+        "neo.documentation.library.links": docsLibraryHeaderConfig,
+        "target.database.document": "file://${olinkdb}",
+        "current.docid": "aura-guide",
+    ])
+    finalizedBy { copyHtmlResources }
+}
+
+task copyHtmlResources(type: Copy) {
+    description 'Copy resources for the chunked 4.0 Aura Guide'
+    from ("${projectDir}") {
+        include 'images/**'
+        include 'javascript/**'
+        include 'css/**'
+    }
+    from ("${rootProject.projectDir}/docbook/resources") {
+        include 'css/extra.css'
+        include 'css/github.css'
+        include 'css/images/**'
+    }
+    from ("${rootProject.projectDir}/src/main/resources") {
+        include 'logo/**'
+        include 'css/chunked-base.css'
+        include 'javascript/colorize.js'
+        include 'javascript/tabs-for-chunked.js'
+        include 'javascript/mp-nav.js'
+        include 'javascript/versionswitcher.js'
+    }
+    into html.outputDir
+}
+
+task packageHtml(type: Tar, dependsOn: [html, sitemap]) {
+    baseName "aura-guide"
+    description "Package the Neo4j Status Code HTML."
+    version project.version
+    extension 'tar.gz'
+    compression Compression.GZIP
+    from {
+        html
+    }
+    from {
+        sitemap
+    }
+    into {
+        "${baseName}/${version}"
+    }
+    destinationDir file("$rootProject.buildDir/distributions")
+}
+
+task pdf(dependsOn: [prepareDocsContent, rootProject.unzipDownloadedFonts]) {
+    description 'Build Aura Guide PDF.'
+    def sourceDir = "${projectDir}/asciidoc"
+    def sourceFile = file("${sourceDir}/index.adoc")
+    def outputDir = "${buildDir}/pdf"
+    ext.outputFile = file("$outputDir/neo4j-aura-guide-${version}.pdf")
+    def imagesDir = '../images'
+    def stylesDir = "${rootProject.resourcesDir}/pdf-theme"
+    inputs.dir sourceDir
+    inputs.dir stylesDir
+    outputs.dir outputDir
+    doLast {
+        def attrs = project.ext.commonAsciidoctorAttributes + project.ext.pdfAsciidoctorAttributes +
+                [
+                        'manual-title'          : "Aura Guide",
+                        'pdf-stylesdir'         : stylesDir.toString(),
+                        'imagesdir'             : imagesDir,
+                        'toc!'                  : "",
+                        'doctype'               : 'article',
+                ] + importDirs
+        def opts = org.asciidoctor.OptionsBuilder.options()
+                .backend('pdf')
+                .safe(org.asciidoctor.SafeMode.UNSAFE)
+                .toFile(outputFile)
+                .mkDirs(true)
+                .attributes(attrs)
+        getAsciidoctor(sourceDir, imagesDir, false).convertFile(sourceFile, opts.get())
+    }
+}
+pdf.onlyIf { !project.hasProperty('noPdf') }
+
+check.dependsOn(tasks.vale)
+
+assemble.dependsOn(packageOlinkDb, packageHtml, pdf)
+
+// vim: set fdm=expr:
