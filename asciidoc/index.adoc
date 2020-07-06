@@ -1,0 +1,71 @@
+[[aura-guide]]
+= The Neo4j Aura Manual
+
+:sectnums:
+:toc:
+:toclevels: 4
+
+
+ifdef::backend-html5[(C) {copyright}]
+ifndef::backend-pdf[]
+
+License: link:{common-license-page-uri}[Creative Commons 4.0]
+endif::[]
+ifdef::backend-pdf[]
+(C) {copyright}
+
+License: <<license, Creative Commons 4.0>>
+endif::[]
+
+
+[abstract]
+--
+This manual describes how to use Neo4j Aura.
+--
+
+This manual covers the following areas:
+
+* <<aura-introduction,Introduction>>
+* <<aura-getting-started,Getting started>>
+** <<aura-modelling-examples,Modelling examples>>
+** <<aura-create-db,Creating a database>>
+** <<aura-setup-environment,Setting up a development environment>>
+** <<aura-getting-started-drivers,Getting started with Drivers>>
+** <<aura-getting-started-cypher,Getting started with Cypher>>
+** <<aura-getting-started-algos,Getting started with algorithms>>
+** <<aura-getting-started-bloom,Getting started with visualisation>>
+* <<aura-administration,Administration>>
+** <<aura-managing-users,Managing users>>
+** <<aura-managing-dbs,Managing databases>>
+* <<aura-import,Importing data into Neo4j Aura>>
+** <<aura-import-existing,Importing from an existing source>>
+** <<aura-import-ptc,Importing from Neo4j>>
+* <<aura-drivers, Using Neo4j Drivers>>
+** <<aura-drivers-install,Installing Neo4j Drivers>>
+** <<aura-drivers-clientapp,Client applications>>
+** <<aura-drivers-cypher-workflow,Cypher Workflow>>
+** <<aura-drivers-sessionapi,Session API>>
+* <<aura-cypher, Using Cypher>>
+** <<aura-cypher-browser-guides,Browser guides>>
+* <<aura-backup-restore, Backup and restore>>
+* <<aura-monitoring, Monitoring>>
+* <<aura-tools, Tools>>
+
+
+include::introduction/index.adoc[leveloffset=+1]
+
+include::getting-started/index.adoc[leveloffset=+1]
+
+include::administration/index.adoc[leveloffset=+1]
+
+include::import/index.adoc[leveloffset=+1]
+
+include::drivers/index.adoc[leveloffset=+1]
+
+include::cypher/index.adoc[leveloffset=+1]
+
+include::backup/index.adoc[leveloffset=+1]
+
+include::monitoring/index.adoc[leveloffset=+1]
+
+include::tools/index.adoc[leveloffset=+1]
