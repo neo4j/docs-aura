@@ -2,6 +2,11 @@ import org.ajoberstar.grgit.*
 import org.neo4j.doc.build.xslt.XsltTask
 import org.neo4j.doc.build.docbook.DocBookPlugin
 
+import org.asciidoctor.groovydsl.AsciidoctorExtensions
+import org.asciidoctor.Asciidoctor
+import org.asciidoctor.OptionsBuilder
+import org.asciidoctor.SafeMode
+
 buildscript {
     ext {
         asciidoctorjVersion = '1.5.6'
@@ -79,6 +84,7 @@ if (!project.hasProperty("driverVersion")) { ext.driverVersion = "4.1" }
 if (!project.hasProperty("ogmVersion")) { ext.ogmVersion = "2.1.2" }
 
 ext {
+    resourcesDir = "${projectDir}/src/main/resources"
     codeMirrorVersion = '5.36.0'
     // Set `neo4jDocVersion` for use in the generated docs
     // Those docs that follow Neo4j versions do so tracking `major.minor[-prerelease]`
@@ -405,13 +411,107 @@ def targetGitdir(lang, gitref) {
 //     description "Prepare driver sources."
 // }
 
-def getAsciidoctor(withTabbedExampleProcessor) {
-    project.ext.adoc = org.asciidoctor.Asciidoctor.Factory.create()
-    if (withTabbedExampleProcessor) {
+
+// old asciidoc processor - from drivers manual
+
+// def getAsciidoctor(withTabbedExampleProcessor) {
+//     project.ext.adoc = org.asciidoctor.Asciidoctor.Factory.create()
+//     if (withTabbedExampleProcessor) {
+//         adoc.rubyExtensionRegistry()
+//             .loadClass(new FileInputStream(file("${rootProject.projectDir}/src/main/extensions/tabbed_example_processor.rb")))
+//             .treeprocessor("TabbedExampleProcessor")
+//     }
+//     project.ext.adoc
+// }
+
+// version that matches other manuals
+
+def getAsciidoctor(sourceDir, imagesDir, doConsole, filterTabbedExamples) {
+
+    AsciidoctorExtensions.extensions {
+
+        if (sourceDir && imagesDir) {
+            block(name: 'dot', contexts: [':listing']) {
+                parent, reader, attributes ->
+                    def indata = reader.readLines().join("\n");
+                    def svgfile = attributes[2]
+                    def svgfilepath = "${sourceDir}/${imagesDir}/${svgfile}"
+                    def cmd = ["$projectDir/src/main/extensions/filters/dot/dot.sh", indata, "dummy", svgfilepath]
+                    if (attributes[3] != null) {
+                        cmd.add(attributes[3])
+                    }
+                    if (attributes[4] != null) {
+                        cmd.add(attributes[4])
+                    }
+                    runCommand(cmd)
+                    attributes['target'] = svgfile
+                    attributes['alt'] = 'alt'
+                    createBlock(parent, 'image', [], attributes, [:])
+            }
+        }
+
+        block(name: 'queryresult', contexts: [':listing']) {
+            parent, reader, attributes ->
+                createBlock(parent, 'listing', reader.readLines(), attributes + ['role': 'queryresult'], [:])
+        }
+
+        block(name: 'statsonlyqueryresult', contexts: [':listing']) {
+            parent, reader, attributes ->
+                createBlock(parent, 'listing', reader.readLines(), attributes + ['role': 'statsonlyqueryresult'], [:])
+        }
+
+        block(name: 'console', contexts: [':listing']) {
+            parent, reader, attributes ->
+                if (doConsole) {
+                    def content = reader.readLines()
+                    def db = []
+                    def query = []
+                    def foundEmptyLine = false
+                    content.each {
+                        if (foundEmptyLine) {
+                            query.add(it)
+                        } else {
+                            if (it.trim()) {
+                                db.add(it)
+                            } else {
+                                foundEmptyLine = true
+                            }
+                        }
+                    }
+                    if (!db) {
+                        db.add("none")
+                    }
+                    if (!query) {
+                        throw new IllegalArgumentException("A query has to be defined.")
+                    }
+                    def body = []
+                    body.add('<p class="cypherconsole">')
+                    body.add('<span class="database">')
+                    body.add(db)
+                    body.add('</span><span class="command"><strong>')
+                    body.add(query.join(' '))
+                    body.add('</strong></span></p>')
+                    createBlock(parent, 'pass', body, attributes, [:])
+                } else {
+                    null
+                }
+        }
+
+    }
+    project.ext.adoc = Asciidoctor.Factory.create()
+    if (filterTabbedExamples) {
         adoc.rubyExtensionRegistry()
             .loadClass(new FileInputStream(file("${rootProject.projectDir}/src/main/extensions/tabbed_example_processor.rb")))
             .treeprocessor("TabbedExampleProcessor")
     }
+    adoc.rubyExtensionRegistry()
+        .loadClass(new FileInputStream(file("${rootProject.projectDir}/src/main/extensions/deprecation_admonition.rb")))
+        .block("DEPRECATED", "DeprecationAdmonition")
+
+    adoc.rubyExtensionRegistry()
+        .loadClass(new FileInputStream(file("${rootProject.projectDir}/src/main/extensions/aura_admonition.rb")))
+        .block("AURA", "AuraAdmonition")
+
     project.ext.adoc
 }
 
@@ -473,8 +573,8 @@ task toDocbook(dependsOn: prepareDocsContent) {
                 .templateDir(new File(templateDir))
                 .mkDirs(true)
                 .attributes(attrs)
-        getAsciidoctor(true).convertFile(sourceFile, opts.get())
-        // getAsciidoctor(sourceDir, imagesDir, false).convertFile(sourceFile, opts.get())
+        // getAsciidoctor(true).convertFile(sourceFile, opts.get())
+        getAsciidoctor(sourceDir, imagesDir, false).convertFile(sourceFile, opts.get())
     }
     doLast {
         copy {
@@ -613,6 +713,17 @@ task sitemap() {
     }
 }
 
+// This is an ugly way of keeping the extensions common, but still allow for using
+// properties local to the build task within the extension--as well as toggle
+// extensions on or off.
+def getAsciidoctor() {
+    getAsciidoctor(null, null, null)
+}
+
+def getAsciidoctor(sourceDir, imagesDir, doConsole) {
+    getAsciidoctor(sourceDir, imagesDir, doConsole, false)
+}
+
 
 task makeToc(type: XsltTask, dependsOn: toDocbook) {
     description 'Create a table of contents aka complete content map.'
@@ -745,48 +856,36 @@ task packageHtml(type: Tar, dependsOn: [html, sitemap]) {
     destinationDir file(distDir)
 }
 
-task pdf(dependsOn: [unzipDownloadedFonts]) {
+task pdf(dependsOn: [prepareDocsContent, unzipDownloadedFonts]) {
     description 'Build PDF.'
     ext.sourceDir = asciidocSourceDir
     ext.sourceFile = file("$sourceDir/index.adoc")
     ext.outputDir = "$buildDir/pdf/"
-    ext.outputFilename = "neo4j-driver-manual-${versions.auraDoc}.pdf"
+    ext.outputFile = file("$outputDir/neo4j-aura-guide-${versions.auraDoc}.pdf")
     ext.imagesDir = "images"
     inputs.dir sourceDir
-    def pdfStylesDir = "${rootProject.projectDir}/src/main/pdf-theme"
+    def stylesDir = "${rootProject.resourcesDir}/pdf-theme"
     def pdfFontDir = "${buildDir}/fonts"
-    def forLang
-    // outputs.dir outputDir
+
+    inputs.dir stylesDir
+    outputs.dir outputDir
 
     doLast {
-        project.ext.driverLanguages.each { lang, info ->
-            println "[+] Driver Manual PDF for ${lang}"
-            switch (lang) {
-                case "dotnet"     : forLang = "for C#"; break;
-                case "java"       : forLang = "for Java"; break;
-                case "javascript" : forLang = "for JavaScript"; break;
-                case "python"     : forLang = "for Python"; break;
-                case "go"         : forLang = "for Go"; break;
-                default:          forLang = "";
-           }
-
-            def attrs = asciidoctorAttributes.common + asciidoctorAttributes.pdf + [
-                    ('include-with-' + lang) : true,
-                    'driver-manual-version'  : versions.auraDoc,
-                    'project-root'           : "${rootProject.projectDir}",
-                    'imagesdir'              : imagesDir.toString(),
-                    'pdf-stylesdir'          : pdfStylesDir.toString(),
-                    'pdf-fontsdir'           : pdfFontDir.toString(),
-                    'for-lang'               : forLang
-            ]
-            def opts = org.asciidoctor.OptionsBuilder.options()
-                    .backend('pdf')
-                    .safe(org.asciidoctor.SafeMode.UNSAFE)
-                    .toFile(file("$outputDir/neo4j-driver-manual-${versions.auraDoc}-${lang}.pdf"))
-                    .mkDirs(true)
-                    .attributes(attrs)
-            getAsciidoctor(true).convertFile(sourceFile, opts.get())
-        }
+        def attrs = project.ext.asciidoctorAttributes.common + project.ext.asciidoctorAttributes.pdf +
+                [
+                        'project-root'          : "${rootProject.projectDir}",
+                        'csv-dir'               : "${crossReferenceBase['aura-manual']}/csv",
+                        'pdf-stylesdir'         : stylesDir.toString(),
+                        'pdf-fontsdir'          : pdfFontDir.toString(),
+                        'imagesdir'             : imagesDir.toString(),
+                ] // + importDirs - nb might need to add back in if links other manuals, but which versions?
+        def opts = org.asciidoctor.OptionsBuilder.options()
+                .backend('pdf')
+                .safe(org.asciidoctor.SafeMode.UNSAFE)
+                .toFile(outputFile)
+                .mkDirs(true)
+                .attributes(attrs)
+        getAsciidoctor(sourceDir, imagesDir, false).convertFile(sourceFile, opts.get())
     }
 }
 
