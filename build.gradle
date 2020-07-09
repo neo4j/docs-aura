@@ -183,7 +183,7 @@ ext {
     copyrightYear = '2020'
     docsBaseUri = "https://neo4j.com/docs"
     crossReferenceBase = [ // We have no strategy for cross references yet; always link to current.
-            'aura-manual'     : "${docsBaseUri}/aura-manual/current",
+            'aura-guide'     : "${docsBaseUri}/aura-guide/current",
             'cypher-manual'     : "${docsBaseUri}/cypher-manual/current",
             'driver-manual'     : "${docsBaseUri}/driver-manual/${versions.driverDoc}",
             'operations-manual' : "${docsBaseUri}/operations-manual/current",
@@ -393,13 +393,13 @@ ext {
 //     }
 // }
 
-def targetGitdir(lang, gitref) {
-    if (project.hasProperty('localDriverSources')) {
-        file("$projectDir/../neo4j-$lang-driver")
-    } else {
-        file("${rootProject.buildDir}/driver-sources/${lang}-driver/${gitref}")
-    }
-}
+// def targetGitdir(lang, gitref) {
+//     if (project.hasProperty('localDriverSources')) {
+//         file("$projectDir/../neo4j-$lang-driver")
+//     } else {
+//         file("${rootProject.buildDir}/driver-sources/${lang}-driver/${gitref}")
+//     }
+// }
 
 // def deps = driverLanguages.collect {"${it.getKey()}DriverApiDocs"}
 // task driverApiDocsPackage(dependsOn: deps) {
@@ -563,7 +563,6 @@ task toDocbook(dependsOn: prepareDocsContent) {
     def imagesDir = imagesDir
     doLast {
         def attrs = asciidoctorAttributes.common + asciidoctorAttributes.docbook + [
-                    'driver-manual-version'  : versions.driverDoc,
                     'project-root'           : "${rootProject.projectDir}",
         ]
         def opts = org.asciidoctor.OptionsBuilder.options()
@@ -702,7 +701,7 @@ task sitemap() {
               pi.getText()                    // filename="installation/index.html"
               .replaceAll("filename=|\"", "") // installation/index.html
         }.each { filename ->
-               def url = "${docsBaseUri}/driver-manual/current" + "/" + filename
+               def url = "${docsBaseUri}/aura-guide/current" + "/" + filename
                urlset.addElement("url").addElement("loc").addText(url)
         }
         mkdir(siteMapDir)
@@ -846,7 +845,7 @@ task copyHtmlResources(type: Copy) {
 
 task packageHtml(type: Tar, dependsOn: [html, sitemap]) {
     description 'Package HTML for distribution.'
-    baseName 'driver-manual'
+    baseName 'aura-guide'
     extension 'tar.gz'
     version versions.auraDoc
     compression = Compression.GZIP
