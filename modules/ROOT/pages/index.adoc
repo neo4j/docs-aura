@@ -27,7 +27,7 @@ This manual covers the following areas:
 
 * xref::/getting-started/index.adoc[Getting started]
 ** xref::/getting-started/tier-limits.adoc[Aura tiers and limits]
-** <<aura-getting-started-data-modelling,Data modelling>>
+** xref::/getting-started/modelling.adoc[Data modelling]
 ** xref::/getting-started/getting-started-cypher.adoc[Aura with Cypher]
 ** xref::/getting-started/getting-started-bloom.adoc[Aura with Bloom]
 ** xref::/getting-started/getting-started-desktop.adoc[Aura with Desktop]
@@ -50,7 +50,7 @@ This manual covers the following areas:
 ** xref::/tutorials/application.adoc[Create a web application with Aura]
 ** xref::/tutorials/connect-software.adoc[Connect software to Aura]
 ** xref::/tutorials/backup.adoc[Restore from backups]
-** <<aura-tutorials-endpoint, Set up Aura as a database endpoint>>
+** xref::/tutorials/endpoints.adoc[Set up Aura as a database endpoint]
 ** xref::/tutorials/bloom.adoc[Visualize data with Bloom]
 
 * xref::/examples/index.adoc[Examples]
@@ -70,22 +70,19 @@ This manual covers the following areas:
 *** xref::/examples/database/delete.adoc[How to delete your Aura database]
 
 * xref::/reference/index.adoc[Reference]
-** <<aura-reference-drivers, Neo4j Drivers>>
-*** <<aura-reference-drivers-install,Installing Neo4j Drivers>>
-*** <<aura-reference-drivers-clientapp,Client applications>>
-*** <<aura-reference-drivers-cypher-workflow,Cypher Workflow>>
-*** <<aura-reference-drivers-sessionapi,Session API>>
-** <<aura-reference-cypher, Cypher>>
+** xref::/reference/drivers/index.adoc[Neo4j Drivers]
+*** xref::/reference/drivers/install.adoc[Installing Neo4j Drivers]
+*** xref::/reference/drivers/clientapp.adoc[Client applications]
+*** xref::/reference/drivers/cypher-workflow.adoc[Cypher Workflow]
+*** xref::/reference/drivers/session-api.adoc[Session API]
+** xref::/reference/cypher/index.adoc[Using Cypher]
+*** xref::/reference/cypher/browser-guide.adoc[Browser guides]
 ** xref::/reference/procedures.adoc[Stored procedures]
 ** xref::/reference/transaction-functions.adoc[Transaction functions]
 ** xref::/reference/security.adoc[Security]
 ** xref::/reference/monitoring.adoc[Monitoring]
 
 
-// include::getting-started/index.adoc[leveloffset=+1]
 
-// include::tutorials/index.adoc[leveloffset=+1]
 
-// include::examples/index.adoc[leveloffset=+1]
 
-// include::reference/index.adoc[leveloffset=+1]
