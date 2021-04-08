@@ -1,2 +1,38 @@
 [[aura-getting-started-desktop]]
 = Aura with Desktop
+:description: This page describes how Neo4j Aura instances can be connected to the Neo4j Desktop application.
+
+Neo4j Aura users can connect instances to the Neo4j Desktop application.
+By doing this, you have the opportunity to have a single portal for interacting with all instances of Neo4j, whether this is a local database, or databases located in various clouds.
+
+When you create new graph in Neo4j Desktop, there is an option to create a _local graph_ or a _remote graph_.
+Because Neo4j Aura instances are hosted remotely, you would be connecting to a _remote_ instance.
+
+.Example of connecting a Neo4j Aura instance to the Neo4j Desktop:
+. Navigate to the Neo4j Aura Console and confirm your instance is running.
+Take note of the URL (or use the copy-to-clipboard icon).
+. In Neo4j Desktop, select the *Projects* tab
+. Either select an existing project, or create a new project, and click *Add Database* in the new pane.
+. Choose the option to *Connect to a Remote Graph*
+. Enter a name for the database and enter the URL from the Neo4j Aura console from the first step.
+Once complete, click *Next*.
+. Next you will need to choose an authentication method.
+Neo4j Aura instances require username and password authentication, so click the *Username/password* option.
+. Enter your credentials.
+By default, the username for your Neo4j Aura database will be `neo4j` and unless you have changed it, the password will be the one generated for you when you created your Aura database.
+If you have created another user for your Aura database, you can use this instead.
+Aura databases require an encrypted connection, so ensure the box is checked for `Use encrypted connection` before clicking `Next`.
+When the connection is made, you will see your database name and URL.
+. Activate the connection by clicking the *Connect* button.
+
+[NOTE]
+====
+Notes:
+
+* Neo4j Desktop only allows 1 connection at a time to a database (local or remote).
+* Deactivating an instance in Neo4j Desktop will not shut it down or stop a remote instance - it will only temporarily close the connection to it in Neo4j Desktop.
+====
+
+Just as with other databases in Neo4j Desktop, you can install https://install.graphapp.io/[Graph Apps] for monitoring and other functionality.
+
+To do this, follow the same process to install the graph application that you need, and open it from Neo4j Desktop or a web browser with the running and activated Neo4j Aura instance.
