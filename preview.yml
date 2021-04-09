@@ -24,10 +24,11 @@ asciidoc:
   extensions:
   - "@neo4j-documentation/remote-include"
   - "@neo4j-documentation/macros"
-  - "./extensions/review.js"
+  - "./extensions/publish-type.js"
   attributes:
     page-theme: docs
     page-type: Docs
+    page-publish-type: review@
     page-search-type: Docs
     page-search-site: Reference Docs
     page-canonical-root: /docs
