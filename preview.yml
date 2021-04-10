@@ -24,7 +24,7 @@ asciidoc:
   extensions:
   - "@neo4j-documentation/remote-include"
   - "@neo4j-documentation/macros"
-  - "./extensions/publish-type.js"
+  - "@neo4j-antora/antora-publish-type"
   attributes:
     page-theme: docs
     page-type: Docs
