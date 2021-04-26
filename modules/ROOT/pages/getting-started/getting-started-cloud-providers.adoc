@@ -3,37 +3,53 @@
 
 
 [[aura-getting-started-cloud-providers-GCP]]
-== Aura with GCP
+== Aura with Google Cloud Platform
 
-Neo4j Aura for GCP allows you to provision and manage Neo4j Aura databases from the GCP Console while taking advantage of integrated GCP billing. It's the same great Neo4j Aura service integrated into your GCP account.
+Neo4j Aura for GCP enables you to provision and manage Neo4j Aura databases from the GCP Console, while taking advantage of integrated GCP billing.
 
-Step 1: Purchase the service::
-To get started, visit the Neo4j Aura for GCP Marketplace page and click the "Purchase" button. Note that you won't be billed until you create a database, so purchasing Neo4j Aura on GCP simply gets you started.
+[discreet]
+== Step 1: Purchase the service
 
-Step 2: Choose a Project::
-If you purchase the service at the top level of your GCP account, you'll need to choose a target Project. In truth, you only Purchase Neo4j Aura for GCP once and then Enable it on a project-by-project basis, but you still need to choose a target Project when first purchasing the service.
+To get started, visit the https://console.cloud.google.com/marketplace/product/endpoints/prod.n4gcp.neo4j.io[Neo4 Aura for GCP Marketplace page] and click *Purchase*.
+Note that you won't be billed until you create a database, so purchasing Neo4j Aura on GCP just gets you started.
 
-Step 3: Enable the Service::
-Once you've purchased the service and switched to a target Project, you'll get the option to Enable the service for that Project. Click "Enable" to activate Neo4j Aura for GCP on your Project.
+[discreet]
+== Step 2: Choose a project
 
-Step 4: Manage on Neo4j::
-Once you enable the service, you'll land on the Neo4j Aura for GCP API page. This page shows you service details and billing information. For now, you'll see that you have no billing history.
+If you purchase the service at the top level of your GCP account, you'll need to choose a target project.
+You will only need to _purchase_ Neo4j Aura for GCP once, as you can then enable it on a project-by-project basis. However, you still need to choose a target project when you first purchase the service.
 
-To start a database, you need to head over to the Neo4j Aura website by clicking MANAGE VIA NEO4J, INC.
+[discreet]
+== Step  3: Enable the service
+
+Once you have purchased the service and switched to a target project, you will get the option to _Enable_ the service for that project.
+Click *Enable* to activate Neo4j Aura for GCP on your project.
+
+Once you have enabled the service, you will be directed to the *Neo4j Aura for GCP API* page.
+This page displays your service details and billing information.
+When this is first set up, you should have no billing history.
+
+[discreet]
+== Step  5: Completing the set up
+
+To start a database, you can now get to the Neo4j Aura website by clicking *MANAGE VIA NEO4J, INC.*.
 
 [NOTE]
-When you click "MANAGE VIA NEO4J, INC.", you'll be alerted that "You're leaving Google". Click "Confirm". If the Neo4j website fails to open, defeat any popup blockers and try again.
+====
+When you click "MANAGE VIA NEO4J, INC.", you will be alerted that "You're leaving Google".
+When you click *Confirm*, if the Neo4j Aura website fails to open you may need to address any popup blockers in your browser and try again.
+====
 
-Step 5: Sign In to Neo4j Aura with Google::
-For security, GCP and Neo4j don't share your login credentials. This means that need to log in to the Neo4j Aura website with the Google account you use on GCP.
+For security purposes, Neo4j and GCP do not share your login credentials.
+You will need to log in to the Neo4j Aura website with the Google account you have used on GCP.
 
-Once logged-in, you'll be asked to accept the Neo4j Aura Terms of Service.
+Once logged-in, you'll be asked to accept the Neo4j Aura Terms of Service, before being directed to the Neo4j Aura dashboard.
+From here, you are ready to create a Neo4j Aura database hosted in the GCP region of your choice.
+Usage will be billed directly to your GCP billing account.
 
-Step 6: You're All Set!::
-Once you accept the Terms of Service, you'll be directed to the Neo4j Aura dashboard. From here, you can create a Neo4j Aura database hosted in the GCP region of your choice. Usage will be billed directly to your GCP billing account.
-
-[[aura-getting-started-cloud-providers-AWS]]
-== Aura with AWS
+// Currently in EAP - docs coming soon
+// [[aura-getting-started-cloud-providers-AWS]]
+// == Aura with AWS
 
 // coming in 2022
 // [[aura-getting-started-cloud-providers-azure]]
