@@ -1,6 +1,7 @@
 :description: This manual describes how to use Neo4j Aura.
 [[aura-guide]]
 = The Neo4j Aura Manual
+:description: This manual describes how to use Neo4j Aura.
 :sectnums:
 :toc:
 :toclevels: 4
@@ -16,73 +17,3 @@ ifdef::backend-pdf[]
 
 License: <<license, Creative Commons 4.0>>
 endif::[]
-
-
-[abstract]
---
-This manual describes how to use Neo4j Aura.
---
-
-This manual covers the following areas:
-
-* xref::/getting-started/index.adoc[Getting started]
-** xref::/getting-started/tier-limits.adoc[Aura tiers and limits]
-** xref::/getting-started/modelling.adoc[Data modelling]
-** xref::/getting-started/getting-started-cypher.adoc[Aura with Cypher]
-** xref::/getting-started/getting-started-bloom.adoc[Aura with Bloom]
-** xref::/getting-started/getting-started-desktop.adoc[Aura with Desktop]
-** xref::/getting-started/getting-started-GDS.adoc[Aura with Graph Data Science]
-** xref::/getting-started/getting-started-cloud-providers.adoc[Aura with cloud providers]
-*** xref::/getting-started/getting-started-cloud-providers.adoc#aura-getting-started-cloud-providers-GCP[Aura with GCP]
-*** xref::/getting-started/getting-started-cloud-providers.adoc#aura-getting-started-cloud-providers-AWS[Aura with AWS]
-*** xref::/getting-started/getting-started-cloud-providers.adoc#aura-getting-started-cloud-providers-azure[Aura with Azure]
-** xref::/getting-started/getting-started-drivers.adoc[Aura with Neo4j Drivers]
-** xref::/getting-started/getting-started-cypher-shell.adoc[Aura with Cypher shell]
-** xref::/getting-started/patches-upgrades.adoc[Patches and upgrades]
-** xref::/getting-started/billing.adoc[Billing]
-
-* xref::/tutorials/index.adoc[Tutorials]
-** xref::/tutorials/apoc.adoc[Use Aura with APOC]
-** xref::/tutorials/import.adoc[Import data into Aura]
-*** xref::/tutorials/import.adoc#aura-tutorials-import-csv[Import CSV data]
-*** xref::/tutorials/import.adoc#aura-tutorials-import-ETL[Import data with ETL]
-** xref::/tutorials/dev-environment.adoc[Set up a development environment]
-** xref::/tutorials/application.adoc[Create a web application with Aura]
-** xref::/tutorials/connect-software.adoc[Connect software to Aura]
-** xref::/tutorials/backup.adoc[Restore from backups]
-** xref::/tutorials/endpoints.adoc[Set up Aura as a database endpoint]
-** xref::/tutorials/bloom.adoc[Visualize data with Bloom]
-
-* xref::/examples/index.adoc[Examples]
-** Account management:
-*** xref::/examples/account/create.adoc[How to create an account]
-*** xref::/examples/account/recover.adoc[How to recover a lost password]
-*** xref::/examples/account/add-remove.adoc[How to add and remove users]
-*** xref::/examples/account/payments.adoc[How to add and update payment details]
-** Database management:
-*** xref::/examples/database/create.adoc[How to create a database]
-*** xref::/examples/database/migrate.adoc[How to migrate data from Neo4j]
-*** xref::/examples/database/load.adoc[How to load data]
-*** xref::/examples/database/clone.adoc[How to clone your database]
-*** xref::/examples/database/resize.adoc[How to resize your database]
-*** xref::/examples/database/backup.adoc[How to backup and restore your data]
-*** xref::/examples/database/export.adoc[How to export your data]
-*** xref::/examples/database/delete.adoc[How to delete your Aura database]
-
-* xref::/reference/index.adoc[Reference]
-** xref::/reference/drivers/index.adoc[Neo4j Drivers]
-*** xref::/reference/drivers/install.adoc[Installing Neo4j Drivers]
-*** xref::/reference/drivers/clientapp.adoc[Client applications]
-*** xref::/reference/drivers/cypher-workflow.adoc[Cypher Workflow]
-*** xref::/reference/drivers/session-api.adoc[Session API]
-** xref::/reference/cypher/index.adoc[Using Cypher]
-*** xref::/reference/cypher/browser-guide.adoc[Browser guides]
-** xref::/reference/procedures.adoc[Stored procedures]
-** xref::/reference/transaction-functions.adoc[Transaction functions]
-** xref::/reference/security.adoc[Security]
-** xref::/reference/monitoring.adoc[Monitoring]
-
-
-
-
-
