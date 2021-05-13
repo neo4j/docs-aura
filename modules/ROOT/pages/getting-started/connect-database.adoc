@@ -1,0 +1,37 @@
+[[aura-getting-started-connect-database]]
+= Connecting to a database
+:description: This page describes how to connect to a database in Neo4j Aura.
+
+There are two ways to connect to a database from the https://console.neo4j.io/[Neo4j Aura Console]: Neo4j Browser and Neo4j Bloom.
+
+== Neo4j Browser
+
+Neo4j Browser is an interface for querying and viewing data in a database with rudimentary visualization.
+
+To connect to a database with Neo4j Browser:
+
+. Navigate to the database within the Aura Console and select the *Open with* dropdown menu.
+. Select *Neo4j Browser* from the dropdown menu.
+. Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens. 
+These are the same credentials you stored when <<aura-getting-started-create-database, creating the database>>.
+. Select *Connect*.
+
+Once you have connected to the database, you can start working with your data.
+
+For more information on using Neo4j Browser, please see the https://neo4j.com/docs/browser-manual/current/[Browser manual].
+
+== Neo4j Bloom
+
+Neo4j Bloom is a graph exploration tool that supports visual interaction with a database.
+
+To connect to a database with Neo4j Bloom:
+
+. Navigate to the database within the Aura Console and select the *Open with* dropdown.
+. Select *Neo4j Bloom (beta)* from the dropdown menu.
+. Enter the *Username* and *Password* credentials in the Neo4j Bloom window that opens. 
+These are the same credentials you stored when <<aura-getting-started-create-database, creating the database>>.
+. Select *Connect*.
+
+Once you have connected to the database, you can choose a perspective and start exploring your data.
+
+For more information on using Neo4j Bloom, please see the <<aura-getting-started-bloom, Aura with Bloom>> page.
