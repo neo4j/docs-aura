@@ -1,6 +1,69 @@
 [[aura-getting-started]]
 = Getting started
+:description: This page describes how to get started using Neo4j Aura.
+:sectnums:
 
-** xref:getting-started/create-account.adoc[Create an account]
-** xref:getting-started/create-database.adoc[Create a database]
-** xref:getting-started/connect-database.adoc[Connect to a database]
+This page takes you through all the steps needed to get up and running with Neo4j Aura:
+
+. <<_creating_an_account>>
+. <<_creating_a_database>>
+. <<_opening_a_database>>
+
+== Creating an account
+
+To use Neo4j Aura, you first need to create an account.
+
+To create a Neo4j Aura account:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Select *Register*.
+. Register with a Google Account or enter an email address and password. 
+If entering an email address and password, follow these additional steps:
+.. Verify your email address.
+.. Select *Go to the dashboard* from the Aura Console.
+. Select *I agree* once you have read the Terms of Service and Privacy Policy.
+
+== Creating a database
+
+With an account created, you now have access to the Aura Console and are ready to create your first database. 
+
+To create a database in Neo4j Aura:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Select *Create a database*.
+. Set your desired settings for the database:
+* *Database Name* - The name to give the database. This name can be whatever you like.
+* *Neo4j Version* - The version of the Neo4j database. By default, this is the latest major release.
+* *GCP Region* - The physical location of the database. Set this as close to your location as possible. The closer the region to your location, the faster the response time for any network interactions with the database.
+* *Database size* - The memory, CPU, and storage allocated to the database. The larger the database size, the more it costs to run. Once selected, you can see the running cost at the bottom of the page.
+. Tick the *I understand* checkbox next to the running cost confirmation.
+. Select *Create Database*.
+. Copy and store the *Username* and *Generated password* credentials for the database.
+. Tick the *I have stored these credentials safely to use later* checkbox, and select *Continue*.
+
+== Opening a database
+
+With your database created, you can now open it.
+
+There are a few different methods of accessing a database, but we're going to focus on Neo4j Browser.
+
+=== Neo4j Browser
+
+Neo4j Browser is an interface for querying and viewing data in a database with rudimentary visualization.
+
+To open to a database with Neo4j Browser:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Select the *Open with* dropdown menu on the database you want to open.
+. Select *Neo4j Browser* from the dropdown menu.
+. Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens. 
+These are the same credentials you stored when <<_creating_a_database, creating the database>>.
+. Select *Connect*.
+
+Once you have successfully connected, there are built-in guides you can complete to familiarize yourself with Neo4j Browser.
+
+For more information on using Neo4j Browser, please see the https://neo4j.com/docs/browser-manual/current/[Browser manual].
+
+== Next steps
+
+TO-DO
