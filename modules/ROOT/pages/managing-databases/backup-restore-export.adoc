@@ -4,8 +4,6 @@
 
 The data in your Aura database can be backed up, exported, and restored using snapshots.
 
-== Snapshots
-
 A snapshot is a copy of the data in a database at a specific point in time.
 
 The *SNAPSHOTS* tab within an Aura database shows a list of available snapshots. footnote:[Snapshots are kept in the system for 7 days for Free and Professional plans and 90 days for Enterprise plans.]
@@ -16,7 +14,7 @@ To access the *SNAPSHOTS* tab:
 . Select the name of the database you want to access.
 . Select the *SNAPSHOTS* tab.
 
-=== Snapshot types
+== Snapshot types
 
 There are three different types of snapshot:
 
@@ -25,9 +23,9 @@ footnote:[Automatic scheduled snapshots run once a day for Professional and Free
 * *Load* - Runs when you load a dump file from the *IMPORT DATABASE* tab of a database and when you run the `push-to-cloud` command from the *IMPORT* tab at the top of the Aura Console.
 * *On-demand* - Runs when you select *Take snapshot* from the *SNAPSHOTS* tab of a database.
 
-=== Snapshot actions
+== Snapshot actions
 
-==== Backup and Export
+=== Backup and Export
 
 You can use any of the *Scheduled* snapshots as a backup or manually trigger an *On-demand* snapshot by selecting *Take snapshot*.
 
@@ -36,7 +34,7 @@ By selecting the ellipses (...) next to a snapshot, you can:
 * *Export* - Download the database as *_.dump_* file, allowing you to store a local copy and work on your data offline.
 * *Create database from snapshot* - Create a new Aura database using the data from the snapshot.
 
-==== Restore
+=== Restore
 
 You can restore data in your database to a previous snapshot by selecting *Restore* next to the snapshot you want to restore.
 
