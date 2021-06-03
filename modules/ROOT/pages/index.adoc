@@ -2,7 +2,7 @@
 = Neo4j Aura
 :description: This manual describes how to use Neo4j Aura.
 
-Neo4j Aura is a fully managed cloud graph database service. 
+Neo4j Aura is a fully managed cloud graph database service.
 
 Built to leverage relationships in data, Aura enables lightning-fast queries for real-time analytics and insights.
 Aura is reliable, secure, and fully automated, enabling you to focus on building graph applications without worrying about database administration.
@@ -10,20 +10,30 @@ Aura is reliable, secure, and fully automated, enabling you to focus on building
 [discrete]
 == Plans
 
-Aura offers three subscription plans: Free, Professional, and Enterprise. 
+Aura offers three subscription plans: Free, Professional, and Enterprise.
 Each plan offers different levels of functionality and support; for more information, see https://neo4j.com/cloud/aura/pricing/#pricing-table[Neo4j Aura Pricing].
 
 [discrete]
 == Upgrades
 
-Patch releases (for example, 4.2.*5* -> 4.2.*6*) and minor-version releases (for example, 4.*1*.8 -> 4.*2*.0) for the Neo4j database are automatically applied to Aura deployments when they become available. 
+Patch releases (for example, 4.2.*5* -> 4.2.*6*) and minor-version releases (for example, 4.*1*.8 -> 4.*2*.0) for the Neo4j database are automatically applied to Aura deployments when they become available.
 Patching operations are non-disruptive, and you won't experience any downtime as a result.
 
 [discrete]
 == Next Steps
 
-The following section describes how Aura works with other products, such as cloud providers and Neo4j specific applications.
-However, If you plan to provision your database through Aura and just want to get started, you can move on to the xref:getting-started/index.adoc[Getting started] page.
+The following sections describe how Aura works with other products, such as supported cloud providers and Neo4j specific applications:
+
+* xref:using-aura/cloud-providers.adoc[Aura with cloud providers] +
+Details on how to use Aura via supported cloud provider marketplaces, such as GCP and AWS.
+* xref:using-aura/cypher.adoc[Aura with Cypher] +
+Details on using Cypher, the declarative graph query language, for expressive and efficient querying and updating of the data in your Aura graph.
+* xref:using-aura/bloom.adoc[Aura with Neo4j Bloom] +
+Information on using Aura with Neo4j Bloom for data visualization.
+* xref:using-aura/desktop.adoc[Aura with Neo4j Desktop] +
+Information on how to connect all of your database instances through Neo4j Desktop.
+
+However, If you plan to provision your database through Aura and just want to get started, you can move straight on to the xref:getting-started/index.adoc[Getting started] page.
 
 (C) {copyright}
 License: link:{common-license-page-uri}[Creative Commons 4.0]
