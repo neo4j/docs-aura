@@ -1,6 +1,7 @@
 [[aura-guide]]
 = Neo4j Aura
 :description: This manual describes how to use Neo4j Aura.
+:check-mark: icon:check[]
 
 image::aura-logo.png[width=800]
 
@@ -9,24 +10,221 @@ Neo4j Aura is a fully managed cloud graph database service.
 Built to leverage relationships in data, Aura enables lightning-fast queries for real-time analytics and insights.
 Aura is reliable, secure, and fully automated, enabling you to focus on building graph applications without worrying about database administration.
 
-[discrete]
+
 == Plans
 
-Aura offers three subscription plans: Free, Professional, and Enterprise.
-Each plan offers different levels of functionality and support; for more information, see https://neo4j.com/cloud/aura/pricing/#pricing-table[Neo4j Aura Pricing].
+Aura offers three subscription plans:
 
-[discrete]
-== Upgrades
+* label:Free[]
+* label:Professional[]
+* label:Enterprise[]
 
-Patch releases (for example, 4.2.*5* -> 4.2.*6*) and minor-version releases (for example, 4.*1*.8 -> 4.*2*.0) for the Neo4j database are automatically applied to Aura deployments when they become available.
-Patching operations are non-disruptive, and you won't experience any downtime as a result.
+Each plan offers different levels of functionality and support;
 
-[discrete]
+.Platform
+[cols="49a,^17a,^17a,^17a",options="header"]
+|===
+|
+| label:Free[]
+| label:Professional[]
+| label:Enterprise[]
+
+| Instance size
+| Limits on node and relationship counts
+| 1GB - 64GB (RAM)
+| 4GB - 256GB (RAM)
+
+| Automated upgrades and patches, no scheduled maintenance window or downtime
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Self-healing
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Fault tolerant
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Cloud tenancy
+| Multi-tenant
+| Multi-tenant
+| Single-tenant with VPC isolation, dedicated cloud infrastructure
+
+
+| Cloud providers
+| GCP
+| GCP
+| AWS, GCP
+
+| Service availability SLA
+|
+|
+| 99.95% uptime
+
+| Multi-availability zone clusters
+|
+|
+| {check-mark}
+
+| Clone database
+|
+|
+| {check-mark}
+|===
+
+.Tools Integrations and Ecosystem
+[cols="49a,^17a,^17a,^17a",options="header"]
+|===
+|
+| label:Free[]
+| label:Professional[]
+| label:Enterprise[]
+
+| Neo4j Browser
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Neo4j Bloom data visualization
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Support Apache Spark connector
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Standard procedure library (apoc-core)
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Support custom procedures
+|
+|
+| {check-mark}
+|===
+
+.Backup
+[cols="49a,^17a,^17a,^17a",options="header"]
+|===
+|
+| label:Free[]
+| label:Professional[]
+| label:Enterprise[]
+
+| Backup frequency/RPO
+|
+| Daily
+| Hourly
+
+| Backup retention
+|
+| 7 day
+| 90 day
+
+| On-demand point-in-time snapshots
+|
+| {check-mark}
+| {check-mark}
+|===
+
+.Security
+[cols="49a,^17a,^17a,^17a",options="header"]
+|===
+|
+| label:Free[]
+| label:Professional[]
+| label:Enterprise[]
+
+| Encryption (at rest, in transit)
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+
+| IP whitelisting
+|
+|
+| {check-mark}
+
+| Console role-based access control
+|
+|
+| {check-mark}
+
+| Fine-grained database security
+|
+|
+| {check-mark}
+|===
+
+.Pricing and Usage
+[cols="49a,^17a,^17a,^17a",options="header"]
+|===
+|
+| label:Free[]
+| label:Professional[]
+| label:Enterprise[]
+
+| Capacity-based consumption pricing model
+|
+| {check-mark}
+| {check-mark}
+
+| Payment
+|
+| Pay-as-you-go with credit card
+| Prepaid contract terms with custom pricing
+
+| Cloud marketplace billing
+|
+| {check-mark}
+| {check-mark}
+
+| Volume discounts
+|
+|
+| {check-mark}
+
+| Terms of Service
+| Click-through
+| Click-through
+| Enterprise with commercial negotiations
+|===
+
+.Pricing and Usage
+[cols="49a,^17a,^17a,^17a",options="header"]
+|===
+|
+| label:Free[]
+| label:Professional[]
+| label:Enterprise[]
+
+| Support
+| Community
+| Best Effort
+| 24x7 premium, 1 hour Sev-1 response
+
+| Access to Neo4j professional services
+|
+|
+| {check-mark}
+|===
+
+Further details can be found on the https://neo4j.com/cloud/aura/pricing/#pricing-table[Neo4j Aura Pricing] page.
+
+
 == Next Steps
 
-The following sections describe how Aura works with other products, such as supported cloud providers and Neo4j specific applications:
+The following sections describe how Aura works with supported cloud provider's marketplace consoles and Neo4j specific applications:
 
-* xref:using-aura/cloud-providers.adoc[Aura with cloud providers] +
+* xref:using-aura/cloud-providers.adoc[Aura with cloud provider marketplaces] +
 Details on how to use Aura via supported cloud provider marketplaces, such as GCP and AWS.
 * xref:using-aura/cypher.adoc[Aura with Cypher] +
 Details on using Cypher, the declarative graph query language, for expressive and efficient querying and updating of the data in your Aura graph.
