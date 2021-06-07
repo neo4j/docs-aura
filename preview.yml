@@ -24,11 +24,12 @@ asciidoc:
   extensions:
   - "@neo4j-documentation/remote-include"
   - "@neo4j-documentation/macros"
-  - "@neo4j-antora/antora-publish-type"
+  - "@neo4j-antora/antora-add-notes"
   attributes:
     page-theme: docs
     page-type: Docs
-    page-publish-type: review@
+    page-add-notes-module: publish-notes@
+    page-add-notes-tags: review@
     page-search-type: Docs
     page-search-site: Reference Docs
     page-canonical-root: /docs
