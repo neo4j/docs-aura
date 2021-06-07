@@ -43,10 +43,9 @@ These are the same credentials you stored when xref:getting-started/create-datab
 
 For more details on using Neo4j Bloom, please see the https://neo4j.com/docs/bloom-user-guide/current/[Neo4j Bloom documentation].
 
-=== Bloom Perspectives in Aura
-
-In Neo4j Bloom, a Perspective defines a business view or domain found in the target Neo4j graph.
-You can view a single Neo4j graph through different Perspectives, each tailored for a different business purpose.
+[NOTE]
+====
+*Note: Perspectives in Aura*
 
 Due to the nature of Aura's infrastructure, it is not currently possible to share Perspectives in Bloom, as the data for a given Perspective is stored in a cookie in the user's web browser.
 
@@ -63,6 +62,7 @@ You can import perspectives by clicking the blue "Import Perspective" button in 
 Please note that the Perspective exposes details about your graph's schema but not the actual data within.
 
 For more information, see https://neo4j.com/docs/bloom-user-guide/1.5/bloom-perspectives/[Bloom Perspectives].
+====
 
 == Neo4j Desktop
 
@@ -82,7 +82,7 @@ These are the same credentials you stored when xref:getting-started/create-datab
 
 [NOTE]
 ====
-Notes:
+*Notes:*
 
 * Neo4j Desktop only allows 1 connection at a time to a database (local or remote).
 * Deactivating an instance in Neo4j Desktop won't shut it down or stop a remote instance - it will only temporarily close the connection to it in Neo4j Desktop.
