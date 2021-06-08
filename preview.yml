@@ -24,6 +24,7 @@ asciidoc:
   extensions:
   - "@neo4j-documentation/remote-include"
   - "@neo4j-documentation/macros"
+  - "@neo4j-antora/antora-add-notes"
   attributes:
     page-theme: docs
     page-type: Docs
@@ -36,7 +37,8 @@ asciidoc:
     page-origin-private: true
     page-hide-toc: false
     page-mixpanel: 4bfb2414ab973c741b6f067bf06d5575
-    # page-cdn: /static/assets
+    page-add-notes-module: review-note@
+    page-add-notes-tags: review@
     includePDF: false
     nonhtmloutput: ""
     # sectnums: true, removed so they are off by default
