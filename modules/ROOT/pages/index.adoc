@@ -1,88 +1,194 @@
-:description: This manual describes how to use Neo4j Aura.
 [[aura-guide]]
-= The Neo4j Aura Manual
-:sectnums:
-:toc:
-:toclevels: 4
+= Neo4j Aura
+:description: This manual describes how to use Neo4j Aura.
+:check-mark: icon:check[]
+
+image::aura-logo.png[width=800, link=https://neo4j.com/aura]
+
+Neo4j Aura is a fully managed cloud graph database service.
+
+Built to leverage relationships in data, Aura enables lightning-fast queries for real-time analytics and insights.
+Aura is reliable, secure, and fully automated, enabling you to focus on building graph applications without worrying about database administration.
 
 
-ifdef::backend-html5[(C) {copyright}]
-ifndef::backend-pdf[]
+== Plans
 
-License: link:{common-license-page-uri}[Creative Commons 4.0]
-endif::[]
-ifdef::backend-pdf[]
+Aura offers the following subscription plans; *Free*, *Professional*, and *Enterprise*.
+
+Each plan offers different levels of functionality and support:
+
+.Platform
+[cols="49a,^17a,^17a,^17a",options="header"]
+|===
+|
+| label:Free[]
+| label:Professional[]
+| label:Enterprise[]
+
+| Instance size
+| Limits on node and relationship counts
+| 1GB - 64GB (RAM)
+| 4GB - 256GB (RAM)
+
+| Automated upgrades and patches, no scheduled maintenance window or downtime
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Self-healing
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Fault tolerant
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Cloud tenancy
+| Multi-tenant
+| Multi-tenant
+| Single-tenant with VPC isolation, dedicated cloud infrastructure
+
+
+| Cloud providers
+| GCP
+| GCP
+| AWS, GCP
+
+| Service availability SLA
+|
+|
+| 99.95% uptime
+
+| Multi-availability zone clusters
+|
+|
+| {check-mark}
+
+| Clone database
+|
+|
+| {check-mark}
+|===
+
+.Tools integrations and ecosystem
+[cols="49a,^17a,^17a,^17a",options="header"]
+|===
+|
+| label:Free[]
+| label:Professional[]
+| label:Enterprise[]
+
+| Neo4j Browser
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Neo4j Bloom data visualization
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Support Apache Spark connector
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Standard procedure library (apoc-core)
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Support custom procedures
+|
+|
+| {check-mark}
+|===
+
+.Backup
+[cols="49a,^17a,^17a,^17a",options="header"]
+|===
+|
+| label:Free[]
+| label:Professional[]
+| label:Enterprise[]
+
+| Backup frequency/RPO
+|
+| Daily
+| Hourly
+
+| Backup retention
+|
+| 7 day
+| 90 day
+
+| On-demand point-in-time snapshots
+|
+| {check-mark}
+| {check-mark}
+|===
+
+.Security
+[cols="49a,^17a,^17a,^17a",options="header"]
+|===
+|
+| label:Free[]
+| label:Professional[]
+| label:Enterprise[]
+
+| Encryption (at rest, in transit)
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Console role-based access control
+|
+|
+| {check-mark}
+
+| Fine-grained database security
+|
+|
+| {check-mark}
+|===
+
+.Pricing and usage
+[cols="49a,^17a,^17a,^17a",options="header"]
+|===
+|
+| label:Free[]
+| label:Professional[]
+| label:Enterprise[]
+
+| Capacity-based consumption pricing model
+|
+| {check-mark}
+| {check-mark}
+
+| Payment
+|
+| Pay-as-you-go with credit card
+| Prepaid contract terms with custom pricing
+
+| Cloud marketplace billing
+|
+| {check-mark}
+| {check-mark}
+
+| Volume discounts
+|
+|
+| {check-mark}
+
+| Terms of Service
+| Click-through
+| Click-through
+| Enterprise with commercial negotiations
+|===
+
+Further details can be found on the https://neo4j.com/cloud/aura/pricing/#pricing-table[Neo4j Aura Pricing] page.
+
 (C) {copyright}
-
-License: <<license, Creative Commons 4.0>>
-endif::[]
-
-
-[abstract]
---
-This manual describes how to use Neo4j Aura.
---
-
-This manual covers the following areas:
-
-* xref::/getting-started/index.adoc[Getting started]
-** xref::/getting-started/tier-limits.adoc[Aura tiers and limits]
-** xref::/getting-started/modelling.adoc[Data modelling]
-** xref::/getting-started/getting-started-cypher.adoc[Aura with Cypher]
-** xref::/getting-started/getting-started-bloom.adoc[Aura with Bloom]
-** xref::/getting-started/getting-started-desktop.adoc[Aura with Desktop]
-** xref::/getting-started/getting-started-GDS.adoc[Aura with Graph Data Science]
-** xref::/getting-started/getting-started-cloud-providers.adoc[Aura with cloud providers]
-*** xref::/getting-started/getting-started-cloud-providers.adoc#aura-getting-started-cloud-providers-GCP[Aura with GCP]
-*** xref::/getting-started/getting-started-cloud-providers.adoc#aura-getting-started-cloud-providers-AWS[Aura with AWS]
-*** xref::/getting-started/getting-started-cloud-providers.adoc#aura-getting-started-cloud-providers-azure[Aura with Azure]
-** xref::/getting-started/getting-started-drivers.adoc[Aura with Neo4j Drivers]
-** xref::/getting-started/getting-started-cypher-shell.adoc[Aura with Cypher shell]
-** xref::/getting-started/patches-upgrades.adoc[Patches and upgrades]
-** xref::/getting-started/billing.adoc[Billing]
-
-* xref::/tutorials/index.adoc[Tutorials]
-** xref::/tutorials/apoc.adoc[Use Aura with APOC]
-** xref::/tutorials/import.adoc[Import data into Aura]
-*** xref::/tutorials/import.adoc#aura-tutorials-import-csv[Import CSV data]
-*** xref::/tutorials/import.adoc#aura-tutorials-import-ETL[Import data with ETL]
-** xref::/tutorials/dev-environment.adoc[Set up a development environment]
-** xref::/tutorials/application.adoc[Create a web application with Aura]
-** xref::/tutorials/connect-software.adoc[Connect software to Aura]
-** xref::/tutorials/backup.adoc[Restore from backups]
-** xref::/tutorials/endpoints.adoc[Set up Aura as a database endpoint]
-** xref::/tutorials/bloom.adoc[Visualize data with Bloom]
-
-* xref::/examples/index.adoc[Examples]
-** Account management:
-*** xref::/examples/account/create.adoc[How to create an account]
-*** xref::/examples/account/recover.adoc[How to recover a lost password]
-*** xref::/examples/account/add-remove.adoc[How to add and remove users]
-*** xref::/examples/account/payments.adoc[How to add and update payment details]
-** Database management:
-*** xref::/examples/database/create.adoc[How to create a database]
-*** xref::/examples/database/migrate.adoc[How to migrate data from Neo4j]
-*** xref::/examples/database/load.adoc[How to load data]
-*** xref::/examples/database/clone.adoc[How to clone your database]
-*** xref::/examples/database/resize.adoc[How to resize your database]
-*** xref::/examples/database/backup.adoc[How to backup and restore your data]
-*** xref::/examples/database/export.adoc[How to export your data]
-*** xref::/examples/database/delete.adoc[How to delete your Aura database]
-
-* xref::/reference/index.adoc[Reference]
-** xref::/reference/drivers/index.adoc[Neo4j Drivers]
-*** xref::/reference/drivers/install.adoc[Installing Neo4j Drivers]
-*** xref::/reference/drivers/clientapp.adoc[Client applications]
-*** xref::/reference/drivers/cypher-workflow.adoc[Cypher Workflow]
-*** xref::/reference/drivers/session-api.adoc[Session API]
-** xref::/reference/cypher/index.adoc[Using Cypher]
-*** xref::/reference/cypher/browser-guide.adoc[Browser guides]
-** xref::/reference/procedures.adoc[Stored procedures]
-** xref::/reference/transaction-functions.adoc[Transaction functions]
-** xref::/reference/security.adoc[Security]
-** xref::/reference/monitoring.adoc[Monitoring]
-
-
-
-
-
+License: link:{common-license-page-uri}[Creative Commons 4.0]

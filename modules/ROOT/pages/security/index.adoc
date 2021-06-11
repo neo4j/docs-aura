@@ -1,0 +1,39 @@
+[[aura-reference-security]]
+= Security
+
+== Encryption
+
+All data stored in Neo4j Aura is encrypted using intra-cluster encryption between the various nodes comprising your database, as well as encrypted-at-rest using the underlying cloud provider's encryption mechanism.
+
+
+== VPC isolation
+
+label:Enterprise-only[]
+
+Aura Enterprise runs within a Virtual Private Cloud (VPC) isolation for your deployment.
+
+The VPC enables you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
+
+Please note that the Aura console runs in a separate VPC.
+
+
+== Supported TLS cipher suites
+
+For additional security, client communications are carried via TLS v1.2 and TLS v1.3.
+
+Aura has a restricted list of cipher suites accepted during the TLS handshake, and does not accept all of the available cipher suites.
+The following list conforms to safety recommendations from IANA, the OpenSSL, and GnuTLS library.
+
+TLS v1.3:
+
+* `TLS_CHACHA20_POLY1305_SHA256 (RFC8446)`
+* `TLS_AES_128_GCM_SHA256 (RFC8446)`
+* `TLS_AES_256_GCM_SHA384 (RFC8446)`
+
+TLS v1.2:
+
+* `TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (RFC5288)`
+* `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (RFC5289)`
+* `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5289)`
+* `TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (RFC7905)`
+* `TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5288)`
