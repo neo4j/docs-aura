@@ -22,8 +22,8 @@ const root = path.join(__dirname, '..')
       'fragment-check build/site/developer/java-driver-spring-boot-starter/index.html --> #Configuration options',
       // ignore until https://github.com/neo4j/neo4j-ogm/pull/867 is merged
       'fragment-check build/site/developer/neo4j-ogm/index.html --> #reference:native-property-types:supported-drivers',
-      // aura-guide not yet published - remove this once it is
-      'load https://neo4j.com/docs/aura-guide'
+      // aura not yet published - remove this once it is
+      'load https://neo4j.com/docs/aura'
     ]
     const neo4jRootRelativeUrls = []
     const skipFilter = (report) => {
@@ -42,7 +42,7 @@ const root = path.join(__dirname, '..')
     };
     await hyperlink({
         root,
-        inputUrls: [`build/site/aura-guide/1.0/index.html`],
+        inputUrls: [`build/site/aura/1.0/index.html`],
         skipFilter: skipFilter,
         recursive: true,
         internalOnly: true
