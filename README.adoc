@@ -1,1 +1,41 @@
 = Aura Documentation
+
+== GitHub Process
+
+The proposed process below negates the need for forking and due to the release nature of Aura (non-versioned, running updates) only utilise a single permanent main (master) branch.
+
+=== Setup
+
+. Clone the repo onto your local machine.
+
+=== Making changes
+
+. Pull the latest changes from master.
+. Create a feature branch for the changes you will be making.
+. Work on the changes locally.
+
+=== Landing changes
+
+. Fetch the latest changes on master and merge into your feature branch locally.
+. Resolve any merge conflicts that may have arisen.
+. Push your feature branch to the repo.
+. PR from your feature branch into the master branch.
+
+=== Cleanup
+
+. Delete your feature branch once it has merged into master.
+
+=== Collaboration
+
+. Push your feature branch to the repo.
+. Have your colleague checkout your feature branch.
+
+=== Staging changes
+
+. Push your feature branch to the repo.
+. Wait until the feature is ready.
+. Merge master into you feature branch and PR as usual.
+
+=== Hotfixes
+
+. Make changes on the master branch directly OR create a branch for the hotfix.
