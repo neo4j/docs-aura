@@ -24,7 +24,7 @@ A subset of the APOC Core functions and procedures are available in Aura.
 
 You can run the following Cypher statements on your Aura database to return the available procedures and functions:
 
-[source,cypher]
+[source,cypher,role=noplay]
 ----
 CALL dbms.procedures() YIELD name, signature WHERE name CONTAINS 'apoc' RETURN *
 CALL dbms.functions() YIELD name, signature WHERE name CONTAINS 'apoc' RETURN *
