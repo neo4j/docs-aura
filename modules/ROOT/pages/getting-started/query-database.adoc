@@ -13,7 +13,7 @@ For more information on Cypher, see https://neo4j.com/docs/cypher-manual/current
 
 [NOTE]
 ====
-*Note:* As with xref:getting-started/importing-data.adoc#_loading_csv_data[LOAD CSV], Aura does not support Cypher statements that access local files. 
+*Note:* As with xref:getting-started/importing-data.adoc#_loading_csv_data[LOAD CSV], Aura does not support Cypher statements that access local files.
 ====
 
 == APOC
@@ -22,12 +22,16 @@ APOC (Awesome Procedures on Cypher) is a Neo4j library that provides access to a
 
 A subset of the APOC Core functions and procedures are available in Aura.
 
-You can run the following Cypher statements on your Aura database to return the available procedures and functions:
+// You can run the following Cypher statements on your Aura database to return the available procedures and functions:
 
-[source,cypher,role=noplay]
-----
-CALL dbms.procedures() YIELD name, signature WHERE name CONTAINS 'apoc' RETURN *
-CALL dbms.functions() YIELD name, signature WHERE name CONTAINS 'apoc' RETURN *
-----
+// [source,cypher,role=noplay]
+// ----
+// CALL dbms.procedures() YIELD name, signature WHERE name CONTAINS 'apoc' RETURN *
+// CALL dbms.functions() YIELD name, signature WHERE name CONTAINS 'apoc' RETURN *
+// ----
+
+include::partial$apoc-procedures.adoc[]
+
+
 
 For more information on APOC, see https://neo4j.com/labs/apoc/[the APOC documentation].
