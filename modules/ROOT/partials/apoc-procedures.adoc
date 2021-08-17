@@ -98,13 +98,19 @@ b, a ^ b, ~a, a >> b, a >>> b, a << b. returns the result of the bitwise operati
 |===
 
 
-=== apoc.case
+=== apoc
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.3/overview/apoc.case/apoc.case[apoc.case icon:book[] ^] +
+¦ link:https://neo4j.com/labs/apoc/4.3/overview/apoc/apoc.case[apoc.case icon:book[] ^] +
 given a list of conditional / read-only query pairs, executes the query associated with the first conditional evaluating to true (or the else query if none are true) with the given parameters
+¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.3/overview/apoc/apoc.help[apoc.help icon:book[] ^] +
+
+¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.3/overview/apoc/apoc.version[apoc.version icon:book[] ^] +
+return the current APOC installed version
+¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.3/overview/apoc/apoc.when[apoc.when icon:book[] ^] +
+based on the conditional, executes read-only ifQuery or elseQuery with the given parameters
 ¦ label:procedure[]
 |===
 
@@ -467,17 +473,6 @@ validates the json, return the result of the validation
 ¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.3/overview/apoc.hashing/apoc.hashing.fingerprinting[apoc.hashing.fingerprinting icon:book[] ^] +
 
 ¦ label:function[]
-|===
-
-
-=== apoc.help
-
-[.procedures, opts=header, cols='5a,1a', separator=¦]
-|===
-¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.3/overview/apoc.help/apoc.help[apoc.help icon:book[] ^] +
-
-¦ label:procedure[]
 |===
 
 
@@ -1134,17 +1129,6 @@ if the predicate yields to true raise an exception else returns true, for use in
 |===
 
 
-=== apoc.version
-
-[.procedures, opts=header, cols='5a,1a', separator=¦]
-|===
-¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.3/overview/apoc.version/apoc.version[apoc.version icon:book[] ^] +
-return the current APOC installed version
-¦ label:function[]
-|===
-
-
 === apoc.warmup
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
@@ -1152,17 +1136,6 @@ return the current APOC installed version
 ¦ Qualified Name ¦ Type
 ¦ link:https://neo4j.com/labs/apoc/4.3/overview/apoc.warmup/apoc.warmup.run[apoc.warmup.run icon:book[] ^] +
 quickly loads all nodes and rels into memory by skipping one page at a time
-¦ label:procedure[]
-|===
-
-
-=== apoc.when
-
-[.procedures, opts=header, cols='5a,1a', separator=¦]
-|===
-¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.3/overview/apoc.when/apoc.when[apoc.when icon:book[] ^] +
-based on the conditional, executes read-only ifQuery or elseQuery with the given parameters
 ¦ label:procedure[]
 |===
 

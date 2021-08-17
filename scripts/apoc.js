@@ -25,14 +25,16 @@ const session = driver.session()
 session.readTransaction(tx => tx.run(`
     CALL apoc.help('')
     YIELD name, type, text
-    RETURN name, type, text ORDER BY name ASC
+    RETURN name, type, text
+    ORDER BY CASE WHEN size(split(name, '.')) = 2 THEN [1] ELSE [2] END ASC, name ASC
 `))
     .then(res => res.records.map(row => {
         const name = row.get('name')
         const type = row.get('type')
         const text = row.get('text')
 
-        const namespace = name.split('.').slice(0, 2).join('.')
+        const parts = name.split('.')
+        const namespace = parts.length == 2 ? 'apoc' : parts.slice(0, 2).join('.')
 
         // TODO: Some descriptions don't have a dash or a pipe
         const description = text.includes(' - ') ? text.split(' - ')[1] : text.split(' | ')[1]
