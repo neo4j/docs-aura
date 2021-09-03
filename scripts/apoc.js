@@ -24,27 +24,35 @@ const session = driver.session()
 
 session.readTransaction(tx => tx.run(`
     CALL apoc.help('')
-    YIELD name, type, text
-    RETURN name, type, text
+    YIELD name, text, type
+    RETURN name, text, type
     ORDER BY CASE WHEN size(split(name, '.')) = 2 THEN [1] ELSE [2] END ASC, name ASC
 `))
     .then(res => res.records.map(row => {
         const name = row.get('name')
-        const type = row.get('type')
         const text = row.get('text')
+        const type = row.get('type')
 
         const parts = name.split('.')
         const namespace = parts.length == 2 ? 'apoc' : parts.slice(0, 2).join('.')
 
-        // TODO: Some descriptions don't have a dash or a pipe
-        const description = text.includes(' - ') ? text.split(' - ')[1] : text.split(' | ')[1]
+        // REMOVED UNTIL DESCRIPTION SYNTAX IS IMPROVED
+        // let description = ''
+        // if (text.includes(' - ')){
+        //     description = text.split(' - ')[1]
+        // } else if(text.includes(' | ')){
+        //     description = text.split(' | ')[1]
+        // } else if(text.startsWith(name)) {
+        //     description = text.split(') ')[1]
+        // } else {
+        //     description = text
+        // }
 
         return {
             name,
-            type,
             text,
+            type,
             namespace,
-            description,
         }
     }))
     .then(procedures => procedures.reduce((acc, current) => {
@@ -60,8 +68,8 @@ session.readTransaction(tx => tx.run(`
 === ${namespace}
 
 ${header}
-${procedures.map(({ name, description, type }) => `¦ link:https://neo4j.com/labs/apoc/${AURA_VERSION}/overview/${namespace}/${name}[${name} icon:book[] ^] +
-${description || ''}
+${procedures.map(({ name, text, type }) => `¦ link:https://neo4j.com/labs/apoc/${AURA_VERSION}/overview/${namespace}/${name}[${name} icon:book[] ^] +
+${text || ''}
 ¦ label:${type}[]`).join('')}
 ${footer}`).join('\n\n'))
     .then(adoc => {
