@@ -1,1 +1,20 @@
 = Aura Documentation
+
+== Run Live Preview
+
+[source]
+npm install
+npm start
+
+
+== Generate APOC Docs
+
+1. Copy .env.example to .env and update the credentials to a valid aura database
+    NEO4J_HOST=neo4j+s://mydb.databases.neo4j.io
+    NEO4J_USERNAME=neo4j
+    NEO4J_PASSWORD=password
+    AURA_VERSION=4.3
+
+
+2. Run the APOC command to connect to a server, get a list of functions/procedures and load them into `modules/ROOT/partials/apoc-procedures.adoc`
+    npm run apoc
