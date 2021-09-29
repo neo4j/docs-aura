@@ -18,3 +18,12 @@ npm start
 
 2. Run the APOC command to connect to a server, get a list of functions/procedures and load them into `modules/ROOT/partials/apoc-procedures.adoc`
     npm run apoc
+
+
+=== Editing a Function or Procedure Description
+
+1. Find the procedure or function within [https://github.com/neo4j-contrib/neo4j-apoc-procedures](the APOC repo)
+2. Update the description in the `@Description` annotation above the procedure
+3. Create the PR
+4. Potentially cherrypick/merge the changes into the previous branches
+5. Or alternatively, ask in the #apoc channel on Slack
