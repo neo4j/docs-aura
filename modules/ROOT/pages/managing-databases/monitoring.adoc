@@ -1,14 +1,32 @@
 [[aura-monitoring]]
 = Monitoring
 
-You can monitor several metrics of an Aura database from the *METRICS* tab.
+label:Enterprise[]
+label:Professional[]
+
+You can monitor the following metrics of an Aura database from the *METRICS* tab:
+
+* *CPU Usage (%)* - The amount of CPU used by the database as a percentage.
+* *Storage Used (%)* - The amount of disk storage space used by the database as a percentage.
+* *Out of Memory Errors* - The number of Out of Memory (OOM) errors encountered by the database.
+* *Garbage Collection Time (%)* - The amount of time the database spends reclaiming heap space as a percentage.
+* *Page Cache Evictions* - The number of times the database has replaced data in memory.
+
+[NOTE]
+====
+More information on each metric, as well as suggestions for managing them, can be found within the *METRICS* tab itself.
+====
+
+When viewing metrics, you can select from the following timeframes:
+
+* 6 hours
+* 24 hours
+* 3 days
+* 7 days
+* 30 days
 
 To access the *METRICS* tab:
 
 . Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
 . Select the name of the database you want to access.
 . Select the *METRICS* tab.
-
-You can set the time frame you want to show data for by selecting a date/time range next to *Show last*.
-
-Each metric has an explanation to the right of the chart, and you can scrub the chart to see data at a specific point in time.
