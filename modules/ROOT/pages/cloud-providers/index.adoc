@@ -1,7 +1,7 @@
 [[aura-cloud-providers]]
-= Aura with cloud provider marketplaces
+= AuraDB with cloud provider marketplaces
 
-Using Neo4j Aura via a cloud provider marketplace enables you to provision and manage Neo4j Aura databases from your chosen cloud provider console, while taking advantage of any integrated billing.
+Using Neo4j AuraDB via a cloud provider marketplace enables you to provision and manage Neo4j AuraDB databases from your chosen cloud provider console, while taking advantage of any integrated billing.
 
 The currently available cloud providers are:
 
@@ -9,19 +9,19 @@ The currently available cloud providers are:
 * <<aura-getting-started-cloud-providers-AWS, Amazon Web Services (AWS)>> label:Enterprise-only[]
 
 [[aura-getting-started-cloud-providers-GCP]]
-== Aura with GCP
+== AuraDB with GCP
 
 [discrete]
 === 1. Purchase the service
 
 To get started, visit the https://console.cloud.google.com/marketplace/product/endpoints/prod.n4gcp.neo4j.io[Neo4 Aura for GCP Marketplace page] and click *Purchase*.
-Note that you won't be billed until you create a database, so purchasing Neo4j Aura on GCP just gets you started.
+Note that you won't be billed until you create a database, so purchasing Neo4j AuraDB on GCP just gets you started.
 
 [discrete]
 === 2. Choose a project
 
 If you purchase the service at the top level of your GCP account, you'll need to choose a target project.
-You will only need to _purchase_ Neo4j Aura for GCP once, as you can then enable it on a project-by-project basis. However, you still need to choose a target project when you first purchase the service.
+You will only need to _purchase_ Neo4j AuraDB for GCP once, as you can then enable it on a project-by-project basis. However, you still need to choose a target project when you first purchase the service.
 
 [discrete]
 === 3. Enable the service
@@ -47,17 +47,17 @@ When you click *Confirm*, if the Neo4j Aura website fails to open you may need t
 For security purposes, Neo4j and GCP do not share your login credentials.
 You will need to log in to the Neo4j Aura website with the Google account you have used on GCP.
 
-Once logged-in, you'll be asked to accept the Neo4j Aura Terms of Service, before being directed to the Neo4j Aura dashboard.
-From here, you are ready to create a Neo4j Aura database hosted in the GCP region of your choice.
+Once logged-in, you'll be asked to accept the Neo4j Aura Terms of Service, before being directed to the Neo4j AuraDB dashboard.
+From here, you are ready to create a Neo4j AuraDB database hosted in the GCP region of your choice.
 Usage will be billed directly to your GCP billing account.
 
 
 [[aura-getting-started-cloud-providers-AWS]]
-== Aura with AWS
+== AuraDB with AWS
 
 label:Enterprise-only[]
 
-With Aura Enterprise, you can provision and manage Neo4j Aura databases through the AWS Marketplace.
+With AuraDB Enterprise, you can provision and manage Neo4j AuraDB databases through the AWS Marketplace.
 
 For more information, visit the https://aws.amazon.com/marketplace/pp/B08X1N17NS[Neo4j Aura Enterprise Database-as-a-Service Marketplace page].
 
