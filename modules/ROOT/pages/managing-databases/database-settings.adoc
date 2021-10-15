@@ -35,7 +35,7 @@ To pause a database:
 . Select *Pause* below *Pause Database*.
 . Tick the *I understand* checkbox and select *Pause* to confirm.
 
-The database begins pausing, and a *Resume* button replaces the *Pause* button.
+After confirming, the database will begin pausing, and a *Resume* button will replace the *Pause* button.
 
 [NOTE]
 ====
@@ -50,11 +50,8 @@ You can pause a database for up to 30 days, after which point AuraDB automatical
 [.include-with-free]
 =====
 
-[NOTE]
-======
-AuraDB Free databases become paused automatically after 72 hours of inactivity. 
+AuraDB Free databases are paused automatically after 72 hours of inactivity. 
 footnote:[Inactivity is when you perform no queries on the database.]
-======
 
 To resume a database:
 
@@ -63,7 +60,7 @@ To resume a database:
 
 [WARNING]
 ======
-AuraDB deletes paused AuraDB Free databases after 90 days.
+If an AuraDB Free database remains paused for more than 90 days, AuraDB will delete the database, and all information will be lost.
 ======
 
 =====
@@ -77,7 +74,7 @@ To resume a database:
 . Select *Resume* below *Pause Database*.
 . Tick the *I understand* checkbox and select *Resume* to confirm.
 
-The database begins resuming, which may take a few minutes.
+After confirming, the database will begin resuming, which may take a few minutes.
 
 Alternatively, you can select the *Resume* button on the database you want to resume directly from the https://console.neo4j.io/[Neo4j Aura Console].
 
