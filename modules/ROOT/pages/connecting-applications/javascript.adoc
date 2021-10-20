@@ -1,3 +1,115 @@
 [[aura-connecting-javascript]]
 = JavaScript
-:description:
+:description: This page describes how to connect your application to AuraDB using the JavaScript Driver.
+
+== Prerequisites
+
+- node
+- npm/yarn
+
+== Installation
+
+Use the following command to install the JavaScript Driver using npm:
+
+[source, shell]
+----
+npm install --save neo4j-driver
+----
+
+Use the following command to install the JavaScript Driver using yarn:
+
+[source, shell]
+----
+yarn add neo4j-driver
+----
+
+== Example
+
+Follow the steps below to run the example code:
+
+. Copy and paste the JavaScript code snippet below into a file named `example.js`.
+. Enter the information for the AuraDB database you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura database>` with the URI.
+* `<Username for Neo4j Aura database>` with the username.
+* `<Password for Neo4j Aura database>` with the password.
+. Use the following command to run the example code:
++
+[source, shell]
+----
+node example.js
+----
+
+[source, javascript]
+----
+(async() => {
+ const neo4j = require('neo4j-driver')
+ 
+ const uri = 'neo4j+s://<Bolt url for Neo4j Aura database>';
+ const user = '<Username for Neo4j Aura database>';
+ const password = '<Password for Neo4j Aura database>';
+ 
+ const driver = neo4j.driver(uri, neo4j.auth.basic(user, password))
+ const session = driver.session()
+
+ const person1Name = 'Alice'
+ const person2Name = 'David'
+
+ try {
+   // To learn more about the Cypher syntax, see https://neo4j.com/docs/cypher-manual/current/
+   // The Reference Card is also a good resource for keywords https://neo4j.com/docs/cypher-refcard/current/
+   const writeQuery = `MERGE (p1:Person { name: $person1Name })
+                       MERGE (p2:Person { name: $person2Name })
+                       MERGE (p1)-[:KNOWS]->(p2)
+                       RETURN p1, p2`
+
+   // Write transactions allow the driver to handle retries and transient errors
+   const writeResult = await session.writeTransaction(tx =>
+     tx.run(writeQuery, { person1Name, person2Name })
+   )
+   writeResult.records.forEach(record => {
+     const person1Node = record.get('p1')
+     const person2Node = record.get('p2')
+     console.log(
+       `Created friendship between: ${person1Node.properties.name}, ${person2Node.properties.name}`
+     )
+   })
+
+   const readQuery = `MATCH (p:Person)
+                      WHERE p.name = $personName
+                      RETURN p.name AS name`
+   const readResult = await session.readTransaction(tx =>
+     tx.run(readQuery, { personName: person1Name })
+   )
+   readResult.records.forEach(record => {
+     console.log(`Found person: ${record.get('name')}`)
+   })
+ } catch (error) {
+   console.error('Something went wrong: ', error)
+ } finally {
+   await session.close()
+ }
+
+ // Don't forget to close the driver connection when you're finished with it
+ await driver.close()
+})();
+----
+
+=== Code walkthrough
+
+You need to import `neo4j-driver` to make a connection to your Neo4j AuraDB instance.
+
+This example runs two queries against the database:
+
+- The first query creates a relationship between Alice and David using a write transaction.
+- The second query finds Alice using a read transaction.
+
+[NOTE]
+====
+Developing with Neo4j Aura requires the use of https://neo4j.com/docs/python-manual/4.3/session-api/#python-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
+====
+
+Make sure to log queries and data sent from your application. Doing so is especially useful when you encounter errors and can help with debugging.
+
+== References
+
+- https://neo4j.com/docs/javascript-manual/current/[Neo4j JavaScript Driver Manual]
