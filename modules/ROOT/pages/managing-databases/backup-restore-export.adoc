@@ -6,7 +6,7 @@ The data in your AuraDB database can be backed up, exported, and restored using 
 
 A snapshot is a copy of the data in a database at a specific point in time.
 
-The *SNAPSHOTS* tab within an AuraDB database shows a list of available snapshots. footnote:[Snapshots are kept in the system for 7 days for Free and Professional plans and 90 days for Enterprise plans.]
+The *SNAPSHOTS* tab within an AuraDB database shows a list of available snapshots. footnote:[Snapshots are kept in the system for 7 days for Free and Professional plans and 90 days for Enterprise plans. Only the latest snapshot is available for Free databases.]
 
 To access the *SNAPSHOTS* tab:
 
@@ -19,7 +19,7 @@ To access the *SNAPSHOTS* tab:
 There are three different types of snapshot:
 
 * *Scheduled* - Runs when you first create a database, when changes to the underlying system occur (for example, a new patch release), and automatically at a cadence depending on your plan type.
-footnote:[Automatic scheduled snapshots run once a day for Professional and Free plans and once an hour for Enterprise plans.] 
+footnote:[Automatic scheduled snapshots run once a day for Professional databases and once an hour for Enterprise databases. Scheduled snapshots are not available for Free databases.] 
 * *Load* - Runs when you load a dump file from the *IMPORT DATABASE* tab of a database and when you run the `push-to-cloud` command from the *IMPORT* tab at the top of the Aura Console.
 * *On-demand* - Runs when you select *Take snapshot* from the *SNAPSHOTS* tab of a database.
 
