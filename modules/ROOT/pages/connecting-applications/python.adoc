@@ -113,7 +113,7 @@ The example calls two functions from the `Main` function:
 
 [NOTE]
 ====
-Developing with Neo4j Aura requires the use of https://neo4j.com/docs/python-manual/4.3/session-api/#python-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
+Developing with Neo4j Aura requires the use of https://neo4j.com/docs/python-manual/current/session-api/#python-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
 ====
 
 Make sure to log queries and data sent from your application. Doing so is especially useful when you encounter errors and can help with debugging.

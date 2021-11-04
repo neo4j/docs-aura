@@ -98,14 +98,14 @@ node example.js
 
 You need to import `neo4j-driver` to make a connection to your Neo4j AuraDB instance.
 
-This example runs two queries against the database:
+The example runs two queries against the database:
 
 - The first query creates a relationship between Alice and David using a write transaction.
 - The second query finds Alice using a read transaction.
 
 [NOTE]
 ====
-Developing with Neo4j Aura requires the use of https://neo4j.com/docs/python-manual/4.3/session-api/#python-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
+Developing with Neo4j Aura requires the use of https://neo4j.com/docs/javascript-manual/current/session-api/#js-driver-async-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
 ====
 
 Make sure to log queries and data sent from your application. Doing so is especially useful when you encounter errors and can help with debugging.
