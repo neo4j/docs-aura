@@ -1,3 +1,46 @@
 [[aura-connecting-go]]
 = Go
-:description:
+:description: This page describes how to connect your application to AuraDB using the .
+
+== Prerequisites
+
+- 
+
+== Installation
+
+[source, shell]
+----
+
+----
+
+== Example
+
+Follow the steps below to run the example code:
+
+. Copy and paste the JavaScript code snippet below into a file named `example.js`.
+. Enter the information for the AuraDB database you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura database>` with the URI.
+* `<Username for Neo4j Aura database>` with the username.
+* `<Password for Neo4j Aura database>` with the password.
+. Use the following command to run the example code:
++
+[source, shell]
+----
+node example.js
+----
+
+[source, ]
+----
+
+----
+
+=== Code walkthrough
+
+[NOTE]
+====
+
+====
+
+== References
+
+- 
