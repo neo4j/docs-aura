@@ -26,12 +26,12 @@ To resize a database:
 
 A database remains available during the resize operation.
 
-== Cloning a database 
+== Cloning a database
 
 label:Enterprise[]
 label:Professional[]
 
-You can clone an existing database into a new one using the *Clone* option. 
+You can clone an existing database into a new one using the *Clone* option.
 The advantage this has over the xref:managing-databases/backup-restore-export.adoc#_backup_and_export[Create database from snapshot action] is the ability to select a new region.
 
 To clone a database:
@@ -44,16 +44,16 @@ For more information on database settings, see xref:getting-started/create-datab
 
 == Deleting a database
 
-You can delete a database if you no longer want to be billed for it. 
+You can delete a database if you no longer want to be billed for it.
 
 To delete a database:
 
-. Navigate to the *SETTINGS* tab of the database you want to resize.
+. Navigate to the *SETTINGS* tab of the database you want to remove.
 . Select *Delete* below *Delete Database*.
-. Type DESTROY to confirm your decision and select *Destroy*.
+. Type the exact name of the database (as instructed) to confirm your decision, and select *Destroy*.
 
 [WARNING]
 ====
 *Warning:*
-There is no way to recover data from a deleted AuraDB database. 
+There is no way to recover data from a deleted AuraDB database.
 ====
