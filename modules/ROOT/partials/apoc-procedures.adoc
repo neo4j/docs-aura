@@ -6,7 +6,7 @@
 Generated on October 8, 2021.
 
 
-=== apoc
+== apoc
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -23,7 +23,7 @@ apoc.when(condition, ifQuery, elseQuery:'', params:{}) yield value - based on th
 |===
 
 
-=== apoc.agg
+== apoc.agg
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -54,7 +54,7 @@ apoc.agg.statistics(value,[percentiles = 0.5,0.75,0.9,0.95,0.99]) - returns nume
 |===
 
 
-=== apoc.algo
+== apoc.algo
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -75,7 +75,7 @@ apoc.algo.dijkstraWithDefaultWeight(startNode, endNode, 'KNOWS|<WORKS_WITH|IS_MA
 |===
 
 
-=== apoc.any
+== apoc.any
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -88,7 +88,7 @@ returns property for virtual and real, nodes, rels and maps
 |===
 
 
-=== apoc.atomic
+== apoc.atomic
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -109,7 +109,7 @@ apoc.atomic.update(node/relatonship,propertyName,updateOperation) update a prope
 |===
 
 
-=== apoc.bitwise
+== apoc.bitwise
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -120,7 +120,7 @@ apoc.bitwise.op(60,'|',13) bitwise operations a & b, a | b, a ^ b, ~a, a >> b, a
 |===
 
 
-=== apoc.coll
+== apoc.coll
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -229,7 +229,7 @@ apoc.coll.zipToRows(list1,list2) - creates pairs like zip but emits one row per 
 |===
 
 
-=== apoc.convert
+== apoc.convert
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -282,7 +282,7 @@ apoc.convert.toTree([paths],[lowerCaseRels=true], [config]) creates a stream of 
 |===
 
 
-=== apoc.create
+== apoc.create
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -335,7 +335,7 @@ apoc.create.virtual.fromNode(node, [propertyNames]) returns a virtual node built
 |===
 
 
-=== apoc.cypher
+== apoc.cypher
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -358,7 +358,7 @@ apoc.cypher.runTimeboxed('cypherStatement',{params}, timeout) - abort kernelTran
 |===
 
 
-=== apoc.data
+== apoc.data
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -371,7 +371,7 @@ apoc.data.url('url') as {protocol,host,port,path,query,file,anchor,user} | turn 
 |===
 
 
-=== apoc.date
+== apoc.date
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -406,7 +406,7 @@ toYears(timestamp) or toYears(date[,format]) - converts timestamp into floating 
 |===
 
 
-=== apoc.diff
+== apoc.diff
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -417,7 +417,7 @@ toYears(timestamp) or toYears(date[,format]) - converts timestamp into floating 
 |===
 
 
-=== apoc.do
+== apoc.do
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -430,7 +430,7 @@ apoc.do.when(condition, ifQuery, elseQuery:'', params:{}) yield value - based on
 |===
 
 
-=== apoc.example
+== apoc.example
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -441,7 +441,7 @@ apoc.example.movies() | Creates the sample movies graph
 |===
 
 
-=== apoc.graph
+== apoc.graph
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -466,7 +466,7 @@ apoc.graph.validateDocument({json}, {config}) yield row - validates the json, re
 |===
 
 
-=== apoc.hashing
+== apoc.hashing
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -481,7 +481,7 @@ calculate a checksum (md5) over a node or a relationship. This deals gracefully 
 |===
 
 
-=== apoc.import
+== apoc.import
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -492,7 +492,7 @@ apoc.import.csv(nodes, relationships, config) - imports nodes and relationships 
 |===
 
 
-=== apoc.json
+== apoc.json
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -503,7 +503,7 @@ apoc.json.path('{json}' [,'json-path' , 'path-options'])
 |===
 
 
-=== apoc.label
+== apoc.label
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -514,7 +514,7 @@ apoc.label.exists(element, label) - returns true or false related to label exist
 |===
 
 
-=== apoc.load
+== apoc.load
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -527,7 +527,7 @@ apoc.load.jsonArray('url') YIELD value - load array from JSON URL (e.g. web-api)
 |===
 
 
-=== apoc.lock
+== apoc.lock
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -546,7 +546,7 @@ apoc.lock.rels([relationships]) acquires a write lock on the given relationship
 |===
 
 
-=== apoc.map
+== apoc.map
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -601,7 +601,7 @@ apoc.map.values(map, [key1,key2,key3,...],[addNullsForMissing]) returns list of 
 |===
 
 
-=== apoc.math
+== apoc.math
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -630,7 +630,7 @@ apoc.math.round(value,[prec],mode=[CEILING,FLOOR,UP,DOWN,HALF_EVEN,HALF_DOWN,HAL
 |===
 
 
-=== apoc.merge
+== apoc.merge
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -647,7 +647,7 @@ apoc.merge.relationship(startNode, relType,  identProps:{key:value, ...}, onCrea
 |===
 
 
-=== apoc.meta
+== apoc.meta
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -686,7 +686,7 @@ apoc.meta.types(node-relationship-map)  - returns a map of keys to types
 |===
 
 
-=== apoc.neighbors
+== apoc.neighbors
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -707,7 +707,7 @@ apoc.neighbors.tohop.count(node, rel-direction-pattern, distance) - returns dist
 |===
 
 
-=== apoc.node
+== apoc.node
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -732,7 +732,7 @@ apoc.node.relationships.exist(node, rel-direction-pattern) - returns a map with 
 |===
 
 
-=== apoc.nodes
+== apoc.nodes
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -761,7 +761,7 @@ apoc.get.rels(rel|id|[ids]) - quickly returns all relationships with these ids
 |===
 
 
-=== apoc.number
+== apoc.number
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -794,7 +794,7 @@ apoc.number.romanToArabic(romanNumber)  | convert roman numbers to arabic
 |===
 
 
-=== apoc.path
+== apoc.path
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -821,7 +821,7 @@ apoc.path.subgraphNodes(startNode <id>|Node|list, {maxLevel,relationshipFilter,l
 |===
 
 
-=== apoc.periodic
+== apoc.periodic
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -844,7 +844,7 @@ apoc.periodic.submit('name',statement,params) - submit a one-off background stat
 |===
 
 
-=== apoc.refactor
+== apoc.refactor
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -889,7 +889,7 @@ apoc.refactor.setType(rel, 'NEW-TYPE') change relationship-type
 |===
 
 
-=== apoc.rel
+== apoc.rel
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -902,7 +902,7 @@ returns type for (virtual) relationships
 |===
 
 
-=== apoc.schema
+== apoc.schema
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -927,7 +927,7 @@ CALL apoc.schema.relationships([config]) yield name, startLabel, type, endLabel,
 |===
 
 
-=== apoc.scoring
+== apoc.scoring
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -940,7 +940,7 @@ apoc.scoring.pareto(10, 20, 100, 11) applies a Pareto scoring function over the 
 |===
 
 
-=== apoc.search
+== apoc.search
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -959,7 +959,7 @@ Do a parallel search over multiple indexes returning a reduced representation of
 |===
 
 
-=== apoc.spatial
+== apoc.spatial
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -976,7 +976,7 @@ apoc.spatial.sortByDistance(List<Path>) sort the given paths based on the geo in
 |===
 
 
-=== apoc.stats
+== apoc.stats
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -987,7 +987,7 @@ apoc.spatial.sortByDistance(List<Path>) sort the given paths based on the geo in
 |===
 
 
-=== apoc.temporal
+== apoc.temporal
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -1002,7 +1002,7 @@ apoc.temporal.toZonedTemporal('2012-12-23 23:59:59','yyyy-MM-dd HH:mm:ss', 'UTC-
 |===
 
 
-=== apoc.text
+== apoc.text
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -1109,7 +1109,7 @@ apoc.text.urlencode(text) - return the urlencoded text
 |===
 
 
-=== apoc.util
+== apoc.util
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -1134,7 +1134,7 @@ apoc.util.validatePredicate(predicate, message, params) | if the predicate yield
 |===
 
 
-=== apoc.warmup
+== apoc.warmup
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
@@ -1145,7 +1145,7 @@ apoc.warmup.run(loadProperties=false,loadDynamicProperties=false,loadIndexes=fal
 |===
 
 
-=== apoc.xml
+== apoc.xml
 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
