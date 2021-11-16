@@ -3,7 +3,7 @@
 
 // Timestamp
 [NOTE]
-Generated on October 8, 2021.
+Generated on November 16, 2021.
 
 
 == apoc
@@ -351,7 +351,7 @@ apoc.cypher.runFirstColumnMany(statement, params) - executes statement with give
 ¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.3/overview/apoc.cypher/apoc.cypher.runFirstColumnSingle[apoc.cypher.runFirstColumnSingle icon:book[] ^] +
 apoc.cypher.runFirstColumnSingle(statement, params) - executes statement with given parameters, returns first element of the first column only, params are available as identifiers
 ¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.3/overview/apoc.cypher/apoc.cypher.runMany[apoc.cypher.runMany icon:book[] ^] +
-apoc.cypher.runMany('cypher;\nstatements;',{params},[{statistics:true,timeout:10}]) - runs each semicolon separated statement and returns summary - currently no schema operations
+apoc.cypher.runMany('cypher;\nstatements;', $params, [{statistics:true,timeout:10}]) - runs each semicolon separated statement and returns summary - currently no schema operations
 ¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.3/overview/apoc.cypher/apoc.cypher.runTimeboxed[apoc.cypher.runTimeboxed icon:book[] ^] +
 apoc.cypher.runTimeboxed('cypherStatement',{params}, timeout) - abort kernelTransaction after timeout ms if not finished
 ¦ label:procedure[]
