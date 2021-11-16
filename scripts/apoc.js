@@ -64,7 +64,7 @@ session.readTransaction(tx => tx.run(`
         return acc
     }, {}))
     .then(namespaces =>  Object.entries(namespaces).map(([namespace, procedures]) => `
-=== ${namespace}
+== ${namespace}
 
 ${header}
 ${procedures.map(({ name, text, type }) => `¦ link:https://neo4j.com/labs/apoc/${AURA_VERSION}/overview/${namespace}/${name}[${name} icon:book[] ^] +
