@@ -10,28 +10,7 @@
 
 Download and install the latest version of the Java driver from the https://mvnrepository.com/artifact/org.neo4j.driver/neo4j-java-driver[Maven Repository] along with its listed dependencies.
 
-== Example
-
-Follow the steps below to run the example code:
-
-. Copy and paste the Java code snippet below into a file named `DriverIntroductionExample.js`.
-. Enter the information for the AuraDB database you want to connect to by replacing:
-* `<Bolt url for Neo4j Aura database>` with the URI.
-* `<Username for Neo4j Aura database>` with the username.
-* `<Password for Neo4j Aura database>` with the password.
-. Use the following command to compile the java file, replacing `<version>` with your installed version number:
-+
-[source, shell]
-----
-javac -cp neo4j-java-driver-<version>.jar DriverIntroductionExample.java
-----
-+
-. Use the following command to run the example code, replacing `<version>` with your installed version number:
-+
-[source, shell]
-----
-java -cp neo4j-java-driver-<version>.jar:reactive-streams-1.0.3.jar:. DriverIntroductionExample
-----
+== Code example
 
 [source, java]
 ----
@@ -124,11 +103,34 @@ public class DriverIntroductionExample implements AutoCloseable {
 }
 ----
 
-=== Code walkthrough 
+=== Running the example
 
-You need to import the `driver` to make a connection to your Neo4j AuraDB instance.
+Follow the steps below to run the example code:
 
-The example calls two functions from the `Main` function:
+. Copy and paste the code above into a file named `DriverIntroductionExample.js`.
+. Enter the information for the AuraDB database you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura database>` with the URI.
+* `<Username for Neo4j Aura database>` with the username.
+* `<Password for Neo4j Aura database>` with the password.
+. Use the following command to compile the java file, replacing `<version>` with your installed version number:
++
+[source, shell]
+----
+javac -cp neo4j-java-driver-<version>.jar DriverIntroductionExample.java
+----
++
+. Use the following command to run the example code, replacing `<version>` with your installed version number:
++
+[source, shell]
+----
+java -cp neo4j-java-driver-<version>.jar:reactive-streams-1.0.3.jar:. DriverIntroductionExample
+----
+
+=== Example walkthrough
+
+The example imports `neo4j.driver` to connect to the Neo4j AuraDB instance.
+
+The `Main` function calls the following two functions:
 
 - `createFriendship` creates a relationship between Alice and David using a write transaction.
 - `findPerson` finds Alice using a read transaction.
@@ -138,7 +140,7 @@ The example calls two functions from the `Main` function:
 Developing with Neo4j Aura requires the use of https://neo4j.com/docs/java-manual/current/session-api/#java-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
 ====
 
-Make sure to log queries and data sent from your application. Doing so is especially useful when you encounter errors and can help with debugging. In this example, we catch a `ServiceUnavailableException`.
+Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging. This example catches a `ServiceUnavailableException`.
 
 == References
 

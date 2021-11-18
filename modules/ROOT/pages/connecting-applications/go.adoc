@@ -15,21 +15,7 @@ Use the following command to install the Neo4j Go Driver:
 go mod init main
 ----
 
-== Example
-
-Follow the steps below to run the example code:
-
-. Copy and paste the Go code snippet below into a file named `example.go`.
-. Enter the information for the AuraDB database you want to connect to by replacing:
-* `<Bolt url for Neo4j Aura database>` with the URI.
-* `<Username for Neo4j Aura database>` with the username.
-* `<Password for Neo4j Aura database>` with the password.
-. Use the following command to run the example code:
-+
-[source, shell]
-----
-go run example.go
-----
+== Code example
 
 [source, go]
 ----
@@ -126,18 +112,34 @@ func main() {
 }
 ----
 
-=== Code walkthrough
+=== Running the example
 
-You need to import `neo4j-go-driver` to make a connection to your Neo4j AuraDB instance.
+Follow the steps below to run the example code:
 
-Within the `main` function a write transaction is used to create a relationship between Alice and David and a read transaction is used to find Alice.
+. Copy and paste the code above into a file named `example.go`.
+. Enter the information for the AuraDB database you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura database>` with the URI.
+* `<Username for Neo4j Aura database>` with the username.
+* `<Password for Neo4j Aura database>` with the password.
+. Use the following command to run the example code:
++
+[source, shell]
+----
+go run example.go
+----
+
+=== Example walkthrough
+
+The example imports `neo4j-go-driver` to connect to the Neo4j AuraDB instance.
+
+Within the `main` function, a write transaction creates a relationship between Alice and David, and a read transaction finds Alice.
 
 [NOTE]
 ====
 Developing with Neo4j Aura requires the use of https://neo4j.com/docs/go-manual/current/session-api/#go-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
 ====
 
-Make sure to log queries and data sent from your application. Doing so is especially useful when you encounter errors and can help with debugging.
+Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging.
 
 == References
 

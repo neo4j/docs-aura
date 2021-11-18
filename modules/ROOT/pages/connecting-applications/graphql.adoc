@@ -23,21 +23,7 @@ Use the following command to install the Neo4j GraphQL Library dependencies usin
 yarn add @neo4j/graphql graphql apollo-server neo4j-driver
 ----
 
-== Example
-
-Follow the steps below to run the example code:
-
-. Copy and paste the JavaScript code snippet below into a file named `example.js`.
-. Enter the information for the AuraDB database you want to connect to by replacing:
-* `<Bolt url for Neo4j Aura database>` with the URI.
-* `<Username for Neo4j Aura database>` with the username.
-* `<Password for Neo4j Aura database>` with the password.
-. Use the following command to run the example code:
-+
-[source, shell]
-----
-node example.js
-----
+== Code example
 
 [source, javascript]
 ----
@@ -78,7 +64,23 @@ server.listen().then(({ url }) => {
 });
 ----
 
-=== Code walkthrough
+=== Running the example
+
+Follow the steps below to run the example code:
+
+. Copy and paste the code above into a file named `example.js`.
+. Enter the information for the AuraDB database you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura database>` with the URI.
+* `<Username for Neo4j Aura database>` with the username.
+* `<Password for Neo4j Aura database>` with the password.
+. Use the following command to run the example code:
++
+[source, shell]
+----
+node example.js
+----
+
+=== Example walkthrough
 
 You use the Neo4j GraphQL Library to create a GraphQL API backed by your Neo4j Aura instance. The Neo4j GraphQL Library can generate a full GraphQL API, including auto-generated data fetching logic from GraphQL type definitions.
 
@@ -86,7 +88,7 @@ The example creates GraphQL type definitions to define the data model of the API
 
 You then use Apollo Server to serve the GraphQL schema. Once the GraphQL server is running, navigate to http://localhost:4000[localhost:4000] in your web browser to query the GraphQL API using GraphQL Playground.
 
-=== Querying With GraphQL
+=== Querying with GraphQL
 
 In GraphQL Playground, run the following mutation to create two Person nodes, Alice and Dave, connected by a KNOWS relationship in the graph:
 

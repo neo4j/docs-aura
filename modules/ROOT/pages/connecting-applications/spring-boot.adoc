@@ -9,8 +9,8 @@
 
 == Maven project setup
 
-You have to create a Spring boot application to use the example provided below.
-To do this, you define the necessary dependencies and the project layout in Maven or Gradle. 
+Create a Spring boot application to use the example provided below.
+To do this, define the necessary dependencies and the project layout in Maven or Gradle. 
 This example focuses on the Maven-based solution.
 
 Your `pom.xml` file should match the following:
@@ -64,31 +64,7 @@ Your `pom.xml` file should match the following:
 </project>
 ----
 
-== Example
-
-Follow the steps below to run the example code:
-
-. Copy and paste the Java code snippet below into a file named `Example.java` within a package/folder like `org.neo4j.examples` in the `main/java/src` folder.
-. Enter the information for the AuraDB database you want to connect to by adding the following to the `application.properties` file:
-+
-[source]
-----
-org.neo4j.driver.uri=neo4j+s://<Bolt url for Neo4j Aura database>
-org.neo4j.driver.authentication.username=<Username for Neo4j Aura database>
-org.neo4j.driver.authentication.password=<Password for Neo4j Aura database>
-----
-+
-and replace:
-+
-* `<Bolt url for Neo4j Aura database>` with the URI.
-* `<Username for Neo4j Aura database>` with the username.
-* `<Password for Neo4j Aura database>` with the password.
-. Use the following command to run the example code:
-+
-[source, shell]
-----
-./mvnw spring-boot:run
-----
+== Code example
 
 [source, java]
 ----
@@ -210,10 +186,38 @@ class ExampleCommandLineRunner implements CommandLineRunner {
 }
 ----
 
-=== Code walkthrough
+=== Running the example
+
+Follow the steps below to run the example code:
+
+. Copy and paste the code above into a file named `Example.java` within a package/folder like `org.neo4j.examples` in the `main/java/src` folder.
+. Enter the information for the AuraDB database you want to connect to by adding the following to the `application.properties` file:
++
+[source]
+----
+org.neo4j.driver.uri=neo4j+s://<Bolt url for Neo4j Aura database>
+org.neo4j.driver.authentication.username=<Username for Neo4j Aura database>
+org.neo4j.driver.authentication.password=<Password for Neo4j Aura database>
+----
++
+and replace:
++
+* `<Bolt url for Neo4j Aura database>` with the URI.
+* `<Username for Neo4j Aura database>` with the username.
+* `<Password for Neo4j Aura database>` with the password.
+. Use the following command to run the example code:
++
+[source, shell]
+----
+./mvnw spring-boot:run
+----
+
+=== Example walkthrough
 
 This example creates an `ExampleCommandLineRunner`, an implementation of Spring's `CommandLineRunner`. 
-This bean's run method executes after the Spring context is successfully created. There are two methods called from the implemented run method:
+This bean's run method executes after the Spring context is successfully created. 
+
+There are two methods called from the implemented run method:
 
 - `createRelationshipToPeople` creates a relationship between Alice and David using a write transaction.
 - `readPersonByName` finds Alice using a read transaction.
@@ -223,7 +227,7 @@ This bean's run method executes after the Spring context is successfully created
 Developing with Neo4j Aura requires the use of https://neo4j.com/docs/java-manual/current/session-api/#java-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
 ====
 
-Make sure to log queries and data sent from your application. Doing so is especially useful when you encounter errors and can help with debugging. In this example, we catch a `ServiceUnavailableException`.
+Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging. This example catches a `ServiceUnavailableException`.
 
 == References
 

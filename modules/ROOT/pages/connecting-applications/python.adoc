@@ -15,21 +15,7 @@ Use the following command to install the Neo4j Python Driver using pip:
 pip install neo4j
 ----
 
-== Example
-
-Follow the steps below to run the example code:
-
-. Copy and paste the Python code snippet below into a file named `example.py`.
-. Enter the information for the AuraDB database you want to connect to by replacing:
-* `<Bolt url for Neo4j Aura database>` with the URI.
-* `<Username for Neo4j Aura database>` with the username.
-* `<Password for Neo4j Aura database>` with the password.
-. Use the following command to run the example code:
-+
-[source, shell]
-----
-python example.py
-----
+== Code example
 
 [source, python]
 ----
@@ -102,11 +88,27 @@ if __name__ == "__main__":
     app.close()
 ----
 
-=== Code walkthrough
+=== Running the example
 
-You need to import `GraphDatabase` and `basic_auth` to make a connection to your Neo4j AuraDB instance. `ServiceUnavailable` is imported for error handling in the example.
+Follow the steps below to run the example code:
 
-The example calls two functions from the `Main` function:
+. Copy and paste the code above into a file named `example.py`:
+. Enter the information for the AuraDB database you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura database>` with the URI.
+* `<Username for Neo4j Aura database>` with the username.
+* `<Password for Neo4j Aura database>` with the password.
+. Use the following command to run the example code:
++
+[source, shell]
+----
+python example.py
+----
+
+=== Example walkthrough
+
+The example imports `GraphDatabase` and `basic_auth` to connect to the Neo4j AuraDB instance and `ServiceUnavailable` for error handling.
+
+The `Main` function calls the following two functions:
 
 - `create_friendship` creates a relationship between Alice and David using a write transaction.
 - `find_person` finds Alice using a read transaction.
@@ -116,7 +118,7 @@ The example calls two functions from the `Main` function:
 Developing with Neo4j Aura requires the use of https://neo4j.com/docs/python-manual/current/session-api/#python-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
 ====
 
-Make sure to log queries and data sent from your application. Doing so is especially useful when you encounter errors and can help with debugging.
+Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging.
 
 == References
 

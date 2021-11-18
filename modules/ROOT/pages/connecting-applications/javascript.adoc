@@ -23,21 +23,7 @@ Use the following command to install the Neo4j JavaScript Driver using yarn:
 yarn add neo4j-driver
 ----
 
-== Example
-
-Follow the steps below to run the example code:
-
-. Copy and paste the JavaScript code snippet below into a file named `example.js`.
-. Enter the information for the AuraDB database you want to connect to by replacing:
-* `<Bolt url for Neo4j Aura database>` with the URI.
-* `<Username for Neo4j Aura database>` with the username.
-* `<Password for Neo4j Aura database>` with the password.
-. Use the following command to run the example code:
-+
-[source, shell]
-----
-node example.js
-----
+== Code example
 
 [source, javascript]
 ----
@@ -94,9 +80,25 @@ node example.js
 })();
 ----
 
-=== Code walkthrough
+=== Running the example
 
-You need to import `neo4j-driver` to make a connection to your Neo4j AuraDB instance.
+Follow the steps below to run the example code:
+
+. Copy and paste the code above into a file named `example.js`.
+. Enter the information for the AuraDB database you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura database>` with the URI.
+* `<Username for Neo4j Aura database>` with the username.
+* `<Password for Neo4j Aura database>` with the password.
+. Use the following command to run the example code:
++
+[source, shell]
+----
+node example.js
+----
+
+=== Example walkthrough
+
+The example imports `neo4j-driver` to connect to the Neo4j AuraDB instance.
 
 The example runs two queries against the database:
 
@@ -108,7 +110,7 @@ The example runs two queries against the database:
 Developing with Neo4j Aura requires the use of https://neo4j.com/docs/javascript-manual/current/session-api/#js-driver-async-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
 ====
 
-Make sure to log queries and data sent from your application. Doing so is especially useful when you encounter errors and can help with debugging.
+Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging.
 
 == References
 
