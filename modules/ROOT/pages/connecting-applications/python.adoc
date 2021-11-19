@@ -63,8 +63,8 @@ class App:
     def find_person(self, person_name):
         with self.driver.session() as session:
             result = session.read_transaction(self._find_and_return_person, person_name)
-            for row in result:
-                print("Found person: {row}".format(row=row))
+            for record in result:
+                print("Found person: {record}".format(record=record))
 
     @staticmethod
     def _find_and_return_person(tx, person_name):
