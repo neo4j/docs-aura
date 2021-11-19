@@ -52,8 +52,8 @@ class App:
         )
         result = tx.run(query, person1_name=person1_name, person2_name=person2_name)
         try:
-            return [{"p1": row["p1"]["name"], "p2": row["p2"]["name"]}
-                    for row in result]
+            return [{"p1": record["p1"]["name"], "p2": record["p2"]["name"]}
+                    for record in result]
         # Capture any errors along with the query and data for traceability
         except Neo4jError as exception:
             logging.error("{query} raised an error: \n {exception}".format(
