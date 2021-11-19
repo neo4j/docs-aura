@@ -130,7 +130,7 @@ java -cp neo4j-java-driver-<version>.jar:reactive-streams-1.0.3.jar:. DriverIntr
 
 The example imports `neo4j.driver` to connect to the Neo4j AuraDB instance.
 
-The `Main` function calls the following two functions:
+The `main` function calls the following two functions:
 
 - `createFriendship` creates a relationship between Alice and David using a write transaction.
 - `findPerson` finds Alice using a read transaction.
