@@ -21,7 +21,7 @@ pip install neo4j
 ----
 from neo4j import GraphDatabase
 import logging
-from neo4j.exceptions import ServiceUnavailable
+from neo4j.exceptions import Neo4jError
 
 class App:
 
@@ -55,7 +55,7 @@ class App:
             return [{"p1": row["p1"]["name"], "p2": row["p2"]["name"]}
                     for row in result]
         # Capture any errors along with the query and data for traceability
-        except ServiceUnavailable as exception:
+        except Neo4jError as exception:
             logging.error("{query} raised an error: \n {exception}".format(
                 query=query, exception=exception))
             raise
