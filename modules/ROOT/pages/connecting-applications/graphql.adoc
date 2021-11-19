@@ -28,7 +28,7 @@ yarn add @neo4j/graphql graphql@^15.0.0 apollo-server neo4j-driver
 [source, javascript]
 ----
 const { Neo4jGraphQL } = require("@neo4j/graphql");
-const { ApolloServer } = require("apollo-server");
+const { ApolloServer, gql } = require("apollo-server");
 const neo4j = require("neo4j-driver");
 
 // (You may need to replace your connection details, username and password)
