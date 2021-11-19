@@ -227,7 +227,7 @@ There are two methods called from the implemented run method:
 Developing with Neo4j Aura requires the use of https://neo4j.com/docs/java-manual/current/session-api/#java-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
 ====
 
-Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging. This example catches a `ServiceUnavailableException`.
+Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging.
 
 == References
 
