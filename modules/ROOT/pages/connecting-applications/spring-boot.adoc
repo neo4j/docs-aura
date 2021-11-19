@@ -195,9 +195,9 @@ Follow the steps below to run the example code:
 +
 [source]
 ----
-org.neo4j.driver.uri=neo4j+s://<Bolt url for Neo4j Aura database>
-org.neo4j.driver.authentication.username=<Username for Neo4j Aura database>
-org.neo4j.driver.authentication.password=<Password for Neo4j Aura database>
+spring.neo4j.uri=neo4j+s://<Bolt url for Neo4j Aura database>
+spring.neo4j.authentication.username=<Username for Neo4j Aura database>
+spring.neo4j.authentication.password=<Password for Neo4j Aura database>
 ----
 +
 and replace:
