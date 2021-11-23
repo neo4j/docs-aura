@@ -132,7 +132,7 @@ go run example.go
 
 The example imports `neo4j-go-driver` to connect to the Neo4j AuraDB instance.
 
-Within the `main` function, a write transaction creates a relationship between Alice and David, and a read transaction finds Alice.
+Within the `main` function, a write transaction creates two 'Person' nodes, Alice and David, and a 'KNOWS' relationship between them, and a read transaction finds Alice.
 
 [NOTE]
 ====

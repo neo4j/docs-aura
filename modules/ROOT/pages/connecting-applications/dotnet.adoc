@@ -187,7 +187,7 @@ The example imports `Neo4j.Driver` to connect to the Neo4j AuraDB instance.
 
 The `Main` function calls the following two functions:
 
-- `CreateFriendship` creates a relationship between Alice and David using a write transaction.
+- `CreateFriendship` creates two 'Person' nodes, Alice and David, and a 'KNOWS' relationship between them using a write transaction.
 - `FindPerson` finds Alice using a read transaction.
 
 [NOTE]

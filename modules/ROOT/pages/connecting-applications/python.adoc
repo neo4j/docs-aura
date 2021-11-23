@@ -111,7 +111,7 @@ The example imports `GraphDatabase` and `basic_auth` to connect to the Neo4j Aur
 
 The `Main` function calls the following two functions:
 
-- `create_friendship` creates a relationship between Alice and David using a write transaction.
+- `create_friendship` creates two 'Person' nodes, Alice and David, and a 'KNOWS' relationship between them using a write transaction.
 - `find_person` finds Alice using a read transaction.
 
 [NOTE]

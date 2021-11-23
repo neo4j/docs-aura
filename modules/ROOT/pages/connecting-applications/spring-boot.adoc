@@ -219,7 +219,7 @@ This bean's run method executes after the Spring context is successfully created
 
 There are two methods called from the implemented run method:
 
-- `createRelationshipToPeople` creates a relationship between Alice and David using a write transaction.
+- `createRelationshipToPeople` creates two 'Person' nodes, Alice and David, and a 'KNOWS' relationship between them using a write transaction.
 - `readPersonByName` finds Alice using a read transaction.
 
 [NOTE]
