@@ -9,6 +9,7 @@ There are a few different methods of accessing a database in Neo4j AuraDB:
 * <<_neo4j_browser>> - A browser-based interface for querying and viewing data in a database with rudimentary visualization.
 * <<_neo4j_bloom>> - A graph exploration application for visually interacting with graph data.
 * <<_neo4j_desktop>> - An installable desktop application used to manage local and cloud databases.
+* <<_neo4j_cypher_shell>> - A command-line tool used to run cypher queries against a Neo4j instance.
 
 [TIP]
 ====
@@ -71,7 +72,7 @@ You can connect AuraDB databases to the Neo4j Desktop application, allowing the 
 To connect to a database using Neo4j Desktop:
 
 . Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
-. Copy the connection URL of the database you want to connect to.
+. Copy the *Connection URI* of the database you want to connect to. The uri is below the database status indicator.
 . In Neo4j Desktop, select the *Projects* tab and select an existing project or create a new one.
 . Select the *Add* dropdown and choose *Remote connection*.
 . Enter a name for the database and enter the URL from the Neo4j Aura console from the second step.
@@ -90,4 +91,44 @@ These are the same credentials you stored when xref:getting-started/create-datab
 
 As with other databases in Neo4j Desktop, you can install https://install.graphapp.io/[Graph Apps] for monitoring and other functionality.
 
-To do this, follow the same process to install the graph application that you need, and open it from Neo4j Desktop or a web browser with the running and activated Neo4j AuraDB instance.
+To do this, follow the same process to install the graph application you need, and open it from Neo4j Desktop or a web browser with the running and activated Neo4j AuraDB instance.
+
+== Neo4j Cypher Shell
+
+You can connect to an AuraDB database using the Neo4j Cypher Shell command-line interface (CLI) and run cypher commands against your database from the command-line.
+
+To connect to a database using Neo4j Cypher Shell:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Copy the *Connection URI* of the database you want to connect to. The uri is below the database status indicator.
+. Open a terminal and navigate to the folder where you have installed Cypher Shell.
+. Run the following `cypher-shell` command replacing:
+* *`<connection_uri>`* with the uri you copied in step 2.
+* *`<username>`* with the username for your database.
+* *`<password>`* with the password for your database.
++
+[source, shell]
+----
+./cypher-shell -a <connection_uri> -u <username> -p <password>
+----
+
+Once connected, you can run `:help` for a list of available commands.
+
+----
+Available commands:
+  :begin    Open a transaction
+  :commit   Commit the currently open transaction
+  :exit     Exit the logger
+  :help     Show this help message
+  :history  Print a list of the last commands executed
+  :param    Set the value of a query parameter
+  :params   Print all currently set query parameters and their values
+  :rollback Rollback the currently open transaction
+  :source   Interactively executes cypher statements from a file
+  :use      Set the active database
+
+For help on a specific command type:
+    :help command
+----
+
+For more information on Cypher Shell, including how to install it, please see the https://development.neo4j.dev/docs/operations-manual/current/tools/cypher-shell/[Cypher Shell documentation].
