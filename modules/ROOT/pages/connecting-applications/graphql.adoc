@@ -84,9 +84,9 @@ node example.js
 
 You use the Neo4j GraphQL Library to create a GraphQL API backed by your Neo4j Aura instance. The Neo4j GraphQL Library can generate a full GraphQL API, including auto-generated data fetching logic from GraphQL type definitions.
 
-The example creates GraphQL type definitions to define the data model of the API and the database. It then passes these to the Neo4jGraphQL class that contains an executable GraphQL schema object.
+The example creates GraphQL type definitions to define the data model of the API and the database. It then passes these to the `Neo4jGraphQL` class that contains an executable GraphQL schema object.
 
-You then use Apollo Server to serve the GraphQL schema. Once the GraphQL server is running, navigate to http://localhost:4000[localhost:4000] in your web browser to query the GraphQL API using GraphQL Playground.
+You then use Apollo Server to host the GraphQL schema. Once the GraphQL server is running, navigate to http://localhost:4000[localhost:4000] in your web browser to query the GraphQL API using Apollo Studio.
 
 === Querying with GraphQL
 
