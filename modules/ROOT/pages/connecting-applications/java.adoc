@@ -8,7 +8,22 @@
 
 == Installation
 
-Download and install the latest version of the Java driver from the https://search.maven.org/artifact/org.neo4j.driver/neo4j-java-driver[Maven Repository] along with its listed dependencies.
+Download the latest version of the Neo4j Java Driver along with the compatible version of reactive-streams into your working directory.
+
+To download the latest version of the Neo4j Java Driver:
+
+. Navigate to the https://search.maven.org/artifact/org.neo4j.driver/neo4j-java-driver[Neo4j Java Driver page] of Maven Central.
+. Select the latest version at the top of the list.
+. Select *Downloads* from the top right of the page and then select *jar* to download the jar file.
+
+To download the compatible version of reactive-streams:
+
+. Navigate to the Maven Central page of the version of the Neo4j Java Driver you previously downloaded.
+. Find the `reactive-streams` artifact dependency in the pom.xml file on the left side of the page to find the version.
+. Navigate to the https://search.maven.org/artifact/org.neo4j.driver/neo4j-java-driver[reactive-streams page] of Maven Central.
+. Select the same version as the one present in the pom.xml file previously.
+. Select *Downloads* from the top right of the page and then select *jar* to download the jar file.
+
 
 == Code example
 
@@ -112,18 +127,18 @@ Follow the steps below to run the example code:
 * `<Bolt url for Neo4j Aura database>` with the URI.
 * `<Username for Neo4j Aura database>` with the username.
 * `<Password for Neo4j Aura database>` with the password.
-. Use the following command to compile the java file, replacing `<version>` with your installed version number:
+. Use the following command to compile the java file, replacing `<driver-version>` with your installed driver version:
 +
 [source, shell]
 ----
-javac -cp neo4j-java-driver-<version>.jar DriverIntroductionExample.java
+javac -cp neo4j-java-driver-<driver-version>.jar DriverIntroductionExample.java
 ----
 +
-. Use the following command to run the example code, replacing `<version>` with your installed version number:
+. Use the following command to run the example code, replacing `<driver-version>` with your installed driver version and `<rs-version>` with your installed reactive-streams version:
 +
 [source, shell]
 ----
-java -cp neo4j-java-driver-<version>.jar:reactive-streams-1.0.3.jar:. DriverIntroductionExample
+java -cp neo4j-java-driver-<driver-version>.jar:reactive-streams-<rs-version>.jar:. DriverIntroductionExample
 ----
 
 === Example walkthrough
@@ -137,7 +152,7 @@ The `main` function calls the following two functions:
 
 [NOTE]
 ====
-Developing with Neo4j Aura requires the handling of transient errors and retry management. One way this can be managed is through the use of https://neo4j.com/docs/java-manual/current/session-api/#java-driver-simple-transaction-fn[Transaction Functions].
+Developing with Neo4j Aura requires the handling of transient errors and retry management. One of the ways you can meet this requirement is by using https://neo4j.com/docs/java-manual/current/session-api/#java-driver-simple-transaction-fn[Transaction Functions].
 ====
 
 Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging.
