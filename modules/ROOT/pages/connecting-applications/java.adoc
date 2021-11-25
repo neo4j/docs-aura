@@ -137,7 +137,7 @@ The `main` function calls the following two functions:
 
 [NOTE]
 ====
-Developing with Neo4j Aura requires the use of https://neo4j.com/docs/java-manual/current/session-api/#java-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
+Developing with Neo4j Aura requires the handling of transient errors and retry management. One way this can be managed is through the use of https://neo4j.com/docs/java-manual/current/session-api/#java-driver-simple-transaction-fn[Transaction Functions].
 ====
 
 Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging.
