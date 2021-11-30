@@ -8,7 +8,7 @@
 
 == Installation
 
-Download the latest version of the Neo4j Java Driver along with the compatible version of reactive-streams into your working directory.
+Download the latest version of the Neo4j Java Driver along with the compatible version of Reactive Streams into your working directory.
 
 To download the latest version of the Neo4j Java Driver:
 
@@ -16,11 +16,11 @@ To download the latest version of the Neo4j Java Driver:
 . Select the latest version at the top of the list.
 . Select *Downloads* from the top right of the page and then select *jar* to download the jar file.
 
-To download the compatible version of reactive-streams:
+To download the compatible version of Reactive Streams:
 
 . Navigate to the Maven Central page of the version of the Neo4j Java Driver you previously downloaded.
 . Find the `reactive-streams` artifact dependency in the pom.xml file on the left side of the page to find the version.
-. Navigate to the https://search.maven.org/artifact/org.reactivestreams/reactive-streams[reactive-streams page] of Maven Central.
+. Navigate to the https://search.maven.org/artifact/org.reactivestreams/reactive-streams[Reactive Streams page] of Maven Central.
 . Select the same version as the one present in the pom.xml file previously.
 . Select *Downloads* from the top right of the page and then select *jar* to download the jar file.
 
@@ -134,7 +134,7 @@ Follow the steps below to run the example code:
 javac -cp neo4j-java-driver-<driver-version>.jar DriverIntroductionExample.java
 ----
 +
-. Use the following command to run the example code, replacing `<driver-version>` with your installed driver version and `<rs-version>` with your installed reactive-streams version:
+. Use the following command to run the example code, replacing `<driver-version>` with your installed driver version and `<rs-version>` with your installed Reactive Streams version:
 +
 [source, shell]
 ----
