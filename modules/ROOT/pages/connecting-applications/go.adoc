@@ -6,13 +6,13 @@
 
 - Go 1.13+
 
-== Installation
+== Initializing the project
 
-Use the following command to install the Neo4j Go Driver:
+Use the following command to initialize the Go module, replacing `<project-url>` with the URL of your project:
 
 [source, shell]
 ----
-go mod init main
+go mod init <project-url>
 ----
 
 == Code example
@@ -121,6 +121,13 @@ Follow the steps below to run the example code:
 * `<Bolt url for Neo4j Aura database>` with the URI.
 * `<Username for Neo4j Aura database>` with the username.
 * `<Password for Neo4j Aura database>` with the password.
+. Use the following command to update any unused or missing dependencies:
++
+[source, shell]
+----
+go mod tidy
+----
++
 . Use the following command to run the example code:
 +
 [source, shell]
