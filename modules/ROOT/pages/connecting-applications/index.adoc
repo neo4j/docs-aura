@@ -1,0 +1,29 @@
+[[aura-connecting-applications]]
+= Connecting to applications with AuraDB
+:description: This section covers how to use drivers and libraries to connect your application to AuraDB.
+
+You can use the official drivers and libraries provided by Neo4j to connect your application to AuraDB using a variety of programming languages. 
+
+You can find instructions and example code for each driver/library below:
+
+* xref:connecting-applications/python.adoc[]
+* xref:connecting-applications/javascript.adoc[]
+* xref:connecting-applications/graphql.adoc[]
+* xref:connecting-applications/java.adoc[]
+* xref:connecting-applications/spring-boot.adoc[]
+* xref:connecting-applications/dotnet.adoc[]
+* xref:connecting-applications/go.adoc[]
+
+The same information can also be found within the *CONNECT* tab of the https://console.neo4j.io/[Neo4j Aura Console]. 
+
+You can access the *CONNECT* tab in one of two ways:
+
+. Select the *CONNECT* tab from the top of any Console page.
+. Select a database from the Console homepage and select the *CONNECT* tab below the database details. 
+
+[NOTE]
+====
+The *CONNECT* tab at the top of the Console allows you to select from a list of available AuraDB databases. 
+Once you select a database from the dropdown, the `uri` variable within the code sample populates accordingly.
+The *CONNECT* tab within a database populates the `uri` variable for the given database.
+====
