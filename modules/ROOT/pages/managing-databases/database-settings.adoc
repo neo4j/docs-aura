@@ -1,6 +1,6 @@
 [[aura-db-settings]]
 = Database settings
-:description: This page describes how to resize, clone, and delete an Aura database.
+:description: This page describes how to resize, clone, pause, resume, and delete an AuraDB database.
 
 The *SETTINGS* tab within an AuraDB database shows a list of administrative database options.
 
@@ -25,6 +25,79 @@ To resize a database:
 . Tick the *I understand* checkbox and select *Submit*.
 
 A database remains available during the resize operation.
+
+== Pausing a database
+//label:Professional[]
+label:Enterprise[]
+
+You can pause a database during periods where you don't need it and resume at any time.
+
+To pause a database:
+
+. Navigate to the *SETTINGS* tab of the database you want to pause.
+. Select *Pause* below *Pause Database*.
+. Tick the *I understand* checkbox and select *Pause* to confirm.
+
+After confirming, the database will begin pausing, and a *Resume* button will replace the *Pause* button.
+
+[NOTE]
+====
+Paused databases run at a discounted rate compared to standard consumption, as outlined in the confirmation window.
+You can pause a database for up to 30 days, after which point AuraDB automatically resumes the database.
+====
+
+== Resuming a database
+
+[.tabbed-example]
+====
+[.include-with-free]
+=====
+
+AuraDB Free databases are paused automatically after 72 hours of inactivity. 
+footnote:[Inactivity is when you perform no queries on the database.]
+
+To resume a database:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Select the *Resume* button on the database you want to resume.
+
+[WARNING]
+======
+If an AuraDB Free database remains paused for more than 90 days, AuraDB will delete the database, and all information will be lost.
+======
+
+=====
+////
+[.include-with-professional]
+=====
+
+To resume a database: 
+
+. Navigate to the *SETTINGS* tab of the database you want to resume.
+. Select *Resume* below *Pause Database*.
+. Tick the *I understand* checkbox and select *Resume* to confirm.
+
+After confirming, the database will begin resuming, which may take a few minutes.
+
+Alternatively, you can select the *Resume* button on the database you want to resume directly from the https://console.neo4j.io/[Neo4j Aura Console].
+
+=====
+////
+[.include-with-enterprise]
+=====
+
+To resume a database: 
+
+. Navigate to the *SETTINGS* tab of the database you want to resume.
+. Select *Resume* below *Pause Database*.
+. Tick the *I understand* checkbox and select *Resume* to confirm.
+
+After confirming, the database will begin resuming, which may take a few minutes.
+
+Alternatively, you can select the *Resume* button on the database you want to resume directly from the https://console.neo4j.io/[Neo4j Aura Console].
+
+=====
+====
 
 == Cloning a database
 
