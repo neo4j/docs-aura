@@ -16,7 +16,7 @@ AuraDB offers the following https://neo4j.com/cloud/aura/[subscription plans]: *
 Each plan offers different levels of functionality and support:
 
 .Platform
-[cols="49a,^17a,^17a,^17a",options="header"]
+[cols="49,^17,^17,^17",options="header"]
 |===
 |
 | label:Free[]
@@ -26,7 +26,7 @@ Each plan offers different levels of functionality and support:
 | Instance size
 | Limits on node and relationship counts
 | 1GB - 64GB (RAM)
-| 4GB - 256GB (RAM)
+| 4GB - 384GB footnote:[The 384GB instance size is only available on AWS. GCP instances max out at 256GB.] (RAM)
 
 | Automated upgrades and patches, no scheduled maintenance window or downtime
 | {check-mark}
@@ -71,7 +71,7 @@ Each plan offers different levels of functionality and support:
 |===
 
 .Tools integrations and ecosystem
-[cols="49a,^17a,^17a,^17a",options="header"]
+[cols="49,^17,^17,^17",options="header"]
 |===
 |
 | label:Free[]
@@ -100,7 +100,7 @@ Each plan offers different levels of functionality and support:
 |===
 
 .Backup
-[cols="49a,^17a,^17a,^17a",options="header"]
+[cols="49,^17,^17,^17",options="header"]
 |===
 |
 | label:Free[]
@@ -124,7 +124,7 @@ Each plan offers different levels of functionality and support:
 |===
 
 .Security
-[cols="49a,^17a,^17a,^17a",options="header"]
+[cols="49,^17,^17,^17",options="header"]
 |===
 |
 | label:Free[]
@@ -148,7 +148,7 @@ Each plan offers different levels of functionality and support:
 |===
 
 .Pricing and usage
-[cols="49a,^17a,^17a,^17a",options="header"]
+[cols="49,^17,^17,^17",options="header"]
 |===
 |
 | label:Free[]
