@@ -3,3 +3,262 @@
 :description: This page describes the graph catalog and in-memory graphs.
 
 https://colab.research.google.com/drive/1fkER4UB0yvx_ctTV8PAhl_rPp6kDB0Px?usp=sharing[Play in Google Colab]
+
+Within this tutorial, we'll go through how you manage, interact with and use the graph catalog in order to take advantage of running algorithms on in-memory graphs.
+
+For more information about the https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/[Graph Catalog], head over to the Neo4j Graph Data Science Library manual.
+
+== Driver Setup
+
+For more information about getting started with the python driver, follow along https://colab.research.google.com/drive/10XK5_fyNURb1u_gvD_lkt7qQvIxzAhnJ?usp=sharing[here].
+
+[source, python]
+----
+pip install neo4j
+----
+
+[source, python]
+----
+# Driver import
+from neo4j import GraphDatabase
+
+# Connection Details
+# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
+AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
+AURA_USERNAME = "neo4j"
+AURA_PASSWORD = ""
+
+# Driver Instantiation
+driver = GraphDatabase.driver(AURA_CONNECTION_URI, auth=(AURA_USERNAME, AURA_PASSWORD))
+----
+
+== Example Graph
+
+We're going to use the database you have specified above to create an in-memory graph. We'll delete this data later on in the tutorial. We will use the graph generation function within the GDS Library to generate a random in-memory graph.
+
+Our graph is going to be nodes with the label `100_Nodes` with a relationship of `POWER_LAW(:100_Nodes)-[:POWER_LAW]->(:100_Nodes)`
+
+[source, python]
+----
+# Cypher Query
+create_example_graph_query = """
+CALL gds.beta.graph.generate("example-graph", 100, 3, {relationshipDistribution: 'POWER_LAW'})
+YIELD name, nodes, relationships, generateMillis, relationshipSeed, averageDegree, relationshipDistribution, relationshipProperty
+RETURN *
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  result = session.run(create_example_graph_query).data()
+  # prettify the first result
+  print(json.dumps(result[0], indent=2, sort_keys=True))
+----
+
+== Driver Setup
+
+For more information about getting started with the python driver, follow along https://colab.research.google.com/drive/10XK5_fyNURb1u_gvD_lkt7qQvIxzAhnJ?usp=sharing[here]
+
+[source, python]
+----
+pip install neo4j
+----
+
+[source, python]
+----
+# Driver import
+from neo4j import GraphDatabase
+
+# Connection Details
+# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
+AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
+AURA_USERNAME = "neo4j"
+AURA_PASSWORD = ""
+
+# Driver Instantiation
+driver = GraphDatabase.driver(AURA_CONNECTION_URI, auth=(AURA_USERNAME, AURA_PASSWORD))
+----
+
+== Listing our in-memory graph
+
+We can inspect what is in memory graphs we have in the graph catalog by asking the Graph Catalog using the `gds.graph.list()` procedure.
+
+If you want to check for the existence of an in-memory graph, try replacing `graph.graph.list` with `gds.graph.exists` along with the name of an in-memory graph
+
+[source, python]
+----
+# import for our helper function
+from neo4j.time import DateTime
+
+# helper function for serialising Neo4j DateTime in JSON dumps
+def default(o):
+  if isinstance(o, (DateTime)):
+    return o.isoformat()
+
+
+show_in_memory_graphs_query = """
+CALL gds.graph.list()
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  results = session.run(show_in_memory_graphs_query).data()
+
+# for each result prettify the results
+for result in results:
+  print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
+----
+
+== Drop the Example Graph
+
+To drop the example in-memory graph we created previously, you can use the `gds.graph.drop` procedure and specify the name of the graph we created (https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[example-graph]).
+
+== Loading Data from Neo4j - Native Projections
+
+Native projections allow us to take a graph stored on disk and project it into an in-memory graph. You specify which node labels, relationship types and properties you wish to be brought into a new in-memory graph using `CALL gds.graph.create` (https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection-syntax[])
+
+== Shorthand Graph Create
+
+If we had a graph which contained the following subgraph: `(:EngineeringManagement)-[:MANAGES]->(:Developer)`. We can use the following shorthand example in order to create our in-memory graph
+
+[source, python]
+----
+# Cypher to create example graph to disk
+write_example_graph_query = """
+MERGE (a:EngineeringManagement {name: 'Alistair'} )
+MERGE (j:EngineeringManagement {name: 'Jennifer'} )
+MERGE (d:Developer {name: 'Leila'} )
+MERGE (a)-[:MANAGES {start_date: 987654321} ]->(d)
+MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321} ]->(d)
+"""
+
+# Shorthand GDS create in-memory graph with Native Projection
+shorthand_graph_create_query = """
+CALL gds.graph.create(
+"shorthand-example-graph",
+['EngineeringManagement', 'Developer'],
+['MANAGES']
+) YIELD graphName, nodeCount, relationshipCount
+RETURN *
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  session.run(write_example_graph_query)
+  # Run query
+  result = session.run(shorthand_graph_create_query).data()
+  # prettify the first result
+  print(json.dumps(result[0], indent=2, sort_keys=True))
+----
+
+Using the short hand is great if we're only interested in the structure of the graph in which our algorithms run on.
+
+You may want to transform the data, unify the structure or include properties as part of your analysis - this is where using the longform `gds.graph.create` can be useful.
+
+== Longform Graph Create
+
+Using the following example graph: `(:EngineeringManagement {name: 'Alistair'} )-[:MANAGES {start_date: 987654321} ]->(:Developer {name: 'Leila'} )<-[:MANAGES {start_date: 123456789, end_date: 987654321} ]-(:EngineeringManagement {name: 'Jennifer'} )`
+
+We can transform our example into the following structure: `(:Person {first_name: 'Alistair'} )-[:KNOWS {start_date: 987654321, end_date: 999999999} ]-(:Person {first_name: 'Leila'} )-[:KNOWS {start_date: 123456789, end_date: 987654321} ]-(:Person {first_name: 'Jennifer'} )`
+
+Below we'll transform the `:EngineeringManagement` & `:Developer` labels to be `:PersonEM` & `PersonM` respectively when projected into our in-memory graph.
+
+The `MANAGES` relationship will also be switched to undirected so that each relationship is projected in both natural and reverse orientations.
+
+We'll rename the `start_date` and `end_date` relationships properties to `start_date` & `end_date` to the in-memory graph. If however, there isn't anend_date available on the relationship, we'll default the value to be `999999999`.
+
+There are lots of configuration options available as part of Node & Relationship projections: https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection-syntax-relationship-projections[]
+
+[source, python]
+----
+# Longform GDS create query
+longform_graph_create_query = """
+CALL gds.graph.create(
+  "longform-example-graph",
+  {
+    PersonEM: {
+      label: 'EngineeringManagement'
+    },
+    PersonD: {
+      label: 'Developer'
+    }
+  },
+  {
+    KNOWS: {
+      type: 'MANAGES',
+      orientation: 'UNDIRECTED',
+      properties: {
+        start_date: {
+          property: 'start_date'
+        },
+        end_date: {
+          property: 'end_date',
+          defaultValue: 999999999
+        }
+      }
+    }
+  }
+) YIELD graphName, nodeCount, relationshipCount
+RETURN *
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  result = session.run(longform_graph_create_query).data()
+  # prettify the first result
+  print(json.dumps(result[0], indent=2, sort_keys=True))
+----
+
+== Cleanup
+
+Run the following block of code to clean up the last example's data and in-memory graphs
+
+[source, python]
+----
+delete_example_graph_query = """
+MERGE (a:EngineeringManagement {name: 'Alistair'} )
+MERGE (j:EngineeringManagement {name: 'Jennifer'} )
+MERGE (d:Developer {name: 'Leila'} )
+MERGE (a)-[:MANAGES {start_date: 987654321} ]->(d)
+MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321} ]->(d)
+RETURN *
+"""
+
+delete_shorthand_graph_query = """
+CALL gds.graph.drop("shorthand-example-graph")
+"""
+
+delete_longform_graph_query = """
+CALL gds.graph.drop("longform-example-graph")
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  print(session.run(delete_example_graph_query).data())
+  print(session.run(delete_shorthand_graph_query).data())
+  print(session.run(delete_longform_graph_query).data())
+----
+
+== References
+
+=== Documentation
+* https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[Graph Catalog]
+* https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection[Native Projections]
+* https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/graph-generation/#graph-generation[Graph Generation]
+* https://neo4j.com/docs/graph-data-science[Neo4j GDSL Documentation]
+* https://neo4j.com/docs/driver-manual/current/get-started/[Neo4j Driver Documentation]
+* https://neo4j.com/developer[Neo4j Developer Documentation]
+
+=== Cypher
+
+* Learn more about the https://neo4j.com/docs/cypher-manual/current/[Cypher] syntax
+* The https://neo4j.com/docs/cypher-manual/current/[Cypher Reference Card] is also a great resource for understanding how to use Cypher keywords
+
+=== Modelling
+
+* https://neo4j.com/developer/guide-data-modeling/[Data modelling guidelines]
+* https://neo4j.com/developer/modeling-designs/[Data modelling design]
+* https://neo4j.com/developer/graph-model-refactoring/[Refactoring a data model]

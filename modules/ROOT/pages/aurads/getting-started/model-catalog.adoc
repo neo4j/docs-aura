@@ -3,3 +3,350 @@
 :description: This page describes how to use the model catalog.
 
 https://colab.research.google.com/drive/1fLhOiu54YgXXLR52V4DiR-oZN3_sRb54?usp=sharing[Play in Google Colab]
+
+This brief tutorial can be followed within a Google Collab which is based on Jupyter notebooks.
+
+Within this tutorial, we'll go through how you create, save, drop and reload a machine learning model.
+
+For more information about the https://neo4j.com/docs/graph-data-science/current/model-catalog/model-catalog/[Model Catalog], head over to the Neo4j Graph Data Science Library manual
+
+== Driver Setup
+
+For more information about getting started with the python driver, check out the previous tutorial https://colab.research.google.com/drive/10XK5_fyNURb1u_gvD_lkt7qQvIxzAhnJ#scrollTo=lLi0tbsaaWnH[here]
+
+[source, python]
+----
+pip install neo4j
+----
+
+[source, python]
+----
+# Driver import
+from neo4j import GraphDatabase
+
+# We'll use the json.dumps function later to prettify some results
+import json
+
+# Connection Details
+# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
+AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
+AURA_USERNAME = "neo4j"
+#AURA_PASSWORD = ""
+
+# Driver Instantiation
+driver = GraphDatabase.driver(AURA_CONNECTION_URI, auth=(AURA_USERNAME, AURA_PASSWORD))
+----
+
+== Example Graph
+
+We're going to create a graph within the database to use in-memory and create our model from.
+
+We'll delete this data later on in the tutorial.
+
+[source, python]
+----
+# Cypher Query
+create_example_graph_on_disk_query = """
+MERGE ( dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
+MERGE ( annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
+MERGE ( matt:Person:ExampleData  {name: 'Matt',  age: 67, heightAndWeight: [170, 80]})
+MERGE ( jeff:Person:ExampleData  {name: 'Jeff',  age: 45, heightAndWeight: [192, 85]})
+MERGE ( brie:Person:ExampleData  {name: 'Brie',  age: 27, heightAndWeight: [176, 57]})
+MERGE ( elsa:Person:ExampleData  {name: 'Elsa',  age: 32, heightAndWeight: [158, 55]})
+MERGE ( john:Person:ExampleData  {name: 'John',  age: 35, heightAndWeight: [172, 76]})
+
+MERGE (dan)-[:KNOWS {relWeight: 1.0}]->(annie)
+MERGE (dan)-[:KNOWS {relWeight: 1.6}]->(matt)
+MERGE (annie)-[:KNOWS {relWeight: 0.1}]->(matt)
+MERGE (annie)-[:KNOWS {relWeight: 3.0}]->(jeff)
+MERGE (annie)-[:KNOWS {relWeight: 1.2}]->(brie)
+MERGE (matt)-[:KNOWS {relWeight: 10.0}]->(brie)
+MERGE (brie)-[:KNOWS {relWeight: 1.0}]->(elsa)
+MERGE (brie)-[:KNOWS {relWeight: 2.2}]->(jeff)
+MERGE (john)-[:KNOWS {relWeight: 5.0}]->(jeff)
+RETURN True AS exampleDataCreated
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  result = session.run(create_example_graph_on_disk_query).data()
+  # prettify the first result
+  print(json.dumps(result[0], indent=2, sort_keys=True))
+----
+
+== Loading our example data into memory
+
+For more information about getting started with the in-memory graph, check out the previous tutorial https://colab.research.google.com/drive/1fkER4UB0yvx_ctTV8PAhl_rPp6kDB0Px#scrollTo=MLW9u-jiTjfR[here]
+
+[source, python]
+----
+# Cypher Query
+create_example_graph_in_memory_query = """
+CALL gds.graph.create(
+ 'example_graph_for_graphsage',
+ {
+   Person: {
+     label: 'ExampleData',
+     properties: ['age', 'heightAndWeight']
+   }
+ }, {
+   KNOWS: {
+     type: 'KNOWS',
+     orientation: 'UNDIRECTED',
+     properties: ['relWeight']
+   }
+})
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  result = session.run(create_example_graph_in_memory_query).data()
+  # prettify the first result
+  print(json.dumps(result[0], indent=2, sort_keys=True))
+----
+
+== Training our model
+
+We're going to use graphSAGE to train our model. For more examples on how to train with multiple node labels and relationship weights, head over to the https://neo4j.com/docs/graph-data-science/current/algorithms/graph-sage/#algorithms-embeddings-graph-sage-examples[graphSAGE documentation] for more examples
+
+[source, python]
+----
+# Cypher Query
+train_graph_sage_on_in_memory_graph_query  = """
+CALL gds.beta.graphSage.train(
+ 'example_graph_for_graphsage',
+ {
+   modelName: 'example_graph_model_for_graphsage',
+   featureProperties: ['age', 'heightAndWeight'],
+   aggregator: 'mean',
+   activationFunction: 'sigmoid',
+   sampleSizes: [25, 10]
+ }
+) YIELD modelInfo as info
+RETURN
+ info.name as modelName,
+ info.metrics.didConverge as didConverge,
+ info.metrics.ranEpochs as ranEpochs,
+ info.metrics.epochLosses as epochLosses
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  result = session.run(train_graph_sage_on_in_memory_graph_query).data()
+  # prettify the first result
+  print(json.dumps(result[0], indent=2, sort_keys=True))
+----
+
+== Viewing our model catalog
+
+Calling `gds.beta.model.list()` will present information about the models that are currently available in the catalog.
+
+We are provided information about the graph schema, the model name, training configuration but also the following pieces of key information:
+
+* Loaded - Flag denoting if the Model is in memory (`true`) or available on disk (`false`)
+* Stored - Flag denoting whether the Model has been persisted to disk
+* Shared - Flag denoting whether the Model has been published, making it accessible to all users
+
+[source, python]
+----
+# import for our helper function
+from neo4j.time import DateTime
+
+# helper function for serialising Neo4j DateTime in JSON dumps
+def default(o):
+   if isinstance(o, (DateTime)):
+     return o.isoformat()
+
+# Cypher Query
+list_model_catalog_query  = """
+CALL gds.beta.model.list()
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  results = session.run(list_model_catalog_query).data()
+
+  # for each result prettify the results
+  for result in results:
+    print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
+----
+
+== Saving to Model disk
+
+Saving models to disk can be useful for a few reasons like making sure we have a copy we can go back to or freeing up space in memory.
+
+To save a model, call the `gds.alpha.model.store` procedure with the name of the model you want to persist.
+
+[source, python]
+----
+# Cypher Query
+save_graph_sage_model_to_disk_query  = """
+CALL gds.alpha.model.store("example_graph_model_for_graphsage")
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  result = session.run(save_graph_sage_model_to_disk_query).data()
+  # prettify the first result
+  print(json.dumps(result[0], indent=2, sort_keys=True))
+----
+
+If we list our model catalog again, we'll see that the stored flag has been set to `true`
+
+[source, python]
+----
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  results = session.run(list_model_catalog_query).data()
+
+  # for each result prettify the results
+  for result in results:
+    print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
+----
+
+== Sharing the Model with other database users
+
+Allowing multiple users access to analyse and execute either on the same datasets or with the same models is handy.
+
+To do this we need to create another user, more information about the cypher syntax can be found https://neo4j.com/docs/cypher-manual/current/administration/security/users-and-roles/[here]
+
+== Creating another database user
+
+Within our database instance we can https://neo4j.com/docs/cypher-manual/current/administration/security/users-and-roles/#administration-security-users-create[create another user] to simulate a colleague that we might want to share our model with.
+
+[source, python]
+----
+# Cypher Query
+create_a_new_user_query  = """
+CREATE USER testUser IF NOT EXISTS
+SET PASSWORD 'test'
+SET PASSWORD CHANGE NOT REQUIRED
+"""
+
+# Create driver session to the system database
+with driver.session(database='system') as session:
+  # Run query
+  result = session.run(create_a_new_user_query).data()
+  # prettify the first result
+  print(json.dumps(result, indent=2, sort_keys=True))
+----
+
+== Publishing the model
+
+To publish the model we need to use https://neo4j.com/docs/graph-data-science/current/model-catalog/model-catalog/#model-catalog-publish-ops[gds.alpha.model.publish] to enable other users to view the model we've created.
+
+When we publish a model, the model's name is appended with `\_public` at the end.
+
+[source, python]
+----
+# Cypher Query
+publish_graph_sage_model_to_disk_query  = """
+CALL gds.alpha.model.publish('example_graph_model_for_graphsage')
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  result = session.run(publish_graph_sage_model_to_disk_query).data()
+  # prettify the first result
+  print(json.dumps(result[0], indent=2, sort_keys=True, default=default))
+----
+
+== Viewing the model as another user
+
+Below we'll create a new driver session using our test user credentials.
+
+We'll then list the model catalog and see that we have access to the model that we published with our other user.
+
+[source, python]
+----
+test_user_driver = GraphDatabase.driver(AURA_CONNECTION_URI, auth=("testUser", "test"))
+
+# Create driver session to the database
+with test_user_driver.session() as session:
+  # Run query
+  results = session.run(list_model_catalog_query).data()
+
+  # for each result prettify the results
+  for result in results:
+    print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
+----
+
+== Clean-up the tutorial
+
+Run the following block of code to clean up the example data, in-memory graphs and models.
+
+It shows how to delete nodes and relationships from the database.
+
+How to drop our test user, in-memory graphs & models, but also how to delete the model from disk.
+
+[source, python]
+----
+# Delete the example dataset from the database
+delete_example_graph_query = """
+MATCH (example:ExampleData)
+DETACH DELETE example
+"""
+
+# Delete the in-memory graph from memory
+drop_in_memory_graph_query = """
+CALL gds.graph.drop("example_graph_for_graphsage")
+"""
+
+
+# Delete the model from disk
+drop_example_models_query = """
+CALL gds.beta.model.drop("example_graph_model_for_graphsage_public")
+"""
+
+# Delete the model from disk
+delete_example_models_query = """
+CALL gds.alpha.model.delete("example_graph_model_for_graphsage_public")
+"""
+
+# Delete the example user database
+drop_example_user_query = """
+DROP USER testUser
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run queries
+  print(session.run(delete_example_graph_query).data())
+  print(session.run(drop_in_memory_graph_query).data())
+  print(session.run(drop_example_models_query).data())
+  print(session.run(delete_example_models_query).data())
+
+with driver.session(database='system') as session:
+  print(session.run(drop_example_user_query).data())
+
+driver.close()
+test_user_driver.close()
+----
+
+== References
+
+=== Documentation
+* https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[Graph Catalog]
+* https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection[Native Projections]
+* https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/graph-generation/#graph-generation[Graph Generation]
+* https://neo4j.com/docs/graph-data-science[Neo4j GDSL Documentation]
+* https://neo4j.com/docs/driver-manual/current/get-started/[Neo4j Driver Documentation]
+* https://neo4j.com/developer[Neo4j Developer Documentation]
+
+=== Cypher
+
+* Learn more about the https://neo4j.com/docs/cypher-manual/current/[Cypher] syntax
+* The https://neo4j.com/docs/cypher-manual/current/[Cypher Reference Card] is also a great resource for understanding how to use Cypher keywords
+
+=== Modelling
+
+* https://neo4j.com/developer/guide-data-modeling/[Data modelling guidelines]
+* https://neo4j.com/developer/modeling-designs/[Data modelling design]
+* https://neo4j.com/developer/graph-model-refactoring/[Refactoring a data model]

@@ -3,3 +3,164 @@
 :description: This page describes how to use monitor the algorithm progress.
 
 https://colab.research.google.com/drive/1cz5o6LaEh7m3qsyO5ORBJGk7C-pfbq69?usp=sharing[Play in Google Colab]
+
+This brief tutorial can be followed within a Google Collab which is based on Jupyter notebooks.
+
+Running algorithms on large graphs can be computationally expensive. As part of your workflow, you may want to chain algorithms together, inspect the progress of each step and potentially export the results to other systems or workflows.
+
+Understanding when an algorithm has completed is especially useful in the above application.
+
+In this tutorial, you will be shown how to use and interpret the `gds.beta.listProgress()` procedure, along with integrating it as part of your workflow.
+
+For more information about https://neo4j.com/docs/graph-data-science/current/common-usage/logging/#logging-progress-logging[Progress Logging] head over to the Neo4j Graph Data Science Library manual.
+
+== Driver Setup
+
+For more information about getting started with the python driver, check out the previous tutorial https://colab.research.google.com/drive/10XK5_fyNURb1u_gvD_lkt7qQvIxzAhnJ#scrollTo=lLi0tbsaaWnH[here]
+
+[source, python]
+----
+pip install neo4j
+----
+
+[source, python]
+----
+# Driver import
+from neo4j import GraphDatabase
+
+# We'll use the json.dumps function later to prettify some results
+import json
+
+# Connection Details
+# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
+AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
+AURA_USERNAME = "neo4j"
+AURA_PASSWORD = ""
+
+# Driver Instantiation
+driver = GraphDatabase.driver(AURA_CONNECTION_URI, auth=(AURA_USERNAME, AURA_PASSWORD))
+----
+
+== Example Graph
+
+We will use the graph generation function within the GDS Library to generate a random in-memory graph.
+
+Our graph is going to be nodes with the label `1000000_Nodes` with a relationship of `POWER_LAW`
+
+`(:1000000_Nodes)-[:POWER_LAW]->(:1000000_Nodes)`
+
+You can read more about the https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/graph-generation/#graph-generation[Graph Generation] procedure. This may take a minute or so to run.
+
+[source, python]
+----
+# Cypher Query
+create_example_graph_query = """
+CALL gds.beta.graph.generate("example-graph", 10000000, 3, {relationshipDistribution: 'POWER_LAW'})
+YIELD name, nodes, relationships, generateMillis, relationshipSeed, averageDegree, relationshipDistribution, relationshipProperty
+RETURN *
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  result = session.run(create_example_graph_query).data()
+  # prettify the first result
+  print(json.dumps(result[0], indent=2, sort_keys=True))
+----
+
+== Checking progress Long running algorithms
+
+We will need to start a long running algorithm that will take a little while to converge. For our example we'll try `Label Propagation` which will take some time.
+
+In order to be able to start a long running query and inspect the progress we will use threading in this example.
+
+[source, python]
+----
+# Imports to help us
+import threading, time
+
+
+# method to call label propagation on our example in memory graph
+def run_label_prop():
+label_prop_mutate_example_graph_query = """
+CALL gds.labelPropagation.mutate("example-graph", { mutateProperty: 'communityID' } )
+YIELD createMillis,
+computeMillis,
+mutateMillis,
+postProcessingMillis,
+nodePropertiesWritten,
+communityCount,
+ranIterations,
+didConverge,
+communityDistribution,
+configuration
+RETURN *
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  print('running label prop')
+  results = session.run(label_prop_mutate_example_graph_query).data()
+  # prettify the first result
+  print(json.dumps(results[0], indent=2, sort_keys=True))
+
+
+# method to call list progress which calls
+def run_list_progress():
+gds_list_progress_query = """
+CALL gds.beta.listProgress()
+YIELD id,
+taskName,
+message
+RETURN *
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  print('running list progress')
+  results = session.run(gds_list_progress_query).data()
+  # prettify the first result
+  print('list progress results: ')
+
+  for result in results:
+    print(json.dumps(result, indent=2, sort_keys=True))
+
+
+# create a thread for each of the cypher calls
+label_prop_query_thread = threading.Thread(target=run_label_prop)
+list_progress_query_thread = threading.Thread(target=run_list_progress)
+
+# start the label propagation query
+label_prop_query_thread.start()
+
+# sleep for a few seconds so the label propagation query has time to get going
+print('sleeping for 5 seconds')
+time.sleep(5)
+# start the list progress query
+list_progress_query_thread.start()
+
+# block and wait for the threads to finish
+list_progress_query_thread.join()
+label_prop_query_thread.join()
+----
+
+== Clean-up the tutorial
+
+To drop the example in-memory graph we created previously, you can use the `gds.graph.drop` procedure and specify the name of the graph we created (example-graph).
+
+https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[]
+
+[source, python]
+----
+delete_example_in_memory_graph_query = """
+CALL gds.graph.drop("example-graph")
+"""
+
+with driver.session() as session:
+  # Run query
+  results = session.run(delete_example_in_memory_graph_query).data()
+
+  print(json.dumps(results[0], indent=2, sort_keys=True))
+----
