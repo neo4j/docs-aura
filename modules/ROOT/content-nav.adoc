@@ -1,36 +1,50 @@
-* xref:index.adoc[]
+////
+Generic Start
+////
+* xref:platform/index.adoc[]
+** xref:platform/create-account.adoc[]
+** xref:platform/cloud-providers.adoc[]
+** xref:platform/security.adoc[]
+** xref:platform/apoc.adoc[]
+** xref:platform/upgrade.adoc[]
+** xref:platform/support.adoc[]
+////
+Generic End
+////
 
-* Getting Started
-** xref:getting-started/create-account.adoc[]
-** xref:getting-started/create-database.adoc[]
-** xref:getting-started/access-database.adoc[]
-** xref:getting-started/importing-data.adoc[]
-** xref:getting-started/query-database.adoc[]
-** xref:getting-started/apoc.adoc[]
+////
+AuraDB Start
+////
+* xref:auradb/index.adoc[]
 
-* Managing databases
-** xref:managing-databases/monitoring.adoc[]
-** xref:managing-databases/backup-restore-export.adoc[]
-** xref:managing-databases/database-settings.adoc[]
+** Getting Started
+*** xref:auradb/getting-started/create-database.adoc[]
+*** xref:auradb/getting-started/access-database.adoc[]
+*** xref:auradb/getting-started/importing-data.adoc[]
+*** xref:auradb/getting-started/query-database.adoc[]
 
-* xref:cloud-providers/index.adoc[]
+** Managing databases
+*** xref:auradb/managing-databases/monitoring.adoc[]
+*** xref:auradb/managing-databases/backup-restore-export.adoc[]
+*** xref:auradb/managing-databases/database-settings.adoc[]
 
-* xref:connecting-applications/index.adoc[]
-** xref:connecting-applications/python.adoc[]
-** xref:connecting-applications/javascript.adoc[]
-** xref:connecting-applications/graphql.adoc[]
-** xref:connecting-applications/java.adoc[]
-** xref:connecting-applications/spring-boot.adoc[]
-** xref:connecting-applications/dotnet.adoc[]
-** xref:connecting-applications/go.adoc[]
+** xref:auradb/connecting-applications/index.adoc[]
+*** xref:auradb/connecting-applications/python.adoc[]
+*** xref:auradb/connecting-applications/javascript.adoc[]
+*** xref:auradb/connecting-applications/graphql.adoc[]
+*** xref:auradb/connecting-applications/java.adoc[]
+*** xref:auradb/connecting-applications/spring-boot.adoc[]
+*** xref:auradb/connecting-applications/dotnet.adoc[]
+*** xref:auradb/connecting-applications/go.adoc[]
+////
+AuraDB End
+////
 
-* xref:security/index.adoc[]
+////
+AuraDS Start
+////
+* xref:aurads/index.adoc[]
 
-* xref:upgrade/index.adoc[]
-
-* xref:support/index.adoc[]
-
-* Neo4j AuraDS
 ** Getting Started
 *** xref:aurads/getting-started/understanding.adoc[]
 *** xref:aurads/getting-started/connecting-python-driver.adoc[]
@@ -39,3 +53,6 @@
 *** xref:aurads/getting-started/memory-estimation.adoc[]
 *** xref:aurads/getting-started/algorithm-progress.adoc[]
 *** xref:aurads/getting-started/model-catalog.adoc[]
+////
+AuraDS End
+////
