@@ -1,0 +1,134 @@
+[[aura-connecting-graphql]]
+= GraphQL
+:description: This page describes how to connect your application to AuraDB using the Neo4j GraphQL Library.
+
+== Prerequisites
+
+- Node.js
+- npm/yarn
+
+== Installation
+
+Use the following command to install the Neo4j GraphQL Library dependencies using npm:
+
+[source, shell]
+----
+npm install @neo4j/graphql graphql@^15.0.0 apollo-server neo4j-driver
+----
+
+Use the following command to install the Neo4j GraphQL Library dependencies using yarn:
+
+[source, shell]
+----
+yarn add @neo4j/graphql graphql@^15.0.0 apollo-server neo4j-driver
+----
+
+== Code example
+
+[source, javascript]
+----
+const { Neo4jGraphQL } = require("@neo4j/graphql");
+const { ApolloServer, gql } = require("apollo-server");
+const neo4j = require("neo4j-driver");
+
+// (You may need to replace your connection details, username and password)
+const AURA_ENDPOINT = 'neo4j+s://<Bolt url for Neo4j Aura database>';
+const USERNAME = '<Username for Neo4j Aura database>';
+const PASSWORD = '<Password for Neo4j Aura database>';
+
+// Create Neo4j driver instance
+const driver = neo4j.driver(AURA_ENDPOINT, neo4j.auth.basic(USERNAME, PASSWORD), { encrypted: true } );
+
+const typeDefs = gql`
+  type Person {
+    name: String
+    knows: [Person] @relationship(type: "KNOWS", direction: OUT)
+    friendCount: Int @cypher(statement:"RETURN SIZE((this)-[:KNOWS]->(:Person))")
+  }
+`;
+
+// Create instance that contains executable GraphQL schema from GraphQL type definitions
+const neoSchema = new Neo4jGraphQL({
+  typeDefs,
+  driver
+});
+
+// Create ApolloServer instance to serve GraphQL schema
+const server = new ApolloServer({
+  schema: neoSchema.schema
+});
+
+// Start ApolloServer
+server.listen().then(({ url }) => {
+  console.log(`GraphQL server ready at ${url}`);
+});
+----
+
+=== Running the example
+
+Follow the steps below to run the example code:
+
+. Copy and paste the code above into a file named `example.js`.
+. Enter the information for the AuraDB database you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura database>` with the URI.
+* `<Username for Neo4j Aura database>` with the username.
+* `<Password for Neo4j Aura database>` with the password.
+. Use the following command to run the example code:
++
+[source, shell]
+----
+node example.js
+----
+
+=== Example walkthrough
+
+You use the Neo4j GraphQL Library to create a GraphQL API backed by your Neo4j Aura instance. The Neo4j GraphQL Library can generate a full GraphQL API, including auto-generated data fetching logic from GraphQL type definitions.
+
+The example creates GraphQL type definitions to define the data model of the API and the database. It then passes these to the `Neo4jGraphQL` class that contains an executable GraphQL schema object.
+
+You then use Apollo Server to host the GraphQL schema. Once the GraphQL server is running, navigate to http://localhost:4000[localhost:4000] in your web browser to query the GraphQL API using Apollo Studio.
+
+=== Querying with GraphQL
+
+In GraphQL Playground, run the following mutation to create two Person nodes, Alice and Dave, connected by a KNOWS relationship in the graph:
+
+[source, graphql]
+----
+mutation {
+  createPeople(
+    input: [
+      {
+        name: "Alice"
+        knows: { create: [{ name: "David" }] }
+      }
+    ]
+  ) {
+    people {
+      name
+      knows {
+        name
+      }
+    }
+  }
+}
+----
+
+Then you can query for the Person named Alice, and her friends:
+
+[source, graphql]
+----
+query {
+  people(where: { name: "Alice" }) {
+    name
+    friendCount
+    knows {
+      name
+    }
+  }
+}
+----
+
+== References
+
+- https://neo4j.com/docs/graphql-manual/current/[Neo4j GraphQL Library Documentation]
+- https://blog.grandstack.io/[GRANDstack blog]
