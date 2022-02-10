@@ -1,0 +1,216 @@
+[[algorithm-modes]]
+= Executing the different algorithm modes
+:description: This page describes how to use the different algorithm modes.
+
+https://colab.research.google.com/drive/1n5RBKgZVpYmCVBkvOqwkO8qFGb2sqF3U?usp=sharing[Play in Google Colab]
+
+This brief tutorial can be followed along within a Google Collab which is based on Jupyter notebooks.
+
+Within this tutorial, we'll teach you about each of the algorithm execution modes, how you take advantage of them and the benefits they can provide.
+
+For more information about the https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos[Execution Modes], head over to the Neo4j Graph Data Science Library manual.
+
+== Driver Setup
+
+For more information about getting started with the python driver, check out the https://colab.research.google.com/drive/10XK5_fyNURb1u_gvD_lkt7qQvIxzAhnJ#scrollTo=lLi0tbsaaWnH[previous tutorial]
+
+[source, python]
+----
+pip install neo4j
+----
+
+[source, python]
+----
+# Driver import
+from neo4j import GraphDatabase
+
+# We'll use the json.dumps function later to prettify some results
+import json
+
+# Connection Details
+# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
+AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
+AURA_USERNAME = "neo4j"
+AURA_PASSWORD = ""
+
+# Driver Instantiation
+driver = GraphDatabase.driver(AURA_CONNECTION_URI, auth=(AURA_USERNAME, AURA_PASSWORD))
+----
+
+== Example Graph
+
+We're going to use the database you have specified above to create an in-memory graph. We'll delete this data later on in the tutorial.
+
+We will use the graph generation function within the GDS Library to generate a random in-memory graph.
+
+Our graph is going to be nodes with the label `100_Nodes` with a relationship of `POWER_LAW`
+
+`(:100_Nodes)-[:POWER_LAW]->(:100_Nodes)`
+
+You can read more about the https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/graph-generation/#graph-generation[Graph Generation] procedure.
+
+[source, python]
+----
+# Cypher Query
+create_example_graph_query = """
+CALL gds.beta.graph.generate("example-graph", 100, 3, {relationshipDistribution: 'POWER_LAW'})
+YIELD name, nodes, relationships, generateMillis, relationshipSeed, averageDegree, relationshipDistribution, relationshipProperty
+RETURN *
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  result = session.run(create_example_graph_query).data()
+  # prettify the first result
+  print(json.dumps(result[0], indent=2, sort_keys=True))
+----
+
+== Execution Modes
+
+There are 5 execution modes when running production tier algorithms and each of them also provide a way to estimate or get stats about the data.
+
+* Stats
+* Estimate
+* Stream
+* Mutate
+* Write
+
+Below we'll show an example code snippet with PageRank to show each execution mode, teaching you when to consider using each mode.
+
+=== Stats
+
+When running an algorithm in stats mode, you’ll be returned a single row containing a summary of the algorithm statistics like counts or percentile distributions.
+
+Running the algorithm in Stats mode does not mutate the in-memory graph so it can be useful for evaluating the algorithm performance.
+
+https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stats[]
+
+[source, python]
+----
+# Cypher Query
+page_rank_stats_example_graph_query = """
+CALL gds.pageRank.stats("example-graph", { maxIterations: 20, dampingFactor: 0.85 } )
+YIELD ranIterations,
+didConverge,
+createMillis,
+computeMillis,
+postProcessingMillis,
+centralityDistribution,
+configuration
+RETURN *
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  results = session.run(page_rank_stats_example_graph_query).data()
+  # prettify the first result
+  print(json.dumps(results[0], indent=2, sort_keys=True))
+----
+
+The above stats gave us the time it would take to compute the algorithm (`computeMillis`) along with other details like the `centralityDistribution` and our configuration parameters which contain bits like the concurrency.
+
+=== Stream
+
+https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stream[Stream] mode will return the results of an algorithm once it has completed. This is similar to how standard Cypher reading queries operate.
+
+With our PageRank example, we'll be returned a node ID and the computed PageRank score. If the data is already stored within the database, you can use the https://neo4j.com/docs/graph-data-science/current/management-ops/utility-functions/#utility-functions-node-path[gds.util.asNode] procedure to get the node from the internal node ID
+
+However, because Algorithms can be long running and the reliability of your internet connections depends on lots of factors, it is advised that you consider the use of Mutate and Write modes instead to persist your results so that you can return to them.
+
+[source, python]
+----
+# Cypher Query to just get internal node ID and score
+page_rank_stream_example_graph_query = """
+CALL gds.pageRank.stream("example-graph", { maxIterations: 20, dampingFactor: 0.85 } )
+YIELD nodeId,
+score
+RETURN *
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  results = session.run(page_rank_stream_example_graph_query).data()
+  # prettify the results
+  for result in results:
+    print(json.dumps(result, indent=2, sort_keys=True))
+----
+
+=== Mutate
+
+The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-mutate[Mutate] execution mode operates on the in-memory graph and updates it with a new property that can be specified with the mutateProperty configuration. The mutateProperty value must not exist in the in-memory graph beforehand.
+
+Mutate mode is great for chaining many algorithms together which rely on the results on a previous algorithm.
+
+In the case of PageRank, we are returned a score for each node.
+
+The example below, will add a new property called pageRankScore to each node in our in-memory graph with the score returned from the algorithm.
+
+[source, python]
+----
+# Cypher Query to just get mutate the graph
+page_rank_stream_example_graph_query = """
+CALL gds.pageRank.mutate("example-graph", { mutateProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85 } )
+YIELD nodePropertiesWritten,
+ranIterations
+RETURN *
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  results = session.run(page_rank_stream_example_graph_query).data()
+  # prettify the results
+  for result in results:
+    print(json.dumps(result, indent=2, sort_keys=True))
+----
+
+=== Write
+
+https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-write[Write] mode will write the results of the algorithm computation back to the Neo4j database. This enables you to be able to query the results with Cypher.
+
+Different algorithms may write different entities (nodes, relationships or properties). For example, PageRank will write node properties, Node Similarity will write new relationships.
+
+In order for the results from a write mode computation to be used by another algorithm, a new in-memory graph must be created from the Neo4j database.
+
+For write mode to work we need to already have the data within the database, because our example graph was created just in-memory, we will not see any mutation to the data on disk.
+
+[source, python]
+----
+# Cypher Query to just get mutate the graph
+page_rank_stream_example_graph_query = """
+CALL gds.pageRank.write("example-graph", { writeProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85 } )
+YIELD nodePropertiesWritten,
+ranIterations
+RETURN *
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  results = session.run(page_rank_stream_example_graph_query).data()
+  # prettify the results
+  for result in results:
+    print(json.dumps(result, indent=2, sort_keys=True))
+----
+
+== Clean-up the tutorial
+
+To drop the example in-memory graph we created previously, you can use the https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[gds.graph.drop] procedure and specify the name of the graph we created (example-graph).
+
+[source, python]
+----
+delete_example_in_memory_graph_query = """
+CALL gds.graph.drop("example-graph")
+"""
+
+with driver.session() as session:
+  # Run query
+  result = session.run(delete_example_graph_query).data()
+
+  # for each result prettify the result
+  for result in results:
+    print(json.dumps(result, indent=2, sort_keys=True))
+----

@@ -1,0 +1,48 @@
+[[understanding]]
+= Understanding the Graph Data Science Architecture
+:description: This page describes AuraDS architecture.
+
+Getting started with your Graph Data Science instance requires a bit of knowledge surrounding the architecture. There are four main components that you should familiarise yourself with:
+
+* Neo4j Database
+* Graph Data Science Library
+* Graph Catalog
+* Model Catalog
+
+Below is an outline of the various components along with links to where you can find out more about them.
+
+image::architecture.png[title="Architecture"]
+
+== Neo4j Database
+
+The Neo4j Database is the heart of your instance. This is where you can load data and interact with your data via Cypher plus do all of the operational pieces you need for a modern analytics stack (user management, query termination et al).
+
+== Graph Data Science Library
+
+The Database also hosts the Graph Data Science Library which is how we get access to all of the algorithms spoken about in the next heading, how we manage all our in-memory graphs and trained models.
+
+== Algorithms
+
+The GDS Library contains 60+ algorithms. To use the algorithms, you will make procedural calls in a Cypher query to the Database which will interact with the library and return your results back up the stack.
+
+Algorithm are broken down into three tiers of maturity:
+
+=== Alpha
+
+We use the Alpha tier to experiment with algorithms. Algorithms in this tier are prefixed with gds.alpha.<algorithm>. Algorithms in this tier may be changed or be removed at any time.
+
+=== Beta
+
+We'll promote Alpha tier algorithms into the Beta tier to indicate that the algorithm is a candidate for the Production tier. Algorithms in this category are prefixed with gds.beta.<algorithm>
+
+=== Production
+
+An algorithm is production tier quality when it has been rigorously tested for stability and scalability. These algorithms are prefixed with gds.<algorithm>
+
+== Graph Catalog
+
+The graph catalog is where all of your In-Memory Graphs are stored. We use procedures provided by the plugin to create and manage our in-memory graphs.
+
+== Model Catalog
+
+The model catalog is a concept within the GDS library that allows you to store and manage multiple trained models that are referenced by a name. Some of the graph Algorithms (e.g. GraphSage) will use the trained models in their computation.
