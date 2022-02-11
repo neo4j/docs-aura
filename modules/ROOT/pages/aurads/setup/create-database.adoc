@@ -1,0 +1,25 @@
+[[aurads-create-database]]
+= Creating a database
+:description: This page describes how to create a Neo4j AuraDS database.
+
+With an account created, you now have access to the Aura Console and are ready to create your first database.
+
+To create an AuraDS database in Neo4j AuraDS:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Select *Create a database* to open the *Create a database* page.
+. Set your *Database details*:
+* *Database Name* - The name to give the database. This name can be whatever you like.
+* *Number of nodes/relationships* - The estimated number of nodes and relationships that your database instance should support.
+. Select one or more algorithms from the *Which algorithms are you going to use?* section; this helps with estimating the correct size for the database instance. You can choose the *I'm not sure yet* option if you have not yet decided which algorithms to run on the graph.
+. Select *Calculate Estimate* when you are happy with the details. You will be presented with an estimate of the resources needed to run your graph (memory, CPU, storage) along with the expected price.
+. Select *Create Database* when you are happy with the details.
+. Copy and store the *Username* and *Generated password* credentials for the database.
+. Tick the *I have stored these credentials safely to use later* checkbox, and select *Continue*.
+
+[NOTE]
+====
+Multi-database is not currently supported within Neo4j AuraDS.
+====
+
+The process will take a few minutes to complete. Upon completion, you will be able to xref:aurads/setup/access-database.adoc[access the database].
