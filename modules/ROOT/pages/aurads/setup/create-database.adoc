@@ -11,7 +11,7 @@ To create an AuraDS database in Neo4j AuraDS:
 . Set your *Database details*:
 * *Database Name* - The name to give the database. This name can be whatever you like.
 * *Number of nodes/relationships* - The estimated number of nodes and relationships that your database instance should support.
-. Select one or more algorithms from the *Which algorithms are you going to use?* section; this helps with estimating the correct size for the database instance. You can choose the *I'm not sure yet* option if you have not yet decided which algorithms to run on the graph.
+. Select one or more algorithms from the *Which algorithms are you going to use?* section; this helps with estimating the correct size for the database instance. You can choose the *I'm not sure yet* option if you have not yet decided which algorithms to run on the graph; an overview of each algorithm can be found https://neo4j.com/docs/graph-data-science/current/algorithms/[here].
 . Select *Calculate Estimate* when you are happy with the details. You will be presented with an estimate of the resources needed to run your graph (memory, CPU, storage) along with the expected price.
 . Select *Create Database* when you are happy with the details.
 . Copy and store the *Username* and *Generated password* credentials for the database.
