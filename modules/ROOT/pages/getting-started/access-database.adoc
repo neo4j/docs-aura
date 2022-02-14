@@ -8,6 +8,7 @@ There are a few different methods of accessing a database in Neo4j AuraDB:
 
 * <<_neo4j_browser>> - A browser-based interface for querying and viewing data in a database with rudimentary visualization.
 * <<_neo4j_bloom>> - A graph exploration application for visually interacting with graph data.
+* <<_neo4j_data_importer>> - A no-code visual application for loading data into a database.
 * <<_neo4j_desktop>> - An installable desktop application used to manage local and cloud databases.
 * <<_neo4j_cypher_shell>> - A command-line tool used to run cypher queries against a Neo4j instance.
 
@@ -63,6 +64,27 @@ You can import perspectives by clicking the blue "Import Perspective" button in 
 Please note that the Perspective exposes details about your graph's schema but not the actual data within.
 
 For more information, see https://neo4j.com/docs/bloom-user-guide/1.5/bloom-perspectives/[Bloom Perspectives].
+====
+
+== Neo4j Data Importer
+
+The Neo4j Data Importer lets you:
+
+* Import data from flat files (`.csv` and `.tsv`).
+* Create and map your loaded data to a graph model.
+* Import the graph model into your AuraDB database.
+
+To open a database with Neo4j Data Importer:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Select the *Open with* dropdown menu on the database you want to open.
+. Select *Neo4j Data Importer* from the dropdown menu.
+
+Once you have opened the Neo4j Data Importer, you can follow the built-in tutorial to learn how to use the tool.
+
+[NOTE]
+====
+You must provide your AuraDB database password before importing data from the Neo4j Data Importer.
 ====
 
 == Neo4j Desktop
