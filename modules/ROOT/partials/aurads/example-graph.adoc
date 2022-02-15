@@ -10,6 +10,10 @@ Our graph is going to be nodes with the label `{example-graph-size}_Nodes` with 
 
 You can read more about the https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/graph-generation/#graph-generation[Graph Generation] procedure.
 
+[.tabbed-example]
+====
+[.include-with-python-driver]
+=====
 [source, python, subs=attributes+]
 ----
 # Cypher Query
@@ -19,6 +23,9 @@ YIELD name, nodes, relationships, generateMillis, relationshipSeed, averageDegre
 RETURN *
 """
 
+# Only imported to prettify some results
+import json
+
 # Create driver session to the database
 with driver.session() as session:
   # Run query
@@ -26,3 +33,22 @@ with driver.session() as session:
   # prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
+=====
+
+[.include-with-python-client]
+=====
+[source, python, subs=attributes+]
+----
+# Run the graph generation algorithm
+g = gds.beta.graph.generate(
+    "example-graph", {example-graph-size}, 3, **{"relationshipDistribution": "POWER_LAW"}
+)
+
+# Print some graph stats
+print(
+    [g.name(), g.node_count(), g.relationship_count(), g.density(), g.memory_usage()]
+)
+----
+=====
+
+====
