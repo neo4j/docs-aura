@@ -10,32 +10,7 @@ Within this tutorial, we'll go through how you create, save, drop and reload a m
 
 For more information about the https://neo4j.com/docs/graph-data-science/current/model-catalog/model-catalog/[Model Catalog], head over to the Neo4j Graph Data Science Library manual
 
-== Driver Setup
-
-For more information about getting started with the python driver, check out the previous tutorial https://colab.research.google.com/drive/10XK5_fyNURb1u_gvD_lkt7qQvIxzAhnJ#scrollTo=lLi0tbsaaWnH[here]
-
-[source, python]
-----
-pip install neo4j
-----
-
-[source, python]
-----
-# Driver import
-from neo4j import GraphDatabase
-
-# We'll use the json.dumps function later to prettify some results
-import json
-
-# Connection Details
-# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
-AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
-AURA_USERNAME = "neo4j"
-#AURA_PASSWORD = ""
-
-# Driver Instantiation
-driver = GraphDatabase.driver(AURA_CONNECTION_URI, auth=(AURA_USERNAME, AURA_PASSWORD))
-----
+include::partial$aurads/driver-setup.adoc[]
 
 == Example Graph
 

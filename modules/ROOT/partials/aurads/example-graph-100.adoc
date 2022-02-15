@@ -1,0 +1,28 @@
+== Example Graph
+
+We're going to use the database you have specified above to create an in-memory graph. We'll delete this data later on in the tutorial.
+
+We will use the graph generation function within the GDS Library to generate a random in-memory graph.
+
+Our graph is going to be nodes with the label `100_Nodes` with a relationship of `POWER_LAW`
+
+`(:100_Nodes)-[:POWER_LAW]->(:100_Nodes)`
+
+You can read more about the https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/graph-generation/#graph-generation[Graph Generation] procedure.
+
+[source, python]
+----
+# Cypher Query
+create_example_graph_query = """
+CALL gds.beta.graph.generate("example-graph", 100, 3, {relationshipDistribution: 'POWER_LAW'})
+YIELD name, nodes, relationships, generateMillis, relationshipSeed, averageDegree, relationshipDistribution, relationshipProperty
+RETURN *
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  result = session.run(create_example_graph_query).data()
+  # prettify the first result
+  print(json.dumps(result[0], indent=2, sort_keys=True))
+----

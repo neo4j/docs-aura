@@ -8,76 +8,9 @@ Within this tutorial, we'll go through how you manage, interact with and use the
 
 For more information about the https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/[Graph Catalog], head over to the Neo4j Graph Data Science Library manual.
 
-== Driver Setup
+include::partial$aurads/driver-setup.adoc[]
 
-For more information about getting started with the python driver, follow along https://colab.research.google.com/drive/10XK5_fyNURb1u_gvD_lkt7qQvIxzAhnJ?usp=sharing[here].
-
-[source, python]
-----
-pip install neo4j
-----
-
-[source, python]
-----
-# Driver import
-from neo4j import GraphDatabase
-
-# Connection Details
-# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
-AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
-AURA_USERNAME = "neo4j"
-AURA_PASSWORD = ""
-
-# Driver Instantiation
-driver = GraphDatabase.driver(AURA_CONNECTION_URI, auth=(AURA_USERNAME, AURA_PASSWORD))
-----
-
-== Example Graph
-
-We're going to use the database you have specified above to create an in-memory graph. We'll delete this data later on in the tutorial. We will use the graph generation function within the GDS Library to generate a random in-memory graph.
-
-Our graph is going to be nodes with the label `100_Nodes` with a relationship of `POWER_LAW(:100_Nodes)-[:POWER_LAW]->(:100_Nodes)`
-
-[source, python]
-----
-# Cypher Query
-create_example_graph_query = """
-CALL gds.beta.graph.generate("example-graph", 100, 3, {relationshipDistribution: 'POWER_LAW'})
-YIELD name, nodes, relationships, generateMillis, relationshipSeed, averageDegree, relationshipDistribution, relationshipProperty
-RETURN *
-"""
-
-# Create driver session to the database
-with driver.session() as session:
-  # Run query
-  result = session.run(create_example_graph_query).data()
-  # prettify the first result
-  print(json.dumps(result[0], indent=2, sort_keys=True))
-----
-
-== Driver Setup
-
-For more information about getting started with the python driver, follow along https://colab.research.google.com/drive/10XK5_fyNURb1u_gvD_lkt7qQvIxzAhnJ?usp=sharing[here]
-
-[source, python]
-----
-pip install neo4j
-----
-
-[source, python]
-----
-# Driver import
-from neo4j import GraphDatabase
-
-# Connection Details
-# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
-AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
-AURA_USERNAME = "neo4j"
-AURA_PASSWORD = ""
-
-# Driver Instantiation
-driver = GraphDatabase.driver(AURA_CONNECTION_URI, auth=(AURA_USERNAME, AURA_PASSWORD))
-----
+include::partial$aurads/example-graph-100.adoc[]
 
 == Listing our in-memory graph
 
