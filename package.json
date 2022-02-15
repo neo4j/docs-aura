@@ -28,15 +28,8 @@
     "@neo4j-antora/antora-add-notes": "^0.1.6",
     "@neo4j-antora/antora-modify-sitemaps": "^0.3.3",
     "@neo4j-documentation/macros": "^1.0.0",
-    "@neo4j-documentation/remote-include": "^1.0.0"
-  },
-  "watch": {
-    "build": {
-      "patterns": [
-        "modules"
-      ],
-      "extensions": "adoc"
-    }
+    "@neo4j-documentation/remote-include": "^1.0.0",
+    "nodemon": "^1.19.4"
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.3",
