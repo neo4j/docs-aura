@@ -4,17 +4,17 @@ We're going to use the database you have specified above to create an in-memory 
 
 We will use the graph generation function within the GDS Library to generate a random in-memory graph.
 
-Our graph is going to be nodes with the label `100_Nodes` with a relationship of `POWER_LAW`
+Our graph is going to be nodes with the label `{example-graph-size}_Nodes` with a relationship of `POWER_LAW`
 
-`(:100_Nodes)-[:POWER_LAW]->(:100_Nodes)`
+`(:{example-graph-size}_Nodes)-[:POWER_LAW]->(:{example-graph-size}_Nodes)`
 
 You can read more about the https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/graph-generation/#graph-generation[Graph Generation] procedure.
 
-[source, python]
+[source, python, subs=attributes+]
 ----
 # Cypher Query
 create_example_graph_query = """
-CALL gds.beta.graph.generate("example-graph", 100, 3, {relationshipDistribution: 'POWER_LAW'})
+CALL gds.beta.graph.generate("example-graph", {example-graph-size}, 3, {relationshipDistribution: 'POWER_LAW'})
 YIELD name, nodes, relationships, generateMillis, relationshipSeed, averageDegree, relationshipDistribution, relationshipProperty
 RETURN *
 """

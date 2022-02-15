@@ -1,6 +1,7 @@
 [[graph-catalog]]
 = Graph Catalog & In-memory graphs
 :description: This page describes the graph catalog and in-memory graphs.
+:example-graph-size: 100
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1fkER4UB0yvx_ctTV8PAhl_rPp6kDB0Px?usp=sharing[image:colab.svg[Colab,24] Google Colab]
 
@@ -10,7 +11,7 @@ For more information about the https://neo4j.com/docs/graph-data-science/current
 
 include::partial$aurads/driver-setup.adoc[]
 
-include::partial$aurads/example-graph-100.adoc[]
+include::partial$aurads/example-graph.adoc[]
 
 == Listing our in-memory graph
 

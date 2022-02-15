@@ -1,6 +1,7 @@
 [[algorithm-progress]]
 = Algorithm progress
 :description: This page describes how to use monitor the algorithm progress.
+:example-graph-size: 10000000
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1cz5o6LaEh7m3qsyO5ORBJGk7C-pfbq69?usp=sharing[image:colab.svg[Colab,24] Google Colab]
 
@@ -16,7 +17,7 @@ For more information about https://neo4j.com/docs/graph-data-science/current/com
 
 include::partial$aurads/driver-setup.adoc[]
 
-include::partial$aurads/example-graph-10000000.adoc[]
+include::partial$aurads/example-graph.adoc[]
 
 == Checking progress Long running algorithms
 

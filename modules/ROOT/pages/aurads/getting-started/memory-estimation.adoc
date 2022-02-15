@@ -1,6 +1,7 @@
 [[memory-estimation]]
 = Memory estimation
 :description: This page describes how to use estimate the needed memory.
+:example-graph-size: 100000000
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1Y5bZI61H0NuH8GCU9vpzR5Wk9Z4-r7hd?usp=sharing[image:colab.svg[Colab,24] Google Colab]
 
@@ -12,7 +13,7 @@ For more information about the https://neo4j.com/docs/graph-data-science/current
 
 include::partial$aurads/driver-setup.adoc[]
 
-include::partial$aurads/example-graph-100000000.adoc[]
+include::partial$aurads/example-graph.adoc[]
 
 == Estimate
 
