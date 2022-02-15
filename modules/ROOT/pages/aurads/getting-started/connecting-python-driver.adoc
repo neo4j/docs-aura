@@ -49,7 +49,7 @@ image::connection.png[title="Connection"]
 [source, python]
 ----
 # Connection Details
-AURA_ENDPOINT = "neo4j+s://xxxxxxxx.databases.neo4j.io"
+AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
 AURA_USERNAME = "neo4j"
 AURA_PASSWORD = ""
 ```
