@@ -67,7 +67,6 @@ for result in results:
   print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
 ----
 =====
-
 ====
 
 == Drop the example graph
@@ -112,28 +111,110 @@ with driver.session() as session:
 print(json.dumps(result, indent=2, sort_keys=True, default=default))
 ----
 =====
-
 ====
 
 == Loading Data from Neo4j - Native Projections
 
 Native projections allow us to take a graph stored on disk and project it into an in-memory graph. You specify which node labels, relationship types and properties you wish to be brought into a new in-memory graph using `CALL gds.graph.create` (https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection-syntax[])
 
-== Shorthand Graph Create
+In the following we will use this graph as an example.
 
-If we had a graph which contained the following subgraph: `(:EngineeringManagement)-[:MANAGES]->(:Developer)`. We can use the following shorthand example in order to create our in-memory graph
-
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
 ----
-# Cypher to create example graph to disk
+# Cypher query to create example graph to disk
 write_example_graph_query = """
-MERGE (a:EngineeringManagement {name: 'Alistair'} )
-MERGE (j:EngineeringManagement {name: 'Jennifer'} )
-MERGE (d:Developer {name: 'Leila'} )
-MERGE (a)-[:MANAGES {start_date: 987654321} ]->(d)
-MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321} ]->(d)
+MERGE (a:EngineeringManagement {name: 'Alistair'})
+MERGE (j:EngineeringManagement {name: 'Jennifer'})
+MERGE (d:Developer {name: 'Leila'})
+MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
+MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
 """
 
+gds.run_cypher(write_example_graph_query)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+MERGE (a:EngineeringManagement {name: 'Alistair'})
+MERGE (j:EngineeringManagement {name: 'Jennifer'})
+MERGE (d:Developer {name: 'Leila'})
+MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
+MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher query to create example graph to disk
+write_example_graph_query = """
+MERGE (a:EngineeringManagement {name: 'Alistair'})
+MERGE (j:EngineeringManagement {name: 'Jennifer'})
+MERGE (d:Developer {name: 'Leila'})
+MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
+MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  session.run(write_example_graph_query)
+----
+=====
+====
+
+=== Shorthand Graph Create
+
+We can use the following shorthand example in order to create our in-memory graph:
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Shorthand GDS create in-memory graph with Native Projection
+shorthand_graph = gds.graph.create(
+  "shorthand-example-graph",
+  ['EngineeringManagement', 'Developer'],
+  ['MANAGES']
+)
+
+result = {
+  "graphName": shorthand_graph.name(),
+  "nodeCount": shorthand_graph.node_count(),
+  "relationshipCount": shorthand_graph.relationship_count()
+}
+
+# prettify the first result
+print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.create(
+"shorthand-example-graph",
+['EngineeringManagement', 'Developer'],
+['MANAGES']
+) YIELD graphName, nodeCount, relationshipCount
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
 # Shorthand GDS create in-memory graph with Native Projection
 shorthand_graph_create_query = """
 CALL gds.graph.create(
@@ -146,18 +227,19 @@ RETURN *
 
 # Create driver session to the database
 with driver.session() as session:
-  session.run(write_example_graph_query)
   # Run query
   result = session.run(shorthand_graph_create_query).data()
   # prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
+=====
+====
 
 Using the short hand is great if we're only interested in the structure of the graph in which our algorithms run on.
 
 You may want to transform the data, unify the structure or include properties as part of your analysis - this is where using the longform `gds.graph.create` can be useful.
 
-== Longform Graph Create
+=== Longform Graph Create
 
 Using the following example graph: `(:EngineeringManagement {name: 'Alistair'} )-[:MANAGES {start_date: 987654321} ]->(:Developer {name: 'Leila'} )<-[:MANAGES {start_date: 123456789, end_date: 987654321} ]-(:EngineeringManagement {name: 'Jennifer'} )`
 
@@ -171,7 +253,88 @@ We'll rename the `start_date` and `end_date` relationships properties to `start_
 
 There are lots of configuration options available as part of Node & Relationship projections: https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection-syntax-relationship-projections[]
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Longform GDS create query
+longform_graph = gds.graph.create(
+  "longform-example-graph",
+  {
+    "PersonEM": {
+      "label": "EngineeringManagement"
+    },
+    "PersonD": {
+      "label": "Developer"
+    }
+  },
+  {
+    "KNOWS": {
+      "type": "MANAGES",
+      "orientation": "UNDIRECTED",
+      "properties": {
+        "start_date": {
+          "property": "start_date"
+        },
+        "end_date": {
+          "property": "end_date",
+          "defaultValue": 999999999
+        }
+      }
+    }
+  }
+)
+
+result = {
+  "graphName": longform_graph.name(),
+  "nodeCount": longform_graph.node_count(),
+  "relationshipCount": longform_graph.relationship_count()
+}
+
+# prettify the first result
+print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.create(
+  "longform-example-graph",
+  {
+    PersonEM: {
+      label: 'EngineeringManagement'
+    },
+    PersonD: {
+      label: 'Developer'
+    }
+  },
+  {
+    KNOWS: {
+      type: 'MANAGES',
+      orientation: 'UNDIRECTED',
+      properties: {
+        start_date: {
+          property: 'start_date'
+        },
+        end_date: {
+          property: 'end_date',
+          defaultValue: 999999999
+        }
+      }
+    }
+  }
+) YIELD graphName, nodeCount, relationshipCount
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Longform GDS create query
 longform_graph_create_query = """
@@ -211,12 +374,56 @@ with driver.session() as session:
   # prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
+=====
+====
 
-== Cleanup
+=== Cleanup
 
-Run the following block of code to clean up the last example's data and in-memory graphs
+Run the following block of code to clean up the last example's data and in-memory graphs.
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+delete_example_graph_query = """
+MERGE (a:EngineeringManagement {name: 'Alistair'} )
+MERGE (j:EngineeringManagement {name: 'Jennifer'} )
+MERGE (d:Developer {name: 'Leila'} )
+MERGE (a)-[:MANAGES {start_date: 987654321} ]->(d)
+MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321} ]->(d)
+RETURN *
+"""
+
+gds.run_cypher(delete_example_graph_query)
+
+gds.graph.drop(shorthand_graph)
+
+gds.graph.drop(longform_graph)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+MERGE (a:EngineeringManagement {name: 'Alistair'} )
+MERGE (j:EngineeringManagement {name: 'Jennifer'} )
+MERGE (d:Developer {name: 'Leila'} )
+MERGE (a)-[:MANAGES {start_date: 987654321} ]->(d)
+MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321} ]->(d)
+RETURN *;
+
+CALL gds.graph.drop("shorthand-example-graph");
+
+CALL gds.graph.drop("longform-example-graph");
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 delete_example_graph_query = """
 MERGE (a:EngineeringManagement {name: 'Alistair'} )
@@ -242,6 +449,8 @@ with driver.session() as session:
   print(session.run(delete_shorthand_graph_query).data())
   print(session.run(delete_longform_graph_query).data())
 ----
+=====
+====
 
 == References
 

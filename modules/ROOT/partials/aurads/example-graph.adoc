@@ -24,11 +24,14 @@ g = gds.beta.graph.generate(
 # Print some graph stats
 # Note: At the moment only some of the return values of the procedure call
 # are available in the graph object
-print({
+result = {
     "name": g.name(), 
     "nodes": g.node_count(), 
     "relationships": g.relationship_count()
-})
+}
+
+# prettify the first result
+print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 
@@ -61,5 +64,4 @@ with driver.session() as session:
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
 =====
-
 ====
