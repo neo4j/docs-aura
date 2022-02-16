@@ -12,8 +12,8 @@ To access the *SETTINGS* tab:
 
 == Resizing a database
 
-label:Enterprise[]
-label:Professional[]
+label:AuraDB-Professional[]
+label:AuraDB-Enterprise[]
 
 You can change the size of an existing database by using the *Resize* option.
 
@@ -28,7 +28,7 @@ A database remains available during the resize operation.
 
 == Pausing a database
 //label:Professional[]
-label:Enterprise[]
+label:AuraDB-Enterprise[]
 
 You can pause a database during periods where you don't need it and resume at any time.
 
@@ -50,7 +50,7 @@ You can pause a database for up to 30 days, after which point AuraDB automatical
 
 [.tabbed-example]
 ====
-[.include-with-free]
+[.include-with-AuraDB-Free]
 =====
 
 AuraDB Free databases are paused automatically after 72 hours of inactivity. 
@@ -83,7 +83,7 @@ Alternatively, you can select the *Resume* button on the database you want to re
 
 =====
 ////
-[.include-with-enterprise]
+[.include-with-AuraDB-Enterprise]
 =====
 
 To resume a database: 
@@ -101,8 +101,8 @@ Alternatively, you can select the *Resume* button on the database you want to re
 
 == Cloning a database
 
-label:Enterprise[]
-label:Professional[]
+label:AuraDB-Professional[]
+label:AuraDB-Enterprise[]
 
 You can clone an existing database into a new one using the *Clone* option.
 The advantage this has over the xref:auradb/managing-databases/backup-restore-export.adoc#_backup_and_export[Create database from snapshot action] is the ability to select a new region.
