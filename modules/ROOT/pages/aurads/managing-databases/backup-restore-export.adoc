@@ -1,4 +1,4 @@
-[[aura-backup-restore-export]]
+[[aurads-backup-restore-export]]
 = Backup, export and restore
 :description: This page describes how to backup, export and restore your data from a snapshot.
 
@@ -20,9 +20,9 @@ To access the *SNAPSHOTS* tab:
 
 There are three different types of snapshot:
 
-* label:Enterprise[] label:Professional[] *Scheduled* - Runs when you first create a database, when changes to the underlying system occur (for example, a new patch release), and automatically at a cadence depending on your plan type.
+* label:AuraDS-Enterprise[] *Scheduled* - Runs when you first create a database, when changes to the underlying system occur (for example, a new patch release), and automatically at a cadence depending on your plan type.
 footnote:[Automatic scheduled snapshots run once a day for Professional databases and once an hour for Enterprise databases.] 
-* label:Enterprise[] label:Professional[] *Load* - Runs when you load a dump file from the *IMPORT DATABASE* tab of a database and when you run the `push-to-cloud` command from the *Import* section of the sidebar menu of the Aura Console.
+* label:AuraDS-Enterprise[] *Load* - Runs when you load a dump file from the *IMPORT DATABASE* tab of a database and when you run the `push-to-cloud` command from the *Import* section of the sidebar menu of the Aura Console.
 * *On-demand* - Runs when you select *Take snapshot* from the *SNAPSHOTS* tab of a database.
 
 == Snapshot actions

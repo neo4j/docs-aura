@@ -5,180 +5,154 @@
 
 WARNING: PAGE UNDER DEVELOPMENT
 
-Neo4j AuraDB is a fully managed cloud graph database service.
+[NOTE]
+.TODO: Review copy
+====
+Neo4j AuraDS is a fully managed cloud graph database service.
 
-Built to leverage relationships in data, AuraDB enables lightning-fast queries for real-time analytics and insights.
-AuraDB is reliable, secure, and fully automated, enabling you to focus on building graph applications without worrying about database administration.
-
+Built to leverage relationships in data, AuraDS enables lightning-fast queries for real-time analytics and insights.
+AuraDS is reliable, secure, and fully automated, enabling you to focus on building graph applications without worrying about database administration.
+====
 
 == Plans
 
-AuraDB offers the following https://neo4j.com/cloud/aura/[subscription plans]: *Free*, *Professional*, and *Enterprise*.
+AuraDS offers the following https://neo4j.com/cloud/aura/[subscription plans]: *AuraDS* and *AuraDS Enterprise*.
 
 Each plan offers different levels of functionality and support:
 
 .Platform
-[cols="49,^17,^17,^17",options="header"]
+[cols="49,^17,^17",options="header"]
 |===
 |
-| label:Free[]
-| label:Professional[]
-| label:Enterprise[]
+| label:AuraDS[]
+| label:AuraDS-Enterprise[]
 
 | Instance size
 | Limits on node and relationship counts
-| 1GB - 64GB (RAM)
 | 4GB - 384GB footnote:[The 384GB instance size is only available on AWS. The largest instance size on GCP is currently 256GB.] (RAM)
 
 | Automated upgrades and patches, no scheduled maintenance window or downtime
-| {check-mark}
 | {check-mark}
 | {check-mark}
 
 | Self-healing
 | {check-mark}
 | {check-mark}
-| {check-mark}
 
 | Fault tolerant
 | {check-mark}
 | {check-mark}
-| {check-mark}
 
 | Cloud tenancy
-| Multi-tenant
 | Multi-tenant
 | Single-tenant with VPC isolation, dedicated cloud infrastructure
 
 
 | Cloud providers
 | GCP
-| GCP
 | AWS, GCP
 
 | Service availability SLA
-|
 |
 | 99.95% uptime
 
 | Multi-availability zone clusters
 |
-|
 | {check-mark}
 
 | Clone database
-|
 |
 | {check-mark}
 |===
 
 .Tools integrations and ecosystem
-[cols="49,^17,^17,^17",options="header"]
+[cols="49,^17,^17",options="header"]
 |===
 |
-| label:Free[]
-| label:Professional[]
-| label:Enterprise[]
+| label:AuraDS[]
+| label:AuraDS-Enterprise[]
 
 | Neo4j Browser
-| {check-mark}
 | {check-mark}
 | {check-mark}
 
 | Neo4j Bloom data visualization
 | {check-mark}
 | {check-mark}
-| {check-mark}
 
 | Support Apache Spark connector
-| {check-mark}
 | {check-mark}
 | {check-mark}
 
 | Standard procedure library (apoc-core)
 | {check-mark}
 | {check-mark}
-| {check-mark}
 |===
 
 .Backup
-[cols="49,^17,^17,^17",options="header"]
+[cols="49,^17,^17",options="header"]
 |===
 |
-| label:Free[]
-| label:Professional[]
-| label:Enterprise[]
+| label:AuraDS[]
+| label:AuraDS-Enterprise[]
 
 | Backup frequency/RPO
 |
-| Daily
 | Hourly
 
 | Backup retention
 |
-| 7 day
 | 90 day
 
 | On-demand point-in-time snapshots
 |
 | {check-mark}
-| {check-mark}
 |===
 
 .Security
-[cols="49,^17,^17,^17",options="header"]
+[cols="49,^17,^17",options="header"]
 |===
 |
-| label:Free[]
-| label:Professional[]
-| label:Enterprise[]
+| label:AuraDS[]
+| label:AuraDS-Enterprise[]
 
 | Encryption (at rest, in transit)
-| {check-mark}
 | {check-mark}
 | {check-mark}
 
 | Console role-based access control
 |
-|
 | {check-mark}
 
 | Fine-grained database security
-|
 |
 | {check-mark}
 |===
 
 .Pricing and usage
-[cols="49,^17,^17,^17",options="header"]
+[cols="49,^17,^17",options="header"]
 |===
 |
-| label:Free[]
-| label:Professional[]
-| label:Enterprise[]
+| label:AuraDS[]
+| label:AuraDS-Enterprise[]
 
 | Capacity-based consumption pricing model
 |
 | {check-mark}
-| {check-mark}
 
 | Payment
 |
-| Pay-as-you-go with credit card
 | Prepaid contract terms with custom pricing
 
 | Cloud marketplace billing
 |
 | {check-mark}
-| {check-mark}
 
 | Volume discounts
-|
 |
 | {check-mark}
 
 | Terms of Service
-| Click-through
 | Click-through
 | Enterprise with commercial negotiations
 |===
