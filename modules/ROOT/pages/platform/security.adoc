@@ -3,14 +3,14 @@
 
 == Encryption
 
-All data stored in Neo4j AuraDB is encrypted using intra-cluster encryption between the various nodes comprising your database, as well as encrypted-at-rest using the underlying cloud provider's encryption mechanism.
-
+All data stored in Neo4j Aura is encrypted using intra-cluster encryption between the various nodes comprising your database, as well as encrypted at rest using the underlying cloud provider's encryption mechanism.
 
 == VPC isolation
 
-label:Enterprise-only[]
+label:AuraDB-Enterprise[]
+label:AuraDS-Enterprise[]
 
-AuraDB Enterprise runs within a Virtual Private Cloud (VPC) isolation for your deployment.
+AuraDB Enterprise and AuraDS Enterprise run within a Virtual Private Cloud (VPC) isolation for your deployment.
 
 The VPC enables you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
 
