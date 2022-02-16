@@ -29,6 +29,20 @@ gds = GraphDataScience(
     aura_ds=True
 )
 ----
+
+[source, python]
+----
+# Imported to prettify some results
+import json
+
+# Imported for the JSON helper function
+from neo4j.time import DateTime
+
+# Helper function for serialising Neo4j DateTime in JSON dumps
+def default(o):
+  if isinstance(o, (DateTime)):
+    return o.isoformat()
+----
 =====
 
 [.include-with-python-driver]
@@ -54,6 +68,20 @@ driver = GraphDatabase.driver(
     AURA_CONNECTION_URI, 
     auth=(AURA_USERNAME, AURA_PASSWORD)
 )
+----
+
+[source, python]
+----
+# Imported to prettify some results
+import json
+
+# Imported for the JSON helper function
+from neo4j.time import DateTime
+
+# Helper function for serialising Neo4j DateTime in JSON dumps
+def default(o):
+  if isinstance(o, (DateTime)):
+    return o.isoformat()
 ----
 =====
 

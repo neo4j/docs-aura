@@ -1,4 +1,4 @@
-== Example Graph
+== Example graph
 
 We're going to use the database you have specified above to create an in-memory graph. We'll delete this data later on in the tutorial.
 
@@ -46,15 +46,12 @@ RETURN *
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher Query
+# Cypher query
 create_example_graph_query = """
 CALL gds.beta.graph.generate("example-graph", {example-graph-size}, 3, {relationshipDistribution: 'POWER_LAW'})
 YIELD name, nodes, relationships, generateMillis, relationshipSeed, averageDegree, relationshipDistribution, relationshipProperty
 RETURN *
 """
-
-# Only imported to prettify some results
-import json
 
 # Create driver session to the database
 with driver.session() as session:

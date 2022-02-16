@@ -19,7 +19,11 @@ We can inspect what is in memory graphs we have in the graph catalog by asking t
 
 If you want to check for the existence of an in-memory graph, try replacing `graph.graph.list` with `gds.graph.exists` along with the name of an in-memory graph
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
 ----
 # import for our helper function
 from neo4j.time import DateTime
@@ -29,7 +33,26 @@ def default(o):
   if isinstance(o, (DateTime)):
     return o.isoformat()
 
+results = gds.graph.list()
 
+# for each result prettify the results
+for result in results:
+  print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.list()
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
 show_in_memory_graphs_query = """
 CALL gds.graph.list()
 """
@@ -43,10 +66,54 @@ with driver.session() as session:
 for result in results:
   print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
 ----
+=====
 
-== Drop the Example Graph
+====
+
+== Drop the example graph
 
 To drop the example in-memory graph we created previously, you can use the `gds.graph.drop` procedure and specify the name of the graph we created (https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[example-graph]).
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+result = gds.graph.drop(g)
+
+# Prettify the result
+print(json.dumps(result, indent=2, sort_keys=True, default=default))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.drop('example-graph')
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+drop_graph_query = """
+CALL gds.graph.drop("example-graph")
+"""
+
+# Create driver session to the database
+with driver.session() as session:
+  # Run query
+  result = session.run(drop_graph_query).data()
+
+# Prettify the result
+print(json.dumps(result, indent=2, sort_keys=True, default=default))
+----
+=====
+
+====
 
 == Loading Data from Neo4j - Native Projections
 
