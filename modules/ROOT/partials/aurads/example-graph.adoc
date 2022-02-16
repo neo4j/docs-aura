@@ -12,7 +12,37 @@ You can read more about the https://neo4j.com/docs/graph-data-science/current/al
 
 [.tabbed-example]
 ====
-[.include-with-python-driver]
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Run the graph generation algorithm and retrieve the corresponding graph object
+g = gds.beta.graph.generate(
+    "example-graph", {example-graph-size}, 3, **{"relationshipDistribution": "POWER_LAW"}
+)
+
+# Print some graph stats
+# Note: At the moment only some of the return values of the procedure call
+# are available in the graph object
+print({
+    "name": g.name(), 
+    "nodes": g.node_count(), 
+    "relationships": g.relationship_count()
+})
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.beta.graph.generate("example-graph", {example-graph-size}, 3, {relationshipDistribution: 'POWER_LAW'})
+YIELD name, nodes, relationships, generateMillis, relationshipSeed, averageDegree, relationshipDistribution, relationshipProperty
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
 =====
 [source, python, subs=attributes+]
 ----
@@ -32,22 +62,6 @@ with driver.session() as session:
   result = session.run(create_example_graph_query).data()
   # prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
-----
-=====
-
-[.include-with-python-client]
-=====
-[source, python, subs=attributes+]
-----
-# Run the graph generation algorithm
-g = gds.beta.graph.generate(
-    "example-graph", {example-graph-size}, 3, **{"relationshipDistribution": "POWER_LAW"}
-)
-
-# Print some graph stats
-print(
-    [g.name(), g.node_count(), g.relationship_count(), g.density(), g.memory_usage()]
-)
 ----
 =====
 

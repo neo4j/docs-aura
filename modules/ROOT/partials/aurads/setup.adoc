@@ -1,36 +1,10 @@
-== Driver Setup
+== Setup
 
 For more information about getting started with the python driver, check out the https://colab.research.google.com/drive/10XK5_fyNURb1u_gvD_lkt7qQvIxzAhnJ#scrollTo=lLi0tbsaaWnH[previous tutorial]
 
 [.tabbed-example]
 ====
-[.include-with-python-driver]
-=====
-[source, python]
-----
-pip install neo4j
-----
-
-[source, python]
-----
-# Driver import
-from neo4j import GraphDatabase
-
-# Connection Details
-# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
-AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
-AURA_USERNAME = "neo4j"
-AURA_PASSWORD = ""
-
-# Driver Instantiation
-driver = GraphDatabase.driver(
-    AURA_CONNECTION_URI, 
-    auth=(AURA_USERNAME, AURA_PASSWORD)
-)
-----
-=====
-
-[.include-with-python-client]
+[.include-with-GDS-client]
 =====
 [source, python]
 ----
@@ -53,6 +27,32 @@ gds = GraphDataScience(
     AURA_CONNECTION_URI,
     auth=(AURA_USERNAME, AURA_PASSWORD),
     aura_ds=True
+)
+----
+=====
+
+[.include-with-python-driver]
+=====
+[source, python]
+----
+pip install neo4j
+----
+
+[source, python]
+----
+# Driver import
+from neo4j import GraphDatabase
+
+# Connection details
+# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
+AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
+AURA_USERNAME = "neo4j"
+AURA_PASSWORD = ""
+
+# Driver instantiation
+driver = GraphDatabase.driver(
+    AURA_CONNECTION_URI, 
+    auth=(AURA_USERNAME, AURA_PASSWORD)
 )
 ----
 =====
