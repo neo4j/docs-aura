@@ -45,6 +45,20 @@ def default(o):
 ----
 =====
 
+[.include-with-Cypher]
+=====
+TIP: Run the following commands from the directory where the Cypher shell is installed.
+
+[source, shell, subs=attributes+]
+----
+export AURA_CONNECTION_URI="neo4j+s://xxxxxxxx.databases.neo4j.io"
+export AURA_USERNAME="neo4j"
+export AURA_PASSWORD=""
+
+./cypher-shell -a $AURA_CONNECTION_URI -u $AURA_USERNAME -p $AURA_PASSWORD
+----
+=====
+
 [.include-with-python-driver]
 =====
 [source, python]
