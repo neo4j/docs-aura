@@ -388,12 +388,9 @@ Run the following block of code to clean up the last example's data and in-memor
 [source, python, subs=attributes+]
 ----
 delete_example_graph_query = """
-MERGE (a:EngineeringManagement {name: 'Alistair'} )
-MERGE (j:EngineeringManagement {name: 'Jennifer'} )
-MERGE (d:Developer {name: 'Leila'} )
-MERGE (a)-[:MANAGES {start_date: 987654321} ]->(d)
-MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321} ]->(d)
-RETURN *
+MATCH (example)
+WHERE example:EngineeringManagement OR example:Developer
+DETACH DELETE example
 """
 
 gds.run_cypher(delete_example_graph_query)
@@ -408,12 +405,9 @@ gds.graph.drop(longform_graph)
 =====
 [source, cypher, subs=attributes+]
 ----
-MERGE (a:EngineeringManagement {name: 'Alistair'} )
-MERGE (j:EngineeringManagement {name: 'Jennifer'} )
-MERGE (d:Developer {name: 'Leila'} )
-MERGE (a)-[:MANAGES {start_date: 987654321} ]->(d)
-MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321} ]->(d)
-RETURN *;
+MATCH (example)
+WHERE example:EngineeringManagement OR example:Developer
+DETACH DELETE example;
 
 CALL gds.graph.drop("shorthand-example-graph");
 
@@ -426,12 +420,9 @@ CALL gds.graph.drop("longform-example-graph");
 [source, python, subs=attributes+]
 ----
 delete_example_graph_query = """
-MERGE (a:EngineeringManagement {name: 'Alistair'} )
-MERGE (j:EngineeringManagement {name: 'Jennifer'} )
-MERGE (d:Developer {name: 'Leila'} )
-MERGE (a)-[:MANAGES {start_date: 987654321} ]->(d)
-MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321} ]->(d)
-RETURN *
+MATCH (example)
+WHERE example:EngineeringManagement OR example:Developer
+DETACH DELETE example
 """
 
 delete_shorthand_graph_query = """
