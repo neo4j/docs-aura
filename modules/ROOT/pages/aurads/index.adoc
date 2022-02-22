@@ -20,71 +20,114 @@ AuraDS offers the following https://neo4j.com/cloud/aura/[subscription plans]: *
 
 Each plan offers different levels of functionality and support:
 
-.Platform
+.Data Science workspace
 [cols="49,^17,^17",options="header"]
 |===
 |
 | label:AuraDS[]
 | label:AuraDS-Enterprise[]
 
-| Instance size
-| Limits on node and relationship counts
-| 4GB - 384GB footnote:[The 384GB instance size is only available on AWS. The largest instance size on GCP is currently 256GB.] (RAM)
-
-| Automated upgrades and patches, no scheduled maintenance window or downtime
+| Algorithms, embeddings, and ML models
 | {check-mark}
 | {check-mark}
 
-| Self-healing
+| Native Python client
 | {check-mark}
 | {check-mark}
 
-| Fault tolerant
+| Pregel API (algorithm authoring tool)
 | {check-mark}
 | {check-mark}
 
-| Cloud tenancy
-| Multi-tenant
-| Single-tenant with VPC isolation, dedicated cloud infrastructure
+| Parallelization
+| {check-mark}
+| {check-mark}
+|===
 
+.MLOps
+[cols="49,^17,^17",options="header"]
+|===
+|
+| label:AuraDS[]
+| label:AuraDS-Enterprise[]
 
-| Cloud providers
+| Model Catalogue
+| Unlimited
+| Unlimited
+
+| Operationalize models with persistence
+| {check-mark}
+| {check-mark}
+
+| Share models with publication
+| {check-mark}
+| {check-mark}
+
+| Workload progress transparency
+| {check-mark}
+| {check-mark}
+|===
+
+.Deployment
+[cols="49,^17,^17",options="header"]
+|===
+|
+| label:AuraDS[]
+| label:AuraDS-Enterprise[]
+
+| Instance Size
+| 8-96GB (RAM)
+| 8-96GB (RAM)
+
+| Automated updates and patches
+| {check-mark}
+| {check-mark}
+
+| Cloud Tenancy
+| multi-tenant
+| multi-tenant
+
+| Read replica
+|
+|
+
+| Causal Cluster compatibility (Hybrid deployment)
+|
+|
+
+| Pay with committed spend from cloud provider
 | GCP
-| AWS, GCP
-
-| Service availability SLA
-|
-| 99.95% uptime
-
-| Multi-availability zone clusters
-|
-| {check-mark}
-
-| Clone database
-|
-| {check-mark}
+| GCP
 |===
 
-.Tools integrations and ecosystem
+.Tools, integrations and ecosystem
 [cols="49,^17,^17",options="header"]
 |===
 |
 | label:AuraDS[]
 | label:AuraDS-Enterprise[]
+
+| Neo4j Graph Database
+| {check-mark}
+| {check-mark}
 
 | Neo4j Browser
 | {check-mark}
 | {check-mark}
 
-| Neo4j Bloom data visualization
+| Neo4j Bloom
 | {check-mark}
 | {check-mark}
 
-| Support Apache Spark connector
+| Neo4j Spark Connector
 | {check-mark}
 | {check-mark}
 
-| Standard procedure library (apoc-core)
+| Neo4j Kafka Connector
+| {check-mark}
+| {check-mark}
+
+| Other data connectors as they become available
 | {check-mark}
 | {check-mark}
 |===
@@ -96,17 +139,17 @@ Each plan offers different levels of functionality and support:
 | label:AuraDS[]
 | label:AuraDS-Enterprise[]
 
-| Backup frequency/RPO
-|
-| Hourly
+| On-demand point-in-time snapshots
+| {check-mark}
+| {check-mark}
 
-| Backup retention
-|
+| Backup method
+| Ad-hoc backups
 | 90 day
 
-| On-demand point-in-time snapshots
-|
-| {check-mark}
+| Backup retention
+| 180 days
+| 180 days
 |===
 
 .Security
@@ -116,15 +159,23 @@ Each plan offers different levels of functionality and support:
 | label:AuraDS[]
 | label:AuraDS-Enterprise[]
 
-| Encryption (at rest, in transit)
-| {check-mark}
-| {check-mark}
+| Encryption
+| {check-mark}footnote:encryption[At rest and in transit]
+| {check-mark}footnote:encryption[]
 
-| Console role-based access control
+| RBAC (role based access control)
 |
-| {check-mark}
+|
+|===
 
-| Fine-grained database security
+.Customer support
+[cols="49,^17,^17",options="header"]
+|===
+|
+| label:AuraDS[]
+| label:AuraDS-Enterprise[]
+
+| Premium Support
 |
 | {check-mark}
 |===
