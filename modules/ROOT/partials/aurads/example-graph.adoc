@@ -17,21 +17,12 @@ You can read more about the https://neo4j.com/docs/graph-data-science/current/al
 [source, python, subs=attributes+]
 ----
 # Run the graph generation algorithm and retrieve the corresponding graph object
-g = gds.beta.graph.generate(
+g, result = gds.beta.graph.generate(
     "example-graph", {example-graph-size}, 3, **{"relationshipDistribution": "POWER_LAW"}
 )
 
-# Print some graph stats
-# Note: At the moment only some of the return values of the procedure call
-# are available in the graph object
-result = {
-    "name": g.name(), 
-    "nodes": g.node_count(), 
-    "relationships": g.relationship_count()
-}
-
-# prettify the first result
-print(json.dumps(result, indent=2, sort_keys=True))
+# Print prettified graph stats
+print(json.dumps(result, indent=2, sort_keys=True, default=default))
 ----
 =====
 
@@ -61,7 +52,7 @@ with driver.session() as session:
   # Run query
   result = session.run(create_example_graph_query).data()
   # prettify the first result
-  print(json.dumps(result[0], indent=2, sort_keys=True))
+  print(json.dumps(result[0], indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
