@@ -18,7 +18,10 @@ You can read more about the https://neo4j.com/docs/graph-data-science/current/al
 ----
 # Run the graph generation algorithm and retrieve the corresponding graph object
 g, result = gds.beta.graph.generate(
-    "example-graph", {example-graph-size}, 3, **{"relationshipDistribution": "POWER_LAW"}
+    "example-graph", 
+    {example-graph-size}, 
+    3, 
+    relationshipDistribution="POWER_LAW"
 )
 
 # Print prettified graph stats

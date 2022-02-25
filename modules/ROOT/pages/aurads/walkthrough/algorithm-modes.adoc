@@ -42,7 +42,9 @@ https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#ru
 [source, python, subs=attributes+]
 ----
 stats = gds.pageRank.stats(
-    g, **{ "maxIterations": 20, "dampingFactor": 0.85 } 
+    g,
+    maxIterations=20,
+    dampingFactor=0.85
 )
 
 print(json.dumps(stats, indent=2, sort_keys=True))
@@ -109,7 +111,9 @@ However, because Algorithms can be long running and the reliability of your inte
 [source, python, subs=attributes+]
 ----
 results = gds.pageRank.stream(
-    g, **{ "maxIterations": 20, "dampingFactor": 0.85 } 
+    g, 
+    maxIterations=20, 
+    dampingFactor=0.85
 )
 
 for result in results:
@@ -169,11 +173,9 @@ The example below, will add a new property called pageRankScore to each node in 
 ----
 result = gds.pageRank.mutate(
     g,
-    **{
-        "mutateProperty": "pageRankScore", 
-        "maxIterations": 20, 
-        "dampingFactor": 0.85
-    }
+    mutateProperty="pageRankScore", 
+    maxIterations=20, 
+    dampingFactor=0.85
 )
 
 print(json.dumps(result, indent=2, sort_keys=True))
@@ -234,11 +236,9 @@ WARNING: This example does not work with GDS since the generated graph has no co
 ----
 result = gds.pageRank.write(
     g, 
-    **{ 
-        "writeProperty": "pageRankScore",
-        "maxIterations": 20, 
-        "dampingFactor": 0.85
-    }
+    writeProperty="pageRankScore",
+    maxIterations=20, 
+    dampingFactor=0.85
 )
 
 print(json.dumps(result, indent=2, sort_keys=True))
