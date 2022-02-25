@@ -224,6 +224,8 @@ In order for the results from a write mode computation to be used by another alg
 
 For write mode to work we need to already have the data within the database, because our example graph was created just in-memory, we will not see any mutation to the data on disk.
 
+WARNING: This example does not work with GDS since the generated graph has no counterpart in Neo4j.
+
 [.tabbed-example]
 ====
 [.include-with-GDS-client]
