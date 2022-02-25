@@ -35,7 +35,39 @@ Running the algorithm in Stats mode does not mutate the in-memory graph so it ca
 
 https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stats[]
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+stats = gds.pageRank.stats(
+    g, **{ "maxIterations": 20, "dampingFactor": 0.85 } 
+)
+
+print(json.dumps(stats, indent=2, sort_keys=True))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.pageRank.stats("example-graph", { maxIterations: 20, dampingFactor: 0.85 } )
+YIELD ranIterations,
+didConverge,
+createMillis,
+computeMillis,
+postProcessingMillis,
+centralityDistribution,
+configuration
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Cypher Query
 page_rank_stats_example_graph_query = """
@@ -57,6 +89,8 @@ with driver.session() as session:
   # prettify the first result
   print(json.dumps(results[0], indent=2, sort_keys=True))
 ----
+=====
+====
 
 The above stats gave us the time it would take to compute the algorithm (`computeMillis`) along with other details like the `centralityDistribution` and our configuration parameters which contain bits like the concurrency.
 
@@ -68,7 +102,35 @@ With our PageRank example, we'll be returned a node ID and the computed PageRank
 
 However, because Algorithms can be long running and the reliability of your internet connections depends on lots of factors, it is advised that you consider the use of Mutate and Write modes instead to persist your results so that you can return to them.
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+results = gds.pageRank.stream(
+    g, **{ "maxIterations": 20, "dampingFactor": 0.85 } 
+)
+
+for result in results:
+    print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.pageRank.stream("example-graph", { maxIterations: 20, dampingFactor: 0.85 } )
+YIELD nodeId,
+score
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Cypher Query to just get internal node ID and score
 page_rank_stream_example_graph_query = """
@@ -86,6 +148,8 @@ with driver.session() as session:
   for result in results:
     print(json.dumps(result, indent=2, sort_keys=True))
 ----
+=====
+====
 
 === Mutate
 
@@ -97,7 +161,39 @@ In the case of PageRank, we are returned a score for each node.
 
 The example below, will add a new property called pageRankScore to each node in our in-memory graph with the score returned from the algorithm.
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+result = gds.pageRank.mutate(
+    g,
+    **{
+        "mutateProperty": "pageRankScore", 
+        "maxIterations": 20, 
+        "dampingFactor": 0.85
+    }
+)
+
+print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.pageRank.mutate("example-graph", { mutateProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85 } )
+YIELD nodePropertiesWritten,
+ranIterations
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Cypher Query to just get mutate the graph
 page_rank_stream_example_graph_query = """
@@ -115,6 +211,8 @@ with driver.session() as session:
   for result in results:
     print(json.dumps(result, indent=2, sort_keys=True))
 ----
+=====
+====
 
 === Write
 
@@ -126,9 +224,41 @@ In order for the results from a write mode computation to be used by another alg
 
 For write mode to work we need to already have the data within the database, because our example graph was created just in-memory, we will not see any mutation to the data on disk.
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
 ----
-# Cypher Query to just get mutate the graph
+result = gds.pageRank.write(
+    g, 
+    **{ 
+        "writeProperty": "pageRankScore",
+        "maxIterations": 20, 
+        "dampingFactor": 0.85
+    }
+)
+
+print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.pageRank.write("example-graph", { writeProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85 } )
+YIELD nodePropertiesWritten,
+ranIterations
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher query to write the graph
 page_rank_stream_example_graph_query = """
 CALL gds.pageRank.write("example-graph", { writeProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85 } )
 YIELD nodePropertiesWritten,
@@ -144,12 +274,36 @@ with driver.session() as session:
   for result in results:
     print(json.dumps(result, indent=2, sort_keys=True))
 ----
+=====
+====
 
 == Clean-up the tutorial
 
 To drop the example in-memory graph we created previously, you can use the https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[gds.graph.drop] procedure and specify the name of the graph we created (example-graph).
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+result = gds.graph.drop(g)
+
+print(json.dumps(result, indent=2, sort_keys=True, default=default))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.drop("example-graph")
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 delete_example_in_memory_graph_query = """
 CALL gds.graph.drop("example-graph")
@@ -161,5 +315,7 @@ with driver.session() as session:
 
   # for each result prettify the result
   for result in results:
-    print(json.dumps(result, indent=2, sort_keys=True))
+    print(json.dumps(result, indent=2, sort_keys=True, default=default))
 ----
+=====
+====
