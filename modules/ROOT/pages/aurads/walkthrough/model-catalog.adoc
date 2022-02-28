@@ -18,7 +18,67 @@ We're going to create a graph within the database to use in-memory and create ou
 
 We'll delete this data later on in the tutorial.
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher Query
+create_example_graph_on_disk_query = """
+MERGE ( dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
+MERGE ( annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
+MERGE ( matt:Person:ExampleData  {name: 'Matt',  age: 67, heightAndWeight: [170, 80]})
+MERGE ( jeff:Person:ExampleData  {name: 'Jeff',  age: 45, heightAndWeight: [192, 85]})
+MERGE ( brie:Person:ExampleData  {name: 'Brie',  age: 27, heightAndWeight: [176, 57]})
+MERGE ( elsa:Person:ExampleData  {name: 'Elsa',  age: 32, heightAndWeight: [158, 55]})
+MERGE ( john:Person:ExampleData  {name: 'John',  age: 35, heightAndWeight: [172, 76]})
+
+MERGE (dan)-[:KNOWS {relWeight: 1.0}]->(annie)
+MERGE (dan)-[:KNOWS {relWeight: 1.6}]->(matt)
+MERGE (annie)-[:KNOWS {relWeight: 0.1}]->(matt)
+MERGE (annie)-[:KNOWS {relWeight: 3.0}]->(jeff)
+MERGE (annie)-[:KNOWS {relWeight: 1.2}]->(brie)
+MERGE (matt)-[:KNOWS {relWeight: 10.0}]->(brie)
+MERGE (brie)-[:KNOWS {relWeight: 1.0}]->(elsa)
+MERGE (brie)-[:KNOWS {relWeight: 2.2}]->(jeff)
+MERGE (john)-[:KNOWS {relWeight: 5.0}]->(jeff)
+RETURN True AS exampleDataCreated
+"""
+
+gds.run_cypher(create_example_graph_on_disk_query)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+MERGE ( dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
+MERGE ( annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
+MERGE ( matt:Person:ExampleData  {name: 'Matt',  age: 67, heightAndWeight: [170, 80]})
+MERGE ( jeff:Person:ExampleData  {name: 'Jeff',  age: 45, heightAndWeight: [192, 85]})
+MERGE ( brie:Person:ExampleData  {name: 'Brie',  age: 27, heightAndWeight: [176, 57]})
+MERGE ( elsa:Person:ExampleData  {name: 'Elsa',  age: 32, heightAndWeight: [158, 55]})
+MERGE ( john:Person:ExampleData  {name: 'John',  age: 35, heightAndWeight: [172, 76]})
+
+MERGE (dan)-[:KNOWS {relWeight: 1.0}]->(annie)
+MERGE (dan)-[:KNOWS {relWeight: 1.6}]->(matt)
+MERGE (annie)-[:KNOWS {relWeight: 0.1}]->(matt)
+MERGE (annie)-[:KNOWS {relWeight: 3.0}]->(jeff)
+MERGE (annie)-[:KNOWS {relWeight: 1.2}]->(brie)
+MERGE (matt)-[:KNOWS {relWeight: 10.0}]->(brie)
+MERGE (brie)-[:KNOWS {relWeight: 1.0}]->(elsa)
+MERGE (brie)-[:KNOWS {relWeight: 2.2}]->(jeff)
+MERGE (john)-[:KNOWS {relWeight: 5.0}]->(jeff)
+
+RETURN True AS exampleDataCreated
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Cypher Query
 create_example_graph_on_disk_query = """
@@ -49,12 +109,62 @@ with driver.session() as session:
   # prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
+=====
+====
 
 == Loading our example data into memory
 
 For more information about getting started with the in-memory graph, check out the previous tutorial https://colab.research.google.com/drive/1fkER4UB0yvx_ctTV8PAhl_rPp6kDB0Px#scrollTo=MLW9u-jiTjfR[here]
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+g, result = gds.graph.create(
+ "example_graph_for_graphsage",
+ {
+   "Person": {
+     "label": "ExampleData",
+     "properties": ["age", "heightAndWeight"]
+   }
+ }, {
+   "KNOWS": {
+     "type": "KNOWS",
+     "orientation": "UNDIRECTED",
+     "properties": ["relWeight"]
+   }
+})
+
+print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.create(
+ 'example_graph_for_graphsage',
+ {
+   Person: {
+     label: 'ExampleData',
+     properties: ['age', 'heightAndWeight']
+   }
+ }, {
+   KNOWS: {
+     type: 'KNOWS',
+     orientation: 'UNDIRECTED',
+     properties: ['relWeight']
+   }
+})
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Cypher Query
 create_example_graph_in_memory_query = """
@@ -81,12 +191,55 @@ with driver.session() as session:
   # prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
+=====
+====
 
 == Training our model
 
 We're going to use graphSAGE to train our model. For more examples on how to train with multiple node labels and relationship weights, head over to the https://neo4j.com/docs/graph-data-science/current/algorithms/graph-sage/#algorithms-embeddings-graph-sage-examples[graphSAGE documentation] for more examples
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+g_graphsage, result = gds.beta.graphSage.train(
+  g,
+  modelName="example_graph_model_for_graphsage",
+  featureProperties=["age", "heightAndWeight"],
+  aggregator="mean",
+  activationFunction="sigmoid",
+  sampleSizes=[25, 10]
+)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.beta.graphSage.train(
+ 'example_graph_for_graphsage',
+ {
+   modelName: 'example_graph_model_for_graphsage',
+   featureProperties: ['age', 'heightAndWeight'],
+   aggregator: 'mean',
+   activationFunction: 'sigmoid',
+   sampleSizes: [25, 10]
+ }
+) YIELD modelInfo as info
+RETURN
+ info.name as modelName,
+ info.metrics.didConverge as didConverge,
+ info.metrics.ranEpochs as ranEpochs,
+ info.metrics.epochLosses as epochLosses
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Cypher Query
 train_graph_sage_on_in_memory_graph_query  = """
@@ -114,6 +267,8 @@ with driver.session() as session:
   # prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
+=====
+====
 
 == Viewing our model catalog
 
@@ -125,7 +280,30 @@ We are provided information about the graph schema, the model name, training con
 * Stored - Flag denoting whether the Model has been persisted to disk
 * Shared - Flag denoting whether the Model has been published, making it accessible to all users
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+results = gds.beta.model.list()
+
+for result in results:
+  print(json.dumps(result, indent=2, sort_keys=True, default=default))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.beta.model.list()
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # import for our helper function
 from neo4j.time import DateTime
@@ -149,6 +327,8 @@ with driver.session() as session:
   for result in results:
     print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
 ----
+=====
+====
 
 == Saving to Model disk
 
@@ -156,7 +336,29 @@ Saving models to disk can be useful for a few reasons like making sure we have a
 
 To save a model, call the `gds.alpha.model.store` procedure with the name of the model you want to persist.
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+result = gds.alpha.model.store(g_graphsage)
+
+print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.alpha.model.store("example_graph_model_for_graphsage")
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Cypher Query
 save_graph_sage_model_to_disk_query  = """
@@ -170,10 +372,35 @@ with driver.session() as session:
   # prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
+=====
+====
 
 If we list our model catalog again, we'll see that the stored flag has been set to `true`
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+results = gds.beta.model.list()
+
+for result in results:
+  print(json.dumps(result, indent=2, sort_keys=True, default=default))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.beta.model.list()
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Create driver session to the database
 with driver.session() as session:
@@ -184,6 +411,8 @@ with driver.session() as session:
   for result in results:
     print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
 ----
+=====
+====
 
 == Sharing the Model with other database users
 
@@ -195,10 +424,36 @@ To do this we need to create another user, more information about the cypher syn
 
 Within our database instance we can https://neo4j.com/docs/cypher-manual/current/administration/security/users-and-roles/#administration-security-users-create[create another user] to simulate a colleague that we might want to share our model with.
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+gds.set_database("system")
+
+gds.run_cypher(create_a_new_user_query)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+:connect system
+
+CREATE USER testUser IF NOT EXISTS
+SET PASSWORD 'test'
+SET PASSWORD CHANGE NOT REQUIRED
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Cypher Query
-create_a_new_user_query  = """
+create_a_new_user_query = """
 CREATE USER testUser IF NOT EXISTS
 SET PASSWORD 'test'
 SET PASSWORD CHANGE NOT REQUIRED
@@ -211,6 +466,8 @@ with driver.session(database='system') as session:
   # prettify the first result
   print(json.dumps(result, indent=2, sort_keys=True))
 ----
+=====
+====
 
 == Publishing the model
 
@@ -218,7 +475,32 @@ To publish the model we need to use https://neo4j.com/docs/graph-data-science/cu
 
 When we publish a model, the model's name is appended with `\_public` at the end.
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+gds.set_database("neo4j")
+g_graphsage_public = gds.alpha.model.publish(g_graphsage)
+
+print(json.dumps(result, indent=2, sort_keys=True, default=default))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+:connect neo4j
+
+CALL gds.alpha.model.publish('example_graph_model_for_graphsage')
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Cypher Query
 publish_graph_sage_model_to_disk_query  = """
@@ -232,6 +514,8 @@ with driver.session() as session:
   # prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True, default=default))
 ----
+=====
+====
 
 == Viewing the model as another user
 
@@ -239,7 +523,40 @@ Below we'll create a new driver session using our test user credentials.
 
 We'll then list the model catalog and see that we have access to the model that we published with our other user.
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+test_user_gds = GraphDataScience(
+    AURA_CONNECTION_URI,
+    auth=("testUser", "test"),
+    aura_ds=True
+)
+
+results = test_user_gds.beta.model.list()
+
+for result in results:
+  print(json.dumps(result, indent=2, sort_keys=True, default=default))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+// First, open a new Cypher shell with the following command:
+//
+// ./cypher-shell -a $AURA_CONNECTION_URI -u testUser -p test
+
+CALL gds.beta.model.list()
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 test_user_driver = GraphDatabase.driver(AURA_CONNECTION_URI, auth=("testUser", "test"))
 
@@ -252,6 +569,8 @@ with test_user_driver.session() as session:
   for result in results:
     print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
 ----
+=====
+====
 
 == Clean-up the tutorial
 
@@ -261,7 +580,61 @@ It shows how to delete nodes and relationships from the database.
 
 How to drop our test user, in-memory graphs & models, but also how to delete the model from disk.
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Delete the example dataset from the database
+gds.run_cypher("""
+MATCH (example:ExampleData)
+DETACH DELETE example
+""")
+
+# Delete the in-memory graph from memory
+gds.graph.drop(g_graphsage)
+
+# Delete the model from disk
+gds.beta.model.drop(g_graphsage_public);
+
+# Delete the model from disk
+gds.alpha.model.delete(g_graphsage_public)
+
+# Delete the example user database
+gds.set_database("system")
+
+gds.run_cypher("""
+  DROP USER testUser
+""")  
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+// Delete the example dataset from the database
+MATCH (example:ExampleData)
+DETACH DELETE example;
+
+// Delete the in-memory graph from memory
+CALL gds.graph.drop("example_graph_for_graphsage");
+
+// Delete the model from disk
+CALL gds.beta.model.drop("example_graph_model_for_graphsage_public");
+
+// Delete the model from disk
+CALL gds.alpha.model.delete("example_graph_model_for_graphsage_public");
+
+// Delete the example user database
+DROP USER testUser;
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Delete the example dataset from the database
 delete_example_graph_query = """
@@ -304,6 +677,8 @@ with driver.session(database='system') as session:
 driver.close()
 test_user_driver.close()
 ----
+=====
+====
 
 == References
 
