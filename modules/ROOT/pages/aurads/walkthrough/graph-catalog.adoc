@@ -1,5 +1,5 @@
 [[graph-catalog]]
-= Graph Catalog & In-memory graphs
+= Graph catalog & in-memory graphs
 :description: This page describes the graph catalog and in-memory graphs.
 :example-graph-size: 100
 
@@ -13,7 +13,7 @@ include::partial$aurads/setup.adoc[]
 
 include::partial$aurads/example-graph.adoc[]
 
-== Listing our in-memory graph
+== Listing in-memory graphs
 
 We can inspect what is in memory graphs we have in the graph catalog by asking the Graph Catalog using the `gds.graph.list()` procedure.
 
@@ -103,7 +103,7 @@ print(json.dumps(result, indent=2, sort_keys=True, default=default))
 =====
 ====
 
-== Loading Data from Neo4j - Native Projections
+== Loading data from Neo4j - Native projections
 
 Native projections allow us to take a graph stored on disk and project it into an in-memory graph. You specify which node labels, relationship types and properties you wish to be brought into a new in-memory graph using `CALL gds.graph.create` (https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection-syntax[])
 
@@ -160,7 +160,7 @@ with driver.session() as session:
 =====
 ====
 
-=== Shorthand Graph Create
+=== Shorthand graph creation
 
 We can use the following shorthand example in order to create our in-memory graph:
 
@@ -223,7 +223,7 @@ Using the short hand is great if we're only interested in the structure of the g
 
 You may want to transform the data, unify the structure or include properties as part of your analysis - this is where using the longform `gds.graph.create` can be useful.
 
-=== Longform Graph Create
+=== Longform graph creation
 
 Using the following example graph: `(:EngineeringManagement {name: 'Alistair'} )-[:MANAGES {start_date: 987654321} ]->(:Developer {name: 'Leila'} )<-[:MANAGES {start_date: 123456789, end_date: 987654321} ]-(:EngineeringManagement {name: 'Jennifer'} )`
 
@@ -424,20 +424,20 @@ with driver.session() as session:
 == References
 
 === Documentation
-* https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[Graph Catalog]
-* https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection[Native Projections]
-* https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/graph-generation/#graph-generation[Graph Generation]
-* https://neo4j.com/docs/graph-data-science[Neo4j GDSL Documentation]
-* https://neo4j.com/docs/driver-manual/current/get-started/[Neo4j Driver Documentation]
-* https://neo4j.com/developer[Neo4j Developer Documentation]
+* https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[Graph catalog^]
+* https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection[Native projections^]
+* https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/graph-generation/#graph-generation[Graph generation^]
+* https://neo4j.com/docs/graph-data-science[Neo4j GDSL documentation^]
+* https://neo4j.com/docs/driver-manual/current/get-started/[Neo4j driver documentation^]
+* https://neo4j.com/developer[Neo4j developer documentation^]
 
 === Cypher
 
-* Learn more about the https://neo4j.com/docs/cypher-manual/current/[Cypher] syntax
-* The https://neo4j.com/docs/cypher-manual/current/[Cypher Reference Card] is also a great resource for understanding how to use Cypher keywords
+* Learn more about the https://neo4j.com/docs/cypher-manual/current/[Cypher^] syntax
+* The https://neo4j.com/docs/cypher-manual/current/[Cypher reference card^] is also a great resource for understanding how to use Cypher keywords
 
 === Modelling
 
-* https://neo4j.com/developer/guide-data-modeling/[Data modelling guidelines]
-* https://neo4j.com/developer/modeling-designs/[Data modelling design]
-* https://neo4j.com/developer/graph-model-refactoring/[Refactoring a data model]
+* https://neo4j.com/developer/guide-data-modeling/[Data modelling guidelines^]
+* https://neo4j.com/developer/modeling-designs/[Data modelling design^]
+* https://neo4j.com/developer/graph-model-refactoring/[Refactoring a data model^]
