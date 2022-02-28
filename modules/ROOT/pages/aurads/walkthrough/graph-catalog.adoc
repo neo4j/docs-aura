@@ -225,9 +225,17 @@ You may want to transform the data, unify the structure or include properties as
 
 === Longform graph creation
 
-Using the following example graph: `(:EngineeringManagement {name: 'Alistair'} )-[:MANAGES {start_date: 987654321} ]->(:Developer {name: 'Leila'} )<-[:MANAGES {start_date: 123456789, end_date: 987654321} ]-(:EngineeringManagement {name: 'Jennifer'} )`
+Using the following example graph: 
 
-We can transform our example into the following structure: `(:Person {first_name: 'Alistair'} )-[:KNOWS {start_date: 987654321, end_date: 999999999} ]-(:Person {first_name: 'Leila'} )-[:KNOWS {start_date: 123456789, end_date: 987654321} ]-(:Person {first_name: 'Jennifer'} )`
+```
+(:EngineeringManagement {name: 'Alistair'} )-[:MANAGES {start_date: 987654321} ]->(:Developer {name: 'Leila'} )<-[:MANAGES {start_date: 123456789, end_date: 987654321} ]-(:EngineeringManagement {name: 'Jennifer'} )
+```
+
+We can transform our example into the following structure: 
+
+```
+(:Person {first_name: 'Alistair'} )-[:KNOWS {start_date: 987654321, end_date: 999999999} ]-(:Person {first_name: 'Leila'} )-[:KNOWS {start_date: 123456789, end_date: 987654321} ]-(:Person {first_name: 'Jennifer'} )
+```
 
 Below we'll transform the `:EngineeringManagement` & `:Developer` labels to be `:PersonEM` & `PersonM` respectively when projected into our in-memory graph.
 
