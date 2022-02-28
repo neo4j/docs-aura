@@ -116,8 +116,7 @@ results = gds.pageRank.stream(
     dampingFactor=0.85
 )
 
-for result in results:
-    print(json.dumps(result, indent=2, sort_keys=True))
+print(json.dumps(results, indent=2, sort_keys=True))
 ----
 =====
 
@@ -148,9 +147,9 @@ RETURN *
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_stream_example_graph_query).data()
-  # prettify the results
-  for result in results:
-    print(json.dumps(result, indent=2, sort_keys=True))
+  
+  # Prettify the results
+  print(json.dumps(results, indent=2, sort_keys=True))
 ----
 =====
 ====
