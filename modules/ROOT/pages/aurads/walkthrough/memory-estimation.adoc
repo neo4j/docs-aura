@@ -25,7 +25,39 @@ If you need more RAM & CPU, you can resize your GDS instance within the Neo4j Au
 
 Below is an example of getting a memory estimation for if we wanted to mutate the in-memory graph with the results of PageRank and hitting the guard rails on an 8GB instance.
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+result = gds.labelPropagation.mutate.estimate(
+    g,
+    mutateProperty="communityID"
+)
+
+# Print prettified estimation information
+print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.labelPropagation.mutate.estimate("example-graph", { mutateProperty: 'communityID' } )
+YIELD nodeCount,
+    relationshipCount,
+    bytesMin,
+    bytesMax,
+    requiredMemory
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Cypher Query
 page_rank_mutate_estimate_example_graph_query = """
@@ -45,8 +77,46 @@ with driver.session() as session:
   # prettify the first result
   print(json.dumps(results[0], indent=2, sort_keys=True))
 ----
+=====
+====
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+result = gds.labelPropagation.mutate(
+    g,
+    mutateProperty="communityID"
+)
+
+print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.labelPropagation.mutate("example-graph", { mutateProperty: 'communityID' } )
+YIELD createMillis,
+ computeMillis,
+ mutateMillis,
+ postProcessingMillis,
+ nodePropertiesWritten,
+ communityCount,
+ ranIterations,
+ didConverge,
+ communityDistribution,
+ configuration
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Lets try to run the query to hit the memory guard
 
@@ -73,6 +143,8 @@ with driver.session() as session:
   # prettify the first result
   print(json.dumps(results[0], indent=2, sort_keys=True))
 ----
+=====
+====
 
 == Resizing your instance
 
@@ -90,7 +162,29 @@ image::resize2.png[title="Resize 2"]
 
 To drop the example in-memory graph we created previously, you can use the https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[gds.graph.drop] procedure and specify the name of the graph we created (example-graph).
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+result = gds.graph.drop(g)
+
+print(json.dumps(result, indent=2, sort_keys=True, default=default))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.drop("example-graph")
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 delete_example_in_memory_graph_query = """
 CALL gds.graph.drop("example-graph")
@@ -104,3 +198,5 @@ with driver.session() as session:
   for result in results:
     print(json.dumps(result, indent=2, sort_keys=True))
 ----
+=====
+====
