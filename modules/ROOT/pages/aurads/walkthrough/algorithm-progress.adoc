@@ -25,7 +25,82 @@ We will need to start a long running algorithm that will take a little while to 
 
 In order to be able to start a long running query and inspect the progress we will use threading in this example.
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Imports to help us
+import threading, time
+
+
+# method to call label propagation on our example in memory graph
+def run_label_prop():
+  result = gds.labelPropagation.mutate(
+    g,
+    mutateProperty="communityID"
+  )
+
+  print(json.dumps(result, indent=2, sort_keys=True))
+
+def run_list_progress():
+  result = gds.beta.listProgress()
+
+  print(json.dumps(result, indent=2, sort_keys=True, default=default))
+
+# create a thread for each of the cypher calls
+label_prop_query_thread = threading.Thread(target=run_label_prop)
+list_progress_query_thread = threading.Thread(target=run_list_progress)
+
+# start the label propagation query
+label_prop_query_thread.start()
+
+# sleep for a few seconds so the label propagation query has time to get going
+print('sleeping for 5 seconds')
+time.sleep(5)
+# start the list progress query
+list_progress_query_thread.start()
+
+# block and wait for the threads to finish
+list_progress_query_thread.join()
+label_prop_query_thread.join()
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.labelPropagation.mutate("example-graph", { mutateProperty: 'communityID' } )
+YIELD createMillis,
+computeMillis,
+mutateMillis,
+postProcessingMillis,
+nodePropertiesWritten,
+communityCount,
+ranIterations,
+didConverge,
+communityDistribution,
+configuration
+RETURN *
+
+// Run the following query in another Cypher shell, i.e. run this command
+// in a different terminal first:
+//
+// ./cypher-shell -a $AURA_CONNECTION_URI -u $AURA_USERNAME -p $AURA_PASSWORD
+
+CALL gds.beta.listProgress()
+YIELD id,
+taskName,
+message
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 # Imports to help us
 import threading, time
@@ -96,6 +171,8 @@ list_progress_query_thread.start()
 list_progress_query_thread.join()
 label_prop_query_thread.join()
 ----
+=====
+====
 
 == Clean-up the tutorial
 
@@ -103,7 +180,29 @@ To drop the example in-memory graph we created previously, you can use the `gds.
 
 https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[]
 
-[source, python]
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+result = gds.graph.drop(g)
+
+print(json.dumps(result, indent=2, sort_keys=True, default=default))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.drop("example-graph")
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
 ----
 delete_example_in_memory_graph_query = """
 CALL gds.graph.drop("example-graph")
@@ -113,5 +212,9 @@ with driver.session() as session:
   # Run query
   results = session.run(delete_example_in_memory_graph_query).data()
 
-  print(json.dumps(results[0], indent=2, sort_keys=True))
+  # for each result prettify the result
+  for result in results:
+    print(json.dumps(result, indent=2, sort_keys=True))
 ----
+=====
+====
