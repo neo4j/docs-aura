@@ -25,19 +25,10 @@ If you want to check for the existence of an in-memory graph, try replacing `gra
 =====
 [source, python, subs=attributes+]
 ----
-# import for our helper function
-from neo4j.time import DateTime
-
-# helper function for serialising Neo4j DateTime in JSON dumps
-def default(o):
-  if isinstance(o, (DateTime)):
-    return o.isoformat()
-
 results = gds.graph.list()
 
-# for each result prettify the results
-for result in results:
-  print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
+# Prettify the results
+print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 
@@ -62,9 +53,8 @@ with driver.session() as session:
   # Run query
   results = session.run(show_in_memory_graphs_query).data()
 
-# for each result prettify the results
-for result in results:
-  print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
+# Prettify the results
+print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
@@ -181,19 +171,13 @@ We can use the following shorthand example in order to create our in-memory grap
 [source, python, subs=attributes+]
 ----
 # Shorthand GDS create in-memory graph with Native Projection
-shorthand_graph = gds.graph.create(
+shorthand_graph, result = gds.graph.create(
   "shorthand-example-graph",
   ['EngineeringManagement', 'Developer'],
   ['MANAGES']
 )
 
-result = {
-  "graphName": shorthand_graph.name(),
-  "nodeCount": shorthand_graph.node_count(),
-  "relationshipCount": shorthand_graph.relationship_count()
-}
-
-# prettify the first result
+# Prettify the first result
 print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
@@ -260,7 +244,7 @@ There are lots of configuration options available as part of Node & Relationship
 [source, python, subs=attributes+]
 ----
 # Longform GDS create query
-longform_graph = gds.graph.create(
+longform_graph, result = gds.graph.create(
   "longform-example-graph",
   {
     "PersonEM": {
@@ -287,13 +271,7 @@ longform_graph = gds.graph.create(
   }
 )
 
-result = {
-  "graphName": longform_graph.name(),
-  "nodeCount": longform_graph.node_count(),
-  "relationshipCount": longform_graph.relationship_count()
-}
-
-# prettify the first result
+# Prettify the first result
 print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
