@@ -18,10 +18,10 @@ You can read more about the https://neo4j.com/docs/graph-data-science/current/al
 ----
 # Run the graph generation algorithm and retrieve the corresponding graph object
 g, result = gds.beta.graph.generate(
-    "example-graph", 
-    {example-graph-size}, 
-    3, 
-    relationshipDistribution="POWER_LAW"
+  "example-graph", 
+  {example-graph-size}, 
+  3, 
+  relationshipDistribution="POWER_LAW"
 )
 
 # Print prettified graph stats
@@ -33,8 +33,20 @@ print(json.dumps(result, indent=2, sort_keys=True, default=default))
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.beta.graph.generate("example-graph", {example-graph-size}, 3, {relationshipDistribution: 'POWER_LAW'})
-YIELD name, nodes, relationships, generateMillis, relationshipSeed, averageDegree, relationshipDistribution, relationshipProperty
+CALL gds.beta.graph.generate(
+  'example-graph', 
+  {example-graph-size}, 
+  3, 
+  {relationshipDistribution: 'POWER_LAW'}
+)
+YIELD name, 
+  nodes, 
+  relationships, 
+  generateMillis, 
+  relationshipSeed, 
+  averageDegree, 
+  relationshipDistribution, 
+  relationshipProperty
 RETURN *
 ----
 =====
@@ -45,8 +57,15 @@ RETURN *
 ----
 # Cypher query
 create_example_graph_query = """
-CALL gds.beta.graph.generate("example-graph", {example-graph-size}, 3, {relationshipDistribution: 'POWER_LAW'})
-YIELD name, nodes, relationships, generateMillis, relationshipSeed, averageDegree, relationshipDistribution, relationshipProperty
+CALL gds.beta.graph.generate('example-graph', {example-graph-size}, 3, {relationshipDistribution: 'POWER_LAW'})
+YIELD name, 
+  nodes, 
+  relationships, 
+  generateMillis, 
+  relationshipSeed, 
+  averageDegree, 
+  relationshipDistribution, 
+  relationshipProperty
 RETURN *
 """
 

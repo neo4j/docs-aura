@@ -5,7 +5,7 @@
 
 WARNING: The graph size here is different from the existing example (1M instead of 10M) to make it faster. Is it an issue?
 
-TIP: Follow along with a notebook in https://colab.research.google.com/drive/1cz5o6LaEh7m3qsyO5ORBJGk7C-pfbq69?usp=sharing[image:colab.svg[Colab,24] Google Colab ^]
+TIP: Follow along with a notebook in https://colab.research.google.com/drive/1cz5o6LaEh7m3qsyO5ORBJGk7C-pfbq69?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
 This brief tutorial can be followed within a Google Colab which is based on Jupyter notebooks.
 
@@ -74,17 +74,20 @@ label_prop_query_thread.join()
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.labelPropagation.mutate("example-graph", { mutateProperty: 'communityID' } )
+CALL gds.labelPropagation.mutate(
+  'example-graph', 
+  {mutateProperty: 'communityID'}
+)
 YIELD createMillis,
-computeMillis,
-mutateMillis,
-postProcessingMillis,
-nodePropertiesWritten,
-communityCount,
-ranIterations,
-didConverge,
-communityDistribution,
-configuration
+  computeMillis,
+  mutateMillis,
+  postProcessingMillis,
+  nodePropertiesWritten,
+  communityCount,
+  ranIterations,
+  didConverge,
+  communityDistribution,
+  configuration
 RETURN *
 
 // Run the following query in another Cypher shell, i.e. run this command
@@ -93,9 +96,7 @@ RETURN *
 // ./cypher-shell -a $AURA_CONNECTION_URI -u $AURA_USERNAME -p $AURA_PASSWORD
 
 CALL gds.beta.listProgress()
-YIELD id,
-taskName,
-message
+YIELD id, taskName, message
 RETURN *
 ----
 =====
@@ -111,17 +112,20 @@ import threading, time
 # method to call label propagation on our example in memory graph
 def run_label_prop():
 label_prop_mutate_example_graph_query = """
-CALL gds.labelPropagation.mutate("example-graph", { mutateProperty: 'communityID' } )
+CALL gds.labelPropagation.mutate(
+  'example-graph', 
+  {mutateProperty: 'communityID'}
+)
 YIELD createMillis,
-computeMillis,
-mutateMillis,
-postProcessingMillis,
-nodePropertiesWritten,
-communityCount,
-ranIterations,
-didConverge,
-communityDistribution,
-configuration
+  computeMillis,
+  mutateMillis,
+  postProcessingMillis,
+  nodePropertiesWritten,
+  communityCount,
+  ranIterations,
+  didConverge,
+  communityDistribution,
+  configuration
 RETURN *
 """
 
@@ -138,9 +142,7 @@ with driver.session() as session:
 def run_list_progress():
 gds_list_progress_query = """
 CALL gds.beta.listProgress()
-YIELD id,
-taskName,
-message
+YIELD id, taskName, message
 RETURN *
 """
 
@@ -198,7 +200,7 @@ print(json.dumps(result, indent=2, sort_keys=True, default=default))
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.graph.drop("example-graph")
+CALL gds.graph.drop('example-graph')
 ----
 =====
 
@@ -207,7 +209,7 @@ CALL gds.graph.drop("example-graph")
 [source, python, subs=attributes+]
 ----
 delete_example_in_memory_graph_query = """
-CALL gds.graph.drop("example-graph")
+CALL gds.graph.drop('example-graph')
 """
 
 with driver.session() as session:

@@ -3,7 +3,7 @@
 :description: This page describes how to use estimate the needed memory.
 :example-graph-size: 100000000
 
-TIP: Follow along with a notebook in https://colab.research.google.com/drive/1Y5bZI61H0NuH8GCU9vpzR5Wk9Z4-r7hd?usp=sharing[image:colab.svg[Colab,24] Google Colab ^]
+TIP: Follow along with a notebook in https://colab.research.google.com/drive/1Y5bZI61H0NuH8GCU9vpzR5Wk9Z4-r7hd?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
 This brief tutorial can be followed along within Google Colab which is based on Jupyter notebooks.
 
@@ -45,12 +45,15 @@ print(json.dumps(result, indent=2, sort_keys=True))
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.labelPropagation.mutate.estimate("example-graph", { mutateProperty: 'communityID' } )
+CALL gds.labelPropagation.mutate.estimate(
+  'example-graph',
+  {mutateProperty: 'communityID'}
+)
 YIELD nodeCount,
-    relationshipCount,
-    bytesMin,
-    bytesMax,
-    requiredMemory
+  relationshipCount,
+  bytesMin,
+  bytesMax,
+  requiredMemory
 RETURN *
 ----
 =====
@@ -61,12 +64,15 @@ RETURN *
 ----
 # Cypher Query
 page_rank_mutate_estimate_example_graph_query = """
-CALL gds.labelPropagation.mutate.estimate("example-graph", { mutateProperty: 'communityID' } )
+CALL gds.labelPropagation.mutate.estimate(
+  'example-graph',
+  {mutateProperty: 'communityID'}
+)
 YIELD nodeCount,
-    relationshipCount,
-    bytesMin,
-    bytesMax,
-    requiredMemory
+  relationshipCount,
+  bytesMin,
+  bytesMax,
+  requiredMemory
 RETURN *
 """
 
@@ -99,17 +105,20 @@ print(json.dumps(result, indent=2, sort_keys=True))
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.labelPropagation.mutate("example-graph", { mutateProperty: 'communityID' } )
-YIELD createMillis,
- computeMillis,
- mutateMillis,
- postProcessingMillis,
- nodePropertiesWritten,
- communityCount,
- ranIterations,
- didConverge,
- communityDistribution,
- configuration
+CALL gds.labelPropagation.mutate(
+  'example-graph', 
+  {mutateProperty: 'communityID'}
+)
+YIELD preProcessingMillis,
+  computeMillis,
+  mutateMillis,
+  postProcessingMillis,
+  nodePropertiesWritten,
+  communityCount,
+  ranIterations,
+  didConverge,
+  communityDistribution,
+  configuration
 RETURN *
 ----
 =====
@@ -122,17 +131,20 @@ RETURN *
 
 # Cypher Query
 page_rank_mutate_estimate_example_graph_query = """
-CALL gds.labelPropagation.mutate("example-graph", { mutateProperty: 'communityID' } )
-YIELD createMillis,
- computeMillis,
- mutateMillis,
- postProcessingMillis,
- nodePropertiesWritten,
- communityCount,
- ranIterations,
- didConverge,
- communityDistribution,
- configuration
+CALL gds.labelPropagation.mutate(
+  'example-graph', 
+  {mutateProperty: 'communityID'}
+)
+YIELD preProcessingMillis,
+  computeMillis,
+  mutateMillis,
+  postProcessingMillis,
+  nodePropertiesWritten,
+  communityCount,
+  ranIterations,
+  didConverge,
+  communityDistribution,
+  configuration
 RETURN *
 """
 
@@ -178,7 +190,7 @@ print(json.dumps(result, indent=2, sort_keys=True, default=default))
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.graph.drop("example-graph")
+CALL gds.graph.drop('example-graph')
 ----
 =====
 
@@ -187,7 +199,7 @@ CALL gds.graph.drop("example-graph")
 [source, python, subs=attributes+]
 ----
 delete_example_in_memory_graph_query = """
-CALL gds.graph.drop("example-graph")
+CALL gds.graph.drop('example-graph')
 """
 
 with driver.session() as session:

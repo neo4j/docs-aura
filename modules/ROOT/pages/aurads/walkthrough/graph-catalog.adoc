@@ -3,7 +3,7 @@
 :description: This page describes the graph catalog and in-memory graphs.
 :example-graph-size: 100
 
-TIP: Follow along with a notebook in https://colab.research.google.com/drive/1fkER4UB0yvx_ctTV8PAhl_rPp6kDB0Px?usp=sharing[image:colab.svg[Colab,24] Google Colab ^]
+TIP: Follow along with a notebook in https://colab.research.google.com/drive/1fkER4UB0yvx_ctTV8PAhl_rPp6kDB0Px?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
 Within this tutorial, we'll go through how you manage, interact with and use the graph catalog in order to take advantage of running algorithms on in-memory graphs.
 
@@ -89,7 +89,7 @@ CALL gds.graph.drop('example-graph')
 [source, python, subs=attributes+]
 ----
 drop_graph_query = """
-CALL gds.graph.drop("example-graph")
+CALL gds.graph.drop('example-graph')
 """
 
 # Create driver session to the database
@@ -172,7 +172,7 @@ We can use the following shorthand example in order to create our in-memory grap
 ----
 # Shorthand GDS create in-memory graph with Native Projection
 shorthand_graph, result = gds.graph.create(
-  "shorthand-example-graph",
+  'shorthand-example-graph',
   ['EngineeringManagement', 'Developer'],
   ['MANAGES']
 )
@@ -187,10 +187,11 @@ print(json.dumps(result, indent=2, sort_keys=True))
 [source, cypher, subs=attributes+]
 ----
 CALL gds.graph.create(
-"shorthand-example-graph",
-['EngineeringManagement', 'Developer'],
-['MANAGES']
-) YIELD graphName, nodeCount, relationshipCount
+  'shorthand-example-graph',
+  ['EngineeringManagement', 'Developer'],
+  ['MANAGES']
+) 
+YIELD graphName, nodeCount, relationshipCount
 RETURN *
 ----
 =====
@@ -202,10 +203,11 @@ RETURN *
 # Shorthand GDS create in-memory graph with Native Projection
 shorthand_graph_create_query = """
 CALL gds.graph.create(
-"shorthand-example-graph",
-['EngineeringManagement', 'Developer'],
-['MANAGES']
-) YIELD graphName, nodeCount, relationshipCount
+  'shorthand-example-graph',
+  ['EngineeringManagement', 'Developer'],
+  ['MANAGES']
+) 
+YIELD graphName, nodeCount, relationshipCount
 RETURN *
 """
 
@@ -228,13 +230,21 @@ You may want to transform the data, unify the structure or include properties as
 Using the following example graph: 
 
 ```
-(:EngineeringManagement {name: 'Alistair'} )-[:MANAGES {start_date: 987654321} ]->(:Developer {name: 'Leila'} )<-[:MANAGES {start_date: 123456789, end_date: 987654321} ]-(:EngineeringManagement {name: 'Jennifer'} )
+(:EngineeringManagement {name: 'Alistair'})-
+  [:MANAGES {start_date: 987654321}]->
+  (:Developer {name: 'Leila'})<-
+  [:MANAGES {start_date: 123456789, end_date: 987654321}]-
+  (:EngineeringManagement {name: 'Jennifer'})
 ```
 
 We can transform our example into the following structure: 
 
 ```
-(:Person {first_name: 'Alistair'} )-[:KNOWS {start_date: 987654321, end_date: 999999999} ]-(:Person {first_name: 'Leila'} )-[:KNOWS {start_date: 123456789, end_date: 987654321} ]-(:Person {first_name: 'Jennifer'} )
+(:Person {first_name: 'Alistair'})-
+  [:KNOWS {start_date: 987654321, end_date: 999999999}]-
+  (:Person {first_name: 'Leila'})-
+  [:KNOWS {start_date: 123456789, end_date: 987654321}]-
+  (:Person {first_name: 'Jennifer'})
 ```
 
 Below we'll transform the `:EngineeringManagement` & `:Developer` labels to be `:PersonEM` & `PersonM` respectively when projected into our in-memory graph.
@@ -289,7 +299,7 @@ print(json.dumps(result, indent=2, sort_keys=True))
 [source, cypher, subs=attributes+]
 ----
 CALL gds.graph.create(
-  "longform-example-graph",
+  'longform-example-graph',
   {
     PersonEM: {
       label: 'EngineeringManagement'
@@ -313,7 +323,8 @@ CALL gds.graph.create(
       }
     }
   }
-) YIELD graphName, nodeCount, relationshipCount
+) 
+YIELD graphName, nodeCount, relationshipCount
 RETURN *
 ----
 =====
@@ -325,7 +336,7 @@ RETURN *
 # Longform GDS create query
 longform_graph_create_query = """
 CALL gds.graph.create(
-  "longform-example-graph",
+  'longform-example-graph',
   {
     PersonEM: {
       label: 'EngineeringManagement'
@@ -349,7 +360,8 @@ CALL gds.graph.create(
       }
     }
   }
-) YIELD graphName, nodeCount, relationshipCount
+) 
+YIELD graphName, nodeCount, relationshipCount
 RETURN *
 """
 
@@ -395,9 +407,9 @@ MATCH (example)
 WHERE example:EngineeringManagement OR example:Developer
 DETACH DELETE example;
 
-CALL gds.graph.drop("shorthand-example-graph");
+CALL gds.graph.drop('shorthand-example-graph');
 
-CALL gds.graph.drop("longform-example-graph");
+CALL gds.graph.drop('longform-example-graph');
 ----
 =====
 
@@ -412,11 +424,11 @@ DETACH DELETE example
 """
 
 delete_shorthand_graph_query = """
-CALL gds.graph.drop("shorthand-example-graph")
+CALL gds.graph.drop('shorthand-example-graph')
 """
 
 delete_longform_graph_query = """
-CALL gds.graph.drop("longform-example-graph")
+CALL gds.graph.drop('longform-example-graph')
 """
 
 # Create driver session to the database

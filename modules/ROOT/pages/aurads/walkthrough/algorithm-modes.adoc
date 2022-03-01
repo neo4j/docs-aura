@@ -3,7 +3,7 @@
 :description: This page describes how to use the different algorithm modes.
 :example-graph-size: 100
 
-TIP: Follow along with a notebook in https://colab.research.google.com/drive/1n5RBKgZVpYmCVBkvOqwkO8qFGb2sqF3U?usp=sharing[image:colab.svg[Colab,24] Google Colab ^]
+TIP: Follow along with a notebook in https://colab.research.google.com/drive/1n5RBKgZVpYmCVBkvOqwkO8qFGb2sqF3U?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
 This brief tutorial can be followed along within a Google Colab which is based on Jupyter notebooks.
 
@@ -55,14 +55,17 @@ print(json.dumps(stats, indent=2, sort_keys=True))
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.pageRank.stats("example-graph", { maxIterations: 20, dampingFactor: 0.85 } )
+CALL gds.pageRank.stats(
+  'example-graph', 
+  {maxIterations: 20, dampingFactor: 0.85}
+)
 YIELD ranIterations,
-didConverge,
-createMillis,
-computeMillis,
-postProcessingMillis,
-centralityDistribution,
-configuration
+  didConverge,
+  preProcessingMillis,
+  computeMillis,
+  postProcessingMillis,
+  centralityDistribution,
+  configuration
 RETURN *
 ----
 =====
@@ -73,14 +76,17 @@ RETURN *
 ----
 # Cypher Query
 page_rank_stats_example_graph_query = """
-CALL gds.pageRank.stats("example-graph", { maxIterations: 20, dampingFactor: 0.85 } )
+CALL gds.pageRank.stats(
+  'example-graph', 
+  {maxIterations: 20, dampingFactor: 0.85}
+)
 YIELD ranIterations,
-didConverge,
-createMillis,
-computeMillis,
-postProcessingMillis,
-centralityDistribution,
-configuration
+  didConverge,
+  preProcessingMillis,
+  computeMillis,
+  postProcessingMillis,
+  centralityDistribution,
+  configuration
 RETURN *
 """
 
@@ -124,9 +130,11 @@ print(json.dumps(results, indent=2, sort_keys=True))
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.pageRank.stream("example-graph", { maxIterations: 20, dampingFactor: 0.85 } )
-YIELD nodeId,
-score
+CALL gds.pageRank.stream(
+  'example-graph', 
+  {maxIterations: 20, dampingFactor: 0.85}
+)
+YIELD nodeId, score
 RETURN *
 ----
 =====
@@ -137,9 +145,11 @@ RETURN *
 ----
 # Cypher Query to just get internal node ID and score
 page_rank_stream_example_graph_query = """
-CALL gds.pageRank.stream("example-graph", { maxIterations: 20, dampingFactor: 0.85 } )
-YIELD nodeId,
-score
+CALL gds.pageRank.stream(
+  'example-graph', 
+  {maxIterations: 20, dampingFactor: 0.85}
+)
+YIELD nodeId, score
 RETURN *
 """
 
@@ -185,9 +195,11 @@ print(json.dumps(result, indent=2, sort_keys=True))
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.pageRank.mutate("example-graph", { mutateProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85 } )
-YIELD nodePropertiesWritten,
-ranIterations
+CALL gds.pageRank.mutate(
+  'example-graph', 
+  {mutateProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
+)
+YIELD nodePropertiesWritten, ranIterations
 RETURN *
 ----
 =====
@@ -198,9 +210,11 @@ RETURN *
 ----
 # Cypher Query to just get mutate the graph
 page_rank_stream_example_graph_query = """
-CALL gds.pageRank.mutate("example-graph", { mutateProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85 } )
-YIELD nodePropertiesWritten,
-ranIterations
+CALL gds.pageRank.mutate(
+  'example-graph', 
+  {mutateProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
+)
+YIELD nodePropertiesWritten, ranIterations
 RETURN *
 """
 
@@ -248,9 +262,11 @@ print(json.dumps(result, indent=2, sort_keys=True))
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.pageRank.write("example-graph", { writeProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85 } )
-YIELD nodePropertiesWritten,
-ranIterations
+CALL gds.pageRank.write(
+  'example-graph', 
+  {writeProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
+)
+YIELD nodePropertiesWritten, ranIterations
 RETURN *
 ----
 =====
@@ -261,9 +277,11 @@ RETURN *
 ----
 # Cypher query to write the graph
 page_rank_stream_example_graph_query = """
-CALL gds.pageRank.write("example-graph", { writeProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85 } )
-YIELD nodePropertiesWritten,
-ranIterations
+CALL gds.pageRank.write(
+  'example-graph', 
+  {writeProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
+)
+YIELD nodePropertiesWritten, ranIterations
 RETURN *
 """
 
@@ -298,7 +316,7 @@ print(json.dumps(result, indent=2, sort_keys=True, default=default))
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.graph.drop("example-graph")
+CALL gds.graph.drop('example-graph')
 ----
 =====
 
@@ -307,7 +325,7 @@ CALL gds.graph.drop("example-graph")
 [source, python, subs=attributes+]
 ----
 delete_example_in_memory_graph_query = """
-CALL gds.graph.drop("example-graph")
+CALL gds.graph.drop('example-graph')
 """
 
 with driver.session() as session:
