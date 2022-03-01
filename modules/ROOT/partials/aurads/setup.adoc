@@ -13,7 +13,7 @@ pip install graphdatascience
 
 [source, python]
 ----
-# Driver import
+# Client import
 from graphdatascience import GraphDataScience
 
 # Connection details
@@ -22,7 +22,7 @@ AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
 AURA_USERNAME = "neo4j"
 AURA_PASSWORD = ""
 
-# Configures the driver with AuraDS-recommended settings
+# Configures the client with AuraDS-recommended settings
 gds = GraphDataScience(
     AURA_CONNECTION_URI,
     auth=(AURA_USERNAME, AURA_PASSWORD),
