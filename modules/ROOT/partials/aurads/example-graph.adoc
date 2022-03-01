@@ -57,7 +57,12 @@ RETURN *
 ----
 # Cypher query
 create_example_graph_query = """
-CALL gds.beta.graph.generate('example-graph', {example-graph-size}, 3, {relationshipDistribution: 'POWER_LAW'})
+CALL gds.beta.graph.generate(
+  'example-graph', 
+  {example-graph-size}, 
+  3, 
+  {relationshipDistribution: 'POWER_LAW'}
+)
 YIELD name, 
   nodes, 
   relationships, 
