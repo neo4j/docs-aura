@@ -168,6 +168,8 @@ Under the settings tab, after clicking the resize option you can select a new in
 
 image::resize2.png[title="Resize 2"]
 
+After resizing, run the previous steps once again. This time no exception is thrown and the step completes successfully.
+
 == Clean-up the tutorial
 
 To drop the example in-memory graph we created previously, you can use the https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[gds.graph.drop] procedure and specify the name of the graph we created (example-graph).
