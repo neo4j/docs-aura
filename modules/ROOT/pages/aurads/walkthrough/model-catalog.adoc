@@ -24,7 +24,7 @@ We'll delete this data later on in the tutorial.
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher Query
+# Cypher query
 create_example_graph_on_disk_query = """
 MERGE ( dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
 MERGE ( annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
@@ -43,6 +43,7 @@ MERGE (matt)-[:KNOWS {relWeight: 10.0}]->(brie)
 MERGE (brie)-[:KNOWS {relWeight: 1.0}]->(elsa)
 MERGE (brie)-[:KNOWS {relWeight: 2.2}]->(jeff)
 MERGE (john)-[:KNOWS {relWeight: 5.0}]->(jeff)
+
 RETURN True AS exampleDataCreated
 """
 
@@ -80,7 +81,7 @@ RETURN True AS exampleDataCreated
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher Query
+# Cypher query
 create_example_graph_on_disk_query = """
 MERGE ( dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
 MERGE ( annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
@@ -99,6 +100,7 @@ MERGE (matt)-[:KNOWS {relWeight: 10.0}]->(brie)
 MERGE (brie)-[:KNOWS {relWeight: 1.0}]->(elsa)
 MERGE (brie)-[:KNOWS {relWeight: 2.2}]->(jeff)
 MERGE (john)-[:KNOWS {relWeight: 5.0}]->(jeff)
+
 RETURN True AS exampleDataCreated
 """
 
@@ -123,19 +125,21 @@ For more information about getting started with the in-memory graph, check out t
 [source, python, subs=attributes+]
 ----
 g, result = gds.graph.create(
- "example_graph_for_graphsage",
- {
-   "Person": {
-     "label": "ExampleData",
-     "properties": ["age", "heightAndWeight"]
-   }
- }, {
-   "KNOWS": {
-     "type": "KNOWS",
-     "orientation": "UNDIRECTED",
-     "properties": ["relWeight"]
-   }
-})
+  "example_graph_for_graphsage",
+  {
+    "Person": {
+      "label": "ExampleData",
+      "properties": ["age", "heightAndWeight"]
+    }
+  }, 
+  {
+    "KNOWS": {
+      "type": "KNOWS",
+      "orientation": "UNDIRECTED",
+      "properties": ["relWeight"]
+    }
+  }
+)
 
 print(json.dumps(result, indent=2, sort_keys=True))
 ----
@@ -146,19 +150,21 @@ print(json.dumps(result, indent=2, sort_keys=True))
 [source, cypher, subs=attributes+]
 ----
 CALL gds.graph.create(
- 'example_graph_for_graphsage',
- {
-   Person: {
-     label: 'ExampleData',
-     properties: ['age', 'heightAndWeight']
-   }
- }, {
-   KNOWS: {
-     type: 'KNOWS',
-     orientation: 'UNDIRECTED',
-     properties: ['relWeight']
-   }
-})
+  'example_graph_for_graphsage',
+  {
+    Person: {
+      label: 'ExampleData',
+      properties: ['age', 'heightAndWeight']
+    }
+  }, 
+  {
+    KNOWS: {
+      type: 'KNOWS',
+      orientation: 'UNDIRECTED',
+      properties: ['relWeight']
+    }
+  }
+)
 ----
 =====
 
@@ -169,26 +175,28 @@ CALL gds.graph.create(
 # Cypher Query
 create_example_graph_in_memory_query = """
 CALL gds.graph.create(
- 'example_graph_for_graphsage',
- {
-   Person: {
-     label: 'ExampleData',
-     properties: ['age', 'heightAndWeight']
-   }
- }, {
-   KNOWS: {
-     type: 'KNOWS',
-     orientation: 'UNDIRECTED',
-     properties: ['relWeight']
-   }
-})
+  'example_graph_for_graphsage',
+  {
+    Person: {
+      label: 'ExampleData',
+      properties: ['age', 'heightAndWeight']
+    }
+  }, 
+  {
+    KNOWS: {
+      type: 'KNOWS',
+      orientation: 'UNDIRECTED',
+      properties: ['relWeight']
+    }
+  }
+)
 """
 
 # Create driver session to the database
 with driver.session() as session:
   # Run query
   result = session.run(create_example_graph_in_memory_query).data()
-  # prettify the first result
+  # Prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
 =====
@@ -204,7 +212,7 @@ We're going to use graphSAGE to train our model. For more examples on how to tra
 =====
 [source, python, subs=attributes+]
 ----
-g_graphsage, result = gds.beta.graphSage.train(
+model, result = gds.beta.graphSage.train(
   g,
   modelName="example_graph_model_for_graphsage",
   featureProperties=["age", "heightAndWeight"],
@@ -288,8 +296,8 @@ We are provided information about the graph schema, the model name, training con
 ----
 results = gds.beta.model.list()
 
-for result in results:
-  print(json.dumps(result, indent=2, sort_keys=True, default=default))
+# Prettify the results
+print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 
@@ -323,9 +331,8 @@ with driver.session() as session:
   # Run query
   results = session.run(list_model_catalog_query).data()
 
-  # for each result prettify the results
-  for result in results:
-    print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
+  # Prettify the results
+  print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
@@ -342,7 +349,7 @@ To save a model, call the `gds.alpha.model.store` procedure with the name of the
 =====
 [source, python, subs=attributes+]
 ----
-result = gds.alpha.model.store(g_graphsage)
+result = gds.alpha.model.store(model)
 
 print(json.dumps(result, indent=2, sort_keys=True))
 ----
@@ -385,8 +392,7 @@ If we list our model catalog again, we'll see that the stored flag has been set 
 ----
 results = gds.beta.model.list()
 
-for result in results:
-  print(json.dumps(result, indent=2, sort_keys=True, default=default))
+print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 
@@ -432,6 +438,13 @@ Within our database instance we can https://neo4j.com/docs/cypher-manual/current
 ----
 gds.set_database("system")
 
+# Cypher query
+create_a_new_user_query = """
+CREATE USER testUser IF NOT EXISTS
+SET PASSWORD 'test'
+SET PASSWORD CHANGE NOT REQUIRED
+"""
+
 gds.run_cypher(create_a_new_user_query)
 ----
 =====
@@ -452,7 +465,7 @@ SET PASSWORD CHANGE NOT REQUIRED
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher Query
+# Cypher query
 create_a_new_user_query = """
 CREATE USER testUser IF NOT EXISTS
 SET PASSWORD 'test'
@@ -482,7 +495,7 @@ When we publish a model, the model's name is appended with `\_public` at the end
 [source, python, subs=attributes+]
 ----
 gds.set_database("neo4j")
-g_graphsage_public = gds.alpha.model.publish(g_graphsage)
+model_public = gds.alpha.model.publish(model)
 
 print(json.dumps(result, indent=2, sort_keys=True, default=default))
 ----
@@ -530,15 +543,14 @@ We'll then list the model catalog and see that we have access to the model that 
 [source, python, subs=attributes+]
 ----
 test_user_gds = GraphDataScience(
-    AURA_CONNECTION_URI,
-    auth=("testUser", "test"),
-    aura_ds=True
+  AURA_CONNECTION_URI,
+  auth=("testUser", "test"),
+  aura_ds=True
 )
 
 results = test_user_gds.beta.model.list()
 
-for result in results:
-  print(json.dumps(result, indent=2, sort_keys=True, default=default))
+print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 
@@ -587,26 +599,30 @@ How to drop our test user, in-memory graphs & models, but also how to delete the
 [source, python, subs=attributes+]
 ----
 # Delete the example dataset from the database
-gds.run_cypher("""
+delete_example_graph_query = """
 MATCH (example:ExampleData)
 DETACH DELETE example
-""")
+"""
+
+gds.run_cypher(delete_example_graph_query)
 
 # Delete the in-memory graph from memory
-gds.graph.drop(g_graphsage)
+gds.graph.drop(model)
 
 # Delete the model from disk
-gds.beta.model.drop(g_graphsage_public);
+gds.beta.model.drop(model_public);
 
 # Delete the model from disk
-gds.alpha.model.delete(g_graphsage_public)
+gds.alpha.model.delete(model_public)
 
 # Delete the example user database
 gds.set_database("system")
 
-gds.run_cypher("""
-  DROP USER testUser
-""")  
+drop_example_user_query = """
+DROP USER testUser
+"""
+
+gds.run_cypher(drop_example_user_query)  
 ----
 =====
 
