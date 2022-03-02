@@ -172,7 +172,7 @@ CALL gds.graph.create(
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher Query
+# Cypher query
 create_example_graph_in_memory_query = """
 CALL gds.graph.create(
   'example_graph_for_graphsage',
@@ -249,7 +249,7 @@ RETURN
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher Query
+# Cypher query
 train_graph_sage_on_in_memory_graph_query  = """
 CALL gds.beta.graphSage.train(
  'example_graph_for_graphsage',
@@ -313,15 +313,7 @@ CALL gds.beta.model.list()
 =====
 [source, python, subs=attributes+]
 ----
-# import for our helper function
-from neo4j.time import DateTime
-
-# helper function for serialising Neo4j DateTime in JSON dumps
-def default(o):
-   if isinstance(o, (DateTime)):
-     return o.isoformat()
-
-# Cypher Query
+# Cypher query
 list_model_catalog_query  = """
 CALL gds.beta.model.list()
 """
@@ -367,7 +359,7 @@ CALL gds.alpha.model.store("example_graph_model_for_graphsage")
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher Query
+# Cypher query
 save_graph_sage_model_to_disk_query  = """
 CALL gds.alpha.model.store("example_graph_model_for_graphsage")
 """
@@ -413,9 +405,8 @@ with driver.session() as session:
   # Run query
   results = session.run(list_model_catalog_query).data()
 
-  # for each result prettify the results
-  for result in results:
-    print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
+  # Prettify the results
+  print(json.dumps(results, indent=2, sort_keys=True, default=default) + "\n\n")
 ----
 =====
 ====
@@ -515,7 +506,7 @@ CALL gds.alpha.model.publish('example_graph_model_for_graphsage')
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher Query
+# Cypher query
 publish_graph_sage_model_to_disk_query  = """
 CALL gds.alpha.model.publish('example_graph_model_for_graphsage')
 """
@@ -577,9 +568,8 @@ with test_user_driver.session() as session:
   # Run query
   results = session.run(list_model_catalog_query).data()
 
-  # for each result prettify the results
-  for result in results:
-    print(json.dumps(result, indent=2, sort_keys=True, default=default) + "\n\n")
+  # Prettify the results
+  print(json.dumps(results, indent=2, sort_keys=True, default=default) + "\n\n")
 ----
 =====
 ====

@@ -154,8 +154,7 @@ with driver.session() as session:
   # prettify the first result
   print('list progress results: ')
 
-  for result in results:
-    print(json.dumps(result, indent=2, sort_keys=True))
+  print(json.dumps(results, indent=2, sort_keys=True))
 
 
 # create a thread for each of the cypher calls
@@ -216,9 +215,8 @@ with driver.session() as session:
   # Run query
   results = session.run(delete_example_in_memory_graph_query).data()
 
-  # for each result prettify the result
-  for result in results:
-    print(json.dumps(result, indent=2, sort_keys=True))
+  # Prettify the results
+  print(json.dumps(results, indent=2, sort_keys=True))
 ----
 =====
 ====

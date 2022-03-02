@@ -69,9 +69,9 @@ We'll use the client object to run queries. We can use the `aura_ds=True` constr
 ----
 # Client instantiation
 gds = GraphDataScience(
-    AURA_CONNECTION_URI,
-    auth=(AURA_USERNAME, AURA_PASSWORD),
-    aura_ds=True
+  AURA_CONNECTION_URI,
+  auth=(AURA_USERNAME, AURA_PASSWORD),
+  aura_ds=True
 )
 ----
 
@@ -130,7 +130,7 @@ Below we'll run two example queries. The first will get the version of GDS runni
 
 [source, python]
 ----
-# Cypher Query
+# Cypher query
 list_in_memory_graph_query = """
 RETURN gds.version() AS version
 """

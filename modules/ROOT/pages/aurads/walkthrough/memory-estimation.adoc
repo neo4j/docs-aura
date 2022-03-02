@@ -34,8 +34,8 @@ Below is an example of getting a memory estimation for if we wanted to mutate th
 [source, python, subs=attributes+]
 ----
 result = gds.labelPropagation.mutate.estimate(
-    g,
-    mutateProperty="communityID"
+  g,
+  mutateProperty="communityID"
 )
 
 # Print prettified estimation information
@@ -64,7 +64,7 @@ RETURN *
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher Query
+# Cypher query
 page_rank_mutate_estimate_example_graph_query = """
 CALL gds.labelPropagation.mutate.estimate(
   'example-graph',
@@ -95,8 +95,8 @@ with driver.session() as session:
 [source, python, subs=attributes+]
 ----
 result = gds.labelPropagation.mutate(
-    g,
-    mutateProperty="communityID"
+  g,
+  mutateProperty="communityID"
 )
 
 print(json.dumps(result, indent=2, sort_keys=True))
@@ -131,7 +131,7 @@ RETURN *
 ----
 # Lets try to run the query to hit the memory guard
 
-# Cypher Query
+# Cypher query
 page_rank_mutate_estimate_example_graph_query = """
 CALL gds.labelPropagation.mutate(
   'example-graph', 
@@ -208,9 +208,8 @@ with driver.session() as session:
   # Run query
   results = session.run(delete_example_in_memory_graph_query).data()
 
-  # for each result prettify the result
-  for result in results:
-    print(json.dumps(result, indent=2, sort_keys=True))
+  # Prettify the results
+  print(json.dumps(results, indent=2, sort_keys=True))
 ----
 =====
 ====

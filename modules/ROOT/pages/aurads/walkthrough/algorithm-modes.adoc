@@ -42,9 +42,9 @@ https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#ru
 [source, python, subs=attributes+]
 ----
 stats = gds.pageRank.stats(
-    g,
-    maxIterations=20,
-    dampingFactor=0.85
+  g,
+  maxIterations=20,
+  dampingFactor=0.85
 )
 
 print(json.dumps(stats, indent=2, sort_keys=True))
@@ -74,7 +74,7 @@ RETURN *
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher Query
+# Cypher query
 page_rank_stats_example_graph_query = """
 CALL gds.pageRank.stats(
   'example-graph', 
@@ -117,9 +117,9 @@ However, because Algorithms can be long running and the reliability of your inte
 [source, python, subs=attributes+]
 ----
 results = gds.pageRank.stream(
-    g, 
-    maxIterations=20, 
-    dampingFactor=0.85
+  g, 
+  maxIterations=20, 
+  dampingFactor=0.85
 )
 
 print(json.dumps(results, indent=2, sort_keys=True))
@@ -143,7 +143,7 @@ RETURN *
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher Query to just get internal node ID and score
+# Cypher query to just get internal node ID and score
 page_rank_stream_example_graph_query = """
 CALL gds.pageRank.stream(
   'example-graph', 
@@ -181,10 +181,10 @@ The example below, will add a new property called pageRankScore to each node in 
 [source, python, subs=attributes+]
 ----
 result = gds.pageRank.mutate(
-    g,
-    mutateProperty="pageRankScore", 
-    maxIterations=20, 
-    dampingFactor=0.85
+  g,
+  mutateProperty="pageRankScore", 
+  maxIterations=20, 
+  dampingFactor=0.85
 )
 
 print(json.dumps(result, indent=2, sort_keys=True))
@@ -208,7 +208,7 @@ RETURN *
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher Query to just get mutate the graph
+# Cypher query to just get mutate the graph
 page_rank_stream_example_graph_query = """
 CALL gds.pageRank.mutate(
   'example-graph', 
@@ -222,9 +222,8 @@ RETURN *
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_stream_example_graph_query).data()
-  # prettify the results
-  for result in results:
-    print(json.dumps(result, indent=2, sort_keys=True))
+  # Prettify the results
+  print(json.dumps(results, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -248,10 +247,10 @@ WARNING: This example does not work with GDS since the generated graph has no co
 [source, python, subs=attributes+]
 ----
 result = gds.pageRank.write(
-    g, 
-    writeProperty="pageRankScore",
-    maxIterations=20, 
-    dampingFactor=0.85
+  g, 
+  writeProperty="pageRankScore",
+  maxIterations=20, 
+  dampingFactor=0.85
 )
 
 print(json.dumps(result, indent=2, sort_keys=True))
@@ -289,9 +288,8 @@ RETURN *
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_stream_example_graph_query).data()
-  # prettify the results
-  for result in results:
-    print(json.dumps(result, indent=2, sort_keys=True))
+  # Prettify the results
+  print(json.dumps(results, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -332,9 +330,8 @@ with driver.session() as session:
   # Run query
   result = session.run(delete_example_graph_query).data()
 
-  # for each result prettify the result
-  for result in results:
-    print(json.dumps(result, indent=2, sort_keys=True, default=default))
+  # Prettify the result
+  print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
