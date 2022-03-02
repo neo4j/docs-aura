@@ -4,11 +4,11 @@
 
 WARNING: PAGE UNDER DEVELOPMENT
 
-The data in your AuraDB database can be backed up, exported, and restored using snapshots.
+The data in your AuraDS database can be backed up, exported, and restored using snapshots.
 
 A snapshot is a copy of the data in a database at a specific point in time.
 
-The *SNAPSHOTS* tab within an AuraDB database shows a list of available snapshots. footnote:[Snapshots are kept in the system for 7 days for Free and Professional plans and 90 days for Enterprise plans. Only the latest snapshot is available for Free databases.]
+The *SNAPSHOTS* tab within an AuraDS database shows a list of available snapshots. footnote:[Snapshots are kept in the system for 7 days for Free and Professional plans and 90 days for Enterprise plans. Only the latest snapshot is available for Free databases.]
 
 To access the *SNAPSHOTS* tab:
 
@@ -34,7 +34,7 @@ You can use any of the *Scheduled* snapshots as a backup or manually trigger an 
 By selecting the ellipses (...) next to a snapshot, you can:
 
 * *Export* - Download the database as *_.dump_* file, allowing you to store a local copy and work on your data offline.
-* *Create database from snapshot* - Create a new AuraDB database using the data from the snapshot.
+* *Create database from snapshot* - Create a new AuraDS database using the data from the snapshot.
 
 === Restore
 

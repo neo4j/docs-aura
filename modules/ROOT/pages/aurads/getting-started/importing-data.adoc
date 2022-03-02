@@ -2,11 +2,11 @@
 = Importing data
 :description: This page describes how to get data into a Neo4j AuraDS database.
 
-This page describes the various ways you can get data into a Neo4j AuraDS instance.
+This page describes the various ways you can get data into a Neo4j AuraDS database.
 
 [NOTE]
 ====
-*Note:* The process of importing or loading data requires you to xref:aurads/getting-started/create-database.adoc[create an AuraDS instance] beforehand.
+*Note:* The process of importing or loading data requires you to xref:aurads/getting-started/create-database.adoc[create an AuraDS database] beforehand.
 ====
 
 If you have data in an existing Neo4j database, you can follow the instructions in <<_importing_an_existing_neo4j_database>>.
@@ -15,7 +15,7 @@ If your data exists outside of Neo4j as a *_.csv_* file, you can follow the inst
 
 == Importing an existing Neo4j database
 
-There are two ways you can import data from an existing Neo4j database into an AuraDS instance.
+There are two ways you can import data from an existing Neo4j database into an AuraDS database.
 
 The easiest way is to export a Neo4j database as a *_.dump_* file and use the <<_import_database>> process.
 This process, however, only works for *_.dump_* files under 4GB. 
@@ -37,7 +37,7 @@ Once this has finished, the database returns to its 'Running' state; and the dat
 
 === Push-to-cloud
 
-`Push-to-cloud` is a Neo4j Admin command that you can run to upload the contents of a Neo4j database into an AuraDS instance, regardless of the database's size.
+`Push-to-cloud` is a Neo4j Admin command that you can run to upload the contents of a Neo4j database into an AuraDS database, regardless of the database's size.
 
 Instructions on running the command, which differ depending on how you have administered your database, can be found by selecting the *Import* section from the sidebar menu of the Aura Console or navigating directly to the https://console.neo4j.io/#import-instructions[Import page].
 
@@ -45,10 +45,10 @@ When prompted that the process is complete, the data is ready.
 
 == Loading CSV data
 
-You can load data from a *_.csv_* file into an AuraDS instance with the https://neo4j.com/docs/cypher-manual/current/clauses/load-csv/[`LOAD CSV`] Cypher statement within Neo4j Browser.
-For instructions on how to open an AuraDS instance with Neo4j Browser, see xref:aurads/getting-started/access-database.adoc[].
+You can load data from a *_.csv_* file into an AuraDS database with the https://neo4j.com/docs/cypher-manual/current/clauses/load-csv/[`LOAD CSV`] Cypher statement within Neo4j Browser.
+For instructions on how to open an AuraDS database with Neo4j Browser, see xref:aurads/getting-started/access-database.adoc[].
 
-There are some limitations to consider when loading a *_.csv_* file into an AuraDS instance:
+There are some limitations to consider when loading a *_.csv_* file into an AuraDS database:
 
 * For security reasons, you must host your *_.csv_* file on a publicly accessible HTTP or HTTPS server. Examples of such servers include GitHub, Google Drive, and Dropbox.
 

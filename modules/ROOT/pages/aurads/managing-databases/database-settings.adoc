@@ -2,8 +2,6 @@
 = Database settings
 :description: This page describes how to resize, clone, pause, resume, and delete an AuraDS database.
 
-WARNING: PAGE UNDER DEVELOPMENT
-
 The *SETTINGS* tab within an AuraDS database shows a list of administrative database options.
 
 To access the *SETTINGS* tab:
@@ -13,8 +11,6 @@ To access the *SETTINGS* tab:
 . Select the *SETTINGS* tab.
 
 == Resizing a database
-
-label:AuraDS-Enterprise[]
 
 You can change the size of an existing database by using the *Resize* option.
 
@@ -28,8 +24,6 @@ To resize a database:
 A database remains available during the resize operation.
 
 == Pausing a database
-
-label:AuraDS-Enterprise[]
 
 You can pause a database during periods where you don't need it and resume at any time.
 
@@ -49,28 +43,13 @@ You can pause a database for up to 30 days, after which point AuraDS automatical
 
 == Resuming a database
 
-[.tabbed-example]
-====
-[.include-with-auraDS]
-=====
-
 AuraDS databases are paused automatically after 72 hours of inactivity. 
 footnote:[Inactivity is when you perform no queries on the database.]
-
-To resume a database:
-
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
-. Select the *Resume* button on the database you want to resume.
 
 [WARNING]
 ======
 If an AuraDS database remains paused for more than 90 days, AuraDS will delete the database, and all information will be lost.
 ======
-
-=====
-
-[.include-with-auraDS-enterprise]
-=====
 
 To resume a database: 
 
@@ -82,12 +61,7 @@ After confirming, the database will begin resuming, which may take a few minutes
 
 Alternatively, you can select the *Resume* button on the database you want to resume directly from the https://console.neo4j.io/[Neo4j Aura Console].
 
-=====
-====
-
 == Cloning a database
-
-label:AuraDS-Enterprise[]
 
 You can clone an existing database into a new one using the *Clone* option.
 The advantage this has over the xref:aurads/managing-databases/backup-restore-export.adoc#_backup_and_export[Create database from snapshot action] is the ability to select a new region.
@@ -96,8 +70,7 @@ To clone a database:
 
 . Navigate to the *SETTINGS* tab of the database you want to clone.
 . Select *Clone*.
-. Set your desired settings for the new database.
-For more information on database settings, see xref:aurads/getting-started/create-database.adoc[].
+. Set your desired name for the new database.
 . Tick the *I understand* checkbox and select *Clone Database*.
 
 == Deleting a database
