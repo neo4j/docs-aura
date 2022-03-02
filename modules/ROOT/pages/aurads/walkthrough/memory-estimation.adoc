@@ -78,7 +78,7 @@ RETURN *
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_mutate_estimate_example_graph_query).data()
-  # prettify the first result
+  # Prettify the first result
   print(json.dumps(results[0], indent=2, sort_keys=True))
 ----
 =====
@@ -128,7 +128,7 @@ RETURN *
 # Lets try to run the query to hit the memory guard
 
 # Cypher query
-page_rank_mutate_estimate_example_graph_query = """
+page_rank_mutate_example_graph_query = """
 CALL gds.labelPropagation.mutate(
   'example-graph', 
   {mutateProperty: 'communityID'}
@@ -149,8 +149,8 @@ RETURN *
 # Create driver session to the database
 with driver.session() as session:
   # Run query
-  results = session.run(page_rank_mutate_estimate_example_graph_query).data()
-  # prettify the first result
+  results = session.run(page_rank_mutate_example_graph_query).data()
+  # Prettify the first result
   print(json.dumps(results[0], indent=2, sort_keys=True))
 ----
 =====

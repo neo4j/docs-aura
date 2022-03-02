@@ -52,9 +52,8 @@ CALL gds.graph.list()
 with driver.session() as session:
   # Run query
   results = session.run(show_in_memory_graphs_query).data()
-
-# Prettify the results
-print(json.dumps(results, indent=2, sort_keys=True, default=default))
+  # Prettify the results
+  print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
@@ -96,9 +95,8 @@ CALL gds.graph.drop('example-graph')
 with driver.session() as session:
   # Run query
   result = session.run(drop_graph_query).data()
-
-# Prettify the result
-print(json.dumps(result, indent=2, sort_keys=True, default=default))
+  # Prettify the result
+  print(json.dumps(result, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
@@ -215,7 +213,7 @@ RETURN *
 with driver.session() as session:
   # Run query
   result = session.run(shorthand_graph_create_query).data()
-  # prettify the first result
+  # Prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
 =====
@@ -369,7 +367,7 @@ RETURN *
 with driver.session() as session:
   # Run query
   result = session.run(longform_graph_create_query).data()
-  # prettify the first result
+  # Prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
 =====

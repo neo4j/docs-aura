@@ -94,7 +94,7 @@ RETURN *
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_stats_example_graph_query).data()
-  # prettify the first result
+  # Prettify the first result
   print(json.dumps(results[0], indent=2, sort_keys=True))
 ----
 =====
@@ -157,7 +157,6 @@ RETURN *
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_stream_example_graph_query).data()
-  
   # Prettify the results
   print(json.dumps(results, indent=2, sort_keys=True))
 ----
@@ -328,8 +327,7 @@ CALL gds.graph.drop('example-graph')
 
 with driver.session() as session:
   # Run query
-  result = session.run(delete_example_graph_query).data()
-
+  result = session.run(delete_example_in_memory_graph_query).data()
   # Prettify the result
   print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----

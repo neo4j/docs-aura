@@ -134,7 +134,7 @@ with driver.session() as session:
   # Run query
   print('running label prop')
   results = session.run(label_prop_mutate_example_graph_query).data()
-  # prettify the first result
+  # Prettify the first result
   print(json.dumps(results[0], indent=2, sort_keys=True))
 
 
@@ -151,7 +151,7 @@ with driver.session() as session:
   # Run query
   print('running list progress')
   results = session.run(gds_list_progress_query).data()
-  # prettify the first result
+  # Prettify the first result
   print('list progress results: ')
 
   print(json.dumps(results, indent=2, sort_keys=True))

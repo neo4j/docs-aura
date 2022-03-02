@@ -78,7 +78,7 @@ RETURN *
 with driver.session() as session:
   # Run query
   result = session.run(create_example_graph_query).data()
-  # prettify the first result
+  # Prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True, default=default))
 ----
 =====

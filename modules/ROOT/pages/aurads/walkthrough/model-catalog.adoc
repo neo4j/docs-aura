@@ -108,7 +108,7 @@ RETURN True AS exampleDataCreated
 with driver.session() as session:
   # Run query
   result = session.run(create_example_graph_on_disk_query).data()
-  # prettify the first result
+  # Prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
 =====
@@ -272,7 +272,7 @@ RETURN
 with driver.session() as session:
   # Run query
   result = session.run(train_graph_sage_on_in_memory_graph_query).data()
-  # prettify the first result
+  # Prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
 =====
@@ -368,7 +368,7 @@ CALL gds.alpha.model.store("example_graph_model_for_graphsage")
 with driver.session() as session:
   # Run query
   result = session.run(save_graph_sage_model_to_disk_query).data()
-  # prettify the first result
+  # Prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
 =====
@@ -467,7 +467,7 @@ SET PASSWORD CHANGE NOT REQUIRED
 with driver.session(database='system') as session:
   # Run query
   result = session.run(create_a_new_user_query).data()
-  # prettify the first result
+  # Prettify the first result
   print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
@@ -515,7 +515,7 @@ CALL gds.alpha.model.publish('example_graph_model_for_graphsage')
 with driver.session() as session:
   # Run query
   result = session.run(publish_graph_sage_model_to_disk_query).data()
-  # prettify the first result
+  # Prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True, default=default))
 ----
 =====
