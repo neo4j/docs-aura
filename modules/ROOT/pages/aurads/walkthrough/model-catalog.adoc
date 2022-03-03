@@ -322,7 +322,6 @@ CALL gds.beta.model.list()
 with driver.session() as session:
   # Run query
   results = session.run(list_model_catalog_query).data()
-
   # Prettify the results
   print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
@@ -360,7 +359,7 @@ CALL gds.alpha.model.store("example_graph_model_for_graphsage")
 [source, python, subs=attributes+]
 ----
 # Cypher query
-save_graph_sage_model_to_disk_query  = """
+save_graph_sage_model_to_disk_query = """
 CALL gds.alpha.model.store("example_graph_model_for_graphsage")
 """
 
@@ -404,9 +403,8 @@ CALL gds.beta.model.list()
 with driver.session() as session:
   # Run query
   results = session.run(list_model_catalog_query).data()
-
   # Prettify the results
-  print(json.dumps(results, indent=2, sort_keys=True, default=default) + "\n\n")
+  print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
@@ -567,9 +565,8 @@ test_user_driver = GraphDatabase.driver(AURA_CONNECTION_URI, auth=("testUser", "
 with test_user_driver.session() as session:
   # Run query
   results = session.run(list_model_catalog_query).data()
-
   # Prettify the results
-  print(json.dumps(results, indent=2, sort_keys=True, default=default) + "\n\n")
+  print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
