@@ -31,7 +31,7 @@ You can use any of the *Scheduled* snapshots as a backup or manually trigger an 
 
 By selecting the ellipses (...) next to a snapshot, you can:
 
-* *Export* - Download the database as *_.dump_* file, allowing you to store a local copy and work on your data offline.
+* *Export* - Download the database as *_.tar.gz_* file, allowing you to store a local copy and work on your data offline. The compressed file contains both a *_.dump_* file that can be imported directly and, optionally, a `gds` directory with the content of the projected graphs (if any).
 * *Create database from snapshot* - Create a new AuraDS database using the data from the snapshot.
 
 === Restore
