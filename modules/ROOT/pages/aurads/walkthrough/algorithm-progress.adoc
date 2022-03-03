@@ -78,7 +78,7 @@ CALL gds.labelPropagation.mutate(
   'example-graph', 
   {mutateProperty: 'communityID'}
 )
-YIELD createMillis,
+YIELD preProcessingMillis,
   computeMillis,
   mutateMillis,
   postProcessingMillis,
@@ -96,7 +96,7 @@ RETURN *
 // ./cypher-shell -a $AURA_CONNECTION_URI -u $AURA_USERNAME -p $AURA_PASSWORD
 
 CALL gds.beta.listProgress()
-YIELD id, taskName, message
+YIELD jobId, taskName, progress, progressBar
 RETURN *
 ----
 =====
@@ -111,50 +111,49 @@ import threading, time
 
 # method to call label propagation on our example in memory graph
 def run_label_prop():
-label_prop_mutate_example_graph_query = """
-CALL gds.labelPropagation.mutate(
-  'example-graph', 
-  {mutateProperty: 'communityID'}
-)
-YIELD createMillis,
-  computeMillis,
-  mutateMillis,
-  postProcessingMillis,
-  nodePropertiesWritten,
-  communityCount,
-  ranIterations,
-  didConverge,
-  communityDistribution,
-  configuration
-RETURN *
-"""
+  label_prop_mutate_example_graph_query = """
+  CALL gds.labelPropagation.mutate(
+    'example-graph', 
+    {mutateProperty: 'communityID'}
+  )
+  YIELD preProcessingMillis,
+    computeMillis,
+    mutateMillis,
+    postProcessingMillis,
+    nodePropertiesWritten,
+    communityCount,
+    ranIterations,
+    didConverge,
+    communityDistribution,
+    configuration
+  RETURN *
+  """
 
-# Create driver session to the database
-with driver.session() as session:
-  # Run query
-  print('running label prop')
-  results = session.run(label_prop_mutate_example_graph_query).data()
-  # Prettify the first result
-  print(json.dumps(results[0], indent=2, sort_keys=True))
+  # Create driver session to the database
+  with driver.session() as session:
+    # Run query
+    print('running label prop')
+    results = session.run(label_prop_mutate_example_graph_query).data()
+    # Prettify the first result
+    print(json.dumps(results[0], indent=2, sort_keys=True))
 
 
 # method to call list progress which calls
 def run_list_progress():
-gds_list_progress_query = """
-CALL gds.beta.listProgress()
-YIELD id, taskName, message
-RETURN *
-"""
+  gds_list_progress_query = """
+  CALL gds.beta.listProgress()
+  YIELD jobId, taskName, progress, progressBar
+  RETURN *
+  """
 
-# Create driver session to the database
-with driver.session() as session:
-  # Run query
-  print('running list progress')
-  results = session.run(gds_list_progress_query).data()
-  # Prettify the first result
-  print('list progress results: ')
-
-  print(json.dumps(results, indent=2, sort_keys=True))
+  # Create driver session to the database
+  with driver.session() as session:
+    # Run query
+    print('running list progress')
+    results = session.run(gds_list_progress_query).data()
+    # Prettify the first result
+    print('list progress results: ')
+    print(json.dumps(results[0], indent=2, sort_keys=True))
 
 
 # create a thread for each of the cypher calls
@@ -216,7 +215,7 @@ with driver.session() as session:
   results = session.run(delete_example_in_memory_graph_query).data()
 
   # Prettify the results
-  print(json.dumps(results, indent=2, sort_keys=True))
+  print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
