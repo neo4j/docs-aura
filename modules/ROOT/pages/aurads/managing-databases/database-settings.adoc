@@ -43,12 +43,9 @@ You can pause a database for up to 30 days, after which point AuraDS automatical
 
 == Resuming a database
 
-AuraDS databases are paused automatically after 72 hours of inactivity. 
-footnote:[Inactivity is when you perform no queries on the database.]
-
 [WARNING]
 ======
-If an AuraDS database remains paused for more than 90 days, AuraDS will delete the database, and all information will be lost.
+If an AuraDS database remains paused for more than 90 days, it will be automatically resumed.
 ======
 
 To resume a database: 
