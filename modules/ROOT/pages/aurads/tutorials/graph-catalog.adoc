@@ -103,7 +103,7 @@ with driver.session() as session:
 
 == Loading data from Neo4j - Native projections
 
-Native projections allow us to take a graph stored on disk and project it into an in-memory graph. You specify which node labels, relationship types and properties you wish to be brought into a new in-memory graph using `CALL gds.graph.create` (https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection-syntax[])
+Native projections allow us to take a graph stored on disk and project it into an in-memory graph. You specify which node labels, relationship types and properties you wish to be brought into a new in-memory graph using `CALL gds.graph.project` (https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection-syntax[])
 
 In the following we will use this graph as an example.
 
@@ -169,7 +169,7 @@ We can use the following shorthand example in order to create our in-memory grap
 [source, python, subs=attributes+]
 ----
 # Shorthand GDS create in-memory graph with Native Projection
-shorthand_graph, result = gds.graph.create(
+shorthand_graph, result = gds.graph.project(
   'shorthand-example-graph',
   ['EngineeringManagement', 'Developer'],
   ['MANAGES']
@@ -184,7 +184,7 @@ print(json.dumps(result, indent=2, sort_keys=True))
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.graph.create(
+CALL gds.graph.project(
   'shorthand-example-graph',
   ['EngineeringManagement', 'Developer'],
   ['MANAGES']
@@ -200,7 +200,7 @@ RETURN *
 ----
 # Shorthand GDS create in-memory graph with Native Projection
 shorthand_graph_create_query = """
-CALL gds.graph.create(
+CALL gds.graph.project(
   'shorthand-example-graph',
   ['EngineeringManagement', 'Developer'],
   ['MANAGES']
@@ -221,7 +221,7 @@ with driver.session() as session:
 
 Using the short hand is great if we're only interested in the structure of the graph in which our algorithms run on.
 
-You may want to transform the data, unify the structure or include properties as part of your analysis - this is where using the longform `gds.graph.create` can be useful.
+You may want to transform the data, unify the structure or include properties as part of your analysis - this is where using the longform `gds.graph.project` can be useful.
 
 === Longform graph creation
 
@@ -260,7 +260,7 @@ There are lots of configuration options available as part of Node & Relationship
 [source, python, subs=attributes+]
 ----
 # Longform GDS create query
-longform_graph, result = gds.graph.create(
+longform_graph, result = gds.graph.project(
   "longform-example-graph",
   {
     "PersonEM": {
@@ -296,7 +296,7 @@ print(json.dumps(result, indent=2, sort_keys=True))
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.graph.create(
+CALL gds.graph.project(
   'longform-example-graph',
   {
     PersonEM: {
@@ -333,7 +333,7 @@ RETURN *
 ----
 # Longform GDS create query
 longform_graph_create_query = """
-CALL gds.graph.create(
+CALL gds.graph.project(
   'longform-example-graph',
   {
     PersonEM: {

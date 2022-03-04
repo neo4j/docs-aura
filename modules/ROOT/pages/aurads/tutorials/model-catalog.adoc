@@ -124,7 +124,7 @@ For more information about getting started with the in-memory graph, check out t
 =====
 [source, python, subs=attributes+]
 ----
-g, result = gds.graph.create(
+g, result = gds.graph.project(
   "example_graph_for_graphsage",
   {
     "Person": {
@@ -149,7 +149,7 @@ print(json.dumps(result, indent=2, sort_keys=True))
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.graph.create(
+CALL gds.graph.project(
   'example_graph_for_graphsage',
   {
     Person: {
@@ -174,7 +174,7 @@ CALL gds.graph.create(
 ----
 # Cypher query
 create_example_graph_in_memory_query = """
-CALL gds.graph.create(
+CALL gds.graph.project(
   'example_graph_for_graphsage',
   {
     Person: {
