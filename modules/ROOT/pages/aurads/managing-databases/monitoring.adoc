@@ -1,13 +1,13 @@
 [[aurads-monitoring]]
 = Monitoring
 
-You can monitor the following metrics of an AuraDB database from the *METRICS* tab:
+You can monitor the following metrics of an AuraDS instance from the *METRICS* tab:
 
-* *CPU Usage (%)* - The amount of CPU used by the database as a percentage.
-* *Storage Used (%)* - The amount of disk storage space used by the database as a percentage.
-* *Heap Usage (%)* - The amount of Java Virtual Machine (JVM) memory used by the database as a percentage.
-* *Out of Memory Errors* - The number of Out of Memory (OOM) errors encountered by the database.
-* *Garbage Collection Time (%)* - The amount of time the database spends reclaiming heap space as a percentage.
+* *CPU Usage (%)* - The amount of CPU used by the instance as a percentage.
+* *Storage Used (%)* - The amount of disk storage space used by the instance as a percentage.
+* *Heap Usage (%)* - The amount of Java Virtual Machine (JVM) memory used by the instance as a percentage.
+* *Out of Memory Errors* - The number of Out of Memory (OOM) errors encountered by the instance.
+* *Garbage Collection Time (%)* - The amount of time the instance spends reclaiming heap space as a percentage.
 
 [NOTE]
 ====
@@ -25,5 +25,5 @@ When viewing metrics, you can select from the following timeframes:
 To access the *METRICS* tab:
 
 . Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
-. Select the name of the database you want to access.
+. Select the name of the instance you want to access.
 . Select the *METRICS* tab.

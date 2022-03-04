@@ -2,24 +2,24 @@
 = Backup, export and restore
 :description: This page describes how to backup, export and restore your data from a snapshot.
 
-The data in your AuraDS database can be backed up, exported, and restored using snapshots.
+The data in your AuraDS instance can be backed up, exported, and restored using snapshots.
 
-A snapshot is a copy of the data in a database at a specific point in time.
+A snapshot is a copy of the data in an instance at a specific point in time.
 
-The *SNAPSHOTS* tab within an AuraDS database shows a list of available snapshots. footnote:[Snapshots are kept in the system for 180 days.]
+The *SNAPSHOTS* tab within an AuraDS instance shows a list of available snapshots. footnote:[Snapshots are kept in the system for 180 days.]
 
 To access the *SNAPSHOTS* tab:
 
 . Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
-. Select the name of the database you want to access.
+. Select the name of the instance you want to access.
 . Select the *SNAPSHOTS* tab.
 
 == Snapshot types
 
 There are three different types of snapshot:
 
-* *Load* - Runs when you load a dump file from the *IMPORT DATABASE* tab of a database and when you run the `push-to-cloud` command from the *Import* section of the sidebar menu of the Aura Console.
-* *On-demand* - Runs when you select *Take snapshot* from the *SNAPSHOTS* tab of a database.
+* *Load* - Runs when you load a dump file from the *IMPORT DATABASE* tab of an instance and when you run the `push-to-cloud` command from the *Import* section of the sidebar menu of the Aura Console.
+* *On-demand* - Runs when you select *Take snapshot* from the *SNAPSHOTS* tab of an instance.
 
 == Snapshot actions
 
@@ -30,18 +30,18 @@ You can use any of the *Scheduled* snapshots as a backup or manually trigger an 
 By selecting the ellipses (...) next to a snapshot, you can:
 
 * *Export* - Download the database as a *_.tar.gz_* file, allowing you to store a local copy and work on your data offline. The compressed archive contains a *_.dump_* file that can be imported directly or pushed to the cloud.
-* *Create database from snapshot* - Create a new AuraDS database using the data from the snapshot.
+* *Create instance from snapshot* - Create a new AuraDS instance using the data from the snapshot.
 
 === Restore
 
-You can restore data in your database to a previous snapshot by selecting *Restore* next to the snapshot you want to restore.
+You can restore data in your instance to a previous snapshot by selecting *Restore* next to the snapshot you want to restore.
 
 Restoring a snapshot requires you to confirm the action by typing RESTORE and selecting *Restore*. 
 
 [CAUTION]
 ====
 *Caution:*
-Restoring a snapshot overwrites the data in your database, replacing it with the data contained in the snapshot.
+Restoring a snapshot overwrites the data in your instance, replacing it with the data contained in the snapshot.
 ====
 
 
