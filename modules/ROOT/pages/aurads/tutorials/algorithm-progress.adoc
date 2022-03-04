@@ -129,7 +129,7 @@ def run_label_prop():
   RETURN *
   """
 
-  # Create driver session to the database
+  # Create driver session
   with driver.session() as session:
     # Run query
     print('running label prop')
@@ -146,7 +146,7 @@ def run_list_progress():
   RETURN *
   """
 
-  # Create driver session to the database
+  # Create driver session
   with driver.session() as session:
     # Run query
     print('running list progress')

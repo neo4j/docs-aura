@@ -48,7 +48,7 @@ show_in_memory_graphs_query = """
 CALL gds.graph.list()
 """
 
-# Create driver session to the database
+# Create driver session
 with driver.session() as session:
   # Run query
   results = session.run(show_in_memory_graphs_query).data()
@@ -91,7 +91,7 @@ drop_graph_query = """
 CALL gds.graph.drop('example-graph')
 """
 
-# Create driver session to the database
+# Create driver session
 with driver.session() as session:
   # Run query
   result = session.run(drop_graph_query).data()
@@ -151,7 +151,7 @@ MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
 MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
 """
 
-# Create driver session to the database
+# Create driver session
 with driver.session() as session:
   session.run(write_example_graph_query)
 ----
@@ -209,7 +209,7 @@ YIELD graphName, nodeCount, relationshipCount
 RETURN *
 """
 
-# Create driver session to the database
+# Create driver session
 with driver.session() as session:
   # Run query
   result = session.run(shorthand_graph_create_query).data()
@@ -363,7 +363,7 @@ YIELD graphName, nodeCount, relationshipCount
 RETURN *
 """
 
-# Create driver session to the database
+# Create driver session
 with driver.session() as session:
   # Run query
   result = session.run(longform_graph_create_query).data()
@@ -429,7 +429,7 @@ delete_longform_graph_query = """
 CALL gds.graph.drop('longform-example-graph')
 """
 
-# Create driver session to the database
+# Create driver session
 with driver.session() as session:
   # Run query
   print(session.run(delete_example_graph_query).data())

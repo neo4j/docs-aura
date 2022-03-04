@@ -90,7 +90,7 @@ YIELD ranIterations,
 RETURN *
 """
 
-# Create driver session to the database
+# Create driver session
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_stats_example_graph_query).data()
@@ -106,7 +106,7 @@ The above stats gave us the time it would take to compute the algorithm (`comput
 
 https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stream[Stream] mode will return the results of an algorithm once it has completed. This is similar to how standard Cypher reading queries operate.
 
-With our PageRank example, we'll be returned a node ID and the computed PageRank score. If the data is already stored within the database, you can use the https://neo4j.com/docs/graph-data-science/current/management-ops/utility-functions/#utility-functions-node-path[gds.util.asNode] procedure to get the node from the internal node ID
+With our PageRank example, we'll be returned a node ID and the computed PageRank score. If the data is already stored within the instance, you can use the https://neo4j.com/docs/graph-data-science/current/management-ops/utility-functions/#utility-functions-node-path[gds.util.asNode] procedure to get the node from the internal node ID
 
 However, because Algorithms can be long running and the reliability of your internet connections depends on lots of factors, it is advised that you consider the use of Mutate and Write modes instead to persist your results so that you can return to them.
 
@@ -153,7 +153,7 @@ YIELD nodeId, score
 RETURN *
 """
 
-# Create driver session to the database
+# Create driver session
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_stream_example_graph_query).data()
@@ -217,7 +217,7 @@ YIELD nodePropertiesWritten, ranIterations
 RETURN *
 """
 
-# Create driver session to the database
+# Create driver session
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_stream_example_graph_query).data()
@@ -283,7 +283,7 @@ YIELD nodePropertiesWritten, ranIterations
 RETURN *
 """
 
-# Create driver session to the database
+# Create driver session
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_stream_example_graph_query).data()
