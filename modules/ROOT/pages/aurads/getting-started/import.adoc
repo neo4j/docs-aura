@@ -1,4 +1,4 @@
-[[aurads-importing-data]]
+[[aurads-import]]
 = Importing data
 :description: This page describes how to get data into a Neo4j AuraDS database.
 
@@ -6,7 +6,7 @@ This page describes the various ways you can get data into a Neo4j AuraDS databa
 
 [NOTE]
 ====
-*Note:* The process of importing or loading data requires you to xref:aurads/getting-started/create-database.adoc[create an AuraDS database] beforehand.
+*Note:* The process of importing or loading data requires you to xref:aurads/getting-started/create.adoc[create an AuraDS database] beforehand.
 ====
 
 If you have data in an existing Neo4j database, you can follow the instructions in <<_importing_an_existing_neo4j_database>>.
@@ -46,7 +46,7 @@ When prompted that the process is complete, the data is ready.
 == Loading CSV data
 
 You can load data from a *_.csv_* file into an AuraDS database with the https://neo4j.com/docs/cypher-manual/current/clauses/load-csv/[`LOAD CSV`] Cypher statement within Neo4j Browser.
-For instructions on how to open an AuraDS database with Neo4j Browser, see xref:aurads/getting-started/access-database.adoc[].
+For instructions on how to open an AuraDS database with Neo4j Browser, see xref:aurads/getting-started/access.adoc[].
 
 There are some limitations to consider when loading a *_.csv_* file into an AuraDS database:
 

@@ -1,4 +1,4 @@
-[[aurads-query-database]]
+[[aurads-query]]
 = Querying a database
 :description: This page describes how to query data using Cypher.
 
@@ -7,11 +7,11 @@ You can query data in an AuraDS database using Cypher.
 Cypher is the declarative graph query language created by Neo4j and can be used to query, update, and administer your AuraDS database.
 
 You can run Cypher statements through Neo4j Browser.
-For more information on how to open an AuraDS database in Neo4j Browser, see xref:aurads/getting-started/access-database.adoc[].
+For more information on how to open an AuraDS database in Neo4j Browser, see xref:aurads/getting-started/access.adoc[].
 
 For more information on Cypher, see https://neo4j.com/docs/cypher-manual/current[the Neo4j Cypher Manual].
 
 [NOTE]
 ====
-*Note:* As with xref:aurads/getting-started/importing-data.adoc#_loading_csv_data[LOAD CSV], AuraDS does not support Cypher statements that access local files.
+*Note:* As with xref:aurads/getting-started/import.adoc#_loading_csv_data[LOAD CSV], AuraDS does not support Cypher statements that access local files.
 ====
