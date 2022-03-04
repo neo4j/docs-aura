@@ -16,6 +16,24 @@ The VPC enables you to operate within an isolated section of the service, where 
 
 Please note that the Aura console runs in a separate VPC.
 
+== Single Sign-On
+
+label:Enterprise-only[]
+
+AuraDB Enterprise supports Single Sign-On (SSO) for accessing the Bloom and Browser clients from a database.
+
+The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are currently supported:
+
+* Microsoft Azure Active Directory
+* Okta
+* Keycloak
+* Google Authentication
+
+To add SSO for Browser and Bloom to your AuraDB Enterprise databases, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket] including the following information:
+
+. The *Connection URI* of the database(s) you want to use SSO.
+. Whether or not you want Browser, Bloom, or both enabled.
+. The name of your IdP.
 
 == Supported TLS cipher suites
 
