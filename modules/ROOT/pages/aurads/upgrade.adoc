@@ -3,8 +3,6 @@
 
 WARNING: PAGE UNDER DEVELOPMENT
 
-AuraDS does not have any scheduled maintenance windows.
-It is designed to be always on and available, with all corrections, fixes, and upgrades automatically applied in the background.
+AuraDS updates and upgrades are handled by the platform, and as such do not require user intervention. Security patches and new versions of GDS and Neo4j are installed within short time windows during which the affected instances are unavailable.
 
-Releases for the Neo4j database are also deployed when they become available.
-Operations are non-disruptive, and you shouldn’t experience any downtime as a result.
+The operations are non-destructive, so graph projections, models and data present on an instance are not affected. No operation is applied until all the running GDS algorithms have finished.
