@@ -140,9 +140,7 @@ g, result = gds.graph.project(
   "example_graph",
   "Page",
   "LINKS",
-  {
-    "relationshipProperties": "weight"
-  }
+  relationshipProperties="weight"
 )
 
 print(json.dumps(result, indent=2, sort_keys=True))
@@ -474,9 +472,15 @@ To drop the example in-memory graph we created previously, you can use the https
 =====
 [source, python, subs=attributes+]
 ----
-result = gds.graph.drop(g)
+delete_example_graph = """
+MATCH (n1)-[r]-(n2)
+DELETE r, n1
+"""
 
+result = gds.graph.drop(g)
 print(json.dumps(result, indent=2, sort_keys=True, default=default))
+
+gds.run_cypher(delete_example_graph)
 ----
 =====
 
