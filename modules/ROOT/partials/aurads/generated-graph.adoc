@@ -4,9 +4,9 @@ We're going to use the database you have specified above to create an in-memory 
 
 We will use the graph generation function within the GDS Library to generate a random in-memory graph.
 
-Our graph is going to be nodes with the label `{example-graph-size}_Nodes` with a relationship of `POWER_LAW`
+Our graph is going to be nodes with the label `{generated-graph-size}_Nodes` with a relationship of `POWER_LAW`
 
-`(:{example-graph-size}_Nodes)-[:POWER_LAW]->(:{example-graph-size}_Nodes)`
+`(:{generated-graph-size}_Nodes)-[:POWER_LAW]->(:{generated-graph-size}_Nodes)`
 
 You can read more about the https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/graph-generation/#graph-generation[Graph Generation] procedure.
 
@@ -19,7 +19,7 @@ You can read more about the https://neo4j.com/docs/graph-data-science/current/al
 # Run the graph generation algorithm and retrieve the corresponding graph object
 g, result = gds.beta.graph.generate(
   "example-graph", 
-  {example-graph-size}, 
+  {generated-graph-size}, 
   3, 
   relationshipDistribution="POWER_LAW"
 )
@@ -35,7 +35,7 @@ print(json.dumps(result, indent=2, sort_keys=True, default=default))
 ----
 CALL gds.beta.graph.generate(
   'example-graph', 
-  {example-graph-size}, 
+  {generated-graph-size}, 
   3, 
   {relationshipDistribution: 'POWER_LAW'}
 )
@@ -59,7 +59,7 @@ RETURN *
 create_example_graph_query = """
 CALL gds.beta.graph.generate(
   'example-graph', 
-  {example-graph-size}, 
+  {generated-graph-size}, 
   3, 
   {relationshipDistribution: 'POWER_LAW'}
 )
