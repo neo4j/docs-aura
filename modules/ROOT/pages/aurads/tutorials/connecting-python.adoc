@@ -4,31 +4,26 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/10XK5_fyNURb1u_gvD_lkt7qQvIxzAhnJ?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-This brief tutorial can be followed along within a Google Colab which is based on Jupyter notebooks.
+This tutorial introduces some best practices for connecting and interacting with Neo4j and the Graph Data Science Library.
 
-Within this tutorial, we'll give you some best practices for connecting and interacting with Neo4j and the Graph Data Science Library.
+== Connection details
 
-== Connection Details
-
-Connecting to your instance will need the three inputs:
+The connection to an instance requires three inputs:
 
 * Instance connection URI
 * Instance username
 * Instance password
 
-You will have been given the Instance Username and Password when you created your instance. Copy and paste these into each of the relevant fields labelled: `AURA_USERNAME` & `AURA_PASSWORD`.
+The username (default `neo4j`) and password are generated when the instance is created. Copy and paste them as values of the `AURA_USERNAME` and `AURA_PASSWORD` variables respectively.
 
-You can find your instance connection URI located on the instance card under the Instance section within Aura. Copy and paste this into the field labelled: `AURA_CONNECTION_URI`
-
-image::connection.png[title="Connection"]
+The instance connection URI can be found on the instance main page. Copy and paste it as value of the `AURA_CONNECTION_URI` variable.
 
 [source, python]
 ----
-# Connection Details
+# Connection details
 AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
 AURA_USERNAME = "neo4j"
 AURA_PASSWORD = ""
-```
 ----
 
 == Using the GDS client
@@ -47,11 +42,11 @@ To install the latest stable version of the GDS client:
 pip install graphdatascience
 ----
 
-To find the latest stable version of the client, visit https://pypi.org/project/graphdatascience/
+Visit https://pypi.org/project/graphdatascience to find the latest stable version of the client.
 
 === Importing the client
 
-The main import you'll need is the `GraphDataScience` import. This will allow you to create a client which we will use to connect to and run queries against the instance.
+The client is imported as the `GraphDataScience` class:
 
 [source, python]
 ----
@@ -61,9 +56,9 @@ from graphdatascience import GraphDataScience
 
 === Client object
 
-Constructing a client instance requires the connection URI (`AURA_CONNECTION_URI`) and authentication information (`AURA_USERNAME` & `AURA_PASSWORD`).
+Constructing a client instance requires the connection URI (`AURA_CONNECTION_URI`) and authentication information (`AURA_USERNAME` and `AURA_PASSWORD`) as defined above.
 
-We'll use the client object to run queries. We can use the `aura_ds=True` constructor argument to get recommended non-default configuration settings of the Python Driver applied automatically.
+We'll use the client object to run queries. The `aura_ds=True` constructor argument should be used to have the recommended non-default configuration settings of the Python Driver applied automatically.
 
 [source, python]
 ----
