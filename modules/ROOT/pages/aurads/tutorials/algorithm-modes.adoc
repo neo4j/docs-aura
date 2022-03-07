@@ -195,12 +195,12 @@ with driver.session() as session:
 There are 5 execution modes when running production tier algorithms and each of them also provide a way to estimate or get stats about the data.
 
 * Stats
-* Estimate
 * Stream
 * Mutate
 * Write
+* Estimate
 
-Below we'll show an example code snippet with PageRank to show each execution mode, teaching you when to consider using each mode.
+Below we'll show an example code snippet with PageRank to show the first four execution modes, teaching you when to consider using each mode. The Estimate mode is explained in detail in the xref:aurads/tutorials/memory-estimation.adoc[] section.
 
 === Stats
 
