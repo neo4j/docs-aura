@@ -137,7 +137,7 @@ We then project an in-memory graph from the data just created.
 [source, python, subs=attributes+]
 ----
 g, result = gds.graph.project(
-  "example_graph",
+  "example-graph",
   "Page",
   "LINKS",
   relationshipProperties="weight"
@@ -152,7 +152,7 @@ print(json.dumps(result, indent=2, sort_keys=True))
 [source, cypher, subs=attributes+]
 ----
 CALL gds.graph.project(
-  'example_graph',
+  'example-graph',
   'Page',
   'LINKS',
   {
@@ -169,7 +169,7 @@ CALL gds.graph.project(
 # Cypher query
 create_example_graph_in_memory_query = """
 CALL gds.graph.project(
-  'example_graph',
+  'example-graph',
   'Page',
   'LINKS',
   {
