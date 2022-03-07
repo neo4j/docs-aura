@@ -13,7 +13,182 @@ For more information about the https://neo4j.com/docs/graph-data-science/current
 
 include::partial$aurads/setup.adoc[]
 
-include::partial$aurads/generated-graph.adoc[]
+== Creating an example graph
+
+We need to create some graph data first.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher query
+create_example_graph_on_disk_query = """
+CREATE
+  (home:Page {name:'Home'}),
+  (about:Page {name:'About'}),
+  (product:Page {name:'Product'}),
+  (links:Page {name:'Links'}),
+  (a:Page {name:'Site A'}),
+  (b:Page {name:'Site B'}),
+  (c:Page {name:'Site C'}),
+  (d:Page {name:'Site D'}),
+
+  (home)-[:LINKS {weight: 0.2}]->(about),
+  (home)-[:LINKS {weight: 0.2}]->(links),
+  (home)-[:LINKS {weight: 0.6}]->(product),
+  (about)-[:LINKS {weight: 1.0}]->(home),
+  (product)-[:LINKS {weight: 1.0}]->(home),
+  (a)-[:LINKS {weight: 1.0}]->(home),
+  (b)-[:LINKS {weight: 1.0}]->(home),
+  (c)-[:LINKS {weight: 1.0}]->(home),
+  (d)-[:LINKS {weight: 1.0}]->(home),
+  (links)-[:LINKS {weight: 0.8}]->(home),
+  (links)-[:LINKS {weight: 0.05}]->(a),
+  (links)-[:LINKS {weight: 0.05}]->(b),
+  (links)-[:LINKS {weight: 0.05}]->(c),
+  (links)-[:LINKS {weight: 0.05}]->(d)
+"""
+
+gds.run_cypher(create_example_graph_on_disk_query)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CREATE
+  (home:Page {name:'Home'}),
+  (about:Page {name:'About'}),
+  (product:Page {name:'Product'}),
+  (links:Page {name:'Links'}),
+  (a:Page {name:'Site A'}),
+  (b:Page {name:'Site B'}),
+  (c:Page {name:'Site C'}),
+  (d:Page {name:'Site D'}),
+
+  (home)-[:LINKS {weight: 0.2}]->(about),
+  (home)-[:LINKS {weight: 0.2}]->(links),
+  (home)-[:LINKS {weight: 0.6}]->(product),
+  (about)-[:LINKS {weight: 1.0}]->(home),
+  (product)-[:LINKS {weight: 1.0}]->(home),
+  (a)-[:LINKS {weight: 1.0}]->(home),
+  (b)-[:LINKS {weight: 1.0}]->(home),
+  (c)-[:LINKS {weight: 1.0}]->(home),
+  (d)-[:LINKS {weight: 1.0}]->(home),
+  (links)-[:LINKS {weight: 0.8}]->(home),
+  (links)-[:LINKS {weight: 0.05}]->(a),
+  (links)-[:LINKS {weight: 0.05}]->(b),
+  (links)-[:LINKS {weight: 0.05}]->(c),
+  (links)-[:LINKS {weight: 0.05}]->(d)
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher query
+create_example_graph_on_disk_query = """
+CREATE
+  (home:Page {name:'Home'}),
+  (about:Page {name:'About'}),
+  (product:Page {name:'Product'}),
+  (links:Page {name:'Links'}),
+  (a:Page {name:'Site A'}),
+  (b:Page {name:'Site B'}),
+  (c:Page {name:'Site C'}),
+  (d:Page {name:'Site D'}),
+
+  (home)-[:LINKS {weight: 0.2}]->(about),
+  (home)-[:LINKS {weight: 0.2}]->(links),
+  (home)-[:LINKS {weight: 0.6}]->(product),
+  (about)-[:LINKS {weight: 1.0}]->(home),
+  (product)-[:LINKS {weight: 1.0}]->(home),
+  (a)-[:LINKS {weight: 1.0}]->(home),
+  (b)-[:LINKS {weight: 1.0}]->(home),
+  (c)-[:LINKS {weight: 1.0}]->(home),
+  (d)-[:LINKS {weight: 1.0}]->(home),
+  (links)-[:LINKS {weight: 0.8}]->(home),
+  (links)-[:LINKS {weight: 0.05}]->(a),
+  (links)-[:LINKS {weight: 0.05}]->(b),
+  (links)-[:LINKS {weight: 0.05}]->(c),
+  (links)-[:LINKS {weight: 0.05}]->(d)
+"""
+
+# Create driver session
+with driver.session() as session:
+  # Run query
+  result = session.run(create_example_graph_on_disk_query).data()
+  # Prettify the first result
+  print(json.dumps(result[0], indent=2, sort_keys=True))
+----
+=====
+====
+
+We then project an in-memory graph from the data just created.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+g, result = gds.graph.project(
+  "example_graph",
+  "Page",
+  "LINKS",
+  {
+    "relationshipProperties": "weight"
+  }
+)
+
+print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.project(
+  'example_graph',
+  'Page',
+  'LINKS',
+  {
+    relationshipProperties: 'weight'
+  }
+)
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher query
+create_example_graph_in_memory_query = """
+CALL gds.graph.project(
+  'example_graph',
+  'Page',
+  'LINKS',
+  {
+    relationshipProperties: 'weight'
+  }
+)
+"""
+
+# Create driver session
+with driver.session() as session:
+  # Run query
+  result = session.run(create_example_graph_in_memory_query).data()
+  # Prettify the first result
+  print(json.dumps(result[0], indent=2, sort_keys=True))
+----
+=====
+====
 
 == Execution Modes
 
@@ -208,7 +383,7 @@ RETURN *
 [source, python, subs=attributes+]
 ----
 # Cypher query to just get mutate the graph
-page_rank_stream_example_graph_query = """
+page_rank_mutate_example_graph_query = """
 CALL gds.pageRank.mutate(
   'example-graph', 
   {mutateProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
@@ -220,7 +395,7 @@ RETURN *
 # Create driver session
 with driver.session() as session:
   # Run query
-  results = session.run(page_rank_stream_example_graph_query).data()
+  results = session.run(page_rank_mutate_example_graph_query).data()
   # Prettify the results
   print(json.dumps(results, indent=2, sort_keys=True))
 ----
@@ -234,10 +409,6 @@ https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#ru
 Different algorithms may write different entities (nodes, relationships or properties). For example, PageRank will write node properties, Node Similarity will write new relationships.
 
 In order for the results from a write mode computation to be used by another algorithm, a new in-memory graph must be created from the Neo4j database.
-
-For write mode to work we need to already have the data within the database, because our example graph was created just in-memory, we will not see any mutation to the data on disk.
-
-WARNING: This example does not work with GDS since the generated graph has no counterpart in Neo4j.
 
 [.tabbed-example]
 ====
@@ -274,7 +445,7 @@ RETURN *
 [source, python, subs=attributes+]
 ----
 # Cypher query to write the graph
-page_rank_stream_example_graph_query = """
+page_rank_write_example_graph_query = """
 CALL gds.pageRank.write(
   'example-graph', 
   {writeProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
@@ -286,7 +457,7 @@ RETURN *
 # Create driver session
 with driver.session() as session:
   # Run query
-  results = session.run(page_rank_stream_example_graph_query).data()
+  results = session.run(page_rank_write_example_graph_query).data()
   # Prettify the results
   print(json.dumps(results, indent=2, sort_keys=True))
 ----
@@ -325,9 +496,19 @@ delete_example_in_memory_graph_query = """
 CALL gds.graph.drop('example-graph')
 """
 
+delete_example_graph = """
+MATCH (n1)-[r]-(n2)
+DELETE r, n1
+"""
+
 with driver.session() as session:
-  # Run query
+  # Delete in-memory graph
   result = session.run(delete_example_in_memory_graph_query).data()
+  # Prettify the result
+  print(json.dumps(results, indent=2, sort_keys=True, default=default))
+    
+  # Delete data from Neo4j
+  result = session.run(delete_example_graph).data()
   # Prettify the result
   print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
