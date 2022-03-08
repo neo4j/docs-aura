@@ -2,22 +2,21 @@
 = Creating an instance
 :description: This page describes how to create a Neo4j AuraDS instance.
 
-WARNING: Review pending changes to the UI
+WARNING: Review pending changes to the UI (e.g. button to switch between AuraDS and AuraDB)
 
-With an account created, you now have access to the Aura Console and are ready to create your first instance.
-
-To create an AuraDS instance:
-
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console].
 . Select *Create an instance* to open the *Create an instance* page.
-. Set your *Instance details*:
-* *Instance Name* - The name to give the instance. This name can be whatever you like.
-* *Number of nodes/relationships* - The estimated number of nodes and relationships that your instance instance should support.
-. Select one or more algorithms from the *Which algorithms are you going to use?* section; this helps with estimating the correct size for the database. You can choose the *I'm not sure yet* option if you have not yet decided which algorithms to run on the graph; an overview of each algorithm can be found https://neo4j.com/docs/graph-data-science/current/algorithms/[here].
-. Select *Calculate Estimate* when you are happy with the details. You will be presented with an estimate of the resources needed to run your graph (memory, CPU, storage) along with the expected price.
-. Select *Create Instance* when you are happy with the details.
-. Copy and store the *Username* and *Generated password* credentials for the instance.
-. Tick the *I have stored these credentials safely to use later* checkbox, and select *Continue*.
+. Set the *Instance details*:
+* *Instance Name* - The name to give the instance. A descriptive name makes it easier to find a specific instance among many.
+* *Number of nodes/relationships* - The estimated number of nodes and relationships that the instance should support.
+. Select one or more algorithms from the *Which algorithms are you going to use?* section (or the *I'm not sure yet* option) to help estimate the most appropriate instance size. An overview of each algorithm can be found https://neo4j.com/docs/graph-data-science/current/algorithms/[here].
+. Select *Calculate Estimate* to get an estimate of the resources needed to run the graph (memory, CPU, storage) along with the expected price.
+. Select *Create Instance* to proceed.
+. Copy and store the *Username* and *Generated password* credentials to access the instance just created.
++
+WARNING: IMPORTANT: Make sure that the username and password are stored safely before continuing. Credentials cannot be recovered afterwards.
++
+. Tick the *I have stored these credentials safely to use later* checkbox and select *Continue*.
 
 [NOTE]
 ====
