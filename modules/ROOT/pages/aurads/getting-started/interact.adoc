@@ -1,37 +1,23 @@
-[[aurads-access]]
-= Accessing an instance (TO BE REMOVED)
+[[aurads-interact]]
+= Interacting with an instance
 :description: This page describes how to access an AuraDS instance.
 
 WARNING: Review pending changes to the UI
 
-There are a few different methods of accessing an AuraDS instance after its creation:
+There are a few different methods of interacting with an AuraDS instance after its creation:
 
-* <<_neo4j_browser>> - A browser-based interface for querying and viewing graph data with rudimentary visualization.
-* <<_neo4j_bloom>> - A graph exploration application for visually interacting with graph data.
-* <<_neo4j_desktop>> - An installable desktop application used to manage local and cloud databases.
-* <<_neo4j_cypher_shell>> - A command-line tool used to run cypher queries against a Neo4j instance.
+* <<_exploring>> - Explore the graph by visually interacting with graph data.
+* <<_managing>> - Manage local and cloud databases.
+* <<_querying>> - Query (and optionally viewing) graph data using the Cypher query language.
 
 [TIP]
 ====
-*Tip:* For first-time users, we recommend using Neo4j Browser.
+*Tip:* For first-time users, we recommend using the <<_neo4j_browser>>.
 ====
 
-== Neo4j Browser
+== Exploring
 
-To open an AuraDS instance with Neo4j Browser:
-
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
-. Select the *Open with* dropdown menu on the instance you want to open.
-. Select *Neo4j Browser* from the dropdown menu.
-. Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens. 
-These are the same credentials you stored when xref:aurads/getting-started/create.adoc[creating the instance].
-. Select *Connect*.
-
-Once you have successfully connected, there are built-in guides you can complete to familiarize yourself with Neo4j Browser.
-
-For more information on using Neo4j Browser, please see the https://neo4j.com/docs/browser-manual/current/[Browser manual].
-
-== Neo4j Bloom
+=== Neo4j Bloom
 
 To open an AuraDS instance with Neo4j Bloom:
 
@@ -65,7 +51,9 @@ Please note that the Perspective exposes details about your graph's schema but n
 For more information, see https://neo4j.com/docs/bloom-user-guide/1.5/bloom-perspectives/[Bloom Perspectives].
 ====
 
-== Neo4j Desktop
+== Managing
+
+=== Neo4j Desktop
 
 You can connect AuraDS instances to the Neo4j Desktop application, allowing the ability to have a single portal for interacting with all instances of Neo4j, whether local or located in the cloud.
 
@@ -93,7 +81,35 @@ As with other databases in Neo4j Desktop, you can install https://install.grapha
 
 To do this, follow the same process to install the graph application you need, and open it from Neo4j Desktop or a web browser with the running and activated Neo4j AuraDS instance.
 
-== Neo4j Cypher Shell
+== Querying
+
+You can query data in an AuraDS instance using Cypher. Cypher is the declarative graph query language created by Neo4j and can be used to query, update, and administer your AuraDS instance.
+
+You can run Cypher statements through the <<_neo4j_browser>> or the <<_neo4j_cypher_shell>>.
+
+For more information on Cypher, see https://neo4j.com/docs/cypher-manual/current[the Neo4j Cypher Manual].
+
+[NOTE]
+====
+*Note:* As with xref:aurads/getting-started/import.adoc#_loading_csv_data[LOAD CSV], AuraDS does not support Cypher statements that access local files.
+====
+
+=== Neo4j Browser
+
+To open an AuraDS instance with Neo4j Browser:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Select the *Open with* dropdown menu on the instance you want to open.
+. Select *Neo4j Browser* from the dropdown menu.
+. Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens. 
+These are the same credentials you stored when xref:aurads/getting-started/create.adoc[creating the instance].
+. Select *Connect*.
+
+Once you have successfully connected, there are built-in guides you can complete to familiarize yourself with Neo4j Browser.
+
+For more information on using Neo4j Browser, please see the https://neo4j.com/docs/browser-manual/current/[Browser manual].
+
+=== Neo4j Cypher Shell
 
 You can connect to an AuraDS instance using the Neo4j Cypher Shell command-line interface (CLI) and run cypher commands against your instance from the command-line.
 
