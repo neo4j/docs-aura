@@ -36,7 +36,7 @@ The graph catalog is used to store and manage in-memory graphs via GDS Library p
 
 Some graph algorithms (e.g. GraphSage) need to use trained models in their computation. The model catalog is used to store and manage named trained models.
 
-== Standard operation
+== Graph data flow
 
 Since GDS Library algorithms only run on in-memory graphs, the graph data must be first read from the Neo4j Database (1) and loaded into memory (2) as projected graphs. GDS algorithms can then be run against them (3) and, if requested, the results can be written back to the Neo4j Database (see the algorithm xref:aurads/tutorials/algorithm-modes#_write[write] mode).
 
