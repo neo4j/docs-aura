@@ -129,8 +129,14 @@ The second query gets the procedures available in the library and lists five of 
 
 [source, python]
 ----
-# Call a GDS method directly
-print(gds.list())
+# Import the json module for better visualization
+import json
+
+# Assign the result of the call to a variable
+results = gds.list()
+
+# Print the prettified result
+print(json.dumps(results[:5], indent=2))
 ----
 =====
 
