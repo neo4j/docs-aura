@@ -6,7 +6,9 @@ TIP: Follow along with a notebook in https://colab.research.google.com/drive/10X
 
 WARNING: The link is to the 2.0 preview. Should it be replaced by a non-preview link?
 
-This tutorial shows how to connect and interact with Neo4j and the Graph Data Science Library using the Graph Data Science https://neo4j.com/docs/graph-data-science/2.0-preview/python-client/[Python client] or the https://neo4j.com/docs/driver-manual/current/get-started[Python Driver].
+This tutorial shows how to interact with AuraDS using the https://neo4j.com/docs/graph-data-science/2.0-preview/python-client/[Graph Data Science client] or the https://neo4j.com/docs/driver-manual/current/get-started[Python Driver].
+
+_Switch between the two using the buttons_
 
 == Connection details
 
@@ -179,7 +181,7 @@ with driver.session() as session:
 ====
 [.include-with-GDS-client]
 =====
-The GDS client has no concept of manually closing the driver.
+The GDS client releases the connection when the object is deleted.
 =====
 
 [.include-with-Python-driver]

@@ -1,22 +1,13 @@
-[[aurads-import]]
-= Importing data
-:description: This page describes how to get data into a Neo4j AuraDS instance.
+[[aurads-load-csv]]
+= Loading CSV data
+:description: This page describes how to load CSV data into a Neo4j AuraDS instance.
 
 WARNING: Review pending changes to the UI
 
 WARNING: Add short Python tutorial here
 
-[NOTE]
-====
-*Note:* The process of importing or loading data requires you to xref:aurads/getting-started/create.adoc[create an AuraDS instance] beforehand.
-====
-
-If you have data in an existing Neo4j database, you can follow the instructions in xref:aurads/getting-started/migrate.adoc[] instead.
-
-== Loading CSV data
-
 You can load data from a *_.csv_* file into an AuraDS instance with the https://neo4j.com/docs/cypher-manual/current/clauses/load-csv/[`LOAD CSV`] Cypher statement within Neo4j Browser.
-For instructions on how to open an AuraDS instance with Neo4j Browser, see xref:aurads/getting-started/access.adoc[].
+For instructions on how to open an AuraDS instance with Neo4j Browser, see xref:aurads/connecting/neo4j-applications.adoc[].
 
 TIP: When using MERGE or MATCH with LOAD CSV, make sure you have an index or a unique constraint on the property that you are merging on. This will ensure that the query executes in a performant way. For more information, check out the https://neo4j.com/docs/getting-started/current/cypher-intro/load-csv/#_prepare_the_database[Import data] tutorial in the Cypher documentation.
 

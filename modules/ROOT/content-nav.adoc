@@ -49,18 +49,24 @@ AuraDS Start
 .xref:aurads/index.adoc[*Neo4j AuraDS*]
 * xref:aurads/architecture.adoc[]
 
-* Getting started
-** xref:aurads/getting-started/create.adoc[]
-** xref:aurads/getting-started/access.adoc[]
-** xref:aurads/tutorials/connecting-python.adoc[]
+* xref:aurads/create-instance.adoc[]
+
+* Connecting to AuraDS
+** xref:aurads/connecting/neo4j-applications.adoc[]
+** xref:aurads/connecting/python.adoc[]
+
+* Usage examples
 ** xref:aurads/tutorials/graph-catalog.adoc[]
 ** xref:aurads/tutorials/algorithm-modes.adoc[]
 ** xref:aurads/tutorials/memory-estimation.adoc[]
 ** xref:aurads/tutorials/algorithm-progress.adoc[]
 ** xref:aurads/tutorials/model-catalog.adoc[]
-** xref:aurads/getting-started/import-data.adoc[]
 
-* xref:aurads/getting-started/migrate.adoc[]
+* Importing data
+** xref:aurads/importing-data/load-csv.adoc[]
+** xref:aurads/importing-data/data-importer.adoc[]
+
+* xref:aurads/migrate.adoc[]
 
 * Managing instances
 ** xref:aurads/managing-instances/monitoring.adoc[]
@@ -71,7 +77,6 @@ AuraDS Start
 ** xref:aurads/connecting-tools/spark.adoc[]
 ** xref:aurads/connecting-tools/kafka.adoc[]
 
-* xref:aurads/upgrade.adoc[]
 * xref:aurads/support.adoc[]
 ////
 AuraDS End
