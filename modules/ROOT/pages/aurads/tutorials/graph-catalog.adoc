@@ -3,7 +3,7 @@
 :description: This page describes the graph catalog and in-memory graphs.
 :generated-graph-size: 100
 
-TIP: Follow along with a notebook in https://colab.research.google.com/drive/1fkER4UB0yvx_ctTV8PAhl_rPp6kDB0Px?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
+TIP: Follow along with a notebook in https://colab.research.google.com/drive/1Y8O4RR7vUOePQrHviTSN6cNCbZfxXRUg?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
 This tutorial shows how to manage, interact with and use the graph catalog in order to run algorithms on in-memory graphs.
 
@@ -25,10 +25,17 @@ If you want to check for the existence of an in-memory graph, try replacing `gra
 =====
 [source, python, subs=attributes+]
 ----
-results = gds.graph.list()
+# List all in-memory graphs
+all_graphs = gds.graph.list()
 
 # Prettify the results
-print(json.dumps(results, indent=2, sort_keys=True, default=default))
+print(json.dumps(all_graphs, indent=2, sort_keys=True, default=default))
+----
+
+[source, python, subs=attributes+]
+----
+# Check whether the "example-graph" graph exists in memory
+gds.graph.exists("example-graph")
 ----
 =====
 
@@ -54,6 +61,18 @@ with driver.session() as session:
   results = session.run(show_in_memory_graphs_query).data()
   # Prettify the results
   print(json.dumps(results, indent=2, sort_keys=True, default=default))
+----
+
+[source, python, subs=attributes+]
+----
+check_graph_exists_query = """
+CALL gds.graph.exists('example-graph')
+"""
+
+# Create driver session
+with driver.session() as session:
+  # Run query and print result
+  print(session.run(check_graph_exists_query).data())
 ----
 =====
 ====
@@ -168,11 +187,11 @@ We can use the following shorthand example in order to create our in-memory grap
 =====
 [source, python, subs=attributes+]
 ----
-# Shorthand GDS create in-memory graph with Native Projection
+# Shorthand GDS create in-memory graph with native projection
 shorthand_graph, result = gds.graph.project(
-  'shorthand-example-graph',
-  ['EngineeringManagement', 'Developer'],
-  ['MANAGES']
+  "shorthand-example-graph",
+  ["EngineeringManagement", "Developer"],
+  ["MANAGES"]
 )
 
 # Prettify the first result
