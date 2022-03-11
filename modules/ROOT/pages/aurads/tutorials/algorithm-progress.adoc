@@ -1,11 +1,9 @@
 [[algorithm-progress]]
-= Algorithm progress
+= Monitoring the progress of a running algorithm
 :description: This page describes how to use monitor the algorithm progress.
 :generated-graph-size: 1000000
 
-WARNING: The graph size here is different from the existing example (1M instead of 10M) to make it faster. Is it an issue?
-
-TIP: Follow along with a notebook in https://colab.research.google.com/drive/1cz5o6LaEh7m3qsyO5ORBJGk7C-pfbq69?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
+TIP: Follow along with a notebook in https://colab.research.google.com/drive/1wCign36IRzxQacjD9vL7wkpBNjZDGace?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
 This brief tutorial can be followed within a Google Colab which is based on Jupyter notebooks.
 
@@ -33,12 +31,16 @@ In order to be able to start a long running query and inspect the progress we wi
 =====
 [source, python, subs=attributes+]
 ----
-# Imports to help us
-import threading, time
+# Import to run the long-running algorithm in a thread
+import threading
+# Import to use the sleep method
+import time
 
 
-# method to call label propagation on our example in memory graph
+# Method to call the label propagation algorithm from a thread
 def run_label_prop():
+  print("Running label propagation")
+
   result = gds.labelPropagation.mutate(
     g,
     mutateProperty="communityID"
@@ -46,26 +48,31 @@ def run_label_prop():
 
   print(json.dumps(result, indent=2, sort_keys=True))
 
+# Method to get and pretty-print the algorithm progress
 def run_list_progress():
   result = gds.beta.listProgress()
 
   print(json.dumps(result, indent=2, sort_keys=True, default=default))
 
-# create a thread for each of the cypher calls
+# Create a thread for the label propagation algorithm and start it
 label_prop_query_thread = threading.Thread(target=run_label_prop)
-list_progress_query_thread = threading.Thread(target=run_list_progress)
-
-# start the label propagation query
 label_prop_query_thread.start()
 
-# sleep for a few seconds so the label propagation query has time to get going
-print('sleeping for 5 seconds')
+# Sleep for a few seconds so the label propagation query has time to get going
+print('Sleeping for 5 seconds')
 time.sleep(5)
-# start the list progress query
-list_progress_query_thread.start()
 
-# block and wait for the threads to finish
-list_progress_query_thread.join()
+# Check the algorithm progress
+run_list_progress()
+
+# Sleep for a few more seconds
+print('Sleeping for 10 more seconds')
+time.sleep(10)
+
+# Check the algorithm progress again
+run_list_progress()
+
+# Block and wait for the algorithm thread to finish
 label_prop_query_thread.join()
 ----
 =====
@@ -105,11 +112,13 @@ RETURN *
 =====
 [source, python, subs=attributes+]
 ----
-# Imports to help us
-import threading, time
+# Import to run the long-running algorithm in a thread
+import threading
+# Import to use the sleep method
+import time
 
 
-# method to call label propagation on our example in memory graph
+# Method to call the label propagation algorithm from a thread
 def run_label_prop():
   label_prop_mutate_example_graph_query = """
   CALL gds.labelPropagation.mutate(
@@ -132,13 +141,13 @@ def run_label_prop():
   # Create driver session
   with driver.session() as session:
     # Run query
-    print('running label prop')
+    print("Running label propagation")
     results = session.run(label_prop_mutate_example_graph_query).data()
     # Prettify the first result
     print(json.dumps(results[0], indent=2, sort_keys=True))
 
 
-# method to call list progress which calls
+# Method to get and pretty-print the algorithm progress
 def run_list_progress():
   gds_list_progress_query = """
   CALL gds.beta.listProgress()
@@ -156,21 +165,25 @@ def run_list_progress():
     print(json.dumps(results[0], indent=2, sort_keys=True))
 
 
-# create a thread for each of the cypher calls
+# Create a thread for the label propagation algorithm and start it
 label_prop_query_thread = threading.Thread(target=run_label_prop)
-list_progress_query_thread = threading.Thread(target=run_list_progress)
-
-# start the label propagation query
 label_prop_query_thread.start()
 
-# sleep for a few seconds so the label propagation query has time to get going
-print('sleeping for 5 seconds')
+# Sleep for a few seconds so the label propagation query has time to get going
+print('Sleeping for 5 seconds')
 time.sleep(5)
-# start the list progress query
-list_progress_query_thread.start()
 
-# block and wait for the threads to finish
-list_progress_query_thread.join()
+# Check the algorithm progress
+run_list_progress()
+
+# Sleep for a few more seconds
+print('Sleeping for 10 more seconds')
+time.sleep(10)
+
+# Check the algorithm progress again
+run_list_progress()
+
+# Block and wait for the algorithm thread to finish
 label_prop_query_thread.join()
 ----
 =====
