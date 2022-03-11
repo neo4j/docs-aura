@@ -2,7 +2,7 @@
 = Persisting and sharing machine learning models
 :description: This page describes how to use the model catalog.
 
-TIP: Follow along with a notebook in https://colab.research.google.com/drive/1fLhOiu54YgXXLR52V4DiR-oZN3_sRb54?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
+TIP: Follow along with a notebook in https://colab.research.google.com/drive/1EfICJ1T9Ey6jIQP4YlEcLRxGtpJVXx5E?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
 This brief tutorial can be followed within a Google Colab which is based on Jupyter notebooks.
 
@@ -594,10 +594,10 @@ DETACH DELETE example
 gds.run_cypher(delete_example_graph_query)
 
 # Delete the in-memory graph from memory
-gds.graph.drop(model)
+gds.graph.drop(g)
 
-# Delete the model from disk
-gds.beta.model.drop(model_public);
+# Drop the model from memory
+gds.beta.model.drop(model_public)
 
 # Delete the model from disk
 gds.alpha.model.delete(model_public)
@@ -624,7 +624,7 @@ DETACH DELETE example;
 // Delete the in-memory graph from memory
 CALL gds.graph.drop("example_graph_for_graphsage");
 
-// Delete the model from disk
+// Drop the model from memory
 CALL gds.beta.model.drop("example_graph_model_for_graphsage_public");
 
 // Delete the model from disk
@@ -651,7 +651,7 @@ CALL gds.graph.drop("example_graph_for_graphsage")
 """
 
 
-# Delete the model from disk
+# Drop the model from memory
 drop_example_models_query = """
 CALL gds.beta.model.drop("example_graph_model_for_graphsage_public")
 """
