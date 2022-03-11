@@ -14,7 +14,7 @@ include::partial$aurads/setup.adoc[]
 
 == Example Graph
 
-We're going to create a graph within the instance to use in-memory and create our model from.
+We're going to create a graph within the instance to use in-memory and create a model from.
 
 We'll delete this data later on in the tutorial.
 
@@ -114,7 +114,7 @@ with driver.session() as session:
 =====
 ====
 
-== Loading our example data into memory
+== Loading example data into memory
 
 For more information about getting started with the in-memory graph, check out the previous tutorial https://colab.research.google.com/drive/1fkER4UB0yvx_ctTV8PAhl_rPp6kDB0Px#scrollTo=MLW9u-jiTjfR[here]
 
@@ -202,9 +202,9 @@ with driver.session() as session:
 =====
 ====
 
-== Training our model
+== Training a model
 
-We're going to use graphSAGE to train our model. For more examples on how to train with multiple node labels and relationship weights, head over to the https://neo4j.com/docs/graph-data-science/current/algorithms/graph-sage/#algorithms-embeddings-graph-sage-examples[graphSAGE documentation] for more examples
+We're going to use graphSAGE to train a model. For more examples on how to train with multiple node labels and relationship weights, head over to the https://neo4j.com/docs/graph-data-science/current/algorithms/graph-sage/#algorithms-embeddings-graph-sage-examples[graphSAGE documentation] for more examples
 
 [.tabbed-example]
 ====
@@ -278,7 +278,7 @@ with driver.session() as session:
 =====
 ====
 
-== Viewing our model catalog
+== Viewing the model catalog
 
 Calling `gds.beta.model.list()` will present information about the models that are currently available in the catalog.
 
@@ -328,7 +328,7 @@ with driver.session() as session:
 =====
 ====
 
-== Saving to Model disk
+== Saving a model to disk
 
 Saving models to disk can be useful for a few reasons like making sure we have a copy we can go back to or freeing up space in memory.
 
@@ -373,7 +373,7 @@ with driver.session() as session:
 =====
 ====
 
-If we list our model catalog again, we'll see that the stored flag has been set to `true`
+If we list the model catalog again, we'll see that the stored flag has been set to `true`
 
 [.tabbed-example]
 ====
@@ -417,7 +417,7 @@ To do this we need to create another user, more information about the cypher syn
 
 == Creating another instance user
 
-Within our instance we can https://neo4j.com/docs/cypher-manual/current/administration/security/users-and-roles/#administration-security-users-create[create another user] to simulate a colleague that we might want to share our model with.
+Within an instance we can https://neo4j.com/docs/cypher-manual/current/administration/security/users-and-roles/#administration-security-users-create[create another user] to simulate a colleague that we might want to share the model with.
 
 [.tabbed-example]
 ====
@@ -521,9 +521,9 @@ with driver.session() as session:
 
 == Viewing the model as another user
 
-Below we'll create a new driver session using our test user credentials.
+Below we'll create a new driver session using the test user credentials.
 
-We'll then list the model catalog and see that we have access to the model that we published with our other user.
+We'll then list the model catalog and see that we have access to the model that we published with the other user.
 
 [.tabbed-example]
 ====
@@ -577,7 +577,7 @@ Run the following block of code to clean up the example data, in-memory graphs a
 
 It shows how to delete nodes and relationships from the database.
 
-How to drop our test user, in-memory graphs & models, but also how to delete the model from disk.
+How to drop the test user, in-memory graphs & models, but also how to delete the model from disk.
 
 [.tabbed-example]
 ====
