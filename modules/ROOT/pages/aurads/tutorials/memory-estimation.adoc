@@ -1,9 +1,9 @@
 [[memory-estimation]]
-= Memory estimation
+= Estimating memory and resizing an instance
 :description: This page describes how to use estimate the needed memory.
 :generated-graph-size: 50000000
 
-TIP: Follow along with a notebook in https://colab.research.google.com/drive/1Y5bZI61H0NuH8GCU9vpzR5Wk9Z4-r7hd?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
+TIP: Follow along with a notebook in https://colab.research.google.com/drive/1C-GNnSFlWmxFGe-AN193jix_srAmb-c_?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
 In this tutorial, we will show you how to use the memory estimator for algorithms and how to resize your instance if needed in order to run your desired algorithm.
 
@@ -13,6 +13,8 @@ include::partial$aurads/setup.adoc[]
 
 include::partial$aurads/generated-graph.adoc[]
 
+NOTE: The graph is fairly large, so the generation procedure will take a few minutes to complete.
+
 == Estimate
 
 It can be useful to get a memory estimation to understand the impact an algorithm will have (running on the in-memory graph you provided given the available compute resources), before running any of the `Stream`, `Mutate` or `Write` execution modes.
@@ -21,7 +23,7 @@ The Graph Data Science Library does have guard-rails built in, so if an algorith
 
 If you need more RAM & CPU, you can resize your GDS instance within the Neo4j Aura Console under the Settings tab under the instance details.
 
-Below is an example of getting a memory estimation for if we wanted to mutate the in-memory graph with the results of PageRank and hitting the guard rails on an 8GB instance.
+Below is an example of getting a memory estimation for if we wanted to mutate the in-memory graph with the results of PageRank. The estimated required memory is between 381 MiB and 4477 MiB, which is higher than an 8GB instance has available (4004 MiB).
 
 [.tabbed-example]
 ====
@@ -83,6 +85,8 @@ with driver.session() as session:
 ----
 =====
 ====
+
+The `mutate` procedure hits the guard rails on an 8GB instance, raising an exception that suggests to resize the AuraDS instance.
 
 [.tabbed-example]
 ====
@@ -168,7 +172,7 @@ Under the settings tab, after clicking the resize option you can select a new in
 
 image::resize2.png[title="Resize 2"]
 
-After resizing, run the previous steps once again. This time no exception is thrown and the step completes successfully.
+After resizing is complete, wait a few seconds until the projected graph is loaded again and run again the `mutate` step. This time no exception is thrown and the step completes successfully.
 
 == Clean-up the tutorial
 
