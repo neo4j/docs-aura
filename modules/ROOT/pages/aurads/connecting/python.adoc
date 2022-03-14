@@ -5,19 +5,9 @@
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1o_71IwikMvZcg5_B69pTK6rrMLpi-hl_?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 (driver: https://colab.research.google.com/drive/10XK5_fyNURb1u_gvD_lkt7qQvIxzAhnJ?usp=sharing[image:colab.svg[Colab,24] Google Colab^])
 
-This tutorial shows how to interact with AuraDS using the https://neo4j.com/docs/graph-data-science/2.0-preview/python-client/[Graph Data Science client] or the https://neo4j.com/docs/driver-manual/current/get-started[Python Driver].
+This tutorial shows how to interact with AuraDS using the https://neo4j.com/docs/graph-data-science/2.0-preview/python-client/[Graph Data Science client] or the https://neo4j.com/docs/driver-manual/current/get-started[Python Driver]. A running AuraDS instance must be available along with access credentials (generated in the xref:aurads/create-instance.adoc[] section) and its connection URI (found in the instance detail page, with format `neo4j+s://xxxxxxxx.databases.neo4j.io`).
 
 NOTE: You can switch between the client and the driver in each example using the appropriate tab.
-
-== Connection details
-
-The connection to an instance requires three inputs:
-
-* Instance connection URI
-* Instance username
-* Instance password
-
-The username (default `neo4j`) and password are generated when the instance is created, while the instance connection URI can be found on the created instance main page. Copy and paste them as values of the relevant variables (`AURA_USERNAME`, `AURA_PASSWORD`, and `AURA_CONNECTION_URI` respectively) in the <<_import_and_setup>> section.
 
 == Installation
 
@@ -25,26 +15,26 @@ The username (default `neo4j`) and password are generated when the instance is c
 ====
 [.include-with-GDS-client]
 =====
-To install the Graph Data Science client:
+The Graph Data Science client can be installed with `pip`:
 
 [source, shell]
 ----
 pip install graphdatascience
 ----
 
-Visit https://pypi.org/project/graphdatascience to find the latest stable version of the client.
+The latest stable version of the client can be found on https://pypi.org/project/graphdatascience[PyPI].
 =====
 
 [.include-with-Python-driver]
 =====
-To install the Python driver:
+The Python driver can be installed with `pip`:
 
 [source, shell]
 ----
 pip install neo4j
 ----
 
-Visit https://pypi.org/project/neo4j to find the latest stable version of the driver.
+The latest stable version of the driver can be found on https://pypi.org/project/neo4j[PyPI].
 =====
 ====
 
@@ -61,8 +51,6 @@ The client is imported as the `GraphDataScience` class:
 # Driver import
 from graphdatascience import GraphDataScience
 ----
-
-Constructing the client instance requires the connection URI (`AURA_CONNECTION_URI`) and the authentication information (`AURA_USERNAME` and `AURA_PASSWORD`) as defined in the <<_connection_details>> section above.
 
 The `aura_ds=True` constructor argument should be used to have the recommended non-default configuration settings of the Python Driver applied automatically.
 
@@ -112,39 +100,23 @@ driver = GraphDatabase.driver(
 
 == Running a query
 
-[.tabbed-example]
-====
-[.include-with-GDS-client]
-=====
 Once created, the client can be used to run two example queries.
 
 The first query returns the version of GDS running on the database:
 
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
 [source, python]
 ----
 # Call a GDS method directly
 print(gds.version())
 ----
-
-The second query gets the procedures available in the library and lists five of them:
-
-[source, python]
-----
-# Import the json module for better visualization
-import json
-
-# Assign the result of the call to a variable
-results = gds.list()
-
-# Print the prettified result
-print(json.dumps(results[:5], indent=2))
-----
 =====
 
 [.include-with-Python-driver]
 =====
-Once created, the driver can be used to run two example queries.
-
 The first query returns the version of GDS running on the database:
 
 [source, python]
@@ -160,13 +132,36 @@ with driver.session() as session:
   results = session.run(gds_version_query).data()
   print(results)
 ----
+=====
+====
 
-The second query gets the procedures available in the library and lists five of them:
+The second query retrieves the procedures available in the library and lists five of them:
 
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
 [source, python]
 ----
+# Import the json module for prettier visualization
 import json
 
+# Assign the result of the client call to a variable
+results = gds.list()
+
+# Print the prettified result
+print(json.dumps(results[:5], indent=2))
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python]
+----
+# Import the json module for prettier visualization
+import json
+
+# Cypher query
 list_all_gds_procedures_query = """
 CALL gds.list()
 """
@@ -175,6 +170,8 @@ CALL gds.list()
 with driver.session() as session:
   # Use .data() to access the results array
   results = session.run(list_all_gds_procedures_query).data()
+  
+  # Print the prettified result
   print(json.dumps(results[:5], indent=2))
 ----
 =====
@@ -186,7 +183,7 @@ with driver.session() as session:
 ====
 [.include-with-GDS-client]
 =====
-The GDS client releases the connection when the object is deleted.
+The GDS client automatically closes the connection when the object is deleted.
 =====
 
 [.include-with-Python-driver]
