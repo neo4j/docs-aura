@@ -29,11 +29,18 @@ The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are curr
 * Keycloak
 * Google Authentication
 
+[NOTE]
+====
+Aura supports both Authorization Code Flow with PKCE and Implicit Flow authorization flows.
+We strongly advise using PKCE to ensure security. 
+====
+
 To add SSO for Browser and Bloom to your AuraDB Enterprise databases, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket] including the following information:
 
 . The *Connection URI* of the database(s) you want to use SSO.
 . Whether or not you want Browser, Bloom, or both enabled.
 . The name of your IdP.
+. The authorization flow (PKCE or Implicit).
 
 == Supported TLS cipher suites
 
