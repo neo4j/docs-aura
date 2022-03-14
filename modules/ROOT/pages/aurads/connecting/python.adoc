@@ -102,9 +102,9 @@ driver = GraphDatabase.driver(
 
 == Running a query
 
-Once created, the client can be used to run two example queries.
+Once created, the client can be used to run Cypher queries and call Cypher procedures.
 
-The first query returns the version of GDS running on the database:
+This example call returns the version of GDS running on the database:
 
 [.tabbed-example]
 ====
@@ -137,7 +137,7 @@ with driver.session() as session:
 =====
 ====
 
-The second query retrieves the procedures available in the library and lists five of them:
+This call instead retrieves all the procedures available in the library and lists five of them:
 
 [.tabbed-example]
 ====
