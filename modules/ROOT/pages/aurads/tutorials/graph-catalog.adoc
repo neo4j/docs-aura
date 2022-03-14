@@ -1,13 +1,14 @@
 [[graph-catalog]]
-= Projecting graphs and using the Graph Catalog
-:description: This page describes the graph catalog and in-memory graphs.
+= Using the Graph Catalog and projecting graphs
+:description: This page describes how to use the graph catalog and in-memory graphs.
 :generated-graph-size: 100
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1Y8O4RR7vUOePQrHviTSN6cNCbZfxXRUg?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-This tutorial shows how to manage, interact with and use the graph catalog in order to run algorithms on in-memory graphs.
+This tutorial shows how to:
 
-The graph catalog is described into more detail in the https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/[Graph Data Science Library manual^].
+* use the https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/[Graph Catalog^] to manage in-memory graphs;
+* project Neo4j on-disk graphs into memory to run algorithms on.
 
 include::partial$aurads/setup.adoc[]
 
