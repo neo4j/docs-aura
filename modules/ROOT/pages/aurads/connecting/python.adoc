@@ -4,20 +4,18 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1o_71IwikMvZcg5_B69pTK6rrMLpi-hl_?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-This tutorial shows how to interact with AuraDS using the https://neo4j.com/docs/graph-data-science/2.0-preview/python-client/[Graph Data Science client] or the https://neo4j.com/docs/driver-manual/current/get-started[Python Driver]. 
+This tutorial shows how to interact with AuraDS using the https://neo4j.com/docs/graph-data-science/2.0-preview/python-client/[Graph Data Science (GDS) client] or the https://neo4j.com/docs/driver-manual/current/get-started[Python Driver]. In the following sections you can switch between client and driver code clicking on the appropriate tab.
 
-A running AuraDS instance must be available along with access credentials (generated in the xref:aurads/create-instance.adoc[] section) and its connection URI (found in the instance detail pageg starting with `neo4j+s://`).
-
-NOTE: You can switch between the client and the driver in each example using the appropriate tab.
+A running AuraDS instance must be available along with access credentials (generated in the xref:aurads/create-instance.adoc[] section) and its connection URI (found in the instance detail page, starting with `neo4j+s://`).
 
 == Installation
+
+Both the GDS client and the Python driver can be installed using `pip`.
 
 [.tabbed-example]
 ====
 [.include-with-GDS-client]
 =====
-The Graph Data Science client can be installed with `pip`:
-
 [source, shell]
 ----
 pip install graphdatascience
@@ -28,8 +26,6 @@ The latest stable version of the client can be found on https://pypi.org/project
 
 [.include-with-Python-driver]
 =====
-The Python driver can be installed with `pip`:
-
 [source, shell]
 ----
 pip install neo4j
@@ -39,7 +35,11 @@ The latest stable version of the driver can be found on https://pypi.org/project
 =====
 ====
 
+If `pip` is not available, you can try replacing it with `python -m pip` or `python3 -m pip`.
+
 == Import and setup
+
+Both the GDS client and the Python driver require the connection URI and the credentials as shown in the introduction.
 
 [.tabbed-example]
 ====
@@ -57,10 +57,10 @@ The `aura_ds=True` constructor argument should be used to have the recommended n
 
 [source, python]
 ----
-# Connection details
+# Replace with the actual URI, username and password
 AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
 AURA_USERNAME = "neo4j"
-AURA_PASSWORD = ""
+AURA_PASSWORD = "..."
 
 # Client instantiation
 gds = GraphDataScience(
@@ -81,14 +81,12 @@ The driver is imported as the `GraphDatabase` class:
 from neo4j import GraphDatabase
 ----
 
-Constructing a driver instance requires the connection URI (`AURA_CONNECTION_URI`) and the authentication information (`AURA_USERNAME` and `AURA_PASSWORD`) as defined in the <<_connection_details>> section above.
-
 [source, python]
 ----
-# Connection details
+# Replace with the actual URI, username and password
 AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
 AURA_USERNAME = "neo4j"
-AURA_PASSWORD = ""
+AURA_PASSWORD = "..."
 
 # Driver instantiation
 driver = GraphDatabase.driver(
@@ -103,7 +101,7 @@ driver = GraphDatabase.driver(
 
 Once created, the client can be used to run Cypher queries and call Cypher procedures.
 
-This example call returns the version of GDS running on the database:
+The following call returns the version of GDS running on the database.
 
 [.tabbed-example]
 ====
@@ -118,8 +116,6 @@ print(gds.version())
 
 [.include-with-Python-driver]
 =====
-The first query returns the version of GDS running on the database:
-
 [source, python]
 ----
 # Cypher query
@@ -136,7 +132,7 @@ with driver.session() as session:
 =====
 ====
 
-This call instead retrieves all the procedures available in the library and lists five of them:
+The following call instead retrieves all the procedures available in the library and describes five of them.
 
 [.tabbed-example]
 ====
@@ -144,7 +140,7 @@ This call instead retrieves all the procedures available in the library and list
 =====
 [source, python]
 ----
-# Import the json module for prettier visualization
+# Import the json module for pretty visualization
 import json
 
 # Assign the result of the client call to a variable
@@ -159,7 +155,7 @@ print(json.dumps(results[:5], indent=2))
 =====
 [source, python]
 ----
-# Import the json module for prettier visualization
+# Import the json module for pretty visualization
 import json
 
 # Cypher query
@@ -202,7 +198,7 @@ driver.close()
 == References
 
 === Documentation
-* https://neo4j.com/docs/graph-data-science[Neo4j GDSL documentation^]
+* https://neo4j.com/docs/graph-data-science[Neo4j GDS documentation^]
 * https://neo4j.com/docs/driver-manual/current/get-started/[Neo4j driver documentation^]
 * https://neo4j.com/developer[Neo4j developer documentation^]
 
