@@ -1,15 +1,262 @@
 [[aurads-load-csv]]
-= Loading CSV data
-:description: This page describes how to load CSV data into a Neo4j AuraDS instance.
+= Loading CSV files
+:description: This page describes how to load CSV files into a Neo4j AuraDS instance.
 
-WARNING: Review pending changes to the UI
+TIP: Follow along with a notebook in https://colab.research.google.com/drive/1NInLPvki2gN48QeACL7ApuyFDICkuzx4?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-WARNING: Add short Python tutorial here
+A *_.csv_* file can be loaded into an AuraDS instance using the https://neo4j.com/docs/cypher-manual/current/clauses/load-csv/[`LOAD CSV`] Cypher clause. 
 
-You can load data from a *_.csv_* file into an AuraDS instance with the https://neo4j.com/docs/cypher-manual/current/clauses/load-csv/[`LOAD CSV`] Cypher statement within Neo4j Browser.
-For instructions on how to open an AuraDS instance with Neo4j Browser, see xref:aurads/connecting/neo4j-applications.adoc[].
+In the following sections we will use the well-known Movie Database to show how to load CSV files into an AuraDS instance.
 
-TIP: When using MERGE or MATCH with LOAD CSV, make sure you have an index or a unique constraint on the property that you are merging on. This will ensure that the query executes in a performant way. For more information, check out the https://neo4j.com/docs/getting-started/current/cypher-intro/load-csv/#_prepare_the_database[Import data] tutorial in the Cypher documentation.
+include::partial$aurads/setup.adoc[]
+
+== Create constraints
+
+Constraints not only add integrity criteria to the data, but also improve data loading performance. Adding a unique constraint to a property adds an index on the same property too, so that `MATCH` and `MERGE` operations at load time are faster.
+
+WARNING: When using MERGE or MATCH with LOAD CSV, make sure you have an index or a unique constraint on the property that you are merging on. This will ensure that the query executes in a performant way. For more information, check out the https://neo4j.com/docs/getting-started/current/cypher-intro/load-csv/#_prepare_the_database[Import data] tutorial in the Cypher documentation.
+
+In this example we add constraints on both movie titles and actors' names.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Make movie titles unique
+gds.run_cypher("""
+CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE
+""")
+
+# Make person names unique
+gds.run_cypher("""
+CREATE CONSTRAINT ON (person:Person) ASSERT person.name IS UNIQUE
+""")
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE;
+CREATE CONSTRAINT ON (person:Person) ASSERT person.name IS UNIQUE;
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+movie_title_constraint = """
+CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE
+"""
+
+person_name_constraint = """
+CREATE CONSTRAINT ON (person:Person) ASSERT person.name IS UNIQUE
+"""
+
+# Create the driver session
+with driver.session() as session:
+  # Make movie titles unique
+  session.run(movie_title_constraint).data()
+  # Make person names unique
+  session.run(person_name_constraint).data()
+----
+=====
+====
+
+== Load example CSV files
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Use "MERGE" on indexed label to take advantage of the constraint 
+# while creating nodes.
+# Use "ON CREATE SET" to set properties on created nodes.
+# Use "RETURN count(*)" to show the number of processed rows.
+gds.run_cypher("""
+LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/movies.csv' AS row
+MERGE (m:Movie {title: row.title})
+ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
+RETURN count(*)
+""")
+----
+
+[source, python, subs=attributes+]
+----
+# Use "MERGE" on indexed label to take advantage of the constraint 
+# while creating nodes.
+# Use "ON CREATE SET" to set properties on created nodes.
+# Use "RETURN count(*)" to show the number of processed rows.
+gds.run_cypher("""
+LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/people.csv' AS row
+MERGE (p:Person {name: row.name}) 
+ON CREATE SET p.born = toInteger(row.born)
+RETURN count(*)
+""")
+----
+
+[source, python, subs=attributes+]
+----
+# Use "USING PERIODIC COMMIT" to control the usage of memory.
+# Use FIELDTERMINATOR to explicitly set the terminator character.
+# Use "MATCH" and "MERGE" to create relationships between matched nodes.
+# Use "ON CREATE SET" to set properties on created relationships.
+# Use "RETURN count(*)" to show the number of processed rows.
+gds.run_cypher("""
+USING PERIODIC COMMIT 50
+LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/actors.csv' AS row
+FIELDTERMINATOR ','
+MATCH (p:Person {name: row.person})
+MATCH (m:Movie {title: row.movie})
+MERGE (p)-[actedIn:ACTED_IN]->(m)
+ON CREATE SET actedIn.roles = split(row.roles, ';')
+RETURN count(*)
+""")
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/movies.csv' AS row
+MERGE (m:Movie {title: row.title})
+ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
+RETURN count(*);
+----
+
+[source, cypher, subs=attributes+]
+----
+LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/people.csv' AS row
+MERGE (p:Person {name: row.name}) 
+ON CREATE SET p.born = toInteger(row.born)
+RETURN count(*);
+----
+
+[source, cypher, subs=attributes+]
+----
+USING PERIODIC COMMIT 50
+LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/actors.csv' AS row
+FIELDTERMINATOR ','
+MATCH (p:Person {name: row.person})
+MATCH (m:Movie {title: row.movie})
+MERGE (p)-[actedIn:ACTED_IN]->(m)
+ON CREATE SET actedIn.roles = split(row.roles, ';')
+RETURN count(*);
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+load_movies_csv = """
+LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/movies.csv' AS row
+MERGE (m:Movie {title: row.title})
+ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
+RETURN count(*)
+"""
+
+# Create the driver session
+with driver.session() as session:
+  # Load the CSV file
+  session.run(load_movies_csv).data()
+----
+
+[source, python, subs=attributes+]
+----
+load_people_csv = """
+LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/people.csv' AS row
+MERGE (p:Person {name: row.name}) 
+ON CREATE SET p.born = toInteger(row.born)
+RETURN count(*)
+"""
+
+# Create the driver session
+with driver.session() as session:
+  # Load the CSV file
+  session.run(load_people_csv).data()
+----
+
+[source, python, subs=attributes+]
+----
+load_actors_csv = """
+USING PERIODIC COMMIT 50
+LOAD CSV WITH HEADERS FROM
+     'https://data.neo4j.com/intro/movies/actors.csv' AS row
+FIELDTERMINATOR ','
+MATCH (p:Person {name: row.person})
+MATCH (m:Movie {title: row.movie})
+MERGE (p)-[actedIn:ACTED_IN]->(m)
+ON CREATE SET actedIn.roles = split(row.roles, ';')
+RETURN count(*)
+"""
+
+# Create the driver session
+with driver.session() as session:
+  # Load the CSV file
+  session.run(load_actors_csv).data()
+----
+=====
+====
+
+== Cleanup
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Delete data
+gds.run_cypher("""
+MATCH (n)
+DETACH DELETE n
+""")
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+MATCH (n)
+DETACH DELETE n
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+delete_data = """
+MATCH (n)
+DETACH DELETE n
+"""
+
+# Create the driver session
+with driver.session() as session:
+  # Delete the data
+  session.run(delete_data).data()
+----
+=====
+====
+
+== Limitations
 
 There are some limitations to consider when loading a *_.csv_* file into an AuraDS instance:
 
