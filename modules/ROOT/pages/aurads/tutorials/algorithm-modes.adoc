@@ -473,8 +473,8 @@ To drop the example in-memory graph we created previously, you can use the https
 [source, python, subs=attributes+]
 ----
 delete_example_graph = """
-MATCH (n1)-[r]-(n2)
-DELETE r, n1
+MATCH (n)
+DETACH DELETE n
 """
 
 result = gds.graph.drop(g)
@@ -488,7 +488,10 @@ gds.run_cypher(delete_example_graph)
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.graph.drop('example-graph')
+CALL gds.graph.drop('example-graph');
+
+MATCH (n)
+DETACH DELETE n;
 ----
 =====
 
@@ -501,8 +504,8 @@ CALL gds.graph.drop('example-graph')
 """
 
 delete_example_graph = """
-MATCH (n1)-[r]-(n2)
-DELETE r, n1
+MATCH (n)
+DETACH DELETE n
 """
 
 with driver.session() as session:
