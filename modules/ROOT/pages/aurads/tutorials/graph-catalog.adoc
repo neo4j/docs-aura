@@ -15,7 +15,7 @@ include::partial$aurads/setup.adoc[]
 
 Native projections are used to copy into memory a graph stored on disk. The https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection-syntax[`gds.graph.project`^] procedure allows to project a graph by selecting the node labels, relationship types and properties to be projected.
 
-In the following we will use this graph as an example.
+The `gds.graph.project` procedure can use a <<_shorthand_graph_creation,"shorthand syntax">>, where the nodes and relationships projections are simply passed as single values or arrays, or an <<_longform_graph_creation,"extended syntax">>, where each node or relationship projection has its own configuration. The extended syntax is especially useful if additional transformation of the data or the graph structure are needed. Both methods are shown in this section, using the following graph as an example.
 
 [.tabbed-example]
 ====
@@ -70,7 +70,7 @@ with driver.session() as session:
 
 === Shorthand graph creation
 
-We can use the following shorthand example in order to create our in-memory graph:
+In this example we use the shorthand syntax to simply project all node labels and relationship types.
 
 [.tabbed-example]
 ====
@@ -78,7 +78,7 @@ We can use the following shorthand example in order to create our in-memory grap
 =====
 [source, python, subs=attributes+]
 ----
-# Shorthand GDS create in-memory graph with native projection
+# Project a graph using the shorthand syntax
 shorthand_graph, result = gds.graph.project(
   "shorthand-example-graph",
   ["EngineeringManagement", "Developer"],
@@ -108,7 +108,6 @@ RETURN *
 =====
 [source, python, subs=attributes+]
 ----
-# Shorthand GDS create in-memory graph with Native Projection
 shorthand_graph_create_call = """
 CALL gds.graph.project(
   'shorthand-example-graph',
@@ -121,47 +120,34 @@ RETURN *
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
+  # Call to project a graph using the shorthand syntax
   result = session.run(shorthand_graph_create_call).data()
-  # Prettify the first result
-  print(json.dumps(result[0], indent=2, sort_keys=True))
+  # Prettify the result
+  print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 ====
 
-Using the short hand is great if we're only interested in the structure of the graph in which our algorithms run on.
-
-You may want to transform the data, unify the structure or include properties as part of your analysis - this is where using the longform `gds.graph.project` can be useful.
-
 === Longform graph creation
 
-Using the following example graph: 
+In this example we create a projected graph by:
 
-```
-(:EngineeringManagement {name: 'Alistair'})-
-  [:MANAGES {start_date: 987654321}]->
-  (:Developer {name: 'Leila'})<-
-  [:MANAGES {start_date: 123456789, end_date: 987654321}]-
-  (:EngineeringManagement {name: 'Jennifer'})
-```
+* transforming the `EngineeringManagement` and `Developer` labels to `PersonEM` and `PersonM` respectively;
+* transforming the _directed_ `MANAGES` relationship into the `KNOWS` _undirected_ relationship;
+* keeping the `start_date` and `end_date` relationship properties, but adding a default value of `999999999` to `end_date`.
 
-We can transform our example into the following structure: 
+The projected graph becomes the following: 
 
-```
+[source, cypher]
+----
 (:Person {first_name: 'Alistair'})-
   [:KNOWS {start_date: 987654321, end_date: 999999999}]-
   (:Person {first_name: 'Leila'})-
   [:KNOWS {start_date: 123456789, end_date: 987654321}]-
   (:Person {first_name: 'Jennifer'})
-```
+----
 
-Below we'll transform the `:EngineeringManagement` & `:Developer` labels to be `:PersonEM` & `PersonM` respectively when projected into our in-memory graph.
-
-The `MANAGES` relationship will also be switched to undirected so that each relationship is projected in both natural and reverse orientations.
-
-We'll rename the `start_date` and `end_date` relationships properties to `start_date` & `end_date` to the in-memory graph. If however, there isn't anend_date available on the relationship, we'll default the value to be `999999999`.
-
-There are lots of configuration options available as part of Node & Relationship projections: https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection-syntax-relationship-projections[]
+We use the extended syntax for https://neo4j.com/docs/graph-data-science/2.0-preview/graph-project/#node-projection-syntax[node^] and https://neo4j.com/docs/graph-data-science/2.0-preview/graph-project/#relationship-projection-syntax[relationship^] projections as described in the GDS manual.
 
 [.tabbed-example]
 ====
@@ -169,7 +155,7 @@ There are lots of configuration options available as part of Node & Relationship
 =====
 [source, python, subs=attributes+]
 ----
-# Longform GDS create query
+# Project a graph using the extended syntax
 longform_graph, result = gds.graph.project(
   "longform-example-graph",
   {
@@ -241,7 +227,6 @@ RETURN *
 =====
 [source, python, subs=attributes+]
 ----
-# Longform GDS create query
 longform_graph_create_call = """
 CALL gds.graph.project(
   'longform-example-graph',
@@ -275,7 +260,7 @@ RETURN *
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
+  # Call to project a graph using the extended syntax
   result = session.run(longform_graph_create_call).data()
   # Prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
