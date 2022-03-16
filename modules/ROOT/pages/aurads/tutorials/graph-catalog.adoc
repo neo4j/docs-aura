@@ -23,7 +23,7 @@ In the following we will use this graph as an example.
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher query to create example graph to disk
+# Cypher query to create an example graph on disk
 write_example_graph_query = """
 MERGE (a:EngineeringManagement {name: 'Alistair'})
 MERGE (j:EngineeringManagement {name: 'Jennifer'})
@@ -52,7 +52,7 @@ MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher query to create example graph to disk
+# Cypher query to create an example graph on disk
 write_example_graph_query = """
 MERGE (a:EngineeringManagement {name: 'Alistair'})
 MERGE (j:EngineeringManagement {name: 'Jennifer'})
