@@ -65,13 +65,13 @@ If an AuraDB Free database remains paused for more than 90 days, AuraDB will del
 label:Enterprise[]
 label:Professional[]
 
-You can clone an existing database into a new one using the *Clone* option.
+You can clone an existing database into a new one using the *Clone* action.
 The advantage this has over the xref:managing-databases/backup-restore-export.adoc#_backup_and_export[Create database from snapshot action] is the ability to select a new region.
 
 To clone a database:
 
-. Navigate to the *SETTINGS* tab of the database you want to clone.
-. Select *Clone*.
+. Select the ellipsis (...) on the database you want to clone.
+. Select *Clone* from the resulting menu.
 . Set your desired settings for the new database.
 For more information on database settings, see xref:getting-started/create-database.adoc[].
 . Tick the *I understand* checkbox and select *Clone Database*.
@@ -82,8 +82,7 @@ You can delete a database if you no longer want to be billed for it.
 
 To delete a database:
 
-. Navigate to the *SETTINGS* tab of the database you want to remove.
-. Select *Delete* below *Delete Database*.
+. Select the red trashcan icon on the database you want to delete.
 . Type the exact name of the database (as instructed) to confirm your decision, and select *Destroy*.
 
 [WARNING]
