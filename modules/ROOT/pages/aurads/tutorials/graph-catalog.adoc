@@ -85,7 +85,7 @@ shorthand_graph, result = gds.graph.project(
   ["MANAGES"]
 )
 
-# Prettify the first result
+# Prettify the result
 print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
