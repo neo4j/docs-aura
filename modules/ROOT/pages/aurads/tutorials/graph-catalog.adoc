@@ -1,147 +1,19 @@
 [[graph-catalog]]
-= Using the Graph Catalog and projecting graphs
-:description: This page describes how to use the graph catalog and in-memory graphs.
-:generated-graph-size: 100
+= Projecting graphs and using the Graph Catalog
+:description: This page describes how to use project graphs and use the Graph Catalog.
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1Y8O4RR7vUOePQrHviTSN6cNCbZfxXRUg?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
 This tutorial shows how to:
 
-* use the https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/[Graph Catalog^] to manage in-memory graphs;
-* project Neo4j on-disk graphs into memory to run algorithms on.
+* project Neo4j on-disk graphs into memory to run algorithms on;
+* use the https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/[Graph Catalog^] to manage in-memory graphs.
 
 include::partial$aurads/setup.adoc[]
 
-include::partial$aurads/generated-graph.adoc[]
-
-== List the projected graphs
-
-The Graph Catalog can be used to retrieve information on the projected graphs. For example, the https://neo4j.com/docs/graph-data-science/current/graph-list/[`gds.graph.list`^] procedure can be used to list all the graphs currently stored in memory:
-
-[.tabbed-example]
-====
-[.include-with-GDS-client]
-=====
-[source, python, subs=attributes+]
-----
-# List all in-memory graphs
-all_graphs = gds.graph.list()
-
-# Prettify the results
-print(json.dumps(all_graphs, indent=2, sort_keys=True, default=default))
-----
-=====
-
-[.include-with-Cypher]
-=====
-[source, cypher, subs=attributes+]
-----
-CALL gds.graph.list()
-----
-=====
-
-[.include-with-Python-driver]
-=====
-[source, python, subs=attributes+]
-----
-show_in_memory_graphs_call = """
-CALL gds.graph.list()
-"""
-
-# Create the driver session
-with driver.session() as session:
-  # Run the Cypher procedure
-  results = session.run(show_in_memory_graphs_call).data()
-  # Prettify the results
-  print(json.dumps(results, indent=2, sort_keys=True, default=default))
-----
-=====
-====
-
-The https://neo4j.com/docs/graph-data-science/current/graph-exists/[`gds.graph.exists`^] procedure, instead, can be called to check for the existence of a graph by its name:
-
-[.tabbed-example]
-====
-[.include-with-GDS-client]
-=====
-[source, python, subs=attributes+]
-----
-# Check whether the "example-graph" graph exists in memory
-gds.graph.exists("example-graph")
-----
-=====
-
-[.include-with-Cypher]
-=====
-[source, cypher, subs=attributes+]
-----
-CALL gds.graph.exists('example-graph')
-----
-=====
-
-[.include-with-Python-driver]
-=====
-[source, python, subs=attributes+]
-----
-check_graph_exists_call = """
-CALL gds.graph.exists('example-graph')
-"""
-
-# Create the driver session
-with driver.session() as session:
-  # Run the Cypher procedure and print the result
-  print(session.run(check_graph_exists_call).data())
-----
-=====
-====
-
-== Drop the example graph
-
-When a graph is no longer needed, it can be dropped to free up memory using the https://neo4j.com/docs/graph-data-science/current/graph-drop/[`gds.graph.drop`^] procedure.
-
-[.tabbed-example]
-====
-[.include-with-GDS-client]
-=====
-[source, python, subs=attributes+]
-----
-# Drop the graph object directly (no graph name needed)
-result = gds.graph.drop(g)
-
-# Prettify the result
-print(json.dumps(result, indent=2, sort_keys=True, default=default))
-----
-=====
-
-[.include-with-Cypher]
-=====
-[source, cypher, subs=attributes+]
-----
-CALL gds.graph.drop('example-graph')
-----
-=====
-
-[.include-with-Python-driver]
-=====
-[source, python, subs=attributes+]
-----
-drop_graph_call = """
-CALL gds.graph.drop('example-graph')
-"""
-
-# Create the driver session
-with driver.session() as session:
-  # Run the Cypher procedure
-  result = session.run(drop_graph_call).data()
-  # Prettify the result
-  print(json.dumps(result, indent=2, sort_keys=True, default=default))
-----
-=====
-====
-
 == Load data from Neo4j with native projections
 
-Native projections allow us to take a graph stored on disk and project it into an in-memory graph. You specify which node labels, relationship types and properties you wish to be brought into a new in-memory graph using `CALL gds.graph.project` (https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection-syntax[])
+Native projections are used to copy into memory a graph stored on disk. The https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection-syntax[`gds.graph.project`^] procedure allows to project a graph by selecting the node labels, relationship types and properties to be projected.
 
 In the following we will use this graph as an example.
 
@@ -237,7 +109,7 @@ RETURN *
 [source, python, subs=attributes+]
 ----
 # Shorthand GDS create in-memory graph with Native Projection
-shorthand_graph_create_query = """
+shorthand_graph_create_call = """
 CALL gds.graph.project(
   'shorthand-example-graph',
   ['EngineeringManagement', 'Developer'],
@@ -250,7 +122,7 @@ RETURN *
 # Create driver session
 with driver.session() as session:
   # Run query
-  result = session.run(shorthand_graph_create_query).data()
+  result = session.run(shorthand_graph_create_call).data()
   # Prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
@@ -370,7 +242,7 @@ RETURN *
 [source, python, subs=attributes+]
 ----
 # Longform GDS create query
-longform_graph_create_query = """
+longform_graph_create_call = """
 CALL gds.graph.project(
   'longform-example-graph',
   {
@@ -404,16 +276,151 @@ RETURN *
 # Create driver session
 with driver.session() as session:
   # Run query
-  result = session.run(longform_graph_create_query).data()
+  result = session.run(longform_graph_create_call).data()
   # Prettify the first result
   print(json.dumps(result[0], indent=2, sort_keys=True))
 ----
 =====
 ====
 
-=== Cleanup
+== Use the Graph Catalog
 
-Run the following block of code to clean up the last example's data and in-memory graphs.
+The Graph Catalog can be used to retrieve information on and manage the projected graphs. For example, the https://neo4j.com/docs/graph-data-science/current/graph-list/[`gds.graph.list`^] procedure can be used to list all the graphs currently stored in memory:
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# List all in-memory graphs
+all_graphs = gds.graph.list()
+
+# Prettify the results
+print(json.dumps(all_graphs, indent=2, sort_keys=True, default=default))
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.list()
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+show_in_memory_graphs_call = """
+CALL gds.graph.list()
+"""
+
+# Create the driver session
+with driver.session() as session:
+  # Run the Cypher procedure
+  results = session.run(show_in_memory_graphs_call).data()
+  # Prettify the results
+  print(json.dumps(results, indent=2, sort_keys=True, default=default))
+----
+=====
+====
+
+The https://neo4j.com/docs/graph-data-science/current/graph-exists/[`gds.graph.exists`^] procedure, instead, can be called to check for the existence of a graph by its name:
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Check whether the "example-graph" graph exists in memory
+gds.graph.exists("example-graph")
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.exists('example-graph')
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+check_graph_exists_call = """
+CALL gds.graph.exists('example-graph')
+"""
+
+# Create the driver session
+with driver.session() as session:
+  # Run the Cypher procedure and print the result
+  print(session.run(check_graph_exists_call).data())
+----
+=====
+====
+
+When a graph is no longer needed, it can be dropped to free up memory using the https://neo4j.com/docs/graph-data-science/current/graph-drop/[`gds.graph.drop`^] procedure.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Drop a graph object and keep the result of the call
+result = gds.graph.drop(shorthand_graph)
+
+# Prettify the result
+print(json.dumps(result, indent=2, sort_keys=True, default=default))
+
+# Drop a graph object discarding the result of the call
+gds.graph.drop(longform_graph)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.drop('shorthand-example-graph');
+
+CALL gds.graph.drop('longform-example-graph');
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+delete_shorthand_graph_call = """
+CALL gds.graph.drop('shorthand-example-graph')
+"""
+
+delete_longform_graph_call = """
+CALL gds.graph.drop('longform-example-graph')
+"""
+
+# Create the driver session
+with driver.session() as session:
+  # Drop a graph and keep the result of the call
+  result = session.run(delete_shorthand_graph_call).data()
+  # Prettify the result
+  print(json.dumps(result, indent=2, sort_keys=True, default=default))
+
+  # Drop a graph discarding the result of the call
+  session.run(delete_longform_graph_call).data()
+----
+=====
+====
+
+== Cleanup
+
+When the projected graphs are dropped, the underlying data on the disk are not deleted. If such data are no longer needed, they need to be deleted manually via a Cypher query.
 
 [.tabbed-example]
 ====
@@ -427,11 +434,8 @@ WHERE example:EngineeringManagement OR example:Developer
 DETACH DELETE example
 """
 
+# Delete on-disk data
 gds.run_cypher(delete_example_graph_query)
-
-gds.graph.drop(shorthand_graph)
-
-gds.graph.drop(longform_graph)
 ----
 =====
 
@@ -442,10 +446,6 @@ gds.graph.drop(longform_graph)
 MATCH (example)
 WHERE example:EngineeringManagement OR example:Developer
 DETACH DELETE example;
-
-CALL gds.graph.drop('shorthand-example-graph');
-
-CALL gds.graph.drop('longform-example-graph');
 ----
 =====
 
@@ -459,20 +459,10 @@ WHERE example:EngineeringManagement OR example:Developer
 DETACH DELETE example
 """
 
-delete_shorthand_graph_query = """
-CALL gds.graph.drop('shorthand-example-graph')
-"""
-
-delete_longform_graph_query = """
-CALL gds.graph.drop('longform-example-graph')
-"""
-
 # Create driver session
 with driver.session() as session:
-  # Run query
+  # Run Cypher call
   print(session.run(delete_example_graph_query).data())
-  print(session.run(delete_shorthand_graph_query).data())
-  print(session.run(delete_longform_graph_query).data())
 ----
 =====
 ====
@@ -480,9 +470,8 @@ with driver.session() as session:
 == References
 
 === Documentation
-* https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[Graph catalog^]
 * https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection[Native projections^]
-* https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/graph-generation/#graph-generation[Graph generation^]
+* https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[Graph catalog^]
 * https://neo4j.com/docs/graph-data-science[Neo4j GDSL documentation^]
 * https://neo4j.com/docs/driver-manual/current/get-started/[Neo4j driver documentation^]
 * https://neo4j.com/developer[Neo4j developer documentation^]
