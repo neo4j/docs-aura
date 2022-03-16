@@ -1,14 +1,8 @@
 == Creating an example graph
 
-We're going to use the database you have specified above to create an in-memory graph. We'll delete this data later on in the tutorial.
+An easy way to create an in-memory graph is through the GDS https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/graph-generation/#graph-generation[graph generation^] algorithm. By specifing the number of nodes, the average number of relationships going out of each node and the relationship distribution function, the algorithm creates a graph having the following shape:
 
-We will use the graph generation function within the GDS Library to generate a random in-memory graph.
-
-Our graph is going to be nodes with the label `{generated-graph-size}_Nodes` with a relationship of `POWER_LAW`
-
-`(:{generated-graph-size}_Nodes)-[:POWER_LAW]->(:{generated-graph-size}_Nodes)`
-
-You can read more about the https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/graph-generation/#graph-generation[Graph Generation] procedure.
+`(:{generated-graph-size}_Nodes)-[:REL]->(:{generated-graph-size}_Nodes)`
 
 [.tabbed-example]
 ====
