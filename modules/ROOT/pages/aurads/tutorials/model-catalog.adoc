@@ -104,7 +104,7 @@ MERGE (john)-[:KNOWS {relWeight: 5.0}]->(jeff)
 RETURN True AS exampleDataCreated
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   result = session.run(create_example_graph_on_disk_query).data()
@@ -192,7 +192,7 @@ CALL gds.graph.project(
 )
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   result = session.run(create_example_graph_in_memory_query).data()
@@ -268,7 +268,7 @@ RETURN
  info.metrics.epochLosses as epochLosses
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   result = session.run(train_graph_sage_on_in_memory_graph_query).data()
@@ -318,7 +318,7 @@ list_model_catalog_query  = """
 CALL gds.beta.model.list()
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   results = session.run(list_model_catalog_query).data()
@@ -363,7 +363,7 @@ save_graph_sage_model_to_disk_query = """
 CALL gds.alpha.model.store("example_graph_model_for_graphsage")
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   result = session.run(save_graph_sage_model_to_disk_query).data()
@@ -399,7 +399,7 @@ CALL gds.beta.model.list()
 =====
 [source, python, subs=attributes+]
 ----
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   results = session.run(list_model_catalog_query).data()
@@ -461,7 +461,7 @@ SET PASSWORD 'test'
 SET PASSWORD CHANGE NOT REQUIRED
 """
 
-# Create driver session using the 'system' database
+# Create the driver session using the 'system' database
 with driver.session(database='system') as session:
   # Run query
   result = session.run(create_a_new_user_query).data()
@@ -509,7 +509,7 @@ publish_graph_sage_model_to_disk_query  = """
 CALL gds.alpha.model.publish('example_graph_model_for_graphsage')
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   result = session.run(publish_graph_sage_model_to_disk_query).data()
@@ -561,7 +561,7 @@ CALL gds.beta.model.list()
 ----
 test_user_driver = GraphDatabase.driver(AURA_CONNECTION_URI, auth=("testUser", "test"))
 
-# Create driver session
+# Create the driver session
 with test_user_driver.session() as session:
   # Run query
   results = session.run(list_model_catalog_query).data()
@@ -666,7 +666,7 @@ drop_example_user_query = """
 DROP USER testUser
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run queries
   print(session.run(delete_example_graph_query).data())

@@ -61,7 +61,7 @@ MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
 MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   session.run(write_example_graph_query)
 ----
@@ -119,7 +119,7 @@ YIELD graphName, nodeCount, relationshipCount
 RETURN *
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   result = session.run(shorthand_graph_create_call).data()
@@ -273,7 +273,7 @@ YIELD graphName, nodeCount, relationshipCount
 RETURN *
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   result = session.run(longform_graph_create_call).data()
@@ -459,7 +459,7 @@ WHERE example:EngineeringManagement OR example:Developer
 DETACH DELETE example
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run Cypher call
   print(session.run(delete_example_graph_query).data())

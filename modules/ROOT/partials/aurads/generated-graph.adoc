@@ -69,7 +69,7 @@ YIELD name,
 RETURN *
 """
 
-# Create driver session to the database
+# Create the driver session
 with driver.session() as session:
   # Run query
   result = session.run(create_example_graph_query).data()

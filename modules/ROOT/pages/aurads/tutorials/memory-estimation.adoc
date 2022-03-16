@@ -76,7 +76,7 @@ YIELD nodeCount,
 RETURN *
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_mutate_estimate_example_graph_query).data()
@@ -150,7 +150,7 @@ YIELD preProcessingMillis,
 RETURN *
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_mutate_example_graph_query).data()

@@ -118,7 +118,7 @@ CREATE
   (links)-[:LINKS {weight: 0.05}]->(d)
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   result = session.run(create_example_graph_on_disk_query).data()
@@ -178,7 +178,7 @@ CALL gds.graph.project(
 )
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   result = session.run(create_example_graph_in_memory_query).data()
@@ -263,7 +263,7 @@ YIELD ranIterations,
 RETURN *
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_stats_example_graph_query).data()
@@ -326,7 +326,7 @@ YIELD nodeId, score
 RETURN *
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_stream_example_graph_query).data()
@@ -390,7 +390,7 @@ YIELD nodePropertiesWritten, ranIterations
 RETURN *
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_mutate_example_graph_query).data()
@@ -452,7 +452,7 @@ YIELD nodePropertiesWritten, ranIterations
 RETURN *
 """
 
-# Create driver session
+# Create the driver session
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_write_example_graph_query).data()
