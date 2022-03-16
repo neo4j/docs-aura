@@ -10,7 +10,8 @@ An easy way to create an in-memory graph is through the GDS https://neo4j.com/do
 =====
 [source, python, subs=attributes+]
 ----
-# Run the graph generation algorithm and retrieve the corresponding graph object
+# Run the graph generation algorithm and retrieve the corresponding 
+# graph object and call result metadata
 g, result = gds.beta.graph.generate(
   "example-graph", 
   {generated-graph-size}, 
@@ -18,7 +19,7 @@ g, result = gds.beta.graph.generate(
   relationshipDistribution="POWER_LAW"
 )
 
-# Print prettified graph stats
+# Pretty-print the metadata
 print(json.dumps(result, indent=2, sort_keys=True, default=default))
 ----
 =====
