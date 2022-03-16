@@ -130,11 +130,11 @@ with driver.session() as session:
 
 === Longform graph creation
 
-In this example we create a projected graph by:
+In this example we use the extended syntax for https://neo4j.com/docs/graph-data-science/2.0-preview/graph-project/#node-projection-syntax[node^] and https://neo4j.com/docs/graph-data-science/2.0-preview/graph-project/#relationship-projection-syntax[relationship^] projections to:
 
-* transforming the `EngineeringManagement` and `Developer` labels to `PersonEM` and `PersonM` respectively;
-* transforming the _directed_ `MANAGES` relationship into the `KNOWS` _undirected_ relationship;
-* keeping the `start_date` and `end_date` relationship properties, but adding a default value of `999999999` to `end_date`.
+* transform the `EngineeringManagement` and `Developer` labels to `PersonEM` and `PersonM` respectively;
+* transform the _directed_ `MANAGES` relationship into the `KNOWS` _undirected_ relationship;
+* keep the `start_date` and `end_date` relationship properties, adding a default value of `999999999` to `end_date`.
 
 The projected graph becomes the following: 
 
@@ -146,8 +146,6 @@ The projected graph becomes the following:
   [:KNOWS {start_date: 123456789, end_date: 987654321}]-
   (:Person {first_name: 'Jennifer'})
 ----
-
-We use the extended syntax for https://neo4j.com/docs/graph-data-science/2.0-preview/graph-project/#node-projection-syntax[node^] and https://neo4j.com/docs/graph-data-science/2.0-preview/graph-project/#relationship-projection-syntax[relationship^] projections as described in the GDS manual.
 
 [.tabbed-example]
 ====
@@ -270,7 +268,11 @@ with driver.session() as session:
 
 == Use the Graph Catalog
 
-The Graph Catalog can be used to retrieve information on and manage the projected graphs. For example, the https://neo4j.com/docs/graph-data-science/current/graph-list/[`gds.graph.list`^] procedure can be used to list all the graphs currently stored in memory:
+The Graph Catalog can be used to retrieve information on and manage the projected graphs. 
+
+=== List the graphs
+
+The https://neo4j.com/docs/graph-data-science/current/graph-list/[`gds.graph.list`^] procedure can be used to list all the graphs currently stored in memory:
 
 [.tabbed-example]
 ====
@@ -312,7 +314,9 @@ with driver.session() as session:
 =====
 ====
 
-The https://neo4j.com/docs/graph-data-science/current/graph-exists/[`gds.graph.exists`^] procedure, instead, can be called to check for the existence of a graph by its name:
+=== Check that a graph exists
+
+The https://neo4j.com/docs/graph-data-science/current/graph-exists/[`gds.graph.exists`^] procedure can be called to check for the existence of a graph by its name:
 
 [.tabbed-example]
 ====
@@ -348,6 +352,8 @@ with driver.session() as session:
 ----
 =====
 ====
+
+=== Drop a graph
 
 When a graph is no longer needed, it can be dropped to free up memory using the https://neo4j.com/docs/graph-data-science/current/graph-drop/[`gds.graph.drop`^] procedure.
 
