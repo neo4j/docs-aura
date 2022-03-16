@@ -132,7 +132,7 @@ with driver.session() as session:
 
 In this example we use the extended syntax for https://neo4j.com/docs/graph-data-science/2.0-preview/graph-project/#node-projection-syntax[node^] and https://neo4j.com/docs/graph-data-science/2.0-preview/graph-project/#relationship-projection-syntax[relationship^] projections to:
 
-* transform the `EngineeringManagement` and `Developer` labels to `PersonEM` and `PersonM` respectively;
+* transform the `EngineeringManagement` and `Developer` labels to `PersonEM` and `PersonD` respectively;
 * transform the _directed_ `MANAGES` relationship into the `KNOWS` _undirected_ relationship;
 * keep the `start_date` and `end_date` relationship properties, adding a default value of `999999999` to `end_date`.
 
