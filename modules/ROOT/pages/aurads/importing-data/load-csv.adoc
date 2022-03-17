@@ -75,7 +75,7 @@ with driver.session() as session:
 
 == Add nodes from CSV files
 
-We are now ready to load the CSV files from their URIs and create nodes from the data they contain. In the following examples:
+We are now ready to load the CSV files from their URIs and create nodes from the data they contain. In the following examples, `LOAD CSV` is used with `WITH HEADERS` to access `row` fields by their corresponding column name. Furthermore:
 
 * `MERGE` is used with the indexed properties to take advantage of the constraints created in the <<_create_constraints>> section.
 * `ON CREATE SET` is used to set the value of a node property when a new one is created.
@@ -169,10 +169,14 @@ with driver.session() as session:
 
 == Add relationships from CSV files
 
-Similarly to what we have done for nodes, we now create relationships from a CSV file. In the following examples:
+Similarly to what we have done for nodes, we now create relationships from a CSV file. In the following examples, `LOAD CSV` is used with:
 
-* `USING PERIODIC COMMIT` is used to control memory usage by creating a commit every _n_ processed rows rather than after processing the whole file. This is especially useful when loading large files.
+* `WITH HEADERS` to access `row` fields by their corresponding column name;
+* `USING PERIODIC COMMIT` is used to control memory usage by creating a commit every _n_ processed rows rather than after processing the whole file. This is especially useful when loading large files;
 * `FIELDTERMINATOR` is used to explicitly set the field terminator character (although the comma is the default).
+
+Furthermore:
+
 * `MATCH` and `MERGE` are used to find nodes (taking advantage of the constraints created in the <<_create_constraints>> section) and create a relationship between them.
 * `ON CREATE SET` is used to set the value of a relationship property when a new one is created.
 * `RETURN count(*)` is used to show the number of processed rows.
