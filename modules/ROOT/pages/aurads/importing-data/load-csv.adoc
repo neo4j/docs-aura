@@ -241,6 +241,52 @@ with driver.session() as session:
 =====
 ====
 
+== Run a Cypher query
+
+Once all the nodes and relationships have been created, we can run a query to check that the data have been inserted correctly. The following query looks for movies with Keanu Reeves, orders them by release date and groups their titles.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+gds.run_cypher("""
+  MATCH (person:Person {name: "Keanu Reeves"})-[:ACTED_IN]->(movie)
+  RETURN movie.released, COLLECT(movie.title) AS movies
+  ORDER BY movie.released
+""")
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+MATCH (person:Person {name: "Keanu Reeves"})-[:ACTED_IN]->(movie)
+RETURN movie.released, COLLECT(movie.title) AS movies
+ORDER BY movie.released
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+query = """
+  MATCH (person:Person {name: "Keanu Reeves"})-[:ACTED_IN]->(movie)
+  RETURN movie.released, COLLECT(movie.title) AS movies
+  ORDER BY movie.released
+"""
+
+# Create the driver session
+with driver.session() as session:
+  # Run the Cypher query
+  session.run(query).data()
+----
+=====
+====
+
 == Cleanup
 
 When the data are no longer useful, the database can be cleaned up.
