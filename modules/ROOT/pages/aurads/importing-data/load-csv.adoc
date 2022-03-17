@@ -4,17 +4,23 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1NInLPvki2gN48QeACL7ApuyFDICkuzx4?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-A *_.csv_* file can be loaded into an AuraDS instance using the https://neo4j.com/docs/cypher-manual/current/clauses/load-csv/[`LOAD CSV`] Cypher clause. 
+A *_.csv_* file can be loaded into an AuraDS instance using the https://neo4j.com/docs/cypher-manual/current/clauses/load-csv/[`LOAD CSV`] Cypher clause. For security reasons it is not possible to load local *_.csv_* files, which must be instead publicly accessible on HTTP or HTTPS servers such as GitHub, Google Drive, and Dropbox.
 
-In the following sections we will use the well-known Movie Database to show how to load CSV files into an AuraDS instance.
+In this tutorial we will load some CSV files from https://data.neo4j.com:
+
+* `movies.csv`: a list of movies with their title, release year and a short description
+* `people.csv`: a list of actors with their year of birth
+* `actors.csv`: a list of acting roles, where actors are matched with the movies they had a role in
+
+WARNING: The `LOAD CSV` command is built to handle small to medium-sized data sets, such as anything up to 10 million nodes and relationships. You should avoid using this command for any data sets exceeding this limit.
 
 include::partial$aurads/setup.adoc[]
 
 == Create constraints
 
-Constraints not only add integrity criteria to the data, but also improve data loading performance. Adding a unique constraint to a property adds an index on the same property too, so that `MATCH` and `MERGE` operations at load time are faster.
+Adding constraints before loading any data usally improves data loading performance. In fact, besides adding an integrity check, a unique constraint adds an index on a property at the same time, so that `MATCH` and `MERGE` operations during loading are faster.
 
-WARNING: When using MERGE or MATCH with LOAD CSV, make sure you have an index or a unique constraint on the property that you are merging on. This will ensure that the query executes in a performant way. For more information, check out the https://neo4j.com/docs/getting-started/current/cypher-intro/load-csv/#_prepare_the_database[Import data] tutorial in the Cypher documentation.
+WARNING: For best performance when using `MERGE` or `MATCH` with `LOAD CSV`, make sure an index or a unique constraint has been created on the property used for merging. For more information, check out the https://neo4j.com/docs/getting-started/current/cypher-intro/load-csv/#_prepare_the_database[Import data] tutorial in the Cypher documentation.
 
 In this example we add constraints on both movie titles and actors' names.
 
@@ -67,7 +73,18 @@ with driver.session() as session:
 =====
 ====
 
-== Load example CSV files
+== Load CSV files
+
+We are now ready to load the CSV files from their URIs and create nodes and relationships from the data they contain. In the following examples:
+
+* `MERGE` is used with the indexed labels to take advantage of the constraint created in the <<_create_constraints>> section.
+* `ON CREATE SET` is used to set the value of a node/relationship property when a new one is created.
+* `RETURN count(*)` is used to show the number of processed rows.
+* `USING PERIODIC COMMIT` is used to control memory usage by creating a commit every _n_ processed rows rather than after processing the whole file. This is especially useful when loading large files.
+* `FIELDTERMINATOR` is used to explicitly set the terminator character (although the default is already `,`).
+* `MATCH` is used to find nodes to create a relationship between.
+
+Note that the CSV files in this tutorial are curated, so some assumption are made for simplicity. In a real-world scenario, for example, a CSV file could contain multiple rows that would assign different property values to the same node; in this case, an `ON MATCH SET` clause must be added to ensure this case is dealt with appropriately.
 
 [.tabbed-example]
 ====
@@ -75,10 +92,6 @@ with driver.session() as session:
 =====
 [source, python, subs=attributes+]
 ----
-# Use "MERGE" on indexed label to take advantage of the constraint 
-# while creating nodes.
-# Use "ON CREATE SET" to set properties on created nodes.
-# Use "RETURN count(*)" to show the number of processed rows.
 gds.run_cypher("""
 LOAD CSV WITH HEADERS FROM
     'https://data.neo4j.com/intro/movies/movies.csv' AS row
@@ -90,10 +103,6 @@ RETURN count(*)
 
 [source, python, subs=attributes+]
 ----
-# Use "MERGE" on indexed label to take advantage of the constraint 
-# while creating nodes.
-# Use "ON CREATE SET" to set properties on created nodes.
-# Use "RETURN count(*)" to show the number of processed rows.
 gds.run_cypher("""
 LOAD CSV WITH HEADERS FROM
     'https://data.neo4j.com/intro/movies/people.csv' AS row
@@ -105,11 +114,6 @@ RETURN count(*)
 
 [source, python, subs=attributes+]
 ----
-# Use "USING PERIODIC COMMIT" to control the usage of memory.
-# Use FIELDTERMINATOR to explicitly set the terminator character.
-# Use "MATCH" and "MERGE" to create relationships between matched nodes.
-# Use "ON CREATE SET" to set properties on created relationships.
-# Use "RETURN count(*)" to show the number of processed rows.
 gds.run_cypher("""
 USING PERIODIC COMMIT 50
 LOAD CSV WITH HEADERS FROM
@@ -216,6 +220,8 @@ with driver.session() as session:
 
 == Cleanup
 
+When the data are no longer useful, the database can be cleaned up.
+
 [.tabbed-example]
 ====
 [.include-with-GDS-client]
@@ -255,11 +261,3 @@ with driver.session() as session:
 ----
 =====
 ====
-
-== Limitations
-
-There are some limitations to consider when loading a *_.csv_* file into an AuraDS instance:
-
-* For security reasons, you must host your *_.csv_* file on a publicly accessible HTTP or HTTPS server. Examples of such servers include GitHub, Google Drive, and Dropbox.
-
-* The `LOAD CSV` command is built to handle small to medium-sized data sets, such as anything up to 10 million nodes and relationships. You should avoid using this command for any data sets exceeding this limit.
