@@ -90,10 +90,11 @@ Note that the CSV files in this tutorial are curated, so some assumptions are ma
 [source, python, subs=attributes+]
 ----
 gds.run_cypher("""
-  LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/movies.csv' AS row
+  LOAD CSV
+    WITH HEADERS
+    FROM 'https://data.neo4j.com/intro/movies/movies.csv' AS row
   MERGE (m:Movie {title: row.title})
-  ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
+    ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
   RETURN count(*)
 """)
 ----
@@ -101,10 +102,11 @@ gds.run_cypher("""
 [source, python, subs=attributes+]
 ----
 gds.run_cypher("""
-  LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/people.csv' AS row
+  LOAD CSV
+    WITH HEADERS
+    FROM 'https://data.neo4j.com/intro/movies/people.csv' AS row
   MERGE (p:Person {name: row.name}) 
-  ON CREATE SET p.born = toInteger(row.born)
+    ON CREATE SET p.born = toInteger(row.born)
   RETURN count(*)
 """)
 ----
@@ -114,19 +116,21 @@ gds.run_cypher("""
 =====
 [source, cypher, subs=attributes+]
 ----
-LOAD CSV WITH HEADERS FROM
-  'https://data.neo4j.com/intro/movies/movies.csv' AS row
+LOAD CSV
+  WITH HEADERS
+  FROM 'https://data.neo4j.com/intro/movies/movies.csv' AS row
 MERGE (m:Movie {title: row.title})
-ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
+  ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
 RETURN count(*);
 ----
 
 [source, cypher, subs=attributes+]
 ----
-LOAD CSV WITH HEADERS FROM
-  'https://data.neo4j.com/intro/movies/people.csv' AS row
+LOAD CSV
+  WITH HEADERS
+  FROM 'https://data.neo4j.com/intro/movies/people.csv' AS row
 MERGE (p:Person {name: row.name}) 
-ON CREATE SET p.born = toInteger(row.born)
+  ON CREATE SET p.born = toInteger(row.born)
 RETURN count(*);
 ----
 =====
@@ -136,10 +140,11 @@ RETURN count(*);
 [source, python, subs=attributes+]
 ----
 load_movies_csv = """
-  LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/movies.csv' AS row
+  LOAD CSV
+    WITH HEADERS
+    FROM 'https://data.neo4j.com/intro/movies/movies.csv' AS row
   MERGE (m:Movie {title: row.title})
-  ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
+    ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
   RETURN count(*)
 """
 
@@ -152,10 +157,11 @@ with driver.session() as session:
 [source, python, subs=attributes+]
 ----
 load_people_csv = """
-  LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/people.csv' AS row
+  LOAD CSV
+    WITH HEADERS
+    FROM 'https://data.neo4j.com/intro/movies/people.csv' AS row
   MERGE (p:Person {name: row.name}) 
-  ON CREATE SET p.born = toInteger(row.born)
+    ON CREATE SET p.born = toInteger(row.born)
   RETURN count(*)
 """
 
@@ -189,13 +195,14 @@ Furthermore:
 ----
 gds.run_cypher("""
   USING PERIODIC COMMIT 50
-  LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/actors.csv' AS row
-  FIELDTERMINATOR ','
+  LOAD CSV
+    WITH HEADERS
+    FROM 'https://data.neo4j.com/intro/movies/actors.csv' AS row
+    FIELDTERMINATOR ','
   MATCH (p:Person {name: row.person})
   MATCH (m:Movie {title: row.movie})
   MERGE (p)-[actedIn:ACTED_IN]->(m)
-  ON CREATE SET actedIn.roles = split(row.roles, ';')
+    ON CREATE SET actedIn.roles = split(row.roles, ';')
   RETURN count(*)
 """)
 ----
@@ -206,14 +213,15 @@ gds.run_cypher("""
 [source, cypher, subs=attributes+]
 ----
 USING PERIODIC COMMIT 50
-LOAD CSV WITH HEADERS FROM
-  'https://data.neo4j.com/intro/movies/actors.csv' AS row
-FIELDTERMINATOR ','
+LOAD CSV
+  WITH HEADERS
+  FROM 'https://data.neo4j.com/intro/movies/actors.csv' AS row
+  FIELDTERMINATOR ','
 MATCH (p:Person {name: row.person})
 MATCH (m:Movie {title: row.movie})
 MERGE (p)-[actedIn:ACTED_IN]->(m)
-ON CREATE SET actedIn.roles = split(row.roles, ';')
-RETURN count(*);
+  ON CREATE SET actedIn.roles = split(row.roles, ';')
+RETURN count(*)
 ----
 =====
 
@@ -223,13 +231,14 @@ RETURN count(*);
 ----
 load_actors_csv = """
   USING PERIODIC COMMIT 50
-  LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/actors.csv' AS row
-  FIELDTERMINATOR ','
+  LOAD CSV
+    WITH HEADERS
+    FROM 'https://data.neo4j.com/intro/movies/actors.csv' AS row
+    FIELDTERMINATOR ','
   MATCH (p:Person {name: row.person})
   MATCH (m:Movie {title: row.movie})
   MERGE (p)-[actedIn:ACTED_IN]->(m)
-  ON CREATE SET actedIn.roles = split(row.roles, ';')
+    ON CREATE SET actedIn.roles = split(row.roles, ';')
   RETURN count(*)
 """
 
