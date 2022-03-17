@@ -32,12 +32,12 @@ In this example we add uniqueness constraints on both movie titles and actors' n
 ----
 # Make movie titles unique
 gds.run_cypher("""
-CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE
+  CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE
 """)
 
 # Make person names unique
 gds.run_cypher("""
-CREATE CONSTRAINT ON (person:Person) ASSERT person.name IS UNIQUE
+  CREATE CONSTRAINT ON (person:Person) ASSERT person.name IS UNIQUE
 """)
 ----
 =====
@@ -56,11 +56,11 @@ CREATE CONSTRAINT ON (person:Person) ASSERT person.name IS UNIQUE;
 [source, python, subs=attributes+]
 ----
 movie_title_constraint = """
-CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE
+  CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE
 """
 
 person_name_constraint = """
-CREATE CONSTRAINT ON (person:Person) ASSERT person.name IS UNIQUE
+  CREATE CONSTRAINT ON (person:Person) ASSERT person.name IS UNIQUE
 """
 
 # Create the driver session
@@ -90,22 +90,22 @@ Note that the CSV files in this tutorial are curated, so some assumptions are ma
 [source, python, subs=attributes+]
 ----
 gds.run_cypher("""
-LOAD CSV WITH HEADERS FROM
-  'https://data.neo4j.com/intro/movies/movies.csv' AS row
-MERGE (m:Movie {title: row.title})
-ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
-RETURN count(*)
+  LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/movies.csv' AS row
+  MERGE (m:Movie {title: row.title})
+  ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
+  RETURN count(*)
 """)
 ----
 
 [source, python, subs=attributes+]
 ----
 gds.run_cypher("""
-LOAD CSV WITH HEADERS FROM
-  'https://data.neo4j.com/intro/movies/people.csv' AS row
-MERGE (p:Person {name: row.name}) 
-ON CREATE SET p.born = toInteger(row.born)
-RETURN count(*)
+  LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/people.csv' AS row
+  MERGE (p:Person {name: row.name}) 
+  ON CREATE SET p.born = toInteger(row.born)
+  RETURN count(*)
 """)
 ----
 =====
@@ -136,11 +136,11 @@ RETURN count(*);
 [source, python, subs=attributes+]
 ----
 load_movies_csv = """
-LOAD CSV WITH HEADERS FROM
-  'https://data.neo4j.com/intro/movies/movies.csv' AS row
-MERGE (m:Movie {title: row.title})
-ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
-RETURN count(*)
+  LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/movies.csv' AS row
+  MERGE (m:Movie {title: row.title})
+  ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
+  RETURN count(*)
 """
 
 # Create the driver session
@@ -152,11 +152,11 @@ with driver.session() as session:
 [source, python, subs=attributes+]
 ----
 load_people_csv = """
-LOAD CSV WITH HEADERS FROM
-  'https://data.neo4j.com/intro/movies/people.csv' AS row
-MERGE (p:Person {name: row.name}) 
-ON CREATE SET p.born = toInteger(row.born)
-RETURN count(*)
+  LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/people.csv' AS row
+  MERGE (p:Person {name: row.name}) 
+  ON CREATE SET p.born = toInteger(row.born)
+  RETURN count(*)
 """
 
 # Create the driver session
@@ -188,15 +188,15 @@ Furthermore:
 [source, python, subs=attributes+]
 ----
 gds.run_cypher("""
-USING PERIODIC COMMIT 50
-LOAD CSV WITH HEADERS FROM
-  'https://data.neo4j.com/intro/movies/actors.csv' AS row
-FIELDTERMINATOR ','
-MATCH (p:Person {name: row.person})
-MATCH (m:Movie {title: row.movie})
-MERGE (p)-[actedIn:ACTED_IN]->(m)
-ON CREATE SET actedIn.roles = split(row.roles, ';')
-RETURN count(*)
+  USING PERIODIC COMMIT 50
+  LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/actors.csv' AS row
+  FIELDTERMINATOR ','
+  MATCH (p:Person {name: row.person})
+  MATCH (m:Movie {title: row.movie})
+  MERGE (p)-[actedIn:ACTED_IN]->(m)
+  ON CREATE SET actedIn.roles = split(row.roles, ';')
+  RETURN count(*)
 """)
 ----
 =====
@@ -222,15 +222,15 @@ RETURN count(*);
 [source, python, subs=attributes+]
 ----
 load_actors_csv = """
-USING PERIODIC COMMIT 50
-LOAD CSV WITH HEADERS FROM
-  'https://data.neo4j.com/intro/movies/actors.csv' AS row
-FIELDTERMINATOR ','
-MATCH (p:Person {name: row.person})
-MATCH (m:Movie {title: row.movie})
-MERGE (p)-[actedIn:ACTED_IN]->(m)
-ON CREATE SET actedIn.roles = split(row.roles, ';')
-RETURN count(*)
+  USING PERIODIC COMMIT 50
+  LOAD CSV WITH HEADERS FROM
+    'https://data.neo4j.com/intro/movies/actors.csv' AS row
+  FIELDTERMINATOR ','
+  MATCH (p:Person {name: row.person})
+  MATCH (m:Movie {title: row.movie})
+  MERGE (p)-[actedIn:ACTED_IN]->(m)
+  ON CREATE SET actedIn.roles = split(row.roles, ';')
+  RETURN count(*)
 """
 
 # Create the driver session
@@ -253,8 +253,8 @@ When the data are no longer useful, the database can be cleaned up.
 ----
 # Delete data
 gds.run_cypher("""
-MATCH (n)
-DETACH DELETE n
+  MATCH (n)
+  DETACH DELETE n
 """)
 ----
 =====
@@ -273,8 +273,8 @@ DETACH DELETE n
 [source, python, subs=attributes+]
 ----
 delete_data = """
-MATCH (n)
-DETACH DELETE n
+  MATCH (n)
+  DETACH DELETE n
 """
 
 # Create the driver session
