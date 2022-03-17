@@ -169,7 +169,7 @@ with driver.session() as session:
 
 == Add relationships from CSV files
 
-Similarly to what we have done for nodes, we now create relationships from a CSV file. In the following examples, `LOAD CSV` is used with:
+Similarly to what we have done for nodes, we now create relationships from the `actors.csv` file. In the following examples, `LOAD CSV` is used with:
 
 * `WITH HEADERS` to access `row` fields by their corresponding column name;
 * `USING PERIODIC COMMIT` is used to control memory usage by creating a commit every _n_ processed rows rather than after processing the whole file. This is especially useful when loading large files;
