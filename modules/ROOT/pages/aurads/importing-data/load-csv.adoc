@@ -22,7 +22,7 @@ Adding constraints before loading any data usally improves data loading performa
 
 WARNING: For best performance when using `MERGE` or `MATCH` with `LOAD CSV`, make sure an index or a unique constraint has been created on the property used for merging. For more information, check out the https://neo4j.com/docs/getting-started/current/cypher-intro/load-csv/#_prepare_the_database[Import data] tutorial in the Cypher documentation.
 
-In this example we add constraints on both movie titles and actors' names.
+In this example we add uniqueness constraints on both movie titles and actors' names.
 
 [.tabbed-example]
 ====
