@@ -77,11 +77,11 @@ with driver.session() as session:
 
 We are now ready to load the CSV files from their URIs and create nodes and relationships from the data they contain. In the following examples:
 
-* `MERGE` is used with the indexed labels to take advantage of the constraint created in the <<_create_constraints>> section.
+* `MERGE` is used with the indexed properties to take advantage of the constraint created in the <<_create_constraints>> section.
 * `ON CREATE SET` is used to set the value of a node/relationship property when a new one is created.
 * `RETURN count(*)` is used to show the number of processed rows.
 * `USING PERIODIC COMMIT` is used to control memory usage by creating a commit every _n_ processed rows rather than after processing the whole file. This is especially useful when loading large files.
-* `FIELDTERMINATOR` is used to explicitly set the terminator character (although the default is already `,`).
+* `FIELDTERMINATOR` is used to explicitly set the field terminator character (although the comma is the default).
 * `MATCH` is used to find nodes to create a relationship between.
 
 Note that the CSV files in this tutorial are curated, so some assumption are made for simplicity. In a real-world scenario, for example, a CSV file could contain multiple rows that would attempt to assign different property values to the same node; in this case, an https://neo4j.com/docs/cypher-manual/current/clauses/merge/#merge-merge-with-on-match[`ON MATCH SET`^] clause must be added to ensure this case is dealt with appropriately.
