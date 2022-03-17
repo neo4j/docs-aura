@@ -6,7 +6,7 @@ TIP: Follow along with a notebook in https://colab.research.google.com/drive/1NI
 
 A CSV file can be loaded into an AuraDS instance using the https://neo4j.com/docs/cypher-manual/current/clauses/load-csv/[`LOAD CSV`^] Cypher clause. For security reasons it is not possible to load local CSV files, which must be instead publicly accessible on HTTP or HTTPS servers such as GitHub, Google Drive, and Dropbox.
 
-In this tutorial we will load some CSV files from https://data.neo4j.com:
+In this tutorial we will load three CSV files from https://data.neo4j.com:
 
 * `movies.csv`: a list of movies with their title, release year and a short description
 * `people.csv`: a list of actors with their year of birth
