@@ -73,16 +73,13 @@ with driver.session() as session:
 =====
 ====
 
-== Load CSV files
+== Add nodes from CSV files
 
-We are now ready to load the CSV files from their URIs and create nodes and relationships from the data they contain. In the following examples:
+We are now ready to load the CSV files from their URIs and create nodes from the data they contain. In the following examples:
 
-* `MERGE` is used with the indexed properties to take advantage of the constraint created in the <<_create_constraints>> section.
-* `ON CREATE SET` is used to set the value of a node/relationship property when a new one is created.
+* `MERGE` is used with the indexed properties to take advantage of the constraints created in the <<_create_constraints>> section.
+* `ON CREATE SET` is used to set the value of a node property when a new one is created.
 * `RETURN count(*)` is used to show the number of processed rows.
-* `USING PERIODIC COMMIT` is used to control memory usage by creating a commit every _n_ processed rows rather than after processing the whole file. This is especially useful when loading large files.
-* `FIELDTERMINATOR` is used to explicitly set the field terminator character (although the comma is the default).
-* `MATCH` is used to find nodes to create a relationship between.
 
 Note that the CSV files in this tutorial are curated, so some assumption are made for simplicity. In a real-world scenario, for example, a CSV file could contain multiple rows that would attempt to assign different property values to the same node; in this case, an https://neo4j.com/docs/cypher-manual/current/clauses/merge/#merge-merge-with-on-match[`ON MATCH SET`^] clause must be added to ensure this case is dealt with appropriately.
 
@@ -94,7 +91,7 @@ Note that the CSV files in this tutorial are curated, so some assumption are mad
 ----
 gds.run_cypher("""
 LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/movies.csv' AS row
+  'https://data.neo4j.com/intro/movies/movies.csv' AS row
 MERGE (m:Movie {title: row.title})
 ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
 RETURN count(*)
@@ -105,24 +102,9 @@ RETURN count(*)
 ----
 gds.run_cypher("""
 LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/people.csv' AS row
+  'https://data.neo4j.com/intro/movies/people.csv' AS row
 MERGE (p:Person {name: row.name}) 
 ON CREATE SET p.born = toInteger(row.born)
-RETURN count(*)
-""")
-----
-
-[source, python, subs=attributes+]
-----
-gds.run_cypher("""
-USING PERIODIC COMMIT 50
-LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/actors.csv' AS row
-FIELDTERMINATOR ','
-MATCH (p:Person {name: row.person})
-MATCH (m:Movie {title: row.movie})
-MERGE (p)-[actedIn:ACTED_IN]->(m)
-ON CREATE SET actedIn.roles = split(row.roles, ';')
 RETURN count(*)
 """)
 ----
@@ -133,7 +115,7 @@ RETURN count(*)
 [source, cypher, subs=attributes+]
 ----
 LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/movies.csv' AS row
+  'https://data.neo4j.com/intro/movies/movies.csv' AS row
 MERGE (m:Movie {title: row.title})
 ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
 RETURN count(*);
@@ -142,22 +124,9 @@ RETURN count(*);
 [source, cypher, subs=attributes+]
 ----
 LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/people.csv' AS row
+  'https://data.neo4j.com/intro/movies/people.csv' AS row
 MERGE (p:Person {name: row.name}) 
 ON CREATE SET p.born = toInteger(row.born)
-RETURN count(*);
-----
-
-[source, cypher, subs=attributes+]
-----
-USING PERIODIC COMMIT 50
-LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/actors.csv' AS row
-FIELDTERMINATOR ','
-MATCH (p:Person {name: row.person})
-MATCH (m:Movie {title: row.movie})
-MERGE (p)-[actedIn:ACTED_IN]->(m)
-ON CREATE SET actedIn.roles = split(row.roles, ';')
 RETURN count(*);
 ----
 =====
@@ -168,7 +137,7 @@ RETURN count(*);
 ----
 load_movies_csv = """
 LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/movies.csv' AS row
+  'https://data.neo4j.com/intro/movies/movies.csv' AS row
 MERGE (m:Movie {title: row.title})
 ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
 RETURN count(*)
@@ -184,7 +153,7 @@ with driver.session() as session:
 ----
 load_people_csv = """
 LOAD CSV WITH HEADERS FROM
-    'https://data.neo4j.com/intro/movies/people.csv' AS row
+  'https://data.neo4j.com/intro/movies/people.csv' AS row
 MERGE (p:Person {name: row.name}) 
 ON CREATE SET p.born = toInteger(row.born)
 RETURN count(*)
@@ -195,13 +164,63 @@ with driver.session() as session:
   # Load the CSV file
   session.run(load_people_csv).data()
 ----
+=====
+====
 
+== Add relationships from CSV files
+
+Similarly to what we have done for nodes, we now create relationships from a CSV file. In the following examples:
+
+* `USING PERIODIC COMMIT` is used to control memory usage by creating a commit every _n_ processed rows rather than after processing the whole file. This is especially useful when loading large files.
+* `FIELDTERMINATOR` is used to explicitly set the field terminator character (although the comma is the default).
+* `MATCH` and `MERGE` are used to find nodes (taking advantage of the constraints created in the <<_create_constraints>> section) and create a relationship between them.
+* `ON CREATE SET` is used to set the value of a relationship property when a new one is created.
+* `RETURN count(*)` is used to show the number of processed rows.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+gds.run_cypher("""
+USING PERIODIC COMMIT 50
+LOAD CSV WITH HEADERS FROM
+  'https://data.neo4j.com/intro/movies/actors.csv' AS row
+FIELDTERMINATOR ','
+MATCH (p:Person {name: row.person})
+MATCH (m:Movie {title: row.movie})
+MERGE (p)-[actedIn:ACTED_IN]->(m)
+ON CREATE SET actedIn.roles = split(row.roles, ';')
+RETURN count(*)
+""")
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+USING PERIODIC COMMIT 50
+LOAD CSV WITH HEADERS FROM
+  'https://data.neo4j.com/intro/movies/actors.csv' AS row
+FIELDTERMINATOR ','
+MATCH (p:Person {name: row.person})
+MATCH (m:Movie {title: row.movie})
+MERGE (p)-[actedIn:ACTED_IN]->(m)
+ON CREATE SET actedIn.roles = split(row.roles, ';')
+RETURN count(*);
+----
+=====
+
+[.include-with-Python-driver]
+=====
 [source, python, subs=attributes+]
 ----
 load_actors_csv = """
 USING PERIODIC COMMIT 50
 LOAD CSV WITH HEADERS FROM
-     'https://data.neo4j.com/intro/movies/actors.csv' AS row
+  'https://data.neo4j.com/intro/movies/actors.csv' AS row
 FIELDTERMINATOR ','
 MATCH (p:Person {name: row.person})
 MATCH (m:Movie {title: row.movie})
