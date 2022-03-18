@@ -4,7 +4,7 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1NInLPvki2gN48QeACL7ApuyFDICkuzx4?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-A CSV file can be loaded into an AuraDS instance using the https://neo4j.com/docs/cypher-manual/current/clauses/load-csv/[`LOAD CSV`^] Cypher clause. For security reasons it is not possible to load local CSV files, which must be instead publicly accessible on HTTP or HTTPS servers such as GitHub, Google Drive, and Dropbox. Another way to make CSV files available is to upload them to an Amazon AWS S3 bucket and configure the bucket as a https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteEndpoints.html[static website].
+A CSV file can be loaded into an AuraDS instance using the https://neo4j.com/docs/cypher-manual/current/clauses/load-csv/[`LOAD CSV`^] Cypher clause. For security reasons it is not possible to load local CSV files, which must be instead publicly accessible on HTTP or HTTPS servers such as GitHub, Google Drive, and Dropbox. Another way to make CSV files available is to upload them to a cloud bucket storage (e.g. Google Cloud Storage or Amazon S3) and configure the bucket as a static website.
 
 In this tutorial we will load three CSV files from https://data.neo4j.com:
 
