@@ -4,19 +4,13 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1EfICJ1T9Ey6jIQP4YlEcLRxGtpJVXx5E?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-This brief tutorial can be followed within a Google Colab which is based on Jupyter notebooks.
-
-Within this tutorial, we'll go through how you create, save, drop and reload a machine learning model.
-
-For more information about the https://neo4j.com/docs/graph-data-science/current/model-catalog/model-catalog/[Model Catalog], head over to the Neo4j Graph Data Science manual
+This tutorial shows how to train, save, publish and drop a machine learning model using the https://neo4j.com/docs/graph-data-science/2.0-preview/model-catalog/[Model Catalog].
 
 include::partial$aurads/setup.adoc[]
 
-== Example graph
+== Create an example graph
 
-We're going to create a graph within the instance to use in-memory and create a model from.
-
-We'll delete this data later on in the tutorial.
+We start by creating some basic graph data first.
 
 [.tabbed-example]
 ====
@@ -112,9 +106,7 @@ with driver.session() as session:
 =====
 ====
 
-== Loading example data into memory
-
-For more information about getting started with the in-memory graph, check out the previous tutorial https://colab.research.google.com/drive/1fkER4UB0yvx_ctTV8PAhl_rPp6kDB0Px#scrollTo=MLW9u-jiTjfR[here]
+We then project an in-memory graph from the data just created.
 
 [.tabbed-example]
 ====
@@ -203,7 +195,7 @@ with driver.session() as session:
 
 == Training a model
 
-We're going to use graphSAGE to train a model. For more examples on how to train with multiple node labels and relationship weights, head over to the https://neo4j.com/docs/graph-data-science/current/algorithms/graph-sage/#algorithms-embeddings-graph-sage-examples[graphSAGE documentation] for more examples
+Machine learning algorithms which support the `train` mode produce trained models which are stored in the Model Catalog. Similarly, `predict` procedures can use such trained models to produce predictions. In this example we train a model for the https://neo4j.com/docs/graph-data-science/2.0-preview/machine-learning/node-embeddings/graph-sage/[GraphSAGE algorithm^] using the `train` mode.
 
 [.tabbed-example]
 ====
@@ -280,13 +272,11 @@ with driver.session() as session:
 
 == Viewing the model catalog
 
-Calling `gds.beta.model.list()` will present information about the models that are currently available in the catalog.
+We can use the https://neo4j.com/docs/graph-data-science/2.0-preview/model-catalog/list/[`gds.beta.model.list`^] procedure to get information on all the models currently available in the catalog. Along with information on the graph schema, the model name, and the training configuration, the result of the call contains the following fields:
 
-We are provided information about the graph schema, the model name, training configuration but also the following pieces of key information:
-
-* Loaded - Flag denoting if the Model is in memory (`true`) or available on disk (`false`)
-* Stored - Flag denoting whether the Model has been persisted to disk
-* Shared - Flag denoting whether the Model has been published, making it accessible to all users
+* `loaded`: flag denoting if the model is in memory (`true`) or available on disk (`false`)
+* `stored`: flag denoting whether the model has been persisted to disk
+* `shared`: flag denoting whether the model has been published, making it accessible to all users
 
 [.tabbed-example]
 ====
@@ -331,9 +321,7 @@ with driver.session() as session:
 
 == Saving a model to disk
 
-Saving models to disk can be useful for a few reasons like making sure we have a copy we can go back to or freeing up space in memory.
-
-To save a model, call the `gds.alpha.model.store` procedure with the name of the model you want to persist.
+The https://neo4j.com/docs/graph-data-science/2.0-preview/model-catalog/store/[`gds.alpha.model.store`^] procedure can be used to persist a model to disk. This is useful both to keep models for later reuse and to free up memory.
 
 [.tabbed-example]
 ====
@@ -375,7 +363,7 @@ with driver.session() as session:
 =====
 ====
 
-If we list the model catalog again, we'll see that the stored flag has been set to `true`
+If we list the model catalog after persisting a model, we can see that the stored flag for that model has been set to `true`.
 
 [.tabbed-example]
 ====
@@ -417,13 +405,17 @@ with driver.session() as session:
 =====
 ====
 
-== Sharing the Model with other instance users
+== Sharing the model
+
+WARNING: SECTION UNDER REVIEW
 
 Allowing multiple users access to analyse and execute either on the same datasets or with the same models is handy.
 
+IMPORTANT: A model can only be shared with other users of the same AuraDS instance.
+
 To do this we need to create another user, more information about the cypher syntax can be found https://neo4j.com/docs/cypher-manual/current/administration/security/users-and-roles/[here]
 
-== Creating another instance user
+=== Creating another instance user
 
 Within an instance we can https://neo4j.com/docs/cypher-manual/current/administration/security/users-and-roles/#administration-security-users-create[create another user] to simulate a colleague that we might want to share the model with.
 
@@ -477,7 +469,7 @@ with driver.session(database='system') as session:
 =====
 ====
 
-== Publishing the model
+=== Publishing the model
 
 To publish the model we need to use https://neo4j.com/docs/graph-data-science/current/model-catalog/model-catalog/#model-catalog-publish-ops[gds.alpha.model.publish] to enable other users to view the model we've created.
 
@@ -526,7 +518,7 @@ with driver.session() as session:
 =====
 ====
 
-== Viewing the model as another user
+=== Viewing the model as another user
 
 Below we'll create a new driver session using the test user credentials.
 
@@ -581,7 +573,7 @@ with test_user_driver.session() as session:
 
 == Cleanup
 
-After going through the tutorial, the in-memory graphs, the data in the Neo4j database, the models and the test user can all be deleted.
+After going through the tutorial, the in-memory graphs, the data in the Neo4j database, the models, and the test user can all be deleted.
 
 [.tabbed-example]
 ====
