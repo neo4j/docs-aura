@@ -24,15 +24,13 @@ The `gds.graph.project` procedure can use a <<_project_using_the_shorthand_synta
 [source, python, subs=attributes+]
 ----
 # Cypher query to create an example graph on disk
-write_example_graph_query = """
-MERGE (a:EngineeringManagement {name: 'Alistair'})
-MERGE (j:EngineeringManagement {name: 'Jennifer'})
-MERGE (d:Developer {name: 'Leila'})
-MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
-MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
-"""
-
-gds.run_cypher(write_example_graph_query)
+gds.run_cypher("""
+  MERGE (a:EngineeringManagement {name: 'Alistair'})
+  MERGE (j:EngineeringManagement {name: 'Jennifer'})
+  MERGE (d:Developer {name: 'Leila'})
+  MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
+  MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
+""")
 ----
 =====
 
@@ -419,14 +417,12 @@ When the projected graphs are dropped, the underlying data on the disk are not d
 =====
 [source, python, subs=attributes+]
 ----
-delete_example_graph_query = """
-MATCH (example)
-WHERE example:EngineeringManagement OR example:Developer
-DETACH DELETE example
-"""
-
 # Delete on-disk data
-gds.run_cypher(delete_example_graph_query)
+gds.run_cypher("""
+  MATCH (example)
+  WHERE example:EngineeringManagement OR example:Developer
+  DETACH DELETE example
+""")
 ----
 =====
 
