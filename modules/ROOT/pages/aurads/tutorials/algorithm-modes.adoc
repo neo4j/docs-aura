@@ -5,17 +5,13 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1-Cc8LcR-vLwmPjMI6_A2qQ1nziwzJwE6?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-This brief tutorial can be followed along within a Google Colab which is based on Jupyter notebooks.
-
-Within this tutorial, we'll teach you about each of the algorithm execution modes, how you take advantage of them and the benefits they can provide.
-
-For more information about the https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos[Execution Modes^], head over to the Neo4j Graph Data Science manual.
+This tutorial explains what the different https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos[execution modes^] of GDS algorithms are and how to use each one of them.
 
 include::partial$aurads/setup.adoc[]
 
-== Creating an example graph
+== Create an example graph
 
-We need to create some graph data first.
+We start by creating some basic graph data first.
 
 [.tabbed-example]
 ====
@@ -23,35 +19,32 @@ We need to create some graph data first.
 =====
 [source, python, subs=attributes+]
 ----
-# Cypher query
-create_example_graph_on_disk_query = """
-CREATE
-  (home:Page {name:'Home'}),
-  (about:Page {name:'About'}),
-  (product:Page {name:'Product'}),
-  (links:Page {name:'Links'}),
-  (a:Page {name:'Site A'}),
-  (b:Page {name:'Site B'}),
-  (c:Page {name:'Site C'}),
-  (d:Page {name:'Site D'}),
+gds.run_cypher("""
+  CREATE
+    (home:Page {name:'Home'}),
+    (about:Page {name:'About'}),
+    (product:Page {name:'Product'}),
+    (links:Page {name:'Links'}),
+    (a:Page {name:'Site A'}),
+    (b:Page {name:'Site B'}),
+    (c:Page {name:'Site C'}),
+    (d:Page {name:'Site D'}),
 
-  (home)-[:LINKS {weight: 0.2}]->(about),
-  (home)-[:LINKS {weight: 0.2}]->(links),
-  (home)-[:LINKS {weight: 0.6}]->(product),
-  (about)-[:LINKS {weight: 1.0}]->(home),
-  (product)-[:LINKS {weight: 1.0}]->(home),
-  (a)-[:LINKS {weight: 1.0}]->(home),
-  (b)-[:LINKS {weight: 1.0}]->(home),
-  (c)-[:LINKS {weight: 1.0}]->(home),
-  (d)-[:LINKS {weight: 1.0}]->(home),
-  (links)-[:LINKS {weight: 0.8}]->(home),
-  (links)-[:LINKS {weight: 0.05}]->(a),
-  (links)-[:LINKS {weight: 0.05}]->(b),
-  (links)-[:LINKS {weight: 0.05}]->(c),
-  (links)-[:LINKS {weight: 0.05}]->(d)
-"""
-
-gds.run_cypher(create_example_graph_on_disk_query)
+    (home)-[:LINKS {weight: 0.2}]->(about),
+    (home)-[:LINKS {weight: 0.2}]->(links),
+    (home)-[:LINKS {weight: 0.6}]->(product),
+    (about)-[:LINKS {weight: 1.0}]->(home),
+    (product)-[:LINKS {weight: 1.0}]->(home),
+    (a)-[:LINKS {weight: 1.0}]->(home),
+    (b)-[:LINKS {weight: 1.0}]->(home),
+    (c)-[:LINKS {weight: 1.0}]->(home),
+    (d)-[:LINKS {weight: 1.0}]->(home),
+    (links)-[:LINKS {weight: 0.8}]->(home),
+    (links)-[:LINKS {weight: 0.05}]->(a),
+    (links)-[:LINKS {weight: 0.05}]->(b),
+    (links)-[:LINKS {weight: 0.05}]->(c),
+    (links)-[:LINKS {weight: 0.05}]->(d)
+""")
 ----
 =====
 
@@ -190,23 +183,20 @@ with driver.session() as session:
 
 == Execution Modes
 
-There are 5 execution modes when running production tier algorithms and each of them also provide a way to estimate or get stats about the data.
+Every production-tier algorithm can be run in four different modes:
 
-* Stats
-* Stream
-* Mutate
-* Write
-* Estimate
+* `stats`
+* `stream`
+* `mutate`
+* `write`
 
-Below we'll show an example code snippet with PageRank to show the first four execution modes, teaching you when to consider using each mode. The Estimate mode is explained in detail in the xref:aurads/tutorials/memory-estimation.adoc[] section.
+An additional `estimate` mode is explained in detail in the xref:aurads/tutorials/memory-estimation.adoc[] section.
+
+In the following we'll use the PageRank algorithm to show the usage of every execution mode.
 
 === Stats
 
-When running an algorithm in stats mode, you’ll be returned a single row containing a summary of the algorithm statistics like counts or percentile distributions.
-
-Running the algorithm in Stats mode does not mutate the in-memory graph so it can be useful for evaluating the algorithm performance.
-
-https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stats[]
+The https://neo4j.com/docs/graph-data-science/2.0-preview/common-usage/running-algos/#running-algos-stats[`stats`^] mode can be useful for evaluating an algorithm performance without mutating the in-memory graph. When running an algorithm in this mode, a single row containing a summary of the algorithm statistics (e.g. counts or percentile distributions) is returned.
 
 [.tabbed-example]
 ====
@@ -273,15 +263,13 @@ with driver.session() as session:
 =====
 ====
 
-The above stats gave us the time it would take to compute the algorithm (`computeMillis`) along with other details like the `centralityDistribution` and our configuration parameters which contain bits like the concurrency.
+The result contains the estimated time to run the algorithm (`computeMillis`) along with other details like the centrality distribution and the configuration parameters.
 
 === Stream
 
-https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stream[Stream] mode will return the results of an algorithm once it has completed. This is similar to how standard Cypher reading queries operate.
+The https://neo4j.com/docs/graph-data-science/2.0-preview/common-usage/running-algos/#running-algos-stream[stream^] mode returns the results of an algorithm once it has completed. This is similar to how standard Cypher reading queries operate.
 
-With our PageRank example, we'll be returned a node ID and the computed PageRank score. If the data is already stored within the instance, you can use the https://neo4j.com/docs/graph-data-science/current/management-ops/utility-functions/#utility-functions-node-path[gds.util.asNode] procedure to get the node from the internal node ID
-
-However, because Algorithms can be long running and the reliability of your internet connections depends on lots of factors, it is advised that you consider the use of Mutate and Write modes instead to persist your results so that you can return to them.
+With the PageRank example, this mode returns a node ID and the computed PageRank score for each node. The https://neo4j.com/docs/graph-data-science/current/management-ops/utility-functions/#utility-functions-node-path[`gds.util.asNode`^] procedure can then be used to find a node from its node ID.
 
 [.tabbed-example]
 ====
@@ -336,15 +324,15 @@ with driver.session() as session:
 =====
 ====
 
+Since an algorithm can run for a long time and the connection may suddenly drop, we suggest to use the `mutate` and `write` modes instead to make sure that the computation completes and the results are saved.
+
 === Mutate
 
-The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-mutate[Mutate] execution mode operates on the in-memory graph and updates it with a new property that can be specified with the mutateProperty configuration. The mutateProperty value must not exist in the in-memory graph beforehand.
+The https://neo4j.com/docs/graph-data-science/2.0-preview/common-usage/running-algos/#running-algos-mutate[`mutate`^] mode operates on the in-memory graph and updates it with a new property specified with the `mutateProperty` configuration parameter. The new property must not already exist in the in-memory graph.
 
-Mutate mode is great for chaining many algorithms together which rely on the results on a previous algorithm.
+This mode is useful when chaining the execution of several algorithms each of which relying on the results on the previous.
 
-In the case of PageRank, we are returned a score for each node.
-
-The example below, will add a new property called pageRankScore to each node in our in-memory graph with the score returned from the algorithm.
+In the case of PageRank, the result of this mode is a score for each node. In this example we add the calculated score to each node of the in-memory graph as the value of a new property called `pageRankScore`.
 
 [.tabbed-example]
 ====
@@ -402,11 +390,11 @@ with driver.session() as session:
 
 === Write
 
-https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-write[Write] mode will write the results of the algorithm computation back to the Neo4j database. This enables you to be able to query the results with Cypher.
+The https://neo4j.com/docs/graph-data-science/2.0-preview/common-usage/running-algos/#running-algos-write[`write`^] mode writes the results of the algorithm computation back to the Neo4j database. The written data can be node properties (such as PageRank scores), new relationships (such as Node Similarity similarities), or relationship properties.
 
-Different algorithms may write different entities (nodes, relationships or properties). For example, PageRank will write node properties, Node Similarity will write new relationships.
+Similarly to the previous example, here we add the calculated score of the PageRank algorithm to each node of the Neo4j database as the value of a new property called `pageRankScore`.
 
-In order for the results from a write mode computation to be used by another algorithm, a new in-memory graph must be created from the Neo4j database.
+TIP: To use the result of a `write` mode computation with another algorithm, a new in-memory graph must be created from the Neo4j database.
 
 [.tabbed-example]
 ====
@@ -462,9 +450,9 @@ with driver.session() as session:
 =====
 ====
 
-== Clean-up the tutorial
+== Cleanup
 
-To drop the example in-memory graph we created previously, you can use the https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[gds.graph.drop] procedure and specify the name of the graph we created (example-graph).
+After going through the tutorial, both the in-memory graphs and the data in the Neo4j database can be deleted.
 
 [.tabbed-example]
 ====
@@ -472,15 +460,13 @@ To drop the example in-memory graph we created previously, you can use the https
 =====
 [source, python, subs=attributes+]
 ----
-delete_example_graph = """
-MATCH (n)
-DETACH DELETE n
-"""
-
 result = gds.graph.drop(g)
 print(json.dumps(result, indent=2, sort_keys=True, default=default))
 
-gds.run_cypher(delete_example_graph)
+gds.run_cypher("""
+  MATCH (n)
+  DETACH DELETE n
+""")
 ----
 =====
 
