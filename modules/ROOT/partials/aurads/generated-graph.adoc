@@ -52,21 +52,21 @@ RETURN *
 ----
 # Cypher query
 create_example_graph_query = """
-CALL gds.beta.graph.generate(
-  'example-graph', 
-  {generated-graph-size}, 
-  3, 
-  {relationshipDistribution: 'POWER_LAW'}
-)
-YIELD name, 
-  nodes, 
-  relationships, 
-  generateMillis, 
-  relationshipSeed, 
-  averageDegree, 
-  relationshipDistribution, 
-  relationshipProperty
-RETURN *
+  CALL gds.beta.graph.generate(
+    'example-graph', 
+    {generated-graph-size}, 
+    3, 
+    {relationshipDistribution: 'POWER_LAW'}
+  )
+  YIELD name, 
+    nodes, 
+    relationships, 
+    generateMillis, 
+    relationshipSeed, 
+    averageDegree, 
+    relationshipDistribution, 
+    relationshipProperty
+  RETURN *
 """
 
 # Create the driver session
