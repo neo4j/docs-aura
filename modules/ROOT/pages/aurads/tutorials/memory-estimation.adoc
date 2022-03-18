@@ -5,9 +5,10 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1C-GNnSFlWmxFGe-AN193jix_srAmb-c_?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-In this tutorial, we will show you how to use the memory estimator for algorithms and how to resize your instance if needed in order to run your desired algorithm.
+This tutorial shows how to:
 
-For more information about https://neo4j.com/docs/graph-data-science/current/common-usage/memory-estimation/[memory estimation] head over to the Neo4j Graph Data Science manual.
+* use the https://neo4j.com/docs/graph-data-science/2.0-preview/common-usage/memory-estimation/[memory estimation^] mode to estimate the memory requirements for an algorithm before running it
+* resize an AuraDS instance to accommodate the algorithm memory requirements
 
 include::partial$aurads/setup.adoc[]
 
@@ -15,15 +16,13 @@ include::partial$aurads/generated-graph.adoc[]
 
 NOTE: The graph is fairly large, so the generation procedure will take a few minutes to complete.
 
-== Estimate
+== Run the estimation mode
 
-It can be useful to get a memory estimation to understand the impact an algorithm will have (running on the in-memory graph you provided given the available compute resources), before running any of the `Stream`, `Mutate` or `Write` execution modes.
+The estimation of the memory requirements of an algorithm on an in-memory graph can be useful to determine whether the current AuraDS instance has enough resources to run the algorithm to completion.
 
-The Graph Data Science does have guard-rails built in, so if an algorithm uses more than the RAM & CPU you have available you will get an exception returned.
+The Graph Data Science has guard rails built in: if an algorithm is estimated to use more RAM or CPU than are available, an exception is raised. In this case, the AuraDS instance can be resized before running the algorithm again.
 
-If you need more RAM & CPU, you can resize your GDS instance within the Neo4j Aura Console under the Settings tab under the instance details.
-
-Below is an example of getting a memory estimation for if we wanted to mutate the in-memory graph with the results of PageRank. The estimated required memory is between 381 MiB and 4477 MiB, which is higher than an 8GB instance has available (4004 MiB).
+In the following example we get a memory estimation for the PageRank algorithm to run on the generated graph. The estimated memory is between 381 MiB and 4477 MiB, which is higher than an 8GB instance has available (4004 MiB).
 
 [.tabbed-example]
 ====
@@ -64,22 +63,23 @@ RETURN *
 ----
 # Cypher query
 page_rank_mutate_estimate_example_graph_query = """
-CALL gds.labelPropagation.mutate.estimate(
-  'example-graph',
-  {mutateProperty: 'communityID'}
-)
-YIELD nodeCount,
-  relationshipCount,
-  bytesMin,
-  bytesMax,
-  requiredMemory
-RETURN *
+  CALL gds.labelPropagation.mutate.estimate(
+    'example-graph',
+    {mutateProperty: 'communityID'}
+  )
+  YIELD nodeCount,
+    relationshipCount,
+    bytesMin,
+    bytesMax,
+    requiredMemory
+  RETURN *
 """
 
 # Create the driver session
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_mutate_estimate_example_graph_query).data()
+
   # Prettify the first result
   print(json.dumps(results[0], indent=2, sort_keys=True))
 ----
@@ -133,36 +133,39 @@ RETURN *
 
 # Cypher query
 page_rank_mutate_example_graph_query = """
-CALL gds.labelPropagation.mutate(
-  'example-graph', 
-  {mutateProperty: 'communityID'}
-)
-YIELD preProcessingMillis,
-  computeMillis,
-  mutateMillis,
-  postProcessingMillis,
-  nodePropertiesWritten,
-  communityCount,
-  ranIterations,
-  didConverge,
-  communityDistribution,
-  configuration
-RETURN *
+  CALL gds.labelPropagation.mutate(
+    'example-graph', 
+    {mutateProperty: 'communityID'}
+  )
+  YIELD preProcessingMillis,
+    computeMillis,
+    mutateMillis,
+    postProcessingMillis,
+    nodePropertiesWritten,
+    communityCount,
+    ranIterations,
+    didConverge,
+    communityDistribution,
+    configuration
+  RETURN *
 """
 
 # Create the driver session
 with driver.session() as session:
   # Run query
   results = session.run(page_rank_mutate_example_graph_query).data()
+
   # Prettify the first result
   print(json.dumps(results[0], indent=2, sort_keys=True))
 ----
 =====
 ====
 
-== Resizing your instance
+== Resize the AuraDS instance
 
-Resizing your instance will incur a short amount of downtime.
+Resizing an AuraDS instance incurs a short amount of downtime.
+
+WARNING: Review pending changes in UI. Try to remove screenshots.
 
 Click the name of your instance on the home to get to the instance details.
 
@@ -174,9 +177,9 @@ image::resize2.png[title="Resize 2"]
 
 After resizing is complete, wait a few seconds until the projected graph is loaded again and run again the `mutate` step. This time no exception is thrown and the step completes successfully.
 
-== Clean-up the tutorial
+== Cleanup
 
-To drop the example in-memory graph we created previously, you can use the https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[gds.graph.drop] procedure and specify the name of the graph we created (example-graph).
+After going through the tutorial, both the in-memory graphs and the data in the Neo4j database can be deleted.
 
 [.tabbed-example]
 ====
@@ -203,7 +206,7 @@ CALL gds.graph.drop('example-graph')
 [source, python, subs=attributes+]
 ----
 delete_example_in_memory_graph_query = """
-CALL gds.graph.drop('example-graph')
+  CALL gds.graph.drop('example-graph')
 """
 
 with driver.session() as session:
