@@ -48,7 +48,7 @@ def run_label_prop():
 
   print(json.dumps(result, indent=2, sort_keys=True))
 
-# Method to get and pretty-print the algorithm progress
+# Method to get and pretty-print the algorithm progress
 def run_list_progress():
   result = gds.beta.listProgress()
 
@@ -189,11 +189,9 @@ label_prop_query_thread.join()
 =====
 ====
 
-== Clean-up the tutorial
+== Cleanup
 
-To drop the example in-memory graph we created previously, you can use the `gds.graph.drop` procedure and specify the name of the graph we created (example-graph).
-
-https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[]
+The in-memory graph can now be deleted.
 
 [.tabbed-example]
 ====
