@@ -12,9 +12,9 @@ There are four main components that make up the architecture.
 
 The Neo4j Database is the heart of the AuraDS instance, where graph data are loaded and stored. Cypher queries and all database operations (e.g. user management, query termination, etc.) are executed here.
 
-=== Graph Data Science Library
+=== Graph Data Science
 
-The Graph Data Science (GDS) Library is a software component installed in the Neo4j Database, whose main purpose is to run graph algorithms on projected in-memory graphs. The library includes procedures to create and manage in-memory graphs and trained models.
+The Graph Data Science (GDS) is a software component installed in the Neo4j Database, whose main purpose is to run graph algorithms on projected in-memory graphs. The library includes procedures to create and manage in-memory graphs and trained models.
 
 ==== Algorithms
 
