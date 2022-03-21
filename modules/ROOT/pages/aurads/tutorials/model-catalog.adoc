@@ -1,6 +1,7 @@
 [[model-catalog]]
 = Persisting and sharing machine learning models
 :description: This page describes how to use the model catalog.
+:leading-underscore: _
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1EfICJ1T9Ey6jIQP4YlEcLRxGtpJVXx5E?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
@@ -193,7 +194,7 @@ with driver.session() as session:
 =====
 ====
 
-== Training a model
+== Train a model
 
 Machine learning algorithms which support the `train` mode produce trained models which are stored in the Model Catalog. Similarly, `predict` procedures can use such trained models to produce predictions. In this example we train a model for the https://neo4j.com/docs/graph-data-science/2.0-preview/machine-learning/node-embeddings/graph-sage/[GraphSAGE algorithm^] using the `train` mode.
 
@@ -270,7 +271,7 @@ with driver.session() as session:
 =====
 ====
 
-== Viewing the model catalog
+== View the model catalog
 
 We can use the https://neo4j.com/docs/graph-data-science/2.0-preview/model-catalog/list/[`gds.beta.model.list`^] procedure to get information on all the models currently available in the catalog. Along with information on the graph schema, the model name, and the training configuration, the result of the call contains the following fields:
 
@@ -319,7 +320,7 @@ with driver.session() as session:
 =====
 ====
 
-== Saving a model to disk
+== Save a model to disk
 
 The https://neo4j.com/docs/graph-data-science/2.0-preview/model-catalog/store/[`gds.alpha.model.store`^] procedure can be used to persist a model to disk. This is useful both to keep models for later reuse and to free up memory.
 
@@ -405,19 +406,15 @@ with driver.session() as session:
 =====
 ====
 
-== Sharing the model
+== Share a model with other users
 
-WARNING: SECTION UNDER REVIEW
-
-Allowing multiple users access to analyse and execute either on the same datasets or with the same models is handy.
+After a model has been created, it can be useful to make it available to other users for different use cases.
 
 IMPORTANT: A model can only be shared with other users of the same AuraDS instance.
 
-To do this we need to create another user, more information about the cypher syntax can be found https://neo4j.com/docs/cypher-manual/current/administration/security/users-and-roles/[here]
+=== Create a new user
 
-=== Creating another instance user
-
-Within an instance we can https://neo4j.com/docs/cypher-manual/current/administration/security/users-and-roles/#administration-security-users-create[create another user] to simulate a colleague that we might want to share the model with.
+In order to see how this works in practice on AuraDS, we first of all need to https://neo4j.com/docs/cypher-manual/current/administration/security/users-and-roles/[create another user] to share the model with.
 
 [.tabbed-example]
 ====
@@ -469,11 +466,9 @@ with driver.session(database='system') as session:
 =====
 ====
 
-=== Publishing the model
+=== Publish the model
 
-To publish the model we need to use https://neo4j.com/docs/graph-data-science/current/model-catalog/model-catalog/#model-catalog-publish-ops[gds.alpha.model.publish] to enable other users to view the model we've created.
-
-When we publish a model, the model's name is appended with `\_public` at the end.
+A model can be _published_ (i.e. made accessible to other users) using the https://neo4j.com/docs/graph-data-science/2.0-preview/model-catalog/publish/[gds.alpha.model.publish] procedure. Upon publication, the model name is updated by appending `{leading-underscore}public` to its original name.
 
 [.tabbed-example]
 ====
@@ -518,11 +513,9 @@ with driver.session() as session:
 =====
 ====
 
-=== Viewing the model as another user
+=== View the model as a different user
 
-Below we'll create a new driver session using the test user credentials.
-
-We'll then list the model catalog and see that we have access to the model that we published with the other user.
+In order to verify that the published model is visible to the user we have just created, we need to create a new client (or driver) session. We can then use it to run the `gds.beta.model.list` procedure again under the new user and verify that the model is included in the list.
 
 [.tabbed-example]
 ====
