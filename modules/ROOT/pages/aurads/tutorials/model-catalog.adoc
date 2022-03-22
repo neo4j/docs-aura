@@ -468,7 +468,7 @@ with driver.session(database='system') as session:
 
 === Publish the model
 
-A model can be _published_ (i.e. made accessible to other users) using the https://neo4j.com/docs/graph-data-science/2.0-preview/model-catalog/publish/[gds.alpha.model.publish] procedure. Upon publication, the model name is updated by appending `{leading-underscore}public` to its original name.
+A model can be _published_ (made accessible to other users) using the https://neo4j.com/docs/graph-data-science/2.0-preview/model-catalog/publish/[gds.alpha.model.publish] procedure. Upon publication, the model name is updated by appending `{leading-underscore}public` to its original name.
 
 [.tabbed-example]
 ====

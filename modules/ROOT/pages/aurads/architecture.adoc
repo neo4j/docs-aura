@@ -10,7 +10,7 @@ There are four main components that make up the architecture.
 
 === Neo4j Database
 
-The Neo4j Database is the heart of the AuraDS instance, where graph data are loaded and stored. Cypher queries and all database operations (e.g. user management, query termination, etc.) are executed here.
+The Neo4j Database is the heart of the AuraDS instance, where graph data are loaded and stored. Cypher queries and all database operations (for example user management, query termination, etc.) are executed here.
 
 === Graph Data Science
 
@@ -34,7 +34,7 @@ The graph catalog is used to store and manage in-memory graphs via GDS Library p
 
 === Model Catalog
 
-Some graph algorithms (e.g. GraphSage) need to use trained models in their computation. The model catalog is used to store and manage named trained models.
+Some graph algorithms (for example GraphSage) need to use trained models in their computation. The model catalog is used to store and manage named trained models.
 
 == Graph data flow
 

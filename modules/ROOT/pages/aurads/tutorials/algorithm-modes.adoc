@@ -196,7 +196,7 @@ In the following we'll use the PageRank algorithm to show the usage of every exe
 
 === Stats
 
-The https://neo4j.com/docs/graph-data-science/2.0-preview/common-usage/running-algos/#running-algos-stats[`stats`^] mode can be useful for evaluating an algorithm performance without mutating the in-memory graph. When running an algorithm in this mode, a single row containing a summary of the algorithm statistics (e.g. counts or percentile distributions) is returned.
+The https://neo4j.com/docs/graph-data-science/2.0-preview/common-usage/running-algos/#running-algos-stats[`stats`^] mode can be useful for evaluating an algorithm performance without mutating the in-memory graph. When running an algorithm in this mode, a single row containing a summary of the algorithm statistics (for example, counts or percentile distributions) is returned.
 
 [.tabbed-example]
 ====
