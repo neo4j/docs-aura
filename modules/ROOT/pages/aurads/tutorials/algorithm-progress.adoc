@@ -5,27 +5,15 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1wCign36IRzxQacjD9vL7wkpBNjZDGace?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-WARNING: PAGE UNDER REVIEW
-
-This brief tutorial can be followed within a Google Colab which is based on Jupyter notebooks.
-
-Running algorithms on large graphs can be computationally expensive. As part of your workflow, you may want to chain algorithms together, inspect the progress of each step and potentially export the results to other systems or workflows.
-
-Understanding when an algorithm has completed is especially useful in the above application.
-
-In this tutorial, you will be shown how to use and interpret the `gds.beta.listProgress()` procedure, along with integrating it as part of your workflow.
-
-For more information about https://neo4j.com/docs/graph-data-science/current/common-usage/logging/#logging-progress-logging[Progress Logging] head over to the Neo4j Graph Data Science manual.
+Running algorithms on large graphs can be computationally expensive. This tutorial shows how to use the https://neo4j.com/docs/graph-data-science/current/common-usage/logging/#logging-progress-logging[`gds.beta.listProgress`^] procedure to monitor the progress of an algorithm, both to get an idea of the processing speed and to determine when the computation is completed.
 
 include::partial$aurads/setup.adoc[]
 
 include::partial$aurads/generated-graph.adoc[]
 
-== Checking progress Long running algorithms
+== Check the progress of a long-running algorithm
 
-We will need to start a long running algorithm that will take a little while to converge. For our example we'll try `Label Propagation` which will take some time.
-
-In order to be able to start a long running query and inspect the progress we will use threading in this example.
+We need to run an algorithm that takes some time to converge. In this example we use the `Label Propagation` algorithm, which we start in a separate thread so that we can check its progress in the same Python process.
 
 [.tabbed-example]
 ====
