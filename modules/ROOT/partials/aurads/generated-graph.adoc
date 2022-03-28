@@ -13,10 +13,10 @@ An easy way to create an in-memory graph is through the GDS https://neo4j.com/do
 # Run the graph generation algorithm and retrieve the corresponding 
 # graph object and call result metadata
 g, result = gds.beta.graph.generate(
-  "example-graph", 
-  {generated-graph-size}, 
-  3, 
-  relationshipDistribution="POWER_LAW"
+    "example-graph", 
+    {generated-graph-size}, 
+    3, 
+    relationshipDistribution="POWER_LAW"
 )
 
 # Pretty-print the metadata
@@ -52,30 +52,30 @@ RETURN *
 ----
 # Cypher query
 create_example_graph_query = """
-  CALL gds.beta.graph.generate(
-    'example-graph', 
-    {generated-graph-size}, 
-    3, 
-    {relationshipDistribution: 'POWER_LAW'}
-  )
-  YIELD name, 
-    nodes, 
-    relationships, 
-    generateMillis, 
-    relationshipSeed, 
-    averageDegree, 
-    relationshipDistribution, 
-    relationshipProperty
-  RETURN *
+    CALL gds.beta.graph.generate(
+      'example-graph', 
+      {generated-graph-size}, 
+      3, 
+      {relationshipDistribution: 'POWER_LAW'}
+    )
+    YIELD name, 
+      nodes, 
+      relationships, 
+      generateMillis, 
+      relationshipSeed, 
+      averageDegree, 
+      relationshipDistribution, 
+      relationshipProperty
+    RETURN *
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  result = session.run(create_example_graph_query).data()
+    # Run query
+    result = session.run(create_example_graph_query).data()
 
-  # Prettify the first result
-  print(json.dumps(result[0], indent=2, sort_keys=True, default=default))
+    # Prettify the first result
+    print(json.dumps(result[0], indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
