@@ -4,7 +4,7 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1o_71IwikMvZcg5_B69pTK6rrMLpi-hl_?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-This tutorial shows how to interact with AuraDS using the https://neo4j.com/docs/graph-data-science/2.0-preview/python-client/[Graph Data Science (GDS) client] or the https://neo4j.com/docs/driver-manual/current/get-started[Python Driver]. In the following sections you can switch between client and driver code clicking on the appropriate tab.
+This tutorial shows how to interact with AuraDS using the https://neo4j.com/docs/graph-data-science/current/python-client/[Graph Data Science (GDS) client^] or the https://neo4j.com/docs/driver-manual/current/get-started[Python Driver^]. In the following sections you can switch between client and driver code clicking on the appropriate tab.
 
 A running AuraDS instance must be available along with access credentials (generated in the xref:aurads/create-instance.adoc[] section) and its connection URI (found in the instance detail page, starting with `neo4j+s://`).
 
@@ -197,7 +197,7 @@ driver.close()
 
 === Documentation
 * https://neo4j.com/docs/graph-data-science[Neo4j GDS documentation^]
-* https://neo4j.com/docs/driver-manual/current/get-started/[Neo4j driver documentation^]
+* https://neo4j.com/docs/drivers-apis/[Neo4j driver documentation^]
 * https://neo4j.com/developer[Neo4j developer documentation^]
 
 === Cypher
