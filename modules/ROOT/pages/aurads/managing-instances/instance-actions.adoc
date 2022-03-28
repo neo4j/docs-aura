@@ -1,29 +1,32 @@
-[[aurads-instance-settings]]
-= Instance settings
-:description: This page describes how to resize, clone, pause, resume, and delete an AuraDS instance.
+[[aurads-instance-actions]]
+= Instance actions
+:description: This page describes the available actions for an AuraDS instance.
 
-WARNING: This page may be deleted pending UI changes.
+You can perform several actions from an AuraDB instance card on the https://console.neo4j.io/[Neo4j Aura Console^] homepage.
 
-The *SETTINGS* tab within an AuraDS instance shows a list of administrative instance options.
+== Renaming an instance
 
-To access the *SETTINGS* tab:
+You can change the name of an existing instance by using the *Rename* action.
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
-. Select the name of the instance you want to access.
-. Select the *SETTINGS* tab.
+To rename an instance:
+
+* Select the ellipsis (*...*) button on the database you want to rename.
+* Select *Rename* from the resulting menu.
+* Enter a new name for the instance.
+* Select *Rename*.
 
 == Resizing an instance
 
-You can change the size of an existing instance by using the *Resize* option.
+You can change the size of an existing instance by using the *Resize* action.
 
 To resize an instance:
 
-. Navigate to the *SETTINGS* tab of the instance you want to resize.
-. Select *Resize* below *Instance Capacity*.
+. Select the ellipsis (...) on the instance you want to resize.
+. Select *Resize* from the resulting menu.
 . Select the new size you want your instance to be.
 . Tick the *I understand* checkbox and select *Submit*.
 
-An instance remains available during the resize operation.
+An instance becomes unavailable for a short period of time during the resize operation.
 
 == Pausing an instance
 
