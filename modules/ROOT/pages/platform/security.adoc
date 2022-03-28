@@ -16,6 +16,37 @@ The VPC enables you to operate within an isolated section of the service, where 
 
 Please note that the Aura console runs in a separate VPC.
 
+== Single Sign-On
+
+label:Enterprise-only[]
+
+AuraDB Enterprise supports Single Sign-On (SSO) for accessing the Bloom and Browser clients from a database.
+
+The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are currently supported:
+
+* Microsoft Azure Active Directory (AAD)
+* Okta
+* Keycloak
+* Google Authentication
+
+[NOTE]
+====
+Aura supports both Authorization Code Flow with PKCE and Implicit Flow authorization flows.
+We strongly advise using PKCE to ensure security. 
+====
+
+To add SSO for Browser and Bloom to your AuraDB Enterprise databases, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket] including the following information:
+
+. The *Connection URI* of the database(s) you want to use SSO.
+. Whether or not you want Browser, Bloom, or both enabled.
+. The name of your IdP.
+. The authorization flow (PKCE or Implicit).
+
+[NOTE]
+====
+If you have to specify an application type when configuring your client, Neo4j is a Single-page application.
+For more information on configuring your client, see https://neo4j.com/docs/operations-manual/current/tutorial/tutorial-sso-configuration/[Neo4j Single Sign-On (SSO) Configuration].
+====
 
 == Supported TLS cipher suites
 
