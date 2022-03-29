@@ -5,7 +5,6 @@
 
 All data stored in Neo4j AuraDB is encrypted using intra-cluster encryption between the various nodes comprising your database, as well as encrypted-at-rest using the underlying cloud provider's encryption mechanism.
 
-
 == VPC isolation
 
 label:Enterprise-only[]
@@ -15,6 +14,28 @@ AuraDB Enterprise runs within a Virtual Private Cloud (VPC) isolation for your d
 The VPC enables you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
 
 Please note that the Aura console runs in a separate VPC.
+
+=== Private endpoints
+
+AuraDB Enterprise supports private endpoints on AWS using https://aws.amazon.com/privatelink[AWS PrivateLink].
+
+Once activated, you can create an endpoint in your VPC that connects to Aura.
+
+image::private-link.png[title="VPC connectivity with AWS PrivateLink"]
+
+All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet. 
+You can then disable public traffic, ensuring all traffic to the database remains private to your VPC.
+
+[NOTE]
+====
+* When activated, PrivateLink applies to all databases in the region.
+* If you disable public traffic, you must use a dedicated VPN to connect to your database via Browser or Bloom.
+====
+
+To enable private endpoints using AWS PrivateLink, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket], and we'll be in touch.
+
+You will need an AWS account with permissions to create, modify, describe and delete endpoints. 
+Please see the https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.html[AWS Documentation] for more information.
 
 == Single Sign-On
 
