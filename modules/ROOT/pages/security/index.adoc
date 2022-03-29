@@ -34,6 +34,9 @@ You can then disable public traffic, ensuring all traffic to the database remain
 
 To enable private endpoints using AWS PrivateLink, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket], and we'll be in touch.
 
+You will need an AWS account with permissions to create, modify, describe and delete endpoints. 
+Please see the https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.html[AWS Documentation] for more information.
+
 == Single Sign-On
 
 label:Enterprise-only[]
