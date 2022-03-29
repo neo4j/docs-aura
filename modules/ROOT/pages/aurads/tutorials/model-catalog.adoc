@@ -20,13 +20,13 @@ We start by creating some basic graph data first.
 [source, python, subs=attributes+]
 ----
 gds.run_cypher("""
-    MERGE ( dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
-    MERGE ( annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
-    MERGE ( matt:Person:ExampleData  {name: 'Matt',  age: 67, heightAndWeight: [170, 80]})
-    MERGE ( jeff:Person:ExampleData  {name: 'Jeff',  age: 45, heightAndWeight: [192, 85]})
-    MERGE ( brie:Person:ExampleData  {name: 'Brie',  age: 27, heightAndWeight: [176, 57]})
-    MERGE ( elsa:Person:ExampleData  {name: 'Elsa',  age: 32, heightAndWeight: [158, 55]})
-    MERGE ( john:Person:ExampleData  {name: 'John',  age: 35, heightAndWeight: [172, 76]})
+    MERGE (dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
+    MERGE (annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
+    MERGE (matt:Person:ExampleData  {name: 'Matt',  age: 67, heightAndWeight: [170, 80]})
+    MERGE (jeff:Person:ExampleData  {name: 'Jeff',  age: 45, heightAndWeight: [192, 85]})
+    MERGE (brie:Person:ExampleData  {name: 'Brie',  age: 27, heightAndWeight: [176, 57]})
+    MERGE (elsa:Person:ExampleData  {name: 'Elsa',  age: 32, heightAndWeight: [158, 55]})
+    MERGE (john:Person:ExampleData  {name: 'John',  age: 35, heightAndWeight: [172, 76]})
 
     MERGE (dan)-[:KNOWS {relWeight: 1.0}]->(annie)
     MERGE (dan)-[:KNOWS {relWeight: 1.6}]->(matt)
@@ -47,13 +47,13 @@ gds.run_cypher("""
 =====
 [source, cypher, subs=attributes+]
 ----
-MERGE ( dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
-MERGE ( annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
-MERGE ( matt:Person:ExampleData  {name: 'Matt',  age: 67, heightAndWeight: [170, 80]})
-MERGE ( jeff:Person:ExampleData  {name: 'Jeff',  age: 45, heightAndWeight: [192, 85]})
-MERGE ( brie:Person:ExampleData  {name: 'Brie',  age: 27, heightAndWeight: [176, 57]})
-MERGE ( elsa:Person:ExampleData  {name: 'Elsa',  age: 32, heightAndWeight: [158, 55]})
-MERGE ( john:Person:ExampleData  {name: 'John',  age: 35, heightAndWeight: [172, 76]})
+MERGE (dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
+MERGE (annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
+MERGE (matt:Person:ExampleData  {name: 'Matt',  age: 67, heightAndWeight: [170, 80]})
+MERGE (jeff:Person:ExampleData  {name: 'Jeff',  age: 45, heightAndWeight: [192, 85]})
+MERGE (brie:Person:ExampleData  {name: 'Brie',  age: 27, heightAndWeight: [176, 57]})
+MERGE (elsa:Person:ExampleData  {name: 'Elsa',  age: 32, heightAndWeight: [158, 55]})
+MERGE (john:Person:ExampleData  {name: 'John',  age: 35, heightAndWeight: [172, 76]})
 
 MERGE (dan)-[:KNOWS {relWeight: 1.0}]->(annie)
 MERGE (dan)-[:KNOWS {relWeight: 1.6}]->(matt)
@@ -75,13 +75,13 @@ RETURN True AS exampleDataCreated
 ----
 # Cypher query
 create_example_graph_on_disk_query = """
-    MERGE ( dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
-    MERGE ( annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
-    MERGE ( matt:Person:ExampleData  {name: 'Matt',  age: 67, heightAndWeight: [170, 80]})
-    MERGE ( jeff:Person:ExampleData  {name: 'Jeff',  age: 45, heightAndWeight: [192, 85]})
-    MERGE ( brie:Person:ExampleData  {name: 'Brie',  age: 27, heightAndWeight: [176, 57]})
-    MERGE ( elsa:Person:ExampleData  {name: 'Elsa',  age: 32, heightAndWeight: [158, 55]})
-    MERGE ( john:Person:ExampleData  {name: 'John',  age: 35, heightAndWeight: [172, 76]})
+    MERGE (dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
+    MERGE (annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
+    MERGE (matt:Person:ExampleData  {name: 'Matt',  age: 67, heightAndWeight: [170, 80]})
+    MERGE (jeff:Person:ExampleData  {name: 'Jeff',  age: 45, heightAndWeight: [192, 85]})
+    MERGE (brie:Person:ExampleData  {name: 'Brie',  age: 27, heightAndWeight: [176, 57]})
+    MERGE (elsa:Person:ExampleData  {name: 'Elsa',  age: 32, heightAndWeight: [158, 55]})
+    MERGE (john:Person:ExampleData  {name: 'John',  age: 35, heightAndWeight: [172, 76]})
 
     MERGE (dan)-[:KNOWS {relWeight: 1.0}]->(annie)
     MERGE (dan)-[:KNOWS {relWeight: 1.6}]->(matt)
