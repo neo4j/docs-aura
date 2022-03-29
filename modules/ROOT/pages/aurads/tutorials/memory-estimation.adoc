@@ -16,7 +16,7 @@ include::partial$aurads/generated-graph.adoc[]
 
 NOTE: The graph is fairly large, so the generation procedure will take a few minutes to complete.
 
-== Run the estimation mode
+== Run the `estimate` mode
 
 The estimation of the memory requirements of an algorithm on an in-memory graph can be useful to determine whether the current AuraDS instance has enough resources to run the algorithm to completion.
 
@@ -31,12 +31,11 @@ In the following example we get a memory estimation for the PageRank algorithm t
 [source, python, subs=attributes+]
 ----
 result = gds.labelPropagation.mutate.estimate(
-  g,
-  mutateProperty="communityID"
+    g,
+    mutateProperty="communityID"
 )
 
-# Print prettified estimation information
-print(json.dumps(result, indent=2, sort_keys=True))
+print(result)
 ----
 =====
 
@@ -63,25 +62,25 @@ RETURN *
 ----
 # Cypher query
 page_rank_mutate_estimate_example_graph_query = """
-  CALL gds.labelPropagation.mutate.estimate(
-    'example-graph',
-    {mutateProperty: 'communityID'}
-  )
-  YIELD nodeCount,
-    relationshipCount,
-    bytesMin,
-    bytesMax,
-    requiredMemory
-  RETURN *
+    CALL gds.labelPropagation.mutate.estimate(
+      'example-graph',
+      {mutateProperty: 'communityID'}
+    )
+    YIELD nodeCount,
+      relationshipCount,
+      bytesMin,
+      bytesMax,
+      requiredMemory
+    RETURN *
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  results = session.run(page_rank_mutate_estimate_example_graph_query).data()
+    # Run query
+    results = session.run(page_rank_mutate_estimate_example_graph_query).data()
 
-  # Prettify the first result
-  print(json.dumps(results[0], indent=2, sort_keys=True))
+    # Prettify the first result
+    print(json.dumps(results[0], indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -95,11 +94,11 @@ The `mutate` procedure hits the guard rails on an 8GB instance, raising an excep
 [source, python, subs=attributes+]
 ----
 result = gds.labelPropagation.mutate(
-  g,
-  mutateProperty="communityID"
+    g,
+    mutateProperty="communityID"
 )
 
-print(json.dumps(result, indent=2, sort_keys=True))
+print(result)
 ----
 =====
 
@@ -133,53 +132,45 @@ RETURN *
 
 # Cypher query
 page_rank_mutate_example_graph_query = """
-  CALL gds.labelPropagation.mutate(
-    'example-graph', 
-    {mutateProperty: 'communityID'}
-  )
-  YIELD preProcessingMillis,
-    computeMillis,
-    mutateMillis,
-    postProcessingMillis,
-    nodePropertiesWritten,
-    communityCount,
-    ranIterations,
-    didConverge,
-    communityDistribution,
-    configuration
-  RETURN *
+    CALL gds.labelPropagation.mutate(
+      'example-graph', 
+      {mutateProperty: 'communityID'}
+    )
+    YIELD preProcessingMillis,
+      computeMillis,
+      mutateMillis,
+      postProcessingMillis,
+      nodePropertiesWritten,
+      communityCount,
+      ranIterations,
+      didConverge,
+      communityDistribution,
+      configuration
+    RETURN *
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  results = session.run(page_rank_mutate_example_graph_query).data()
+    # Run query
+    results = session.run(page_rank_mutate_example_graph_query).data()
 
-  # Prettify the first result
-  print(json.dumps(results[0], indent=2, sort_keys=True))
+    # Prettify the first result
+    print(json.dumps(results[0], indent=2, sort_keys=True))
 ----
 =====
 ====
 
 == Resize the AuraDS instance
 
-Resizing an AuraDS instance incurs a short amount of downtime.
+You will need to resize the instance to the next available size (16GB) in order to continue with the tutorial. An AuraDS instance can be resized from the instance card on the https://console.neo4j.io/[Neo4j Aura Console^] homepage. For more information, check the xref:aurads/managing-instances/instance-actions#_resizing_an_instance[Instance actions] section.
 
-WARNING: Review pending changes in UI. Try to remove screenshots.
+NOTE: Resizing an AuraDS instance incurs a short amount of downtime.
 
-Click the name of your instance on the home to get to the instance details.
-
-image::resize1.png[title="Resize 1"]
-
-Under the settings tab, after clicking the resize option you can select a new instance size which matches the required memory needed given by the previous estimation.
-
-image::resize2.png[title="Resize 2"]
-
-After resizing is complete, wait a few seconds until the projected graph is loaded again and run again the `mutate` step. This time no exception is thrown and the step completes successfully.
+After resizing, wait a few seconds until the projected graph is reloaded, then run the `mutate` step again. This time no exception is thrown and the step completes successfully.
 
 == Cleanup
 
-After going through the tutorial, both the in-memory graphs and the data in the Neo4j database can be deleted.
+After completing the tutorial, both the in-memory graphs and the data in the Neo4j database can be deleted.
 
 [.tabbed-example]
 ====
@@ -189,7 +180,7 @@ After going through the tutorial, both the in-memory graphs and the data in the 
 ----
 result = gds.graph.drop(g)
 
-print(json.dumps(result, indent=2, sort_keys=True, default=default))
+print(result)
 ----
 =====
 
@@ -206,15 +197,15 @@ CALL gds.graph.drop('example-graph')
 [source, python, subs=attributes+]
 ----
 delete_example_in_memory_graph_query = """
-  CALL gds.graph.drop('example-graph')
+    CALL gds.graph.drop('example-graph')
 """
 
 with driver.session() as session:
-  # Run query
-  results = session.run(delete_example_in_memory_graph_query).data()
+    # Run query
+    results = session.run(delete_example_in_memory_graph_query).data()
 
-  # Prettify the results
-  print(json.dumps(results, indent=2, sort_keys=True))
+    # Prettify the results
+    print(json.dumps(results, indent=2, sort_keys=True))
 ----
 =====
 ====

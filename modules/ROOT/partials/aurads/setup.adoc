@@ -30,11 +30,12 @@ gds = GraphDataScience(
 )
 ----
 
+In the following code examples we will use the `print` function to print Pandas `DataFrame` and `Series` objects. You can try different ways to print a Pandas object, for instance via the `to_string` and `to_json` methods (like in the xref:aurads/connecting/python.adoc#_running_a_query[Python connection] examples). 
+
+If you use a JSON representation, in some cases you may need to include a default handler to handle Neo4j `DateTime` objects. For example:
+
 [source, python]
 ----
-# Import to prettify results
-import json
-
 # Import for the JSON helper function
 from neo4j.time import DateTime
 
@@ -42,6 +43,9 @@ from neo4j.time import DateTime
 def default(o):
     if isinstance(o, (DateTime)):
         return o.isoformat()
+
+result = ...
+print(result.to_json(default_handler=default))
 ----
 =====
 

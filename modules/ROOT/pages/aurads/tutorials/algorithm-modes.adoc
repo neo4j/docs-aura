@@ -5,7 +5,7 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1-Cc8LcR-vLwmPjMI6_A2qQ1nziwzJwE6?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-This tutorial explains what the different https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos[execution modes^] of GDS algorithms are and how to use each one of them.
+This tutorial explains https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos[execution modes^] for GDS algorithms and how to use each one of them.
 
 include::partial$aurads/setup.adoc[]
 
@@ -20,30 +20,30 @@ We start by creating some basic graph data first.
 [source, python, subs=attributes+]
 ----
 gds.run_cypher("""
-  CREATE
-    (home:Page {name:'Home'}),
-    (about:Page {name:'About'}),
-    (product:Page {name:'Product'}),
-    (links:Page {name:'Links'}),
-    (a:Page {name:'Site A'}),
-    (b:Page {name:'Site B'}),
-    (c:Page {name:'Site C'}),
-    (d:Page {name:'Site D'}),
+    CREATE
+      (home:Page {name:'Home'}),
+      (about:Page {name:'About'}),
+      (product:Page {name:'Product'}),
+      (links:Page {name:'Links'}),
+      (a:Page {name:'Site A'}),
+      (b:Page {name:'Site B'}),
+      (c:Page {name:'Site C'}),
+      (d:Page {name:'Site D'}),
 
-    (home)-[:LINKS {weight: 0.2}]->(about),
-    (home)-[:LINKS {weight: 0.2}]->(links),
-    (home)-[:LINKS {weight: 0.6}]->(product),
-    (about)-[:LINKS {weight: 1.0}]->(home),
-    (product)-[:LINKS {weight: 1.0}]->(home),
-    (a)-[:LINKS {weight: 1.0}]->(home),
-    (b)-[:LINKS {weight: 1.0}]->(home),
-    (c)-[:LINKS {weight: 1.0}]->(home),
-    (d)-[:LINKS {weight: 1.0}]->(home),
-    (links)-[:LINKS {weight: 0.8}]->(home),
-    (links)-[:LINKS {weight: 0.05}]->(a),
-    (links)-[:LINKS {weight: 0.05}]->(b),
-    (links)-[:LINKS {weight: 0.05}]->(c),
-    (links)-[:LINKS {weight: 0.05}]->(d)
+      (home)-[:LINKS {weight: 0.2}]->(about),
+      (home)-[:LINKS {weight: 0.2}]->(links),
+      (home)-[:LINKS {weight: 0.6}]->(product),
+      (about)-[:LINKS {weight: 1.0}]->(home),
+      (product)-[:LINKS {weight: 1.0}]->(home),
+      (a)-[:LINKS {weight: 1.0}]->(home),
+      (b)-[:LINKS {weight: 1.0}]->(home),
+      (c)-[:LINKS {weight: 1.0}]->(home),
+      (d)-[:LINKS {weight: 1.0}]->(home),
+      (links)-[:LINKS {weight: 0.8}]->(home),
+      (links)-[:LINKS {weight: 0.05}]->(a),
+      (links)-[:LINKS {weight: 0.05}]->(b),
+      (links)-[:LINKS {weight: 0.05}]->(c),
+      (links)-[:LINKS {weight: 0.05}]->(d)
 """)
 ----
 =====
@@ -85,38 +85,39 @@ CREATE
 ----
 # Cypher query
 create_example_graph_on_disk_query = """
-CREATE
-  (home:Page {name:'Home'}),
-  (about:Page {name:'About'}),
-  (product:Page {name:'Product'}),
-  (links:Page {name:'Links'}),
-  (a:Page {name:'Site A'}),
-  (b:Page {name:'Site B'}),
-  (c:Page {name:'Site C'}),
-  (d:Page {name:'Site D'}),
+    CREATE
+      (home:Page {name:'Home'}),
+      (about:Page {name:'About'}),
+      (product:Page {name:'Product'}),
+      (links:Page {name:'Links'}),
+      (a:Page {name:'Site A'}),
+      (b:Page {name:'Site B'}),
+      (c:Page {name:'Site C'}),
+      (d:Page {name:'Site D'}),
 
-  (home)-[:LINKS {weight: 0.2}]->(about),
-  (home)-[:LINKS {weight: 0.2}]->(links),
-  (home)-[:LINKS {weight: 0.6}]->(product),
-  (about)-[:LINKS {weight: 1.0}]->(home),
-  (product)-[:LINKS {weight: 1.0}]->(home),
-  (a)-[:LINKS {weight: 1.0}]->(home),
-  (b)-[:LINKS {weight: 1.0}]->(home),
-  (c)-[:LINKS {weight: 1.0}]->(home),
-  (d)-[:LINKS {weight: 1.0}]->(home),
-  (links)-[:LINKS {weight: 0.8}]->(home),
-  (links)-[:LINKS {weight: 0.05}]->(a),
-  (links)-[:LINKS {weight: 0.05}]->(b),
-  (links)-[:LINKS {weight: 0.05}]->(c),
-  (links)-[:LINKS {weight: 0.05}]->(d)
+      (home)-[:LINKS {weight: 0.2}]->(about),
+      (home)-[:LINKS {weight: 0.2}]->(links),
+      (home)-[:LINKS {weight: 0.6}]->(product),
+      (about)-[:LINKS {weight: 1.0}]->(home),
+      (product)-[:LINKS {weight: 1.0}]->(home),
+      (a)-[:LINKS {weight: 1.0}]->(home),
+      (b)-[:LINKS {weight: 1.0}]->(home),
+      (c)-[:LINKS {weight: 1.0}]->(home),
+      (d)-[:LINKS {weight: 1.0}]->(home),
+      (links)-[:LINKS {weight: 0.8}]->(home),
+      (links)-[:LINKS {weight: 0.05}]->(a),
+      (links)-[:LINKS {weight: 0.05}]->(b),
+      (links)-[:LINKS {weight: 0.05}]->(c),
+      (links)-[:LINKS {weight: 0.05}]->(d)
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  result = session.run(create_example_graph_on_disk_query).data()
-  # Prettify the first result
-  print(json.dumps(result[0], indent=2, sort_keys=True))
+    # Run query
+    result = session.run(create_example_graph_on_disk_query).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -130,13 +131,13 @@ We then project an in-memory graph from the data just created.
 [source, python, subs=attributes+]
 ----
 g, result = gds.graph.project(
-  "example-graph",
-  "Page",
-  "LINKS",
-  relationshipProperties="weight"
+    "example-graph",
+    "Page",
+    "LINKS",
+    relationshipProperties="weight"
 )
 
-print(json.dumps(result, indent=2, sort_keys=True))
+print(result)
 ----
 =====
 
@@ -161,22 +162,23 @@ CALL gds.graph.project(
 ----
 # Cypher query
 create_example_graph_in_memory_query = """
-CALL gds.graph.project(
-  'example-graph',
-  'Page',
-  'LINKS',
-  {
-    relationshipProperties: 'weight'
-  }
-)
+    CALL gds.graph.project(
+      'example-graph',
+      'Page',
+      'LINKS',
+      {
+        relationshipProperties: 'weight'
+      }
+    )
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  result = session.run(create_example_graph_in_memory_query).data()
-  # Prettify the first result
-  print(json.dumps(result[0], indent=2, sort_keys=True))
+    # Run query
+    result = session.run(create_example_graph_in_memory_query).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -204,13 +206,13 @@ The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos
 =====
 [source, python, subs=attributes+]
 ----
-stats = gds.pageRank.stats(
-  g,
-  maxIterations=20,
-  dampingFactor=0.85
+result = gds.pageRank.stats(
+    g,
+    maxIterations=20,
+    dampingFactor=0.85
 )
 
-print(json.dumps(stats, indent=2, sort_keys=True))
+print(result)
 ----
 =====
 
@@ -239,26 +241,27 @@ RETURN *
 ----
 # Cypher query
 page_rank_stats_example_graph_query = """
-CALL gds.pageRank.stats(
-  'example-graph', 
-  {maxIterations: 20, dampingFactor: 0.85}
-)
-YIELD ranIterations,
-  didConverge,
-  preProcessingMillis,
-  computeMillis,
-  postProcessingMillis,
-  centralityDistribution,
-  configuration
-RETURN *
+    CALL gds.pageRank.stats(
+      'example-graph', 
+      {maxIterations: 20, dampingFactor: 0.85}
+    )
+    YIELD ranIterations,
+      didConverge,
+      preProcessingMillis,
+      computeMillis,
+      postProcessingMillis,
+      centralityDistribution,
+      configuration
+    RETURN *
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  results = session.run(page_rank_stats_example_graph_query).data()
-  # Prettify the first result
-  print(json.dumps(results[0], indent=2, sort_keys=True))
+    # Run query
+    result = session.run(page_rank_stats_example_graph_query).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -278,12 +281,12 @@ With the PageRank example, this mode returns a node ID and the computed PageRank
 [source, python, subs=attributes+]
 ----
 results = gds.pageRank.stream(
-  g, 
-  maxIterations=20, 
-  dampingFactor=0.85
+    g, 
+    maxIterations=20, 
+    dampingFactor=0.85
 )
 
-print(json.dumps(results, indent=2, sort_keys=True))
+print(results)
 ----
 =====
 
@@ -306,20 +309,21 @@ RETURN *
 ----
 # Cypher query to just get internal node ID and score
 page_rank_stream_example_graph_query = """
-CALL gds.pageRank.stream(
-  'example-graph', 
-  {maxIterations: 20, dampingFactor: 0.85}
-)
-YIELD nodeId, score
-RETURN *
+    CALL gds.pageRank.stream(
+      'example-graph', 
+      {maxIterations: 20, dampingFactor: 0.85}
+    )
+    YIELD nodeId, score
+    RETURN *
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  results = session.run(page_rank_stream_example_graph_query).data()
-  # Prettify the results
-  print(json.dumps(results, indent=2, sort_keys=True))
+    # Run query
+    results = session.run(page_rank_stream_example_graph_query).data()
+    
+    # Prettify the results
+    print(json.dumps(results, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -341,13 +345,13 @@ In the case of PageRank, the result of this mode is a score for each node. In th
 [source, python, subs=attributes+]
 ----
 result = gds.pageRank.mutate(
-  g,
-  mutateProperty="pageRankScore", 
-  maxIterations=20, 
-  dampingFactor=0.85
+    g,
+    mutateProperty="pageRankScore", 
+    maxIterations=20, 
+    dampingFactor=0.85
 )
 
-print(json.dumps(result, indent=2, sort_keys=True))
+print(result)
 ----
 =====
 
@@ -370,20 +374,21 @@ RETURN *
 ----
 # Cypher query to just get mutate the graph
 page_rank_mutate_example_graph_query = """
-CALL gds.pageRank.mutate(
-  'example-graph', 
-  {mutateProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
-)
-YIELD nodePropertiesWritten, ranIterations
-RETURN *
+    CALL gds.pageRank.mutate(
+      'example-graph', 
+      {mutateProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
+    )
+    YIELD nodePropertiesWritten, ranIterations
+    RETURN *
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  results = session.run(page_rank_mutate_example_graph_query).data()
-  # Prettify the results
-  print(json.dumps(results, indent=2, sort_keys=True))
+    # Run query
+    result = session.run(page_rank_mutate_example_graph_query).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -403,13 +408,13 @@ TIP: To use the result of a `write` mode computation with another algorithm, a n
 [source, python, subs=attributes+]
 ----
 result = gds.pageRank.write(
-  g, 
-  writeProperty="pageRankScore",
-  maxIterations=20, 
-  dampingFactor=0.85
+    g, 
+    writeProperty="pageRankScore",
+    maxIterations=20, 
+    dampingFactor=0.85
 )
 
-print(json.dumps(result, indent=2, sort_keys=True))
+print(result)
 ----
 =====
 
@@ -432,20 +437,21 @@ RETURN *
 ----
 # Cypher query to write the graph
 page_rank_write_example_graph_query = """
-CALL gds.pageRank.write(
-  'example-graph', 
-  {writeProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
-)
-YIELD nodePropertiesWritten, ranIterations
-RETURN *
+    CALL gds.pageRank.write(
+      'example-graph', 
+      {writeProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
+    )
+    YIELD nodePropertiesWritten, ranIterations
+    RETURN *
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  results = session.run(page_rank_write_example_graph_query).data()
-  # Prettify the results
-  print(json.dumps(results, indent=2, sort_keys=True))
+    # Run query
+    result = session.run(page_rank_write_example_graph_query).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -461,11 +467,11 @@ After going through the tutorial, both the in-memory graphs and the data in the 
 [source, python, subs=attributes+]
 ----
 result = gds.graph.drop(g)
-print(json.dumps(result, indent=2, sort_keys=True, default=default))
+print(result)
 
 gds.run_cypher("""
-  MATCH (n)
-  DETACH DELETE n
+    MATCH (n)
+    DETACH DELETE n
 """)
 ----
 =====
@@ -486,24 +492,26 @@ DETACH DELETE n;
 [source, python, subs=attributes+]
 ----
 delete_example_in_memory_graph_query = """
-CALL gds.graph.drop('example-graph')
+    CALL gds.graph.drop('example-graph')
 """
 
 delete_example_graph = """
-MATCH (n)
-DETACH DELETE n
+    MATCH (n)
+    DETACH DELETE n
 """
 
 with driver.session() as session:
-  # Delete in-memory graph
-  result = session.run(delete_example_in_memory_graph_query).data()
-  # Prettify the result
-  print(json.dumps(results, indent=2, sort_keys=True, default=default))
+    # Delete in-memory graph
+    result = session.run(delete_example_in_memory_graph_query).data()
     
-  # Delete data from Neo4j
-  result = session.run(delete_example_graph).data()
-  # Prettify the result
-  print(json.dumps(results, indent=2, sort_keys=True, default=default))
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True, default=default))
+      
+    # Delete data from Neo4j
+    result = session.run(delete_example_graph).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====

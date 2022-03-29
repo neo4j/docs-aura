@@ -11,7 +11,7 @@ include::partial$aurads/setup.adoc[]
 
 include::partial$aurads/generated-graph.adoc[]
 
-== Check the progress of a long-running algorithm
+== Run an algorithm and check the progress
 
 We need to run an algorithm that takes some time to converge. In this example we use the `Label Propagation` algorithm, which we start in a separate thread so that we can check its progress in the same Python process.
 

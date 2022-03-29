@@ -25,11 +25,11 @@ The `gds.graph.project` procedure can use a <<_project_using_the_shorthand_synta
 ----
 # Cypher query to create an example graph on disk
 gds.run_cypher("""
-  MERGE (a:EngineeringManagement {name: 'Alistair'})
-  MERGE (j:EngineeringManagement {name: 'Jennifer'})
-  MERGE (d:Developer {name: 'Leila'})
-  MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
-  MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
+    MERGE (a:EngineeringManagement {name: 'Alistair'})
+    MERGE (j:EngineeringManagement {name: 'Jennifer'})
+    MERGE (d:Developer {name: 'Leila'})
+    MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
+    MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
 """)
 ----
 =====
@@ -52,16 +52,16 @@ MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
 ----
 # Cypher query to create an example graph on disk
 write_example_graph_query = """
-MERGE (a:EngineeringManagement {name: 'Alistair'})
-MERGE (j:EngineeringManagement {name: 'Jennifer'})
-MERGE (d:Developer {name: 'Leila'})
-MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
-MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
+    MERGE (a:EngineeringManagement {name: 'Alistair'})
+    MERGE (j:EngineeringManagement {name: 'Jennifer'})
+    MERGE (d:Developer {name: 'Leila'})
+    MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
+    MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
 """
 
 # Create the driver session
 with driver.session() as session:
-  session.run(write_example_graph_query)
+    session.run(write_example_graph_query)
 ----
 =====
 ====
@@ -78,13 +78,12 @@ In this example we use the shorthand syntax to simply project all node labels an
 ----
 # Project a graph using the shorthand syntax
 shorthand_graph, result = gds.graph.project(
-  "shorthand-example-graph",
-  ["EngineeringManagement", "Developer"],
-  ["MANAGES"]
+    "shorthand-example-graph",
+    ["EngineeringManagement", "Developer"],
+    ["MANAGES"]
 )
 
-# Prettify the result
-print(json.dumps(result, indent=2, sort_keys=True))
+print(result)
 ----
 =====
 
@@ -107,21 +106,22 @@ RETURN *
 [source, python, subs=attributes+]
 ----
 shorthand_graph_create_call = """
-CALL gds.graph.project(
-  'shorthand-example-graph',
-  ['EngineeringManagement', 'Developer'],
-  ['MANAGES']
-) 
-YIELD graphName, nodeCount, relationshipCount
-RETURN *
+    CALL gds.graph.project(
+      'shorthand-example-graph',
+      ['EngineeringManagement', 'Developer'],
+      ['MANAGES']
+    ) 
+    YIELD graphName, nodeCount, relationshipCount
+    RETURN *
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Call to project a graph using the shorthand syntax
-  result = session.run(shorthand_graph_create_call).data()
-  # Prettify the result
-  print(json.dumps(result, indent=2, sort_keys=True))
+    # Call to project a graph using the shorthand syntax
+    result = session.run(shorthand_graph_create_call).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -153,34 +153,33 @@ The projected graph becomes the following:
 ----
 # Project a graph using the extended syntax
 extended_form_graph, result = gds.graph.project(
-  "extended-form-example-graph",
-  {
-    "PersonEM": {
-      "label": "EngineeringManagement"
-    },
-    "PersonD": {
-      "label": "Developer"
-    }
-  },
-  {
-    "KNOWS": {
-      "type": "MANAGES",
-      "orientation": "UNDIRECTED",
-      "properties": {
-        "start_date": {
-          "property": "start_date"
+    "extended-form-example-graph",
+    {
+        "PersonEM": {
+            "label": "EngineeringManagement"
         },
-        "end_date": {
-          "property": "end_date",
-          "defaultValue": 999999999
+        "PersonD": {
+            "label": "Developer"
         }
-      }
+    },
+    {
+        "KNOWS": {
+            "type": "MANAGES",
+            "orientation": "UNDIRECTED",
+            "properties": {
+                "start_date": {
+                    "property": "start_date"
+                },
+                "end_date": {
+                    "property": "end_date",
+                    "defaultValue": 999999999
+                }
+            }
+        }
     }
-  }
 )
 
-# Prettify the result
-print(json.dumps(result, indent=2, sort_keys=True))
+print(result)
 ----
 =====
 
@@ -224,42 +223,43 @@ RETURN *
 [source, python, subs=attributes+]
 ----
 extended_form_graph_create_call = """
-CALL gds.graph.project(
-  'extended-form-example-graph',
-  {
-    PersonEM: {
-      label: 'EngineeringManagement'
-    },
-    PersonD: {
-      label: 'Developer'
-    }
-  },
-  {
-    KNOWS: {
-      type: 'MANAGES',
-      orientation: 'UNDIRECTED',
-      properties: {
-        start_date: {
-          property: 'start_date'
+    CALL gds.graph.project(
+      'extended-form-example-graph',
+      {
+        PersonEM: {
+          label: 'EngineeringManagement'
         },
-        end_date: {
-          property: 'end_date',
-          defaultValue: 999999999
+        PersonD: {
+          label: 'Developer'
+        }
+      },
+      {
+        KNOWS: {
+          type: 'MANAGES',
+          orientation: 'UNDIRECTED',
+          properties: {
+            start_date: {
+              property: 'start_date'
+            },
+            end_date: {
+              property: 'end_date',
+              defaultValue: 999999999
+            }
+          }
         }
       }
-    }
-  }
-) 
-YIELD graphName, nodeCount, relationshipCount
-RETURN *
+    ) 
+    YIELD graphName, nodeCount, relationshipCount
+    RETURN *
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Call to project a graph using the extended syntax
-  result = session.run(extended_form_graph_create_call).data()
-  # Prettify the first result
-  print(json.dumps(result[0], indent=2, sort_keys=True))
+    # Call to project a graph using the extended syntax
+    result = session.run(extended_form_graph_create_call).data()
+    
+    # Prettify the results
+    print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -270,7 +270,7 @@ The Graph Catalog can be used to retrieve information on and manage the projecte
 
 === List all the graphs
 
-The https://neo4j.com/docs/graph-data-science/current/graph-list/[`gds.graph.list`^] procedure can be used to list all the graphs currently stored in memory:
+The https://neo4j.com/docs/graph-data-science/current/graph-list/[`gds.graph.list`^] procedure can be used to list all the graphs currently stored in memory.
 
 [.tabbed-example]
 ====
@@ -281,8 +281,7 @@ The https://neo4j.com/docs/graph-data-science/current/graph-list/[`gds.graph.lis
 # List all in-memory graphs
 all_graphs = gds.graph.list()
 
-# Prettify the results
-print(json.dumps(all_graphs, indent=2, sort_keys=True, default=default))
+print(all_graphs)
 ----
 =====
 
@@ -299,22 +298,23 @@ CALL gds.graph.list()
 [source, python, subs=attributes+]
 ----
 show_in_memory_graphs_call = """
-CALL gds.graph.list()
+    CALL gds.graph.list()
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run the Cypher procedure
-  results = session.run(show_in_memory_graphs_call).data()
-  # Prettify the results
-  print(json.dumps(results, indent=2, sort_keys=True, default=default))
+    # Run the Cypher procedure
+    results = session.run(show_in_memory_graphs_call).data()
+    
+    # Prettify the results
+    print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
 
 === Check that a graph exists
 
-The https://neo4j.com/docs/graph-data-science/current/graph-exists/[`gds.graph.exists`^] procedure can be called to check for the existence of a graph by its name:
+The https://neo4j.com/docs/graph-data-science/current/graph-exists/[`gds.graph.exists`^] procedure can be called to check for the existence of a graph by its name.
 
 [.tabbed-example]
 ====
@@ -322,8 +322,10 @@ The https://neo4j.com/docs/graph-data-science/current/graph-exists/[`gds.graph.e
 =====
 [source, python, subs=attributes+]
 ----
-# Check whether the "example-graph" graph exists in memory
-gds.graph.exists("example-graph")
+# Check whether the "shorthand-example-graph" graph exists in memory
+graph_exists = gds.graph.exists("shorthand-example-graph")
+
+print(graph_exists)
 ----
 =====
 
@@ -340,13 +342,13 @@ CALL gds.graph.exists('example-graph')
 [source, python, subs=attributes+]
 ----
 check_graph_exists_call = """
-CALL gds.graph.exists('example-graph')
+    CALL gds.graph.exists('example-graph')
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run the Cypher procedure and print the result
-  print(session.run(check_graph_exists_call).data())
+    # Run the Cypher procedure and print the result
+    print(session.run(check_graph_exists_call).data())
 ----
 =====
 ====
@@ -364,10 +366,10 @@ When a graph is no longer needed, it can be dropped to free up memory using the 
 # Drop a graph object and keep the result of the call
 result = gds.graph.drop(shorthand_graph)
 
-# Prettify the result
-print(json.dumps(result, indent=2, sort_keys=True, default=default))
+# Print the result
+print(result)
 
-# Drop a graph object discarding the result of the call
+# Drop a graph object and just print the result of the call
 gds.graph.drop(extended_form_graph)
 ----
 =====
@@ -387,22 +389,23 @@ CALL gds.graph.drop('extended-form-example-graph');
 [source, python, subs=attributes+]
 ----
 delete_shorthand_graph_call = """
-CALL gds.graph.drop('shorthand-example-graph')
+    CALL gds.graph.drop('shorthand-example-graph')
 """
 
 delete_extended_form_graph_call = """
-CALL gds.graph.drop('extended-form-example-graph')
+    CALL gds.graph.drop('extended-form-example-graph')
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Drop a graph and keep the result of the call
-  result = session.run(delete_shorthand_graph_call).data()
-  # Prettify the result
-  print(json.dumps(result, indent=2, sort_keys=True, default=default))
+    # Drop a graph and keep the result of the call
+    result = session.run(delete_shorthand_graph_call).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True, default=default))
 
-  # Drop a graph discarding the result of the call
-  session.run(delete_extended_form_graph_call).data()
+    # Drop a graph discarding the result of the call
+    session.run(delete_extended_form_graph_call).data()
 ----
 =====
 ====
@@ -419,9 +422,9 @@ When the projected graphs are dropped, the underlying data on the disk are not d
 ----
 # Delete on-disk data
 gds.run_cypher("""
-  MATCH (example)
-  WHERE example:EngineeringManagement OR example:Developer
-  DETACH DELETE example
+    MATCH (example)
+    WHERE example:EngineeringManagement OR example:Developer
+    DETACH DELETE example
 """)
 ----
 =====
@@ -441,15 +444,15 @@ DETACH DELETE example;
 [source, python, subs=attributes+]
 ----
 delete_example_graph_query = """
-MATCH (example)
-WHERE example:EngineeringManagement OR example:Developer
-DETACH DELETE example
+    MATCH (example)
+    WHERE example:EngineeringManagement OR example:Developer
+    DETACH DELETE example
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run Cypher call
-  print(session.run(delete_example_graph_query).data())
+    # Run Cypher call
+    print(session.run(delete_example_graph_query).data())
 ----
 =====
 ====
@@ -457,9 +460,9 @@ with driver.session() as session:
 == References
 
 === Documentation
-* https://neo4j.com/docs/graph-data-science/current/management-ops/native-projection/#native-projection[Native projections^]
+* https://neo4j.com/docs/graph-data-science/current/graph-project/[Native projections^]
 * https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/#graph-catalog-ops[Graph catalog^]
-* https://neo4j.com/docs/graph-data-science[Neo4j GDSL documentation^]
+* https://neo4j.com/docs/graph-data-science[Neo4j GDS documentation^]
 * https://neo4j.com/docs/driver-manual/current/get-started/[Neo4j driver documentation^]
 * https://neo4j.com/developer[Neo4j developer documentation^]
 
