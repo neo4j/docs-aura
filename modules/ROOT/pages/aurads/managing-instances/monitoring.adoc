@@ -1,7 +1,13 @@
 [[aurads-monitoring]]
 = Monitoring
 
-You can monitor the following metrics of an AuraDS instance from the *METRICS* tab:
+To access the *Metrics* tab:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Select the name of the instance you want to access.
+. Select the *Metrics* tab.
+
+You can monitor the following metrics of an AuraDS instance:
 
 * *CPU Usage (%)* - The amount of CPU used by the instance as a percentage.
 * *Storage Used (%)* - The amount of disk storage space used by the instance as a percentage.
@@ -11,7 +17,7 @@ You can monitor the following metrics of an AuraDS instance from the *METRICS* t
 
 [NOTE]
 ====
-More information on each metric, as well as suggestions for managing them, can be found within the *METRICS* tab itself.
+More information on each metric, as well as suggestions for managing them, can be found within the *Metrics* tab itself.
 ====
 
 When viewing metrics, you can select from the following timeframes:
@@ -21,9 +27,3 @@ When viewing metrics, you can select from the following timeframes:
 * 3 days
 * 7 days
 * 30 days
-
-To access the *METRICS* tab:
-
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
-. Select the name of the instance you want to access.
-. Select the *METRICS* tab.
