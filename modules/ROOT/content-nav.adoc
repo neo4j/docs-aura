@@ -1,7 +1,9 @@
 ////
 Generic Start
 ////
-.xref:index.adoc[*Neo4j Aura*]
+* *Neo4j Aura*
+
+* xref:index.adoc[Overview]
 
 * xref:platform/create-account.adoc[]
 * xref:platform/cloud-providers.adoc[Cloud provider marketplaces]
@@ -14,7 +16,9 @@ Generic End
 ////
 AuraDB Start
 ////
-.xref:auradb/index.adoc[*Neo4j AuraDB*]
+* *Neo4j AuraDB*
+
+* xref:auradb/index.adoc[Overview]
 
 * Getting Started
 ** xref:auradb/getting-started/create-database.adoc[]
@@ -46,16 +50,40 @@ AuraDB End
 ////
 AuraDS Start
 ////
-.xref:aurads/index.adoc[*Neo4j AuraDS*]
+* *Neo4j AuraDS*
 
-* Getting Started
-** xref:aurads/getting-started/understanding.adoc[]
-** xref:aurads/getting-started/connecting-python-driver.adoc[]
-** xref:aurads/getting-started/graph-catalog.adoc[]
-** xref:aurads/getting-started/algorithm-modes.adoc[]
-** xref:aurads/getting-started/memory-estimation.adoc[]
-** xref:aurads/getting-started/algorithm-progress.adoc[]
-** xref:aurads/getting-started/model-catalog.adoc[]
+* xref:aurads/index.adoc[Overview]
+* xref:aurads/architecture.adoc[]
+
+* xref:aurads/create-instance.adoc[]
+
+* Connecting to AuraDS
+** xref:aurads/connecting/neo4j-applications.adoc[]
+** xref:aurads/connecting/python.adoc[]
+
+* Usage examples
+** xref:aurads/tutorials/graph-catalog.adoc[]
+** xref:aurads/tutorials/algorithm-modes.adoc[]
+** xref:aurads/tutorials/memory-estimation.adoc[]
+** xref:aurads/tutorials/algorithm-progress.adoc[]
+** xref:aurads/tutorials/model-catalog.adoc[]
+
+* Importing data
+** xref:aurads/importing-data/load-csv.adoc[]
+** xref:aurads/importing-data/data-importer.adoc[]
+
+* xref:aurads/migrate.adoc[]
+
+* Managing instances
+** xref:aurads/managing-instances/monitoring.adoc[]
+** xref:aurads/managing-instances/backup-restore-export.adoc[]
+** xref:aurads/managing-instances/instance-actions.adoc[]
+
+* Integrating with Neo4j Connectors
+** xref:aurads/connectors/spark.adoc[]
+** xref:aurads/connectors/kafka.adoc[]
+
+* xref:aurads/support.adoc[]
 ////
 AuraDS End
 ////

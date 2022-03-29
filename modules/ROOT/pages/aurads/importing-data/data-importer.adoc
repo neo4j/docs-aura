@@ -1,0 +1,24 @@
+[[aurads-data-importer]]
+= Using the Data Importer
+:description: This page describes how to use the Data Importer with a Neo4j AuraDS instance.
+
+WARNING: Provisional page. To be reviewed for content and UI.
+
+[NOTE]
+====
+*Note:* The process of importing or loading data requires you to xref:aurads/create-instance.adoc[create an AuraDS instance] beforehand.
+====
+
+The Neo4j Data Importer is a no-code tool that lets you:
+
+. Load data from flat files (`.csv` and `.tsv`).
+. Define a graph model and map data to it.
+. Import the data into an AuraDS instance.
+
+To load data with Neo4j Data Importer:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Select the *Open with* dropdown menu on the database you want to open.
+. Select *Neo4j Data Importer* from the dropdown menu.
+
+Once you have opened the Neo4j Data Importer, you can follow the built-in tutorial to learn how to use the tool.

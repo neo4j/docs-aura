@@ -1,0 +1,101 @@
+== Setup
+
+For more information on how to get started using Python, refer to the xref:aurads/connecting/python.adoc[] tutorial.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, shell]
+----
+pip install graphdatascience
+----
+
+[source, python]
+----
+# Client import
+from graphdatascience import GraphDataScience
+
+# Connection details
+# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
+AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
+AURA_USERNAME = "neo4j"
+AURA_PASSWORD = ""
+
+# Configure the client with AuraDS-recommended settings
+gds = GraphDataScience(
+    AURA_CONNECTION_URI,
+    auth=(AURA_USERNAME, AURA_PASSWORD),
+    aura_ds=True
+)
+----
+
+[source, python]
+----
+# Import to prettify results
+import json
+
+# Import for the JSON helper function
+from neo4j.time import DateTime
+
+# Helper function for serializing Neo4j DateTime in JSON dumps
+def default(o):
+    if isinstance(o, (DateTime)):
+        return o.isoformat()
+----
+=====
+
+[.include-with-Cypher]
+=====
+TIP: Run the following commands from the directory where the Cypher shell is installed.
+
+[source, shell, subs=attributes+]
+----
+export AURA_CONNECTION_URI="neo4j+s://xxxxxxxx.databases.neo4j.io"
+export AURA_USERNAME="neo4j"
+export AURA_PASSWORD=""
+
+./cypher-shell -a $AURA_CONNECTION_URI -u $AURA_USERNAME -p $AURA_PASSWORD
+----
+=====
+
+[.include-with-python-driver]
+=====
+[source, shell]
+----
+pip install neo4j
+----
+
+[source, python]
+----
+# Driver import
+from neo4j import GraphDatabase
+
+# Connection details
+# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
+AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
+AURA_USERNAME = "neo4j"
+AURA_PASSWORD = ""
+
+# Instantiate the driver
+driver = GraphDatabase.driver(
+    AURA_CONNECTION_URI, 
+    auth=(AURA_USERNAME, AURA_PASSWORD)
+)
+----
+
+[source, python]
+----
+# Import to prettify results
+import json
+
+# Import for the JSON helper function
+from neo4j.time import DateTime
+
+# Helper function for serializing Neo4j DateTime in JSON dumps
+def default(o):
+    if isinstance(o, (DateTime)):
+        return o.isoformat()
+----
+=====
+====
