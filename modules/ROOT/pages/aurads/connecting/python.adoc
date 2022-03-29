@@ -21,7 +21,7 @@ Both the GDS client and the Python driver can be installed using `pip`.
 pip install graphdatascience
 ----
 
-The latest stable version of the client can be found on https://pypi.org/project/graphdatascience[PyPI].
+The latest stable version of the client can be found on https://pypi.org/project/graphdatascience[PyPI^].
 =====
 
 [.include-with-Python-driver]
@@ -31,7 +31,7 @@ The latest stable version of the client can be found on https://pypi.org/project
 pip install neo4j
 ----
 
-The latest stable version of the driver can be found on https://pypi.org/project/neo4j[PyPI].
+The latest stable version of the driver can be found on https://pypi.org/project/neo4j[PyPI^].
 =====
 ====
 
@@ -57,16 +57,16 @@ The `aura_ds=True` constructor argument should be used to have the recommended n
 
 [source, python]
 ----
-# Replace with the actual URI, username and password
+# Replace with the actual URI, username, and password
 AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
 AURA_USERNAME = "neo4j"
 AURA_PASSWORD = "..."
 
 # Client instantiation
 gds = GraphDataScience(
-  AURA_CONNECTION_URI,
-  auth=(AURA_USERNAME, AURA_PASSWORD),
-  aura_ds=True
+    AURA_CONNECTION_URI,
+    auth=(AURA_USERNAME, AURA_PASSWORD),
+    aura_ds=True
 )
 ----
 =====
@@ -90,8 +90,8 @@ AURA_PASSWORD = "..."
 
 # Driver instantiation
 driver = GraphDatabase.driver(
-  AURA_CONNECTION_URI, 
-  auth=(AURA_USERNAME, AURA_PASSWORD)
+    AURA_CONNECTION_URI, 
+    auth=(AURA_USERNAME, AURA_PASSWORD)
 )
 ----
 =====
@@ -99,7 +99,7 @@ driver = GraphDatabase.driver(
 
 == Running a query
 
-Once created, the client (or the driver) can be used to run Cypher queries and call Cypher procedures. In this example we use the `gds.version` procedure to retrieve the version of GDS running on the database.
+Once created, the client (or the driver) can be used to run Cypher queries and call Cypher procedures. In this example the `gds.version` procedure can be used to retrieve the version of GDS running on the database.
 
 [.tabbed-example]
 ====
@@ -118,19 +118,19 @@ print(gds.version())
 ----
 # Cypher query
 gds_version_query = """
-RETURN gds.version() AS version
+    RETURN gds.version() AS version
 """
 
 # Create a driver session
 with driver.session() as session:
-  # Use .data() to access the results array
-  results = session.run(gds_version_query).data()
-  print(results)
+    # Use .data() to access the results array
+    results = session.run(gds_version_query).data()
+    print(results)
 ----
 =====
 ====
 
-The following call instead retrieves all the procedures available in the library and describes five of them.
+The following code retrieves all the procedures available in the library and shows the details of five of them.
 
 [.tabbed-example]
 ====
@@ -138,14 +138,25 @@ The following call instead retrieves all the procedures available in the library
 =====
 [source, python]
 ----
-# Import the json module for pretty visualization
-import json
-
 # Assign the result of the client call to a variable
 results = gds.list()
 
-# Print the prettified result
-print(json.dumps(results[:5], indent=2))
+# Print the result (a Pandas DataFrame)
+print(results[:5])
+----
+
+Since the result is a Pandas DataFrame, you can use methods such as `to_string` and `to_json` to pretty-print it.
+
+[source, python]
+----
+# Print the result (a Pandas DataFrame) as a console-friendly string
+print(results[:5].to_string())
+----
+
+[source, python]
+----
+# Print the result (a Pandas DataFrame) as a prettified JSON string
+print(results[:5].to_json(orient="table", indent=2))
 ----
 =====
 
@@ -158,16 +169,16 @@ import json
 
 # Cypher query
 list_all_gds_procedures_query = """
-CALL gds.list()
+    CALL gds.list()
 """
 
 # Create a driver session
 with driver.session() as session:
-  # Use .data() to access the results array
-  results = session.run(list_all_gds_procedures_query).data()
-  
-  # Print the prettified result
-  print(json.dumps(results[:5], indent=2))
+    # Use .data() to access the results array
+    results = session.run(list_all_gds_procedures_query).data()
+    
+    # Print the prettified result
+    print(json.dumps(results[:5], indent=2))
 ----
 =====
 ====
