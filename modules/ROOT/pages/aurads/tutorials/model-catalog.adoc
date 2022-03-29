@@ -20,25 +20,25 @@ We start by creating some basic graph data first.
 [source, python, subs=attributes+]
 ----
 gds.run_cypher("""
-  MERGE ( dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
-  MERGE ( annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
-  MERGE ( matt:Person:ExampleData  {name: 'Matt',  age: 67, heightAndWeight: [170, 80]})
-  MERGE ( jeff:Person:ExampleData  {name: 'Jeff',  age: 45, heightAndWeight: [192, 85]})
-  MERGE ( brie:Person:ExampleData  {name: 'Brie',  age: 27, heightAndWeight: [176, 57]})
-  MERGE ( elsa:Person:ExampleData  {name: 'Elsa',  age: 32, heightAndWeight: [158, 55]})
-  MERGE ( john:Person:ExampleData  {name: 'John',  age: 35, heightAndWeight: [172, 76]})
+    MERGE ( dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
+    MERGE ( annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
+    MERGE ( matt:Person:ExampleData  {name: 'Matt',  age: 67, heightAndWeight: [170, 80]})
+    MERGE ( jeff:Person:ExampleData  {name: 'Jeff',  age: 45, heightAndWeight: [192, 85]})
+    MERGE ( brie:Person:ExampleData  {name: 'Brie',  age: 27, heightAndWeight: [176, 57]})
+    MERGE ( elsa:Person:ExampleData  {name: 'Elsa',  age: 32, heightAndWeight: [158, 55]})
+    MERGE ( john:Person:ExampleData  {name: 'John',  age: 35, heightAndWeight: [172, 76]})
 
-  MERGE (dan)-[:KNOWS {relWeight: 1.0}]->(annie)
-  MERGE (dan)-[:KNOWS {relWeight: 1.6}]->(matt)
-  MERGE (annie)-[:KNOWS {relWeight: 0.1}]->(matt)
-  MERGE (annie)-[:KNOWS {relWeight: 3.0}]->(jeff)
-  MERGE (annie)-[:KNOWS {relWeight: 1.2}]->(brie)
-  MERGE (matt)-[:KNOWS {relWeight: 10.0}]->(brie)
-  MERGE (brie)-[:KNOWS {relWeight: 1.0}]->(elsa)
-  MERGE (brie)-[:KNOWS {relWeight: 2.2}]->(jeff)
-  MERGE (john)-[:KNOWS {relWeight: 5.0}]->(jeff)
+    MERGE (dan)-[:KNOWS {relWeight: 1.0}]->(annie)
+    MERGE (dan)-[:KNOWS {relWeight: 1.6}]->(matt)
+    MERGE (annie)-[:KNOWS {relWeight: 0.1}]->(matt)
+    MERGE (annie)-[:KNOWS {relWeight: 3.0}]->(jeff)
+    MERGE (annie)-[:KNOWS {relWeight: 1.2}]->(brie)
+    MERGE (matt)-[:KNOWS {relWeight: 10.0}]->(brie)
+    MERGE (brie)-[:KNOWS {relWeight: 1.0}]->(elsa)
+    MERGE (brie)-[:KNOWS {relWeight: 2.2}]->(jeff)
+    MERGE (john)-[:KNOWS {relWeight: 5.0}]->(jeff)
 
-  RETURN True AS exampleDataCreated
+    RETURN True AS exampleDataCreated
 """)
 ----
 =====
@@ -75,34 +75,34 @@ RETURN True AS exampleDataCreated
 ----
 # Cypher query
 create_example_graph_on_disk_query = """
-  MERGE ( dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
-  MERGE ( annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
-  MERGE ( matt:Person:ExampleData  {name: 'Matt',  age: 67, heightAndWeight: [170, 80]})
-  MERGE ( jeff:Person:ExampleData  {name: 'Jeff',  age: 45, heightAndWeight: [192, 85]})
-  MERGE ( brie:Person:ExampleData  {name: 'Brie',  age: 27, heightAndWeight: [176, 57]})
-  MERGE ( elsa:Person:ExampleData  {name: 'Elsa',  age: 32, heightAndWeight: [158, 55]})
-  MERGE ( john:Person:ExampleData  {name: 'John',  age: 35, heightAndWeight: [172, 76]})
+    MERGE ( dan:Person:ExampleData   {name: 'Dan',   age: 20, heightAndWeight: [185, 75]})
+    MERGE ( annie:Person:ExampleData {name: 'Annie', age: 12, heightAndWeight: [124, 42]})
+    MERGE ( matt:Person:ExampleData  {name: 'Matt',  age: 67, heightAndWeight: [170, 80]})
+    MERGE ( jeff:Person:ExampleData  {name: 'Jeff',  age: 45, heightAndWeight: [192, 85]})
+    MERGE ( brie:Person:ExampleData  {name: 'Brie',  age: 27, heightAndWeight: [176, 57]})
+    MERGE ( elsa:Person:ExampleData  {name: 'Elsa',  age: 32, heightAndWeight: [158, 55]})
+    MERGE ( john:Person:ExampleData  {name: 'John',  age: 35, heightAndWeight: [172, 76]})
 
-  MERGE (dan)-[:KNOWS {relWeight: 1.0}]->(annie)
-  MERGE (dan)-[:KNOWS {relWeight: 1.6}]->(matt)
-  MERGE (annie)-[:KNOWS {relWeight: 0.1}]->(matt)
-  MERGE (annie)-[:KNOWS {relWeight: 3.0}]->(jeff)
-  MERGE (annie)-[:KNOWS {relWeight: 1.2}]->(brie)
-  MERGE (matt)-[:KNOWS {relWeight: 10.0}]->(brie)
-  MERGE (brie)-[:KNOWS {relWeight: 1.0}]->(elsa)
-  MERGE (brie)-[:KNOWS {relWeight: 2.2}]->(jeff)
-  MERGE (john)-[:KNOWS {relWeight: 5.0}]->(jeff)
+    MERGE (dan)-[:KNOWS {relWeight: 1.0}]->(annie)
+    MERGE (dan)-[:KNOWS {relWeight: 1.6}]->(matt)
+    MERGE (annie)-[:KNOWS {relWeight: 0.1}]->(matt)
+    MERGE (annie)-[:KNOWS {relWeight: 3.0}]->(jeff)
+    MERGE (annie)-[:KNOWS {relWeight: 1.2}]->(brie)
+    MERGE (matt)-[:KNOWS {relWeight: 10.0}]->(brie)
+    MERGE (brie)-[:KNOWS {relWeight: 1.0}]->(elsa)
+    MERGE (brie)-[:KNOWS {relWeight: 2.2}]->(jeff)
+    MERGE (john)-[:KNOWS {relWeight: 5.0}]->(jeff)
 
-  RETURN True AS exampleDataCreated
+    RETURN True AS exampleDataCreated
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  result = session.run(create_example_graph_on_disk_query).data()
+    # Run query
+    result = session.run(create_example_graph_on_disk_query).data()
 
-  # Prettify the result
-  print(json.dumps(result, indent=2, sort_keys=True))
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -116,23 +116,23 @@ We then project an in-memory graph from the data just created.
 [source, python, subs=attributes+]
 ----
 g, result = gds.graph.project(
-  "example_graph_for_graphsage",
-  {
-    "Person": {
-      "label": "ExampleData",
-      "properties": ["age", "heightAndWeight"]
+    "example_graph_for_graphsage",
+    {
+        "Person": {
+            "label": "ExampleData",
+            "properties": ["age", "heightAndWeight"]
+        }
+    },
+    {
+        "KNOWS": {
+            "type": "KNOWS",
+            "orientation": "UNDIRECTED",
+            "properties": ["relWeight"]
+        }
     }
-  }, 
-  {
-    "KNOWS": {
-      "type": "KNOWS",
-      "orientation": "UNDIRECTED",
-      "properties": ["relWeight"]
-    }
-  }
 )
 
-print(json.dumps(result, indent=2, sort_keys=True))
+print(result)
 ----
 =====
 
@@ -165,31 +165,31 @@ CALL gds.graph.project(
 ----
 # Cypher query
 create_example_graph_in_memory_query = """
-  CALL gds.graph.project(
-    'example_graph_for_graphsage',
-    {
-      Person: {
-        label: 'ExampleData',
-        properties: ['age', 'heightAndWeight']
+    CALL gds.graph.project(
+      'example_graph_for_graphsage',
+      {
+        Person: {
+          label: 'ExampleData',
+          properties: ['age', 'heightAndWeight']
+        }
+      }, 
+      {
+        KNOWS: {
+          type: 'KNOWS',
+          orientation: 'UNDIRECTED',
+          properties: ['relWeight']
+        }
       }
-    }, 
-    {
-      KNOWS: {
-        type: 'KNOWS',
-        orientation: 'UNDIRECTED',
-        properties: ['relWeight']
-      }
-    }
-  )
+    )
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  result = session.run(create_example_graph_in_memory_query).data()
-  
-  # Prettify the result
-  print(json.dumps(result, indent=2, sort_keys=True))
+    # Run query
+    result = session.run(create_example_graph_in_memory_query).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -205,12 +205,12 @@ Machine learning algorithms which support the `train` mode produce trained model
 [source, python, subs=attributes+]
 ----
 model, result = gds.beta.graphSage.train(
-  g,
-  modelName="example_graph_model_for_graphsage",
-  featureProperties=["age", "heightAndWeight"],
-  aggregator="mean",
-  activationFunction="sigmoid",
-  sampleSizes=[25, 10]
+    g,
+    modelName="example_graph_model_for_graphsage",
+    featureProperties=["age", "heightAndWeight"],
+    aggregator="mean",
+    activationFunction="sigmoid",
+    sampleSizes=[25, 10]
 )
 ----
 =====
@@ -219,21 +219,22 @@ model, result = gds.beta.graphSage.train(
 =====
 [source, cypher, subs=attributes+]
 ----
-CALL gds.beta.graphSage.train(
- 'example_graph_for_graphsage',
- {
-   modelName: 'example_graph_model_for_graphsage',
-   featureProperties: ['age', 'heightAndWeight'],
-   aggregator: 'mean',
-   activationFunction: 'sigmoid',
-   sampleSizes: [25, 10]
- }
-) YIELD modelInfo as info
-RETURN
- info.name as modelName,
- info.metrics.didConverge as didConverge,
- info.metrics.ranEpochs as ranEpochs,
- info.metrics.epochLosses as epochLosses
+  CALL gds.beta.graphSage.train(
+    'example_graph_for_graphsage',
+    {
+      modelName: 'example_graph_model_for_graphsage',
+      featureProperties: ['age', 'heightAndWeight'],
+      aggregator: 'mean',
+      activationFunction: 'sigmoid',
+      sampleSizes: [25, 10]
+    }
+  ) 
+  YIELD modelInfo as info
+  RETURN
+    info.name as modelName,
+    info.metrics.didConverge as didConverge,
+    info.metrics.ranEpochs as ranEpochs,
+    info.metrics.epochLosses as epochLosses
 ----
 =====
 
@@ -243,30 +244,31 @@ RETURN
 ----
 # Cypher query
 train_graph_sage_on_in_memory_graph_query  = """
-  CALL gds.beta.graphSage.train(
-  'example_graph_for_graphsage',
-  {
-    modelName: 'example_graph_model_for_graphsage',
-    featureProperties: ['age', 'heightAndWeight'],
-    aggregator: 'mean',
-    activationFunction: 'sigmoid',
-    sampleSizes: [25, 10]
-  }
-  ) YIELD modelInfo as info
-  RETURN
-  info.name as modelName,
-  info.metrics.didConverge as didConverge,
-  info.metrics.ranEpochs as ranEpochs,
-  info.metrics.epochLosses as epochLosses
+    CALL gds.beta.graphSage.train(
+      'example_graph_for_graphsage',
+      {
+        modelName: 'example_graph_model_for_graphsage',
+        featureProperties: ['age', 'heightAndWeight'],
+        aggregator: 'mean',
+        activationFunction: 'sigmoid',
+        sampleSizes: [25, 10]
+      }
+    ) 
+    YIELD modelInfo as info
+    RETURN
+      info.name as modelName,
+      info.metrics.didConverge as didConverge,
+      info.metrics.ranEpochs as ranEpochs,
+      info.metrics.epochLosses as epochLosses
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  result = session.run(train_graph_sage_on_in_memory_graph_query).data()
+    # Run query
+    result = session.run(train_graph_sage_on_in_memory_graph_query).data()
 
-  # Prettify the result
-  print(json.dumps(result, indent=2, sort_keys=True))
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -287,8 +289,7 @@ We can use the https://neo4j.com/docs/graph-data-science/current/model-catalog/l
 ----
 results = gds.beta.model.list()
 
-# Prettify the results
-print(json.dumps(results, indent=2, sort_keys=True, default=default))
+print(results)
 ----
 =====
 
@@ -306,16 +307,16 @@ CALL gds.beta.model.list()
 ----
 # Cypher query
 list_model_catalog_query  = """
-  CALL gds.beta.model.list()
+    CALL gds.beta.model.list()
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  results = session.run(list_model_catalog_query).data()
-  
-  # Prettify the results
-  print(json.dumps(results, indent=2, sort_keys=True, default=default))
+    # Run query
+    results = session.run(list_model_catalog_query).data()
+    
+    # Prettify the results
+    print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
@@ -332,7 +333,7 @@ The https://neo4j.com/docs/graph-data-science/current/model-catalog/store/[`gds.
 ----
 result = gds.alpha.model.store(model)
 
-print(json.dumps(result, indent=2, sort_keys=True))
+print(result)
 ----
 =====
 
@@ -350,16 +351,16 @@ CALL gds.alpha.model.store("example_graph_model_for_graphsage")
 ----
 # Cypher query
 save_graph_sage_model_to_disk_query = """
-  CALL gds.alpha.model.store("example_graph_model_for_graphsage")
+    CALL gds.alpha.model.store("example_graph_model_for_graphsage")
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  result = session.run(save_graph_sage_model_to_disk_query).data()
-  
-  # Prettify the result
-  print(json.dumps(result, indent=2, sort_keys=True))
+    # Run query
+    result = session.run(save_graph_sage_model_to_disk_query).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -374,7 +375,7 @@ If we list the model catalog after persisting a model, we can see that the store
 ----
 results = gds.beta.model.list()
 
-print(json.dumps(results, indent=2, sort_keys=True, default=default))
+print(results)
 ----
 =====
 
@@ -392,16 +393,16 @@ CALL gds.beta.model.list()
 ----
 # Cypher query
 list_model_catalog_query  = """
-  CALL gds.beta.model.list()
+    CALL gds.beta.model.list()
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  results = session.run(list_model_catalog_query).data()
+    # Run query
+    results = session.run(list_model_catalog_query).data()
 
-  # Prettify the results
-  print(json.dumps(results, indent=2, sort_keys=True, default=default))
+    # Prettify the results
+    print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
@@ -425,9 +426,9 @@ In order to see how this works in practice on AuraDS, we first of all need to ht
 gds.set_database("system")
 
 gds.run_cypher("""
-  CREATE USER testUser IF NOT EXISTS
-  SET PASSWORD 'test'
-  SET PASSWORD CHANGE NOT REQUIRED
+    CREATE USER testUser IF NOT EXISTS
+    SET PASSWORD 'test'
+    SET PASSWORD CHANGE NOT REQUIRED
 """)
 ----
 =====
@@ -450,18 +451,18 @@ SET PASSWORD CHANGE NOT REQUIRED
 ----
 # Cypher query
 create_a_new_user_query = """
-  CREATE USER testUser IF NOT EXISTS
-  SET PASSWORD 'test'
-  SET PASSWORD CHANGE NOT REQUIRED
+    CREATE USER testUser IF NOT EXISTS
+    SET PASSWORD 'test'
+    SET PASSWORD CHANGE NOT REQUIRED
 """
 
 # Create the driver session using the 'system' database
 with driver.session(database='system') as session:
-  # Run query
-  result = session.run(create_a_new_user_query).data()
+    # Run query
+    result = session.run(create_a_new_user_query).data()
 
-  # Prettify the result
-  print(json.dumps(result, indent=2, sort_keys=True))
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -479,7 +480,7 @@ A model can be _published_ (made accessible to other users) using the https://ne
 gds.set_database("neo4j")
 model_public = gds.alpha.model.publish(model)
 
-print(json.dumps(result, indent=2, sort_keys=True, default=default))
+print(result)
 ----
 =====
 
@@ -499,16 +500,16 @@ CALL gds.alpha.model.publish('example_graph_model_for_graphsage')
 ----
 # Cypher query
 publish_graph_sage_model_to_disk_query  = """
-  CALL gds.alpha.model.publish('example_graph_model_for_graphsage')
+    CALL gds.alpha.model.publish('example_graph_model_for_graphsage')
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run query
-  result = session.run(publish_graph_sage_model_to_disk_query).data()
+    # Run query
+    result = session.run(publish_graph_sage_model_to_disk_query).data()
 
-  # Prettify the result
-  print(json.dumps(result, indent=2, sort_keys=True, default=default))
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
@@ -524,14 +525,14 @@ In order to verify that the published model is visible to the user we have just 
 [source, python, subs=attributes+]
 ----
 test_user_gds = GraphDataScience(
-  AURA_CONNECTION_URI,
-  auth=("testUser", "test"),
-  aura_ds=True
+    AURA_CONNECTION_URI,
+    auth=("testUser", "test"),
+    aura_ds=True
 )
 
 results = test_user_gds.beta.model.list()
 
-print(json.dumps(results, indent=2, sort_keys=True, default=default))
+print(results)
 ----
 =====
 
@@ -551,15 +552,18 @@ CALL gds.beta.model.list()
 =====
 [source, python, subs=attributes+]
 ----
-test_user_driver = GraphDatabase.driver(AURA_CONNECTION_URI, auth=("testUser", "test"))
+test_user_driver = GraphDatabase.driver(
+    AURA_CONNECTION_URI,
+    auth=("testUser", "test")
+)
 
 # Create the driver session
 with test_user_driver.session() as session:
-  # Run query
-  results = session.run(list_model_catalog_query).data()
+    # Run query
+    results = session.run(list_model_catalog_query).data()
 
-  # Prettify the results
-  print(json.dumps(results, indent=2, sort_keys=True, default=default))
+    # Prettify the results
+    print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
@@ -576,8 +580,8 @@ After going through the tutorial, the in-memory graphs, the data in the Neo4j da
 ----
 # Delete the example dataset
 gds.run_cypher("""
-  MATCH (example:ExampleData)
-  DETACH DELETE example
+    MATCH (example:ExampleData)
+    DETACH DELETE example
 """)
 
 # Delete the projected graph from memory
@@ -593,7 +597,7 @@ gds.alpha.model.delete(model_public)
 gds.set_database("system")
 
 gds.run_cypher("""
-  DROP USER testUser
+    DROP USER testUser
 """)
 ----
 =====
@@ -626,42 +630,42 @@ DROP USER testUser;
 ----
 # Delete the example dataset from the database
 delete_example_graph_query = """
-  MATCH (example:ExampleData)
-  DETACH DELETE example
+    MATCH (example:ExampleData)
+    DETACH DELETE example
 """
 
 # Delete the projected graph from memory
 drop_in_memory_graph_query = """
-  CALL gds.graph.drop("example_graph_for_graphsage")
+    CALL gds.graph.drop("example_graph_for_graphsage")
 """
 
 # Drop the model from memory
 drop_example_models_query = """
-  CALL gds.beta.model.drop("example_graph_model_for_graphsage_public")
+    CALL gds.beta.model.drop("example_graph_model_for_graphsage_public")
 """
 
 # Delete the model from disk
 delete_example_models_query = """
-  CALL gds.alpha.model.delete("example_graph_model_for_graphsage_public")
+    CALL gds.alpha.model.delete("example_graph_model_for_graphsage_public")
 """
 
 # Delete the example user
 drop_example_user_query = """
-  DROP USER testUser
+    DROP USER testUser
 """
 
 # Create the driver session
 with driver.session() as session:
-  # Run queries
-  print(session.run(delete_example_graph_query).data())
-  print(session.run(drop_in_memory_graph_query).data())
-  print(session.run(drop_example_models_query).data())
-  print(session.run(delete_example_models_query).data())
+    # Run queries
+    print(session.run(delete_example_graph_query).data())
+    print(session.run(drop_in_memory_graph_query).data())
+    print(session.run(drop_example_models_query).data())
+    print(session.run(delete_example_models_query).data())
 
 # Create another driver session on the system database
 # to drop the test user
 with driver.session(database='system') as session:
-  print(session.run(drop_example_user_query).data())
+    print(session.run(drop_example_user_query).data())
 
 driver.close()
 test_user_driver.close()
