@@ -2,8 +2,6 @@
 = Importing an existing database
 :description: This page describes how to get data into a Neo4j AuraDS instance.
 
-WARNING: Review pending changes to the UI
-
 [NOTE]
 ====
 *Note:* The process of importing or loading data requires you to xref:aurads/create-instance.adoc[create an AuraDS instance] beforehand.
@@ -14,27 +12,25 @@ WARNING: Review pending changes to the UI
 There are two ways you can import data from an existing Neo4j database into an AuraDS instance.
 
 The easiest way is to export a Neo4j database as a *_.dump_* file and use the <<_import_database>> process.
-This process, however, only works for *_.dump_* files under 4GB. 
-
-If the size of the *_.dump_* file exported from a database is greater than 4GB, you must use the <<_push_to_cloud>> method.
+This process, however, only works for *_.dump_* files under 4GB. If the size of the *_.dump_* file exported from a database is greater than 4GB, you must use the <<_push_to_cloud>> method.
 
 === Import database
 
 To import a *_.dump_* file under 4GB:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
-. Select the name of the database you want to import the data from.
-. Select the *IMPORT DATABASE* tab.
-. Drag and drop your *_.dump_* file into the provided window or select *Select a .dump file* and select your file.
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console^] in your browser.
+. Select the card of the database you want to import the data from.
+. Select the *Import Database* tab.
+. Drag and drop your *_.dump_* file into the provided window, or click on *Select a .dump file* and select your file.
 . Select *Upload*.
 
-When the upload is complete, the AuraDS instance goes into a 'Loading' state as the dump is applied. 
-Once this has finished, the instance returns to its 'Running' state; and the data is ready.
+When the upload is complete, the AuraDS instance goes into a `Loading` state as the dump is applied. 
+Once this has finished, the instance returns to its `Running` state and the data is ready.
 
 === Push-to-cloud
 
 `Push-to-cloud` is a Neo4j Admin command that you can run to upload the contents of a Neo4j database into an AuraDS instance, regardless of the database's size.
 
-Instructions on running the command can be found by selecting the *Import* section from the sidebar menu of the Aura Console or navigating directly to the https://console.neo4j.io/#import-instructions[Import page].
+Instructions on running the command can be found by clicking on the *Click here* link in the *Import Database* tab or by navigating directly to the https://console.neo4j.io/#import-instructions[Import page^].
 
 When prompted that the process is complete, the data is ready.
