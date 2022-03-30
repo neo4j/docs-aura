@@ -99,7 +99,7 @@ driver = GraphDatabase.driver(
 
 == Running a query
 
-Once created, the client (or the driver) can be used to run Cypher queries and call Cypher procedures. In this example the `gds.version` procedure can be used to retrieve the version of GDS running on the database.
+Once created, the client (or the driver) can be used to run Cypher queries and call Cypher procedures. In this example the `gds.version` procedure can be used to retrieve the version of GDS running on the instance.
 
 [.tabbed-example]
 ====
