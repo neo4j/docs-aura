@@ -203,7 +203,7 @@ with driver.session() as session:
     results = session.run(delete_example_in_memory_graph_query).data()
 
     # Prettify the results
-    print(json.dumps(results, indent=2, sort_keys=True))
+    print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
