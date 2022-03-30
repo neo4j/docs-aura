@@ -79,8 +79,8 @@ with driver.session() as session:
     # Run query
     results = session.run(page_rank_mutate_estimate_example_graph_query).data()
 
-    # Prettify the first result
-    print(json.dumps(results[0], indent=2, sort_keys=True))
+    # Prettify the result
+    print(json.dumps(results, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -128,8 +128,6 @@ RETURN *
 =====
 [source, python, subs=attributes+]
 ----
-# Lets try to run the query to hit the memory guard
-
 # Cypher query
 page_rank_mutate_example_graph_query = """
     CALL gds.labelPropagation.mutate(
@@ -154,8 +152,8 @@ with driver.session() as session:
     # Run query
     results = session.run(page_rank_mutate_example_graph_query).data()
 
-    # Prettify the first result
-    print(json.dumps(results[0], indent=2, sort_keys=True))
+    # Prettify the result
+    print(json.dumps(results, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -205,7 +203,7 @@ with driver.session() as session:
     results = session.run(delete_example_in_memory_graph_query).data()
 
     # Prettify the results
-    print(json.dumps(results, indent=2, sort_keys=True))
+    print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====

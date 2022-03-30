@@ -2,6 +2,7 @@
 = Neo4j AuraDS overview
 :description: This section introduces Neo4j AuraDS.
 :check-mark: icon:check[]
+:table-caption!:
 
 AuraDS is the fully managed version of Neo4j Graph Data Science. 
 
@@ -9,9 +10,7 @@ AuraDS instances are automatically upgraded and patched, can be seamlessly scale
 
 == Plans
 
-AuraDS offers the following https://neo4j.com/cloud/aura/[subscription plans]: *AuraDS* and *AuraDS Enterprise* (coming soon).
-
-Each plan offers different levels of functionality and support:
+AuraDS offers the *AuraDS* and *AuraDS Enterprise* (coming soon) subscription plans.
 
 .Data Science Workspace
 [cols="49,^17,^17",options="header"]
@@ -212,14 +211,11 @@ Each plan offers different levels of functionality and support:
 
 [NOTE]
 ====
-For information on the different levels of support offered in each plan, see xref:support/index.adoc[].
+For information on the different levels of support offered in each plan, see the xref:aurads/support.adoc[support page].
 ====
-
-(C) {copyright}
-License: link:{common-license-page-uri}[Creative Commons 4.0]
 
 == Updates and upgrades
 
 AuraDS updates and upgrades are handled by the platform, and as such do not require user intervention. Security patches and new versions of GDS and Neo4j are installed within short time windows during which the affected instances are unavailable.
 
-The operations are non-destructive, so graph projections, models and data present on an instance are not affected. No operation is applied until all the running GDS algorithms have finished.
+The operations are non-destructive, so graph projections, models and data present on an instance are not affected. No operation is applied until all the running GDS algorithms have completed.
