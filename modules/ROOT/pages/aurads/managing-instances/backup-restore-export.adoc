@@ -10,18 +10,11 @@ The *Snapshots* tab within an AuraDS instance shows a list of available snapshot
 . Select the card of the instance you want to access.
 . Select the *Snapshots* tab.
 
-== Snapshot types
-
-There are two different types of snapshot:
-
-* *On-demand* - Runs when you select *Take snapshot* from the *Snapshots* tab of an instance.
-* *Load* - Runs when you load a dump file from the *Import Database* tab of an instance and when you run the `push-to-cloud` command.
-
 == Snapshot actions
 
 === Take a snapshot
 
-You can manually trigger an *On-demand* snapshot by selecting *Take snapshot* in the *Snapshots* tab. The `Status` of the snapshot is `In progress` until the snapshot has been created; then, the `Status` becomes `Completed`.
+You can manually trigger a snapshot by selecting *Take snapshot* in the *Snapshots* tab. The snapshot status is shown as `In progress` until the snapshot has been created; then, the `Status` becomes `Completed`.
 
 === Backup and Export
 
