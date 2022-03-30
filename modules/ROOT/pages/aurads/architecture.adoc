@@ -14,11 +14,11 @@ The Neo4j Database is the heart of the AuraDS instance, where graph data are loa
 
 === Graph Data Science
 
-The Graph Data Science (GDS) is a software component installed in the Neo4j Database, whose main purpose is to run graph algorithms on projected in-memory graphs. The library includes procedures to create and manage in-memory graphs and trained models.
+Graph Data Science (GDS) is a software component installed in the Neo4j Database, whose main purpose is to run graph algorithms on projected in-memory graphs. The component includes procedures to create and manage in-memory graphs and trained models.
 
 ==== Algorithms
 
-The GDS Library contains 60+ algorithms (listed in the https://neo4j.com/docs/graph-data-science/current/algorithms/[GDS Library manual]), which are invoked as Cypher procedures and run on in-memory projections of Neo4j Database data.
+GDS contains 60+ algorithms (listed in the https://neo4j.com/docs/graph-data-science/current/algorithms/[GDS manual]), which are invoked as Cypher procedures and run on in-memory projections of Neo4j Database data.
 
 Algorithms are broken down into three tiers of maturity:
 
@@ -30,7 +30,7 @@ Algorithms are broken down into three tiers of maturity:
 
 === Graph Catalog
 
-The graph catalog is used to store and manage in-memory graphs via GDS Library procedures.
+The graph catalog is used to store and manage in-memory graphs via GDS procedures.
 
 === Model Catalog
 
@@ -38,6 +38,6 @@ Some graph algorithms (for example GraphSage) need to use trained models in thei
 
 == Graph data flow
 
-Since GDS Library algorithms only run on in-memory graphs, the graph data must be first read from the Neo4j Database (1) and loaded into memory (2) as projected graphs. GDS algorithms can then be run against them (3) and, if requested, the results can be written back to the Neo4j Database (see the algorithm xref:aurads/tutorials/algorithm-modes#_write[write] mode).
+Since GDS algorithms only run on in-memory graphs, the graph data must be first read from the Neo4j Database (1) and loaded into memory (2) as projected graphs. GDS algorithms can then be run against them (3) and, if requested, the results can be written back to the Neo4j Database (see the algorithm xref:aurads/tutorials/algorithm-modes#_write[write] mode).
 
 image::architecture.png[title="Architecture"]
