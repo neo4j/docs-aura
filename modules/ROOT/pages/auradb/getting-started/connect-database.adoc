@@ -1,20 +1,17 @@
-[[aura-access-database]]
-= Accessing a database
-:description: This page describes how to access a database using Neo4j AuraDB.
+[[aura-connect-database]]
+= Connecting to a database
+:description: This page describes how to connect to a database using Neo4j AuraDB.
 
-With a database created, the next step is to access it.
+There are a few different methods of connecting to a database in Neo4j AuraDB:
 
-There are a few different methods of accessing a database in Neo4j AuraDB:
-
-* <<_neo4j_browser>> - A browser-based interface for querying and viewing data in a database with rudimentary visualization.
+* <<_neo4j_browser>> - A browser-based interface for querying and viewing data in a database.
 * <<_neo4j_bloom>> - A graph exploration application for visually interacting with graph data.
-* <<_neo4j_data_importer>> - A no-code visual application for loading data into a database.
 * <<_neo4j_desktop>> - An installable desktop application used to manage local and cloud databases.
 * <<_neo4j_cypher_shell>> - A command-line tool used to run cypher queries against a Neo4j instance.
 
 [TIP]
 ====
-*Tip:* For first-time users, we recommend using Neo4j Browser.
+For first-time users, we recommend using Neo4j Browser.
 ====
 
 == Neo4j Browser
@@ -67,29 +64,6 @@ You can import perspectives by clicking the blue "Import Perspective" button in 
 Please note that the Perspective exposes details about your graph's schema but not the actual data within.
 
 For more information, see https://neo4j.com/docs/bloom-user-guide/1.5/bloom-perspectives/[Bloom Perspectives].
-====
-
-== Neo4j Data Importer
-
-label:Professional[]
-label:Free[] 
-
-The Neo4j Data Importer is a no-code tool that lets you:
-
-. Load data from flat files (`.csv` and `.tsv`).
-. Define a graph model and map your data to it.
-. Import the data into your AuraDB database.
-
-To open a database with Data Importer:
-
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
-. Select the *Import* button on the database you want to import data.
-
-Once you have opened the Neo4j Data Importer, you can follow the built-in tutorial to learn how to use the tool.
-
-[NOTE]
-====
-You must provide your AuraDB database password before importing from the Neo4j Data Importer.
 ====
 
 == Neo4j Desktop
