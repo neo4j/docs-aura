@@ -13,11 +13,10 @@ pip install graphdatascience
 
 [source, python]
 ----
-# Client import
+# Import the client
 from graphdatascience import GraphDataScience
 
-# Connection details
-# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
+# Replace with the actual URI, username, and password
 AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
 AURA_USERNAME = "neo4j"
 AURA_PASSWORD = ""
@@ -72,11 +71,10 @@ pip install neo4j
 
 [source, python]
 ----
-# Driver import
+# Import the driver
 from neo4j import GraphDatabase
 
-# Connection details
-# Aura queries use an encrypted connection using the "neo4j+s" URI scheme
+# Replace with the actual URI, username, and password
 AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
 AURA_USERNAME = "neo4j"
 AURA_PASSWORD = ""
