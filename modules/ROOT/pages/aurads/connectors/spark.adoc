@@ -4,9 +4,14 @@
 
 WARNING: PAGE UNDER DEVELOPMENT
 
-The Neo4j Connector for Apache Spark is intended to make integrating graphs with Spark easy. There are effectively two ways of using the connector:
+The Neo4j Connector for Apache Spark is intended to make integrating graphs with Spark easy. There are two ways to use the connector:
 
-* As a data source: read any set of nodes or relationships as a DataFrame in Spark
-* As a sink: write any DataFrame to Neo4j as a collection of nodes or relationships, or use a Cypher statement to process records contained in a DataFrame into the graph pattern of your choice.
+* As a https://neo4j.com/docs/spark/current/reading/[data source^]: read any set of nodes or relationships as a `DataFrame` in Spark
+* As a https://neo4j.com/docs/spark/current/writing/[sink^]: write any `DataFrame` to Neo4j as a collection of nodes or relationships, or use a Cypher statement to process records contained in a `DataFrame` into the graph pattern of your choice
 
-For more information check the https://neo4j.com/docs/spark/current/[Neo4j Apache Spark Connector] page.
+Connecting to AuraDS only requires:
+
+. to replace the `bolt` URI in the examples (the value of the `neo4j.server.uri` configuration parameter) with the `neo4j+s://` connection URI from the AuraDS instance detail page
+. to add configuration parameters for the credentials (as shown in the https://neo4j.com/docs/spark/current/configuration/[Neo4j driver configuration^] page)
+
+For more information check the https://neo4j.com/docs/spark/current/[Neo4j Apache Spark Connector^] page.
