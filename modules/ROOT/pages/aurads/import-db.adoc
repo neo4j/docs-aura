@@ -19,9 +19,9 @@ This process, however, only works for *_.dump_* files under 4GB. If the size of 
 To import a *_.dump_* file under 4GB:
 
 . Navigate to the https://console.neo4j.io/[Neo4j Aura Console^] in your browser.
-. Select the card of the database you want to import the data from.
+. Select the instance you want to import the database to.
 . Select the *Import Database* tab.
-. Drag and drop your *_.dump_* file into the provided window, or click on *Select a .dump file* and select your file.
+. Drag and drop your *_.dump_* file into the provided window, or click on *Select a _.dump_ file* and select your file.
 . Select *Upload*.
 
 When the upload is complete, the AuraDS instance goes into a `Loading` state as the dump is applied. 
