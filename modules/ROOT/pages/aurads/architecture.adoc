@@ -5,12 +5,12 @@
 
 AuraDS makes it easy to run graph algorithms on Neo4j by integrating two main components:
 
-* the *Neo4j Database*, where graph data are loaded and stored, and Cypher queries and all database operations (for example user management, query termination, etc.) are executed;
-* the *Graph Data Science*, a software component installed in the Neo4j Database, whose main purpose is to run graph algorithms on in-memory projections of Neo4j Database data.
+* *Neo4j Database*, where graph data are loaded and stored, and Cypher queries and all database operations (for example user management, query termination, etc.) are executed;
+* *Graph Data Science*, a software component installed in the Neo4j Database, whose main purpose is to run graph algorithms on in-memory projections of Neo4j Database data.
 
 == Graph Data Science concepts
 
-The Graph Data Science (GDS) includes procedures to create and manage graphs, run algorithms, and train machine learning models.
+Graph Data Science (GDS) includes procedures to create and manage graphs, run algorithms, and train machine learning models.
 
 .Graph Catalog
 
@@ -34,6 +34,11 @@ Some graph algorithms (for example GraphSage) need to use trained models in thei
 
 == Graph data flow
 
-Since GDS algorithms can only run in memory, graph data must first be read from the Neo4j Database (1) and loaded into memory (2) as projected graphs using the Graph Catalog. GDS procedures can then be invoked to run algorithms on such graphs (3) and, if requested, to write the results back to the Neo4j Database (see the algorithm xref:aurads/tutorials/algorithm-modes#_write[write] mode).
+Since GDS algorithms can only run in memory, the typical data flow involves:
+
+. Reading the graph data from Neo4j Database
+. Loading (_projecting_) the data into an in-memory graph
+. Running an algorithm on a projected graph
+. Writing the results back to Neo4j Database (if the algorithm runs in xref:aurads/tutorials/algorithm-modes#_write[write] mode)
 
 image::architecture.png[]
