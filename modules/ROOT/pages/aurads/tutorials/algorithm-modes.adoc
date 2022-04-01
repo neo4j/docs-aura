@@ -5,7 +5,7 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1-Cc8LcR-vLwmPjMI6_A2qQ1nziwzJwE6?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-This tutorial explains https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos[execution modes^] for GDS algorithms and how to use each one of them.
+This example explains https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos[execution modes^] for GDS algorithms and how to use each one of them.
 
 include::partial$aurads/setup.adoc[]
 
@@ -458,7 +458,7 @@ with driver.session() as session:
 
 == Cleanup
 
-After going through the tutorial, both the in-memory graphs and the data in the Neo4j database can be deleted.
+After going through the example, both the in-memory graphs and the data in the Neo4j database can be deleted.
 
 [.tabbed-example]
 ====
