@@ -26,7 +26,7 @@ Once activated, you can create an endpoint in your VPC that connects to Aura.
 
 image::private-link.png[title="VPC connectivity with AWS PrivateLink"]
 
-All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet. 
+All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet.
 You can then disable public traffic, ensuring all traffic to the database remains private to your VPC.
 
 [NOTE]
@@ -37,7 +37,7 @@ You can then disable public traffic, ensuring all traffic to the database remain
 
 To enable private endpoints using AWS PrivateLink, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket], and we'll be in touch.
 
-You will need an AWS account with permissions to create, modify, describe and delete endpoints. 
+You will need an AWS account with permissions to create, modify, describe and delete endpoints.
 Please see the https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.html[AWS Documentation] for more information.
 
 == Single Sign-On
@@ -53,18 +53,14 @@ The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are curr
 * Keycloak
 * Google Authentication
 
-[NOTE]
-====
-Aura supports both Authorization Code Flow with PKCE and Implicit Flow authorization flows.
-We strongly advise using PKCE to ensure security. 
-====
+Aura supports Authorization Code Flow with PKCE to ensure best practice security.
 
 To add SSO for Browser and Bloom to your AuraDB Enterprise databases, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket] including the following information:
 
 . The *Connection URI* of the database(s) you want to use SSO.
 . Whether or not you want Browser, Bloom, or both enabled.
 . The name of your IdP.
-. The authorization flow (PKCE or Implicit).
+. Confirmation that the authorization flow is PKCE.
 
 [NOTE]
 ====
