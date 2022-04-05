@@ -33,12 +33,12 @@ In this example we add uniqueness constraints on both movie titles and actors' n
 ----
 # Make movie titles unique
 gds.run_cypher("""
-    CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE
+    CREATE CONSTRAINT FOR (movie:Movie) REQUIRE movie.title IS UNIQUE
 """)
 
 # Make person names unique
 gds.run_cypher("""
-    CREATE CONSTRAINT ON (person:Person) ASSERT person.name IS UNIQUE
+    CREATE CONSTRAINT FOR (person:Person) REQUIRE person.name IS UNIQUE
 """)
 ----
 =====
@@ -47,8 +47,8 @@ gds.run_cypher("""
 =====
 [source, cypher, subs=attributes+]
 ----
-CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE;
-CREATE CONSTRAINT ON (person:Person) ASSERT person.name IS UNIQUE;
+CREATE CONSTRAINT FOR (movie:Movie) REQUIRE movie.title IS UNIQUE;
+CREATE CONSTRAINT FOR (person:Person) REQUIRE person.name IS UNIQUE;
 ----
 =====
 
@@ -57,11 +57,11 @@ CREATE CONSTRAINT ON (person:Person) ASSERT person.name IS UNIQUE;
 [source, python, subs=attributes+]
 ----
 movie_title_constraint = """
-    CREATE CONSTRAINT ON (movie:Movie) ASSERT movie.title IS UNIQUE
+    CREATE CONSTRAINT FOR (movie:Movie) REQUIRE movie.title IS UNIQUE
 """
 
 person_name_constraint = """
-    CREATE CONSTRAINT ON (person:Person) ASSERT person.name IS UNIQUE
+    CREATE CONSTRAINT FOR (person:Person) REQUIRE person.name IS UNIQUE
 """
 
 # Create the driver session
