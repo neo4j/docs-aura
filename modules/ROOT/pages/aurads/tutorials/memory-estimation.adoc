@@ -5,7 +5,7 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1C-GNnSFlWmxFGe-AN193jix_srAmb-c_?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-This tutorial shows how to:
+This example shows how to:
 
 * use the https://neo4j.com/docs/graph-data-science/current/common-usage/memory-estimation/[memory estimation^] mode to estimate the memory requirements for an algorithm before running it
 * resize an AuraDS instance to accommodate the algorithm memory requirements
@@ -79,8 +79,8 @@ with driver.session() as session:
     # Run query
     results = session.run(page_rank_mutate_estimate_example_graph_query).data()
 
-    # Prettify the first result
-    print(json.dumps(results[0], indent=2, sort_keys=True))
+    # Prettify the result
+    print(json.dumps(results, indent=2, sort_keys=True))
 ----
 =====
 ====
@@ -128,8 +128,6 @@ RETURN *
 =====
 [source, python, subs=attributes+]
 ----
-# Lets try to run the query to hit the memory guard
-
 # Cypher query
 page_rank_mutate_example_graph_query = """
     CALL gds.labelPropagation.mutate(
@@ -154,15 +152,15 @@ with driver.session() as session:
     # Run query
     results = session.run(page_rank_mutate_example_graph_query).data()
 
-    # Prettify the first result
-    print(json.dumps(results[0], indent=2, sort_keys=True))
+    # Prettify the result
+    print(json.dumps(results, indent=2, sort_keys=True))
 ----
 =====
 ====
 
 == Resize the AuraDS instance
 
-You will need to resize the instance to the next available size (16GB) in order to continue with the tutorial. An AuraDS instance can be resized from the instance card on the https://console.neo4j.io/[Neo4j Aura Console^] homepage. For more information, check the xref:aurads/managing-instances/instance-actions#_resizing_an_instance[Instance actions] section.
+You will need to resize the instance to the next available size (16GB) in order to continue. An AuraDS instance can be resized from the https://console.neo4j.io/[Neo4j Aura Console^] homepage. For more information, check the xref:aurads/managing-instances/instance-actions#_resizing_an_instance[Instance actions] section.
 
 NOTE: Resizing an AuraDS instance incurs a short amount of downtime.
 
@@ -170,7 +168,7 @@ After resizing, wait a few seconds until the projected graph is reloaded, then r
 
 == Cleanup
 
-After completing the tutorial, both the in-memory graphs and the data in the Neo4j database can be deleted.
+Both the in-memory graphs and the data in the Neo4j database are now no longer needed and can be deleted.
 
 [.tabbed-example]
 ====
@@ -205,7 +203,7 @@ with driver.session() as session:
     results = session.run(delete_example_in_memory_graph_query).data()
 
     # Prettify the results
-    print(json.dumps(results, indent=2, sort_keys=True))
+    print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====

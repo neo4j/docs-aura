@@ -1,26 +1,26 @@
 [[architecture]]
 = Architecture
 :description: This page describes AuraDS architecture.
+:!figure-caption:
 
-Working with an AuraDS instance requires a bit of knowledge about Neo4j Graph Data Science architecture. 
+AuraDS makes it easy to run graph algorithms on Neo4j by integrating two main components:
 
-== Architecture components
+* *Neo4j Database*, where graph data are loaded and stored, and Cypher queries and all database operations (for example user management, query termination, etc.) are executed;
+* *Graph Data Science*, a software component installed in the Neo4j Database, whose main purpose is to run graph algorithms on in-memory projections of Neo4j Database data.
 
-There are four main components that make up the architecture.
+== Graph Data Science concepts
 
-=== Neo4j Database
+Graph Data Science (GDS) includes procedures to create and manage graphs, run algorithms, and train machine learning models.
 
-The Neo4j Database is the heart of the AuraDS instance, where graph data are loaded and stored. Cypher queries and all database operations (for example user management, query termination, etc.) are executed here.
+.Graph Catalog
 
-=== Graph Data Science
+The graph catalog is used to store and manage projected graphs via GDS procedures.
 
-The Graph Data Science (GDS) is a software component installed in the Neo4j Database, whose main purpose is to run graph algorithms on projected in-memory graphs. The library includes procedures to create and manage in-memory graphs and trained models.
+.Algorithms
 
-==== Algorithms
+GDS contains many graph algorithms (listed in the https://neo4j.com/docs/graph-data-science/current/algorithms/[GDS manual^]), invoked as Cypher procedures and run on projected graphs.
 
-The GDS Library contains 60+ algorithms (listed in the https://neo4j.com/docs/graph-data-science/current/algorithms/[GDS Library manual]), which are invoked as Cypher procedures and run on in-memory projections of Neo4j Database data.
-
-Algorithms are broken down into three tiers of maturity:
+GDS algorithms are broken down into three tiers of maturity:
 
 - *Alpha*: experimental algorithms that may be changed or removed at any time. Algorithms in this tier are prefixed with `gds.alpha.<algorithm>`.
 
@@ -28,16 +28,17 @@ Algorithms are broken down into three tiers of maturity:
 
 - *Production*: algorithms that have been rigorously tested for stability and scalability. Algorithms in this tier are prefixed with `gds.<algorithm>`.
 
-=== Graph Catalog
-
-The graph catalog is used to store and manage in-memory graphs via GDS Library procedures.
-
-=== Model Catalog
+.Model Catalog
 
 Some graph algorithms (for example GraphSage) need to use trained models in their computation. The model catalog is used to store and manage named trained models.
 
 == Graph data flow
 
-Since GDS Library algorithms only run on in-memory graphs, the graph data must be first read from the Neo4j Database (1) and loaded into memory (2) as projected graphs. GDS algorithms can then be run against them (3) and, if requested, the results can be written back to the Neo4j Database (see the algorithm xref:aurads/tutorials/algorithm-modes#_write[write] mode).
+Since GDS algorithms can only run in memory, the typical data flow involves:
 
-image::architecture.png[title="Architecture"]
+. Reading the graph data from Neo4j Database
+. Loading (_projecting_) the data into an in-memory graph
+. Running an algorithm on a projected graph
+. Writing the results back to Neo4j Database (if the algorithm runs in xref:aurads/tutorials/algorithm-modes#_write[write] mode)
+
+image::architecture.png[]

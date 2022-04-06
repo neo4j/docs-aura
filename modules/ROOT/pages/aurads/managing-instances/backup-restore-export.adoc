@@ -2,35 +2,26 @@
 = Backup, export and restore
 :description: This page describes how to backup, export and restore your data from a snapshot.
 
-The data in your AuraDS instance can be backed up, exported, and restored using snapshots.
+The data in your AuraDS instance can be backed up, exported, and restored using snapshots. A _snapshot_ is a copy of the data in an instance at a specific point in time.
 
-A snapshot is a copy of the data in an instance at a specific point in time.
-
-The *SNAPSHOTS* tab within an AuraDS instance shows a list of available snapshots. footnote:[Snapshots are kept in the system for 180 days.]
-
-To access the *SNAPSHOTS* tab:
+The *Snapshots* tab within an AuraDS instance shows a list of available snapshots footnote:[Snapshots are kept in the system for 180 days.]. To access the *Snapshots* tab:
 
 . Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
-. Select the name of the instance you want to access.
-. Select the *SNAPSHOTS* tab.
-
-== Snapshot types
-
-There are three different types of snapshot:
-
-* *Load* - Runs when you load a dump file from the *IMPORT DATABASE* tab of an instance and when you run the `push-to-cloud` command from the *Import* section of the sidebar menu of the Aura Console.
-* *On-demand* - Runs when you select *Take snapshot* from the *SNAPSHOTS* tab of an instance.
+. Select the instance you want to access.
+. Select the *Snapshots* tab.
 
 == Snapshot actions
 
+=== Take a snapshot
+
+You can manually trigger a snapshot by selecting *Take snapshot* in the *Snapshots* tab. The snapshot status is shown as `In progress` until the snapshot has been created; then, the `Status` becomes `Completed`.
+
 === Backup and Export
 
-You can use any of the *Scheduled* snapshots as a backup or manually trigger an *On-demand* snapshot by selecting *Take snapshot*.
-
-By selecting the ellipses (...) next to a snapshot, you can:
+By selecting the ellipses (...) button next to a snapshot, you can:
 
 * *Export* - Download the database as a *_.tar.gz_* file, allowing you to store a local copy and work on your data offline. The compressed archive contains a *_.dump_* file that can be imported directly or pushed to the cloud.
-* *Create instance from snapshot* - Create a new AuraDS instance using the data from the snapshot.
+* *Create instance from snapshot* - Create a new AuraDS instance using the data from the snapshot. This opens a window where you can assign a name to the instance that will be created.
 
 === Restore
 
