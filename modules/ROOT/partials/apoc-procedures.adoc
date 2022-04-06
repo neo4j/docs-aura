@@ -4,7 +4,7 @@
 
 // Timestamp
 // [NOTE]
-// Generated on March 16, 2022.
+// Generated on April 6, 2022.
 
 
 
@@ -353,7 +353,7 @@ apoc.cypher.runFirstColumnMany(statement, params) - executes statement with give
 ¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.cypher/apoc.cypher.runFirstColumnSingle[apoc.cypher.runFirstColumnSingle icon:book[] ^] +
 apoc.cypher.runFirstColumnSingle(statement, params) - executes statement with given parameters, returns first element of the first column only, params are available as identifiers
 ¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.cypher/apoc.cypher.runMany[apoc.cypher.runMany icon:book[] ^] +
-apoc.cypher.runMany('cypher;\nstatements;',{params},[{statistics:true,timeout:10}]) - runs each semicolon separated statement and returns summary - currently no schema operations
+apoc.cypher.runMany('cypher;\nstatements;', $params, [{statistics:true,timeout:10}]) - runs each semicolon separated statement and returns summary - currently no schema operations
 ¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.cypher/apoc.cypher.runTimeboxed[apoc.cypher.runTimeboxed icon:book[] ^] +
 apoc.cypher.runTimeboxed('cypherStatement',{params}, timeout) - abort kernelTransaction after timeout ms if not finished
 ¦ label:procedure[]
@@ -646,6 +646,8 @@ apoc.map.setValues(map,[key1,value1,key2,value2])
 apoc.map.sortedProperties(map, ignoreCase:true) - returns a list of key/value list pairs, with pairs sorted by keys alphabetically, with optional case sensitivity
 ¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.submap[apoc.map.submap icon:book[] ^] +
 apoc.map.submap(map,keys,[defaults],[fail=true])  - returns submap for keys or throws exception if one of the key doesn't exist and no default value given at that position
+¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.unflatten[apoc.map.unflatten icon:book[] ^] +
+apoc.map.unflatten(map, delimiter:'.') yield map - unflat from items separated by delimiter string to nested items (reverse of apoc.map.flatten function)
 ¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.updateTree[apoc.map.updateTree icon:book[] ^] +
 apoc.map.updateTree(tree,key,[[value,{data}]]) returns map - adds the {data} map on each level of the nested tree, where the key-value pairs match
 ¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.values[apoc.map.values icon:book[] ^] +
@@ -678,7 +680,7 @@ apoc.math.minLong() | return the minimum value a long can have
 ¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.math/apoc.math.regr[apoc.math.regr icon:book[] ^] +
 apoc.math.regr(label, propertyY, propertyX) - It calculates the coefficient of determination (R-squared) for the values of propertyY and propertyX in the provided label
 ¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.math/apoc.math.round[apoc.math.round icon:book[] ^] +
-apoc.math.round(value,[prec],mode=[CEILING,FLOOR,UP,DOWN,HALF_EVEN,HALF_DOWN,HALF_UP,DOWN,UNNECESSARY])
+apoc.math.round(value,[precision],mode=['CEILING','FLOOR','UP','DOWN','HALF_EVEN','HALF_DOWN','HALF_UP','DOWN','UNNECESSARY'])
 ¦ label:function[]
 |===
 
