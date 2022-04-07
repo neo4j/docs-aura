@@ -19,8 +19,8 @@ g, result = gds.beta.graph.generate(
     relationshipDistribution="POWER_LAW"
 )
 
-# Pretty-print the metadata
-print(json.dumps(result, indent=2, sort_keys=True, default=default))
+# Print prettified graph stats
+print(result)
 ----
 =====
 
