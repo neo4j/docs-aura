@@ -18,7 +18,7 @@ This process, however, only works for *_.dump_* files under 4GB. If the size of 
 
 To import a *_.dump_* file under 4GB:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console^] in your browser.
+. Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
 . Select the instance you want to import the database to.
 . Select the *Import Database* tab.
 . Drag and drop your *_.dump_* file into the provided window, or click on *Select a _.dump_ file* and select your file.
@@ -31,6 +31,6 @@ Once this has finished, the instance returns to its `Running` state and the data
 
 `Push-to-cloud` is a Neo4j Admin command that you can run to upload the contents of a Neo4j database into an AuraDS instance, regardless of the database's size.
 
-Instructions on running the command can be found by clicking on the *Click here* link in the *Import Database* tab or by navigating directly to the https://console.neo4j.io/#import-instructions[Neo4j Aura Console Import page^].
+Instructions on running the command can be found by clicking on the *Click here* link in the *Import Database* tab or by navigating directly to the https://console.neo4j.io/?product=aura-ds#import-instructions[Neo4j Aura Console Import page^].
 
 When prompted that the process is complete, the data is ready.

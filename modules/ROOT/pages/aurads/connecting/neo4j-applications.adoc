@@ -18,7 +18,7 @@ There are several ways to interact with and use graph data in AuraDS.
 
 To open an AuraDS instance with Neo4j Browser:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console^] in your browser.
+. Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
 . Select the *Query* button on the instance you want to open.
 . Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens. 
 These are the same credentials you stored when you xref:aurads/create-instance.adoc[created the instance].
@@ -30,7 +30,7 @@ Once you have successfully connected, there are built-in guides you can complete
 
 To open an AuraDS instance with Neo4j Bloom:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console^] in your browser.
+. Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
 . Select the *Explore* button on the instance you want to open.
 . Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens. 
 These are the same credentials you stored when you xref:aurads/create-instance.adoc[created the instance].
@@ -65,7 +65,7 @@ You can connect AuraDS instances to the Neo4j Desktop application, allowing the 
 
 To connect to an AuraDS instance using Neo4j Desktop:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console^] in your browser.
+. Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
 . Copy the *Connection URI* of the instance you want to connect to. The URI is in the page that opens when clicking on the instance.
 . In Neo4j Desktop, select the *Projects* tab and select an existing project or create a new one.
 . Select the *Add* dropdown and choose *Remote connection*.
@@ -91,7 +91,7 @@ You can connect to an AuraDS instance using the Neo4j Cypher Shell command-line 
 
 To connect to an AuraDS instance using Neo4j Cypher Shell:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console^] in your browser.
+. Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
 . Copy the *Connection URI* of the instance you want to connect to. The URI is in the page that opens when clicking on the instance.
 . Open a terminal and navigate to the folder where you have installed the Cypher Shell.
 . Run the following `cypher-shell` command replacing:
