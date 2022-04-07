@@ -20,7 +20,7 @@ NOTE: The graph is fairly large, so the generation procedure will take a few min
 
 The estimation of the memory requirements of an algorithm on an in-memory graph can be useful to determine whether the current AuraDS instance has enough resources to run the algorithm to completion.
 
-The Graph Data Science has guard rails built in: if an algorithm is estimated to use more RAM or CPU than are available, an exception is raised. In this case, the AuraDS instance can be resized before running the algorithm again.
+The Graph Data Science has guard rails built in: if an algorithm is estimated to use more RAM than is available, an exception is raised. In this case, the AuraDS instance can be resized before running the algorithm again.
 
 In the following example we get a memory estimation for the PageRank algorithm to run on the generated graph. The estimated memory is between 381 MiB and 4477 MiB, which is higher than an 8GB instance has available (4004 MiB).
 
