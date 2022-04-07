@@ -2,8 +2,6 @@
 = Neo4j Connector for Apache Kafka (Neo4j Streams)
 :description: This page describes how to connect to AuraDS using Kafka.
 
-WARNING: PAGE UNDER DEVELOPMENT
-
 Many user and customers want to integrate Kafka and other streaming solutions with Neo4j, either to ingest data into the graph from other sources or to send update events to the event log for later consumption. Neo4j Streams was developed to satisfy all these use-cases and more to come.
 
 AuraDS supports the use of the https://neo4j.com/labs/kafka/4.1/kafka-connect/[Kafka Connect Plugin^], which allows to ingest data into Neo4j from Kafka topics via Cypher queries. 
