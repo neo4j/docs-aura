@@ -14,11 +14,11 @@ Graph Data Science (GDS) includes procedures to project and manage graphs, run a
 
 .Graph Catalog
 
-The graph catalog is used to store and manage projected graphs via GDS procedures.
+The https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/[graph catalog^] is used to store and manage projected graphs via GDS procedures.
 
 .Algorithms
 
-GDS contains many graph algorithms (listed in the https://neo4j.com/docs/graph-data-science/current/algorithms/[GDS manual^]), invoked as Cypher procedures and run on projected graphs.
+GDS contains many https://neo4j.com/docs/graph-data-science/current/operations-reference/algorithm-references/[graph algorithms^], invoked as Cypher procedures and run on projected graphs.
 
 GDS algorithms are broken down into three tiers of maturity:
 
@@ -30,7 +30,11 @@ GDS algorithms are broken down into three tiers of maturity:
 
 .Model Catalog
 
-Some graph algorithms (for example GraphSage) need to use trained models in their computation. The model catalog is used to store and manage named trained models.
+Some machine learning algorithms (for example Node Classification and GraphSage) need to use trained models in their computation. The https://neo4j.com/docs/graph-data-science/current/model-catalog/[model catalog^] is used to store and manage named trained models.
+
+.Pipeline Catalog
+
+The https://neo4j.com/docs/graph-data-science/current/pipeline-catalog/[pipeline catalog^] is used to manage machine learning pipelines. A pipeline groups together all the stages of a supported machine learning task (for example Node classification), from graph feature extraction to model training, in a single end-to-end workflow.
 
 == Graph data flow
 
