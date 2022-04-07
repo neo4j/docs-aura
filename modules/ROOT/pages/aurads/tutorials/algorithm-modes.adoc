@@ -270,7 +270,7 @@ The result contains the estimated time to run the algorithm (`computeMillis`) al
 
 === Stream
 
-The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stream[stream^] mode returns the results of an algorithm once it has completed. This is similar to how standard Cypher reading queries operate.
+The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stream[`stream`^] mode returns the results of an algorithm once it has completed. This is similar to how standard Cypher reading queries operate.
 
 With the PageRank example, this mode returns a node ID and the computed PageRank score for each node. The https://neo4j.com/docs/graph-data-science/current/management-ops/utility-functions/#utility-functions-node-path[`gds.util.asNode`^] procedure can then be used to find a node from its node ID.
 
