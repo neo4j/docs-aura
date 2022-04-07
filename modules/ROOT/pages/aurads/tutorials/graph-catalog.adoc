@@ -138,11 +138,11 @@ The projected graph becomes the following:
 
 [source, cypher]
 ----
-(:Person {first_name: 'Alistair'})-
+(:PersonEM {first_name: 'Alistair'})-
   [:KNOWS {start_date: 987654321, end_date: 999999999}]-
-  (:Person {first_name: 'Leila'})-
+  (:PersonD {first_name: 'Leila'})-
   [:KNOWS {start_date: 123456789, end_date: 987654321}]-
-  (:Person {first_name: 'Jennifer'})
+  (:PersonEM {first_name: 'Jennifer'})
 ----
 
 [.tabbed-example]
