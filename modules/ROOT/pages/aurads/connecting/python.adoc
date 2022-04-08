@@ -231,12 +231,14 @@ def default(o):
     if isinstance(o, (DateTime)):
         return o.isoformat()
 
+# Example query to run a graph generation algorithm
 create_example_graph_query = """
     CALL gds.beta.graph.generate(
       'example-graph', 10, 3, {relationshipDistribution: 'POWER_LAW'}
     )
 """
 
+# Example query to delete a graph
 delete_example_graph_query = """
     CALL gds.graph.drop('example-graph')
 """
