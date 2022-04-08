@@ -270,7 +270,7 @@ The result contains the estimated time to run the algorithm (`computeMillis`) al
 
 === Stream
 
-The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stream[stream^] mode returns the results of an algorithm once it has completed. This is similar to how standard Cypher reading queries operate.
+The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stream[`stream`^] mode returns the results of an algorithm as Cypher result rows. This is similar to how standard Cypher reading queries operate.
 
 With the PageRank example, this mode returns a node ID and the computed PageRank score for each node. The https://neo4j.com/docs/graph-data-science/current/management-ops/utility-functions/#utility-functions-node-path[`gds.util.asNode`^] procedure can then be used to find a node from its node ID.
 
@@ -395,7 +395,7 @@ with driver.session() as session:
 
 === Write
 
-The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-write[`write`^] mode writes the results of the algorithm computation back to the Neo4j database. The written data can be node properties (such as PageRank scores), new relationships (such as Node Similarity similarities), or relationship properties.
+The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-write[`write`^] mode writes the results of the algorithm computation back to the Neo4j database. The written data can be node properties (such as PageRank scores), new relationships (such as Node Similarity similarities), or relationship properties (only for newly created relationships).
 
 Similarly to the previous example, here we add the calculated score of the PageRank algorithm to each node of the Neo4j database as the value of a new property called `pageRankScore`.
 
@@ -515,3 +515,5 @@ with driver.session() as session:
 ----
 =====
 ====
+
+include::partial$aurads/references.adoc[]

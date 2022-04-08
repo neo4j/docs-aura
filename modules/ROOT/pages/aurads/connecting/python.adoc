@@ -183,6 +183,80 @@ with driver.session() as session:
 =====
 ====
 
+=== Serializing Neo4j `DateTime` in JSON dumps
+
+In some cases the result of a procedure call may contain Neo4j `DateTime` objects. In order to serialize such objects into JSON, a default handler must be provided.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Import for the JSON helper function
+from neo4j.time import DateTime
+
+# Helper function for serializing Neo4j DateTime in JSON dumps
+def default(o):
+    if isinstance(o, (DateTime)):
+        return o.isoformat()
+
+# Run the graph generation algorithm
+g, _ = gds.beta.graph.generate(
+    "example-graph", 10, 3, relationshipDistribution="POWER_LAW"
+)
+
+# Drop the graph keeping the result of the operation, which contains 
+# some DateTime fields ("creationTime" and "modificationTime")
+result = gds.graph.drop(g)
+
+# Print the result as JSON, converting the DateTime fields with
+# the handler defined above
+print(result.to_json(indent=2, default_handler=default))
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Import to prettify results
+import json
+
+# Import for the JSON helper function
+from neo4j.time import DateTime
+
+# Helper function for serializing Neo4j DateTime in JSON dumps
+def default(o):
+    if isinstance(o, (DateTime)):
+        return o.isoformat()
+
+# Example query to run a graph generation algorithm
+create_example_graph_query = """
+    CALL gds.beta.graph.generate(
+      'example-graph', 10, 3, {relationshipDistribution: 'POWER_LAW'}
+    )
+"""
+
+# Example query to delete a graph
+delete_example_graph_query = """
+    CALL gds.graph.drop('example-graph')
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Run the graph generation algorithm
+    session.run(create_example_graph_query).data()
+
+    # Drop the generated graph keeping the result of the operation
+    results = session.run(delete_example_graph_query).data()
+
+    # Prettify the results using the handler defined above
+    print(json.dumps(results, indent=2, sort_keys=True, default=default))
+----
+=====
+====
+
 == Closing the connection
 
 [.tabbed-example]
