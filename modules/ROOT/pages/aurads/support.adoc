@@ -37,7 +37,7 @@ All users can access the https://status.neo4j.io/[Aura Status page] to check the
 Local business hours are 8:00am to 6:00pm, Monday through Friday, excluding major holidays as detailed below.
 
 Enterprise Premium Support::
-Neo4j Support Engineers provide a 24 x 7 x 365 support for Severity 1 issues for Enterprise customers, regardless of weekday, weekendfootnote:[Weekends are defined as Saturday and Sunday.], or holiday:
+Neo4j Support Engineers provide a 24 x 7 x 365 support for Severity 1 issues for Enterprise customers, regardless of weekday, weekend footnote:[Weekends are defined as Saturday and Sunday.], or holiday:
 
 * Severity 1: < 1 hour
 * Severity 2: < 4 business hours
@@ -51,54 +51,114 @@ All tickets submitted on a weekend or holiday (except for the _Enterprise_ level
 
 Holidays vary slightly, based on geography:
 
-[cols="4a,^3a,^3a", options="header"]
+[cols="4a,^3a,^3a,^3a", options="header"]
 |===
 | Holiday
-| North America
-| Europe, Middle East or Africa
+| AMER footnote:[AMER is the support region for customers in North, South and Central America or the Caribbean.]
+| EMEA footnote:[EMEA is the support region for customers in Europe, Middle East and Africa.]
+| APAC footnote:[APAC is the support region for customers in Asia and Australia.]
 
 // 1st Jan
 | New Year’s Day
 | {check-mark}
+| {check-mark}
+| {check-mark}
+
+// 14/15 January
+| Martin Luther King Day
+| {check-mark}
+|
+|
+
+// 14/15 January
+| Makar Sankranti
+|
+|
+| {check-mark}
+
+// 26 January
+| Republic Day
+|
+|
 | {check-mark}
 
 // third Monday in February
 | President’s Day
 | {check-mark}
 |
+|
+
+// February/March
+| Maha Shivratri
+|
+|
+| {check-mark}
+
+// March
+| Holi
+|
+|
+| {check-mark}
+
+
 
 // 31st May
 | Memorial Day
 | {check-mark}
+|
 |
 
 // April
 | Good Friday
 |
 | {check-mark}
+| {check-mark}
 
 // April
 | Easter Monday
 |
 | {check-mark}
+|
 
 // 1st Monday in May
 | Early May bank holiday
 |
 | {check-mark}
+|
 
 // Last Monday in May
 | Spring bank holiday
 |
 | {check-mark}
+|
+
+// 24th June
+| Midsummer Day _(Neo4j company holiday)_
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
 // 4th July
-| Independence Day
+| Independence Day (US)
 | {check-mark}
 |
+|
+
+// 4th July
+| Independence Day (India)
+|
+|
+| {check-mark}
 
 // Last Monday in August
 | Summer bank holiday
+|
+| {check-mark}
+|
+
+// August/September
+| Ganesh Chaturthi
+|
 |
 | {check-mark}
 
@@ -106,24 +166,53 @@ Holidays vary slightly, based on geography:
 | Labor Day
 | {check-mark}
 |
+|
+
+// 2nd October
+| Gandhi Jayanti
+|
+|
+| {check-mark}
+
+// September/October
+| Dussehra / Vijayadashami
+|
+|
+| {check-mark}
+
+// October/November
+| Diwali
+|
+|
+| {check-mark}
+
+// October/November
+| Diwali Padwa
+|
+|
+| {check-mark}
 
 // 4th Thursday in Nov
 | Thanksgiving Day
 | {check-mark}
+|
 |
 
 // Day after the 4th Thursday in Nov
 | Day after Thanksgiving
 | {check-mark}
 |
+|
 
 // 24th December
 | Christmas Eve
 | {check-mark}
 |
+|
 
 // 25th December
 | Christmas Day
+| {check-mark}
 | {check-mark}
 | {check-mark}
 
@@ -131,10 +220,12 @@ Holidays vary slightly, based on geography:
 | Boxing Day
 |
 | {check-mark}
+|
 
 // 31st December
 | New Year’s Eve
 | {check-mark}
+|
 |
 |===
 

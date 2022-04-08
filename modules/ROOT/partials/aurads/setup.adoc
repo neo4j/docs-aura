@@ -1,11 +1,11 @@
 == Setup
 
-For more information on how to get started using Python, refer to the xref:aurads/connecting/python.adoc[] tutorial.
-
 [.tabbed-example]
 ====
 [.include-with-GDS-client]
 =====
+For more information on how to get started using Python, refer to the xref:aurads/connecting/python.adoc[] tutorial.
+
 [source, shell]
 ----
 pip install graphdatascience
@@ -29,11 +29,13 @@ gds = GraphDataScience(
 )
 ----
 
-In the following code examples we use the `print` function to print Pandas `DataFrame` and `Series` objects. You can try different ways to print a Pandas object, for instance via the `to_string` and `to_json` methods; if you use a JSON representation, in some cases you may need to include a default handler to handle Neo4j `DateTime` objects. Check the xref:aurads/connecting/python.adoc#_running_a_query[Python connection] section for some examples.
+In the following code examples we use the `print` function to print Pandas `DataFrame` and `Series` objects. You can try different ways to print a Pandas object, for instance via the `to_string` and `to_json` methods; if you use a JSON representation, in some cases you may need to include a xref:aurads/connecting/python.adoc#_serializing_neo4j_datetime_in_json_dumps[default handler] to handle Neo4j `DateTime` objects. Check the xref:aurads/connecting/python.adoc#_running_a_query[Python connection] section for some examples.
 =====
 
 [.include-with-Cypher]
 =====
+For more information on how to get started using the Cypher Shell, refer to the xref:aurads/connecting/neo4j-applications.adoc#_neo4j_cypher_shell[Neo4j Cypher Shell] tutorial.
+
 TIP: Run the following commands from the directory where the Cypher shell is installed.
 
 [source, shell, subs=attributes+]
@@ -48,6 +50,8 @@ export AURA_PASSWORD=""
 
 [.include-with-python-driver]
 =====
+For more information on how to get started using Python, refer to the xref:aurads/connecting/python.adoc[] tutorial.
+
 [source, shell]
 ----
 pip install neo4j
