@@ -196,7 +196,7 @@ with driver.session() as session:
 
 == Train a model
 
-Machine learning algorithms which support the `train` mode produce trained models which are stored in the Model Catalog. Similarly, `predict` procedures can use such trained models to produce predictions. In this example we train a model for the https://neo4j.com/docs/graph-data-science/current/machine-learning/node-embeddings/graph-sage/[GraphSAGE algorithm^] using the `train` mode.
+Machine learning algorithms that support the `train` mode produce trained models which are stored in the Model Catalog. Similarly, `predict` procedures can use such trained models to produce predictions. In this example we train a model for the https://neo4j.com/docs/graph-data-science/current/machine-learning/node-embeddings/graph-sage/[GraphSAGE algorithm^] using the `train` mode.
 
 [.tabbed-example]
 ====
@@ -365,7 +365,7 @@ with driver.session() as session:
 =====
 ====
 
-If we list the model catalog after persisting a model, we can see that the stored flag for that model has been set to `true`.
+If we list the model catalog again after persisting a model, we can see that the `stored` flag for that model has been set to `true`.
 
 [.tabbed-example]
 ====
@@ -415,7 +415,7 @@ IMPORTANT: A model can only be shared with other users of the same AuraDS instan
 
 === Create a new user
 
-In order to see how this works in practice on AuraDS, we first of all need to https://neo4j.com/docs/cypher-manual/current/administration/security/users-and-roles/[create another user] to share the model with.
+In order to see how this works in practice on AuraDS, we first of all need to https://neo4j.com/docs/cypher-manual/current/administration/security/users-and-roles/[create another user^] to share the model with.
 
 [.tabbed-example]
 ====
@@ -423,6 +423,8 @@ In order to see how this works in practice on AuraDS, we first of all need to ht
 =====
 [source, python, subs=attributes+]
 ----
+# Switch to the "system" database to run the
+# "CREATE USER" admin command
 gds.set_database("system")
 
 gds.run_cypher("""
@@ -456,8 +458,8 @@ create_a_new_user_query = """
     SET PASSWORD CHANGE NOT REQUIRED
 """
 
-# Create the driver session using the 'system' database
-with driver.session(database='system') as session:
+# Create the driver session using the "system" database
+with driver.session(database="system") as session:
     # Run query
     result = session.run(create_a_new_user_query).data()
 
@@ -469,7 +471,7 @@ with driver.session(database='system') as session:
 
 === Publish the model
 
-A model can be _published_ (made accessible to other users) using the https://neo4j.com/docs/graph-data-science/current/model-catalog/publish/[gds.alpha.model.publish] procedure. Upon publication, the model name is updated by appending `{leading-underscore}public` to its original name.
+A model can be _published_ (made accessible to other users) using the https://neo4j.com/docs/graph-data-science/current/model-catalog/publish/[`gds.alpha.model.publish`] procedure. Upon publication, the model name is updated by appending `{leading-underscore}public` to its original name.
 
 [.tabbed-example]
 ====
@@ -477,10 +479,13 @@ A model can be _published_ (made accessible to other users) using the https://ne
 =====
 [source, python, subs=attributes+]
 ----
+# Switch back to the default "neo4j" database
+# to publish the model
 gds.set_database("neo4j")
+
 model_public = gds.alpha.model.publish(model)
 
-print(result)
+print(model_public)
 ----
 =====
 
@@ -593,7 +598,7 @@ gds.beta.model.drop(model_public)
 # Delete the model from disk
 gds.alpha.model.delete(model_public)
 
-# Switch to the system database and delete the example user
+# Switch to the "system" database to delete the example user
 gds.set_database("system")
 
 gds.run_cypher("""

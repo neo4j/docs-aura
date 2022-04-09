@@ -22,7 +22,7 @@ The estimation of the memory requirements of an algorithm on an in-memory graph 
 
 The Graph Data Science has guard rails built in: if an algorithm is estimated to use more RAM than is available, an exception is raised. In this case, the AuraDS instance can be resized before running the algorithm again.
 
-In the following example we get a memory estimation for the PageRank algorithm to run on the generated graph. The estimated memory is between 381 MiB and 4477 MiB, which is higher than an 8GB instance has available (4004 MiB).
+In the following example we get a memory estimation for the Label Propagation algorithm to run on the generated graph. The estimated memory is between 381 MiB and 4477 MiB, which is higher than an 8GB instance has available (4004 MiB).
 
 [.tabbed-example]
 ====
@@ -168,7 +168,7 @@ After resizing, wait a few seconds until the projected graph is reloaded, then r
 
 == Cleanup
 
-Both the in-memory graphs and the data in the Neo4j database are now no longer needed and can be deleted.
+The in-memory graph can now be deleted.
 
 [.tabbed-example]
 ====

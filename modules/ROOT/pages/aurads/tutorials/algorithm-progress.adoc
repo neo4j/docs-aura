@@ -13,7 +13,7 @@ include::partial$aurads/generated-graph.adoc[]
 
 == Run an algorithm and check the progress
 
-We need to run an algorithm that takes some time to converge. In this example we use the `Label Propagation` algorithm, which we start in a separate thread so that we can check its progress in the same Python process.
+We need to run an algorithm that takes some time to converge. In this example we use the Label Propagation algorithm, which we start in a separate thread so that we can check its progress in the same Python process.
 
 [.tabbed-example]
 ====
@@ -29,20 +29,22 @@ import time
 
 # Method to call the label propagation algorithm from a thread
 def run_label_prop():
-  print("Running label propagation")
+    print("Running label propagation")
 
-  result = gds.labelPropagation.mutate(
-    g,
-    mutateProperty="communityID"
-  )
+    result = gds.labelPropagation.mutate(
+        g,
+        mutateProperty="communityID"
+    )
 
-  print(json.dumps(result, indent=2, sort_keys=True))
+    print(result)
+
 
 # Method to get and pretty-print the algorithm progress
 def run_list_progress():
-  result = gds.beta.listProgress()
+    result = gds.beta.listProgress()
 
-  print(json.dumps(result, indent=2, sort_keys=True, default=default))
+    print(result)
+
 
 # Create a thread for the label propagation algorithm and start it
 label_prop_query_thread = threading.Thread(target=run_label_prop)
@@ -110,49 +112,49 @@ import time
 
 # Method to call the label propagation algorithm from a thread
 def run_label_prop():
-  label_prop_mutate_example_graph_query = """
-  CALL gds.labelPropagation.mutate(
-    'example-graph', 
-    {mutateProperty: 'communityID'}
-  )
-  YIELD preProcessingMillis,
-    computeMillis,
-    mutateMillis,
-    postProcessingMillis,
-    nodePropertiesWritten,
-    communityCount,
-    ranIterations,
-    didConverge,
-    communityDistribution,
-    configuration
-  RETURN *
-  """
+    label_prop_mutate_example_graph_query = """
+        CALL gds.labelPropagation.mutate(
+          'example-graph', 
+          {mutateProperty: 'communityID'}
+        )
+        YIELD preProcessingMillis,
+          computeMillis,
+          mutateMillis,
+          postProcessingMillis,
+          nodePropertiesWritten,
+          communityCount,
+          ranIterations,
+          didConverge,
+          communityDistribution,
+          configuration
+        RETURN *
+    """
 
-  # Create the driver session
-  with driver.session() as session:
-    # Run query
-    print("Running label propagation")
-    results = session.run(label_prop_mutate_example_graph_query).data()
-    # Prettify the first result
-    print(json.dumps(results[0], indent=2, sort_keys=True))
+    # Create the driver session
+    with driver.session() as session:
+        # Run query
+        print("Running label propagation")
+        results = session.run(label_prop_mutate_example_graph_query).data()
+        # Prettify the first result
+        print(json.dumps(results[0], indent=2, sort_keys=True))
 
 
 # Method to get and pretty-print the algorithm progress
 def run_list_progress():
-  gds_list_progress_query = """
-  CALL gds.beta.listProgress()
-  YIELD jobId, taskName, progress, progressBar
-  RETURN *
-  """
+    gds_list_progress_query = """
+        CALL gds.beta.listProgress()
+        YIELD jobId, taskName, progress, progressBar
+        RETURN *
+    """
 
-  # Create the driver session
-  with driver.session() as session:
-    # Run query
-    print('running list progress')
-    results = session.run(gds_list_progress_query).data()
-    # Prettify the first result
-    print('list progress results: ')
-    print(json.dumps(results[0], indent=2, sort_keys=True))
+    # Create the driver session
+    with driver.session() as session:
+        # Run query
+        print('running list progress')
+        results = session.run(gds_list_progress_query).data()
+        # Prettify the first result
+        print('list progress results: ')
+        print(json.dumps(results[0], indent=2, sort_keys=True))
 
 
 # Create a thread for the label propagation algorithm and start it
@@ -191,7 +193,7 @@ The in-memory graph can now be deleted.
 ----
 result = gds.graph.drop(g)
 
-print(json.dumps(result, indent=2, sort_keys=True, default=default))
+print(result)
 ----
 =====
 
@@ -212,11 +214,11 @@ CALL gds.graph.drop('example-graph')
 """
 
 with driver.session() as session:
-  # Run query
-  results = session.run(delete_example_in_memory_graph_query).data()
+    # Run query
+    results = session.run(delete_example_in_memory_graph_query).data()
 
-  # Prettify the results
-  print(json.dumps(results, indent=2, sort_keys=True, default=default))
+    # Prettify the results
+    print(json.dumps(results, indent=2, sort_keys=True, default=default))
 ----
 =====
 ====
