@@ -20,7 +20,7 @@ There are three different types of snapshot:
 
 * label:AuraDB-Professional[] label:AuraDB-Enterprise[] *Scheduled* - Runs when you first create a database, when changes to the underlying system occur (for example, a new patch release), and automatically at a cadence depending on your plan type.
 footnote:[Automatic scheduled snapshots run once a day for Professional databases and once an hour for Enterprise databases.] 
-* label:Enterprise[] label:Professional[] *Load* - Runs when you load a dump file from the *Import Database* tab of a database and when you run the `push-to-cloud` command from the *Import* section of the sidebar menu of the Aura Console.
+* label:AuraDB-Professional[] label:AuraDB-Enterprise[] *Load* - Runs when you load a dump file from the *Import Database* tab of a database and when you run the `push-to-cloud` command from the *Import* section of the sidebar menu of the Aura Console.
 * *On-demand* - Runs when you select *Take snapshot* from the *Snapshots* tab of a database.
 
 == Snapshot actions
@@ -42,7 +42,6 @@ Restoring a snapshot requires you to confirm the action by typing RESTORE and se
 
 [CAUTION]
 ====
-*Caution:*
 Restoring a snapshot overwrites the data in your database, replacing it with the data contained in the snapshot.
 ====
 
