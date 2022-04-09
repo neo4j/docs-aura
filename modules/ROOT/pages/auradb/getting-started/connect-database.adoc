@@ -46,8 +46,8 @@ These are the same credentials you stored when xref:auradb/getting-started/creat
 For more details on using Neo4j Bloom, please see the https://neo4j.com/docs/bloom-user-guide/current/[Neo4j Bloom documentation].
 
 [NOTE]
+.Perspectives in AuraDB
 ====
-*Note: Perspectives in AuraDB*
 
 Due to the nature of AuraDB's infrastructure, it is not currently possible to share Perspectives in Bloom, as the data for a given Perspective is stored in a cookie in the user's web browser.
 
@@ -84,8 +84,6 @@ These are the same credentials you stored when xref:auradb/getting-started/creat
 
 [NOTE]
 ====
-*Notes:*
-
 * Neo4j Desktop only allows 1 connection at a time to a database (local or remote).
 * Deactivating an instance in Neo4j Desktop won't shut it down or stop a remote instance - it will only temporarily close the connection to it in Neo4j Desktop.
 ====

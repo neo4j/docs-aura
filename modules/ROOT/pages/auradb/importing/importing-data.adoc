@@ -2,8 +2,6 @@
 = Importing data
 :description: This page describes how to get data into a Neo4j AuraDB database.
 
-This page describes the various ways you can get data into a Neo4j AuraDB database.
-
 [NOTE]
 ====
 *Note:* The process of importing or loading data requires you to xref:auradb/getting-started/create-database.adoc[create an AuraDB database] beforehand. 
@@ -44,7 +42,7 @@ Details on how to use the command, along with a full list of options, can be fou
 == Loading CSV data
 
 You can load data from a *_.csv_* file into an AuraDB database with the https://neo4j.com/docs/cypher-manual/current/clauses/load-csv/[`LOAD CSV`] Cypher statement within Neo4j Browser.
-For instructions on how to open an AuraDB database with Neo4j Browser, see xref:auradb/getting-started/access-database.adoc[].
+For instructions on how to open an AuraDB database with Neo4j Browser, see xref:auradb/getting-started/connect-database.adoc[].
 
 There are some limitations to consider when loading a *_.csv_* file into an AuraDB database:
 
