@@ -33,6 +33,7 @@ You can then disable public traffic, ensuring all traffic to the database remain
 ====
 * When activated, PrivateLink applies to all databases in the region.
 * If you disable public traffic, you must use a dedicated VPN to connect to your database via Browser or Bloom.
+* Connections using private endpoints are one-way. Aura VPCs can't initiate connections back to your VPCs.
 ====
 
 To enable private endpoints using AWS PrivateLink, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket], and we'll be in touch.

@@ -1,20 +1,17 @@
-[[aura-access-database]]
-= Accessing a database
-:description: This page describes how to access a database using Neo4j AuraDB.
+[[aura-connect-database]]
+= Connecting to a database
+:description: This page describes how to connect to a database using Neo4j AuraDB.
 
-With a database created, the next step is to access it.
+There are a few different methods of connecting to a database in Neo4j AuraDB:
 
-There are a few different methods of accessing a database in Neo4j AuraDB:
-
-* <<_neo4j_browser>> - A browser-based interface for querying and viewing data in a database with rudimentary visualization.
+* <<_neo4j_browser>> - A browser-based interface for querying and viewing data in a database.
 * <<_neo4j_bloom>> - A graph exploration application for visually interacting with graph data.
-* <<_neo4j_data_importer>> - A no-code visual application for loading data into a database.
 * <<_neo4j_desktop>> - An installable desktop application used to manage local and cloud databases.
 * <<_neo4j_cypher_shell>> - A command-line tool used to run cypher queries against a Neo4j instance.
 
 [TIP]
 ====
-*Tip:* For first-time users, we recommend using Neo4j Browser.
+For first-time users, we recommend using Neo4j Browser.
 ====
 
 == Neo4j Browser
@@ -23,7 +20,7 @@ You can query a database using Neo4j Browser.
 
 To open a database with Browser:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Select the *Query* button on the database you want to open.
 . Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens. 
 These are the same credentials you stored when xref:auradb/getting-started/create-database.adoc[creating the database].
@@ -39,7 +36,7 @@ You can explore a database using Neo4j Bloom.
 
 To open a database with Bloom:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Select the *Explore* button on the database you want to open.
 . Select *Neo4j Bloom* from the dropdown menu.
 . Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens. 
@@ -49,8 +46,8 @@ These are the same credentials you stored when xref:auradb/getting-started/creat
 For more details on using Neo4j Bloom, please see the https://neo4j.com/docs/bloom-user-guide/current/[Neo4j Bloom documentation].
 
 [NOTE]
+.Perspectives in AuraDB
 ====
-*Note: Perspectives in AuraDB*
 
 Due to the nature of AuraDB's infrastructure, it is not currently possible to share Perspectives in Bloom, as the data for a given Perspective is stored in a cookie in the user's web browser.
 
@@ -69,36 +66,13 @@ Please note that the Perspective exposes details about your graph's schema but n
 For more information, see https://neo4j.com/docs/bloom-user-guide/1.5/bloom-perspectives/[Bloom Perspectives].
 ====
 
-== Neo4j Data Importer
-
-label:Professional[]
-label:Free[] 
-
-The Neo4j Data Importer is a no-code tool that lets you:
-
-. Load data from flat files (`.csv` and `.tsv`).
-. Define a graph model and map your data to it.
-. Import the data into your AuraDB database.
-
-To open a database with Data Importer:
-
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
-. Select the *Import* button on the database you want to import data.
-
-Once you have opened the Neo4j Data Importer, you can follow the built-in tutorial to learn how to use the tool.
-
-[NOTE]
-====
-You must provide your AuraDB database password before importing from the Neo4j Data Importer.
-====
-
 == Neo4j Desktop
 
 You can connect AuraDB databases to the Neo4j Desktop application, allowing the ability to have a single portal for interacting with all instances of Neo4j, whether local or located in the cloud.
 
 To connect to a database using Neo4j Desktop:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Copy the *Connection URI* of the database you want to connect to. The URI is below the database status indicator.
 . In Neo4j Desktop, select the *Projects* tab and select an existing project or create a new one.
 . Select the *Add* dropdown and choose *Remote connection*.
@@ -110,8 +84,6 @@ These are the same credentials you stored when xref:auradb/getting-started/creat
 
 [NOTE]
 ====
-*Notes:*
-
 * Neo4j Desktop only allows 1 connection at a time to a database (local or remote).
 * Deactivating an instance in Neo4j Desktop won't shut it down or stop a remote instance - it will only temporarily close the connection to it in Neo4j Desktop.
 ====
@@ -126,7 +98,7 @@ You can connect to an AuraDB database using the Neo4j Cypher Shell command-line 
 
 To connect to a database using Neo4j Cypher Shell:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Copy the *Connection URI* of the database you want to connect to. The URI is below the database status indicator.
 . Open a terminal and navigate to the folder where you have installed Cypher Shell.
 . Run the following `cypher-shell` command replacing:
