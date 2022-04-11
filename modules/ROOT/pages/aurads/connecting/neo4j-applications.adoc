@@ -1,0 +1,109 @@
+[[aurads-access]]
+= Connecting with Neo4j applications
+:description: This page describes how to access an AuraDS instance through Neo4j applications.
+
+There are several ways to interact with and use graph data in AuraDS.
+
+* <<_neo4j_browser>> - A browser-based interface for querying and viewing graph data with rudimentary visualization.
+* <<_neo4j_bloom>> - A graph exploration application for visually interacting with graph data.
+* <<_neo4j_desktop>> - An installable desktop application used to manage local and cloud databases.
+* <<_neo4j_cypher_shell>> - A command-line tool used to run Cypher queries against a Neo4j instance.
+
+[TIP]
+====
+*Tip:* For first-time users, we recommend using Neo4j Browser.
+====
+
+== Neo4j Browser
+
+To open an AuraDS instance with Neo4j Browser:
+
+. Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
+. Select the *Query* button on the instance you want to open.
+. Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens. 
+These are the same credentials you stored when you xref:aurads/create-instance.adoc[created the instance].
+. Select *Connect*.
+
+Once you have successfully connected, there are built-in guides you can complete to familiarize yourself with Neo4j Browser. See the https://neo4j.com/docs/browser-manual/current/[Browser manual^] for more information.
+
+== Neo4j Bloom
+
+To open an AuraDS instance with Neo4j Bloom:
+
+. Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
+. Select the *Explore* button on the instance you want to open.
+. Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens. 
+These are the same credentials you stored when you xref:aurads/create-instance.adoc[created the instance].
+. Select *Connect*.
+
+See the https://neo4j.com/docs/bloom-user-guide/current/[Neo4j Bloom documentation^] for more details.
+
+[NOTE]
+====
+*Note: Perspectives in AuraDS*
+
+Due to the nature of AuraDS's infrastructure, it is not currently possible to share Perspectives in Bloom, as the data for a given Perspective is stored in a cookie in the user's web browser.
+
+An alternative is to export your Perspective as a JSON file and import it into another Bloom session.
+
+To export a Perspective:
+
+. Open the Bloom interface for your Neo4j AuraDS instance.
+. Navigate to the _Perspectives Gallery_.
+. Click on the vertical ellipsis (*...*) and select *Export*.
+. Save the file to your local disk.
+
+You can import perspectives by clicking the blue "Import Perspective" button in the Perspective gallery.
+Please note that the Perspective exposes details about your graph's schema but not the actual data within.
+
+For more information, see https://neo4j.com/docs/bloom-user-guide/1.5/bloom-perspectives/[Bloom Perspectives^].
+====
+
+== Neo4j Desktop
+
+You can connect AuraDS instances to the Neo4j Desktop application, allowing the ability to have a single portal for interacting with all instances of Neo4j, whether local or located in the cloud.
+
+To connect to an AuraDS instance using Neo4j Desktop:
+
+. Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
+. Copy the *Connection URI* of the instance you want to connect to. The URI is in the page that opens when clicking on the instance.
+. In Neo4j Desktop, select the *Projects* tab and select an existing project or create a new one.
+. Select the *Add* dropdown and choose *Remote connection*.
+. Enter a name for the instance and enter the URL from the Neo4j Aura console from the second step.
+Once complete, select *Next*.
+. With *Username/Password* selected, enter your credentials and select *Next*.
+These are the same credentials you stored when you xref:aurads/create-instance.adoc[created the instance].
+. When available, activate the connection by clicking the *Connect* button.
+
+[NOTE]
+====
+*Notes:*
+
+* Neo4j Desktop only allows 1 connection at a time to a database (local or remote).
+* Deactivating an instance in Neo4j Desktop won't shut it down or stop a remote instance - it will only temporarily close the connection to it in Neo4j Desktop.
+====
+
+As with other databases in Neo4j Desktop, you can install https://install.graphapp.io/[Graph Apps^] for monitoring and other functionality. To do this, follow the same process to install the graph application you need, and open it from Neo4j Desktop or a web browser with the running and activated Neo4j AuraDS instance.
+
+== Neo4j Cypher Shell
+
+You can connect to an AuraDS instance using the Neo4j Cypher Shell command-line interface (CLI) and run Cypher commands against your instance from the command line. Refer to the https://neo4j.com/docs/operations-manual/current/tools/cypher-shell/[Operations manual^] for instructions on how to install the Cypher Shell.
+
+To connect to an AuraDS instance using Neo4j Cypher Shell:
+
+. Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
+. Copy the *Connection URI* of the instance you want to connect to. The URI is in the page that opens when clicking on the instance.
+. Open a terminal and navigate to the folder where you have installed the Cypher Shell.
+. Run the following `cypher-shell` command replacing:
+* *`<connection_uri>`* with the URI you copied in step 2
+* *`<username>`* with the username for your instance
+* *`<password>`* with the password for your instance
++
+[source, shell]
+----
+./cypher-shell -a <connection_uri> -u <username> -p <password>
+----
+
+Once connected, you can run `:help` for a list of available commands.
+
+For more information on Cypher Shell, including how to install it, see the https://neo4j.com/docs/operations-manual/current/tools/cypher-shell/[Cypher Shell documentation^].

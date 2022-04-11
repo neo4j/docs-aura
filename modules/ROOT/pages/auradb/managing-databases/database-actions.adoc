@@ -1,0 +1,134 @@
+[[aura-db-actions]]
+= Database actions
+:description: This page describes how to resize, clone, pause, resume, delete and rename an AuraDB database.
+
+You can perform several database actions from an AuraDB database card on the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] homepage.
+
+== Renaming a database
+
+You can change the name of an existing database by using the *Rename* action.
+
+To rename a database:
+
+. Select the ellipsis (*...*) button on the database you want to rename.
+. Select *Rename* from the resulting menu.
+. Enter a new name for the database.
+. Select *Rename*.
+
+== Resizing a database
+
+label:AuraDB-Professional[]
+label:AuraDB-Enterprise[]
+
+You can change the size of an existing database by using the *Resize* action.
+
+To resize a database:
+
+. Select the ellipsis (*...*) button on the database you want to resize.
+. Select *Resize* from the resulting menu.
+. Select the new size you want your database to be.
+. Tick the *I understand* checkbox and select *Submit*.
+
+A database remains available during the resize operation.
+
+== Pausing a database
+
+[NOTE]
+====
+You cannot manually pause an AuraDB Free database; they are paused automatically after 72 hours of inactivity. footnote:[Inactivity is when you perform no queries on the database.]
+====
+
+label:AuraDB-Professional[]
+label:AuraDB-Enterprise[]
+
+You can pause a database during periods you don't need it and resume it at any time.
+
+To pause a database:
+
+. Select the pause button on the database you want to pause.
+. Tick the *I understand* checkbox and select *Pause* to confirm.
+
+After confirming, the database begins pausing, and a play button replaces the pause button.
+
+[NOTE]
+====
+Paused databases run at a discounted rate compared to standard consumption, as outlined in the confirmation window.
+You can pause a database for up to 30 days, after which point AuraDB automatically resumes the database.
+====
+
+=== Resuming a paused database
+
+To resume a database: 
+
+. Select the play button on the database you want to pause.
+. Tick the *I understand* checkbox and select *Resume* to confirm.
+
+After confirming, the database begins resuming, which may take a few minutes.
+
+[WARNING]
+====
+AuraDB Free databases do not automatically resume after 30 days. If an AuraDB Free database remains paused for more than 90 days, Aura deletes the database, and all information is lost.
+====
+
+== Cloning a database
+
+There are four ways to clone a database:
+
+* Clone to a new AuraDB database.
+* Clone to a new AuraDS instance.
+* Clone to an existing AuraDB database.
+* Clone to an existing AuraDS instance.
+
+=== Clone to a new AuraDB database
+
+. Select the ellipsis (*...*) button on the database you want to clone.
+. Select *Clone To New* and then *AuraDB* from the resulting menus.
+. Set your desired settings for the new database. For more information on AuraDB database creation settings, see xref:auradb/getting-started/create-database.adoc[].
+. Tick the *I understand* checkbox and select *Clone Database*.
+
+=== Clone to a new AuraDS instance
+
+. Select the ellipsis (*...*) button on the database you want to clone.
+. Select *Clone To New* and then *AuraDS* from the resulting menus.
+. Set your desired settings for the new instance. For more information on AuraDS instance creation settings, see xref:aurads/create-instance.adoc[].
+. Tick the *I understand* checkbox and select *Clone Database*.
+
+=== Clone to an existing AuraDB database
+
+. Select the ellipsis (*...*) button on the database you want to clone.
+. Select *Clone To Existing* and then *AuraDB* from the resulting menus.
+. If necessary, change the database name.
+. Select the existing AuraDB database you want to clone to from the dropdown menu.
+. Tick the *I understand* checkbox and select *Clone*.
+
+[NOTE]
+====
+If the database you are attempting to clone to is not equal in size or greater than the database you are cloning from, the database will be greyed out and unselectable from the dropdown menu.
+====
+
+=== Clone to an existing AuraDS instance
+
+. Select the ellipsis (*...*) button on the database you want to clone.
+. Select *Clone To Existing* and then *AuraDS* from the resulting menus.
+. If necessary, change the database name.
+. Select the existing AuraDS instance you want to clone to from the dropdown menu.
+. Tick the *I understand* checkbox and select *Clone*.
+
+[NOTE]
+====
+If the instance you are attempting to clone to is not equal in size or greater than the database you are cloning from, the instance will be greyed out and unselectable from the dropdown menu.
+====
+
+== Deleting a database
+
+You can delete a database if you no longer want to be billed for it.
+
+To delete a database:
+
+. Select the red trashcan icon on the database you want to delete.
+. Type the exact name of the database (as instructed) to confirm your decision, and select *Destroy*.
+
+[WARNING]
+====
+There is no way to recover data from a deleted AuraDB database.
+====

@@ -3,14 +3,14 @@
 :description: This page describes the levels of support offered by Neo4j Aura.
 :check-mark: icon:check[]
 
-Aura offers the following levels of support, based upon your chosen plan:
+AuraDB offers the following levels of support, based upon your chosen plan:
 
-[cols="49a,^17a,^17a,^17a",options="header"]
+[cols="40a,^17a,^17a,^17a",options="header"]
 |===
 |
-| label:Free[]
-| label:Professional[]
-| label:Enterprise[]
+| label:AuraDB-Free[]
+| label:AuraDB-Professional[]
+| label:AuraDB-Enterprise[]
 
 | xref:index.adoc[AuraDB product documentation]
 | {check-mark}
@@ -67,93 +67,4 @@ Any Severity 2, 3 and 4 submitted on a weekend or holiday will be responded to o
 Professional::
 All tickets for Professional customers submitted on a weekend or holiday will be responded to on the next business day.
 
-Holidays vary slightly, based on geography:
-
-[cols="4a,^3a,^3a", options="header"]
-|===
-| Holiday
-| North America
-| Europe, Middle East or Africa
-
-// 1st Jan
-| New Year’s Day
-| {check-mark}
-| {check-mark}
-
-// third Monday in February
-| President’s Day
-| {check-mark}
-|
-
-// 31st May
-| Memorial Day
-| {check-mark}
-|
-
-// April
-| Good Friday
-|
-| {check-mark}
-
-// April
-| Easter Monday
-|
-| {check-mark}
-
-// 1st Monday in May
-| Early May bank holiday
-|
-| {check-mark}
-
-// Last Monday in May
-| Spring bank holiday
-|
-| {check-mark}
-
-// 4th July
-| Independence Day
-| {check-mark}
-|
-
-// Last Monday in August
-| Summer bank holiday
-|
-| {check-mark}
-
-// 1st Monday in Sept
-| Labor Day
-| {check-mark}
-|
-
-// 4th Thursday in Nov
-| Thanksgiving Day
-| {check-mark}
-|
-
-// Day after the 4th Thursday in Nov
-| Day after Thanksgiving
-| {check-mark}
-|
-
-// 24th December
-| Christmas Eve
-| {check-mark}
-|
-
-// 25th December
-| Christmas Day
-| {check-mark}
-| {check-mark}
-
-// 26th December
-| Boxing Day
-|
-| {check-mark}
-
-// 31st December
-| New Year’s Eve
-| {check-mark}
-|
-|===
-
-For full details on support levels, see the https://neo4j.com/terms/support-terms/aura/[Neo4j Aura Support Terms] page.
+include::partial$holiday-table.adoc[]

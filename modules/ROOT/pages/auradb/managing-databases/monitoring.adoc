@@ -1,14 +1,14 @@
 [[aura-monitoring]]
 = Monitoring
 
-label:Enterprise[]
-label:Professional[]
+label:AuraDB-Professional[]
+label:AuraDB-Enterprise[]
 
 You can monitor the following metrics of an AuraDB database from the *Metrics* tab:
 
 * *CPU Usage (%)* - The amount of CPU used by the database as a percentage.
 * *Storage Used (%)* - The amount of disk storage space used by the database as a percentage.
-* label:Enterprise-only[] *Heap Usage (%)* - The amount of Java Virtual Machine (JVM) memory used by the database as a percentage.
+* label:AuraDB-Enterprise[] *Heap Usage (%)* - The amount of Java Virtual Machine (JVM) memory used by the database as a percentage.
 * *Out of Memory Errors* - The number of Out of Memory (OOM) errors encountered by the database.
 * *Garbage Collection Time (%)* - The amount of time the database spends reclaiming heap space as a percentage.
 * *Page Cache Evictions* - The number of times the database has replaced data in memory.
@@ -28,6 +28,6 @@ When viewing metrics, you can select from the following timeframes:
 
 To access the *Metrics* tab:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Select the database you want to access.
 . Select the *Metrics* tab.

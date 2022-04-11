@@ -1,0 +1,519 @@
+[[algorithm-modes]]
+= Executing the different algorithm modes
+:description: This page describes how to use the different algorithm modes.
+:generated-graph-size: 100
+
+TIP: Follow along with a notebook in https://colab.research.google.com/drive/1-Cc8LcR-vLwmPjMI6_A2qQ1nziwzJwE6?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
+
+This example explains https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos[execution modes^] for GDS algorithms and how to use each one of them.
+
+include::partial$aurads/setup.adoc[]
+
+== Create an example graph
+
+We start by creating some basic graph data first.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+gds.run_cypher("""
+    CREATE
+      (home:Page {name:'Home'}),
+      (about:Page {name:'About'}),
+      (product:Page {name:'Product'}),
+      (links:Page {name:'Links'}),
+      (a:Page {name:'Site A'}),
+      (b:Page {name:'Site B'}),
+      (c:Page {name:'Site C'}),
+      (d:Page {name:'Site D'}),
+
+      (home)-[:LINKS {weight: 0.2}]->(about),
+      (home)-[:LINKS {weight: 0.2}]->(links),
+      (home)-[:LINKS {weight: 0.6}]->(product),
+      (about)-[:LINKS {weight: 1.0}]->(home),
+      (product)-[:LINKS {weight: 1.0}]->(home),
+      (a)-[:LINKS {weight: 1.0}]->(home),
+      (b)-[:LINKS {weight: 1.0}]->(home),
+      (c)-[:LINKS {weight: 1.0}]->(home),
+      (d)-[:LINKS {weight: 1.0}]->(home),
+      (links)-[:LINKS {weight: 0.8}]->(home),
+      (links)-[:LINKS {weight: 0.05}]->(a),
+      (links)-[:LINKS {weight: 0.05}]->(b),
+      (links)-[:LINKS {weight: 0.05}]->(c),
+      (links)-[:LINKS {weight: 0.05}]->(d)
+""")
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CREATE
+  (home:Page {name:'Home'}),
+  (about:Page {name:'About'}),
+  (product:Page {name:'Product'}),
+  (links:Page {name:'Links'}),
+  (a:Page {name:'Site A'}),
+  (b:Page {name:'Site B'}),
+  (c:Page {name:'Site C'}),
+  (d:Page {name:'Site D'}),
+
+  (home)-[:LINKS {weight: 0.2}]->(about),
+  (home)-[:LINKS {weight: 0.2}]->(links),
+  (home)-[:LINKS {weight: 0.6}]->(product),
+  (about)-[:LINKS {weight: 1.0}]->(home),
+  (product)-[:LINKS {weight: 1.0}]->(home),
+  (a)-[:LINKS {weight: 1.0}]->(home),
+  (b)-[:LINKS {weight: 1.0}]->(home),
+  (c)-[:LINKS {weight: 1.0}]->(home),
+  (d)-[:LINKS {weight: 1.0}]->(home),
+  (links)-[:LINKS {weight: 0.8}]->(home),
+  (links)-[:LINKS {weight: 0.05}]->(a),
+  (links)-[:LINKS {weight: 0.05}]->(b),
+  (links)-[:LINKS {weight: 0.05}]->(c),
+  (links)-[:LINKS {weight: 0.05}]->(d)
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher query
+create_example_graph_on_disk_query = """
+    CREATE
+      (home:Page {name:'Home'}),
+      (about:Page {name:'About'}),
+      (product:Page {name:'Product'}),
+      (links:Page {name:'Links'}),
+      (a:Page {name:'Site A'}),
+      (b:Page {name:'Site B'}),
+      (c:Page {name:'Site C'}),
+      (d:Page {name:'Site D'}),
+
+      (home)-[:LINKS {weight: 0.2}]->(about),
+      (home)-[:LINKS {weight: 0.2}]->(links),
+      (home)-[:LINKS {weight: 0.6}]->(product),
+      (about)-[:LINKS {weight: 1.0}]->(home),
+      (product)-[:LINKS {weight: 1.0}]->(home),
+      (a)-[:LINKS {weight: 1.0}]->(home),
+      (b)-[:LINKS {weight: 1.0}]->(home),
+      (c)-[:LINKS {weight: 1.0}]->(home),
+      (d)-[:LINKS {weight: 1.0}]->(home),
+      (links)-[:LINKS {weight: 0.8}]->(home),
+      (links)-[:LINKS {weight: 0.05}]->(a),
+      (links)-[:LINKS {weight: 0.05}]->(b),
+      (links)-[:LINKS {weight: 0.05}]->(c),
+      (links)-[:LINKS {weight: 0.05}]->(d)
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Run query
+    result = session.run(create_example_graph_on_disk_query).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+====
+
+We then project an in-memory graph from the data just created.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+g, result = gds.graph.project(
+    "example-graph",
+    "Page",
+    "LINKS",
+    relationshipProperties="weight"
+)
+
+print(result)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.project(
+  'example-graph',
+  'Page',
+  'LINKS',
+  {
+    relationshipProperties: 'weight'
+  }
+)
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher query
+create_example_graph_in_memory_query = """
+    CALL gds.graph.project(
+      'example-graph',
+      'Page',
+      'LINKS',
+      {
+        relationshipProperties: 'weight'
+      }
+    )
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Run query
+    result = session.run(create_example_graph_in_memory_query).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+====
+
+== Execution Modes
+
+Every production-tier algorithm can be run in four different modes:
+
+* `stats`
+* `stream`
+* `mutate`
+* `write`
+
+An additional `estimate` mode is explained in detail in the xref:aurads/tutorials/memory-estimation.adoc[] section.
+
+In the following we'll use the PageRank algorithm to show the usage of every execution mode.
+
+=== Stats
+
+The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stats[`stats`^] mode can be useful for evaluating an algorithm performance without mutating the in-memory graph. When running an algorithm in this mode, a single row containing a summary of the algorithm statistics (for example, counts or percentile distributions) is returned.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+result = gds.pageRank.stats(
+    g,
+    maxIterations=20,
+    dampingFactor=0.85
+)
+
+print(result)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.pageRank.stats(
+  'example-graph', 
+  {maxIterations: 20, dampingFactor: 0.85}
+)
+YIELD ranIterations,
+  didConverge,
+  preProcessingMillis,
+  computeMillis,
+  postProcessingMillis,
+  centralityDistribution,
+  configuration
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher query
+page_rank_stats_example_graph_query = """
+    CALL gds.pageRank.stats(
+      'example-graph', 
+      {maxIterations: 20, dampingFactor: 0.85}
+    )
+    YIELD ranIterations,
+      didConverge,
+      preProcessingMillis,
+      computeMillis,
+      postProcessingMillis,
+      centralityDistribution,
+      configuration
+    RETURN *
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Run query
+    result = session.run(page_rank_stats_example_graph_query).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+====
+
+The result contains the estimated time to run the algorithm (`computeMillis`) along with other details like the centrality distribution and the configuration parameters.
+
+=== Stream
+
+The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stream[`stream`^] mode returns the results of an algorithm as Cypher result rows. This is similar to how standard Cypher reading queries operate.
+
+With the PageRank example, this mode returns a node ID and the computed PageRank score for each node. The https://neo4j.com/docs/graph-data-science/current/management-ops/utility-functions/#utility-functions-node-path[`gds.util.asNode`^] procedure can then be used to find a node from its node ID.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+results = gds.pageRank.stream(
+    g, 
+    maxIterations=20, 
+    dampingFactor=0.85
+)
+
+print(results)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.pageRank.stream(
+  'example-graph', 
+  {maxIterations: 20, dampingFactor: 0.85}
+)
+YIELD nodeId, score
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher query to just get internal node ID and score
+page_rank_stream_example_graph_query = """
+    CALL gds.pageRank.stream(
+      'example-graph', 
+      {maxIterations: 20, dampingFactor: 0.85}
+    )
+    YIELD nodeId, score
+    RETURN *
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Run query
+    results = session.run(page_rank_stream_example_graph_query).data()
+    
+    # Prettify the results
+    print(json.dumps(results, indent=2, sort_keys=True))
+----
+=====
+====
+
+Since an algorithm can run for a long time and the connection may suddenly drop, we suggest to use the `mutate` and `write` modes instead to make sure that the computation completes and the results are saved.
+
+=== Mutate
+
+The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-mutate[`mutate`^] mode operates on the in-memory graph and updates it with a new property specified with the `mutateProperty` configuration parameter. The new property must not already exist in the in-memory graph.
+
+This mode is useful when chaining the execution of several algorithms each of which relying on the results on the previous.
+
+In the case of PageRank, the result of this mode is a score for each node. In this example we add the calculated score to each node of the in-memory graph as the value of a new property called `pageRankScore`.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+result = gds.pageRank.mutate(
+    g,
+    mutateProperty="pageRankScore", 
+    maxIterations=20, 
+    dampingFactor=0.85
+)
+
+print(result)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.pageRank.mutate(
+  'example-graph', 
+  {mutateProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
+)
+YIELD nodePropertiesWritten, ranIterations
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher query to just get mutate the graph
+page_rank_mutate_example_graph_query = """
+    CALL gds.pageRank.mutate(
+      'example-graph', 
+      {mutateProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
+    )
+    YIELD nodePropertiesWritten, ranIterations
+    RETURN *
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Run query
+    result = session.run(page_rank_mutate_example_graph_query).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+====
+
+=== Write
+
+The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-write[`write`^] mode writes the results of the algorithm computation back to the Neo4j database. The written data can be node properties (such as PageRank scores), new relationships (such as Node Similarity similarities), or relationship properties (only for newly created relationships).
+
+Similarly to the previous example, here we add the calculated score of the PageRank algorithm to each node of the Neo4j database as the value of a new property called `pageRankScore`.
+
+TIP: To use the result of a `write` mode computation with another algorithm, a new in-memory graph must be created from the Neo4j database.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+result = gds.pageRank.write(
+    g, 
+    writeProperty="pageRankScore",
+    maxIterations=20, 
+    dampingFactor=0.85
+)
+
+print(result)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.pageRank.write(
+  'example-graph', 
+  {writeProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
+)
+YIELD nodePropertiesWritten, ranIterations
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher query to write the graph
+page_rank_write_example_graph_query = """
+    CALL gds.pageRank.write(
+      'example-graph', 
+      {writeProperty: 'pageRankScore', maxIterations: 20, dampingFactor: 0.85}
+    )
+    YIELD nodePropertiesWritten, ranIterations
+    RETURN *
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Run query
+    result = session.run(page_rank_write_example_graph_query).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+====
+
+== Cleanup
+
+After going through the example, both the in-memory graphs and the data in the Neo4j database can be deleted.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+result = gds.graph.drop(g)
+print(result)
+
+gds.run_cypher("""
+    MATCH (n)
+    DETACH DELETE n
+""")
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.drop('example-graph');
+
+MATCH (n)
+DETACH DELETE n;
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+delete_example_in_memory_graph_query = """
+    CALL gds.graph.drop('example-graph')
+"""
+
+delete_example_graph = """
+    MATCH (n)
+    DETACH DELETE n
+"""
+
+with driver.session() as session:
+    # Delete in-memory graph
+    result = session.run(delete_example_in_memory_graph_query).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True, default=default))
+      
+    # Delete data from Neo4j
+    result = session.run(delete_example_graph).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True, default=default))
+----
+=====
+====
+
+include::partial$aurads/references.adoc[]

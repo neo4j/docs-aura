@@ -1,0 +1,281 @@
+[[connecting-python]]
+= Connecting with Python
+:description: This page describes how to connect to AuraDS using Python.
+
+TIP: Follow along with a notebook in https://colab.research.google.com/drive/1o_71IwikMvZcg5_B69pTK6rrMLpi-hl_?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
+
+This tutorial shows how to interact with AuraDS using the https://neo4j.com/docs/graph-data-science/current/python-client/[Graph Data Science (GDS) client^] or the https://neo4j.com/docs/driver-manual/current/get-started[Python Driver^]. In the following sections you can switch between client and driver code clicking on the appropriate tab.
+
+A running AuraDS instance must be available along with access credentials (generated in the xref:aurads/create-instance.adoc[] section) and its connection URI (found in the instance detail page, starting with `neo4j+s://`).
+
+== Installation
+
+Both the GDS client and the Python driver can be installed using `pip`.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, shell]
+----
+pip install graphdatascience
+----
+
+The latest stable version of the client can be found on https://pypi.org/project/graphdatascience[PyPI^].
+=====
+
+[.include-with-Python-driver]
+=====
+[source, shell]
+----
+pip install neo4j
+----
+
+The latest stable version of the driver can be found on https://pypi.org/project/neo4j[PyPI^].
+=====
+====
+
+If `pip` is not available, you can try replacing it with `python -m pip` or `python3 -m pip`.
+
+== Import and setup
+
+Both the GDS client and the Python driver require the connection URI and the credentials as shown in the introduction.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+The client is imported as the `GraphDataScience` class:
+
+[source, python]
+----
+# Client import
+from graphdatascience import GraphDataScience
+----
+
+The `aura_ds=True` constructor argument should be used to have the recommended non-default configuration settings of the Python Driver applied automatically.
+
+[source, python]
+----
+# Replace with the actual URI, username, and password
+AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
+AURA_USERNAME = "neo4j"
+AURA_PASSWORD = "..."
+
+# Client instantiation
+gds = GraphDataScience(
+    AURA_CONNECTION_URI,
+    auth=(AURA_USERNAME, AURA_PASSWORD),
+    aura_ds=True
+)
+----
+=====
+
+[.include-with-Python-driver]
+=====
+The driver is imported as the `GraphDatabase` class:
+
+[source, python]
+----
+# Driver import
+from neo4j import GraphDatabase
+----
+
+[source, python]
+----
+# Replace with the actual URI, username and password
+AURA_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
+AURA_USERNAME = "neo4j"
+AURA_PASSWORD = "..."
+
+# Driver instantiation
+driver = GraphDatabase.driver(
+    AURA_CONNECTION_URI, 
+    auth=(AURA_USERNAME, AURA_PASSWORD)
+)
+----
+=====
+====
+
+== Running a query
+
+Once created, the client (or the driver) can be used to run Cypher queries and call Cypher procedures. In this example the `gds.version` procedure can be used to retrieve the version of GDS running on the instance.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python]
+----
+# Call a GDS method directly
+print(gds.version())
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python]
+----
+# Cypher query
+gds_version_query = """
+    RETURN gds.version() AS version
+"""
+
+# Create a driver session
+with driver.session() as session:
+    # Use .data() to access the results array
+    results = session.run(gds_version_query).data()
+    print(results)
+----
+=====
+====
+
+The following code retrieves all the procedures available in the library and shows the details of five of them.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python]
+----
+# Assign the result of the client call to a variable
+results = gds.list()
+
+# Print the result (a Pandas DataFrame)
+print(results[:5])
+----
+
+Since the result is a Pandas DataFrame, you can use methods such as `to_string` and `to_json` to pretty-print it.
+
+[source, python]
+----
+# Print the result (a Pandas DataFrame) as a console-friendly string
+print(results[:5].to_string())
+----
+
+[source, python]
+----
+# Print the result (a Pandas DataFrame) as a prettified JSON string
+print(results[:5].to_json(orient="table", indent=2))
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python]
+----
+# Import the json module for pretty visualization
+import json
+
+# Cypher query
+list_all_gds_procedures_query = """
+    CALL gds.list()
+"""
+
+# Create a driver session
+with driver.session() as session:
+    # Use .data() to access the results array
+    results = session.run(list_all_gds_procedures_query).data()
+    
+    # Print the prettified result
+    print(json.dumps(results[:5], indent=2))
+----
+=====
+====
+
+=== Serializing Neo4j `DateTime` in JSON dumps
+
+In some cases the result of a procedure call may contain Neo4j `DateTime` objects. In order to serialize such objects into JSON, a default handler must be provided.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Import for the JSON helper function
+from neo4j.time import DateTime
+
+# Helper function for serializing Neo4j DateTime in JSON dumps
+def default(o):
+    if isinstance(o, (DateTime)):
+        return o.isoformat()
+
+# Run the graph generation algorithm
+g, _ = gds.beta.graph.generate(
+    "example-graph", 10, 3, relationshipDistribution="POWER_LAW"
+)
+
+# Drop the graph keeping the result of the operation, which contains 
+# some DateTime fields ("creationTime" and "modificationTime")
+result = gds.graph.drop(g)
+
+# Print the result as JSON, converting the DateTime fields with
+# the handler defined above
+print(result.to_json(indent=2, default_handler=default))
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Import to prettify results
+import json
+
+# Import for the JSON helper function
+from neo4j.time import DateTime
+
+# Helper function for serializing Neo4j DateTime in JSON dumps
+def default(o):
+    if isinstance(o, (DateTime)):
+        return o.isoformat()
+
+# Example query to run a graph generation algorithm
+create_example_graph_query = """
+    CALL gds.beta.graph.generate(
+      'example-graph', 10, 3, {relationshipDistribution: 'POWER_LAW'}
+    )
+"""
+
+# Example query to delete a graph
+delete_example_graph_query = """
+    CALL gds.graph.drop('example-graph')
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Run the graph generation algorithm
+    session.run(create_example_graph_query).data()
+
+    # Drop the generated graph keeping the result of the operation
+    results = session.run(delete_example_graph_query).data()
+
+    # Prettify the results using the handler defined above
+    print(json.dumps(results, indent=2, sort_keys=True, default=default))
+----
+=====
+====
+
+== Closing the connection
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+The GDS client automatically closes the connection when the object is deleted.
+=====
+
+[.include-with-Python-driver]
+=====
+The driver connection should be closed when no longer needed.
+
+[source, python]
+----
+# Close the driver connection
+driver.close()
+----
+=====
+====
+
+include::partial$aurads/references.adoc[]

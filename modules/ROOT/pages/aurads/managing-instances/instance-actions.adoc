@@ -1,0 +1,126 @@
+[[aurads-instance-actions]]
+= Instance actions
+:description: This page describes the available actions for an AuraDS instance.
+
+You can perform several actions on an AuraDS instance from the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] homepage.
+
+== Renaming an instance
+
+You can change the name of an existing instance by using the *Rename* action.
+
+To rename an instance:
+
+. Select the ellipsis (*...*) button on the instance you want to rename.
+. Select *Rename* from the resulting menu.
+. Enter a new name for the instance.
+. Select *Rename*.
+
+== Resizing an instance
+
+You can change the size of an existing instance by using the *Resize* action.
+
+To resize an instance:
+
+. Select the ellipsis (...) on the instance you want to resize.
+. Select *Resize* from the resulting menu.
+. Select the new size you want your instance to be.
+. Tick the *I understand* checkbox and select *Submit*.
+
+An instance becomes unavailable for a short period of time during the resize operation.
+
+== Pausing an instance
+
+You can pause an instance during periods where you don't need it and resume at any time.
+
+To pause an instance:
+
+. Select the pause icon on the instance you want to pause.
+. Select *Pause* to confirm.
+
+After confirming, the instance will begin pausing, and a *Resume* button will replace the *Pause* button.
+
+[NOTE]
+====
+Paused instances run at a discounted rate compared to standard consumption, as outlined in the confirmation window.
+You can pause an instance for up to 30 days, after which point AuraDS automatically resumes the instance.
+====
+
+== Resuming an instance
+
+To resume an instance: 
+
+. Select the play icon on the instance you want to pause.
+. Tick the *I understand* checkbox and select *Resume* to confirm.
+
+After confirming, the instance will begin resuming, which may take a few minutes.
+
+== Cloning an instance
+
+There are four options to clone an instance:
+
+* Clone to a new AuraDS instance
+* Clone to an existing AuraDS instance
+* Clone to a new AuraDB database
+* Clone to an existing AuraDB database
+
+You can access all the cloning options from the ellipsis (*...*) button on the AuraDS instance.
+
+=== Clone to a new AuraDS instance
+
+. Select the ellipsis (*...*) button on the instance you want to clone.
+. Select *Clone To New* and then *AuraDS* from the contextual menu.
+. Set the desired name for the new instance.
+. Tick the *I understand* checkbox and select *Clone Instance*.
++
+WARNING: *Warning*: Make sure that the username and password are stored safely before continuing. Credentials cannot be recovered afterwards.
+
+=== Clone to an existing AuraDS instance
+
+WARNING: *Warning:* Cloning into an existing instance will replace all existing data. If you want to keep the current data, take a snapshot and export it.
+
+. Select the ellipsis (*...*) button on the instance you want to clone.
+. Select *Clone To Existing* and then *AuraDS* from the contextual menu.
+. If necessary, change the instance name.
+. Select the existing AuraDS instance to clone to from the dropdown menu.
++
+NOTE: Existing instances that are not large enough to clone into will not be available for selection. In the dropdown menu, they will be grayed out and have the string `(Instance is not large enough to clone into)` appended to their name.
+. Tick the *I understand* checkbox and select *Clone*.
+
+=== Clone to a new AuraDB database
+
+NOTE: An AuraDS instance can only be cloned to an AuraDB Professional database (not Free).
+
+. Select the ellipsis (*...*) button on the instance you want to clone.
+. Select *Clone To New* and then *AuraDB* from the contextual menu.
+. Set your desired settings for the new database. For more information on AuraDB database creation, see xref:auradb/getting-started/create-database.adoc[].
+. Tick the *I understand* checkbox and select *Clone Database*.
++
+WARNING: *Warning*: Make sure that the username and password are stored safely before continuing. Credentials cannot be recovered afterwards.
+
+=== Clone to an existing AuraDB database
+
+NOTE: An AuraDS instance can only be cloned to an AuraDB Professional database (not Free).
+
+WARNING: *Warning:* Cloning into an existing database will replace all existing data. If you want to keep the current data, take a snapshot and export it.
+
+. Select the ellipsis (*...*) button on the instance you want to clone.
+. Select *Clone To Existing* and then *AuraDB* from the contextual menu.
+. If necessary, change the database name.
+. Select the existing AuraDB database to clone to from the dropdown menu.
++
+NOTE: Existing instances that are not large enough to clone into will not be available for selection. In the dropdown menu, they will be grayed out and have the string `(Instance is not large enough to clone into)` appended to their name.
+. Tick the *I understand* checkbox and select *Clone*.
+
+== Deleting an instance
+
+You can delete an instance if you no longer want to be billed for it.
+
+[WARNING]
+====
+*Warning:* There is no way to recover data from a deleted AuraDS instance.
+====
+
+To delete an instance:
+
+* Select the red trashcan icon on the instance you want to delete.
+* Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.

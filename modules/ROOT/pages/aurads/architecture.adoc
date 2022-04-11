@@ -1,0 +1,48 @@
+[[architecture]]
+= Architecture
+:description: This page describes AuraDS architecture.
+:!figure-caption:
+
+AuraDS makes it easy to run graph algorithms on Neo4j by integrating two main components:
+
+* *Neo4j Database*, where graph data are loaded and stored, and Cypher queries and all database operations (for example user management, query termination, etc.) are executed;
+* *Graph Data Science*, a software component installed in the Neo4j Database, whose main purpose is to run graph algorithms on in-memory projections of Neo4j Database data.
+
+== Graph Data Science concepts
+
+Graph Data Science (GDS) includes procedures to project and manage graphs, run algorithms, and train machine learning models.
+
+.Graph Catalog
+
+The https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/[graph catalog^] is used to store and manage projected graphs via GDS procedures.
+
+.Algorithms
+
+GDS contains many https://neo4j.com/docs/graph-data-science/current/operations-reference/algorithm-references/[graph algorithms^], invoked as Cypher procedures and run on projected graphs.
+
+GDS algorithms are broken down into three tiers of maturity:
+
+- *Alpha*: experimental algorithms that may be changed or removed at any time. Algorithms in this tier are prefixed with `gds.alpha.<algorithm>`.
+
+- *Beta*: algorithms promoted from the Alpha tier to candidates for the Production tier. Algorithms in this tier are prefixed with `gds.beta.<algorithm>`.
+
+- *Production*: algorithms that have been rigorously tested for stability and scalability. Algorithms in this tier are prefixed with `gds.<algorithm>`.
+
+.Model Catalog
+
+Some machine learning algorithms (for example Node Classification and GraphSage) need to use trained models in their computation. The https://neo4j.com/docs/graph-data-science/current/model-catalog/[model catalog^] is used to store and manage named trained models.
+
+.Pipeline Catalog
+
+The https://neo4j.com/docs/graph-data-science/current/pipeline-catalog/[pipeline catalog^] is used to manage machine learning pipelines. A pipeline groups together all the stages of a supported machine learning task (for example Node classification), from graph feature extraction to model training, in a single end-to-end workflow.
+
+== Graph data flow
+
+Since GDS algorithms can only run in memory, the typical data flow involves:
+
+. Reading the graph data from Neo4j Database
+. Loading (_projecting_) the data into an in-memory graph
+. Running an algorithm on a projected graph
+. Writing the results back to Neo4j Database (if the algorithm runs in xref:aurads/tutorials/algorithm-modes#_write[write] mode)
+
+image::architecture.png[]

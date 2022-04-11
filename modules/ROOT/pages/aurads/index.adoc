@@ -1,0 +1,221 @@
+[[aurads]]
+= Neo4j AuraDS overview
+:description: This section introduces Neo4j AuraDS.
+:check-mark: icon:check[]
+:table-caption!:
+
+AuraDS is the fully managed version of Neo4j Graph Data Science. 
+
+AuraDS instances:
+
+* are automatically upgraded and patched;
+* can be seamlessly scaled up or down;
+* can be paused to reduce costs.
+
+== Plans
+
+AuraDS offers the *AuraDS* and *AuraDS Enterprise* (coming soon) subscription plans.
+
+.Data Science Workspace
+[cols="49,^17,^17",options="header"]
+|===
+|
+| label:AuraDS[]
+| label:AuraDS-Enterprise-(Coming-soon)[]
+
+| Algorithms, embeddings, and ML models
+| {check-mark}
+| {check-mark}
+
+| Native Python client
+| {check-mark}
+| {check-mark}
+
+| Pregel API (algorithm authoring tool)
+| _not available_
+| _not available_
+
+| Parallelization
+| Use up to 20 CPUs
+| Use up to 48 CPUs
+|===
+
+.MLOps
+[cols="49,^17,^17",options="header"]
+|===
+|
+| label:AuraDS[]
+| label:AuraDS-Enterprise-(Coming-soon)[]
+
+| Model catalogue
+| Unlimited
+| Unlimited
+
+| Operationalize models with persistence
+| {check-mark}
+| {check-mark}
+
+| Share models with other users
+| {check-mark}
+| {check-mark}
+
+| Workload tracking transparency
+| {check-mark}
+| {check-mark}
+|===
+
+.Deployment
+[cols="49,^17,^17",options="header"]
+|===
+|
+| label:AuraDS[]
+| label:AuraDS-Enterprise-(Coming-soon)[]
+
+| Instance Size
+| 8-96GB (RAM)
+| 8-256GB (RAM)
+
+| Automated updates and patches
+| {check-mark}
+| {check-mark}
+
+| Cloud tenancy
+| multi-tenant
+| VPC-isolated
+
+| Read replica
+| _not available_
+| _not available_
+
+| Causal Cluster compatibility (Hybrid deployment)
+| _not available_
+| _not available_
+
+| Pay with committed spend from cloud provider
+| GCP
+| GCP
+|===
+
+.Tools, integrations and ecosystem
+[cols="49,^17,^17",options="header"]
+|===
+|
+| label:AuraDS[]
+| label:AuraDS-Enterprise-(Coming-soon)[]
+
+| Neo4j Graph Database
+| {check-mark}
+| {check-mark}
+
+| Neo4j Browser
+| {check-mark}
+| {check-mark}
+
+| Neo4j Bloom
+| {check-mark}
+| {check-mark}
+
+| Neo4j Spark Connector
+| {check-mark}
+| {check-mark}
+
+| Neo4j Kafka Connector
+| {check-mark}
+| {check-mark}
+|===
+
+.Backup
+[cols="49,^17,^17",options="header"]
+|===
+|
+| label:AuraDS[]
+| label:AuraDS-Enterprise-(Coming-soon)[]
+
+| On-demand point-in-time snapshots
+| {check-mark}
+| {check-mark}
+
+| Backup method
+| Ad-hoc backups
+| Ad-hoc backups
+
+| Backup retention
+| 180 days
+| 180 days
+|===
+
+.Security
+[cols="49,^17,^17",options="header"]
+|===
+|
+| label:AuraDS[]
+| label:AuraDS-Enterprise-(Coming-soon)[]
+
+| Encryption
+| {check-mark}footnote:encryption[At rest and in transit]
+| {check-mark}footnote:encryption[]
+
+| Multiple database users
+| {check-mark}
+| {check-mark}
+
+| RBAC (role based access control)
+| _not available_
+| _not available_
+|===
+
+.Customer support
+[cols="49,^17,^17",options="header"]
+|===
+|
+| label:AuraDS[]
+| label:AuraDS-Enterprise-(Coming-soon)[]
+
+
+| Best effort
+| {check-mark}
+|
+
+| Premium support
+|
+| {check-mark}
+|===
+
+.Pricing and usage
+[cols="49,^17,^17",options="header"]
+|===
+|
+| label:AuraDS[]
+| label:AuraDS-Enterprise-(Coming-soon)[]
+
+| Capacity-based consumption pricing model
+| {check-mark}
+| {check-mark}
+
+| Payment
+| Prorated based on month usage
+| Prepaid contract terms with custom pricing
+
+| Cloud marketplace billing
+| {check-mark}
+| {check-mark}
+
+| Volume discounts
+|
+| {check-mark}
+
+| Terms of Service
+| Click-through
+| Enterprise with commercial negotiations
+|===
+
+[NOTE]
+====
+For information on the different levels of support offered in each plan, see the xref:aurads/support.adoc[support page].
+====
+
+== Updates and upgrades
+
+AuraDS updates and upgrades are handled by the platform, and as such do not require user intervention. Security patches and new versions of GDS and Neo4j are installed within short time windows during which the affected instances are unavailable.
+
+The operations are non-destructive, so graph projections, models and data present on an instance are not affected. No operation is applied until all the running GDS algorithms have completed.

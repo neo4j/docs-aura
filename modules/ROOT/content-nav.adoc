@@ -1,31 +1,92 @@
-* xref:index.adoc[]
+////
+Generic Start
+////
+* *Neo4j Aura*
+
+* xref:index.adoc[Overview]
+
+* xref:platform/create-account.adoc[]
+* xref:platform/cloud-providers.adoc[Cloud provider marketplaces]
+* xref:platform/security.adoc[]
+* xref:platform/apoc.adoc[]
+////
+Generic End
+////
+
+////
+AuraDB Start
+////
+* *Neo4j AuraDB*
+
+* xref:auradb/index.adoc[Overview]
 
 * Getting Started
-** xref:getting-started/create-account.adoc[]
-** xref:getting-started/create-database.adoc[]
-** xref:getting-started/access-database.adoc[]
-** xref:getting-started/importing-data.adoc[]
-** xref:getting-started/query-database.adoc[]
-** xref:getting-started/apoc.adoc[]
+** xref:auradb/getting-started/create-database.adoc[]
+** xref:auradb/getting-started/connect-database.adoc[]
+** xref:auradb/getting-started/query-database.adoc[]
+
+* Importing
+** xref:auradb/importing/importing-data.adoc[]
+** xref:auradb/importing/import-database.adoc[]
 
 * Managing databases
-** xref:managing-databases/monitoring.adoc[]
-** xref:managing-databases/backup-restore-export.adoc[]
-** xref:managing-databases/database-actions.adoc[]
+** xref:auradb/managing-databases/monitoring.adoc[]
+** xref:auradb/managing-databases/backup-restore-export.adoc[]
+** xref:auradb/managing-databases/database-actions.adoc[]
 
-* xref:cloud-providers/index.adoc[]
+* Connecting to applications
+** xref:auradb/connecting-applications/overview.adoc[Overview]
+** xref:auradb/connecting-applications/python.adoc[]
+** xref:auradb/connecting-applications/javascript.adoc[]
+** xref:auradb/connecting-applications/graphql.adoc[]
+** xref:auradb/connecting-applications/java.adoc[]
+** xref:auradb/connecting-applications/spring-boot.adoc[]
+** xref:auradb/connecting-applications/dotnet.adoc[]
+** xref:auradb/connecting-applications/go.adoc[]
 
-* xref:connecting-applications/index.adoc[]
-** xref:connecting-applications/python.adoc[]
-** xref:connecting-applications/javascript.adoc[]
-** xref:connecting-applications/graphql.adoc[]
-** xref:connecting-applications/java.adoc[]
-** xref:connecting-applications/spring-boot.adoc[]
-** xref:connecting-applications/dotnet.adoc[]
-** xref:connecting-applications/go.adoc[]
+* xref:auradb/upgrade.adoc[]
+* xref:auradb/support.adoc[]
+////
+AuraDB End
+////
 
-* xref:security/index.adoc[]
+////
+AuraDS Start
+////
+* *Neo4j AuraDS*
 
-* xref:upgrade/index.adoc[]
+* xref:aurads/index.adoc[Overview]
+* xref:aurads/architecture.adoc[]
 
-* xref:support/index.adoc[]
+* xref:aurads/create-instance.adoc[]
+
+* Connecting to AuraDS
+** xref:aurads/connecting/neo4j-applications.adoc[]
+** xref:aurads/connecting/python.adoc[]
+
+* Usage examples
+** xref:aurads/tutorials/graph-catalog.adoc[]
+** xref:aurads/tutorials/algorithm-modes.adoc[]
+** xref:aurads/tutorials/memory-estimation.adoc[]
+** xref:aurads/tutorials/algorithm-progress.adoc[]
+** xref:aurads/tutorials/model-catalog.adoc[]
+
+* Importing data
+** xref:aurads/importing-data/load-csv.adoc[]
+** xref:aurads/importing-data/data-importer.adoc[]
+
+* xref:aurads/import-db.adoc[]
+
+* Managing instances
+** xref:aurads/managing-instances/monitoring.adoc[]
+** xref:aurads/managing-instances/backup-restore-export.adoc[]
+** xref:aurads/managing-instances/instance-actions.adoc[]
+
+* Integrating with Neo4j Connectors
+** xref:aurads/connectors/spark.adoc[]
+** xref:aurads/connectors/kafka.adoc[]
+
+* xref:aurads/support.adoc[]
+////
+AuraDS End
+////

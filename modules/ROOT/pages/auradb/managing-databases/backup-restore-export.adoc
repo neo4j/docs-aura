@@ -10,7 +10,7 @@ The *Snapshots* tab within an AuraDB database shows a list of available snapshot
 
 To access the *Snapshots* tab:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Select the database you want to access.
 . Select the *Snapshots* tab.
 
@@ -18,9 +18,9 @@ To access the *Snapshots* tab:
 
 There are three different types of snapshot:
 
-* label:Enterprise[] label:Professional[] *Scheduled* - Runs when you first create a database, when changes to the underlying system occur (for example, a new patch release), and automatically at a cadence depending on your plan type.
+* label:AuraDB-Professional[] label:AuraDB-Enterprise[] *Scheduled* - Runs when you first create a database, when changes to the underlying system occur (for example, a new patch release), and automatically at a cadence depending on your plan type.
 footnote:[Automatic scheduled snapshots run once a day for Professional databases and once an hour for Enterprise databases.] 
-* label:Enterprise[] label:Professional[] *Load* - Runs when you load a dump file from the *IMPORT DATABASE* tab of a database and when you run the `push-to-cloud` command from the *Import* section of the sidebar menu of the Aura Console.
+* label:AuraDB-Professional[] label:AuraDB-Enterprise[] *Load* - Runs when you load a dump file from the *Import Database* tab of a database and when you run the `push-to-cloud` command from the *Import* section of the sidebar menu of the Aura Console.
 * *On-demand* - Runs when you select *Take snapshot* from the *Snapshots* tab of a database.
 
 == Snapshot actions
@@ -29,7 +29,7 @@ footnote:[Automatic scheduled snapshots run once a day for Professional database
 
 You can use any of the *Scheduled* snapshots as a backup or manually trigger an *On-demand* snapshot by selecting *Take snapshot*.
 
-By selecting the ellipses (...) next to a snapshot, you can:
+By selecting the ellipses (*...*) button next to a snapshot, you can:
 
 * *Export* - Download the database as *_.dump_* file, allowing you to store a local copy and work on your data offline.
 * *Create database from snapshot* - Create a new AuraDB database using the data from the snapshot.
@@ -42,7 +42,6 @@ Restoring a snapshot requires you to confirm the action by typing RESTORE and se
 
 [CAUTION]
 ====
-*Caution:*
 Restoring a snapshot overwrites the data in your database, replacing it with the data contained in the snapshot.
 ====
 

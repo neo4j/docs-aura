@@ -1,0 +1,226 @@
+[[algorithm-progress]]
+= Monitoring the progress of a running algorithm
+:description: This page describes how to use monitor the algorithm progress.
+:generated-graph-size: 1000000
+
+TIP: Follow along with a notebook in https://colab.research.google.com/drive/1wCign36IRzxQacjD9vL7wkpBNjZDGace?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
+
+Running algorithms on large graphs can be computationally expensive. This example shows how to use the https://neo4j.com/docs/graph-data-science/current/common-usage/logging/#logging-progress-logging[`gds.beta.listProgress`^] procedure to monitor the progress of an algorithm, both to get an idea of the processing speed and to determine when the computation is completed.
+
+include::partial$aurads/setup.adoc[]
+
+include::partial$aurads/generated-graph.adoc[]
+
+== Run an algorithm and check the progress
+
+We need to run an algorithm that takes some time to converge. In this example we use the Label Propagation algorithm, which we start in a separate thread so that we can check its progress in the same Python process.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Import to run the long-running algorithm in a thread
+import threading
+# Import to use the sleep method
+import time
+
+
+# Method to call the label propagation algorithm from a thread
+def run_label_prop():
+    print("Running label propagation")
+
+    result = gds.labelPropagation.mutate(
+        g,
+        mutateProperty="communityID"
+    )
+
+    print(result)
+
+
+# Method to get and pretty-print the algorithm progress
+def run_list_progress():
+    result = gds.beta.listProgress()
+
+    print(result)
+
+
+# Create a thread for the label propagation algorithm and start it
+label_prop_query_thread = threading.Thread(target=run_label_prop)
+label_prop_query_thread.start()
+
+# Sleep for a few seconds so the label propagation query has time to get going
+print('Sleeping for 5 seconds')
+time.sleep(5)
+
+# Check the algorithm progress
+run_list_progress()
+
+# Sleep for a few more seconds
+print('Sleeping for 10 more seconds')
+time.sleep(10)
+
+# Check the algorithm progress again
+run_list_progress()
+
+# Block and wait for the algorithm thread to finish
+label_prop_query_thread.join()
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.labelPropagation.mutate(
+  'example-graph', 
+  {mutateProperty: 'communityID'}
+)
+YIELD preProcessingMillis,
+  computeMillis,
+  mutateMillis,
+  postProcessingMillis,
+  nodePropertiesWritten,
+  communityCount,
+  ranIterations,
+  didConverge,
+  communityDistribution,
+  configuration
+RETURN *
+
+// The following query has to be run in another Cypher shell, so run this command
+// in a different terminal first:
+//
+// ./cypher-shell -a $AURA_CONNECTION_URI -u $AURA_USERNAME -p $AURA_PASSWORD
+
+CALL gds.beta.listProgress()
+YIELD jobId, taskName, progress, progressBar
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Import to run the long-running algorithm in a thread
+import threading
+# Import to use the sleep method
+import time
+
+
+# Method to call the label propagation algorithm from a thread
+def run_label_prop():
+    label_prop_mutate_example_graph_query = """
+        CALL gds.labelPropagation.mutate(
+          'example-graph', 
+          {mutateProperty: 'communityID'}
+        )
+        YIELD preProcessingMillis,
+          computeMillis,
+          mutateMillis,
+          postProcessingMillis,
+          nodePropertiesWritten,
+          communityCount,
+          ranIterations,
+          didConverge,
+          communityDistribution,
+          configuration
+        RETURN *
+    """
+
+    # Create the driver session
+    with driver.session() as session:
+        # Run query
+        print("Running label propagation")
+        results = session.run(label_prop_mutate_example_graph_query).data()
+        # Prettify the first result
+        print(json.dumps(results[0], indent=2, sort_keys=True))
+
+
+# Method to get and pretty-print the algorithm progress
+def run_list_progress():
+    gds_list_progress_query = """
+        CALL gds.beta.listProgress()
+        YIELD jobId, taskName, progress, progressBar
+        RETURN *
+    """
+
+    # Create the driver session
+    with driver.session() as session:
+        # Run query
+        print('running list progress')
+        results = session.run(gds_list_progress_query).data()
+        # Prettify the first result
+        print('list progress results: ')
+        print(json.dumps(results[0], indent=2, sort_keys=True))
+
+
+# Create a thread for the label propagation algorithm and start it
+label_prop_query_thread = threading.Thread(target=run_label_prop)
+label_prop_query_thread.start()
+
+# Sleep for a few seconds so the label propagation query has time to get going
+print('Sleeping for 5 seconds')
+time.sleep(5)
+
+# Check the algorithm progress
+run_list_progress()
+
+# Sleep for a few more seconds
+print('Sleeping for 10 more seconds')
+time.sleep(10)
+
+# Check the algorithm progress again
+run_list_progress()
+
+# Block and wait for the algorithm thread to finish
+label_prop_query_thread.join()
+----
+=====
+====
+
+== Cleanup
+
+The in-memory graph can now be deleted.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+result = gds.graph.drop(g)
+
+print(result)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.drop('example-graph')
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+delete_example_in_memory_graph_query = """
+CALL gds.graph.drop('example-graph')
+"""
+
+with driver.session() as session:
+    # Run query
+    results = session.run(delete_example_in_memory_graph_query).data()
+
+    # Prettify the results
+    print(json.dumps(results, indent=2, sort_keys=True, default=default))
+----
+=====
+====
+
+include::partial$aurads/references.adoc[]

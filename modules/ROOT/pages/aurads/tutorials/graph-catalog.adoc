@@ -1,0 +1,460 @@
+[[graph-catalog]]
+= Projecting graphs and using the Graph Catalog
+:description: This page describes how to use project graphs and use the Graph Catalog.
+
+TIP: Follow along with a notebook in https://colab.research.google.com/drive/1Y8O4RR7vUOePQrHviTSN6cNCbZfxXRUg?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
+
+This example shows how to:
+
+* load Neo4j on-disk data into in-memory projected graphs;
+* use the https://neo4j.com/docs/graph-data-science/current/management-ops/graph-catalog-ops/[Graph Catalog^] to manage projected graphs.
+
+include::partial$aurads/setup.adoc[]
+
+== Load data from Neo4j with native projections
+
+Native projections are used to load into memory a graph stored on disk. The https://neo4j.com/docs/graph-data-science/current/graph-project/[`gds.graph.project`^] procedure allows to project a graph by selecting the node labels, relationship types and properties to be projected.
+
+The `gds.graph.project` procedure can use a <<_project_using_the_shorthand_syntax,"shorthand syntax">>, where the nodes and relationships projections are simply passed as single values or arrays, or an <<_project_using_the_extended_syntax,"extended syntax">>, where each node or relationship projection has its own configuration. The extended syntax is especially useful if additional transformation of the data or the graph structure are needed. Both methods are shown in this section, using the following graph as an example.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher query to create an example graph on disk
+gds.run_cypher("""
+    MERGE (a:EngineeringManagement {name: 'Alistair'})
+    MERGE (j:EngineeringManagement {name: 'Jennifer'})
+    MERGE (d:Developer {name: 'Leila'})
+    MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
+    MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
+""")
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+MERGE (a:EngineeringManagement {name: 'Alistair'})
+MERGE (j:EngineeringManagement {name: 'Jennifer'})
+MERGE (d:Developer {name: 'Leila'})
+MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
+MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+# Cypher query to create an example graph on disk
+write_example_graph_query = """
+    MERGE (a:EngineeringManagement {name: 'Alistair'})
+    MERGE (j:EngineeringManagement {name: 'Jennifer'})
+    MERGE (d:Developer {name: 'Leila'})
+    MERGE (a)-[:MANAGES {start_date: 987654321}]->(d)
+    MERGE (j)-[:MANAGES {start_date: 123456789, end_date: 987654321}]->(d)
+"""
+
+# Create the driver session
+with driver.session() as session:
+    session.run(write_example_graph_query)
+----
+=====
+====
+
+=== Project using the shorthand syntax
+
+In this example we use the shorthand syntax to simply project all node labels and relationship types.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Project a graph using the shorthand syntax
+shorthand_graph, result = gds.graph.project(
+    "shorthand-example-graph",
+    ["EngineeringManagement", "Developer"],
+    ["MANAGES"]
+)
+
+print(result)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.project(
+  'shorthand-example-graph',
+  ['EngineeringManagement', 'Developer'],
+  ['MANAGES']
+) 
+YIELD graphName, nodeCount, relationshipCount
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+shorthand_graph_create_call = """
+    CALL gds.graph.project(
+      'shorthand-example-graph',
+      ['EngineeringManagement', 'Developer'],
+      ['MANAGES']
+    ) 
+    YIELD graphName, nodeCount, relationshipCount
+    RETURN *
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Call to project a graph using the shorthand syntax
+    result = session.run(shorthand_graph_create_call).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+====
+
+=== Project using the extended syntax
+
+In this example we use the extended syntax for https://neo4j.com/docs/graph-data-science/current/graph-project/#node-projection-syntax[node^] and https://neo4j.com/docs/graph-data-science/current/graph-project/#relationship-projection-syntax[relationship^] projections to:
+
+* transform the `EngineeringManagement` and `Developer` labels to `PersonEM` and `PersonD` respectively;
+* transform the _directed_ `MANAGES` relationship into the `KNOWS` _undirected_ relationship;
+* keep the `start_date` and `end_date` relationship properties, adding a default value of `999999999` to `end_date`.
+
+The projected graph becomes the following: 
+
+[source, cypher]
+----
+(:PersonEM {first_name: 'Alistair'})-
+  [:KNOWS {start_date: 987654321, end_date: 999999999}]-
+  (:PersonD {first_name: 'Leila'})-
+  [:KNOWS {start_date: 123456789, end_date: 987654321}]-
+  (:PersonEM {first_name: 'Jennifer'})
+----
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Project a graph using the extended syntax
+extended_form_graph, result = gds.graph.project(
+    "extended-form-example-graph",
+    {
+        "PersonEM": {
+            "label": "EngineeringManagement"
+        },
+        "PersonD": {
+            "label": "Developer"
+        }
+    },
+    {
+        "KNOWS": {
+            "type": "MANAGES",
+            "orientation": "UNDIRECTED",
+            "properties": {
+                "start_date": {
+                    "property": "start_date"
+                },
+                "end_date": {
+                    "property": "end_date",
+                    "defaultValue": 999999999
+                }
+            }
+        }
+    }
+)
+
+print(result)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.project(
+  'extended-form-example-graph',
+  {
+    PersonEM: {
+      label: 'EngineeringManagement'
+    },
+    PersonD: {
+      label: 'Developer'
+    }
+  },
+  {
+    KNOWS: {
+      type: 'MANAGES',
+      orientation: 'UNDIRECTED',
+      properties: {
+        start_date: {
+          property: 'start_date'
+        },
+        end_date: {
+          property: 'end_date',
+          defaultValue: 999999999
+        }
+      }
+    }
+  }
+) 
+YIELD graphName, nodeCount, relationshipCount
+RETURN *
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+extended_form_graph_create_call = """
+    CALL gds.graph.project(
+      'extended-form-example-graph',
+      {
+        PersonEM: {
+          label: 'EngineeringManagement'
+        },
+        PersonD: {
+          label: 'Developer'
+        }
+      },
+      {
+        KNOWS: {
+          type: 'MANAGES',
+          orientation: 'UNDIRECTED',
+          properties: {
+            start_date: {
+              property: 'start_date'
+            },
+            end_date: {
+              property: 'end_date',
+              defaultValue: 999999999
+            }
+          }
+        }
+      }
+    ) 
+    YIELD graphName, nodeCount, relationshipCount
+    RETURN *
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Call to project a graph using the extended syntax
+    result = session.run(extended_form_graph_create_call).data()
+    
+    # Prettify the results
+    print(json.dumps(result, indent=2, sort_keys=True))
+----
+=====
+====
+
+== Use the Graph Catalog
+
+The Graph Catalog can be used to retrieve information on and manage the projected graphs. 
+
+=== List all the graphs
+
+The https://neo4j.com/docs/graph-data-science/current/graph-list/[`gds.graph.list`^] procedure can be used to list all the graphs currently stored in memory.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# List all in-memory graphs
+all_graphs = gds.graph.list()
+
+print(all_graphs)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.list()
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+show_in_memory_graphs_call = """
+    CALL gds.graph.list()
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Run the Cypher procedure
+    results = session.run(show_in_memory_graphs_call).data()
+    
+    # Prettify the results
+    print(json.dumps(results, indent=2, sort_keys=True, default=default))
+----
+=====
+====
+
+=== Check that a graph exists
+
+The https://neo4j.com/docs/graph-data-science/current/graph-exists/[`gds.graph.exists`^] procedure can be called to check for the existence of a graph by its name.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Check whether the "shorthand-example-graph" graph exists in memory
+graph_exists = gds.graph.exists("shorthand-example-graph")
+
+print(graph_exists)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.exists('example-graph')
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+check_graph_exists_call = """
+    CALL gds.graph.exists('example-graph')
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Run the Cypher procedure and print the result
+    print(session.run(check_graph_exists_call).data())
+----
+=====
+====
+
+=== Drop a graph
+
+When a graph is no longer needed, it can be dropped to free up memory using the https://neo4j.com/docs/graph-data-science/current/graph-drop/[`gds.graph.drop`^] procedure.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Drop a graph object and keep the result of the call
+result = gds.graph.drop(shorthand_graph)
+
+# Print the result
+print(result)
+
+# Drop a graph object and just print the result of the call
+gds.graph.drop(extended_form_graph)
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.drop('shorthand-example-graph');
+
+CALL gds.graph.drop('extended-form-example-graph');
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+delete_shorthand_graph_call = """
+    CALL gds.graph.drop('shorthand-example-graph')
+"""
+
+delete_extended_form_graph_call = """
+    CALL gds.graph.drop('extended-form-example-graph')
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Drop a graph and keep the result of the call
+    result = session.run(delete_shorthand_graph_call).data()
+    
+    # Prettify the result
+    print(json.dumps(result, indent=2, sort_keys=True, default=default))
+
+    # Drop a graph discarding the result of the call
+    session.run(delete_extended_form_graph_call).data()
+----
+=====
+====
+
+== Cleanup
+
+When the projected graphs are dropped, the underlying data on the disk are not deleted. If such data are no longer needed, they need to be deleted manually via a Cypher query.
+
+[.tabbed-example]
+====
+[.include-with-GDS-client]
+=====
+[source, python, subs=attributes+]
+----
+# Delete on-disk data
+gds.run_cypher("""
+    MATCH (example)
+    WHERE example:EngineeringManagement OR example:Developer
+    DETACH DELETE example
+""")
+----
+=====
+
+[.include-with-Cypher]
+=====
+[source, cypher, subs=attributes+]
+----
+MATCH (example)
+WHERE example:EngineeringManagement OR example:Developer
+DETACH DELETE example;
+----
+=====
+
+[.include-with-Python-driver]
+=====
+[source, python, subs=attributes+]
+----
+delete_example_graph_query = """
+    MATCH (example)
+    WHERE example:EngineeringManagement OR example:Developer
+    DETACH DELETE example
+"""
+
+# Create the driver session
+with driver.session() as session:
+    # Run Cypher call
+    print(session.run(delete_example_graph_query).data())
+----
+=====
+====
+
+include::partial$aurads/references.adoc[]
