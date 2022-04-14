@@ -13,3 +13,69 @@ Connecting to AuraDS only requires to make a few changes to the https://neo4j.co
 . Update the username and password configuration parameters as appropriate
 
 For more information check the https://neo4j.com/docs/spark/current/[Neo4j Apache Spark Connector^] page.
+
+== Quick example
+
+NOTE: This example uses Java 11. Spark runs on Java 8 or 11.
+
+=== Setup
+
+. Download the Spark Neo4j Connector from the https://github.com/neo4j-contrib/neo4j-spark-connector/releases[GitHub release^] page.
+. Download Spark from the https://spark.apache.org/downloads.html[Download^] page (latest version, for example 3.2.1, pre-built for Apache Hadoop 3.x).
+. Decompress the downloaded file and launch the Spark shell as follows:
++
+[source, shell]
+----
+$ spark-3.2.1-bin-hadoop3.2/bin/spark-shell --jars neo4j-connector-apache-spark_2.12-4.1.0_for_spark_3.jar
+----
+
+=== Code
+
+[source, scala]
+----
+import org.apache.spark.sql.{SaveMode, SparkSession}
+
+val spark = SparkSession.builder().getOrCreate()
+
+// Replace with the actual connection URI and credentials
+val url = "neo4j+s://xxxxxxxx.databases.neo4j.io"
+val username = "neo4j"
+val password = ""
+----
+
+Writing to Neo4j:
+
+[source, scala]
+----
+// Create example dataframe
+val df = Seq(
+    ("John Doe"),
+    ("Jane Doe")
+).toDF("name")
+
+// Write to Neo4j
+df.write.format("org.neo4j.spark.DataSource")
+    .mode(SaveMode.Append)
+    .option("url", url)
+    .option("authentication.basic.username", username)
+    .option("authentication.basic.password", password)
+    .option("labels", ":Person")
+    .save()
+----
+
+The written data can be checked with Neo4j Browser.
+
+Reading from Neo4j:
+
+[source, scala]
+----
+// Read from Neo4j
+val df = spark.read.format("org.neo4j.spark.DataSource")
+    .option("url", url)
+    .option("authentication.basic.username", username)
+    .option("authentication.basic.password", password)
+    .option("labels", "Person")
+    .load()
+----
+
+Further information on the Neo4j Spark Connector https://neo4j.com/docs/spark/current/quickstart/[quickstart].
