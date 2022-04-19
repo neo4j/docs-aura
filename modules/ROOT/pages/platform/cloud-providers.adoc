@@ -17,6 +17,11 @@ The currently available cloud providers are:
 To get started, visit the https://console.cloud.google.com/marketplace/product/endpoints/prod.n4gcp.neo4j.io[Neo4j Aura for GCP Marketplace page] and click *Purchase*.
 Note that you won't be billed until you create a database, so purchasing Neo4j Aura on GCP just gets you started.
 
+[NOTE]
+====
+Purchasing from the GCP marketplace requires the `Billing Account Administrator (roles/billing.admin)` role as highlighted in the https://cloud.google.com/billing/docs/how-to/billing-access[Overview of Cloud Billing access control] Google Cloud documentation.
+====
+
 [discrete]
 === 2. Choose a project
 
@@ -28,6 +33,11 @@ You will only need to _purchase_ Neo4j Aura for GCP once, as you can then enable
 
 Once you have purchased the service and switched to a target project, you will get the option to _Enable_ the service for that project.
 Click *Enable* to activate Neo4j Aura for GCP on your project.
+
+[NOTE]
+====
+Enabling a service through GCP requires the `roles/serviceusage.serviceUsageAdmin` role as highlighted in the https://cloud.google.com/service-usage/docs/access-control#roles[Access Control with IAM] Google Cloud documentation.
+====
 
 Once you have enabled the service, you will be directed to the *Neo4j Aura for GCP API* page.
 This page displays your service details and billing information.
