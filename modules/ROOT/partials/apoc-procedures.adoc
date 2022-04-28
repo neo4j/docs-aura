@@ -4,7 +4,7 @@
 
 // Timestamp
 // [NOTE]
-// Generated on April 6, 2022.
+// Generated on April 28, 2022.
 
 
 
@@ -691,7 +691,7 @@ apoc.math.round(value,[precision],mode=['CEILING','FLOOR','UP','DOWN','HALF_EVEN
 |===
 ¦ Qualified Name ¦ Type
 ¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.merge/apoc.merge.node[apoc.merge.node icon:book[] ^] +
-"apoc.merge.node.eager(['Label'], identProps:{key:value, ...}, onCreateProps:{key:value,...}, onMatchProps:{key:value,...}}) - merge nodes with dynamic labels, with support for setting properties ON CREATE or ON MATCH
+"apoc.merge.node(['Label'], identProps:{key:value, ...}, onCreateProps:{key:value,...}, onMatchProps:{key:value,...}}) - merge nodes with dynamic labels, with support for setting properties ON CREATE or ON MATCH
 ¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.merge/apoc.merge.node.eager[apoc.merge.node.eager icon:book[] ^] +
 apoc.merge.node.eager(['Label'], identProps:{key:value, ...}, onCreateProps:{key:value,...}, onMatchProps:{key:value,...}}) - merge nodes eagerly, with dynamic labels, with support for setting properties ON CREATE or ON MATCH
 ¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.merge/apoc.merge.relationship[apoc.merge.relationship icon:book[] ^] +
