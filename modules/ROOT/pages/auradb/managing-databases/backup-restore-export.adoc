@@ -2,26 +2,26 @@
 = Backup, export and restore
 :description: This page describes how to backup, export and restore your data from a snapshot.
 
-The data in your AuraDB database can be backed up, exported, and restored using snapshots.
+The data in your AuraDB instance can be backed up, exported, and restored using snapshots.
 
-A snapshot is a copy of the data in a database at a specific point in time.
+A snapshot is a copy of the data in an instance at a specific point in time.
 
-The *Snapshots* tab within an AuraDB database shows a list of available snapshots. footnote:[Snapshots are kept in the system for 7 days for Free and Professional plans and 90 days for Enterprise plans. Only the latest snapshot is available for Free databases.]
+The *Snapshots* tab within an AuraDB instance shows a list of available snapshots. footnote:[Snapshots are kept in the system for 7 days for Free and Professional plans and 90 days for Enterprise plans. Only the latest snapshot is available for Free instances.]
 
 To access the *Snapshots* tab:
 
 . Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
-. Select the database you want to access.
+. Select the instance you want to access.
 . Select the *Snapshots* tab.
 
 == Snapshot types
 
 There are three different types of snapshot:
 
-* label:AuraDB-Professional[] label:AuraDB-Enterprise[] *Scheduled* - Runs when you first create a database, when changes to the underlying system occur (for example, a new patch release), and automatically at a cadence depending on your plan type.
-footnote:[Automatic scheduled snapshots run once a day for Professional databases and once an hour for Enterprise databases.] 
-* label:AuraDB-Professional[] label:AuraDB-Enterprise[] *Load* - Runs when you load a dump file from the *Import Database* tab of a database and when you run the `push-to-cloud` command from the *Import* section of the sidebar menu of the Aura Console.
-* *On-demand* - Runs when you select *Take snapshot* from the *Snapshots* tab of a database.
+* label:AuraDB-Professional[] label:AuraDB-Enterprise[] *Scheduled* - Runs when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and automatically at a cadence depending on your plan type.
+footnote:[Automatic scheduled snapshots run once a day for Professional instances and once an hour for Enterprise instances.] 
+* label:AuraDB-Professional[] label:AuraDB-Enterprise[] *Load* - Runs when you load a dump file from the *Import Database* tab of a instance and when you run the `push-to-cloud` command from the *Import* section of the sidebar menu of the Aura Console.
+* *On-demand* - Runs when you select *Take snapshot* from the *Snapshots* tab of an instance.
 
 == Snapshot actions
 
@@ -31,18 +31,18 @@ You can use any of the *Scheduled* snapshots as a backup or manually trigger an 
 
 By selecting the ellipses (*...*) button next to a snapshot, you can:
 
-* *Export* - Download the database as *_.dump_* file, allowing you to store a local copy and work on your data offline.
-* *Create database from snapshot* - Create a new AuraDB database using the data from the snapshot.
+* *Export* - Download the instance as *_.dump_* file, allowing you to store a local copy and work on your data offline.
+* *Create instance from snapshot* - Create a new AuraDB instance using the data from the snapshot.
 
 === Restore
 
-You can restore data in your database to a previous snapshot by selecting *Restore* next to the snapshot you want to restore.
+You can restore data in your instance to a previous snapshot by selecting *Restore* next to the snapshot you want to restore.
 
 Restoring a snapshot requires you to confirm the action by typing RESTORE and selecting *Restore*. 
 
 [CAUTION]
 ====
-Restoring a snapshot overwrites the data in your database, replacing it with the data contained in the snapshot.
+Restoring a snapshot overwrites the data in your instance, replacing it with the data contained in the snapshot.
 ====
 
 

@@ -145,9 +145,9 @@ public class DriverIntroductionExample : IDisposable
     public static async Task Main(string[] args)
     {
         // Aura queries use an encrypted connection using the "neo4j+s" protocol
-        var uri = "neo4j+s://<Bolt url for Neo4j Aura database>";
-        var user = "<Username for Neo4j Aura database>";
-        var password = "<Password for Neo4j Aura database>";
+        var uri = "neo4j+s://<Bolt url for Neo4j Aura instance>";
+        var user = "<Username for Neo4j Aura instance>";
+        var password = "<Password for Neo4j Aura instance>";
 
         using (var example = new DriverIntroductionExample(uri, user, password))
         {
@@ -163,10 +163,10 @@ public class DriverIntroductionExample : IDisposable
 Follow the steps below to run the example code:
 
 . Copy and paste the code above into a file named `Program.cs`.
-. Enter the information for the AuraDB database you want to connect to by replacing:
-* `<Bolt url for Neo4j Aura database>` with the URI.
-* `<Username for Neo4j Aura database>` with the username.
-* `<Password for Neo4j Aura database>` with the password.
+. Enter the information for the AuraDB instance you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura instance>` with the URI.
+* `<Username for Neo4j Aura instance>` with the username.
+* `<Password for Neo4j Aura instance>` with the password.
 . Use the following command to generate an executable:
 +
 [source, shell]

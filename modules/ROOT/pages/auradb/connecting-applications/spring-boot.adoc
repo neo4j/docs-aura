@@ -191,20 +191,20 @@ class ExampleCommandLineRunner implements CommandLineRunner {
 Follow the steps below to run the example code:
 
 . Copy and paste the code above into a file named `Example.java` within a package/folder like `org.neo4j.examples` in the `main/java/src` folder.
-. Enter the information for the AuraDB database you want to connect to by adding the following to the `application.properties` file:
+. Enter the information for the AuraDB instance you want to connect to by adding the following to the `application.properties` file:
 +
 [source]
 ----
-spring.neo4j.uri=neo4j+s://<Bolt url for Neo4j Aura database>
-spring.neo4j.authentication.username=<Username for Neo4j Aura database>
-spring.neo4j.authentication.password=<Password for Neo4j Aura database>
+spring.neo4j.uri=neo4j+s://<Bolt url for Neo4j Aura instance>
+spring.neo4j.authentication.username=<Username for Neo4j Aura instance>
+spring.neo4j.authentication.password=<Password for Neo4j Aura instance>
 ----
 +
 and replace:
 +
-* `<Bolt url for Neo4j Aura database>` with the URI.
-* `<Username for Neo4j Aura database>` with the username.
-* `<Password for Neo4j Aura database>` with the password.
+* `<Bolt url for Neo4j Aura instance>` with the URI.
+* `<Username for Neo4j Aura instance>` with the username.
+* `<Password for Neo4j Aura instance>` with the password.
 . Use the following command to run the example code:
 +
 [source, shell]
