@@ -30,10 +30,10 @@ import (
 func main() {
 	// Aura requires you to use "neo4j+s" protocol
 	// (You need to replace your connection details, username and password)
-	uri := "neo4j+s://<Bolt url for Neo4j Aura database>"
-	auth := neo4j.BasicAuth("<Username for Neo4j Aura database>", "<Password for Neo4j Aura database>", "")
+	uri := "neo4j+s://<Bolt url for Neo4j Aura instance>"
+	auth := neo4j.BasicAuth("<Username for Neo4j Aura instance>", "<Password for Neo4j Aura instance>", "")
 	// You typically have one driver instance for the entire application. The
-	// driver maintains a pool of database connections to be used by the sessions.
+	// driver maintains a pool of instance connections to be used by the sessions.
 	// The driver is thread safe.
 	driver, err := neo4j.NewDriver(uri, auth)
 	if err != nil {
@@ -117,10 +117,10 @@ func main() {
 Follow the steps below to run the example code:
 
 . Copy and paste the code above into a file named `example.go`.
-. Enter the information for the AuraDB database you want to connect to by replacing:
-* `<Bolt url for Neo4j Aura database>` with the URI.
-* `<Username for Neo4j Aura database>` with the username.
-* `<Password for Neo4j Aura database>` with the password.
+. Enter the information for the AuraDB instance you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura instance>` with the URI.
+* `<Username for Neo4j Aura instance>` with the username.
+* `<Password for Neo4j Aura instance>` with the password.
 . Use the following command to update any unused or missing dependencies:
 +
 [source, shell]
