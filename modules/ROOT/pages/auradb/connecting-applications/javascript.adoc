@@ -30,9 +30,9 @@ yarn add neo4j-driver
 (async() => {
  const neo4j = require('neo4j-driver')
  
- const uri = 'neo4j+s://<Bolt url for Neo4j Aura instance>';
- const user = '<Username for Neo4j Aura instance>';
- const password = '<Password for Neo4j Aura instance>';
+ const uri = 'neo4j+s://<Bolt url for Neo4j Aura database>';
+ const user = '<Username for Neo4j Aura database>';
+ const password = '<Password for Neo4j Aura database>';
  
  const driver = neo4j.driver(uri, neo4j.auth.basic(user, password))
  const session = driver.session()
@@ -85,10 +85,10 @@ yarn add neo4j-driver
 Follow the steps below to run the example code:
 
 . Copy and paste the code above into a file named `example.js`.
-. Enter the information for the AuraDB instance you want to connect to by replacing:
-* `<Bolt url for Neo4j Aura instance>` with the URI.
-* `<Username for Neo4j Aura instance>` with the username.
-* `<Password for Neo4j Aura instance>` with the password.
+. Enter the information for the AuraDB database you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura database>` with the URI.
+* `<Username for Neo4j Aura database>` with the username.
+* `<Password for Neo4j Aura database>` with the password.
 . Use the following command to run the example code:
 +
 [source, shell]
@@ -100,7 +100,7 @@ node example.js
 
 The example imports `neo4j-driver` to connect to the Neo4j AuraDB instance.
 
-The example runs two queries against the instance:
+The example runs two queries against the database:
 
 - The first query creates two 'Person' nodes, Alice and David, and a 'KNOWS' relationship between them using a write transaction.
 - The second query finds Alice using a read transaction.

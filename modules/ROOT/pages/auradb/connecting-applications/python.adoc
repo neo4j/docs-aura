@@ -81,9 +81,9 @@ class App:
 
 if __name__ == "__main__":
     # Aura queries use an encrypted connection using the "neo4j+s" URI scheme
-    uri = "neo4j+s://<Bolt url for Neo4j Aura instance>"
-    user = "<Username for Neo4j Aura instance>"
-    password = "<Password for Neo4j Aura instance>"
+    uri = "neo4j+s://<Bolt url for Neo4j Aura database>"
+    user = "<Username for Neo4j Aura database>"
+    password = "<Password for Neo4j Aura database>"
     app = App(uri, user, password)
     app.create_friendship("Alice", "David")
     app.find_person("Alice")
@@ -95,10 +95,10 @@ if __name__ == "__main__":
 Follow the steps below to run the example code:
 
 . Copy and paste the code above into a file named `example.py`:
-. Enter the information for the AuraDB instance you want to connect to by replacing:
-* `<Bolt url for Neo4j Aura instance>` with the URI.
-* `<Username for Neo4j Aura instance>` with the username.
-* `<Password for Neo4j Aura instance>` with the password.
+. Enter the information for the AuraDB database you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura database>` with the URI.
+* `<Username for Neo4j Aura database>` with the username.
+* `<Password for Neo4j Aura database>` with the password.
 . Use the following command to run the example code:
 +
 [source, shell]
