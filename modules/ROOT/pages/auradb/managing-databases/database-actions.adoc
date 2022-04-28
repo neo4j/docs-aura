@@ -1,134 +1,134 @@
 [[aura-db-actions]]
-= Instance actions
-:description: This page describes how to resize, clone, pause, resume, delete and rename an AuraDB instance.
+= Database actions
+:description: This page describes how to resize, clone, pause, resume, delete and rename an AuraDB database.
 
-You can perform several instance actions from an AuraDB instance card on the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] homepage.
+You can perform several database actions from an AuraDB database card on the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] homepage.
 
-== Renaming an instance
+== Renaming a database
 
-You can change the name of an existing instance by using the *Rename* action.
+You can change the name of an existing database by using the *Rename* action.
 
-To rename an instance:
+To rename a database:
 
-. Select the ellipsis (*...*) button on the instance you want to rename.
+. Select the ellipsis (*...*) button on the database you want to rename.
 . Select *Rename* from the resulting menu.
-. Enter a new name for the instance.
+. Enter a new name for the database.
 . Select *Rename*.
 
-== Resizing an instance
+== Resizing a database
 
 label:AuraDB-Professional[]
 label:AuraDB-Enterprise[]
 
-You can change the size of an existing instance by using the *Resize* action.
+You can change the size of an existing database by using the *Resize* action.
 
-To resize an instance:
+To resize a database:
 
-. Select the ellipsis (*...*) button on the instance you want to resize.
+. Select the ellipsis (*...*) button on the database you want to resize.
 . Select *Resize* from the resulting menu.
-. Select the new size you want your instance to be.
+. Select the new size you want your database to be.
 . Tick the *I understand* checkbox and select *Submit*.
 
-An instance remains available during the resize operation.
+A database remains available during the resize operation.
 
-== Pausing an instance
+== Pausing a database
 
 [NOTE]
 ====
-You cannot manually pause an AuraDB Free instance; they are paused automatically after 72 hours of inactivity. footnote:[Inactivity is when you perform no queries on the instance.]
+You cannot manually pause an AuraDB Free database; they are paused automatically after 72 hours of inactivity. footnote:[Inactivity is when you perform no queries on the database.]
 ====
 
 label:AuraDB-Professional[]
 label:AuraDB-Enterprise[]
 
-You can pause an instance during periods you don't need it and resume it at any time.
+You can pause a database during periods you don't need it and resume it at any time.
 
-To pause an instance:
+To pause a database:
 
-. Select the pause button on the instance you want to pause.
+. Select the pause button on the database you want to pause.
 . Tick the *I understand* checkbox and select *Pause* to confirm.
 
-After confirming, the instance begins pausing, and a play button replaces the pause button.
+After confirming, the database begins pausing, and a play button replaces the pause button.
 
 [NOTE]
 ====
-Paused instances run at a discounted rate compared to standard consumption, as outlined in the confirmation window.
-You can pause an instance for up to 30 days, after which point AuraDB automatically resumes the instance.
+Paused databases run at a discounted rate compared to standard consumption, as outlined in the confirmation window.
+You can pause a database for up to 30 days, after which point AuraDB automatically resumes the database.
 ====
 
-=== Resuming a paused instance
+=== Resuming a paused database
 
-To resume an instance: 
+To resume a database: 
 
-. Select the play button on the instance you want to pause.
+. Select the play button on the database you want to pause.
 . Tick the *I understand* checkbox and select *Resume* to confirm.
 
-After confirming, the instance begins resuming, which may take a few minutes.
+After confirming, the database begins resuming, which may take a few minutes.
 
 [WARNING]
 ====
-AuraDB Free instances do not automatically resume after 30 days. If an AuraDB Free instance remains paused for more than 90 days, Aura deletes the instance, and all information is lost.
+AuraDB Free databases do not automatically resume after 30 days. If an AuraDB Free database remains paused for more than 90 days, Aura deletes the database, and all information is lost.
 ====
 
-== Cloning an instance
+== Cloning a database
 
-There are four ways to clone an instance:
+There are four ways to clone a database:
 
-* Clone to a new AuraDB instance.
+* Clone to a new AuraDB database.
 * Clone to a new AuraDS instance.
-* Clone to an existing AuraDB instance.
+* Clone to an existing AuraDB database.
 * Clone to an existing AuraDS instance.
 
-=== Clone to a new AuraDB instance
+=== Clone to a new AuraDB database
 
-. Select the ellipsis (*...*) button on the instance you want to clone.
+. Select the ellipsis (*...*) button on the database you want to clone.
 . Select *Clone To New* and then *AuraDB* from the resulting menus.
-. Set your desired settings for the new instance. For more information on AuraDB instance creation settings, see xref:auradb/getting-started/create-database.adoc[].
-. Tick the *I understand* checkbox and select *Clone Instance*.
+. Set your desired settings for the new database. For more information on AuraDB database creation settings, see xref:auradb/getting-started/create-database.adoc[].
+. Tick the *I understand* checkbox and select *Clone Database*.
 
 === Clone to a new AuraDS instance
 
-. Select the ellipsis (*...*) button on the instance you want to clone.
+. Select the ellipsis (*...*) button on the database you want to clone.
 . Select *Clone To New* and then *AuraDS* from the resulting menus.
 . Set your desired settings for the new instance. For more information on AuraDS instance creation settings, see xref:aurads/create-instance.adoc[].
-. Tick the *I understand* checkbox and select *Clone Instance*.
+. Tick the *I understand* checkbox and select *Clone Database*.
 
-=== Clone to an existing AuraDB instance
+=== Clone to an existing AuraDB database
 
-. Select the ellipsis (*...*) button on the instance you want to clone.
+. Select the ellipsis (*...*) button on the database you want to clone.
 . Select *Clone To Existing* and then *AuraDB* from the resulting menus.
-. If necessary, change the instance name.
-. Select the existing AuraDB instance you want to clone to from the dropdown menu.
+. If necessary, change the database name.
+. Select the existing AuraDB database you want to clone to from the dropdown menu.
 . Tick the *I understand* checkbox and select *Clone*.
 
 [NOTE]
 ====
-If the instance you are attempting to clone to is not equal in size or greater than the instance you are cloning from, the instance will be greyed out and unselectable from the dropdown menu.
+If the database you are attempting to clone to is not equal in size or greater than the database you are cloning from, the database will be greyed out and unselectable from the dropdown menu.
 ====
 
 === Clone to an existing AuraDS instance
 
-. Select the ellipsis (*...*) button on the instance you want to clone.
+. Select the ellipsis (*...*) button on the database you want to clone.
 . Select *Clone To Existing* and then *AuraDS* from the resulting menus.
-. If necessary, change the instance name.
+. If necessary, change the database name.
 . Select the existing AuraDS instance you want to clone to from the dropdown menu.
 . Tick the *I understand* checkbox and select *Clone*.
 
 [NOTE]
 ====
-If the instance you are attempting to clone to is not equal in size or greater than the instance you are cloning from, the instance will be greyed out and unselectable from the dropdown menu.
+If the instance you are attempting to clone to is not equal in size or greater than the database you are cloning from, the instance will be greyed out and unselectable from the dropdown menu.
 ====
 
-== Deleting an instance
+== Deleting a database
 
-You can delete an instance if you no longer want to be billed for it.
+You can delete a database if you no longer want to be billed for it.
 
-To delete an instance:
+To delete a database:
 
-. Select the red trashcan icon on the instance you want to delete.
-. Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
+. Select the red trashcan icon on the database you want to delete.
+. Type the exact name of the database (as instructed) to confirm your decision, and select *Destroy*.
 
 [WARNING]
 ====
-There is no way to recover data from a deleted AuraDB instance.
+There is no way to recover data from a deleted AuraDB database.
 ====
