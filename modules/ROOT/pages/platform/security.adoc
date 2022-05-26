@@ -24,7 +24,7 @@ AuraDB Enterprise supports private endpoints on AWS using https://aws.amazon.com
 
 Once activated, you can create an endpoint in your VPC that connects to Aura.
 
-image::private-link.png[title="VPC connectivity with AWS PrivateLink"]
+image::privatelink.png[title="VPC connectivity with AWS PrivateLink"]
 
 All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet.
 You can then disable public traffic, ensuring all traffic to the database remains private to your VPC.
@@ -35,6 +35,32 @@ You can then disable public traffic, ensuring all traffic to the database remain
 * If you disable public traffic, you must use a dedicated VPN to connect to your database via Browser or Bloom.
 * Connections using private endpoints are one-way. Aura VPCs can't initiate connections back to your VPCs.
 ====
+
+==== Browser and Bloom access over private endpoints
+
+In order to connect to your database via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your database, this applies to all connections, uncluding those from your laptop when using Browser or Bloom.
+
+Before you set up private endpoints, Browser and Bloom are accessed over the internet:
+
+image::privatelink_01_before_enabling.png[title="Architecture overview before enabling private endpoints"]
+
+When you have enabled private endpoints **and** disabled public internet access, you can no longer connect Browser or Bloom to your databases over the internet:
+
+image::privatelink_02_enabled_private_traffic_only.png[title="Architecture overview with private endpoints enabled and public traffic disabled"]
+
+In order to continue accessing Browser and Bloom you can configure a VPN (Virtual Private Network) in your VPC, and connect to Browser and Bloom over the VPN.
+
+[NOTE]
+====
+To access Bloom and Browser over a VPN, you must ensure that
+
+* The VPN server uses the https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#AmazonDNS[VPC's DNS servers].
+* You use the private URL provided by support when you completed set up the private endpoint. It will be different from the URL you used before.
+====
+
+image::privatelink_03_browser_bloom_over_vpn.png[title="Browser and Bloom can be accessed over a VPN"]
+
+==== Enabling private endpoints
 
 To enable private endpoints using AWS PrivateLink, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket], and we'll be in touch.
 
