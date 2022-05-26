@@ -34,6 +34,7 @@ You can then disable public traffic, ensuring all traffic to the database remain
 * When activated, PrivateLink applies to all databases in the region.
 * If you disable public traffic, you must use a dedicated VPN to connect to your database via Browser or Bloom.
 * Connections using private endpoints are one-way. Aura VPCs can't initiate connections back to your VPCs.
+* In AWS region us-east-1, the Availability Zone with ID use1-az3 is not supported for private endpoints.
 ====
 
 ==== Browser and Bloom access over private endpoints
