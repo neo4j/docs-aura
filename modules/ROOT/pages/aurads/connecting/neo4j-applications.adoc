@@ -39,10 +39,10 @@ These are the same credentials you stored when you xref:aurads/create-instance.a
 See the https://neo4j.com/docs/bloom-user-guide/current/[Neo4j Bloom documentation^] for more details.
 
 [NOTE]
+.Perspectives in AuraDS
 ====
-*Note: Perspectives in AuraDS*
 
-Due to the nature of AuraDS's infrastructure, it is not currently possible to share Perspectives in Bloom, as the data for a given Perspective is stored in a cookie in the user's web browser.
+Due to the nature of AuraDS's infrastructure, it is not currently possible to share Perspectives in Bloom, as the data for a given Perspective is stored in local storage in the user's web browser.
 
 An alternative is to export your Perspective as a JSON file and import it into another Bloom session.
 
@@ -57,6 +57,11 @@ You can import perspectives by clicking the blue "Import Perspective" button in 
 Please note that the Perspective exposes details about your graph's schema but not the actual data within.
 
 For more information, see https://neo4j.com/docs/bloom-user-guide/1.5/bloom-perspectives/[Bloom Perspectives^].
+
+*Deep links*
+
+As data for a given Perspective is stored in local storage in the user's web browser, if you want to access a deep link referencing perspectives, you will first need to import the perspectives into your local instance of Bloom.
+
 ====
 
 == Neo4j Desktop
