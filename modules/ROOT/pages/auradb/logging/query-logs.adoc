@@ -1,0 +1,21 @@
+[[aura-query-logs]]
+= Query logs
+
+label:AuraDB-Enterprise[]
+
+A query log provides a log of queries executed on an instance within a specified time period. 
+
+You can export query logs from an AuraDB Enterprise instance via the *Logs* tab.
+
+To access the *Logs* tab:
+
+. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
+. Select the instance you want to export the query logs from.
+. Select the *Logs* tab.
+
+You can select from the following time periods when exporting a query log:
+
+* Last 15 minutes
+* Last hour
+* Custom range - Any one hour from the previous 30 days
+
