@@ -19,3 +19,63 @@ You can select from the following time periods when exporting a query log:
 * Last hour
 * Custom range - Any one hour from the previous 30 days
 
+.Log entries
+[cols="25m,75a"]
+|===
+| Name | Description
+
+| allocatedBytes
+| The number of bytes allocated by the query.
+
+| annotationData
+| The metadata attached to the transaction.
+
+| authenticatedUser
+| The name of the authenticated user executing the query.
+
+| database
+| The name of the database the query was executed on.
+
+| dbid
+| The ID of the instace the query was executed on.
+
+| elapsedTimeMs
+| The time the query took to complete in milliseconds.
+
+| event
+| The query event: `start`, `fail` or `success`.
+
+| executingUser
+| The name of the user who executed the query.
+
+| id
+| The ID of the query.
+
+| message
+| The log message: a truncated version of `query`.
+
+| pageFaults
+| The number of page faults resulting from the query.
+
+| pageHits
+| The number of page hits resulting from the query.
+
+| query
+| The full query text.
+
+| runtime
+| The runtime used to execute the query.
+
+| source
+| The connection details of the query.
+
+| type
+| The type of log message: always `query`.
+
+| username
+| The username of the user who executed the query.
+
+| time
+| The timestamp of the query log message.
+
+|===
