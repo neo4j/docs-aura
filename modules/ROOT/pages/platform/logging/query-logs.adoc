@@ -5,7 +5,7 @@ label:AuraDB-Enterprise[]
 
 A query log provides a log of queries executed on an instance within a specified time period. 
 
-You can export query logs from an AuraDB Enterprise instance via the *Logs* tab.
+You can export query logs from an Aura instance via the *Logs* tab.
 
 To access the *Logs* tab:
 
@@ -20,7 +20,7 @@ You can select from the following time periods when exporting a query log:
 * Custom range - Any one hour from the previous 30 days
 
 .Log entries
-[cols="25m,75a"]
+[cols="25m,75v"]
 |===
 | Name | Description
 
@@ -31,7 +31,7 @@ You can select from the following time periods when exporting a query log:
 | The metadata attached to the transaction.
 
 | authenticatedUser
-| The name of the authenticated user executing the query.
+| The name of the user who executed the query (whose credentials were used to log in).
 
 | database
 | The name of the database the query was executed on.
@@ -43,10 +43,16 @@ You can select from the following time periods when exporting a query log:
 | The time the query took to complete in milliseconds.
 
 | event
-| The query event: `start`, `fail` or `success`.
+| The query event:
+
+`start` - The query was successfully parsed, awaiting execution.
+
+`fail` - The query failed to either parse or execute.
+
+`success` - The query executed successfully or was canceled.
 
 | executingUser
-| The name of the user who executed the query.
+| The name of the user who executed the query either through authentication (`authenticatedUser`) or through https://neo4j.com/docs/cypher-manual/current/access-control/dbms-administration/#access-control-dbms-administration-impersonation[impersonation].
 
 | id
 | The ID of the query.
@@ -64,13 +70,13 @@ You can select from the following time periods when exporting a query log:
 | The full query text.
 
 | runtime
-| The runtime used to execute the query.
+| The https://neo4j.com/docs/cypher-manual/current/query-tuning/#cypher-runtime[Cypher runtime] used to execute the query.
 
 | source
 | The connection details of the query.
 
 | type
-| The type of log message: always `query`.
+| The type of log message.
 
 | username
 | The username of the user who executed the query.
