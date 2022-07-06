@@ -3,7 +3,7 @@
 
 label:AuraDB-Enterprise[]
 
-A query log provides a log of queries executed on an instance within a specified time period. 
+A query log provides a log of queries executed on an instance within a specified time range. 
 
 You can export query logs from an Aura instance via the *Logs* tab.
 
@@ -13,11 +13,21 @@ To access the *Logs* tab:
 . Select the instance you want to export the query logs from.
 . Select the *Logs* tab.
 
-You can select from the following time periods when exporting a query log:
+== Requesting query logs
+
+You can select from the following time ranges when requesting a query log:
 
 * Last 15 minutes
 * Last hour
 * Custom range - Any one hour from the previous 30 days
+
+To request a query log from the *Logs* tab:
+
+. Click *Request log*.
+. Select a *Range* option.
+. Click *Request*.
+
+Aura will generate a query log for your selected time range, available to download once the *Status* shows *Completed*.
 
 .Log entries
 [cols="25m,75v"]
