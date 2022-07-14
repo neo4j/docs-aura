@@ -37,7 +37,7 @@ const USERNAME = '<Username for Neo4j Aura instance>';
 const PASSWORD = '<Password for Neo4j Aura instance>';
 
 // Create Neo4j driver instance
-const driver = neo4j.driver(AURA_ENDPOINT, neo4j.auth.basic(USERNAME, PASSWORD), { encrypted: true } );
+const driver = neo4j.driver(AURA_ENDPOINT, neo4j.auth.basic(USERNAME, PASSWORD));
 
 const typeDefs = gql`
   type Person {
