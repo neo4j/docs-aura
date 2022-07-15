@@ -35,7 +35,7 @@ yarn add neo4j-driver
  const password = '<Password for Neo4j Aura instance>';
  
  const driver = neo4j.driver(uri, neo4j.auth.basic(user, password))
- const session = driver.session()
+ const session = driver.session({ database: 'neo4j' })
 
  const person1Name = 'Alice'
  const person2Name = 'David'
