@@ -99,7 +99,7 @@ public class DriverIntroductionExample : IDisposable
             var readResults = await session.ReadTransactionAsync(async tx =>
             {
                 var result = await tx.RunAsync(query, new { name = personName });
-                return (await result.ToListAsync());
+                return await result.ToListAsync();
             });
 
             foreach (var result in readResults)
