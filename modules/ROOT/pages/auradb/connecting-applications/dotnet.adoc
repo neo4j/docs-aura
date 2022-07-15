@@ -68,7 +68,7 @@ public class DriverIntroductionExample : IDisposable
             var writeResults = await session.WriteTransactionAsync(async tx =>
             {
                 var result = await tx.RunAsync(query, new { person1Name, person2Name });
-                return (await result.ToListAsync());
+                return await result.ToListAsync();
             });
 
             foreach (var result in writeResults)
