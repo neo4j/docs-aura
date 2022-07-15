@@ -57,7 +57,8 @@ const neo4jGraphQL = new Neo4jGraphQL({
 neo4jGraphQL.getSchema().then((schema) => {
   // Create ApolloServer instance to serve GraphQL schema
   const server = new ApolloServer({
-    schema
+    schema,
+    context: { driverConfig: { database: 'neo4j' } }
   });
 
   // Start ApolloServer
