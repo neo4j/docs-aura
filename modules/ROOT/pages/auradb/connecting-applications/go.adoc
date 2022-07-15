@@ -43,7 +43,7 @@ func main() {
 	defer driver.Close()
 	// Create a session to run transactions in. Sessions are lightweight to
 	// create and use. Sessions are NOT thread safe.
-	session := driver.NewSession(neo4j.SessionConfig{})
+	session := driver.NewSession(neo4j.SessionConfig{DatabaseName: "neo4j"})
 	defer session.Close()
 	// WriteTransaction retries the operation in case of transient errors by
 	// invoking the anonymous function multiple times until it succeeds.

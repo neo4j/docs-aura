@@ -68,7 +68,7 @@ public class DriverIntroductionExample implements AutoCloseable {
         params.put("person1_name", person1Name);
         params.put("person2_name", person2Name);
 
-        try (Session session = driver.session()) {
+        try (Session session = driver.session(SessionConfig.forDatabase("neo4j"))) {
             // Write transactions allow the driver to handle retries and transient errors
             Record record = session.writeTransaction(tx -> {
                 Result result = tx.run(createFriendshipQuery, params);
@@ -91,7 +91,7 @@ public class DriverIntroductionExample implements AutoCloseable {
 
         Map<String, Object> params = Collections.singletonMap("person_name", personName);
 
-        try (Session session = driver.session()) {
+        try (Session session = driver.session(SessionConfig.forDatabase("neo4j"))) {
             Record record = session.readTransaction(tx -> {
                 Result result = tx.run(readPersonByNameQuery, params);
                 return result.single();
