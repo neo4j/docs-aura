@@ -79,6 +79,7 @@ import org.neo4j.driver.Driver;
 import org.neo4j.driver.Record;
 import org.neo4j.driver.Result;
 import org.neo4j.driver.Session;
+import org.neo4j.driver.SessionConfig;
 import org.neo4j.driver.TransactionWork;
 import org.neo4j.driver.exceptions.Neo4jException;
 import org.slf4j.Logger;
@@ -115,7 +116,7 @@ class ExampleCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        try (Session session = driver.session()) {
+        try (Session session = driver.session(SessionConfig.forDatabase("neo4j"))) {
             // Using transaction functions allows the driver to handle retries and transient errors for you
 
             // The first examples indicates a write transaction that must go through the leader of a cluster
