@@ -15,21 +15,32 @@ To access the *Logs* tab:
 
 == Requesting query logs
 
-You can select from the following time ranges when requesting a query log:
-
-* Last 15 minutes
-* Last hour
-* Custom range - Any one hour from the previous 30 days
-
 To request a query log from the *Logs* tab:
 
 . Click *Request log*.
 . Select a *Range* option.
 . Click *Request*.
 
+You can select from the following time ranges when requesting a query log:
+
+* Last 15 minutes
+* Last hour
+* Custom range - Any range up to one hour from the previous 30 days
+
 Aura will generate a query log for your selected time range, available to download once the *Status* shows *Completed*.
 
-.Log entries
+[NOTE]
+====
+Requested query logs will appear for up to 7 days, at which point they will expire and be removed.
+====
+
+== Downloading query logs
+
+You can download query logs with the *Completed Status* by selecting the download icon on the right-hand side of the Query log entry.
+
+Downloaded query logs take the form of a zipped JSON file that, when extracted, contains the following information for each query:
+
+.Query log entries
 [cols="25m,75v"]
 |===
 | Name | Description
@@ -87,9 +98,6 @@ Aura will generate a query log for your selected time range, available to downlo
 
 | type
 | The type of log message.
-
-| username
-| The username of the user who executed the query.
 
 | time
 | The timestamp of the query log message.
