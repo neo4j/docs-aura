@@ -27,6 +27,11 @@ You can select from the following time ranges when requesting a query log:
 * Last hour
 * Custom range - Any range up to one hour from the previous 30 days
 
+[TIP]
+====
+We recommend shorter time ranges for busy, read/write heavy instances to reduce request time.
+====
+
 Aura will generate a query log for your selected time range, available to download once the *Status* shows *Completed*.
 
 [NOTE]
