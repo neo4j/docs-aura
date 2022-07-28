@@ -1,22 +1,31 @@
 [[aura-query-logs]]
-= Query logs
+= Logs
 
+Aura allows you to request and download security and query logs.
 
-A query log provides a log of queries executed on an instance within a specified time range. 
-
-You can export query logs from an Aura instance via the *Logs* tab.
+You can access logs from an Aura instance via the *Logs* tab.
 
 To access the *Logs* tab:
 
 . Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
-. Select the instance you want to export the query logs from.
+. Select the instance you want to export the logs from.
 . Select the *Logs* tab.
 
-== Requesting query logs
+== Requesting logs
+
+[NOTE]
+====
+Requested logs will appear for up to 7 days, at which point they will expire and be removed.
+====
+
+=== Query logs
+
+A query log provides a log of queries executed on an instance within a specified time range. 
 
 To request a query log from the *Logs* tab:
 
 . Click *Request log*.
+. Select the *Query Log* option under *Type*.
 . Select a *Range* option.
 . Click *Request*.
 
@@ -33,16 +42,32 @@ We recommend shorter time ranges for busy, read/write heavy instances to reduce 
 
 Aura will generate a query log for your selected time range, available to download once the *Status* shows *Completed*.
 
-[NOTE]
-====
-Requested query logs will appear for up to 7 days, at which point they will expire and be removed.
-====
+=== Security logs
 
-== Downloading query logs
+A security log provides a log of all the security events that have occurred on an instance within a specified time range.
 
-You can download query logs with the *Completed Status* by selecting the download icon on the right-hand side of the Query log entry.
+To request a security log from the *Logs* tab:
 
-Downloaded query logs take the form of a zipped JSON file that, when extracted, contains the following information for each query:
+. Click *Request log*.
+. Select the *Security Log* option under *Type*.
+. Select a *Range* option.
+. Click *Request*.
+
+You can select from the following time ranges when requesting a security log:
+
+* Last 6 minutes
+* Last 12 hour
+* Custom range - Any range up to 12 hours from the previous 30 days
+
+Aura will generate a security log for your selected time range, available to download once the *Status* shows *Completed*.
+
+== Downloading logs
+
+You can download logs with the *Completed Status* by selecting the download icon on the right-hand side of the log entry.
+
+Downloaded logs take the form of a zipped JSON file that, when extracted, contains the following information depending on the type of log requested:
+
+=== Query logs
 
 .Query log entries
 [cols="25m,75v"]
@@ -104,6 +129,24 @@ Downloaded query logs take the form of a zipped JSON file that, when extracted, 
 | The type of log message.
 
 | time
-| The timestamp of the query log message.
+| The timestamp of the log message.
+
+|===
+
+=== Security logs
+
+.Security log entries
+[cols="25m,75v"]
+|===
+| Name | Description
+
+| dbid
+| The ID of the instance the security event occured on.
+
+| message
+| The log message.
+
+| time
+| The timestamp of the log message.
 
 |===
