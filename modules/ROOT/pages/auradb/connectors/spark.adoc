@@ -1,0 +1,17 @@
+[[connecting-spark]]
+= Neo4j Connector for Apache Spark
+:description: This page describes how to connect to AuraDB using Spark.
+
+The Neo4j Connector for Apache Spark is intended to make integrating graphs with Spark easy. There are two ways to use the connector:
+
+* As a https://neo4j.com/docs/spark/current/reading/[data source^]: read any set of nodes or relationships as a `DataSource` in Spark
+* As a https://neo4j.com/docs/spark/current/writing/[sink^]: write any `DataSource` to Neo4j as a collection of nodes or relationships, or use a Cypher statement to process records contained in a `DataSource` into the graph pattern of your choice
+
+Connecting to AuraDB only requires to make a few changes to the https://neo4j.com/docs/spark/current/configuration/[Neo4j driver configuration^]:
+
+. Replace the `bolt` URI (the value of the `neo4j.server.uri` configuration parameter) with the `neo4j+s://` connection URI from the AuraDB instance detail page
+. Update the username and password configuration parameters as appropriate
+
+For more information check the https://neo4j.com/docs/spark/current/[Neo4j Apache Spark Connector^] page.
+
+include::partial$spark-example.adoc[]
