@@ -1,0 +1,25 @@
+[[connecting-bi]]
+= BI Connector for Neo4j
+:description: This page describes how to connect to AuraDS using the BI Connector.
+
+Download BI Connector from https://neo4j.com/bi-connector/
+
+Download sqlline from https://github.com/julianhyde/sqlline
+
+Build sqlline with `./mvnw package`
+
+Copy connector into sqlline target
+
+`cp Neo4jJDBC42.jar sqlline/target/`
+
+Run sqlline with `./sqlline/bin/sqlline -d com.simba.neo4j.neo4j.jdbc42.Driver`
+
+Connect with
+
+```
+!connect jdbc:neo4j://8447ba04.databases.neo4j.io?SSL=true
+```
+
+Note the `neo4j` (not `neo4j+s`) and the `SSL=true` parameter
+
+Run `SELECT * FROM Person;`
