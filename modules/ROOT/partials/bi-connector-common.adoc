@@ -81,3 +81,36 @@ jdbc:neo4j://xxxxxxxx.databases.neo4j.io> SELECT * FROM Person;
 | 1        | 40  | Jane | Doe     |
 +----------+-----+------+---------+
 ----
+
+== `jdbcsql`
+
+Download `jdbcsql-1.0.zip` from https://sourceforge.net/projects/jdbcsql/files/
+
+Unzip to `jdbcsql` and copy Neo4j connector into folder
+
+Make the following changes (see http://jdbcsql.sourceforge.net/ for further details):
+
+1. Add the following lines to `JDBCConfig.properties`
++
+----
+# neo4j settings
+neo4j_driver = com.simba.neo4j.neo4j.jdbc42.Driver
+neo4j_url = jdbc:neo4j://host?SSL=true
+----
+
+2. Add `Neo4jJDBC42.jar` to `Rsrc-Class-Path` line in `META-INF/MANIFEST.MF`
+3. Run
++
+----
+java org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader -m neo4j -h xxxxxxxx.databases.neo4j.io -d neo4j -U neo4j -P yyyyyyyy 'SELECT * FROM Person'
+----
+
+(replace `xxxxxxxx` with the proper URL and `yyyyyyyy` with the actual password)
+
+Result:
+
+----
+"_NodeId_"	age	name	surname
+0	42	John	Doe
+1	40	Jane	Doe
+----
