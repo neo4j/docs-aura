@@ -1,0 +1,83 @@
+The Neo4j Connector for Business Intelligence (BI) delivers access to Neo4j graph data from BI tools such as Tableau, Power BI, Looker, TIBCO, Spotfire Server, Microstrategy, and more. It can be used to run SQL queries on a Neo4j graph and retrieve data in tabular format.
+
+== Quick example
+
+First of all, we need to create some graph data on the {product} instance. We can do this by running the following Cypher query in the Neo4j Browser:
+
+[source, cypher, subs=attributes+]
+----
+CREATE
+  (john:Person {name: "John", surname: "Doe", age: 42}),
+  (jane:Person {name: "Jane", surname: "Doe", age: 40}),
+  (john)-[:KNOWS]->(jane)
+----
+
+Then, we download the JDBC Neo4j Connector for BI from the https://neo4j.com/download-center/#integrations[Download Center].
+
+=== Configure a SQL client
+
+In order to run SQL queries, we need a SQL client that can use a custom driver. We will clone and build https://github.com/julianhyde/sqlline[`sqlline`], a command line SQL client, but any SQL client or business intelligence platform can be used instead.
+
+[source, shell, subs=attributes+]
+----
+$ git clone https://github.com/julianhyde/sqlline
+$ cd sqlline
+$ ./mvnw package
+----
+
+We need to make the BI connector driver available to `sqllite`. The easiest way to do this is to just extract the BI connector `Neo4jJDBC42.jar` file into the `sqlline/target` folder.
+
+The `sqlline` client can then be run as follows:
+
+[source, shell, subs=attributes+]
+----
+./bin/sqlline -d com.simba.neo4j.neo4j.jdbc42.Driver
+----
+
+=== Connect to {product}
+
+From the client prompt, we can connect to the {product} instance by replacing the Neo4j URL with the appropriate one, and supplying the username and password when prompted to do so.
+
+[NOTE]
+====
+The correct protocol to use for connection is `neo4j` (not `neo4j+s`). Make sure to add the `SSL=true` parameter to the URL.
+====
+
+[source, shell, subs=attributes+]
+----
+!connect jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true
+----
+
+=== Run queries
+
+When the connection is established, it is possible to obtain a list of tables with the `!tables` command:
+
+[source, shell, subs=attributes+]
+----
+jdbc:neo4j://xxxxxxxx.databases.neo4j.io> !tables
+----
+
+----
++-----------+--------------+---------------------+------------+---------+----------+------------+-----------+--------+
+| TABLE_CAT | TABLE_SCHEM  |     TABLE_NAME      | TABLE_TYPE | REMARKS | TYPE_CAT | TYPE_SCHEM | TYPE_NAME | SELF_R |
++-----------+--------------+---------------------+------------+---------+----------+------------+-----------+--------+
+| neo4j     | Node         | Person              | TABLE      |         |          |            |           |        |
+| neo4j     | Relationship | Person_KNOWS_Person | TABLE      |         |          |            |           |        |
++-----------+--------------+---------------------+------------+---------+----------+------------+-----------+--------+
+----
+
+It is also possible to run SQL queries:
+
+[source, shell, subs=attributes+]
+----
+jdbc:neo4j://xxxxxxxx.databases.neo4j.io> SELECT * FROM Person;
+----
+
+----
++----------+-----+------+---------+
+| _NodeId_ | age | name | surname |
++----------+-----+------+---------+
+| 0        | 42  | John | Doe     |
+| 1        | 40  | Jane | Doe     |
++----------+-----+------+---------+
+----
