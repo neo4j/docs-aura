@@ -115,7 +115,7 @@ Result:
 1	40	Jane	Doe
 ----
 
-== Tableau
+== Tableau (using the JDBC driver)
 
 This example focuses on Tableau Desktop.
 
@@ -128,3 +128,15 @@ This example focuses on Tableau Desktop.
 - Select the `neo4j` database and the `Node` schema
 - Click on the `Person` table to see the data
 
+== Power BI
+
+NOTE: run on Windows
+
+First of all, download and install the ODBC driver from the https://neo4j.com/download-center/#integrations[Download Center]. Then, open Power BI and:
+
+- Click on "Get data from another source"
+- Search for "ODBC" and click on it
+- Select "Simba Neo4j" in the DSN dropdown menu
+- Click on "Advanced options" and insert as connection string `Host=xxxxxxxx.databases.neo4j.io;SSL=1`
+- Click "Ok"
+- In the Navigator window, open ODBC -> neo4j -> Node -> Person to see a preview of the table
