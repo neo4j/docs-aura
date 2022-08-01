@@ -114,3 +114,17 @@ Result:
 0	42	John	Doe
 1	40	Jane	Doe
 ----
+
+== Tableau
+
+This example focuses on Tableau Desktop.
+
+- Close any running instance of Tableau Desktop
+- Copy the Neo4j driver to the appropriate Tableau drivers folder (e.g. `C:\Program Files\Tableau\Drivers` on Windows or `~/Library/Tableau/Drivers` on Mac)
+- Start Tableau
+- Click on `Other Databases (JDBC)`
+- Insert the Aura URL as `jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true`, leave dialect as `SQL92` and fill up the credentials
+- Click on "Sign In"
+- Select the `neo4j` database and the `Node` schema
+- Click on the `Person` table to see the data
+
