@@ -11,16 +11,11 @@ To access the *Logs* tab:
 . Select the instance you want to export the logs from.
 . Select the *Logs* tab.
 
-== Requesting logs
-
-[NOTE]
-====
-Requested logs will appear for up to 7 days, at which point they will expire and be removed.
-====
-
-=== Query logs
+== Query logs
 
 A query log provides a log of queries executed on an instance within a specified time range. 
+
+=== Requesting query logs
 
 To request a query log from the *Logs* tab:
 
@@ -28,6 +23,11 @@ To request a query log from the *Logs* tab:
 . Select the *Query Log* option under *Type*.
 . Select a *Range* option.
 . Click *Request*.
+
+[NOTE]
+====
+Requested logs will appear for up to 7 days, at which point they will expire and be removed.
+====
 
 You can select from the following time ranges when requesting a query log:
 
@@ -42,32 +42,11 @@ We recommend shorter time ranges for busy, read/write heavy instances to reduce 
 
 Aura will generate a query log for your selected time range, available to download once the *Status* shows *Completed*.
 
-=== Security logs
+=== Downloading query logs
 
-A security log provides a log of all the security events that have occurred on an instance within a specified time range.
+You can download query logs by selecting the download icon on the right-hand side of the log entry.
 
-To request a security log from the *Logs* tab:
-
-. Click *Request log*.
-. Select the *Security Log* option under *Type*.
-. Select a *Range* option.
-. Click *Request*.
-
-You can select from the following time ranges when requesting a security log:
-
-* Last 6 minutes
-* Last 12 hour
-* Custom range - Any range up to 12 hours from the previous 30 days
-
-Aura will generate a security log for your selected time range, available to download once the *Status* shows *Completed*.
-
-== Downloading logs
-
-You can download logs with the *Completed Status* by selecting the download icon on the right-hand side of the log entry.
-
-Downloaded logs take the form of a zipped JSON file that, when extracted, contains the following information depending on the type of log requested:
-
-=== Query logs
+Downloaded query logs take the form of a zipped JSON file that, when extracted, contains the following information:
 
 .Query log entries
 [cols="25m,75v"]
@@ -133,18 +112,66 @@ Downloaded logs take the form of a zipped JSON file that, when extracted, contai
 
 |===
 
-=== Security logs
+== Security logs
+
+A security log provides a log of all the security events that have occurred on an instance within a specified time range.
+
+Security events include:
+
+* Login attempts: both successful and unsuccessful.
+* Authorization failures from role-based access control.
+* https://neo4j.com/docs/operations-manual/current/authentication-authorization/access-control/#auth-access-control-security[Administration commands] run against the `system` database.
+
+=== Requesting security logs
+
+To request a security log from the *Logs* tab:
+
+. Click *Request log*.
+. Select the *Security Log* option under *Type*.
+. Select a *Range* option.
+. Click *Request*.
+
+[NOTE]
+====
+Requested logs will appear for up to 7 days, at which point they will expire and be removed.
+====
+
+You can select from the following time ranges when requesting a security log:
+
+* Last 6 minutes
+* Last 12 hour
+* Custom range - Any range up to 12 hours from the previous 30 days
+
+Aura will generate a security log for your selected time range, available to download once the *Status* shows *Completed*.
+
+=== Downloading security logs
+
+You can download security logs by selecting the download icon on the right-hand side of the log entry.
+
+Downloaded security logs take the form of a zipped JSON file that, when extracted, contains the following information:
 
 .Security log entries
 [cols="25m,75v"]
 |===
 | Name | Description
 
+| authenticatedUser
+| The name of the user who executed the security event (whose credentials were used to log in).
+
 | dbid
 | The ID of the instance the security event occured on.
 
+| executingUser
+| The name of the user who executed the security event either through authentication (`authenticatedUser`) or through https://neo4j.com/docs/cypher-manual/current/access-control/dbms-administration/#access-control-dbms-administration-impersonation[impersonation].
+
 | message
 | The log message.
+
+| source
+| The connection details of the security event.
+
+| type
+| The type of log message.
 
 | time
 | The timestamp of the log message.
