@@ -1,6 +1,6 @@
 The Neo4j Connector for Business Intelligence (BI) delivers access to Neo4j graph data from BI tools such as Tableau, Power BI, Looker, TIBCO, Spotfire Server, Microstrategy, and more. It can be used to run SQL queries on a Neo4j graph and retrieve data in tabular format.
 
-== Quick example
+== Prepare example data
 
 First of all, we need to create some graph data on the {product} instance. We can do this by running the following Cypher query in the Neo4j Browser:
 
@@ -14,7 +14,9 @@ CREATE
 
 Then, we download the JDBC Neo4j Connector for BI from the https://neo4j.com/download-center/#integrations[Download Center].
 
-=== Configure a SQL client
+== Configure command-line SQL clients
+
+=== sqlline
 
 In order to run SQL queries, we need a SQL client that can use a custom driver. We will clone and build https://github.com/julianhyde/sqlline[`sqlline`], a command line SQL client, but any SQL client or business intelligence platform can be used instead.
 
@@ -34,8 +36,6 @@ The `sqlline` client can then be run as follows:
 ./bin/sqlline -d com.simba.neo4j.neo4j.jdbc42.Driver
 ----
 
-=== Connect to {product}
-
 From the client prompt, we can connect to the {product} instance by replacing the Neo4j URL with the appropriate one, and supplying the username and password when prompted to do so.
 
 [NOTE]
@@ -48,41 +48,7 @@ The correct protocol to use for connection is `neo4j` (not `neo4j+s`). Make sure
 !connect jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true
 ----
 
-=== Run queries
-
-When the connection is established, it is possible to obtain a list of tables with the `!tables` command:
-
-[source, shell, subs=attributes+]
-----
-jdbc:neo4j://xxxxxxxx.databases.neo4j.io> !tables
-----
-
-----
-+-----------+--------------+---------------------+------------+---------+----------+------------+-----------+--------+
-| TABLE_CAT | TABLE_SCHEM  |     TABLE_NAME      | TABLE_TYPE | REMARKS | TYPE_CAT | TYPE_SCHEM | TYPE_NAME | SELF_R |
-+-----------+--------------+---------------------+------------+---------+----------+------------+-----------+--------+
-| neo4j     | Node         | Person              | TABLE      |         |          |            |           |        |
-| neo4j     | Relationship | Person_KNOWS_Person | TABLE      |         |          |            |           |        |
-+-----------+--------------+---------------------+------------+---------+----------+------------+-----------+--------+
-----
-
-It is also possible to run SQL queries:
-
-[source, shell, subs=attributes+]
-----
-jdbc:neo4j://xxxxxxxx.databases.neo4j.io> SELECT * FROM Person;
-----
-
-----
-+----------+-----+------+---------+
-| _NodeId_ | age | name | surname |
-+----------+-----+------+---------+
-| 0        | 42  | John | Doe     |
-| 1        | 40  | Jane | Doe     |
-+----------+-----+------+---------+
-----
-
-== `jdbcsql`
+=== jdbcsql
 
 Download `jdbcsql-1.0.zip` from https://sourceforge.net/projects/jdbcsql/files/
 
@@ -115,7 +81,9 @@ Result:
 1	40	Jane	Doe
 ----
 
-== Tableau (using the JDBC driver)
+== Configure BI tools
+
+=== Tableau (JDBC driver)
 
 This example focuses on Tableau Desktop.
 
@@ -128,7 +96,7 @@ This example focuses on Tableau Desktop.
 - Select the `neo4j` database and the `Node` schema
 - Click on the `Person` table to see the data
 
-== Power BI
+=== Power BI (ODBC driver)
 
 NOTE: run on Windows
 
@@ -140,3 +108,21 @@ First of all, download and install the ODBC driver from the https://neo4j.com/do
 - Click on "Advanced options" and insert as connection string `Host=xxxxxxxx.databases.neo4j.io;SSL=1`
 - Click "Ok"
 - In the Navigator window, open ODBC -> neo4j -> Node -> Person to see a preview of the table
+
+== Run queries
+
+When the connection is established, it is also possible to run SQL queries:
+
+[source, sql, subs=attributes+]
+----
+SELECT * FROM Person;
+----
+
+----
++----------+-----+------+---------+
+| _NodeId_ | age | name | surname |
++----------+-----+------+---------+
+| 0        | 42  | John | Doe     |
+| 1        | 40  | Jane | Doe     |
++----------+-----+------+---------+
+----
