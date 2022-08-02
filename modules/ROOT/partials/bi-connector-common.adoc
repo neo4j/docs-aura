@@ -96,6 +96,8 @@ This example focuses on Tableau Desktop.
 - Select the `neo4j` database and the `Node` schema
 - Click on the `Person` table to see the data
 
+For more information on how to add a JDBC database to Tableau, check the https://help.tableau.com/current/pro/desktop/en-us/examples_otherdatabases_jdbc.htm[Tableau documentation^].
+
 === Power BI (ODBC driver)
 
 [NOTE]
@@ -111,6 +113,8 @@ First of all, download and install the ODBC driver from the https://neo4j.com/do
 - Click on "Advanced options" and insert as connection string `Host=xxxxxxxx.databases.neo4j.io;SSL=1`
 - Click "Ok"
 - In the Navigator window, open ODBC -> neo4j -> Node -> Person to see a preview of the table
+
+For more information on how to add an ODBC database to Power BI, check the https://docs.microsoft.com/en-us/power-bi/connect-data/desktop-connect-using-generic-interfaces[Power BI documentation^].
 
 == Run queries
 
