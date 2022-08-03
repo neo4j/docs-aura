@@ -87,7 +87,7 @@ neo4j_url = jdbc:neo4j://host?SSL=true
 java org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader -m neo4j -h xxxxxxxx.databases.neo4j.io -d neo4j -U neo4j -P yyyyyyyy 'SELECT * FROM Person'
 ----
 
-(replace `xxxxxxxx` with the proper URL and `yyyyyyyy` with the actual password)
+(replace `xxxxxxxx.databases.neo4j.io` with the proper URL and `yyyyyyyy` with the actual password)
 
 Result:
 
@@ -99,18 +99,21 @@ Result:
 
 == Configure BI tools
 
+In the following examples, replace `xxxxxxxx.databases.neo4j.io` with the correct Aura instance URL.
+
 === Tableau (JDBC driver)
 
-This example focuses on Tableau Desktop.
+[NOTE]
+====
+This example requires Tableau Desktop.
+====
 
 - Close any running instance of Tableau Desktop
 - Copy the Neo4j driver to the appropriate Tableau drivers folder (e.g. `C:\Program Files\Tableau\Drivers` on Windows or `~/Library/Tableau/Drivers` on Mac)
-- Start Tableau
-- Click on `Other Databases (JDBC)`
-- Insert the Aura URL as `jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true`, leave dialect as `SQL92` and fill up the credentials
-- Click on "Sign In"
-- Select the `neo4j` database and the `Node` schema
-- Click on the `Person` table to see the data
+- Start Tableau and search for the `Other Databases (JDBC)` option
+- Insert the Aura URL as `jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true`, leave the SQL dialect as `SQL92`, and fill up the credentials fields
+
+After the connection is established, it is possible to select the `neo4j` database and the `Node` schema to find the `Person` table. The table can then be explored to find the example data.
 
 For more information on how to add a JDBC database to Tableau, check the https://help.tableau.com/current/pro/desktop/en-us/examples_otherdatabases_jdbc.htm[Tableau documentation^].
 
@@ -118,17 +121,16 @@ For more information on how to add a JDBC database to Tableau, check the https:/
 
 [NOTE]
 ====
-This example requires Microsoft Windows.
+This example requires Microsoft Windows and Power BI Desktop.
 ====
 
 First of all, download and install the ODBC driver from the https://neo4j.com/download-center/#integrations[Download Center]. Then, open Power BI and:
 
-- Click on "Get data from another source"
-- Search for "ODBC" and click on it
+- Search for "ODBC" in the "Get data from another source" panel
 - Select "Simba Neo4j" in the DSN dropdown menu
-- Click on "Advanced options" and insert as connection string `Host=xxxxxxxx.databases.neo4j.io;SSL=1`
-- Click "Ok"
-- In the Navigator window, open `ODBC` -> `neo4j` -> `Node` -> `Person` to see a preview of the table
+- Insert the connection string `Host=xxxxxxxx.databases.neo4j.io;SSL=1` in the "Advanced options" section
+
+Once connected, open respectively `ODBC` -> `neo4j` -> `Node` -> `Person` in the Navigator window to see a preview of the table.
 
 For more information on how to add an ODBC database to Power BI, check the https://docs.microsoft.com/en-us/power-bi/connect-data/desktop-connect-using-generic-interfaces[Power BI documentation^].
 
