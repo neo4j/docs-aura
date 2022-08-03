@@ -10,7 +10,11 @@ Generic Start
 * xref:platform/security.adoc[]
 * xref:platform/apoc.adoc[]
 * xref:platform/logging.adoc[Logging]
-* xref:aurads/connectors/bi.adoc[]
+
+* Neo4j Connectors
+** xref:aurads/connectors/spark.adoc[]
+** xref:aurads/connectors/kafka.adoc[]
+** xref:aurads/connectors/bi.adoc[]
 ////
 Generic End
 ////
@@ -47,12 +51,6 @@ AuraDB Start
 ** xref:auradb/connecting-applications/go.adoc[]
 
 * xref:auradb/upgrade.adoc[]
-
-* Integrating with Neo4j Connectors
-** xref:auradb/connectors/spark.adoc[]
-** xref:auradb/connectors/kafka.adoc[]
-** xref:auradb/connectors/bi.adoc[]
-
 * xref:auradb/support.adoc[]
 ////
 AuraDB End
@@ -100,6 +98,7 @@ AuraDS Start
 AuraDS End
 ////
 
-* *Aura tutorials*
-
-* xref:aurads/connectors/bi.adoc[]
+* *Aura Tutorials*
+* Integrating with Neo4j Connectors
+** xref:tutorials/spark.adoc[]
+** xref:tutorials/bi.adoc[]
