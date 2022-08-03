@@ -108,6 +108,8 @@ In the following examples, replace `xxxxxxxx.databases.neo4j.io` with the correc
 This example requires Tableau Desktop.
 ====
 
+First of all, download and install the ODBC driver from the https://neo4j.com/download-center/#integrations[Download Center]. Then:
+
 - Close any running instance of Tableau Desktop
 - Copy the Neo4j driver to the appropriate Tableau drivers folder (e.g. `C:\Program Files\Tableau\Drivers` on Windows or `~/Library/Tableau/Drivers` on Mac)
 - Start Tableau and search for the `Other Databases (JDBC)` option
