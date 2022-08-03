@@ -162,7 +162,7 @@ Downloaded security logs take the form of a zipped JSON file that, when extracte
 | The name of the user who executed the security event (whose credentials were used to log in).
 
 | dbid
-| The ID of the instance the security event occured on.
+| The ID of the instance the security event occurred on.
 
 | executingUser
 | The name of the user who executed the security event either through authentication (`authenticatedUser`) or through https://neo4j.com/docs/cypher-manual/current/access-control/dbms-administration/#access-control-dbms-administration-impersonation[impersonation].
