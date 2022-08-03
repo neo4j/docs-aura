@@ -1,11 +1,9 @@
 = Using the Apache Spark Connector
 :product: Aura
 
-== Quick example
-
 NOTE: This example uses Java 11. Spark runs on Java 8 or 11.
 
-=== Setup
+== Setup
 
 [NOTE]
 ====
@@ -23,7 +21,7 @@ $ spark-3.3.0-bin-hadoop3/bin/spark-shell --jars neo4j-connector-apache-spark_2.
 
 The code can be copy-pasted to the shell by activating the `paste` mode with the `:paste` command.
 
-=== Code
+== Code
 
 [source, scala]
 ----
