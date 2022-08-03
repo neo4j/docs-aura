@@ -48,6 +48,22 @@ The correct protocol to use for connection is `neo4j` (not `neo4j+s`). Make sure
 !connect jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true
 ----
 
+When the connection is established, it is possible to obtain a list of tables with the `!tables` command:
+
+[source, shell, subs=attributes+]
+----
+jdbc:neo4j://xxxxxxxx.databases.neo4j.io> !tables
+----
+
+----
++-----------+--------------+---------------------+------------+---------+----------+------------+-----------+--------+
+| TABLE_CAT | TABLE_SCHEM  |     TABLE_NAME      | TABLE_TYPE | REMARKS | TYPE_CAT | TYPE_SCHEM | TYPE_NAME | SELF_R |
++-----------+--------------+---------------------+------------+---------+----------+------------+-----------+--------+
+| neo4j     | Node         | Person              | TABLE      |         |          |            |           |        |
+| neo4j     | Relationship | Person_KNOWS_Person | TABLE      |         |          |            |           |        |
++-----------+--------------+---------------------+------------+---------+----------+------------+-----------+--------+
+----
+
 === jdbcsql
 
 Download `jdbcsql-1.0.zip` from https://sourceforge.net/projects/jdbcsql/files/
