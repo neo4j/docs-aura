@@ -1,8 +1,10 @@
 The Neo4j Connector for Business Intelligence (BI) delivers access to Neo4j graph data from BI tools such as Tableau, Power BI, Looker, TIBCO, Spotfire Server, Microstrategy, and more. It can be used to run SQL queries on a Neo4j graph and retrieve data in tabular format.
 
+Then Neo4j Connector for BI (both JDBC and ODBC) can be downloaded from the https://neo4j.com/download-center/#integrations[Download Center^].
+
 == Prepare example data
 
-First of all, we need to create some graph data on the {product} instance. We can do this by running the following Cypher query in the Neo4j Browser:
+We need to load some data on {product} in order to try the connector with any of the listed tools. We can do this by running the following Cypher query in the Neo4j Browser:
 
 [source, cypher, subs=attributes+]
 ----
@@ -12,11 +14,9 @@ CREATE
   (john)-[:KNOWS]->(jane)
 ----
 
-Then, we download the JDBC Neo4j Connector for BI from the https://neo4j.com/download-center/#integrations[Download Center].
-
 == Configure command-line SQL clients
 
-=== sqlline
+=== sqlline (JDBC driver)
 
 In order to run SQL queries, we need a SQL client that can use a custom driver. We will clone and build https://github.com/julianhyde/sqlline[`sqlline`], a command line SQL client, but any SQL client or business intelligence platform can be used instead.
 
@@ -27,7 +27,7 @@ $ cd sqlline
 $ ./mvnw package
 ----
 
-We need to make the BI connector driver available to `sqllite`. The easiest way to do this is to just extract the BI connector `Neo4jJDBC42.jar` file into the `sqlline/target` folder.
+We need to make the BI connector driver available to `sqllite`. The easiest way to do this is to just extract the JDBC BI connector `Neo4jJDBC42.jar` file into the `sqlline/target` folder.
 
 The `sqlline` client can then be run as follows:
 
@@ -64,13 +64,11 @@ jdbc:neo4j://xxxxxxxx.databases.neo4j.io> !tables
 +-----------+--------------+---------------------+------------+---------+----------+------------+-----------+--------+
 ----
 
-=== jdbcsql
+=== jdbcsql (JDBC driver)
 
-Download `jdbcsql-1.0.zip` from https://sourceforge.net/projects/jdbcsql/files/
+Download `jdbcsql-1.0.zip` from https://sourceforge.net/projects/jdbcsql/files/[SourceForge], then unzip it into the `jdbcsql` folder. Copy the Neo4j BI Connector into `jdbcsql` too.
 
-Unzip to `jdbcsql` and copy Neo4j connector into folder
-
-Make the following changes (see http://jdbcsql.sourceforge.net/ for further details):
+Make the following changes:
 
 1. Add the following lines to `JDBCConfig.properties`
 +
@@ -96,6 +94,8 @@ Result:
 0	42	John	Doe
 1	40	Jane	Doe
 ----
+
+See http://jdbcsql.sourceforge.net/ for further details.
 
 == Configure BI tools
 
