@@ -1,14 +1,11 @@
 = Using the Apache Spark Connector
 :product: Aura
 
-NOTE: This example uses Java 11. Spark runs on Java 8 or 11.
+In this tutorial we will use the Neo4j Connector for Apache Spark to write to and read graph data from an Aura instance.
+
+NOTE: In this example we use Java 11. Spark can run on both Java 8 or Java 11.
 
 == Setup
-
-[NOTE]
-====
-TODO: Mention version of Spark and Scala
-====
 
 . Download the Spark Neo4j Connector from the https://github.com/neo4j-contrib/neo4j-spark-connector/releases[GitHub release^] page.
 . Download Spark from the https://spark.apache.org/downloads.html[Download^] page (latest version, for example 3.3.0, pre-built for Apache Hadoop 3.3 and later).
@@ -35,7 +32,7 @@ val username = "neo4j"
 val password = ""
 ----
 
-Writing to Neo4j:
+=== Writing to Neo4j
 
 [source, scala]
 ----
@@ -58,9 +55,9 @@ ds.write.format("org.neo4j.spark.DataSource")
     .save()
 ----
 
-The written data can be checked with Neo4j Browser.
+The written data can be checked with the Neo4j Browser.
 
-Reading from Neo4j:
+=== Reading from Neo4j
 
 [source, scala]
 ----
