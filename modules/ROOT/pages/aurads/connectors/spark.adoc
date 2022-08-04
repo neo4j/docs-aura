@@ -2,6 +2,11 @@
 = Neo4j Connector for Apache Spark
 :description: This page describes how to connect to AuraDS using Spark.
 
+[TIP]
+====
+Tutorial: xref:tutorials/spark.adoc[Using the Apache Spark Connector with Aura]
+====
+
 The Neo4j Connector for Apache Spark is intended to make integrating graphs with Spark easy. There are two ways to use the connector:
 
 * As a https://neo4j.com/docs/spark/current/reading/[data source^]: read any set of nodes or relationships as a `DataSource` in Spark
@@ -13,5 +18,3 @@ Connecting to AuraDS only requires to make a few changes to the https://neo4j.co
 . Update the username and password configuration parameters as appropriate
 
 For more information check the https://neo4j.com/docs/spark/current/[Neo4j Apache Spark Connector^] page.
-
-See xref:tutorials/spark.adoc[] tutorial for examples on how to use the Spark Connector with Aura.
