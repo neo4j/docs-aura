@@ -101,9 +101,6 @@ Downloaded query logs take the form of a zipped JSON file that, when extracted, 
 | runtime
 | The https://neo4j.com/docs/cypher-manual/current/query-tuning/#cypher-runtime[Cypher runtime] used to execute the query.
 
-| source
-| The connection details of the query.
-
 | type
 | The type of log message.
 
@@ -169,9 +166,6 @@ Downloaded security logs take the form of a zipped JSON file that, when extracte
 
 | message
 | The log message.
-
-| source
-| The connection details of the security event.
 
 | type
 | The type of log message.
