@@ -3,7 +3,9 @@
 
 == Encryption
 
-All data stored in Neo4j Aura is encrypted using intra-cluster encryption between the various nodes comprising your database, as well as encrypted at rest using the underlying cloud provider's encryption mechanism.
+All data stored in Neo4j Aura is encrypted using intra-cluster encryption between the various nodes comprising your database and encrypted at rest using the underlying cloud provider's encryption mechanism.
+
+By default, Google Cloud and AWS encrypt all backup buckets (including the objects stored inside) with either https://cloud.google.com/storage/docs/encryption/default-keys[Google-managed encryption] or https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html[AWS SSE-S3 encryption].
 
 == VPC isolation
 
@@ -24,7 +26,7 @@ AuraDB Enterprise supports private endpoints on AWS using https://aws.amazon.com
 
 Once activated, you can create an endpoint in your VPC that connects to Aura.
 
-image::private-link.png[title="VPC connectivity with AWS PrivateLink"]
+image::privatelink.png[title="VPC connectivity with AWS PrivateLink"]
 
 All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet.
 You can then disable public traffic, ensuring all traffic to the database remains private to your VPC.
@@ -34,7 +36,34 @@ You can then disable public traffic, ensuring all traffic to the database remain
 * When activated, PrivateLink applies to all databases in the region.
 * If you disable public traffic, you must use a dedicated VPN to connect to your database via Browser or Bloom.
 * Connections using private endpoints are one-way. Aura VPCs can't initiate connections back to your VPCs.
+* In AWS region us-east-1, we do not support the Availability Zone with ID use1-az3 for private endpoints.
 ====
+
+==== Browser and Bloom access over private endpoints
+
+To connect to your database via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your database, this applies to all connections, including those from your computer when using Browser or Bloom.
+
+Without private endpoints, you access Browser and Bloom over the internet:
+
+image::privatelink_01_before_enabling.png[title="Architecture overview before enabling private endpoints"]
+
+When you have enabled private endpoints **and** disabled public internet access, you can no longer connect Browser or Bloom to your databases over the internet:
+
+image::privatelink_02_enabled_private_traffic_only.png[title="Architecture overview with private endpoints enabled and public traffic disabled"]
+
+To continue accessing Browser and Bloom, you can configure a VPN (Virtual Private Network) in your VPC and connect to Browser and Bloom over the VPN.
+
+[NOTE]
+====
+To access Bloom and Browser over a VPN, you must ensure that:
+
+* The VPN server uses the https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#AmazonDNS[VPC's DNS servers].
+* You use the private URL provided by support when you completed setting up the private endpoint. It will be different from the URL you used before.
+====
+
+image::privatelink_03_browser_bloom_over_vpn.png[title="Accessing Browser and Bloom over a VPN"]
+
+==== Enabling private endpoints
 
 To enable private endpoints using AWS PrivateLink, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket], and we'll be in touch.
 
@@ -45,7 +74,7 @@ Please see the https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.
 
 label:AuraDB-Enterprise[]
 
-AuraDB Enterprise supports Single Sign-On (SSO) for accessing the Bloom and Browser clients from a database.
+AuraDB Enterprise supports Single Sign-On (SSO) for accessing the Bloom and Browser clients.
 
 The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are currently supported:
 
@@ -53,6 +82,11 @@ The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are curr
 * Okta
 * Keycloak
 * Google Authentication
+
+[NOTE]
+====
+If the IdP you are currently using is not in our list of certified IdPs above, please let us know using the support ticket method mentioned below and we will evaluate the possibility of adding support.
+====
 
 Aura supports Authorization Code Flow with PKCE to ensure best practice security.
 

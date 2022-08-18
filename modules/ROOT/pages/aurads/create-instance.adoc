@@ -10,7 +10,7 @@
 . Select one or more algorithm categories from the *Which algorithms are you going to use?* section (or the *I'm not sure yet* option) to help estimate the most appropriate instance size. An overview of each algorithm category can be found https://neo4j.com/docs/graph-data-science/current/algorithms/[here^].
 . Select *Calculate Estimate* to get an estimate of the resources needed to run the graph (memory, CPU, storage) along with the expected price.
 . Select *Create Instance* to proceed.
-. Copy and store the *Username* and *Generated password* credentials to access the instance just created.
+. Copy and store the *Username* and *Generated password* credentials to access the instance just created. Alternatively, you can download the credentials as a `.env` file.
 +
 WARNING: *Warning*: Make sure that the username and password are stored safely before continuing. Credentials cannot be recovered afterwards.
 +
@@ -21,4 +21,4 @@ WARNING: *Warning*: Make sure that the username and password are stored safely b
 Multi-database is not supported within Neo4j AuraDS.
 ====
 
-The process will take a few minutes to complete. Upon completion, you will be able to xref:aurads/getting-started/access.adoc[access the instance].
+The process will take a few minutes to complete. Upon completion, you will be able to xref:aurads/connecting/neo4j-applications.adoc[connect to the instance].

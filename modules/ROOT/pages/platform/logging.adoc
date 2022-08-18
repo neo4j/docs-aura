@@ -1,0 +1,106 @@
+[[aura-query-logs]]
+= Query logs
+
+
+A query log provides a log of queries executed on an instance within a specified time range. 
+
+You can export query logs from an Aura instance via the *Logs* tab.
+
+To access the *Logs* tab:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Select the instance you want to export the query logs from.
+. Select the *Logs* tab.
+
+== Requesting query logs
+
+To request a query log from the *Logs* tab:
+
+. Click *Request log*.
+. Select a *Range* option.
+. Click *Request*.
+
+You can select from the following time ranges when requesting a query log:
+
+* Last 15 minutes
+* Last hour
+* Custom range - Any range up to one hour from the previous 30 days
+
+[TIP]
+====
+We recommend shorter time ranges for busy, read/write heavy instances to reduce request time.
+====
+
+Aura will generate a query log for your selected time range, available to download once the *Status* shows *Completed*.
+
+[NOTE]
+====
+Requested query logs will appear for up to 7 days, at which point they will expire and be removed.
+====
+
+== Downloading query logs
+
+You can download query logs with the *Completed Status* by selecting the download icon on the right-hand side of the Query log entry.
+
+Downloaded query logs take the form of a zipped JSON file that, when extracted, contains the following information for each query:
+
+.Query log entries
+[cols="25m,75v"]
+|===
+| Name | Description
+
+| allocatedBytes
+| The number of bytes allocated by the query.
+
+| annotationData
+| The metadata attached to the transaction.
+
+| authenticatedUser
+| The name of the user who executed the query (whose credentials were used to log in).
+
+| database
+| The name of the database the query was executed on.
+
+| dbid
+| The ID of the instace the query was executed on.
+
+| elapsedTimeMs
+| The time the query took to complete in milliseconds.
+
+| event
+| The query event:
+
+`start` - The query was successfully parsed, awaiting execution.
+
+`fail` - The query failed to either parse or execute.
+
+`success` - The query executed successfully or was canceled.
+
+| executingUser
+| The name of the user who executed the query either through authentication (`authenticatedUser`) or through https://neo4j.com/docs/cypher-manual/current/access-control/dbms-administration/#access-control-dbms-administration-impersonation[impersonation].
+
+| id
+| The ID of the query.
+
+| message
+| The log message: a truncated version of `query`.
+
+| pageFaults
+| The number of page faults resulting from the query.
+
+| pageHits
+| The number of page hits resulting from the query.
+
+| query
+| The full query text.
+
+| runtime
+| The https://neo4j.com/docs/cypher-manual/current/query-tuning/#cypher-runtime[Cypher runtime] used to execute the query.
+
+| type
+| The type of log message.
+
+| time
+| The timestamp of the query log message.
+
+|===

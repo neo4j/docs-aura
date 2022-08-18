@@ -79,6 +79,7 @@ import org.neo4j.driver.Driver;
 import org.neo4j.driver.Record;
 import org.neo4j.driver.Result;
 import org.neo4j.driver.Session;
+import org.neo4j.driver.SessionConfig;
 import org.neo4j.driver.TransactionWork;
 import org.neo4j.driver.exceptions.Neo4jException;
 import org.slf4j.Logger;
@@ -115,7 +116,7 @@ class ExampleCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        try (Session session = driver.session()) {
+        try (Session session = driver.session(SessionConfig.forDatabase("neo4j"))) {
             // Using transaction functions allows the driver to handle retries and transient errors for you
 
             // The first examples indicates a write transaction that must go through the leader of a cluster
@@ -191,20 +192,20 @@ class ExampleCommandLineRunner implements CommandLineRunner {
 Follow the steps below to run the example code:
 
 . Copy and paste the code above into a file named `Example.java` within a package/folder like `org.neo4j.examples` in the `main/java/src` folder.
-. Enter the information for the AuraDB database you want to connect to by adding the following to the `application.properties` file:
+. Enter the information for the AuraDB instance you want to connect to by adding the following to the `application.properties` file:
 +
 [source]
 ----
-spring.neo4j.uri=neo4j+s://<Bolt url for Neo4j Aura database>
-spring.neo4j.authentication.username=<Username for Neo4j Aura database>
-spring.neo4j.authentication.password=<Password for Neo4j Aura database>
+spring.neo4j.uri=neo4j+s://<Bolt url for Neo4j Aura instance>
+spring.neo4j.authentication.username=<Username for Neo4j Aura instance>
+spring.neo4j.authentication.password=<Password for Neo4j Aura instance>
 ----
 +
 and replace:
 +
-* `<Bolt url for Neo4j Aura database>` with the URI.
-* `<Username for Neo4j Aura database>` with the username.
-* `<Password for Neo4j Aura database>` with the password.
+* `<Bolt url for Neo4j Aura instance>` with the URI.
+* `<Username for Neo4j Aura instance>` with the username.
+* `<Password for Neo4j Aura instance>` with the password.
 . Use the following command to run the example code:
 +
 [source, shell]

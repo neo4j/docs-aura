@@ -32,12 +32,12 @@ const { ApolloServer, gql } = require("apollo-server");
 const neo4j = require("neo4j-driver");
 
 // (You may need to replace your connection details, username and password)
-const AURA_ENDPOINT = 'neo4j+s://<Bolt url for Neo4j Aura database>';
-const USERNAME = '<Username for Neo4j Aura database>';
-const PASSWORD = '<Password for Neo4j Aura database>';
+const AURA_ENDPOINT = 'neo4j+s://<Bolt url for Neo4j Aura instance>';
+const USERNAME = '<Username for Neo4j Aura instance>';
+const PASSWORD = '<Password for Neo4j Aura instance>';
 
 // Create Neo4j driver instance
-const driver = neo4j.driver(AURA_ENDPOINT, neo4j.auth.basic(USERNAME, PASSWORD), { encrypted: true } );
+const driver = neo4j.driver(AURA_ENDPOINT, neo4j.auth.basic(USERNAME, PASSWORD));
 
 const typeDefs = gql`
   type Person {
@@ -57,7 +57,8 @@ const neo4jGraphQL = new Neo4jGraphQL({
 neo4jGraphQL.getSchema().then((schema) => {
   // Create ApolloServer instance to serve GraphQL schema
   const server = new ApolloServer({
-    schema
+    schema,
+    context: { driverConfig: { database: 'neo4j' } }
   });
 
   // Start ApolloServer
@@ -72,10 +73,10 @@ neo4jGraphQL.getSchema().then((schema) => {
 Follow the steps below to run the example code:
 
 . Copy and paste the code above into a file named `example.js`.
-. Enter the information for the AuraDB database you want to connect to by replacing:
-* `<Bolt url for Neo4j Aura database>` with the URI.
-* `<Username for Neo4j Aura database>` with the username.
-* `<Password for Neo4j Aura database>` with the password.
+. Enter the information for the AuraDB instance you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura instance>` with the URI.
+* `<Username for Neo4j Aura instance>` with the username.
+* `<Password for Neo4j Aura instance>` with the password.
 . Use the following command to run the example code:
 +
 [source, shell]
@@ -87,7 +88,7 @@ node example.js
 
 You use the Neo4j GraphQL Library to create a GraphQL API backed by your Neo4j Aura instance. The Neo4j GraphQL Library can generate a full GraphQL API, including auto-generated data fetching logic from GraphQL type definitions.
 
-The example creates GraphQL type definitions to define the data model of the API and the database. It then passes these to the `Neo4jGraphQL` class that contains an executable GraphQL schema object.
+The example creates GraphQL type definitions to define the data model of the API and the instance. It then passes these to the `Neo4jGraphQL` class that contains an executable GraphQL schema object.
 
 You then use Apollo Server to host the GraphQL schema. Once the GraphQL server is running, navigate to http://localhost:4000[localhost:4000] in your web browser to query the GraphQL API using Apollo Studio.
 

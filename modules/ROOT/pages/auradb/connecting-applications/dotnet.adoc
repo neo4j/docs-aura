@@ -4,7 +4,7 @@
 
 == Prerequisites
 
-- .NET 5.0+
+- .NET SDK (Core)
 
 == Installation
 
@@ -61,14 +61,14 @@ public class DriverIntroductionExample : IDisposable
         MERGE (p1)-[:KNOWS]->(p2)
         RETURN p1, p2";
 
-        var session = _driver.AsyncSession();
+        await using var session = _driver.AsyncSession(configBuilder => configBuilder.WithDatabase("neo4j"));
         try
         {
             // Write transactions allow the driver to handle retries and transient error
             var writeResults = await session.WriteTransactionAsync(async tx =>
             {
-                var result = await tx.RunAsync(query, new {person1Name, person2Name});
-                return (await result.ToListAsync());
+                var result = await tx.RunAsync(query, new { person1Name, person2Name });
+                return await result.ToListAsync();
             });
 
             foreach (var result in writeResults)
@@ -84,10 +84,6 @@ public class DriverIntroductionExample : IDisposable
             Console.WriteLine($"{query} - {ex}");
             throw;
         }
-        finally
-        {
-            await session.CloseAsync();
-        }
     }
 
     public async Task FindPerson(string personName)
@@ -97,13 +93,13 @@ public class DriverIntroductionExample : IDisposable
         WHERE p.name = $name
         RETURN p.name";
 
-        var session = _driver.AsyncSession();
+        await using var session = _driver.AsyncSession(configBuilder => configBuilder.WithDatabase("neo4j"));
         try
         {
             var readResults = await session.ReadTransactionAsync(async tx =>
             {
-                var result = await tx.RunAsync(query, new {name = personName});
-                return (await result.ToListAsync());
+                var result = await tx.RunAsync(query, new { name = personName });
+                return await result.ToListAsync();
             });
 
             foreach (var result in readResults)
@@ -116,10 +112,6 @@ public class DriverIntroductionExample : IDisposable
         {
             Console.WriteLine($"{query} - {ex}");
             throw;
-        }
-        finally
-        {
-            await session.CloseAsync();
         }
     }
 
@@ -145,15 +137,13 @@ public class DriverIntroductionExample : IDisposable
     public static async Task Main(string[] args)
     {
         // Aura queries use an encrypted connection using the "neo4j+s" protocol
-        var uri = "neo4j+s://<Bolt url for Neo4j Aura database>";
-        var user = "<Username for Neo4j Aura database>";
-        var password = "<Password for Neo4j Aura database>";
+        var uri = "neo4j+s://<Bolt url for Neo4j Aura instance>";
+        var user = "<Username for Neo4j Aura instance>";
+        var password = "<Password for Neo4j Aura instance>";
 
-        using (var example = new DriverIntroductionExample(uri, user, password))
-        {
-            await example.CreateFriendship("Alice", "David");
-            await example.FindPerson("Alice");
-        }
+        using var example = new DriverIntroductionExample(uri, user, password);
+        await example.CreateFriendship("Alice", "David");
+        await example.FindPerson("Alice");
     }
 }
 ----
@@ -163,10 +153,10 @@ public class DriverIntroductionExample : IDisposable
 Follow the steps below to run the example code:
 
 . Copy and paste the code above into a file named `Program.cs`.
-. Enter the information for the AuraDB database you want to connect to by replacing:
-* `<Bolt url for Neo4j Aura database>` with the URI.
-* `<Username for Neo4j Aura database>` with the username.
-* `<Password for Neo4j Aura database>` with the password.
+. Enter the information for the AuraDB instance you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura instance>` with the URI.
+* `<Username for Neo4j Aura instance>` with the username.
+* `<Password for Neo4j Aura instance>` with the password.
 . Use the following command to generate an executable:
 +
 [source, shell]

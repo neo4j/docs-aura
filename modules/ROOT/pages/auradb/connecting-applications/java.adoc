@@ -68,7 +68,7 @@ public class DriverIntroductionExample implements AutoCloseable {
         params.put("person1_name", person1Name);
         params.put("person2_name", person2Name);
 
-        try (Session session = driver.session()) {
+        try (Session session = driver.session(SessionConfig.forDatabase("neo4j"))) {
             // Write transactions allow the driver to handle retries and transient errors
             Record record = session.writeTransaction(tx -> {
                 Result result = tx.run(createFriendshipQuery, params);
@@ -91,7 +91,7 @@ public class DriverIntroductionExample implements AutoCloseable {
 
         Map<String, Object> params = Collections.singletonMap("person_name", personName);
 
-        try (Session session = driver.session()) {
+        try (Session session = driver.session(SessionConfig.forDatabase("neo4j"))) {
             Record record = session.readTransaction(tx -> {
                 Result result = tx.run(readPersonByNameQuery, params);
                 return result.single();
@@ -106,9 +106,9 @@ public class DriverIntroductionExample implements AutoCloseable {
 
     public static void main(String... args) throws Exception {
         // Aura queries use an encrypted connection using the "neo4j+s" protocol
-        String uri = "neo4j+s://<Bolt url for Neo4j Aura database>";
-        String user = "<Username for Neo4j Aura database>";
-        String password = "<Password for Neo4j Aura database>";
+        String uri = "neo4j+s://<Bolt url for Neo4j Aura instance>";
+        String user = "<Username for Neo4j Aura instance>";
+        String password = "<Password for Neo4j Aura instance>";
 
         try (DriverIntroductionExample app = new DriverIntroductionExample(uri, user, password, Config.defaultConfig())) {
             app.createFriendship("Alice", "David");
@@ -123,10 +123,10 @@ public class DriverIntroductionExample implements AutoCloseable {
 Follow the steps below to run the example code:
 
 . Copy and paste the code above into a file named `DriverIntroductionExample.java`.
-. Enter the information for the AuraDB database you want to connect to by replacing:
-* `<Bolt url for Neo4j Aura database>` with the URI.
-* `<Username for Neo4j Aura database>` with the username.
-* `<Password for Neo4j Aura database>` with the password.
+. Enter the information for the AuraDB instance you want to connect to by replacing:
+* `<Bolt url for Neo4j Aura instance>` with the URI.
+* `<Username for Neo4j Aura instance>` with the username.
+* `<Password for Neo4j Aura instance>` with the password.
 . Use the following command to compile the java file, replacing `<driver-version>` with your installed driver version:
 +
 [source, shell]
