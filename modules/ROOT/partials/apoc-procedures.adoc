@@ -4,7 +4,7 @@
 
 // Timestamp
 // [NOTE]
-// Generated on April 28, 2022.
+// Generated on August 9, 2022.
 
 
 
@@ -64,7 +64,7 @@ apoc.agg.statistics(value,[percentiles = 0.5,0.75,0.9,0.95,0.99]) - returns nume
 ¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.algo/apoc.algo.aStar[apoc.algo.aStar icon:book[] ^] +
 apoc.algo.aStar(startNode, endNode, 'KNOWS|<WORKS_WITH|IS_MANAGER_OF>', 'distance','lat','lon') YIELD path, weight - run A* with relationship property name as cost function
 ¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.algo/apoc.algo.aStarConfig[apoc.algo.aStarConfig icon:book[] ^] +
-apoc.algo.aStar(startNode, endNode, 'KNOWS|<WORKS_WITH|IS_MANAGER_OF>', {weight:'dist',default:10,x:'lon',y:'lat'}) YIELD path, weight - run A* with relationship property name as cost function
+apoc.algo.aStarConfig(startNode, endNode, 'KNOWS|<WORKS_WITH|IS_MANAGER_OF>', {weight:'dist',default:10,x:'lon',y:'lat', pointPropName:'point'}) YIELD path, weight - run A* with relationship property name as cost function
 ¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.algo/apoc.algo.allSimplePaths[apoc.algo.allSimplePaths icon:book[] ^] +
 apoc.algo.allSimplePaths(startNode, endNode, 'KNOWS|<WORKS_WITH|IS_MANAGER_OF>', 5) YIELD path, weight - run allSimplePaths with relationships given and maxNodes
 ¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.algo/apoc.algo.cover[apoc.algo.cover icon:book[] ^] +
@@ -541,6 +541,8 @@ calculate a checksum (md5) over a node or a relationship. This deals gracefully 
 ¦ Qualified Name ¦ Type
 ¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.import/apoc.import.csv[apoc.import.csv icon:book[] ^] +
 apoc.import.csv(nodes, relationships, config) - imports nodes and relationships from the provided CSV files with given labels and types
+¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.import/apoc.import.graphml[apoc.import.graphml icon:book[] ^] +
+apoc.import.graphml(urlOrBinaryFile,config) - imports graphml file
 ¦ label:procedure[]
 |===
 
@@ -576,6 +578,8 @@ apoc.label.exists(element, label) - returns true or false related to label exist
 apoc.load.json('urlOrKeyOrBinary',path, config) YIELD value - import JSON as stream of values if the JSON was an array or a single value if it was a map
 ¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.load/apoc.load.jsonArray[apoc.load.jsonArray icon:book[] ^] +
 apoc.load.jsonArray('url') YIELD value - load array from JSON URL (e.g. web-api) to import JSON as stream of values
+¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.load/apoc.load.xml[apoc.load.xml icon:book[] ^] +
+apoc.load.xml('http://example.com/test.xml', 'xPath',config, false) YIELD value as doc CREATE (p:Person) SET p.name = doc.name - load from XML URL (e.g. web-api) to import XML as single nested map with attributes and _type, _text and _childrenx fields.
 ¦ label:procedure[]
 |===
 
