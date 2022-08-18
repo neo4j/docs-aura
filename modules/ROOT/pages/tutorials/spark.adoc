@@ -58,6 +58,7 @@ We can now write the data to Aura:
 
 [source, scala]
 ----
+// Write to Neo4j
 ds.write.format("org.neo4j.spark.DataSource")
     .mode(SaveMode.Overwrite)
     .option("url", url)
