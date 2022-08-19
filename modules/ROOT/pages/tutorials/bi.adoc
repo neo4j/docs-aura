@@ -1,9 +1,14 @@
 = Using the BI Connector
-:product: Aura
 
-== Prepare example data
+In this tutorial we use the Neo4j Connector for BI to read graph data from an Aura instance using some common SQL clients and BI tools.
 
-We need to load some data on {product} in order to try the connector with any of the listed tools. We can do this by running the following Cypher query in the Neo4j Browser:
+== Downloading the connector
+
+Download the connector from the https://neo4j.com/download-center/#integrations[Download Center]. Depending on the SQL client or BI tool it will be used with, you will need either the JDBC or the ODBC connector; see the usage examples for further details.
+
+== Preparing example data
+
+Before trying the connector with any of the listed tools, we need to load some data on Aura. We can do this by running the following Cypher query in the Neo4j Browser:
 
 [source, cypher, subs=attributes+]
 ----
@@ -13,11 +18,13 @@ CREATE
   (john)-[:KNOWS]->(jane)
 ----
 
-== Configure command-line SQL clients
+== Using command-line SQL clients
 
-=== sqlline (JDBC driver)
+In order to run SQL queries, we need a SQL client that can use a custom driver. Two common JDBC-based command-line SQL clients are <<_sqlline>> and <<_jdbcsql>>.
 
-In order to run SQL queries, we need a SQL client that can use a custom driver. We will clone and build https://github.com/julianhyde/sqlline[`sqlline`], a command line SQL client, but any SQL client or business intelligence platform can be used instead.
+=== sqlline
+
+https://github.com/julianhyde/sqlline[`sqlline`^] is a command-line tool for issuing SQL to relational databases via JDBC. To clone and build it:
 
 [source, shell, subs=attributes+]
 ----
@@ -26,25 +33,25 @@ $ cd sqlline
 $ ./mvnw package
 ----
 
-We need to make the BI connector driver available to `sqllite`. The easiest way to do this is to just extract the JDBC BI connector `Neo4jJDBC42.jar` file into the `sqlline/target` folder.
+We need to make the BI connector driver available to `sqllite`. The easiest way to do this is to just extract the `Neo4jJDBC42.jar` file from the downloaded JDBC BI connector into the `sqlline/target` folder.
 
 The `sqlline` client can then be run as follows:
 
 [source, shell, subs=attributes+]
 ----
-./bin/sqlline -d com.simba.neo4j.neo4j.jdbc42.Driver
+$ ./bin/sqlline -d com.simba.neo4j.neo4j.jdbc42.Driver
 ----
 
-From the client prompt, we can connect to the {product} instance by replacing the Neo4j URL with the appropriate one, and supplying the username and password when prompted to do so.
+From the client prompt, we can connect to the Aura instance by replacing the Neo4j URL with the appropriate one, and supplying the username and password when prompted to do so.
 
-[NOTE]
+[TIP]
 ====
 The correct protocol to use for connection is `neo4j` (not `neo4j+s`). Make sure to add the `SSL=true` parameter to the URL.
 ====
 
 [source, shell, subs=attributes+]
 ----
-!connect jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true
+> !connect jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true
 ----
 
 When the connection is established, it is possible to obtain a list of tables with the `!tables` command:
@@ -63,85 +70,11 @@ jdbc:neo4j://xxxxxxxx.databases.neo4j.io> !tables
 +-----------+--------------+---------------------+------------+---------+----------+------------+-----------+--------+
 ----
 
-=== jdbcsql (JDBC driver)
+It is also possible to run SQL queries:
 
-Download `jdbcsql-1.0.zip` from https://sourceforge.net/projects/jdbcsql/files/[SourceForge], then unzip it into the `jdbcsql` folder. Copy the Neo4j BI Connector into `jdbcsql` too.
-
-Make the following changes:
-
-1. Add the following lines to `JDBCConfig.properties`
-+
+[source, shell, subs=attributes+]
 ----
-# neo4j settings
-neo4j_driver = com.simba.neo4j.neo4j.jdbc42.Driver
-neo4j_url = jdbc:neo4j://host?SSL=true
-----
-
-2. Add `Neo4jJDBC42.jar` to `Rsrc-Class-Path` line in `META-INF/MANIFEST.MF`
-3. Run
-+
-----
-java org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader -m neo4j -h xxxxxxxx.databases.neo4j.io -d neo4j -U neo4j -P yyyyyyyy 'SELECT * FROM Person'
-----
-
-(replace `xxxxxxxx.databases.neo4j.io` with the proper URL and `yyyyyyyy` with the actual password)
-
-Result:
-
-----
-"_NodeId_"	age	name	surname
-0	42	John	Doe
-1	40	Jane	Doe
-----
-
-See http://jdbcsql.sourceforge.net/ for further details.
-
-== Configure BI tools
-
-In the following examples, replace `xxxxxxxx.databases.neo4j.io` with the correct Aura instance URL.
-
-=== Tableau (JDBC driver)
-
-[NOTE]
-====
-This example requires Tableau Desktop.
-====
-
-Download and install the ODBC driver from the https://neo4j.com/download-center/#integrations[Download Center]. Then:
-
-- Close any running instance of Tableau Desktop
-- Copy the Neo4j driver to the appropriate Tableau drivers folder (e.g. `C:\Program Files\Tableau\Drivers` on Windows or `~/Library/Tableau/Drivers` on Mac)
-- Start Tableau and search for the `Other Databases (JDBC)` option
-- Insert the Aura URL as `jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true`, leave the SQL dialect as `SQL92`, and fill up the credentials fields
-
-After the connection is established, it is possible to select the `neo4j` database and the `Node` schema to find the `Person` table. The table can then be explored to find the example data.
-
-For more information on how to add a JDBC database to Tableau, check the https://help.tableau.com/current/pro/desktop/en-us/examples_otherdatabases_jdbc.htm[Tableau documentation^].
-
-=== Power BI (ODBC driver)
-
-[NOTE]
-====
-This example requires Microsoft Windows and Power BI Desktop.
-====
-
-Download and install the ODBC driver from the https://neo4j.com/download-center/#integrations[Download Center]. Then, open Power BI and:
-
-- Search for "ODBC" in the "Get data from another source" panel
-- Select "Simba Neo4j" in the DSN dropdown menu
-- Insert the connection string `Host=xxxxxxxx.databases.neo4j.io;SSL=1` in the "Advanced options" section
-
-Once connected, open respectively `ODBC` -> `neo4j` -> `Node` -> `Person` in the Navigator window to see a preview of the table.
-
-For more information on how to add an ODBC database to Power BI, check the https://docs.microsoft.com/en-us/power-bi/connect-data/desktop-connect-using-generic-interfaces[Power BI documentation^].
-
-== Run queries
-
-When the connection is established, it is also possible to run SQL queries:
-
-[source, sql, subs=attributes+]
-----
-SELECT * FROM Person;
+jdbc:neo4j://xxxxxxxx.databases.neo4j.io> SELECT * FROM Person;
 ----
 
 ----
@@ -152,3 +85,74 @@ SELECT * FROM Person;
 | 1        | 40  | Jane | Doe     |
 +----------+-----+------+---------+
 ----
+
+=== jdbcsql
+
+http://jdbcsql.sourceforge.net/[jdbcsql^] is a command-line tool that can be used to connect to a DBMS via a JDBC driver.
+
+After downloading the `jdbcsql-1.0.zip` file from https://sourceforge.net/projects/jdbcsql/files/[SourceForge^], unzip it into the `jdbcsql` folder. Copy the `Neo4jJDBC42.jar` file from the downloaded JDBC BI Connector into `jdbcsql` and make the following changes:
+
+1. Add the following lines to `JDBCConfig.properties`
++
+----
+# neo4j settings
+neo4j_driver = com.simba.neo4j.neo4j.jdbc42.Driver
+neo4j_url = jdbc:neo4j://host?SSL=true
+----
+
+2. Add `Neo4jJDBC42.jar` to `Rsrc-Class-Path` line in `META-INF/MANIFEST.MF`
+
+Now you can run the following command (replacing `xxxxxxxx.databases.neo4j.io` with the proper URL and `yyyyyyyy` with the actual password):
+
+[source, shell, subs=attributes+]
+----
+$ java org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader -m neo4j -h xxxxxxxx.databases.neo4j.io -d neo4j -U neo4j -P yyyyyyyy 'SELECT * FROM Person'
+----
+
+The result of the query is:
+
+----
+"_NodeId_"	age	name	surname
+0	42	John	Doe
+1	40	Jane	Doe
+----
+
+== Using BI tools
+
+Two commons BI tools are <<_tableau>> (which uses the JDBC driver) and <<_power_bi>> (which uses the ODBC driver).
+
+=== Tableau
+
+[NOTE]
+====
+This example requires Tableau Desktop.
+====
+
+After downloading the JDBC driver:
+
+- Close any running instance of Tableau Desktop
+- Copy the Neo4j driver to the appropriate Tableau drivers folder (e.g. `C:\Program Files\Tableau\Drivers` on Windows or `~/Library/Tableau/Drivers` on Mac)
+- Start Tableau and search for the `Other Databases (JDBC)` option
+- Insert the Aura URL as `jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true`, leave the SQL dialect as `SQL92`, and fill up the credentials fields
+
+After the connection is established, it is possible to select the `neo4j` database and the `Node` schema to find the `Person` table. The table can then be explored to find the example data.
+
+For more information on how to add a JDBC database to Tableau, check the https://help.tableau.com/current/pro/desktop/en-us/examples_otherdatabases_jdbc.htm[Tableau documentation^].
+
+=== Power BI
+
+[NOTE]
+====
+This example requires Microsoft Windows and Power BI Desktop.
+====
+
+After downloading the ODBC driver, install it (the file is a Microsoft Windows executable). Then:
+
+- Open Power BI Desktop
+- Search for "ODBC" in the "Get data from another source" panel
+- Select "Simba Neo4j" in the DSN dropdown menu
+- Insert the connection string `Host=xxxxxxxx.databases.neo4j.io;SSL=1` in the "Advanced options" section
+
+Once connected, open sequentially `ODBC` -> `neo4j` -> `Node` -> `Person` in the Navigator window to see a preview of the table.
+
+For more information on how to add an ODBC database to Power BI, check the https://docs.microsoft.com/en-us/power-bi/connect-data/desktop-connect-using-generic-interfaces[Power BI documentation^].
