@@ -43,7 +43,7 @@ $ ./mvnw package
 
 We need to make the BI connector driver available to `sqllite`. The easiest way to do this is to just extract the `Neo4jJDBC42.jar` file from the downloaded JDBC BI connector into the `sqlline/target` folder.
 
-The `sqlline` client can then be run as follows:
+The `sqlline` client can now be run as follows:
 
 [source, shell, subs=attributes+]
 ----
