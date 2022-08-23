@@ -159,7 +159,7 @@ After downloading the ODBC driver, install it (the file is a Microsoft Windows e
 
 - Open Power BI Desktop
 - Search for `ODBC` in the *Get data from another source* panel.
-- Select "Simba Neo4j" in the DSN dropdown menu
+- Select `Simba Neo4j` in the *DSN dropdown* menu.
 - Insert the connection string `Host=xxxxxxxx.databases.neo4j.io;SSL=1` in the "Advanced options" section
 
 Once connected, open sequentially `ODBC` -> `neo4j` -> `Node` -> `Person` in the Navigator window to see a preview of the table.
