@@ -99,7 +99,9 @@ jdbc:neo4j://xxxxxxxx.databases.neo4j.io> SELECT * FROM Person;
 
 http://jdbcsql.sourceforge.net/[jdbcsql^] is a command-line tool that can be used to connect to a DBMS via a JDBC driver.
 
-After downloading the `jdbcsql-1.0.zip` file from https://sourceforge.net/projects/jdbcsql/files/[SourceForge^], unzip it into the `jdbcsql` folder. Copy the `Neo4jJDBC42.jar` file from the downloaded JDBC BI Connector into `jdbcsql` and make the following changes:
+After downloading the `jdbcsql-1.0.zip` file from https://sourceforge.net/projects/jdbcsql/files/[SourceForge^], extract it into the `jdbcsql` folder. 
+
+We can now copy the `Neo4jJDBC42.jar` file from the downloaded _JDBC BI Connector_, into `jdbcsql` and make the following changes:
 
 1. Add the following lines to `JDBCConfig.properties`
 +
