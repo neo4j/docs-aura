@@ -29,6 +29,11 @@ CREATE
 In order to run SQL queries, we need a SQL client that can use a custom driver. 
 Common JDBC-based command-line SQL clients include <<_sqlline>> and <<_jdbcsql>>.
 
+[TIP]
+====
+The correct protocol to use for connection via a JDBC driver is `neo4j` (not `neo4j+s`). Make sure to add the `SSL=true` parameter to the URL.
+====
+
 === sqlline
 
 https://github.com/julianhyde/sqlline[`sqlline`^] is a command-line tool for issuing SQL to relational databases via JDBC. 
@@ -53,17 +58,12 @@ $ ./bin/sqlline -d com.simba.neo4j.neo4j.jdbc42.Driver
 
 From the client prompt, we can now connect to the Aura instance by supplying the username and password when prompted to do so:
 
-[TIP]
-====
-The correct protocol to use for connection is `neo4j` (not `neo4j+s`). Make sure to add the `SSL=true` parameter to the URL.
-====
-
 [source, shell, subs=attributes+]
 ----
 > !connect jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true
 ----
 
-When the connection is established, it is possible to obtain a list of tables with the `!tables` command:
+When the connection is established, we can obtain a list of tables with the `!tables` command:
 
 [source, shell, subs=attributes+]
 ----
@@ -131,6 +131,11 @@ The result of the query is:
 == Using BI tools
 
 Commonly used BI tools include <<_tableau>> (which uses the JDBC driver) and <<_power_bi>> (which uses the ODBC driver).
+
+[TIP]
+====
+The correct protocol to use for connection via a JDBC driver is `neo4j` (not `neo4j+s`). Make sure to add the `SSL=true` parameter to the URL.
+====
 
 === Tableau
 
