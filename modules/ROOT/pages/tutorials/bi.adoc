@@ -13,7 +13,7 @@ Download the connector from the https://neo4j.com/download-center/#integrations[
 
 == Preparing example data
 
-Before trying the connector with any of the listed tools, we need to load some data on Aura. 
+Before trying the connector with any of the listed tools, some data needs to be loaded on Aura. 
 This can be achieved by running the following Cypher query in the Neo4j Browser:
 
 [source, cypher, subs=attributes+]
@@ -36,7 +36,7 @@ The correct protocol to use for connection via a JDBC driver is `neo4j` (not `ne
 
 === sqlline
 
-https://github.com/julianhyde/sqlline[`sqlline`^] is a command-line tool for issuing SQL to relational databases via JDBC. 
+https://github.com/julianhyde/sqlline[`sqlline`^] is a command-line tool for issuing SQL queries to relational databases via JDBC. 
 To clone and build it, run the following:
 
 [source, shell, subs=attributes+]
@@ -47,7 +47,7 @@ $ ./mvnw package
 ----
 
 We now need to make the BI connector driver available to `sqllite`. 
-This can be completed by extracting the `Neo4jJDBC42.jar` file from the downloaded _JDBC BI connector_, into the `sqlline/target` folder.
+This can be done by extracting the `Neo4jJDBC42.jar` file from the downloaded _JDBC BI connector_ into the `sqlline/target` folder.
 
 The `sqlline` client can now be run as follows:
 
@@ -56,14 +56,14 @@ The `sqlline` client can now be run as follows:
 $ ./bin/sqlline -d com.simba.neo4j.neo4j.jdbc42.Driver
 ----
 
-From the client prompt, we can now connect to the Aura instance by supplying the username and password when prompted to do so:
+From the client prompt, it is possible to connect to the Aura instance by supplying the username and password when prompted to do so:
 
 [source, shell, subs=attributes+]
 ----
-> !connect jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true
+sqlline> !connect jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true
 ----
 
-When the connection is established, we can obtain a list of tables with the `!tables` command:
+When the connection is established, a list of tables can be obtained with the `!tables` command:
 
 [source, shell, subs=attributes+]
 ----
@@ -99,9 +99,7 @@ jdbc:neo4j://xxxxxxxx.databases.neo4j.io> SELECT * FROM Person;
 
 http://jdbcsql.sourceforge.net/[jdbcsql^] is a command-line tool that can be used to connect to a DBMS via a JDBC driver.
 
-After downloading the `jdbcsql-1.0.zip` file from https://sourceforge.net/projects/jdbcsql/files/[SourceForge^], extract it into the `jdbcsql` folder. 
-
-We can now copy the `Neo4jJDBC42.jar` file from the downloaded _JDBC BI Connector_, into `jdbcsql` and make the following changes:
+After downloading the `jdbcsql-1.0.zip` file from https://sourceforge.net/projects/jdbcsql/files/[SourceForge^], extract it into the `jdbcsql` folder; then, copy the `Neo4jJDBC42.jar` file from the downloaded _JDBC BI Connector_ into `jdbcsql` and make the following changes:
 
 1. Add the following lines to `JDBCConfig.properties`
 +
@@ -113,7 +111,7 @@ neo4j_url = jdbc:neo4j://host?SSL=true
 
 2. Add `Neo4jJDBC42.jar` to `Rsrc-Class-Path` line in `META-INF/MANIFEST.MF`
 
-We can now run the following command (replacing `xxxxxxxx.databases.neo4j.io` with the URL, and `yyyyyyyy` with the actual password):
+Now run the following command (replacing `xxxxxxxx.databases.neo4j.io` with the Aura connection URI, and `yyyyyyyy` with the actual password):
 
 [source, shell, subs=attributes+]
 ----
