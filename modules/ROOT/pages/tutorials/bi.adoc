@@ -16,7 +16,7 @@ Download the connector from the https://neo4j.com/download-center/#integrations[
 Before trying the connector with any of the listed tools, some data needs to be loaded on Aura. 
 This can be achieved by running the following Cypher query in the Neo4j Browser:
 
-[source, cypher, subs=attributes+]
+[source, cypher, subs=attributes+, role=noplay]
 ----
 CREATE
   (john:Person {name: "John", surname: "Doe", age: 42}),
