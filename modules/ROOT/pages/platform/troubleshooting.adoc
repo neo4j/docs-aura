@@ -1,0 +1,324 @@
+:description: Troubleshooting information that can help you diagnose and correct a problem.
+[[aura-troubleshooting]]
+= Troubleshooting
+
+[abstract]
+--
+Troubleshooting information that can help you diagnose and correct a problem.
+--
+
+You can review the link:/docs/aura/platform/logging/[Aura query log] to monitor processes and verify any problems.
+If any issues are found, the following known troubleshooting information can help you diagnose and correct the problem.
+
+[[aura-troubleshooting-query-performance]]
+== Query optimization and Performance
+
+One of the main causes of poor query performance is due to running many cypher statements with literal values.
+This leads to inefficient cypher processing as there is currently no use of parameters.
+As a result, you don't benefit fully from the execution plan cache that would occur otherwise.
+
+In the example below, you are using cypher queries that are identical in form but have different literals:
+
+[example]
+----
+match (tg:asset)  where tg.name = "ABC123"
+merge (tg)<-[:TAG_OF]-(z1:tag{name:"/DATA01/"+tg.name+"/Top_DOOR"})
+merge (tg)<-[:TAG_OF]-(z2:tag{name:"/DATA01"+tg.name+"/Data_Vault"})
+. . .
+----
+
+In cases like this, you do not get the most optimal cache and reuse of memory.
+Instead, this will incur on multiple times parsing and the generation of an execution plan.
+
+Solution::
++
+The query from the example can be rewritten as follows:
++
+[example]
+----
+MATCH (tg:asset) WHERE tg.name = $gtName
+WITH tg
+UNWIND $tags as tag
+MERGE (tg)<-[:TAG_OF]-(:tag {name: tag.name})
+----
++
+By replacing the literal values in the queries with parameters you get a better execution plan caching reuse.
+Your application needs to place all the values in a parameter list and then you can issue one statement that iterates through them.
+Making these changes will lead to improvements in execution and memory usage.
+
+
+=== `MemoryLimitExceededException`
+
+During regular operations of your Aura instance, you may at times see that some of your queries fail with the error:
+
+[example]
+----
+org.neo4j.memory.MemoryLimitExceededException: The allocation of an extra 8.3 MiB would use more than the limit 278.0 MiB.
+Currently using 275.1 MiB. dbms.memory.transaction.global_max_size threshold reached
+----
+
+As its name suggests, this configuration `org.neo4j.memory.MemoryLimitExceededException` acts as a safeguard by limiting the quantity of memory allocated to all transactions while also preserving the regular operation of the AuraDB instance.
+Similarly, the property `dbms.memory.transaction.global_max_size` also aims to protect the AuraDB Instance from having OOMs (OutOfMemory) and increase resiliency.
+It is enabled in Aura and cannot be disabled.
+
+However, the measured heap usage of all transactions is only an estimate and may differ from the actual number.
+The estimation algorithm relies on a conservative approach, which can lead to overestimations of memory usage.
+In such cases, the identities of all contributing objects are not known, and cannot be assumed to be shared.
+
+Solution::
++
+[NOTE]
+====
+This error should be handled by your application code as it may be intermittent.
+====
++
+Overestimations are most likely to happen when using `UNWIND` on long lists or when expanding a variable length or shortest path pattern.
+The many relationships shared between the computed result paths could be the reason why the estimation algorithm is not as precise.
++
+In order to avoid this scenario, try to run the same query without using a sorting operation like `ORDER BY` or `DISTINCT`.
+Additionally, if possible, handle this ordering or uniqueness in your application.
++
+If removing the `ORDER BY` or `DISTINCT` clauses does not solve the issue, the primary mitigation for this error is to perform one or more of these actions:
++
+. Handle this exception in your code and be prepared to retry if this is an intermittent error.
+Keep in mind that the query can succeed in spite of that.
++
+. Rework the relevant query to optimize it. +
+.. Use `EXPLAIN` or `PROFILE` to review the plans (see more about link:https://neo4j.com/docs/cypher-manual/current/query-tuning/[query tuning]).
+.. Use `PROFILE` in cypher-shell to check the overall memory footprint of a query.
+he output will include information on memory consumption, along with the query's result if any and the execution plan. +
+In the following example, the memory consumed is 11,080 Bytes:
++
+image::planSummary.png[]
++
+[start=3]
+. Increase the instance size of your Aura deployment to get more resources.
++
+. Reduce concurrency of heavy on resource queries to get a better chance of success.
+
+[NOTE]
+====
+If this error occurs while loading data from CSV files, use `apoc.periodic.iterate` to import the data and use a relatively small number for the `batch_size` parameter.
+Read more information about link:https://aura.support.neo4j.com/hc/en-us/articles/1500012376402-Using-apoc-to-conditional-loading-large-scale-data-set-from-JSON-or-CSV-files[Using apoc to conditional loading large scale data set from JSON or CSV files].
+====
+
+See link:https://neo4j.com/docs/operations-manual/current/performance/memory-configuration/#memory-configuration-considerations[Considerations on memory configuration] for further reading on memory management.
+
+== Driver integration
+
+=== JavaScript routing table error
+
+JavaScript driver version 4.4.5 and greater assumes the existence of database connectivity.
+When connection fails, the two most common error messages are "Session Expired" or a routing table error:
+
+[example]
+----
+Neo4jError: Could not perform discovery.
+No routing servers available.
+Known routing table: RoutingTable[database=default database, expirationTime=0, currentTime=1644933316983, routers=[], readers=[], writers=[]]
+----
+
+This error can also be triggered in case no default database is defined.
+
+Solution:::
+
+To avoid such occurrences, verify connectivity before creating a session object, and specify the default database in your driver definition.
+
+
+=== SSL errors
+
+==== `javax.net.ssl.SSLHandshakeException: General SSLEngine problem`
+
+During the implementation of your application, you may face SSL errors such as this one.
+
+Solution::
+
+This error means that the low level encryption failed.
+This can be caused by a number of reasons including:
+
+* Handshake cipher negotiation
+** In this case, you may need to force the TLS negotiation by explicitly disabling some ciphers.
+By using Java, this behavior can be enforced by setting `jdk.tls.disabledAlgorithms`
+** Read more about link:https://aura.support.neo4j.com/hc/en-us/articles/360062636473[ciphers] and link:https://aura.support.neo4j.com/hc/en-us/articles/360063582733[Java requirements].
+
+==== `ssl.SSLCertVerificationError`
+
+Here is another error that might occur:
+
+[example]
+----
+"ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify
+
+failed: self signed certificate in certificate chain (_ssl.c:1123)".
+----
+
+It suggests that the encryption part of the communication is established, but the validation of the certificate failed.
+
+Solution::
+
+The previous error can be triggered by several reasons, including:
+
+* Certificate substitution (re-sign or replace) by a firewall
+** This is the case when a corporate firewall inserts or re-signs a server side SSL certificate.
+In some cases this can make the certificate chain invalid (not signed by a known Certificate Authority).
+
+* `keystore` configuration
+** Access to the `keystore` (access rights, invalid path) might be failing due to the language/driver or environment and user.
+** The accessed `keystore` doesn't have the right root CA loaded.
+*** This can happen due to lack of OS patch or if the `keystore` found is a custom one, it may miss a root certificate to validate the chain.
+
+==== Java application cannot find the `keystore`
+
+Certificates are used for encryption between your client application and your AuraDB Instance.
+They allow the authentication of the identity of a remote host.
+To validate the server-side certificate on Aura, your client application needs to validate the SSL chain against the root certificates (from a public Certificate Authority) that are stored in your `keystore`.
+
+If your Java application does not find the `keystore` to access the root certificates, so it can validate the chain of certificates and confirm the connection is secured, it will produce an error.
+
+Solution::
++
+You can test whether your Java application is finding the `keystore` with the `neo4j+ssc` (Self-Signed Certificate) URI scheme instead of `neo4j+s`.
+It skips the validation of the certificates and should tell you if that is helpful in terms of efficiency.
+Additionally, it also checks the configuration for `keystore`, thus performing an action that the Java appplication cannot do (i.e. reading the root certificate of the system, which then leads to the SSL errors). +
++
+In case you are using Java, you can set the path manually with `-Djavax.net.ssl.keyStore=<<path>>` or by default it will search in `$JAVA_HOME/lib/security/jssecacerts` and `$JAVA_HOME/lib/security/cacerts`.
++
+You can also generate better traces by setting the additional debug flag `-Djavax.net.debug=all` to the JVM.
+
+==== Running a standalone tool
+
+Another way to solve problems with SSL is by running a web-based tool to check the certificates on the Aura end.
+
+Solution::
++
+. Go to https://www.sslshopper.com/ssl-checker.html and enter the URI (without the neo4j protocol specifier) for your AuraDB Instance, for example:
+.. In the AuraDB Instance URI `neo4j+s://abcd1234.databases.neo4j.io`, the hostname to validate is `abcd1234.databases.neo4j.io`.
+.. The full URL becomes: https://sslshopper.com/ssl-checker.html#hostname=abcd1234.databases.neo4j.io
+. Run a command line tool for advanced diagnostics, e.g. `openssl` to validate and get further traces.
++
+See the following example:
++
+[example]
+----
+openssl s_client -showcerts -connect d6112ca0.databases.neo4j.io:443
+CONNECTED(00000003)
+depth=2 C = US, ST = Texas, L = Houston, O = SSL Corporation, CN = SSL.com Root Certification Authority RSA
+verify return:1
+depth=1 C = US, ST = Texas, L = Houston, O = SSL Corporation, CN = SSL.com RSA SSL subCA
+verify return:1
+depth=0 CN = neo4j.io
+verify return:1
+---
+Certificate chain
+0 s:CN = neo4j.io
+i:C = US, ST = Texas, L = Houston, O = SSL Corporation, CN = SSL.com RSA SSL subCA
+-----BEGIN CERTIFICATE-----
+MIIG2DCCBMCgAwIBAgIQVPy/CGr0+7HqKM+SMYoK1jANBgkqhkiG9w0BAQsFADBp
+MQswCQYDVQQGEwJVUzEOMAwGA1UECAwFVGV4YXMxEDAOBgNVBAcMB0hvdXN0b24x
+GDAWBgNVBAoMD1NTTCBDb3Jwb3JhdGlvbjEeMBwGA1UEAwwVU1NMLmNvbSBSU0Eg
+...
+sX4KP0qZRNHvOogmgC86GoePXCqEvEvUxh1V7kdqqKfUxVT3j+Jg9VOwFtMjZaEL
+MsQytznYtWIUX4xjeAWjbW5aCX2wWUxCWfDAuw==
+-----END CERTIFICATE-----
+1 s:C = US, ST = Texas, L = Houston, O = SSL Corporation, CN = SSL.com RSA SSL subCA
+i:C = US, ST = Texas, L = Houston, O = SSL Corporation, CN = SSL.com Root Certification Authority RSA
+-----BEGIN CERTIFICATE-----
+MIIGbzCCBFegAwIBAgIICZftEJ0fB/wwDQYJKoZIhvcNAQELBQAwfDELMAkGA1UE
+BhMCVVMxDjAMBgNVBAgMBVRleGFzMRAwDgYDVQQHDAdIb3VzdG9uMRgwFgYDVQQK
+...
+vnN1/6jEKFJvlUr5/FX04JXeomIjXTI8ciruZ6HIkbtJup1n9Zxvmr9JQcFTsP2c
+bRbjaT7JD6MBidAWRCJWClR/5etTZwWwWrRCrzvIHC7WO6rCzwu69a+l7ofCKlWs
+y702dmPTKEdEfwhgLx0LxJr/Aw==
+-----END CERTIFICATE-----
+2 s:C = US, ST = Texas, L = Houston, O = SSL Corporation, CN = SSL.com Root Certification Authority RSA
+i:C = PL, O = Unizeto Technologies S.A., OU = Certum Certification Authority, CN = Certum Trusted Network CA
+-----BEGIN CERTIFICATE-----
+MIIF2DCCBMCgAwIBAgIRAOQnBJX2jJHW0Ox7SU6k3xwwDQYJKoZIhvcNAQELBQAw
+fjELMAkGA1UEBhMCUEwxIjAgBgNVBAoTGVVuaXpldG8gVGVjaG5vbG9naWVzIFMu
+QS4xJzAlBgNVBAsTHkNlcnR1bSBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eTEiMCAG
+...
+ftzABne6cC2HLNdoneO6ha1J849ktBUGg5LGl6RAk4ut8WeUtLlaZ1Q8qBvZBc/k
+pPmIEgAGiCWF1F7u85NX1oH4LK739VFIq7ZiOnnb7C7yPxRWOsjZy6SiTyWo0Zur
+LTAgUAcab/HxlB05g2PoH/1J0OgdRrJGgia9nJ3homhBSFFuevw1lvRU0rwrROVH
+13eCpUqrX5czqyQR
+-----END CERTIFICATE-----
+3 s:C = PL, O = Unizeto Technologies S.A., OU = Certum Certification Authority, CN = Certum Trusted Network CA
+i:C = PL, O = Unizeto Technologies S.A., OU = Certum Certification Authority, CN = Certum Trusted Network CA
+-----BEGIN CERTIFICATE-----
+MIIDuzCCAqOgAwIBAgIDBETAMA0GCSqGSIb3DQEBBQUAMH4xCzAJBgNVBAYTAlBM
+MSIwIAYDVQQKExlVbml6ZXRvIFRlY2hub2xvZ2llcyBTLkEuMScwJQYDVQQLEx5D
+...
+03YnnZotBqbJ7DnSq9ufmgsnAjUpsUCV5/nonFWIGUbWtzT1fs45mtk48VH3Tyw=
+-----END CERTIFICATE-----
+---
+Server certificate
+subject=CN = neo4j.io
+
+issuer=C = US, ST = Texas, L = Houston, O = SSL Corporation, CN = SSL.com RSA SSL subCA
+
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: RSA-PSS
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 6441 bytes and written 399 bytes
+Verification: OK
+---
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+Server public key is 2048 bit
+Secure Renegotiation IS NOT supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 0 (ok)
+---
+---
+Post-Handshake New Session Ticket arrived:
+SSL-Session:
+Protocol : TLSv1.3
+Cipher : TLS_AES_256_GCM_SHA384
+Session-ID: 4F548D3B1FD86891A6B0C800459D9E2FA46C9AB366A14B82A93259BD23171A95
+Session-ID-ctx:
+Resumption PSK: 458F62AA653A1020F1717DD07F4644AACB7D6F3C2D5B27F62A3AC4CE5928E0D291D971782F6CB104E8F178E38F65F1C7
+PSK identity: None
+PSK identity hint: None
+SRP username: None
+TLS session ticket lifetime hint: 7200 (seconds)
+TLS session ticket:
+0000 - f3 a3 bd 91 72 64 6e e4-8b 38 f1 e2 f6 86 fd 2e ....rdn..8......
+0010 - 63 95 32 95 08 e3 e3 d4-93 31 19 b1 cc 96 bf c8 c.2......1......
+
+Start Time: 1629736594
+Timeout : 7200 (sec)
+Verify return code: 0 (ok)
+Extended master secret: no
+Max Early Data: 0
+---
+read R BLOCK
+---
+Post-Handshake New Session Ticket arrived:
+SSL-Session:
+Protocol : TLSv1.3
+Cipher : TLS_AES_256_GCM_SHA384
+Session-ID: BC5BDB2431F9378945F6424F0EC9073949FB15EAE349B7A54A865FDDC28CFC83
+Session-ID-ctx:
+Resumption PSK: 593264944811DAF18D1DCA4731D7A1F091EC3EABCD7F4895AC9231BCFA02F254460AD3BF9AEB2E51B178935C6B677E01
+PSK identity: None
+PSK identity hint: None
+SRP username: None
+TLS session ticket lifetime hint: 7200 (seconds)
+TLS session ticket:
+0000 - a0 98 b7 b5 b5 a0 1f 90-c0 c3 dd cf 2e bb 56 44 ..............VD
+0010 - 25 2e 4a 36 97 e5 7f ef-ba a1 43 c9 c8 07 78 17 %.J6......C...x.
+
+Start Time: 1629736594
+Timeout : 7200 (sec)
+Verify return code: 0 (ok)
+Extended master secret: no
+Max Early Data: 0
+---
+read R BLOCK
+^C
+----
