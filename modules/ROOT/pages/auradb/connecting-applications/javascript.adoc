@@ -132,8 +132,8 @@ The example imports `neo4j-driver` to connect to the Neo4j AuraDB instance.
 
 Two functions are then called:
 
-- `createFriendship` creates two 'Person' nodes, Alice and David, and a 'KNOWS' relationship between them using a write transaction.
-- `findPerson` finds Alice using a read transaction and then does the same for David.
+- `createFriendship` creates two `_Person_` nodes and a `_KNOWS_` relationship between them using a write transaction.
+- `findPerson` finds the `_Person_` nodes using a read transaction.
 
 [NOTE]
 ====
