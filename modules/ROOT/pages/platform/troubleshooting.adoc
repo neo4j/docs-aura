@@ -2,50 +2,11 @@
 [[aura-troubleshooting]]
 = Troubleshooting
 
-[abstract]
---
-Troubleshooting information that can help you diagnose and correct a problem.
---
-
 You can review the link:/docs/aura/platform/logging/[Aura query log] to monitor processes and verify any problems.
-If any issues are found, the following known troubleshooting information can help you diagnose and correct the problem.
+If any issues are found, the following known troubleshooting information can help you diagnose and correct them.
 
 [[aura-troubleshooting-query-performance]]
-== Query optimization and Performance
-
-One of the main causes of poor query performance is due to running many cypher statements with literal values.
-This leads to inefficient cypher processing as there is currently no use of parameters.
-As a result, you don't benefit fully from the execution plan cache that would occur otherwise.
-
-In the example below, you are using cypher queries that are identical in form but have different literals:
-
-[example]
-----
-match (tg:asset)  where tg.name = "ABC123"
-merge (tg)<-[:TAG_OF]-(z1:tag{name:"/DATA01/"+tg.name+"/Top_DOOR"})
-merge (tg)<-[:TAG_OF]-(z2:tag{name:"/DATA01"+tg.name+"/Data_Vault"})
-. . .
-----
-
-In cases like this, you do not get the most optimal cache and reuse of memory.
-Instead, this will incur on multiple times parsing and the generation of an execution plan.
-
-Solution::
-+
-The query from the example can be rewritten as follows:
-+
-[example]
-----
-MATCH (tg:asset) WHERE tg.name = $gtName
-WITH tg
-UNWIND $tags as tag
-MERGE (tg)<-[:TAG_OF]-(:tag {name: tag.name})
-----
-+
-By replacing the literal values in the queries with parameters you get a better execution plan caching reuse.
-Your application needs to place all the values in a parameter list and then you can issue one statement that iterates through them.
-Making these changes will lead to improvements in execution and memory usage.
-
+== Query optimization and performance
 
 === `MemoryLimitExceededException`
 
