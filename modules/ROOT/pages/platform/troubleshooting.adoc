@@ -6,7 +6,24 @@ You can review the link:/docs/aura/platform/logging/[Aura query log] to monitor 
 If any issues are found, the following known troubleshooting information can help you diagnose and correct them.
 
 [[aura-troubleshooting-query-performance]]
-== Query optimization and performance
+== Query performance
+
+=== Missing index and constraint
+
+When you create some constraint (`CREATE CONSTRAINT`) or index (`CREATE INDEX` on nodes, relationship or a full text index via `db.index.fulltext.createNodeIndex` or `db.index.fulltext.createRelationshipIndex`),
+you may encounter an error stating that the index or constraint is missing as you make a Cypher query or any API call that would rely on that same index/constraint.
+In case that happens, please check the following steps:
+
+* Check if the index or constraint was successfully created with `CALL db.index().
+* Review the log file `query.log` for any index or constraint drop (drop index, drop constraint).
+* Review your queries and check any calls to `CALL apoc.schema.assert(...)`.
+In this specific case, the default behavior is that when calling
+`apoc.schema.assert({indexLabel:[indexKeys],…​},{constraintLabel:[constraintKeys],…​}, dropExisting : true) yield label, key, unique, action`,
+the last parameter `dropExisting` is by default `true` and therefore the schema is replaced.
+Read more about link:https://neo4j.com/labs/apoc/current/indexes/schema-index-operations/[Schema information].
+* Check that no database dump or database export has been loaded, so that it would overwrite the existing "schema".
+This can be found in the `neo4j.log` file.
+* Finally, if all the above fail, try to regularly poll on `CALL db.index()` and log the output to a debug file in order to narrow down the time interval of the issue, as well as review the queries or events.
 
 === `MemoryLimitExceededException`
 
