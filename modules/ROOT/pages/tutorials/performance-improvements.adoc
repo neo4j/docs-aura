@@ -16,7 +16,7 @@ The following Cypher queries are identical in form but use different literals:
 ----
 MATCH (tg:asset) WHERE tg.name = "ABC123"
 MERGE (tg)<-[:TAG_OF]-(z1:tag {name: "/DATA01/" + tg.name + "/Top_DOOR"})
-MERGE (tg)<-[:TAG_OF]-(z2:tag {name: "/DATA01" + tg.name + "/Data_Vault"})
+MERGE (tg)<-[:TAG_OF]-(z2:tag {name: "/DATA01/" + tg.name + "/Data_Vault"})
 ----
 
 In cases like this, query parsing and execution plan generation happen multiple times, resulting in a loss of efficiency.
