@@ -86,7 +86,7 @@ You should always size your instance against your workload activity peaks.
 
 == Consider concurrency
 
-Sometimes individual queries may be optimized on their own and run fine, but the sheer volume and concurrency of operations can overwhelm your AuraDB instance.
+Sometimes individual queries may be optimized on their own and run fine, but the sheer volume and concurrency of operations can overwhelm your Aura instance.
 
 To review what is running at any given time (this makes particular sense if you have a long-running query), you can use these statements and list what is running:
 
