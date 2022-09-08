@@ -24,7 +24,7 @@ One way to solve that is by rewriting the former example as follows:
 
 [source, cypher, role=noplay]
 ----
-MATCH (tg:asset) WHERE tg.name = $gtName
+MATCH (tg:asset) WHERE tg.name = $tgName
 WITH tg
 UNWIND $tags as tag
 MERGE (tg)<-[:TAG_OF]-(:tag {name: tag.name})
