@@ -1,0 +1,112 @@
+:description: Information on how to upgrade Aura tiers and migrate from other instances.
+[[aura-upgrade-migration]]
+= Upgrade and migration
+
+Find here the instructions on how to upgrade Aura tiers and migrate from other instances.
+
+== Migration from Community Edition to AuraDB Enterprise
+
+These are the steps to follow:
+
+. Take the latest backup via `neo4j-admin backup --backup-dir=/backup --name=mydb --from=backuphost:6363`.
+Read more about link:https://neo4j.com/docs/upgrade-migration-guide/current/tutorials/online-backup-copy-database/[database backup].
+
+. Perform migration using `neo4j-admin` copy.
+A sample command would be `./neo4j-admin copy --from-path=/backup --to-database=myDB --to-format=aligned`.
++
+[NOTE]
+====
+This action will delete your indexes, which is what is being aimed here.
+The `--to-format=aligned` option will force the copied database to be created using the aligned store format.
+====
+
+. Once the migration is complete you should be able to see a migrated database in the 4.4.4 databases directory.
+
+. Make sure that `neo4j.conf` is updated with the default database set to the migrated database name.
+
+. Start the neo4j 4.4.4 instance.
+
+. Once the instance comes up, check if the migrated DB is available.
+
+. Perform basic validations.
+
+. If everything is working correctly, take the database dump of the migrated DB and upload it to the Aura instance.
+
+. Apply the indexes to the database. These index statements are available in the migration log.
+
+. Create a relationship lookup index (available from 4.4) by using the following commands:
++
+[source, cypher]
+----
+CREATE LOOKUP INDEX rel_type_lookup FOR ()-[r]-() ON EACH type(r)
+----
+
+. Once the above steps are complete, validate the data.
+
+== Migration from AuraDB Pro to AuraDB Enterprise
+
+These are these steps to follow:
+
+. Download a snapshot from your Aura Pro instance.
+Read the instructions link:https://neo4j.com/docs/aura/current/managing-databases/backup-restore-export/[here].
+
+. link:https://neo4j.com/docs/aura/current/getting-started/create-database/[Create a database] in AuraDB Enterprise.
+
+. link:https://neo4j.com/docs/aura/current/getting-started/importing-data/[Import data] into the database.
+
+== Migration from self-managed Neo4j to AuraDB Enterprise
+
+These are the steps to follow to ensure a successful migration of databases from a self-managed instance of Neo4j (whether on-premise or hosted) to the AuraDB Enterprise tier.
+
+[WARNING]
+====
+Before starting, make sure your new AuraDB Enterprise database is sized correctly to support the migration.
+The new database you will create must be at least as large as your self-managed cluster to accommodate the data.
+The AuraDB RAM-to-storage ratio is 1:2, which means, for example, that a 32 GB AuraDB database will provide 64 GB of storage.
+====
+
+. **Initial data loading**: +
+.. Data from Neo4j v3.5.x and/or Neo4j 4.x can be directly migrated to your AuraDB Enterprise instance. +
+If you are running an older version of Neo4j, use link:https://neo4j.com/docs/operations-manual/3.5/upgrade/planning/[this migration guide] to upgrade to Neo4j 3.5.x.
+In case your version is older, refer to link:https://neo4j.com/docs/operations-manual/3.4/upgrade/planning/[these migration instructions].
++
+[NOTE]
+====
+This process requires a short downtime for the existing cluster.
+====
++
+.. Signed in as neo4j-admin, create a dump file from your self-managed instance by following the steps below.
+
+. **Creating a dump file of Neo4j:** +
+.. Log into the server running your Neo4j database.
+.. Run `cd` to the directory containing your Neo4j installation.
+If you are unsure of the location and you are running on your local machine, you can open a terminal in Neo4j Desktop to navigate to it.
+.. Stop the existing database by running `bin/neo4j stop`.
+.. Make sure the backup directory exists by running `mkdir -p backups/graph.db`.
+.. Take the backup by running
++
+[source, Cypher-shell]
+----
+bin/neo4j-admin dump --database=graph.db --to=backups/graph.db/`date +%Y%m%d`.dump
+----
+
+. **Import to the AuraDB Enterprise database:** +
+.. The final step is to import your data.
+If the dump file is smaller than 4GB, you can drag and drop the file into the AuraDB console.
+If the dump file is 4GB or larger, please use the command line tool `push-to-cloud`.
+.. Open the new database and click the "Import Data" tab.
+.. Click the "Choose file" button to navigate to the location of the `.dump` file you created earlier.
+
+. **Check that the data was imported properly:** +
+.. Before using the new database, perform some tests to make sure that everything is working as expected.
+One quick way to do this is to open a browser window for both the original and new databases and run this Cypher query against them, comparing the output:
++
+[source, cypher, role=noplay]
+----
+MATCH (n)
+RETURN DISTINCT labels(n) as Labels, count(labels(n)) as NumberOfNodes
+----
+
+.. The number of labels should be the same as the original database's.
+If they are not, contact support.
+.. Finally, run whatever tests your developers have in place.
