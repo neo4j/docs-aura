@@ -108,7 +108,7 @@ To continue accessing Browser and Bloom, you can configure a https://cloud.googl
 ====
 To access Bloom and Browser over a VPN, you must ensure that:
 
-* https://cloud.google.com/dns/docs/zones/manage-response-policies[GCP Cloud DNS], or equivalent DNS service, has been setup inside of the VPC.
+* You have setup https://cloud.google.com/dns/docs/zones/manage-response-policies[GCP Cloud DNS], or an equivalent DNS service, inside of the VPC.
 * You use the private URL provided by support when you completed setting up the private endpoint. It will be different from the URL you used before.
 ====
 
