@@ -66,7 +66,7 @@ yarn add neo4j-driver
                                 RETURN p1, p2`;
 
             // Write transactions allow the driver to handle retries and transient errors.
-            const writeResult = await session.writeTransaction(tx =>
+            const writeResult = await session.executeWrite(tx =>
                 tx.run(writeQuery, { person1Name, person2Name })
             );
 
@@ -94,7 +94,7 @@ yarn add neo4j-driver
                             WHERE p.name = $personName
                             RETURN p.name AS name`;
             
-            const readResult = await session.readTransaction(tx =>
+            const readResult = await session.executeRead(tx =>
                 tx.run(readQuery, { personName })
             );
 
