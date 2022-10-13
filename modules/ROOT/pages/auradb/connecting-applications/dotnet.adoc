@@ -65,7 +65,7 @@ public class DriverIntroductionExample : IDisposable
         try
         {
             // Write transactions allow the driver to handle retries and transient error
-            var writeResults = await session.WriteTransactionAsync(async tx =>
+            var writeResults = await session.ExecuteWriteAsync(async tx =>
             {
                 var result = await tx.RunAsync(query, new { person1Name, person2Name });
                 return await result.ToListAsync();
@@ -96,7 +96,7 @@ public class DriverIntroductionExample : IDisposable
         await using var session = _driver.AsyncSession(configBuilder => configBuilder.WithDatabase("neo4j"));
         try
         {
-            var readResults = await session.ReadTransactionAsync(async tx =>
+            var readResults = await session.ExecuteReadAsync(async tx =>
             {
                 var result = await tx.RunAsync(query, new { name = personName });
                 return await result.ToListAsync();
