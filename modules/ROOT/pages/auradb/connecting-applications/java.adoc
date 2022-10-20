@@ -4,7 +4,7 @@
 
 == Prerequisites
 
-- Java 1.8+
+- Java 17+ (Please note that Java Driver 5.x series requires Java 17+ and Java Driver 4.4 LTS requires Java 1.8+. This example uses Java Driver 5.x series.)
 
 == Installation
 
@@ -12,7 +12,7 @@ Download the latest version of the Neo4j Java Driver along with the compatible v
 
 To download the latest version of the Neo4j Java Driver:
 
-. Navigate to the https://search.maven.org/artifact/org.neo4j.driver/neo4j-java-driver[Neo4j Java Driver page] of Maven Central.
+. Navigate to the https://search.maven.org/artifact/org.neo4j.driver/neo4j-java-driver-all[Neo4j Java Driver page] of Maven Central.
 . Select the latest version at the top of the list.
 . Select *Downloads* from the top right of the page and then select *jar* to download the jar file.
 
@@ -29,17 +29,17 @@ To download the compatible version of Reactive Streams:
 
 [source, java]
 ----
-import org.neo4j.driver.*;
-import org.neo4j.driver.Record;
+import org.neo4j.driver.AuthTokens;
+import org.neo4j.driver.Config;
+import org.neo4j.driver.Driver;
+import org.neo4j.driver.GraphDatabase;
+import org.neo4j.driver.Query;
+import org.neo4j.driver.SessionConfig;
 import org.neo4j.driver.exceptions.Neo4jException;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static org.neo4j.driver.Config.TrustStrategy.trustAllCertificates;
 
 public class DriverIntroductionExample implements AutoCloseable {
     private static final Logger LOGGER = Logger.getLogger(DriverIntroductionExample.class.getName());
@@ -51,7 +51,7 @@ public class DriverIntroductionExample implements AutoCloseable {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         // The driver object should be closed before the application ends.
         driver.close();
     }
@@ -59,58 +59,55 @@ public class DriverIntroductionExample implements AutoCloseable {
     public void createFriendship(final String person1Name, final String person2Name) {
         // To learn more about the Cypher syntax, see https://neo4j.com/docs/cypher-manual/current/
         // The Reference Card is also a good resource for keywords https://neo4j.com/docs/cypher-refcard/current/
-        String createFriendshipQuery = "CREATE (p1:Person { name: $person1_name })\n" +
-                "CREATE (p2:Person { name: $person2_name })\n" +
-                "CREATE (p1)-[:KNOWS]->(p2)\n" +
-                "RETURN p1, p2";
+        var query = new Query(
+                """
+                CREATE (p1:Person { name: $person1_name })
+                CREATE (p2:Person { name: $person2_name })
+                CREATE (p1)-[:KNOWS]->(p2)
+                RETURN p1, p2
+                """,
+                Map.of("person1_name", person1Name, "person2_name", person2Name));
 
-        Map<String, Object> params = new HashMap<>();
-        params.put("person1_name", person1Name);
-        params.put("person2_name", person2Name);
-
-        try (Session session = driver.session(SessionConfig.forDatabase("neo4j"))) {
+        try (var session = driver.session(SessionConfig.forDatabase("neo4j"))) {
             // Write transactions allow the driver to handle retries and transient errors
-            Record record = session.writeTransaction(tx -> {
-                Result result = tx.run(createFriendshipQuery, params);
-                return result.single();
-            });
-            System.out.println(String.format("Created friendship between: %s, %s",
+            var record = session.executeWrite(tx -> tx.run(query).single());
+            System.out.printf(
+                    "Created friendship between: %s, %s%n",
                     record.get("p1").get("name").asString(),
-                    record.get("p2").get("name").asString()));
-        // You should capture any errors along with the query and data for traceability
+                    record.get("p2").get("name").asString());
+            // You should capture any errors along with the query and data for traceability
         } catch (Neo4jException ex) {
-            LOGGER.log(Level.SEVERE, createFriendshipQuery + " raised an exception", ex);
+            LOGGER.log(Level.SEVERE, query + " raised an exception", ex);
             throw ex;
         }
     }
 
     public void findPerson(final String personName) {
-        String readPersonByNameQuery = "MATCH (p:Person)\n" +
-                "WHERE p.name = $person_name\n" +
-                "RETURN p.name AS name";
+        var query = new Query(
+                """
+                MATCH (p:Person)
+                WHERE p.name = $person_name
+                RETURN p.name AS name
+                """,
+                Map.of("person_name", personName));
 
-        Map<String, Object> params = Collections.singletonMap("person_name", personName);
-
-        try (Session session = driver.session(SessionConfig.forDatabase("neo4j"))) {
-            Record record = session.readTransaction(tx -> {
-                Result result = tx.run(readPersonByNameQuery, params);
-                return result.single();
-            });
-            System.out.println(String.format("Found person: %s", record.get("name").asString()));
-        // You should capture any errors along with the query and data for traceability
+        try (var session = driver.session(SessionConfig.forDatabase("neo4j"))) {
+            var record = session.executeRead(tx -> tx.run(query).single());
+            System.out.printf("Found person: %s%n", record.get("name").asString());
+            // You should capture any errors along with the query and data for traceability
         } catch (Neo4jException ex) {
-            LOGGER.log(Level.SEVERE, readPersonByNameQuery + " raised an exception", ex);
+            LOGGER.log(Level.SEVERE, query + " raised an exception", ex);
             throw ex;
         }
     }
 
-    public static void main(String... args) throws Exception {
+    public static void main(String... args) {
         // Aura queries use an encrypted connection using the "neo4j+s" protocol
-        String uri = "neo4j+s://<Bolt url for Neo4j Aura instance>";
-        String user = "<Username for Neo4j Aura instance>";
-        String password = "<Password for Neo4j Aura instance>";
+        var uri = "neo4j+s://<Bolt url for Neo4j Aura instance>";
+        var user = "<Username for Neo4j Aura instance>";
+        var password = "<Password for Neo4j Aura instance>";
 
-        try (DriverIntroductionExample app = new DriverIntroductionExample(uri, user, password, Config.defaultConfig())) {
+        try (var app = new DriverIntroductionExample(uri, user, password, Config.defaultConfig())) {
             app.createFriendship("Alice", "David");
             app.findPerson("Alice");
         }
@@ -131,14 +128,14 @@ Follow the steps below to run the example code:
 +
 [source, shell]
 ----
-javac -cp neo4j-java-driver-<driver-version>.jar DriverIntroductionExample.java
+javac -cp neo4j-java-driver-all-<driver-version>.jar DriverIntroductionExample.java
 ----
 +
 . Use the following command to run the example code, replacing `<driver-version>` with your installed driver version and `<rs-version>` with your installed Reactive Streams version:
 +
 [source, shell]
 ----
-java -cp neo4j-java-driver-<driver-version>.jar:reactive-streams-<rs-version>.jar:. DriverIntroductionExample
+java -cp neo4j-java-driver-all-<driver-version>.jar:reactive-streams-<rs-version>.jar:. DriverIntroductionExample
 ----
 
 === Example walkthrough
