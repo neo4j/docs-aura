@@ -13,7 +13,7 @@ include::partial$aurads/setup.adoc[]
 
 == Load data from Neo4j with native projections
 
-Native projections are used to load into memory a graph stored on disk. The https://neo4j.com/docs/graph-data-science/current/graph-project/[`gds.graph.project`^] procedure allows to project a graph by selecting the node labels, relationship types and properties to be projected.
+Native projections are used to load into memory a graph stored on disk. The https://neo4j.com/docs/graph-data-science/current/appendix-b/migration-graph-projection/[`gds.graph.project`^] procedure allows to project a graph by selecting the node labels, relationship types and properties to be projected.
 
 The `gds.graph.project` procedure can use a <<_project_using_the_shorthand_syntax,"shorthand syntax">>, where the nodes and relationships projections are simply passed as single values or arrays, or an <<_project_using_the_extended_syntax,"extended syntax">>, where each node or relationship projection has its own configuration. The extended syntax is especially useful if additional transformation of the data or the graph structure are needed. Both methods are shown in this section, using the following graph as an example.
 
