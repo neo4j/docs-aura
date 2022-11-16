@@ -325,6 +325,13 @@ with driver.session() as session:
 
 The https://neo4j.com/docs/graph-data-science/current/model-catalog/store/[`gds.alpha.model.store`^] procedure can be used to persist a model to disk. This is useful both to keep models for later reuse and to free up memory.
 
+[WARNING]
+====
+Not all the models can be saved to disk. A list of the supported models can be found on the link:https://neo4j.com/docs/graph-data-science/current/model-catalog/store/#catalog-model-store[GDS manual].
+
+*Warning: If a model cannot be saved to disk, it will be lost when the AuraDS instance is restarted.*
+====
+
 [.tabbed-example]
 ====
 [.include-with-GDS-client]
