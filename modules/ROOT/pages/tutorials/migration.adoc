@@ -1,0 +1,102 @@
+= Migrating to Neo4j 5
+
+Neo4j 5 introduces many new features. Existing code and data flows may therefore be affected.
+
+== Backup and restore
+
+TBD
+
+== APOC
+
+9.1. Support
+Starting with Neo4j 5, a selected number of APOC methods (procedures and functions), formerly known as APOC Core, are supported by Neo4j engineering:
+
+* Neo4j 5 APOC Library is link:https://neo4j.com/docs/aura/platform/apoc/[supported] in Aura with the some exceptions.
+* APOC Extended library has not been included in the Neo4j 5 APOC Library and therefore is supported by the Neo4j Community exclusively.
+* APOC Extended library code persists, as well as other Labs projects, in the extended repository, together with the APOC Core 4.x code.
+
+[IMPORTANT]
+====
+Neo4j does not recommend or encourage the use of the APOC Extended methods in production.
+====
+
+== Indexes
+BTREE indexes - use RANGE and POINT indexes instead.
+
+[EXAMPLE]
+====
+Example + details
+====
+
+== Cypher updates
+
+Changes to Cypher available on the link:https://neo4j.com/docs/cypher-manual/current/deprecations-additions-removals-compatibility/#cypher-deprecations-additions-removals[Cypher manual]. 
+
+=== Procedures
+
+[cols="1a,1a", options="header"]
+|===
+|Procedure
+|Replacement
+
+|db.indexes
+|SHOW INDEXES command
+
+|db.indexDetails
+|SHOW INDEXES YIELD * command
+
+|db.schemaStatements
+|SHOW INDEXES YIELD * command and SHOW CONSTRAINTS YIELD * command
+
+|db.constraints
+|SHOW CONSTRAINTS command
+
+|db.createIndex
+|CREATE INDEX command
+
+|db.createUniquePropertyConstraint
+|CREATE CONSTRAINT …​ IS UNIQUE command
+
+|db.index.fulltext.createNodeIndex
+|CREATE FULLTEXT INDEX command
+
+|db.index.fulltext.createRelationshipIndex
+|CREATE FULLTEXT INDEX command
+
+|db.index.fulltext.drop
+|DROP INDEX command
+
+|dbms.procedures
+|SHOW PROCEDURES command
+
+|dbms.functions
+|SHOW FUNCTIONS command
+
+|dbms.listTransactions
+|SHOW TRANSACTIONS command
+
+|dbms.killTransaction
+|TERMINATE TRANSACTIONS command
+
+|dbms.killTransactions
+|TERMINATE TRANSACTIONS command
+
+|dbms.listQueries
+|SHOW TRANSACTIONS command
+
+|dbms.killQuery
+|TERMINATE TRANSACTIONS command
+
+|dbms.killQueries
+|TERMINATE TRANSACTIONS command
+
+|dbms.scheduler.profile
+|-
+|===
+
+== Miscellaneous
+
+* Disallow repeated relationship variables.
+* Automatic coercion of a list to a boolean.
+* `exists()` function to test if property is null.
+* apoc.create.uuid() and apoc.create.uuids() — deprecated and replaced by the existing UUID.randomUUID().
