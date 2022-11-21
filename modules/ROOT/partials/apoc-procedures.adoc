@@ -4,7 +4,7 @@
 
 // Timestamp
 // [NOTE]
-// Generated on August 9, 2022.
+// Generated on November 21, 2022.
 
 
 
@@ -13,14 +13,14 @@
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc/apoc.case[apoc.case icon:book[] ^] +
-apoc.case([condition, query, condition, query, ...], elseQuery:'', params:{}) yield value - given a list of conditional / read-only query pairs, executes the query associated with the first conditional evaluating to true (or the else query if none are true) with the given parameters
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc/apoc.help[apoc.help icon:book[] ^] +
-Provides descriptions of available procedures. To narrow the results, supply a search string. To also search in the description text, append + to the end of the search string.
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc/apoc.version[apoc.version icon:book[] ^] +
-RETURN apoc.version() | return the current APOC installed version
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc/apoc.when[apoc.when icon:book[] ^] +
-apoc.when(condition, ifQuery, elseQuery:'', params:{}) yield value - based on the conditional, executes read-only ifQuery or elseQuery with the given parameters
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc/apoc.case[apoc.case icon:book[] ^] +
+For each pair of conditional and read-only queries in the given list, this procedure will run the first query for which the conditional is evaluated to true.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc/apoc.help[apoc.help icon:book[] ^] +
+Returns descriptions of the available APOC procedures and functions.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc/apoc.version[apoc.version icon:book[] ^] +
+Returns the APOC version currently installed.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc/apoc.when[apoc.when icon:book[] ^] +
+This procedure will run the read-only ifQuery if the conditional has evaluated to true, otherwise the elseQuery will run.
 ¦ label:procedure[]
 |===
 
@@ -30,28 +30,29 @@ apoc.when(condition, ifQuery, elseQuery:'', params:{}) yield value - based on th
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.agg/apoc.agg.first[apoc.agg.first icon:book[] ^] +
-apoc.agg.first(value) - returns first value
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.agg/apoc.agg.graph[apoc.agg.graph icon:book[] ^] +
-apoc.agg.graph(path) - returns map of graph {nodes, relationships} of all distinct nodes and relationships
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.agg/apoc.agg.last[apoc.agg.last icon:book[] ^] +
-apoc.agg.last(value) - returns last value
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.agg/apoc.agg.maxItems[apoc.agg.maxItems icon:book[] ^] +
-apoc.agg.maxItems(item, value, groupLimit: -1) - returns a map {items:[], value:n} where `value` is the maximum value present, and `items` are all items with the same value. The number of items can be optionally limited.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.agg/apoc.agg.median[apoc.agg.median icon:book[] ^] +
-apoc.agg.median(number) - returns median for non-null numeric values
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.agg/apoc.agg.minItems[apoc.agg.minItems icon:book[] ^] +
-apoc.agg.minItems(item, value, groupLimit: -1) - returns a map {items:[], value:n} where `value` is the minimum value present, and `items` are all items with the same value. The number of items can be optionally limited.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.agg/apoc.agg.nth[apoc.agg.nth icon:book[] ^] +
-apoc.agg.nth(value,offset) - returns value of nth row (or -1 for last)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.agg/apoc.agg.percentiles[apoc.agg.percentiles icon:book[] ^] +
-apoc.agg.percentiles(value,[percentiles = 0.5,0.75,0.9,0.95,0.99]) - returns given percentiles for values
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.agg/apoc.agg.product[apoc.agg.product icon:book[] ^] +
-apoc.agg.product(number) - returns given product for non-null values
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.agg/apoc.agg.slice[apoc.agg.slice icon:book[] ^] +
-apoc.agg.slice(value, start, length) - returns subset of non-null values, start is 0 based and length can be -1
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.agg/apoc.agg.statistics[apoc.agg.statistics icon:book[] ^] +
-apoc.agg.statistics(value,[percentiles = 0.5,0.75,0.9,0.95,0.99]) - returns numeric statistics (percentiles, min,minNonZero,max,total,mean,stdev) for values
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.agg/apoc.agg.first[apoc.agg.first icon:book[] ^] +
+Returns the first value from the given collection.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.agg/apoc.agg.graph[apoc.agg.graph icon:book[] ^] +
+Returns all distinct nodes and relationships collected into a map with the keys `nodes` and `relationships`.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.agg/apoc.agg.last[apoc.agg.last icon:book[] ^] +
+Returns the last value from the given collection.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.agg/apoc.agg.maxItems[apoc.agg.maxItems icon:book[] ^] +
+Returns a map {items:[], value:n} where the `value` key is the maximum value present, and `items` represent all items with the same value.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.agg/apoc.agg.median[apoc.agg.median icon:book[] ^] +
+Returns the mathematical median for all non-null numeric values.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.agg/apoc.agg.minItems[apoc.agg.minItems icon:book[] ^] +
+Returns a map {items:[], value:n} where the `value` key is the minimum value present, and `items` represent all items with the same value.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.agg/apoc.agg.nth[apoc.agg.nth icon:book[] ^] +
+Returns the nth value in the given collection (to fetch the last item of an unknown length collection, -1 can be used).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.agg/apoc.agg.percentiles[apoc.agg.percentiles icon:book[] ^] +
+Returns the given percentiles over the range of numerical values in the given collection.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.agg/apoc.agg.product[apoc.agg.product icon:book[] ^] +
+Returns the product of all non-null numerical values in the collection.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.agg/apoc.agg.slice[apoc.agg.slice icon:book[] ^] +
+Returns a subset of non-null values from the given collection (the collection is considered to be zero-indexed).
+To specify the range from start until the end of the collection, the length should be set to -1.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.agg/apoc.agg.statistics[apoc.agg.statistics icon:book[] ^] +
+Returns the following statistics on the numerical values in the given collection: percentiles, min, minNonZero, max, total, mean, stdev.
 ¦ label:function[]
 |===
 
@@ -61,18 +62,17 @@ apoc.agg.statistics(value,[percentiles = 0.5,0.75,0.9,0.95,0.99]) - returns nume
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.algo/apoc.algo.aStar[apoc.algo.aStar icon:book[] ^] +
-apoc.algo.aStar(startNode, endNode, 'KNOWS|<WORKS_WITH|IS_MANAGER_OF>', 'distance','lat','lon') YIELD path, weight - run A* with relationship property name as cost function
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.algo/apoc.algo.aStarConfig[apoc.algo.aStarConfig icon:book[] ^] +
-apoc.algo.aStarConfig(startNode, endNode, 'KNOWS|<WORKS_WITH|IS_MANAGER_OF>', {weight:'dist',default:10,x:'lon',y:'lat', pointPropName:'point'}) YIELD path, weight - run A* with relationship property name as cost function
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.algo/apoc.algo.allSimplePaths[apoc.algo.allSimplePaths icon:book[] ^] +
-apoc.algo.allSimplePaths(startNode, endNode, 'KNOWS|<WORKS_WITH|IS_MANAGER_OF>', 5) YIELD path, weight - run allSimplePaths with relationships given and maxNodes
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.algo/apoc.algo.cover[apoc.algo.cover icon:book[] ^] +
-apoc.algo.cover(nodes) yield rel - returns all relationships between this set of nodes
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.algo/apoc.algo.dijkstra[apoc.algo.dijkstra icon:book[] ^] +
-apoc.algo.dijkstra(startNode, endNode, 'KNOWS|<WORKS_WITH|IS_MANAGER_OF>', 'distance', defaultValue, numberOfWantedResults) YIELD path, weight - run dijkstra with relationship property name as cost function
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.algo/apoc.algo.dijkstraWithDefaultWeight[apoc.algo.dijkstraWithDefaultWeight icon:book[] ^] +
-apoc.algo.dijkstraWithDefaultWeight(startNode, endNode, 'KNOWS|<WORKS_WITH|IS_MANAGER_OF>', 'distance', 10) YIELD path, weight - run dijkstra with relationship property name as cost function and a default weight if the property does not exist
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.algo/apoc.algo.aStar[apoc.algo.aStar icon:book[] ^] +
+Runs the A* search algorithm to find the optimal path between two nodes, using the given relationship property name for the cost function.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.algo/apoc.algo.aStarConfig[apoc.algo.aStarConfig icon:book[] ^] +
+Runs the A* search algorithm to find the optimal path between two nodes, using the given relationship property name for the cost function.
+This procedure looks for weight, latitude and longitude properties in the config.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.algo/apoc.algo.allSimplePaths[apoc.algo.allSimplePaths icon:book[] ^] +
+runs a search algorithm to find all of the simple paths between the given relationships, up to a max depth described by maxNodes.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.algo/apoc.algo.cover[apoc.algo.cover icon:book[] ^] +
+Returns all relationships between a given set of nodes.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.algo/apoc.algo.dijkstra[apoc.algo.dijkstra icon:book[] ^] +
+Runs Dijkstra's algorithm using the given relationship property as the cost function.
 ¦ label:procedure[]
 |===
 
@@ -82,10 +82,12 @@ apoc.algo.dijkstraWithDefaultWeight(startNode, endNode, 'KNOWS|<WORKS_WITH|IS_MA
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.any/apoc.any.properties[apoc.any.properties icon:book[] ^] +
-returns properties for virtual and real, nodes, rels and maps
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.any/apoc.any.property[apoc.any.property icon:book[] ^] +
-returns property for virtual and real, nodes, rels and maps
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.any/apoc.any.properties[apoc.any.properties icon:book[] ^] +
+Returns all properties of the given object.
+The object can be a virtual node, a real node, a virtual relationship, a real relationship, or a map.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.any/apoc.any.property[apoc.any.property icon:book[] ^] +
+Returns the property for the given key from an object.
+The object can be a virtual node, a real node, a virtual relationship, a real relationship, or a map.
 ¦ label:function[]
 |===
 
@@ -95,18 +97,23 @@ returns property for virtual and real, nodes, rels and maps
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.atomic/apoc.atomic.add[apoc.atomic.add icon:book[] ^] +
-apoc.atomic.add(node/relatonship,propertyName,number) Sums the property's value with the 'number' value 
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.atomic/apoc.atomic.concat[apoc.atomic.concat icon:book[] ^] +
-apoc.atomic.concat(node/relatonship,propertyName,string) Concats the property's value with the 'string' value
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.atomic/apoc.atomic.insert[apoc.atomic.insert icon:book[] ^] +
-apoc.atomic.insert(node/relatonship,propertyName,position,value) insert a value into the property's array value at 'position'
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.atomic/apoc.atomic.remove[apoc.atomic.remove icon:book[] ^] +
-apoc.atomic.remove(node/relatonship,propertyName,position) remove the element at position 'position'
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.atomic/apoc.atomic.subtract[apoc.atomic.subtract icon:book[] ^] +
-apoc.atomic.subtract(node/relatonship,propertyName,number) Subtracts the 'number' value to the property's value
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.atomic/apoc.atomic.update[apoc.atomic.update icon:book[] ^] +
-apoc.atomic.update(node/relatonship,propertyName,updateOperation) update a property's value with a cypher operation (ex. "n.prop1+n.prop2")
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.atomic/apoc.atomic.add[apoc.atomic.add icon:book[] ^] +
+Sets the given property to the sum of itself and the number value.
+The procedure then sets the property to the returned sum.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.atomic/apoc.atomic.concat[apoc.atomic.concat icon:book[] ^] +
+Sets the given property to the concatenation of itself and the string value.
+The procedure then sets the property to the returned string.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.atomic/apoc.atomic.insert[apoc.atomic.insert icon:book[] ^] +
+Inserts a value at position into the array value of a property.
+The procedure then sets the result back on the property.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.atomic/apoc.atomic.remove[apoc.atomic.remove icon:book[] ^] +
+Removes the element at position from the array value of a property.
+The procedure then sets the property to the resulting array value.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.atomic/apoc.atomic.subtract[apoc.atomic.subtract icon:book[] ^] +
+Sets the property of a value to itself minus the given number value.
+The procedure then sets the property to the returned sum.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.atomic/apoc.atomic.update[apoc.atomic.update icon:book[] ^] +
+Updates the value of a property with a Cypher operation.
 ¦ label:procedure[]
 |===
 
@@ -116,8 +123,8 @@ apoc.atomic.update(node/relatonship,propertyName,updateOperation) update a prope
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.bitwise/apoc.bitwise.op[apoc.bitwise.op icon:book[] ^] +
-apoc.bitwise.op(60,'|',13) bitwise operations a & b, a | b, a ^ b, ~a, a >> b, a >>> b, a << b. returns the result of the bitwise operation
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.bitwise/apoc.bitwise.op[apoc.bitwise.op icon:book[] ^] +
+Returns the result of the bitwise operation
 ¦ label:function[]
 |===
 
@@ -127,106 +134,107 @@ apoc.bitwise.op(60,'|',13) bitwise operations a & b, a | b, a ^ b, ~a, a >> b, a
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.avg[apoc.coll.avg icon:book[] ^] +
-apoc.coll.avg([0.5,1,2.3])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.combinations[apoc.coll.combinations icon:book[] ^] +
-apoc.coll.combinations(coll, minSelect, maxSelect:minSelect) - Returns collection of all combinations of list elements of selection size between minSelect and maxSelect (default:minSelect), inclusive
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.contains[apoc.coll.contains icon:book[] ^] +
-apoc.coll.contains(coll, value) optimized contains operation (using a HashSet) (returns single row or not)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.containsAll[apoc.coll.containsAll icon:book[] ^] +
-apoc.coll.containsAll(coll, values) optimized contains-all operation (using a HashSet) (returns single row or not)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.containsAllSorted[apoc.coll.containsAllSorted icon:book[] ^] +
-apoc.coll.containsAllSorted(coll, value) optimized contains-all on a sorted list operation (Collections.binarySearch) (returns single row or not)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.containsDuplicates[apoc.coll.containsDuplicates icon:book[] ^] +
-apoc.coll.containsDuplicates(coll) - returns true if a collection contains duplicate elements
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.containsSorted[apoc.coll.containsSorted icon:book[] ^] +
-apoc.coll.containsSorted(coll, value) optimized contains on a sorted list operation (Collections.binarySearch) (returns single row or not)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.different[apoc.coll.different icon:book[] ^] +
-apoc.coll.different(values) - returns true if values are different
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.disjunction[apoc.coll.disjunction icon:book[] ^] +
-apoc.coll.disjunction(first, second) - returns the disjunct set of the two lists
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.dropDuplicateNeighbors[apoc.coll.dropDuplicateNeighbors icon:book[] ^] +
-apoc.coll.dropDuplicateNeighbors(list) - remove duplicate consecutive objects in a list
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.duplicates[apoc.coll.duplicates icon:book[] ^] +
-apoc.coll.duplicates(coll) - returns a list of duplicate items in the collection
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.duplicatesWithCount[apoc.coll.duplicatesWithCount icon:book[] ^] +
-apoc.coll.duplicatesWithCount(coll) - returns a list of duplicate items in the collection and their count, keyed by `item` and `count` (e.g., `[{item: xyz, count:2}, {item:zyx, count:5}]`)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.elements[apoc.coll.elements icon:book[] ^] +
-apoc.coll.elements(list,limit,offset) yield _1,_2,..,_10,_1s,_2i,_3f,_4m,_5l,_6n,_7r,_8p - deconstruct subset of mixed list into identifiers of the correct type
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.fill[apoc.coll.fill icon:book[] ^] +
-apoc.coll.fill(item, count) - returns a list with the given count of items
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.flatten[apoc.coll.flatten icon:book[] ^] +
-apoc.coll.flatten(coll, [recursive]) - flattens list (nested if recursive is true)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.frequencies[apoc.coll.frequencies icon:book[] ^] +
-apoc.coll.frequencies(coll) - returns a list of frequencies of the items in the collection, keyed by `item` and `count` (e.g., `[{item: xyz, count:2}, {item:zyx, count:5}, {item:abc, count:1}]`)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.frequenciesAsMap[apoc.coll.frequenciesAsMap icon:book[] ^] +
-apoc.coll.frequenciesAsMap(coll) - return a map of frequencies of the items in the collection, key `item`, value `count` (e.g., `{1:2, 2:1}`)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.indexOf[apoc.coll.indexOf icon:book[] ^] +
-apoc.coll.indexOf(coll, value) | position of value in the list
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.insert[apoc.coll.insert icon:book[] ^] +
-apoc.coll.insert(coll, index, value) | insert value at index
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.insertAll[apoc.coll.insertAll icon:book[] ^] +
-apoc.coll.insertAll(coll, index, values) | insert values at index
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.intersection[apoc.coll.intersection icon:book[] ^] +
-apoc.coll.intersection(first, second) - returns the unique intersection of the two lists
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.isEqualCollection[apoc.coll.isEqualCollection icon:book[] ^] +
-apoc.coll.isEqualCollection(coll, values) return true if two collections contain the same elements with the same cardinality in any order (using a HashMap)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.max[apoc.coll.max icon:book[] ^] +
-apoc.coll.max([0.5,1,2.3])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.min[apoc.coll.min icon:book[] ^] +
-apoc.coll.min([0.5,1,2.3])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.occurrences[apoc.coll.occurrences icon:book[] ^] +
-apoc.coll.occurrences(coll, item) - returns the count of the given item in the collection
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.pairs[apoc.coll.pairs icon:book[] ^] +
-apoc.coll.pairs([1,2,3]) returns [1,2],[2,3],[3,null] 
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.pairsMin[apoc.coll.pairsMin icon:book[] ^] +
-apoc.coll.pairsMin([1,2,3]) returns [1,2],[2,3]
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.partition[apoc.coll.partition icon:book[] ^] +
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.avg[apoc.coll.avg icon:book[] ^] +
+Returns the average of the numbers in the list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.combinations[apoc.coll.combinations icon:book[] ^] +
+Returns a collection of all combinations of list elements between the selection size minSelect and maxSelect (default: minSelect).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.contains[apoc.coll.contains icon:book[] ^] +
+Returns whether or not the given value exists in the given collection (using a HashSet).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.containsAll[apoc.coll.containsAll icon:book[] ^] +
+Returns whether or not all of the given values exist in the given collection (using a HashSet).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.containsAllSorted[apoc.coll.containsAllSorted icon:book[] ^] +
+Returns whether or not all of the given values in the second list exist in an already sorted collection (using a binary search).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.containsDuplicates[apoc.coll.containsDuplicates icon:book[] ^] +
+Returns true if a collection contains duplicate elements.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.containsSorted[apoc.coll.containsSorted icon:book[] ^] +
+Returns whether or not the given value exists in an already sorted collection (using a binary search).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.different[apoc.coll.different icon:book[] ^] +
+Returns true if any of the values in the given list are different.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.disjunction[apoc.coll.disjunction icon:book[] ^] +
+Returns the disjunct set of two lists.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.dropDuplicateNeighbors[apoc.coll.dropDuplicateNeighbors icon:book[] ^] +
+Removes duplicate consecutive objects in the list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.duplicates[apoc.coll.duplicates icon:book[] ^] +
+Returns a list of duplicate items in the collection.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.duplicatesWithCount[apoc.coll.duplicatesWithCount icon:book[] ^] +
+Returns a list of duplicate items in the collection and their count, keyed by `item` and `count`.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.elements[apoc.coll.elements icon:book[] ^] +
+Deconstructs a list of mixed types into identifiers indicating their specific type.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.fill[apoc.coll.fill icon:book[] ^] +
+Returns a list with the given count of items.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.flatten[apoc.coll.flatten icon:book[] ^] +
+Flattens the given list (to flatten nested lists, set recursive to true).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.frequencies[apoc.coll.frequencies icon:book[] ^] +
+Returns a list of frequencies of the items in the collection, keyed by `item` and `count`.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.frequenciesAsMap[apoc.coll.frequenciesAsMap icon:book[] ^] +
+Returns a map of frequencies of the items in the collection, keyed by `item` and `count`.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.indexOf[apoc.coll.indexOf icon:book[] ^] +
+Returns the index for the first occurrence of the specified value in the list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.insert[apoc.coll.insert icon:book[] ^] +
+Inserts a value into the specified index in the list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.insertAll[apoc.coll.insertAll icon:book[] ^] +
+Inserts all of the values into the list, starting at the specified index.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.intersection[apoc.coll.intersection icon:book[] ^] +
+Returns the distinct intersection of two lists.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.isEqualCollection[apoc.coll.isEqualCollection icon:book[] ^] +
+Returns true if the two collections contain the same elements with the same cardinality in any order (using a HashMap).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.max[apoc.coll.max icon:book[] ^] +
+Returns the maximum of all values in the given list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.min[apoc.coll.min icon:book[] ^] +
+Returns the minimum of all values in the given list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.occurrences[apoc.coll.occurrences icon:book[] ^] +
+Returns the count of the given item in the collection.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.pairs[apoc.coll.pairs icon:book[] ^] +
+Returns a list of adjacent elements in the list ([1,2],[2,3],[3,null]).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.pairsMin[apoc.coll.pairsMin icon:book[] ^] +
+Returns lists of adjacent elements in the list ([1,2],[2,3]), skipping the final element.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.partition[apoc.coll.partition icon:book[] ^] +
 apoc.coll.partition(list,batchSize)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.partition[apoc.coll.partition icon:book[] ^] +
-apoc.coll.partition(list,batchSize)
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.randomItem[apoc.coll.randomItem icon:book[] ^] +
-apoc.coll.randomItem(coll)- returns a random item from the list, or null on an empty or null list
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.randomItems[apoc.coll.randomItems icon:book[] ^] +
-apoc.coll.randomItems(coll, itemCount, allowRepick: false) - returns a list of itemCount random items from the original list, optionally allowing picked elements to be picked again
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.remove[apoc.coll.remove icon:book[] ^] +
-apoc.coll.remove(coll, index, [length=1]) | remove range of values from index to length
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.removeAll[apoc.coll.removeAll icon:book[] ^] +
-apoc.coll.removeAll(first, second) - returns first list with all elements of second list removed
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.reverse[apoc.coll.reverse icon:book[] ^] +
-apoc.coll.reverse(coll) - returns reversed list
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.set[apoc.coll.set icon:book[] ^] +
-apoc.coll.set(coll, index, value) | set index to value
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.shuffle[apoc.coll.shuffle icon:book[] ^] +
-apoc.coll.shuffle(coll) - returns the shuffled list
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.sort[apoc.coll.sort icon:book[] ^] +
-apoc.coll.sort(coll) sort on Collections
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.sortMaps[apoc.coll.sortMaps icon:book[] ^] +
-apoc.coll.sortMaps([maps], 'name') - sort maps by property
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.sortMulti[apoc.coll.sortMulti icon:book[] ^] +
-apoc.coll.sortMulti(coll, ['^name','age'],[limit],[skip]) - sort list of maps by several sort fields (ascending with ^ prefix) and optionally applies limit and skip
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.sortNodes[apoc.coll.sortNodes icon:book[] ^] +
-apoc.coll.sortNodes([nodes], 'name') sort nodes by property
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.sortText[apoc.coll.sortText icon:book[] ^] +
-apoc.coll.sortText(coll) sort on string based collections
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.split[apoc.coll.split icon:book[] ^] +
-apoc.coll.split(list,value) | splits collection on given values rows of lists, value itself will not be part of resulting lists
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.subtract[apoc.coll.subtract icon:book[] ^] +
-apoc.coll.subtract(first, second) - returns unique set of first list with all elements of second list removed
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.sum[apoc.coll.sum icon:book[] ^] +
-apoc.coll.sum([0.5,1,2.3])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.sumLongs[apoc.coll.sumLongs icon:book[] ^] +
-apoc.coll.sumLongs([1,3,3])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.toSet[apoc.coll.toSet icon:book[] ^] +
-apoc.coll.toSet([list]) returns a unique list backed by a set
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.union[apoc.coll.union icon:book[] ^] +
-apoc.coll.union(first, second) - creates the distinct union of the 2 lists
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.unionAll[apoc.coll.unionAll icon:book[] ^] +
-apoc.coll.unionAll(first, second) - creates the full union with duplicates of the two lists
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.zip[apoc.coll.zip icon:book[] ^] +
-apoc.coll.zip([list1],[list2])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.coll/apoc.coll.zipToRows[apoc.coll.zipToRows icon:book[] ^] +
-apoc.coll.zipToRows(list1,list2) - creates pairs like zip but emits one row per pair
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.partition[apoc.coll.partition icon:book[] ^] +
+Partitions the original list into sub-lists of the given batch size.
+The final list may be smaller than the given batch size.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.randomItem[apoc.coll.randomItem icon:book[] ^] +
+Returns a random item from the list, or null on an empty or null list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.randomItems[apoc.coll.randomItems icon:book[] ^] +
+Returns a list of itemCount random items from the original list (optionally allowing elements in the original list to be selected more than once).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.remove[apoc.coll.remove icon:book[] ^] +
+Removes a range of values from the list, beginning at position index for the given length of values.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.removeAll[apoc.coll.removeAll icon:book[] ^] +
+Returns the first list with all elements of the second list removed.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.set[apoc.coll.set icon:book[] ^] +
+Sets the element at the given index to the new value.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.shuffle[apoc.coll.shuffle icon:book[] ^] +
+Returns the list shuffled.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.sort[apoc.coll.sort icon:book[] ^] +
+Sorts the given list into ascending order.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.sortMaps[apoc.coll.sortMaps icon:book[] ^] +
+Sorts the given list into ascending order, based on the map property indicated by `prop`.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.sortMulti[apoc.coll.sortMulti icon:book[] ^] +
+Sorts the given list of maps by the given fields.
+To indicate that a field should be sorted according to ascending values, prefix it with a caret (^).
+It is also possible to add limits to the list and to skip values.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.sortNodes[apoc.coll.sortNodes icon:book[] ^] +
+Sorts the given list of nodes by their property into ascending order.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.sortText[apoc.coll.sortText icon:book[] ^] +
+Sorts the given list of strings into ascending order.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.split[apoc.coll.split icon:book[] ^] +
+Splits a collection by the given value. The value itself will not be part of the resulting lists.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.subtract[apoc.coll.subtract icon:book[] ^] +
+Returns the first list as a set with all the elements of the second list removed.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.sum[apoc.coll.sum icon:book[] ^] +
+Returns the sum of all the numbers in the list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.sumLongs[apoc.coll.sumLongs icon:book[] ^] +
+Returns the sum of all the numbers in the list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.toSet[apoc.coll.toSet icon:book[] ^] +
+Returns a unique list from the given list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.union[apoc.coll.union icon:book[] ^] +
+Returns the distinct union of the two given lists.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.unionAll[apoc.coll.unionAll icon:book[] ^] +
+Returns the full union of the two given lists (duplicates included).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.zip[apoc.coll.zip icon:book[] ^] +
+Returns the two given lists zipped together as a list of lists.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.zipToRows[apoc.coll.zipToRows icon:book[] ^] +
+Returns the two lists zipped together, with one row per zipped pair.
 ¦ label:procedure[]
 |===
 
@@ -236,50 +244,36 @@ apoc.coll.zipToRows(list1,list2) - creates pairs like zip but emits one row per 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.fromJsonList[apoc.convert.fromJsonList icon:book[] ^] +
-apoc.convert.fromJsonList('[1,2,3]'[,'json-path', 'path-options'])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.fromJsonMap[apoc.convert.fromJsonMap icon:book[] ^] +
-apoc.convert.fromJsonMap('{"a":42,"b":"foo","c":[1,2,3]}'[,'json-path', 'path-options'])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.getJsonProperty[apoc.convert.getJsonProperty icon:book[] ^] +
-apoc.convert.getJsonProperty(node,key[,'json-path', 'path-options']) - converts serialized JSON in property back to original object
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.getJsonPropertyMap[apoc.convert.getJsonPropertyMap icon:book[] ^] +
-apoc.convert.getJsonPropertyMap(node,key[,'json-path', 'path-options']) - converts serialized JSON in property back to map
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.setJsonProperty[apoc.convert.setJsonProperty icon:book[] ^] +
-apoc.convert.setJsonProperty(node,key,complexValue) - sets value serialized to JSON as property with the given name on the node
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toBoolean[apoc.convert.toBoolean icon:book[] ^] +
-apoc.convert.toBoolean(value) | tries it's best to convert the value to a boolean
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toBooleanList[apoc.convert.toBooleanList icon:book[] ^] +
-apoc.convert.toBooleanList(value) | tries it's best to convert the value to a list of booleans
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toFloat[apoc.convert.toFloat icon:book[] ^] +
-apoc.convert.toFloat(value) | tries it's best to convert the value to a float
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toIntList[apoc.convert.toIntList icon:book[] ^] +
-apoc.convert.toIntList(value) | tries it's best to convert the value to a list of integers
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toInteger[apoc.convert.toInteger icon:book[] ^] +
-apoc.convert.toInteger(value) | tries it's best to convert the value to an integer
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toJson[apoc.convert.toJson icon:book[] ^] +
-apoc.convert.toJson([1,2,3]) or toJson({a:42,b:"foo",c:[1,2,3]}) or toJson(NODE/REL/PATH)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toList[apoc.convert.toList icon:book[] ^] +
-apoc.convert.toList(value) | tries it's best to convert the value to a list
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toMap[apoc.convert.toMap icon:book[] ^] +
-apoc.convert.toMap(value) | tries it's best to convert the value to a map
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toNode[apoc.convert.toNode icon:book[] ^] +
-apoc.convert.toNode(value) | tries it's best to convert the value to a node
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toNodeList[apoc.convert.toNodeList icon:book[] ^] +
-apoc.convert.toNodeList(value) | tries it's best to convert the value to a list of nodes
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toRelationship[apoc.convert.toRelationship icon:book[] ^] +
-apoc.convert.toRelationship(value) | tries it's best to convert the value to a relationship
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toRelationshipList[apoc.convert.toRelationshipList icon:book[] ^] +
-apoc.convert.toRelationshipList(value) | tries it's best to convert the value to a list of relationships
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toSet[apoc.convert.toSet icon:book[] ^] +
-apoc.convert.toSet(value) | tries it's best to convert the value to a set
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toSortedJsonMap[apoc.convert.toSortedJsonMap icon:book[] ^] +
-apoc.convert.toSortedJsonMap(node|map, ignoreCase:true) - returns a JSON map with keys sorted alphabetically, with optional case sensitivity
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toString[apoc.convert.toString icon:book[] ^] +
-apoc.convert.toString(value) | tries it's best to convert the value to a string
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toStringList[apoc.convert.toStringList icon:book[] ^] +
-apoc.convert.toStringList(value) | tries it's best to convert the value to a list of strings
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.convert/apoc.convert.toTree[apoc.convert.toTree icon:book[] ^] +
-apoc.convert.toTree([paths],[lowerCaseRels=true], [config]) creates a stream of nested documents representing the at least one root of these paths
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.fromJsonList[apoc.convert.fromJsonList icon:book[] ^] +
+Converts the given JSON list into a Cypher list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.fromJsonMap[apoc.convert.fromJsonMap icon:book[] ^] +
+Converts the given JSON map into a Cypher map.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.getJsonProperty[apoc.convert.getJsonProperty icon:book[] ^] +
+Converts a serialized JSON object from the property of the given node into the equivalent Cypher structure (e.g. map, list).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.getJsonPropertyMap[apoc.convert.getJsonPropertyMap icon:book[] ^] +
+Converts a serialized JSON object from the property of the given node into a Cypher map.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.setJsonProperty[apoc.convert.setJsonProperty icon:book[] ^] +
+Serializes the given JSON object and sets it as a property on the given node.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.toJson[apoc.convert.toJson icon:book[] ^] +
+Serializes the given JSON value.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.toList[apoc.convert.toList icon:book[] ^] +
+Converts the given value into a list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.toMap[apoc.convert.toMap icon:book[] ^] +
+Converts the given value into a map.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.toNode[apoc.convert.toNode icon:book[] ^] +
+Converts the given value into a node.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.toNodeList[apoc.convert.toNodeList icon:book[] ^] +
+Converts the given value into a list of nodes.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.toRelationship[apoc.convert.toRelationship icon:book[] ^] +
+Converts the given value into a relationship.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.toRelationshipList[apoc.convert.toRelationshipList icon:book[] ^] +
+Converts the given value into a list of relationships.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.toSet[apoc.convert.toSet icon:book[] ^] +
+Converts the given value into a set.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.toSortedJsonMap[apoc.convert.toSortedJsonMap icon:book[] ^] +
+Converts a serialized JSON object from the property of a given node into a Cypher map.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.toTree[apoc.convert.toTree icon:book[] ^] +
+Returns a stream of maps, representing the given paths as a tree with at least one root.
 ¦ label:procedure[]
 |===
 
@@ -289,50 +283,46 @@ apoc.convert.toTree([paths],[lowerCaseRels=true], [config]) creates a stream of 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.addLabels[apoc.create.addLabels icon:book[] ^] +
-apoc.create.addLabels( [node,id,ids,nodes], ['Label',...]) - adds the given labels to the node or nodes
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.node[apoc.create.node icon:book[] ^] +
-apoc.create.node(['Label'], {key:value,...}) - create node with dynamic labels
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.nodes[apoc.create.nodes icon:book[] ^] +
-apoc.create.nodes(['Label'], [{key:value,...}]) create multiple nodes with dynamic labels
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.relationship[apoc.create.relationship icon:book[] ^] +
-apoc.create.relationship(person1,'KNOWS',{key:value,...}, person2) create relationship with dynamic rel-type
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.removeLabels[apoc.create.removeLabels icon:book[] ^] +
-apoc.create.removeLabels( [node,id,ids,nodes], ['Label',...]) - removes the given labels from the node or nodes
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.removeProperties[apoc.create.removeProperties icon:book[] ^] +
-apoc.create.removeProperties( [node,id,ids,nodes], [keys]) - removes the given properties from the nodes(s)
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.removeRelProperties[apoc.create.removeRelProperties icon:book[] ^] +
-apoc.create.removeRelProperties( [rel,id,ids,rels], [keys]) - removes the given properties from the relationship(s)
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.setLabels[apoc.create.setLabels icon:book[] ^] +
-apoc.create.setLabels( [node,id,ids,nodes], ['Label',...]) - sets the given labels, non matching labels are removed on the node or nodes
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.setProperties[apoc.create.setProperties icon:book[] ^] +
-apoc.create.setProperties( [node,id,ids,nodes], [keys], [values]) - sets the given properties on the nodes(s)
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.setProperty[apoc.create.setProperty icon:book[] ^] +
-apoc.create.setProperty( [node,id,ids,nodes], key, value) - sets the given property on the node(s)
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.setRelProperties[apoc.create.setRelProperties icon:book[] ^] +
-apoc.create.setRelProperties( [rel,id,ids,rels], [keys], [values]) - sets the given properties on the relationship(s)
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.setRelProperty[apoc.create.setRelProperty icon:book[] ^] +
-apoc.create.setRelProperty( [rel,id,ids,rels], key, value) - sets the given property on the relationship(s)
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.uuid[apoc.create.uuid icon:book[] ^] +
-apoc.create.uuid() - creates an UUID
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.uuids[apoc.create.uuids icon:book[] ^] +
-apoc.create.uuids(count) yield uuid - creates 'count' UUIDs 
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.vNode[apoc.create.vNode icon:book[] ^] +
-apoc.create.vNode(['Label'], {key:value,...}) returns a virtual node
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.vNode[apoc.create.vNode icon:book[] ^] +
-apoc.create.vNode(['Label'], {key:value,...}) returns a virtual node
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.vNodes[apoc.create.vNodes icon:book[] ^] +
-apoc.create.vNodes(['Label'], [{key:value,...}]) returns virtual nodes
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.vPattern[apoc.create.vPattern icon:book[] ^] +
-apoc.create.vPattern({_labels:['LabelA'],key:value},'KNOWS',{key:value,...}, {_labels:['LabelB'],key:value}) returns a virtual pattern
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.vPatternFull[apoc.create.vPatternFull icon:book[] ^] +
-apoc.create.vPatternFull(['LabelA'],{key:value},'KNOWS',{key:value,...},['LabelB'],{key:value}) returns a virtual pattern
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.vRelationship[apoc.create.vRelationship icon:book[] ^] +
-apoc.create.vRelationship(nodeFrom,'KNOWS',{key:value,...}, nodeTo) returns a virtual relationship
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.vRelationship[apoc.create.vRelationship icon:book[] ^] +
-apoc.create.vRelationship(nodeFrom,'KNOWS',{key:value,...}, nodeTo) returns a virtual relationship
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.create/apoc.create.virtual.fromNode[apoc.create.virtual.fromNode icon:book[] ^] +
-apoc.create.virtual.fromNode(node, [propertyNames]) returns a virtual node built from an existing node with only the requested properties
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.addLabels[apoc.create.addLabels icon:book[] ^] +
+Adds the given labels to the given nodes.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.node[apoc.create.node icon:book[] ^] +
+Creates a node with the given dynamic labels.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.nodes[apoc.create.nodes icon:book[] ^] +
+Creates nodes with the given dynamic labels.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.relationship[apoc.create.relationship icon:book[] ^] +
+Creates a relationship with the given dynamic relationship type.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.removeLabels[apoc.create.removeLabels icon:book[] ^] +
+Removes the given labels from the given node(s).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.removeProperties[apoc.create.removeProperties icon:book[] ^] +
+Removes the given properties from the given node(s).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.removeRelProperties[apoc.create.removeRelProperties icon:book[] ^] +
+Removes the given properties from the given relationship(s).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.setLabels[apoc.create.setLabels icon:book[] ^] +
+Sets the given labels to the given node(s). Non-matching labels are removed from the nodes.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.setProperties[apoc.create.setProperties icon:book[] ^] +
+Sets the given properties to the given node(s).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.setProperty[apoc.create.setProperty icon:book[] ^] +
+Sets the given property to the given node(s).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.setRelProperties[apoc.create.setRelProperties icon:book[] ^] +
+Sets the given properties on the relationship(s).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.setRelProperty[apoc.create.setRelProperty icon:book[] ^] +
+Sets the given property on the relationship(s).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.uuid[apoc.create.uuid icon:book[] ^] +
+Returns a UUID.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.uuids[apoc.create.uuids icon:book[] ^] +
+Returns a stream of UUIDs.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.vNode[apoc.create.vNode icon:book[] ^] +
+Returns a virtual node.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.vNode[apoc.create.vNode icon:book[] ^] +
+Returns a virtual node.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.vNodes[apoc.create.vNodes icon:book[] ^] +
+Returns virtual nodes.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.vRelationship[apoc.create.vRelationship icon:book[] ^] +
+Returns a virtual relationship.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.vRelationship[apoc.create.vRelationship icon:book[] ^] +
+Returns a virtual relationship.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.virtual.fromNode[apoc.create.virtual.fromNode icon:book[] ^] +
+Returns a virtual node from the given existing node.
 ¦ label:function[]
 |===
 
@@ -342,20 +332,18 @@ apoc.create.virtual.fromNode(node, [propertyNames]) returns a virtual node built
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.cypher/apoc.cypher.doIt[apoc.cypher.doIt icon:book[] ^] +
-apoc.cypher.doIt(fragment, params) yield value - executes writing fragment with the given parameters
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.cypher/apoc.cypher.run[apoc.cypher.run icon:book[] ^] +
-apoc.cypher.run(fragment, params) yield value - executes reading fragment with the given parameters - currently no schema operations
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.cypher/apoc.cypher.runFirstColumn[apoc.cypher.runFirstColumn icon:book[] ^] +
-use either apoc.cypher.runFirstColumnMany for a list return or apoc.cypher.runFirstColumnSingle for returning the first row of the first column
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.cypher/apoc.cypher.runFirstColumnMany[apoc.cypher.runFirstColumnMany icon:book[] ^] +
-apoc.cypher.runFirstColumnMany(statement, params) - executes statement with given parameters, returns first column only collected into a list, params are available as identifiers
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.cypher/apoc.cypher.runFirstColumnSingle[apoc.cypher.runFirstColumnSingle icon:book[] ^] +
-apoc.cypher.runFirstColumnSingle(statement, params) - executes statement with given parameters, returns first element of the first column only, params are available as identifiers
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.cypher/apoc.cypher.runMany[apoc.cypher.runMany icon:book[] ^] +
-apoc.cypher.runMany('cypher;\nstatements;', $params, [{statistics:true,timeout:10}]) - runs each semicolon separated statement and returns summary - currently no schema operations
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.cypher/apoc.cypher.runTimeboxed[apoc.cypher.runTimeboxed icon:book[] ^] +
-apoc.cypher.runTimeboxed('cypherStatement',{params}, timeout) - abort kernelTransaction after timeout ms if not finished
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.cypher/apoc.cypher.doIt[apoc.cypher.doIt icon:book[] ^] +
+Runs a dynamically constructed string with the given parameters.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.cypher/apoc.cypher.run[apoc.cypher.run icon:book[] ^] +
+Runs a dynamically constructed read-only string with the given parameters.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.cypher/apoc.cypher.runFirstColumnMany[apoc.cypher.runFirstColumnMany icon:book[] ^] +
+Runs the given statement with the given parameters and returns the first column collected into a list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.cypher/apoc.cypher.runFirstColumnSingle[apoc.cypher.runFirstColumnSingle icon:book[] ^] +
+Runs the given statement with the given parameters and returns the first element of the first column.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.cypher/apoc.cypher.runMany[apoc.cypher.runMany icon:book[] ^] +
+Runs each semicolon separated statement and returns a summary of the statement outcomes.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.cypher/apoc.cypher.runTimeboxed[apoc.cypher.runTimeboxed icon:book[] ^] +
+Terminates a Cypher statement if it has not finished before the set timeout (ms).
 ¦ label:procedure[]
 |===
 
@@ -365,10 +353,8 @@ apoc.cypher.runTimeboxed('cypherStatement',{params}, timeout) - abort kernelTran
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.data/apoc.data.domain[apoc.data.domain icon:book[] ^] +
-apoc.data.domain('url_or_email_address') YIELD domain - extract the domain name from a url or an email address. If nothing was found, yield null.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.data/apoc.data.url[apoc.data.url icon:book[] ^] +
-apoc.data.url('url') as {protocol,host,port,path,query,file,anchor,user} | turn URL into map structure
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.data/apoc.data.url[apoc.data.url icon:book[] ^] +
+Turns a URL into a map.
 ¦ label:function[]
 |===
 
@@ -378,32 +364,31 @@ apoc.data.url('url') as {protocol,host,port,path,query,file,anchor,user} | turn 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.date/apoc.date.add[apoc.date.add icon:book[] ^] +
-apoc.date.add(12345, 'ms', -365, 'd') - given a timestamp in one time unit, adds a value of the specified time unit
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.date/apoc.date.convert[apoc.date.convert icon:book[] ^] +
-apoc.date.convert(12345, 'ms', 'd') - convert a timestamp in one time unit into one of a different time unit
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.date/apoc.date.convertFormat[apoc.date.convertFormat icon:book[] ^] +
-apoc.date.convertFormat('Tue, 14 May 2019 14:52:06 -0400', 'rfc_1123_date_time', 'iso_date_time') - convert a String of one date format into a String of another date format.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.date/apoc.date.currentTimestamp[apoc.date.currentTimestamp icon:book[] ^] +
-apoc.date.currentTimestamp() - returns System.currentTimeMillis() at the time it was called. The value is current throughout transaction execution, and is different from Cypher’s timestamp() function, which does not update within a transaction.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.date/apoc.date.field[apoc.date.field icon:book[] ^] +
-apoc.date.field(12345,('ms|s|m|h|d|month|year'),('TZ')
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.date/apoc.date.fields[apoc.date.fields icon:book[] ^] +
-apoc.date.fields('2012-12-23',('yyyy-MM-dd')) - return columns and a map representation of date parsed with the given format with entries for years,months,weekdays,days,hours,minutes,seconds,zoneid
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.date/apoc.date.format[apoc.date.format icon:book[] ^] +
-apoc.date.format(12345,('ms|s|m|h|d'),('yyyy-MM-dd HH:mm:ss zzz'),('TZ')) - get string representation of time value optionally using the specified unit (default ms) using specified format (default ISO) and specified time zone (default current TZ)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.date/apoc.date.fromISO8601[apoc.date.fromISO8601 icon:book[] ^] +
-apoc.date.fromISO8601('yyyy-MM-ddTHH:mm:ss.SSSZ') - return number representation of time in EPOCH format
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.date/apoc.date.parse[apoc.date.parse icon:book[] ^] +
-apoc.date.parse('2012-12-23','ms|s|m|h|d','yyyy-MM-dd') - parse date string using the specified format into the specified time unit
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.date/apoc.date.parseAsZonedDateTime[apoc.date.parseAsZonedDateTime icon:book[] ^] +
-apoc.date.parseAsZonedDateTime('2012-12-23 23:59:59','yyyy-MM-dd HH:mm:ss', 'UTC-hour-offset') - parse date string using the specified format to specified timezone
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.date/apoc.date.systemTimezone[apoc.date.systemTimezone icon:book[] ^] +
-apoc.date.systemTimezone() - returns the system timezone display name
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.date/apoc.date.toISO8601[apoc.date.toISO8601 icon:book[] ^] +
-apoc.date.toISO8601(12345,('ms|s|m|h|d') - return string representation of time in ISO8601 format
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.date/apoc.date.toYears[apoc.date.toYears icon:book[] ^] +
-toYears(timestamp) or toYears(date[,format]) - converts timestamp into floating point years
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.date/apoc.date.add[apoc.date.add icon:book[] ^] +
+Adds a unit of specified time to the given timestamp.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.date/apoc.date.convert[apoc.date.convert icon:book[] ^] +
+Converts the given timestamp from one time unit into a timestamp of a different time unit.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.date/apoc.date.convertFormat[apoc.date.convertFormat icon:book[] ^] +
+Converts a string of one type of date format into a string of another type of date format.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.date/apoc.date.currentTimestamp[apoc.date.currentTimestamp icon:book[] ^] +
+Returns the current Unix epoch timestamp in milliseconds.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.date/apoc.date.field[apoc.date.field icon:book[] ^] +
+Returns the value of one field from the given date time.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.date/apoc.date.fields[apoc.date.fields icon:book[] ^] +
+Splits the given date into fields returning a map containing the values of each field.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.date/apoc.date.format[apoc.date.format icon:book[] ^] +
+Returns a string representation of the time value.
+The time unit (default: ms), date format (default: ISO), and time zone (default: current time zone) can all be changed.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.date/apoc.date.fromISO8601[apoc.date.fromISO8601 icon:book[] ^] +
+Converts the given date string (ISO8601) to an integer representing the time value in milliseconds.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.date/apoc.date.parse[apoc.date.parse icon:book[] ^] +
+Parses the given date string from a specified format into the specified time unit.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.date/apoc.date.systemTimezone[apoc.date.systemTimezone icon:book[] ^] +
+Returns the display name of the system time zone (e.g. Europe/London).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.date/apoc.date.toISO8601[apoc.date.toISO8601 icon:book[] ^] +
+Returns a string representation of a specified time value in the ISO8601 format.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.date/apoc.date.toYears[apoc.date.toYears icon:book[] ^] +
+Converts the given timestamp or the given date into a floating point representing years.
 ¦ label:function[]
 |===
 
@@ -413,7 +398,7 @@ toYears(timestamp) or toYears(date[,format]) - converts timestamp into floating 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.diff/apoc.diff.nodes[apoc.diff.nodes icon:book[] ^] +
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.diff/apoc.diff.nodes[apoc.diff.nodes icon:book[] ^] +
 
 ¦ label:function[]
 |===
@@ -424,10 +409,10 @@ toYears(timestamp) or toYears(date[,format]) - converts timestamp into floating 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.do/apoc.do.case[apoc.do.case icon:book[] ^] +
-apoc.do.case([condition, query, condition, query, ...], elseQuery:'', params:{}) yield value - given a list of conditional / writing query pairs, executes the query associated with the first conditional evaluating to true (or the else query if none are true) with the given parameters
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.do/apoc.do.when[apoc.do.when icon:book[] ^] +
-apoc.do.when(condition, ifQuery, elseQuery:'', params:{}) yield value - based on the conditional, executes writing ifQuery or elseQuery with the given parameters
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.do/apoc.do.case[apoc.do.case icon:book[] ^] +
+For each pair of conditional queries in the given list, this procedure will run the first query for which the conditional is evaluated to true.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.do/apoc.do.when[apoc.do.when icon:book[] ^] +
+Runs the given read/write ifQuery if the conditional has evaluated to true, otherwise the elseQuery will run.
 ¦ label:procedure[]
 |===
 
@@ -437,8 +422,8 @@ apoc.do.when(condition, ifQuery, elseQuery:'', params:{}) yield value - based on
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.example/apoc.example.movies[apoc.example.movies icon:book[] ^] +
-apoc.example.movies() | Creates the sample movies graph
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.example/apoc.example.movies[apoc.example.movies icon:book[] ^] +
+Seeds the database with the Neo4j movie dataset.
 ¦ label:procedure[]
 |===
 
@@ -448,48 +433,40 @@ apoc.example.movies() | Creates the sample movies graph
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.csv.all[apoc.export.csv.all icon:book[] ^] +
-apoc.export.csv.all(file,config) - exports whole database as csv to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.csv.data[apoc.export.csv.data icon:book[] ^] +
-apoc.export.csv.data(nodes,rels,file,config) - exports given nodes and relationships as csv to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.csv.graph[apoc.export.csv.graph icon:book[] ^] +
-apoc.export.csv.graph(graph,file,config) - exports given graph object as csv to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.csv.query[apoc.export.csv.query icon:book[] ^] +
-apoc.export.csv.query(query,file,{config,...,params:{params}}) - exports results from the cypher statement as csv to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypher.all[apoc.export.cypher.all icon:book[] ^] +
-apoc.export.cypher.all(file,config) - exports whole database incl. indexes as cypher statements to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypher.data[apoc.export.cypher.data icon:book[] ^] +
-apoc.export.cypher.data(nodes,rels,file,config) - exports given nodes and relationships incl. indexes as cypher statements to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypher.graph[apoc.export.cypher.graph icon:book[] ^] +
-apoc.export.cypher.graph(graph,file,config) - exports given graph object incl. indexes as cypher statements to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypher.query[apoc.export.cypher.query icon:book[] ^] +
-apoc.export.cypher.query(query,file,config) - exports nodes and relationships from the cypher statement incl. indexes as cypher statements to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypher.schema[apoc.export.cypher.schema icon:book[] ^] +
-apoc.export.cypher.schema(file,config) - exports all schema indexes and constraints to cypher
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypherAll[apoc.export.cypherAll icon:book[] ^] +
-apoc.export.cypherAll(file,config) - exports whole database incl. indexes as cypher statements to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypherData[apoc.export.cypherData icon:book[] ^] +
-apoc.export.cypherData(nodes,rels,file,config) - exports given nodes and relationships incl. indexes as cypher statements to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypherGraph[apoc.export.cypherGraph icon:book[] ^] +
-apoc.export.cypherGraph(graph,file,config) - exports given graph object incl. indexes as cypher statements to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypherQuery[apoc.export.cypherQuery icon:book[] ^] +
-apoc.export.cypherQuery(query,file,config) - exports nodes and relationships from the cypher kernelTransaction incl. indexes as cypher statements to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.graphml.all[apoc.export.graphml.all icon:book[] ^] +
-apoc.export.graphml.all(file,config) - exports whole database as graphml to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.graphml.data[apoc.export.graphml.data icon:book[] ^] +
-apoc.export.graphml.data(nodes,rels,file,config) - exports given nodes and relationships as graphml to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.graphml.graph[apoc.export.graphml.graph icon:book[] ^] +
-apoc.export.graphml.graph(graph,file,config) - exports given graph object as graphml to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.graphml.query[apoc.export.graphml.query icon:book[] ^] +
-apoc.export.graphml.query(query,file,config) - exports nodes and relationships from the cypher statement as graphml to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.json.all[apoc.export.json.all icon:book[] ^] +
-apoc.export.json.all(file,config) - exports whole database as json to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.json.data[apoc.export.json.data icon:book[] ^] +
-apoc.export.json.data(nodes,rels,file,config) - exports given nodes and relationships as json to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.json.graph[apoc.export.json.graph icon:book[] ^] +
-apoc.export.json.graph(graph,file,config) - exports given graph object as json to the provided file
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.json.query[apoc.export.json.query icon:book[] ^] +
-apoc.export.json.query(query,file,{config,...,params:{params}}) - exports results from the cypher statement as json to the provided file
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.csv.all[apoc.export.csv.all icon:book[] ^] +
+Exports the full database to the provided CSV file.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.csv.data[apoc.export.csv.data icon:book[] ^] +
+Exports the given nodes and relationships to the provided CSV file.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.csv.graph[apoc.export.csv.graph icon:book[] ^] +
+Exports the given graph to the provided CSV file.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.csv.query[apoc.export.csv.query icon:book[] ^] +
+Exports the results from running the given Cypher query to the provided CSV file.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.cypher.all[apoc.export.cypher.all icon:book[] ^] +
+Exports the full database (incl. indexes) as Cypher statements to the provided file (default: Cypher Shell).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.cypher.data[apoc.export.cypher.data icon:book[] ^] +
+Exports the given nodes and relationships (incl. indexes) as Cypher statements to the provided file (default: Cypher Shell).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.cypher.graph[apoc.export.cypher.graph icon:book[] ^] +
+Exports the given graph (incl. indexes) as Cypher statements to the provided file (default: Cypher Shell).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.cypher.query[apoc.export.cypher.query icon:book[] ^] +
+Exports the nodes and relationships from the given Cypher query (incl. indexes) as Cypher statements to the provided file (default: Cypher Shell).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.cypher.schema[apoc.export.cypher.schema icon:book[] ^] +
+Exports all schema indexes and constraints to Cypher statements.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.graphml.all[apoc.export.graphml.all icon:book[] ^] +
+Exports the full database to the provided GraphML file.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.graphml.data[apoc.export.graphml.data icon:book[] ^] +
+Exports the given nodes and relationships to the provided GraphML file.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.graphml.graph[apoc.export.graphml.graph icon:book[] ^] +
+Exports the given graph to the provided GraphML file.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.graphml.query[apoc.export.graphml.query icon:book[] ^] +
+Exports the given nodes and relationships from the Cypher statement to the provided GraphML file.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.json.all[apoc.export.json.all icon:book[] ^] +
+Exports the full database to the provided JSON file.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.json.data[apoc.export.json.data icon:book[] ^] +
+Exports the given nodes and relationships to the provided JSON file.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.json.graph[apoc.export.json.graph icon:book[] ^] +
+Exports the given graph to the provided JSON file.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.export/apoc.export.json.query[apoc.export.json.query icon:book[] ^] +
+Exports the results from the Cypher statement to the provided JSON file.
 ¦ label:procedure[]
 |===
 
@@ -499,22 +476,22 @@ apoc.export.json.query(query,file,{config,...,params:{params}}) - exports result
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.graph/apoc.graph.from[apoc.graph.from icon:book[] ^] +
-apoc.graph.from(data,'name',{properties}) | creates a virtual graph object for later processing it tries its best to extract the graph information from the data you pass in
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.graph/apoc.graph.fromCypher[apoc.graph.fromCypher icon:book[] ^] +
-apoc.graph.fromCypher('kernelTransaction',{params},'name',{properties}) - creates a virtual graph object for later processing
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.graph/apoc.graph.fromDB[apoc.graph.fromDB icon:book[] ^] +
-apoc.graph.fromDB('name',{properties}) - creates a virtual graph object for later processing
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.graph/apoc.graph.fromData[apoc.graph.fromData icon:book[] ^] +
-apoc.graph.fromData([nodes],[relationships],'name',{properties}) | creates a virtual graph object for later processing
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.graph/apoc.graph.fromDocument[apoc.graph.fromDocument icon:book[] ^] +
-apoc.graph.fromDocument({json}, {config}) yield graph - transform JSON documents into graph structures
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.graph/apoc.graph.fromPath[apoc.graph.fromPath icon:book[] ^] +
-apoc.graph.fromPath(path,'name',{properties}) - creates a virtual graph object for later processing
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.graph/apoc.graph.fromPaths[apoc.graph.fromPaths icon:book[] ^] +
-apoc.graph.fromPaths([paths],'name',{properties}) - creates a virtual graph object for later processing
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.graph/apoc.graph.validateDocument[apoc.graph.validateDocument icon:book[] ^] +
-apoc.graph.validateDocument({json}, {config}) yield row - validates the json, return the result of the validation
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.graph/apoc.graph.from[apoc.graph.from icon:book[] ^] +
+Generates a virtual sub-graph by extracting all of the nodes and relationships from the given data.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.graph/apoc.graph.fromCypher[apoc.graph.fromCypher icon:book[] ^] +
+Generates a virtual sub-graph by extracting all of the nodes and relationships from the data returned by the given Cypher statement.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.graph/apoc.graph.fromDB[apoc.graph.fromDB icon:book[] ^] +
+Generates a virtual sub-graph by extracting all of the nodes and relationships from the data returned by the given database.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.graph/apoc.graph.fromData[apoc.graph.fromData icon:book[] ^] +
+Generates a virtual sub-graph by extracting all of the nodes and relationships from the given data.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.graph/apoc.graph.fromDocument[apoc.graph.fromDocument icon:book[] ^] +
+Generates a virtual sub-graph by extracting all of the nodes and relationships from the data returned by the given JSON file.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.graph/apoc.graph.fromPath[apoc.graph.fromPath icon:book[] ^] +
+Generates a virtual sub-graph by extracting all of the nodes and relationships from the data returned by the given path.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.graph/apoc.graph.fromPaths[apoc.graph.fromPaths icon:book[] ^] +
+Generates a virtual sub-graph by extracting all of the nodes and relationships from the data returned by the given paths.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.graph/apoc.graph.validateDocument[apoc.graph.validateDocument icon:book[] ^] +
+Validates the JSON file and returns the result of the validation.
 ¦ label:procedure[]
 |===
 
@@ -524,12 +501,17 @@ apoc.graph.validateDocument({json}, {config}) yield row - validates the json, re
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.hashing/apoc.hashing.fingerprint[apoc.hashing.fingerprint icon:book[] ^] +
-calculate a checksum (md5) over a node or a relationship. This deals gracefully with array properties. Two identical entities do share the same hash.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.hashing/apoc.hashing.fingerprintGraph[apoc.hashing.fingerprintGraph icon:book[] ^] +
-calculate a checksum (md5) over a the full graph. Be aware that this function does use in-memomry datastructures depending on the size of your graph.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.hashing/apoc.hashing.fingerprinting[apoc.hashing.fingerprinting icon:book[] ^] +
-calculate a checksum (md5) over a node or a relationship. This deals gracefully with array properties. Two identical entities do share the same hash.
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.hashing/apoc.hashing.fingerprint[apoc.hashing.fingerprint icon:book[] ^] +
+Calculates a MD5 checksum over a node or a relationship (identical entities share the same checksum).
+Unsuitable for cryptographic use-cases.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.hashing/apoc.hashing.fingerprintGraph[apoc.hashing.fingerprintGraph icon:book[] ^] +
+Calculates a MD5 checksum over the full graph.
+This function uses in-memory data structures.
+Unsuitable for cryptographic use-cases.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.hashing/apoc.hashing.fingerprinting[apoc.hashing.fingerprinting icon:book[] ^] +
+Calculates a MD5 checksum over a node or a relationship (identical entities share the same checksum).
+Unlike `apoc.hashing.fingerprint()`, this function supports a number of config parameters.
+Unsuitable for cryptographic use-cases.
 ¦ label:function[]
 |===
 
@@ -539,10 +521,10 @@ calculate a checksum (md5) over a node or a relationship. This deals gracefully 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.import/apoc.import.csv[apoc.import.csv icon:book[] ^] +
-apoc.import.csv(nodes, relationships, config) - imports nodes and relationships from the provided CSV files with given labels and types
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.import/apoc.import.graphml[apoc.import.graphml icon:book[] ^] +
-apoc.import.graphml(urlOrBinaryFile,config) - imports graphml file
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.import/apoc.import.csv[apoc.import.csv icon:book[] ^] +
+Imports nodes and relationships with the given labels and types from the provided CSV file.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.import/apoc.import.graphml[apoc.import.graphml icon:book[] ^] +
+Imports a graph from the provided GraphML file.
 ¦ label:procedure[]
 |===
 
@@ -552,8 +534,8 @@ apoc.import.graphml(urlOrBinaryFile,config) - imports graphml file
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.json/apoc.json.path[apoc.json.path icon:book[] ^] +
-apoc.json.path('{json}' [,'json-path' , 'path-options'])
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.json/apoc.json.path[apoc.json.path icon:book[] ^] +
+Returns the given JSON path.
 ¦ label:function[]
 |===
 
@@ -563,8 +545,8 @@ apoc.json.path('{json}' [,'json-path' , 'path-options'])
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.label/apoc.label.exists[apoc.label.exists icon:book[] ^] +
-apoc.label.exists(element, label) - returns true or false related to label existance
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.label/apoc.label.exists[apoc.label.exists icon:book[] ^] +
+Returns true or false depending on whether or not the given label exists.
 ¦ label:function[]
 |===
 
@@ -574,12 +556,13 @@ apoc.label.exists(element, label) - returns true or false related to label exist
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.load/apoc.load.json[apoc.load.json icon:book[] ^] +
-apoc.load.json('urlOrKeyOrBinary',path, config) YIELD value - import JSON as stream of values if the JSON was an array or a single value if it was a map
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.load/apoc.load.jsonArray[apoc.load.jsonArray icon:book[] ^] +
-apoc.load.jsonArray('url') YIELD value - load array from JSON URL (e.g. web-api) to import JSON as stream of values
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.load/apoc.load.xml[apoc.load.xml icon:book[] ^] +
-apoc.load.xml('http://example.com/test.xml', 'xPath',config, false) YIELD value as doc CREATE (p:Person) SET p.name = doc.name - load from XML URL (e.g. web-api) to import XML as single nested map with attributes and _type, _text and _childrenx fields.
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.load/apoc.load.json[apoc.load.json icon:book[] ^] +
+Imports JSON file as a stream of values if the given JSON file is an array.
+If the given JSON file is a map, this procedure imports a single value instead.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.load/apoc.load.jsonArray[apoc.load.jsonArray icon:book[] ^] +
+Loads array from a JSON URL (e.g. web-API) to then import the given JSON file as a stream of values.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.load/apoc.load.xml[apoc.load.xml icon:book[] ^] +
+Loads a single nested map from an XML URL (e.g. web-API).
 ¦ label:procedure[]
 |===
 
@@ -589,16 +572,16 @@ apoc.load.xml('http://example.com/test.xml', 'xPath',config, false) YIELD value 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.lock/apoc.lock.all[apoc.lock.all icon:book[] ^] +
-apoc.lock.all([nodes],[relationships]) acquires a write lock on the given nodes and relationships
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.lock/apoc.lock.nodes[apoc.lock.nodes icon:book[] ^] +
-apoc.lock.nodes([nodes]) acquires a write lock on the given nodes
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.lock/apoc.lock.read.nodes[apoc.lock.read.nodes icon:book[] ^] +
-apoc.lock.read.nodes([nodes]) acquires a read lock on the given nodes
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.lock/apoc.lock.read.rels[apoc.lock.read.rels icon:book[] ^] +
-apoc.lock.read.rels([relationships]) acquires a read lock on the given relationship
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.lock/apoc.lock.rels[apoc.lock.rels icon:book[] ^] +
-apoc.lock.rels([relationships]) acquires a write lock on the given relationship
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.lock/apoc.lock.all[apoc.lock.all icon:book[] ^] +
+Acquires a write lock on the given nodes and relationships.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.lock/apoc.lock.nodes[apoc.lock.nodes icon:book[] ^] +
+Acquires a write lock on the given nodes.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.lock/apoc.lock.read.nodes[apoc.lock.read.nodes icon:book[] ^] +
+Acquires a read lock on the given nodes.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.lock/apoc.lock.read.rels[apoc.lock.read.rels icon:book[] ^] +
+Acquires a read lock on the given relationships.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.lock/apoc.lock.rels[apoc.lock.rels icon:book[] ^] +
+Acquires a write lock on the given relationships.
 ¦ label:procedure[]
 |===
 
@@ -608,54 +591,60 @@ apoc.lock.rels([relationships]) acquires a write lock on the given relationship
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.clean[apoc.map.clean icon:book[] ^] +
-apoc.map.clean(map,[skip,keys],[skip,values]) yield map filters the keys and values contained in those lists, good for data cleaning from CSV/JSON
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.flatten[apoc.map.flatten icon:book[] ^] +
-apoc.map.flatten(map, delimiter:'.') yield map - flattens nested items in map using dot notation
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.fromLists[apoc.map.fromLists icon:book[] ^] +
-apoc.map.fromLists([keys],[values])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.fromNodes[apoc.map.fromNodes icon:book[] ^] +
-apoc.map.fromNodes(label, property)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.fromPairs[apoc.map.fromPairs icon:book[] ^] +
-apoc.map.fromPairs([[key,value],[key2,value2],...])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.fromValues[apoc.map.fromValues icon:book[] ^] +
-apoc.map.fromValues([key1,value1,key2,value2,...])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.get[apoc.map.get icon:book[] ^] +
-apoc.map.get(map,key,[default],[fail=true]) - returns value for key or throws exception if key doesn't exist and no default given
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.groupBy[apoc.map.groupBy icon:book[] ^] +
-apoc.map.groupBy([maps/nodes/relationships],'key') yield value - creates a map of the list keyed by the given property, with single values
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.groupByMulti[apoc.map.groupByMulti icon:book[] ^] +
-apoc.map.groupByMulti([maps/nodes/relationships],'key') yield value - creates a map of the list keyed by the given property, with list values
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.merge[apoc.map.merge icon:book[] ^] +
-apoc.map.merge(first,second) - merges two maps
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.mergeList[apoc.map.mergeList icon:book[] ^] +
-apoc.map.mergeList([{maps}]) yield value - merges all maps in the list into one
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.mget[apoc.map.mget icon:book[] ^] +
-apoc.map.mget(map,key,[defaults],[fail=true])  - returns list of values for keys or throws exception if one of the key doesn't exist and no default value given at that position
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.removeKey[apoc.map.removeKey icon:book[] ^] +
-apoc.map.removeKey(map,key,{recursive:true/false}) - remove the key from the map (recursively if recursive is true)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.removeKeys[apoc.map.removeKeys icon:book[] ^] +
-apoc.map.removeKeys(map,[keys],{recursive:true/false}) - remove the keys from the map (recursively if recursive is true)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.setEntry[apoc.map.setEntry icon:book[] ^] +
-apoc.map.setEntry(map,key,value)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.setKey[apoc.map.setKey icon:book[] ^] +
-apoc.map.setKey(map,key,value)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.setLists[apoc.map.setLists icon:book[] ^] +
-apoc.map.setLists(map,[keys],[values])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.setPairs[apoc.map.setPairs icon:book[] ^] +
-apoc.map.setPairs(map,[[key1,value1],[key2,value2])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.setValues[apoc.map.setValues icon:book[] ^] +
-apoc.map.setValues(map,[key1,value1,key2,value2])
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.sortedProperties[apoc.map.sortedProperties icon:book[] ^] +
-apoc.map.sortedProperties(map, ignoreCase:true) - returns a list of key/value list pairs, with pairs sorted by keys alphabetically, with optional case sensitivity
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.submap[apoc.map.submap icon:book[] ^] +
-apoc.map.submap(map,keys,[defaults],[fail=true])  - returns submap for keys or throws exception if one of the key doesn't exist and no default value given at that position
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.unflatten[apoc.map.unflatten icon:book[] ^] +
-apoc.map.unflatten(map, delimiter:'.') yield map - unflat from items separated by delimiter string to nested items (reverse of apoc.map.flatten function)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.updateTree[apoc.map.updateTree icon:book[] ^] +
-apoc.map.updateTree(tree,key,[[value,{data}]]) returns map - adds the {data} map on each level of the nested tree, where the key-value pairs match
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.map/apoc.map.values[apoc.map.values icon:book[] ^] +
-apoc.map.values(map, [key1,key2,key3,...],[addNullsForMissing]) returns list of values indicated by the keys
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.clean[apoc.map.clean icon:book[] ^] +
+Filters the keys and values contained in the given lists.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.flatten[apoc.map.flatten icon:book[] ^] +
+Flattens nested items in the given map.
+This function is the reverse of the `apoc.map.unflatten` function.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.fromLists[apoc.map.fromLists icon:book[] ^] +
+Creates a map from the keys and values in the given lists.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.fromNodes[apoc.map.fromNodes icon:book[] ^] +
+Returns a map of the given prop to the node of the given label.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.fromPairs[apoc.map.fromPairs icon:book[] ^] +
+Creates a map from the given list of key-value pairs.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.fromValues[apoc.map.fromValues icon:book[] ^] +
+Creates a map from the alternating keys and values in the given list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.get[apoc.map.get icon:book[] ^] +
+Returns a value for the given key.
+If the given key does not exist, or lacks a default value, this function will throw an exception.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.groupBy[apoc.map.groupBy icon:book[] ^] +
+Creates a map of the list keyed by the given property, with single values.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.groupByMulti[apoc.map.groupByMulti icon:book[] ^] +
+Creates a map of the lists keyed by the given property, with the list values.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.merge[apoc.map.merge icon:book[] ^] +
+Merges the two given maps into one map.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.mergeList[apoc.map.mergeList icon:book[] ^] +
+Merges all maps in the given list into one map.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.mget[apoc.map.mget icon:book[] ^] +
+Returns a list of values for the given keys.
+If one of the keys does not exist, or lacks a default value, this function will throw an exception.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.removeKey[apoc.map.removeKey icon:book[] ^] +
+Removes the given key from the map (recursively if recursive is true).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.removeKeys[apoc.map.removeKeys icon:book[] ^] +
+Removes the given keys from the map (recursively if recursive is true).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.setEntry[apoc.map.setEntry icon:book[] ^] +
+Adds or updates the given entry in the map.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.setKey[apoc.map.setKey icon:book[] ^] +
+Adds or updates the given entry in the map.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.setLists[apoc.map.setLists icon:book[] ^] +
+Adds or updates the given keys/value pairs provided in list format (e.g. [key1, key2],[value1, value2]) in a map.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.setPairs[apoc.map.setPairs icon:book[] ^] +
+Adds or updates the given key/value pairs (e.g. [key1,value1],[key2,value2]) in a map.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.setValues[apoc.map.setValues icon:book[] ^] +
+Adds or updates the alternating key/value pairs (e.g. [key1,value1,key2,value2]) in a map.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.sortedProperties[apoc.map.sortedProperties icon:book[] ^] +
+Returns a list of key/value pairs.
+The pairs are sorted by alphabetically by key, with optional case sensitivity.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.submap[apoc.map.submap icon:book[] ^] +
+Returns a sub-map for the given keys.
+If one of the keys does not exist, or lacks a default value, this function will throw an exception.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.unflatten[apoc.map.unflatten icon:book[] ^] +
+Unflattens items in the given map to nested items.
+This function is the reverse of the `apoc.map.flatten` function.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.updateTree[apoc.map.updateTree icon:book[] ^] +
+Adds the data map on each level of the nested tree, where the key-value pairs match.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.values[apoc.map.values icon:book[] ^] +
+Returns a list of values indicated by the given keys (returns a null value if a given key is missing).
 ¦ label:function[]
 |===
 
@@ -665,27 +654,25 @@ apoc.map.values(map, [key1,key2,key3,...],[addNullsForMissing]) returns list of 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.math/apoc.math.maxByte[apoc.math.maxByte icon:book[] ^] +
-apoc.math.maxByte() | return the maximum value an byte can have
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.math/apoc.math.maxDouble[apoc.math.maxDouble icon:book[] ^] +
-apoc.math.maxDouble() | return the largest positive finite value of type double
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.math/apoc.math.maxInt[apoc.math.maxInt icon:book[] ^] +
-apoc.math.maxInt() | return the maximum value an int can have
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.math/apoc.math.maxLong[apoc.math.maxLong icon:book[] ^] +
-apoc.math.maxLong() | return the maximum value a long can have
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.math/apoc.math.minByte[apoc.math.minByte icon:book[] ^] +
-apoc.math.minByte() | return the minimum value an byte can have
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.math/apoc.math.minDouble[apoc.math.minDouble icon:book[] ^] +
-apoc.math.minDouble() | return the smallest positive nonzero value of type double
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.math/apoc.math.minInt[apoc.math.minInt icon:book[] ^] +
-apoc.math.minInt() | return the minimum value an int can have
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.math/apoc.math.minLong[apoc.math.minLong icon:book[] ^] +
-apoc.math.minLong() | return the minimum value a long can have
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.math/apoc.math.regr[apoc.math.regr icon:book[] ^] +
-apoc.math.regr(label, propertyY, propertyX) - It calculates the coefficient of determination (R-squared) for the values of propertyY and propertyX in the provided label
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.math/apoc.math.round[apoc.math.round icon:book[] ^] +
-apoc.math.round(value,[precision],mode=['CEILING','FLOOR','UP','DOWN','HALF_EVEN','HALF_DOWN','HALF_UP','DOWN','UNNECESSARY'])
-¦ label:function[]
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.math/apoc.math.maxByte[apoc.math.maxByte icon:book[] ^] +
+Returns the maximum value of a byte.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.math/apoc.math.maxDouble[apoc.math.maxDouble icon:book[] ^] +
+Returns the largest positive finite value of type double.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.math/apoc.math.maxInt[apoc.math.maxInt icon:book[] ^] +
+Returns the maximum value of an integer.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.math/apoc.math.maxLong[apoc.math.maxLong icon:book[] ^] +
+Returns the maximum value of a long.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.math/apoc.math.minByte[apoc.math.minByte icon:book[] ^] +
+Returns the minimum value of a byte.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.math/apoc.math.minDouble[apoc.math.minDouble icon:book[] ^] +
+Returns the smallest positive non-zero value of type double.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.math/apoc.math.minInt[apoc.math.minInt icon:book[] ^] +
+Returns the minimum value of an integer.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.math/apoc.math.minLong[apoc.math.minLong icon:book[] ^] +
+Returns the minimum value of a long.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.math/apoc.math.regr[apoc.math.regr icon:book[] ^] +
+Returns the coefficient of determination (R-squared) for the values of propertyY and propertyX in the given label.
+¦ label:procedure[]
 |===
 
 
@@ -694,14 +681,14 @@ apoc.math.round(value,[precision],mode=['CEILING','FLOOR','UP','DOWN','HALF_EVEN
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.merge/apoc.merge.node[apoc.merge.node icon:book[] ^] +
-"apoc.merge.node(['Label'], identProps:{key:value, ...}, onCreateProps:{key:value,...}, onMatchProps:{key:value,...}}) - merge nodes with dynamic labels, with support for setting properties ON CREATE or ON MATCH
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.merge/apoc.merge.node.eager[apoc.merge.node.eager icon:book[] ^] +
-apoc.merge.node.eager(['Label'], identProps:{key:value, ...}, onCreateProps:{key:value,...}, onMatchProps:{key:value,...}}) - merge nodes eagerly, with dynamic labels, with support for setting properties ON CREATE or ON MATCH
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.merge/apoc.merge.relationship[apoc.merge.relationship icon:book[] ^] +
-apoc.merge.relationship(startNode, relType,  identProps:{key:value, ...}, onCreateProps:{key:value, ...}, endNode, onMatchProps:{key:value, ...}) - merge relationship with dynamic type, with support for setting properties ON CREATE or ON MATCH
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.merge/apoc.merge.relationship.eager[apoc.merge.relationship.eager icon:book[] ^] +
-apoc.merge.relationship(startNode, relType,  identProps:{key:value, ...}, onCreateProps:{key:value, ...}, endNode, onMatchProps:{key:value, ...}) - merge relationship with dynamic type, with support for setting properties ON CREATE or ON MATCH
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.merge/apoc.merge.node[apoc.merge.node icon:book[] ^] +
+Merges the given node(s) with the given dynamic labels.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.merge/apoc.merge.node.eager[apoc.merge.node.eager icon:book[] ^] +
+Merges the given node(s) with the given dynamic labels eagerly.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.merge/apoc.merge.relationship[apoc.merge.relationship icon:book[] ^] +
+Merges the given relationship(s) with the given dynamic types/properties.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.merge/apoc.merge.relationship.eager[apoc.merge.relationship.eager icon:book[] ^] +
+Merges the given relationship(s) with the given dynamic types/properties eagerly.
 ¦ label:procedure[]
 |===
 
@@ -711,37 +698,30 @@ apoc.merge.relationship(startNode, relType,  identProps:{key:value, ...}, onCrea
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.cypher.isType[apoc.meta.cypher.isType icon:book[] ^] +
-apoc.meta.cypher.isType(value,type) - returns a row if type name matches none if not (INTEGER,FLOAT,STRING,BOOLEAN,RELATIONSHIP,NODE,PATH,NULL,MAP,LIST OF <TYPE>,POINT,DATE,DATE_TIME,LOCAL_TIME,LOCAL_DATE_TIME,TIME,DURATION)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.cypher.type[apoc.meta.cypher.type icon:book[] ^] +
-apoc.meta.cypher.type(value) - type name of a value (INTEGER,FLOAT,STRING,BOOLEAN,RELATIONSHIP,NODE,PATH,NULL,MAP,LIST OF <TYPE>,POINT,DATE,DATE_TIME,LOCAL_TIME,LOCAL_DATE_TIME,TIME,DURATION)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.cypher.types[apoc.meta.cypher.types icon:book[] ^] +
-apoc.meta.cypher.types(node-relationship-map)  - returns a map of keys to types
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.data[apoc.meta.data icon:book[] ^] +
-apoc.meta.data({config})  - examines a subset of the graph to provide a tabular meta information
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.graph[apoc.meta.graph icon:book[] ^] +
-apoc.meta.graph - examines the full graph to create the meta-graph
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.graphSample[apoc.meta.graphSample icon:book[] ^] +
-apoc.meta.graphSample() - examines the database statistics to build the meta graph, very fast, might report extra relationships
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.isType[apoc.meta.isType icon:book[] ^] +
-apoc.meta.isType(value,type) - returns a row if type name matches none if not (INTEGER,FLOAT,STRING,BOOLEAN,RELATIONSHIP,NODE,PATH,NULL,UNKNOWN,MAP,LIST)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.nodeTypeProperties[apoc.meta.nodeTypeProperties icon:book[] ^] +
-apoc.meta.nodeTypeProperties()
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.relTypeProperties[apoc.meta.relTypeProperties icon:book[] ^] +
-apoc.meta.relTypeProperties()
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.schema[apoc.meta.schema icon:book[] ^] +
-apoc.meta.schema({config})  - examines a subset of the graph to provide a map-like meta information
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.stats[apoc.meta.stats icon:book[] ^] +
-apoc.meta.stats yield labelCount, relTypeCount, propertyKeyCount, nodeCount, relCount, labels, relTypes, stats | returns the information stored in the transactional database statistics
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.subGraph[apoc.meta.subGraph icon:book[] ^] +
-apoc.meta.subGraph({labels:[labels],rels:[rel-types], excludes:[labels,rel-types]}) - examines a sample sub graph to create the meta-graph
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.type[apoc.meta.type icon:book[] ^] +
-apoc.meta.type(value) - type name of a value (INTEGER,FLOAT,STRING,BOOLEAN,RELATIONSHIP,NODE,PATH,NULL,UNKNOWN,MAP,LIST)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.typeName[apoc.meta.typeName icon:book[] ^] +
-apoc.meta.typeName(value) - type name of a value (INTEGER,FLOAT,STRING,BOOLEAN,RELATIONSHIP,NODE,PATH,NULL,UNKNOWN,MAP,LIST)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.meta/apoc.meta.types[apoc.meta.types icon:book[] ^] +
-apoc.meta.types(node-relationship-map)  - returns a map of keys to types
-¦ label:function[]
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.meta/apoc.meta.cypher.isType[apoc.meta.cypher.isType icon:book[] ^] +
+Returns true if the given value matches the given type.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.meta/apoc.meta.cypher.type[apoc.meta.cypher.type icon:book[] ^] +
+Returns the type name of the given value.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.meta/apoc.meta.cypher.types[apoc.meta.cypher.types icon:book[] ^] +
+Returns a map containing the type names of the given values.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.meta/apoc.meta.data[apoc.meta.data icon:book[] ^] +
+Examines the full graph and returns a table of metadata.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.meta/apoc.meta.graph[apoc.meta.graph icon:book[] ^] +
+Examines the full graph and returns a meta-graph.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.meta/apoc.meta.graphSample[apoc.meta.graphSample icon:book[] ^] +
+Examines the full graph and returns a meta-graph.
+Unlike `apoc.meta.graph`, this procedure does not filter away non-existing paths.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.meta/apoc.meta.nodeTypeProperties[apoc.meta.nodeTypeProperties icon:book[] ^] +
+Examines the full graph and returns a table of metadata with information about the nodes therein.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.meta/apoc.meta.relTypeProperties[apoc.meta.relTypeProperties icon:book[] ^] +
+Examines the full graph and returns a table of metadata with information about the relationships therein.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.meta/apoc.meta.schema[apoc.meta.schema icon:book[] ^] +
+Examines the given sub-graph and returns metadata as a map.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.meta/apoc.meta.stats[apoc.meta.stats icon:book[] ^] +
+Returns the metadata stored in the transactional database statistics.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.meta/apoc.meta.subGraph[apoc.meta.subGraph icon:book[] ^] +
+Examines the given sub-graph and returns a meta-graph.
+¦ label:procedure[]
 |===
 
 
@@ -750,18 +730,19 @@ apoc.meta.types(node-relationship-map)  - returns a map of keys to types
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.neighbors/apoc.neighbors.athop[apoc.neighbors.athop icon:book[] ^] +
-apoc.neighbors.athop(node, rel-direction-pattern, distance) - returns distinct nodes of the given relationships in the pattern at a distance, can use '>' or '<' for all outgoing or incoming relationships
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.neighbors/apoc.neighbors.athop.count[apoc.neighbors.athop.count icon:book[] ^] +
-apoc.neighbors.athop.count(node, rel-direction-pattern, distance) - returns distinct nodes of the given relationships in the pattern at a distance, can use '>' or '<' for all outgoing or incoming relationships
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.neighbors/apoc.neighbors.byhop[apoc.neighbors.byhop icon:book[] ^] +
-apoc.neighbors.byhop(node, rel-direction-pattern, distance) - returns distinct nodes of the given relationships in the pattern at each distance, can use '>' or '<' for all outgoing or incoming relationships
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.neighbors/apoc.neighbors.byhop.count[apoc.neighbors.byhop.count icon:book[] ^] +
-apoc.neighbors.byhop.count(node, rel-direction-pattern, distance) - returns distinct nodes of the given relationships in the pattern at each distance, can use '>' or '<' for all outgoing or incoming relationships
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.neighbors/apoc.neighbors.tohop[apoc.neighbors.tohop icon:book[] ^] +
-apoc.neighbors.tohop(node, rel-direction-pattern, distance) - returns distinct nodes of the given relationships in the pattern up to a certain distance, can use '>' or '<' for all outgoing or incoming relationships
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.neighbors/apoc.neighbors.tohop.count[apoc.neighbors.tohop.count icon:book[] ^] +
-apoc.neighbors.tohop.count(node, rel-direction-pattern, distance) - returns distinct count of nodes of the given relationships in the pattern up to a certain distance, can use '>' or '<' for all outgoing or incoming relationships
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.neighbors/apoc.neighbors.athop[apoc.neighbors.athop icon:book[] ^] +
+Returns all nodes connected by the given relationship types at the specified distance.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.neighbors/apoc.neighbors.athop.count[apoc.neighbors.athop.count icon:book[] ^] +
+Returns the count of all nodes connected by the given relationship types at the specified distance.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.neighbors/apoc.neighbors.byhop[apoc.neighbors.byhop icon:book[] ^] +
+Returns all nodes connected by the given relationship types within the specified distance.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.neighbors/apoc.neighbors.byhop.count[apoc.neighbors.byhop.count icon:book[] ^] +
+Returns the count of all nodes connected by the given relationship types within the specified distance.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.neighbors/apoc.neighbors.tohop[apoc.neighbors.tohop icon:book[] ^] +
+Returns all nodes connected by the given relationship types within the specified distance.
+Nodes are returned individually for each row.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.neighbors/apoc.neighbors.tohop.count[apoc.neighbors.tohop.count icon:book[] ^] +
+Returns the count of all nodes connected by the given relationships in the pattern within the specified distance.
 ¦ label:procedure[]
 |===
 
@@ -771,22 +752,22 @@ apoc.neighbors.tohop.count(node, rel-direction-pattern, distance) - returns dist
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.node/apoc.node.degree[apoc.node.degree icon:book[] ^] +
-apoc.node.degree(node, rel-direction-pattern) - returns total degrees of the given relationships in the pattern, can use '>' or '<' for all outgoing or incoming relationships
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.node/apoc.node.degree.in[apoc.node.degree.in icon:book[] ^] +
-apoc.node.degree.in(node, relationshipName) - returns total number number of incoming relationships
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.node/apoc.node.degree.out[apoc.node.degree.out icon:book[] ^] +
-apoc.node.degree.out(node, relationshipName) - returns total number number of outgoing relationships
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.node/apoc.node.id[apoc.node.id icon:book[] ^] +
-returns id for (virtual) nodes
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.node/apoc.node.labels[apoc.node.labels icon:book[] ^] +
-returns labels for (virtual) nodes
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.node/apoc.node.relationship.exists[apoc.node.relationship.exists icon:book[] ^] +
-apoc.node.relationship.exists(node, rel-direction-pattern) - returns true when the node has the relationships of the pattern
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.node/apoc.node.relationship.types[apoc.node.relationship.types icon:book[] ^] +
-apoc.node.relationship.types(node, rel-direction-pattern) - returns a list of distinct relationship types
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.node/apoc.node.relationships.exist[apoc.node.relationships.exist icon:book[] ^] +
-apoc.node.relationships.exist(node, rel-direction-pattern) - returns a map with rel-pattern, boolean for the given relationship patterns
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.node/apoc.node.degree[apoc.node.degree icon:book[] ^] +
+Returns the total degrees for the given node.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.node/apoc.node.degree.in[apoc.node.degree.in icon:book[] ^] +
+Returns the total number of incoming relationships to the given node.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.node/apoc.node.degree.out[apoc.node.degree.out icon:book[] ^] +
+Returns the total number of outgoing relationships from the given node.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.node/apoc.node.id[apoc.node.id icon:book[] ^] +
+Returns the id for the given virtual node.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.node/apoc.node.labels[apoc.node.labels icon:book[] ^] +
+Returns the labels for the given virtual node.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.node/apoc.node.relationship.exists[apoc.node.relationship.exists icon:book[] ^] +
+Returns a boolean based on whether the given node has a relationship (or whether the given node has a relationship of the given type and direction).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.node/apoc.node.relationship.types[apoc.node.relationship.types icon:book[] ^] +
+Returns a list of distinct relationship types for the given node.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.node/apoc.node.relationships.exist[apoc.node.relationships.exist icon:book[] ^] +
+Returns a boolean based on whether the given node has relationships (or whether the given nodes has relationships of the given type and direction).
 ¦ label:function[]
 |===
 
@@ -796,26 +777,28 @@ apoc.node.relationships.exist(node, rel-direction-pattern) - returns a map with 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.nodes/apoc.nodes.collapse[apoc.nodes.collapse icon:book[] ^] +
-apoc.nodes.collapse([nodes...],[{properties:'overwrite' or 'discard' or 'combine'}]) yield from, rel, to merge nodes onto first in list
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.nodes/apoc.nodes.connected[apoc.nodes.connected icon:book[] ^] +
-apoc.nodes.connected(start, end, rel-direction-pattern) - returns true when the node is connected to the other node, optimized for dense nodes
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.nodes/apoc.nodes.delete[apoc.nodes.delete icon:book[] ^] +
-apoc.nodes.delete(node|nodes|id|[ids]) - quickly delete all nodes with these ids
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.nodes/apoc.nodes.get[apoc.nodes.get icon:book[] ^] +
-apoc.nodes.get(node|nodes|id|[ids]) - quickly returns all nodes with these ids
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.nodes/apoc.nodes.group[apoc.nodes.group icon:book[] ^] +
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.nodes/apoc.nodes.collapse[apoc.nodes.collapse icon:book[] ^] +
+Merges nodes together in the given list.
+The nodes are then combined to become one node, with all labels of the previous nodes attached to it, and all relationships pointing to it.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.nodes/apoc.nodes.connected[apoc.nodes.connected icon:book[] ^] +
+Returns true when a given node is directly connected to another given node.
+This function is optimized for dense nodes.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.nodes/apoc.nodes.delete[apoc.nodes.delete icon:book[] ^] +
+Deletes all nodes with the given ids.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.nodes/apoc.nodes.get[apoc.nodes.get icon:book[] ^] +
+Returns all nodes with the given ids.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.nodes/apoc.nodes.group[apoc.nodes.group icon:book[] ^] +
 
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.nodes/apoc.nodes.isDense[apoc.nodes.isDense icon:book[] ^] +
-apoc.nodes.isDense(node) - returns true if it is a dense node
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.nodes/apoc.nodes.link[apoc.nodes.link icon:book[] ^] +
-apoc.nodes.link([nodes],'REL_TYPE', conf) - creates a linked list of nodes from first to last
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.nodes/apoc.nodes.relationship.types[apoc.nodes.relationship.types icon:book[] ^] +
-apoc.nodes.relationship.types(node|nodes|id|[ids], rel-direction-pattern) - returns a list of maps where each one has two fields: `node` which is the node subject of the analysis and `types` which is a list of distinct relationship types
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.nodes/apoc.nodes.relationships.exist[apoc.nodes.relationships.exist icon:book[] ^] +
-apoc.nodes.relationships.exist(node|nodes|id|[ids], rel-direction-pattern) - returns a list of maps where each one has two fields: `node` which is the node subject of the analysis and `exists` which is a map with rel-pattern, boolean for the given relationship patterns
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.nodes/apoc.nodes.rels[apoc.nodes.rels icon:book[] ^] +
-apoc.get.rels(rel|id|[ids]) - quickly returns all relationships with these ids
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.nodes/apoc.nodes.isDense[apoc.nodes.isDense icon:book[] ^] +
+Returns true if the given node is a dense node.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.nodes/apoc.nodes.link[apoc.nodes.link icon:book[] ^] +
+Creates a linked list of the given nodes connected by the given relationship type.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.nodes/apoc.nodes.relationship.types[apoc.nodes.relationship.types icon:book[] ^] +
+Returns a list of distinct relationship types from the given list of nodes.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.nodes/apoc.nodes.relationships.exist[apoc.nodes.relationships.exist icon:book[] ^] +
+Returns a boolean based on whether or not the given nodes have the given relationships.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.nodes/apoc.nodes.rels[apoc.nodes.rels icon:book[] ^] +
+Returns all relationships with the given ids.
 ¦ label:procedure[]
 |===
 
@@ -825,30 +808,30 @@ apoc.get.rels(rel|id|[ids]) - quickly returns all relationships with these ids
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.number/apoc.number.arabicToRoman[apoc.number.arabicToRoman icon:book[] ^] +
-apoc.number.arabicToRoman(number)  | convert arabic numbers to roman
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.number/apoc.number.exact.add[apoc.number.exact.add icon:book[] ^] +
-apoc.number.exact.add(stringA,stringB) - return the sum's result of two large numbers
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.number/apoc.number.exact.div[apoc.number.exact.div icon:book[] ^] +
-apoc.number.exact.div(stringA,stringB,[prec],[roundingModel]) - return the division's result of two large numbers
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.number/apoc.number.exact.mul[apoc.number.exact.mul icon:book[] ^] +
-apoc.number.exact.mul(stringA,stringB,[prec],[roundingModel]) - return the multiplication's result of two large numbers 
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.number/apoc.number.exact.sub[apoc.number.exact.sub icon:book[] ^] +
-apoc.number.exact.sub(stringA,stringB) - return the substraction's of two large numbers
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.number/apoc.number.exact.toExact[apoc.number.exact.toExact icon:book[] ^] +
-apoc.number.exact.toExact(number) - return the exact value
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.number/apoc.number.exact.toFloat[apoc.number.exact.toFloat icon:book[] ^] +
-apoc.number.exact.toFloat(string,[prec],[roundingMode]) - return the Float value of a large number
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.number/apoc.number.exact.toInteger[apoc.number.exact.toInteger icon:book[] ^] +
-apoc.number.exact.toInteger(string,[prec],[roundingMode]) - return the Integer value of a large number
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.number/apoc.number.format[apoc.number.format icon:book[] ^] +
-apoc.number.format(number)  | format a long or double using the default system pattern and language to produce a string
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.number/apoc.number.parseFloat[apoc.number.parseFloat icon:book[] ^] +
-apoc.number.parseFloat(text)  | parse a text using the default system pattern and language to produce a double
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.number/apoc.number.parseInt[apoc.number.parseInt icon:book[] ^] +
-apoc.number.parseInt(text)  | parse a text using the default system pattern and language to produce a long
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.number/apoc.number.romanToArabic[apoc.number.romanToArabic icon:book[] ^] +
-apoc.number.romanToArabic(romanNumber)  | convert roman numbers to arabic
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.number/apoc.number.arabicToRoman[apoc.number.arabicToRoman icon:book[] ^] +
+Converts the given Arabic numbers to Roman numbers.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.number/apoc.number.exact.add[apoc.number.exact.add icon:book[] ^] +
+Returns the result of adding the two given large numbers (using Java BigDecimal).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.number/apoc.number.exact.div[apoc.number.exact.div icon:book[] ^] +
+Returns the result of dividing a given large number with another given large number (using Java BigDecimal).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.number/apoc.number.exact.mul[apoc.number.exact.mul icon:book[] ^] +
+Returns the result of multiplying two given large numbers (using Java BigDecimal).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.number/apoc.number.exact.sub[apoc.number.exact.sub icon:book[] ^] +
+Returns the result of subtracting a given large number from another given large number (using Java BigDecimal).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.number/apoc.number.exact.toExact[apoc.number.exact.toExact icon:book[] ^] +
+Returns the exact value of the given number (using Java BigDecimal).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.number/apoc.number.exact.toFloat[apoc.number.exact.toFloat icon:book[] ^] +
+Returns the float value of the given large number (using Java BigDecimal).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.number/apoc.number.exact.toInteger[apoc.number.exact.toInteger icon:book[] ^] +
+Returns the integer value of the given large number (using Java BigDecimal).
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.number/apoc.number.format[apoc.number.format icon:book[] ^] +
+Formats the given long or double using the given pattern and language to produce a string.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.number/apoc.number.parseFloat[apoc.number.parseFloat icon:book[] ^] +
+Parses the given string using the given pattern and language to produce a double.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.number/apoc.number.parseInt[apoc.number.parseInt icon:book[] ^] +
+Parses the given string using the given pattern and language to produce a long.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.number/apoc.number.romanToArabic[apoc.number.romanToArabic icon:book[] ^] +
+Converts the given Roman numbers to Arabic numbers.
 ¦ label:function[]
 |===
 
@@ -858,24 +841,24 @@ apoc.number.romanToArabic(romanNumber)  | convert roman numbers to arabic
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.path/apoc.path.combine[apoc.path.combine icon:book[] ^] +
-apoc.path.combine(path1, path2) - combines the paths into one if the connecting node matches
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.path/apoc.path.create[apoc.path.create icon:book[] ^] +
-apoc.path.create(startNode,[rels]) - creates a path instance of the given elements
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.path/apoc.path.elements[apoc.path.elements icon:book[] ^] +
-apoc.path.elements(path) - returns a list of node-relationship-node-...
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.path/apoc.path.expand[apoc.path.expand icon:book[] ^] +
-apoc.path.expand(startNode <id>|Node|list, 'TYPE|TYPE_OUT>|<TYPE_IN', '+YesLabel|-NoLabel', minLevel, maxLevel ) yield path - expand from start node following the given relationships from min to max-level adhering to the label filters
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.path/apoc.path.expandConfig[apoc.path.expandConfig icon:book[] ^] +
-apoc.path.expandConfig(startNode <id>|Node|list, {minLevel,maxLevel,uniqueness,relationshipFilter,labelFilter,uniqueness:'RELATIONSHIP_PATH',bfs:true, filterStartNode:false, limit:-1, optional:false, endNodes:[], terminatorNodes:[], sequence, beginSequenceAtStart:true}) yield path - expand from start node following the given relationships from min to max-level adhering to the label filters. 
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.path/apoc.path.slice[apoc.path.slice icon:book[] ^] +
-apoc.path.slice(path, [offset], [length]) - creates a sub-path with the given offset and length
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.path/apoc.path.spanningTree[apoc.path.spanningTree icon:book[] ^] +
-apoc.path.spanningTree(startNode <id>|Node|list, {maxLevel,relationshipFilter,labelFilter,bfs:true, filterStartNode:false, limit:-1, optional:false, endNodes:[], terminatorNodes:[], sequence, beginSequenceAtStart:true}) yield path - expand a spanning tree reachable from start node following relationships to max-level adhering to the label filters
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.path/apoc.path.subgraphAll[apoc.path.subgraphAll icon:book[] ^] +
-apoc.path.subgraphAll(startNode <id>|Node|list, {maxLevel,relationshipFilter,labelFilter,bfs:true, filterStartNode:false, limit:-1, endNodes:[], terminatorNodes:[], sequence, beginSequenceAtStart:true}) yield nodes, relationships - expand the subgraph reachable from start node following relationships to max-level adhering to the label filters, and also return all relationships within the subgraph
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.path/apoc.path.subgraphNodes[apoc.path.subgraphNodes icon:book[] ^] +
-apoc.path.subgraphNodes(startNode <id>|Node|list, {maxLevel,relationshipFilter,labelFilter,bfs:true, filterStartNode:false, limit:-1, optional:false, endNodes:[], terminatorNodes:[], sequence, beginSequenceAtStart:true}) yield node - expand the subgraph nodes reachable from start node following relationships to max-level adhering to the label filters
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.path/apoc.path.combine[apoc.path.combine icon:book[] ^] +
+Combines the two given paths into one path.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.path/apoc.path.create[apoc.path.create icon:book[] ^] +
+Returns a path from the given start node and a list of relationships.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.path/apoc.path.elements[apoc.path.elements icon:book[] ^] +
+Converts the given path into a list of nodes and relationships.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.path/apoc.path.expand[apoc.path.expand icon:book[] ^] +
+Returns paths expanded from the start node following the given relationship types from min-depth to max-depth.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.path/apoc.path.expandConfig[apoc.path.expandConfig icon:book[] ^] +
+Returns paths expanded from the start node the given relationship types from min-depth to max-depth.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.path/apoc.path.slice[apoc.path.slice icon:book[] ^] +
+Returns a sub-path of the given length and offset from the given path.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.path/apoc.path.spanningTree[apoc.path.spanningTree icon:book[] ^] +
+Returns spanning tree paths expanded from the start node following the given relationship types to max-depth.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.path/apoc.path.subgraphAll[apoc.path.subgraphAll icon:book[] ^] +
+Returns the sub-graph reachable from the start node following the given relationship types to max-depth.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.path/apoc.path.subgraphNodes[apoc.path.subgraphNodes icon:book[] ^] +
+Returns the nodes in the sub-graph reachable from the start node following the given relationship types to max-depth.
 ¦ label:procedure[]
 |===
 
@@ -885,20 +868,22 @@ apoc.path.subgraphNodes(startNode <id>|Node|list, {maxLevel,relationshipFilter,l
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.periodic/apoc.periodic.cancel[apoc.periodic.cancel icon:book[] ^] +
-apoc.periodic.cancel(name) - cancel job with the given name
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.periodic/apoc.periodic.commit[apoc.periodic.commit icon:book[] ^] +
-apoc.periodic.commit(statement,params) - runs the given statement in separate transactions until it returns 0
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.periodic/apoc.periodic.countdown[apoc.periodic.countdown icon:book[] ^] +
-apoc.periodic.countdown('name',statement,repeat-rate-in-seconds) submit a repeatedly-called background statement until it returns 0
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.periodic/apoc.periodic.iterate[apoc.periodic.iterate icon:book[] ^] +
-apoc.periodic.iterate('statement returning items', 'statement per item', {batchSize:1000,iterateList:true,parallel:false,params:{},concurrency:50,retries:0}) YIELD batches, total - run the second statement for each item returned by the first statement. Returns number of batches and total processed rows
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.periodic/apoc.periodic.list[apoc.periodic.list icon:book[] ^] +
-apoc.periodic.list - list all jobs
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.periodic/apoc.periodic.repeat[apoc.periodic.repeat icon:book[] ^] +
-apoc.periodic.repeat('name',statement,repeat-rate-in-seconds, config) submit a repeatedly-called background statement. Fourth parameter 'config' is optional and can contain 'params' entry for nested statement.
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.periodic/apoc.periodic.submit[apoc.periodic.submit icon:book[] ^] +
-apoc.periodic.submit('name',statement,params) - submit a one-off background statement; parameter 'params' is optional and can contain query parameters for Cypher statement
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.periodic/apoc.periodic.cancel[apoc.periodic.cancel icon:book[] ^] +
+Cancels the given background job.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.periodic/apoc.periodic.commit[apoc.periodic.commit icon:book[] ^] +
+Runs the given statement in separate batched transactions.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.periodic/apoc.periodic.countdown[apoc.periodic.countdown icon:book[] ^] +
+Runs a repeatedly called background statement until it returns 0.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.periodic/apoc.periodic.iterate[apoc.periodic.iterate icon:book[] ^] +
+Runs the second statement for each item returned by the first statement.
+This procedure returns the number of batches and the total number of processed rows.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.periodic/apoc.periodic.list[apoc.periodic.list icon:book[] ^] +
+Returns a list of all background jobs.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.periodic/apoc.periodic.repeat[apoc.periodic.repeat icon:book[] ^] +
+Runs a repeatedly called background job.
+To stop this procedure, use `apoc.periodic.cancel`.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.periodic/apoc.periodic.submit[apoc.periodic.submit icon:book[] ^] +
+Creates a background job which runs the given Cypher statement once.
 ¦ label:procedure[]
 |===
 
@@ -908,42 +893,50 @@ apoc.periodic.submit('name',statement,params) - submit a one-off background stat
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.categorize[apoc.refactor.categorize icon:book[] ^] +
-apoc.refactor.categorize(sourceKey, type, outgoing, label, targetKey, copiedKeys, batchSize) turn each unique propertyKey into a category node and connect to it
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.cloneNodes[apoc.refactor.cloneNodes icon:book[] ^] +
-apoc.refactor.cloneNodes([node1,node2,...]) clone nodes with their labels and properties
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.cloneNodesWithRelationships[apoc.refactor.cloneNodesWithRelationships icon:book[] ^] +
-apoc.refactor.cloneNodesWithRelationships([node1,node2,...]) clone nodes with their labels, properties and relationships
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.cloneSubgraph[apoc.refactor.cloneSubgraph icon:book[] ^] +
-apoc.refactor.cloneSubgraph([node1,node2,...], [rel1,rel2,...]:[], {standinNodes:[], skipProperties:[]}) YIELD input, output, error | clone nodes with their labels and properties (optionally skipping any properties in the skipProperties list via the config map), and clone the given relationships (will exist between cloned nodes only). If no relationships are provided, all relationships between the given nodes will be cloned. Relationships can be optionally redirected according to standinNodes node pairings (this is a list of list-pairs of nodes), so given a node in the original subgraph (first of the pair), an existing node (second of the pair) can act as a standin for it within the cloned subgraph. Cloned relationships will be redirected to the standin.
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.cloneSubgraphFromPaths[apoc.refactor.cloneSubgraphFromPaths icon:book[] ^] +
-apoc.refactor.cloneSubgraphFromPaths([path1, path2, ...], {standinNodes:[], skipProperties:[]}) YIELD input, output, error | from the subgraph formed from the given paths, clone nodes with their labels and properties (optionally skipping any properties in the skipProperties list via the config map), and clone the relationships (will exist between cloned nodes only). Relationships can be optionally redirected according to standinNodes node pairings (this is a list of list-pairs of nodes), so given a node in the original subgraph (first of the pair), an existing node (second of the pair) can act as a standin for it within the cloned subgraph. Cloned relationships will be redirected to the standin.
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.collapseNode[apoc.refactor.collapseNode icon:book[] ^] +
-apoc.refactor.collapseNode([node1,node2],'TYPE') collapse node to relationship, node with one rel becomes self-relationship
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.extractNode[apoc.refactor.extractNode icon:book[] ^] +
-apoc.refactor.extractNode([rel1,rel2,...], [labels],'OUT','IN') extract node from relationships
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.from[apoc.refactor.from icon:book[] ^] +
-apoc.refactor.from(rel, startNode) redirect relationship to use new start-node
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.invert[apoc.refactor.invert icon:book[] ^] +
-apoc.refactor.invert(rel) inverts relationship direction
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.mergeNodes[apoc.refactor.mergeNodes icon:book[] ^] +
-apoc.refactor.mergeNodes([node1,node2],[{properties:'overwrite' or 'discard' or 'combine'}]) merge nodes onto first in list
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.mergeRelationships[apoc.refactor.mergeRelationships icon:book[] ^] +
-apoc.refactor.mergeRelationships([rel1,rel2]) merge relationships onto first in list
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.normalizeAsBoolean[apoc.refactor.normalizeAsBoolean icon:book[] ^] +
-apoc.refactor.normalizeAsBoolean(entity, propertyKey, true_values, false_values) normalize/convert a property to be boolean
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.rename.label[apoc.refactor.rename.label icon:book[] ^] +
-apoc.refactor.rename.label(oldLabel, newLabel, [nodes]) | rename a label from 'oldLabel' to 'newLabel' for all nodes. If 'nodes' is provided renaming is applied to this set only
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.rename.nodeProperty[apoc.refactor.rename.nodeProperty icon:book[] ^] +
-apoc.refactor.rename.nodeProperty(oldName, newName, [nodes], {config}) | rename all node's property from 'oldName' to 'newName'. If 'nodes' is provided renaming is applied to this set only
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.rename.type[apoc.refactor.rename.type icon:book[] ^] +
-apoc.refactor.rename.type(oldType, newType, [rels], {config}) | rename all relationships with type 'oldType' to 'newType'. If 'rels' is provided renaming is applied to this set only
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.rename.typeProperty[apoc.refactor.rename.typeProperty icon:book[] ^] +
-apoc.refactor.rename.typeProperty(oldName, newName, [rels], {config}) | rename all relationship's property from 'oldName' to 'newName'. If 'rels' is provided renaming is applied to this set only
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.setType[apoc.refactor.setType icon:book[] ^] +
-apoc.refactor.setType(rel, 'NEW-TYPE') change relationship-type
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.refactor/apoc.refactor.to[apoc.refactor.to icon:book[] ^] +
-  apoc.refactor.to(rel, endNode) redirect relationship to use new end-node
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.categorize[apoc.refactor.categorize icon:book[] ^] +
+Creates new category nodes from nodes in the graph with the specified sourceKey as one of its property keys.
+The new category nodes are then connected to the original nodes with a relationship of the given type.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.cloneNodes[apoc.refactor.cloneNodes icon:book[] ^] +
+Clones the given nodes with their labels and properties.
+It is possible to skip any node properties using skipProperties (note: this only skips properties on nodes and not their relationships).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.cloneSubgraph[apoc.refactor.cloneSubgraph icon:book[] ^] +
+Clones the given nodes with their labels and properties (optionally skipping any properties in the skipProperties list via the config map), and clones the given relationships.
+If no relationships are provided, all existing relationships between the given nodes will be cloned.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.cloneSubgraphFromPaths[apoc.refactor.cloneSubgraphFromPaths icon:book[] ^] +
+Clones a sub-graph defined by the given list of paths.
+It is possible to skip any node properties using the skipProperties list via the config map.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.collapseNode[apoc.refactor.collapseNode icon:book[] ^] +
+Collapses the given node and replaces it with a relationship of the given type.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.extractNode[apoc.refactor.extractNode icon:book[] ^] +
+Expands the given relationships into intermediate nodes.
+The intermediate nodes are connected by the given 'OUT' and 'IN' types.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.from[apoc.refactor.from icon:book[] ^] +
+Redirects the given relationship to the given start node.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.invert[apoc.refactor.invert icon:book[] ^] +
+Inverts the direction of the given relationship.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.mergeNodes[apoc.refactor.mergeNodes icon:book[] ^] +
+Merges the given list of nodes onto the first node in the list.
+All relationships are merged onto that node as well.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.mergeRelationships[apoc.refactor.mergeRelationships icon:book[] ^] +
+Merges the given list of relationships onto the first relationship in the list.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.normalizeAsBoolean[apoc.refactor.normalizeAsBoolean icon:book[] ^] +
+Refactors the given property to a boolean.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.rename.label[apoc.refactor.rename.label icon:book[] ^] +
+Renames the given label from 'oldLabel' to 'newLabel' for all nodes.
+If a list of nodes is provided, the renaming is applied to the nodes within this list only.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.rename.nodeProperty[apoc.refactor.rename.nodeProperty icon:book[] ^] +
+Renames the given property from 'oldName' to 'newName' for all nodes.
+If a list of nodes is provided, the renaming is applied to the nodes within this list only.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.rename.type[apoc.refactor.rename.type icon:book[] ^] +
+Renames all relationships with type 'oldType' to 'newType'.
+If a list of relationships is provided, the renaming is applied to the relationships within this list only.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.rename.typeProperty[apoc.refactor.rename.typeProperty icon:book[] ^] +
+Renames the given property from 'oldName' to 'newName' for all relationships.
+If a list of relationships is provided, the renaming is applied to the relationships within this list only.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.setType[apoc.refactor.setType icon:book[] ^] +
+Changes the type of the given relationship.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.refactor/apoc.refactor.to[apoc.refactor.to icon:book[] ^] +
+Redirects the given relationship to the given end node.
 ¦ label:procedure[]
 |===
 
@@ -953,10 +946,10 @@ apoc.refactor.setType(rel, 'NEW-TYPE') change relationship-type
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.rel/apoc.rel.id[apoc.rel.id icon:book[] ^] +
-returns id for (virtual) relationships
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.rel/apoc.rel.type[apoc.rel.type icon:book[] ^] +
-returns type for (virtual) relationships
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.rel/apoc.rel.id[apoc.rel.id icon:book[] ^] +
+Returns the id for the given virtual relationship.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.rel/apoc.rel.type[apoc.rel.type icon:book[] ^] +
+Returns the type for the given virtual relationship.
 ¦ label:function[]
 |===
 
@@ -966,22 +959,25 @@ returns type for (virtual) relationships
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.schema/apoc.schema.assert[apoc.schema.assert icon:book[] ^] +
-apoc.schema.assert({indexLabel:[[indexKeys]], ...}, {constraintLabel:[constraintKeys], ...}, dropExisting : true) yield label, key, keys, unique, action - drops all other existing indexes and constraints when `dropExisting` is `true` (default is `true`), and asserts that at the end of the operation the given indexes and unique constraints are there, each label:key pair is considered one constraint/label. Non-constraint indexes can define compound indexes with label:[key1,key2...] pairings.
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.schema/apoc.schema.node.constraintExists[apoc.schema.node.constraintExists icon:book[] ^] +
-RETURN apoc.schema.node.constraintExists(labelName, propertyNames)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.schema/apoc.schema.node.indexExists[apoc.schema.node.indexExists icon:book[] ^] +
-RETURN apoc.schema.node.indexExists(labelName, propertyNames)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.schema/apoc.schema.nodes[apoc.schema.nodes icon:book[] ^] +
-CALL apoc.schema.nodes([config]) yield name, label, properties, status, type
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.schema/apoc.schema.properties.distinct[apoc.schema.properties.distinct icon:book[] ^] +
-apoc.schema.properties.distinct(label, key) - quickly returns all distinct values for a given key
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.schema/apoc.schema.properties.distinctCount[apoc.schema.properties.distinctCount icon:book[] ^] +
-apoc.schema.properties.distinctCount([label], [key]) YIELD label, key, value, count - quickly returns all distinct values and counts for a given key
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.schema/apoc.schema.relationship.constraintExists[apoc.schema.relationship.constraintExists icon:book[] ^] +
-RETURN apoc.schema.relationship.constraintExists(type, propertyNames)
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.schema/apoc.schema.relationships[apoc.schema.relationships icon:book[] ^] +
-CALL apoc.schema.relationships([config]) yield name, startLabel, type, endLabel, properties, status
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.schema/apoc.schema.assert[apoc.schema.assert icon:book[] ^] +
+Drops all other existing indexes and constraints when `dropExisting` is `true` (default is `true`).
+Asserts at the end of the operation that the given indexes and unique constraints are there.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.schema/apoc.schema.node.constraintExists[apoc.schema.node.constraintExists icon:book[] ^] +
+Returns a boolean depending on whether or not a constraint exists for the given node label with the given property names.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.schema/apoc.schema.node.indexExists[apoc.schema.node.indexExists icon:book[] ^] +
+Returns a boolean depending on whether or not an index exists for the given node label with the given property names.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.schema/apoc.schema.nodes[apoc.schema.nodes icon:book[] ^] +
+Returns all indexes and constraints information for all node labels in the database.
+It is possible to define a set of labels to include or exclude in the config parameters.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.schema/apoc.schema.properties.distinct[apoc.schema.properties.distinct icon:book[] ^] +
+Returns all distinct node property values for the given key.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.schema/apoc.schema.properties.distinctCount[apoc.schema.properties.distinctCount icon:book[] ^] +
+Returns all distinct property values and counts for the given key.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.schema/apoc.schema.relationship.constraintExists[apoc.schema.relationship.constraintExists icon:book[] ^] +
+Returns a boolean depending on whether or not a constraint exists for the given relationship type with the given property names.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.schema/apoc.schema.relationships[apoc.schema.relationships icon:book[] ^] +
+Returns the indexes and constraints information for all the relationship types in the database.
+It is possible to define a set of relationship types to include or exclude in the config parameters.
 ¦ label:procedure[]
 |===
 
@@ -991,10 +987,10 @@ CALL apoc.schema.relationships([config]) yield name, startLabel, type, endLabel,
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.scoring/apoc.scoring.existence[apoc.scoring.existence icon:book[] ^] +
-apoc.scoring.existence(5, true) returns the provided score if true, 0 if false
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.scoring/apoc.scoring.pareto[apoc.scoring.pareto icon:book[] ^] +
-apoc.scoring.pareto(10, 20, 100, 11) applies a Pareto scoring function over the inputs
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.scoring/apoc.scoring.existence[apoc.scoring.existence icon:book[] ^] +
+Returns the given score if true, 0 if false.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.scoring/apoc.scoring.pareto[apoc.scoring.pareto icon:book[] ^] +
+Applies a Pareto scoring function over the given integers.
 ¦ label:function[]
 |===
 
@@ -1004,16 +1000,19 @@ apoc.scoring.pareto(10, 20, 100, 11) applies a Pareto scoring function over the 
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.search/apoc.search.multiSearchReduced[apoc.search.multiSearchReduced icon:book[] ^] +
-Do a parallel search over multiple indexes returning a reduced representation of the nodes found: node id, labels and the searched properties. apoc.search.multiSearchReduced( map of label and properties which will be searched upon, operator: EXACT | CONTAINS | STARTS WITH | ENDS WITH, searchValue ). Multiple search results for the same node are merged into one record.
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.search/apoc.search.node[apoc.search.node icon:book[] ^] +
-Do a parallel search over multiple indexes returning nodes. usage apoc.search.node( map of label and properties which will be searched upon, operator: EXACT | CONTAINS | STARTS WITH | ENDS WITH, searchValue ) returns all the DISTINCT Nodes found in the different searches.
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.search/apoc.search.nodeAll[apoc.search.nodeAll icon:book[] ^] +
-Do a parallel search over multiple indexes returning nodes. usage apoc.search.nodeAll( map of label and properties which will be searched upon, operator: EXACT | CONTAINS | STARTS WITH | ENDS WITH, searchValue ) returns all the Nodes found in the different searches.
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.search/apoc.search.nodeAllReduced[apoc.search.nodeAllReduced icon:book[] ^] +
-Do a parallel search over multiple indexes returning a reduced representation of the nodes found: node id, labels and the searched property. apoc.search.nodeShortAll( map of label and properties which will be searched upon, operator: EXACT / CONTAINS / STARTS WITH | ENDS WITH / = / <> / < / > ..., value ). All 'hits' are returned.
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.search/apoc.search.nodeReduced[apoc.search.nodeReduced icon:book[] ^] +
-Do a parallel search over multiple indexes returning a reduced representation of the nodes found: node id, labels and the searched properties. apoc.search.nodeReduced( map of label and properties which will be searched upon, operator: EXACT | CONTAINS | STARTS WITH | ENDS WITH, searchValue ). Multiple search results for the same node are merged into one record.
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.search/apoc.search.multiSearchReduced[apoc.search.multiSearchReduced icon:book[] ^] +
+Returns a reduced representation of the nodes found after a parallel search over multiple indexes.
+The reduced node representation includes: node id, node labels and the searched properties.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.search/apoc.search.node[apoc.search.node icon:book[] ^] +
+Returns all the distinct nodes found after a parallel search over multiple indexes.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.search/apoc.search.nodeAll[apoc.search.nodeAll icon:book[] ^] +
+Returns all the nodes found after a parallel search over multiple indexes.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.search/apoc.search.nodeAllReduced[apoc.search.nodeAllReduced icon:book[] ^] +
+Returns a reduced representation of the nodes found after a parallel search over multiple indexes.
+The reduced node representation includes: node id, node labels and the searched properties.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.search/apoc.search.nodeReduced[apoc.search.nodeReduced icon:book[] ^] +
+Returns a reduced representation of the distinct nodes found after a parallel search over multiple indexes.
+The reduced node representation includes: node id, node labels and the searched properties.
 ¦ label:procedure[]
 |===
 
@@ -1023,14 +1022,16 @@ Do a parallel search over multiple indexes returning a reduced representation of
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.spatial/apoc.spatial.geocode[apoc.spatial.geocode icon:book[] ^] +
-apoc.spatial.geocode('address') YIELD location, latitude, longitude, description, osmData - look up geographic location of address from a geocoding service (the default one is OpenStreetMap)
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.spatial/apoc.spatial.geocodeOnce[apoc.spatial.geocodeOnce icon:book[] ^] +
-apoc.spatial.geocodeOnce('address') YIELD location, latitude, longitude, description, osmData - look up geographic location of address from a geocoding service (the default one is OpenStreetMap)
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.spatial/apoc.spatial.reverseGeocode[apoc.spatial.reverseGeocode icon:book[] ^] +
-apoc.spatial.reverseGeocode(latitude,longitude) YIELD location, latitude, longitude, description - look up address from latitude and longitude from a geocoding service (the default one is OpenStreetMap)
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.spatial/apoc.spatial.sortByDistance[apoc.spatial.sortByDistance icon:book[] ^] +
-apoc.spatial.sortByDistance(List<Path>) sort the given paths based on the geo informations (lat/long) in ascending order
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.spatial/apoc.spatial.geocode[apoc.spatial.geocode icon:book[] ^] +
+Returns the geographic location (latitude, longitude, and description) of the given address using a geocoding service (default: OpenStreetMap).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.spatial/apoc.spatial.geocodeOnce[apoc.spatial.geocodeOnce icon:book[] ^] +
+Returns the geographic location (latitude, longitude, and description) of the given address using a geocoding service (default: OpenStreetMap).
+This procedure returns at most one result.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.spatial/apoc.spatial.reverseGeocode[apoc.spatial.reverseGeocode icon:book[] ^] +
+Returns a textual address from the given geographic location (latitude, longitude) using a geocoding service (default: OpenStreetMap).
+This procedure returns at most one result.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.spatial/apoc.spatial.sortByDistance[apoc.spatial.sortByDistance icon:book[] ^] +
+Sorts the given collection of paths by the sum of their distance based on the latitude/longitude values on the nodes.
 ¦ label:procedure[]
 |===
 
@@ -1040,7 +1041,7 @@ apoc.spatial.sortByDistance(List<Path>) sort the given paths based on the geo in
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.stats/apoc.stats.degrees[apoc.stats.degrees icon:book[] ^] +
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.stats/apoc.stats.degrees[apoc.stats.degrees icon:book[] ^] +
 
 ¦ label:procedure[]
 |===
@@ -1051,12 +1052,12 @@ apoc.spatial.sortByDistance(List<Path>) sort the given paths based on the geo in
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.temporal/apoc.temporal.format[apoc.temporal.format icon:book[] ^] +
-apoc.temporal.format(input, format) | Format a temporal value
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.temporal/apoc.temporal.formatDuration[apoc.temporal.formatDuration icon:book[] ^] +
-apoc.temporal.formatDuration(input, format) | Format a Duration
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.temporal/apoc.temporal.toZonedTemporal[apoc.temporal.toZonedTemporal icon:book[] ^] +
-apoc.temporal.toZonedTemporal('2012-12-23 23:59:59','yyyy-MM-dd HH:mm:ss', 'UTC-hour-offset') parse date string using the specified format to specified timezone
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.temporal/apoc.temporal.format[apoc.temporal.format icon:book[] ^] +
+Formats the given temporal value into the given time format.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.temporal/apoc.temporal.formatDuration[apoc.temporal.formatDuration icon:book[] ^] +
+Formats the given duration into the given time format.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.temporal/apoc.temporal.toZonedTemporal[apoc.temporal.toZonedTemporal icon:book[] ^] +
+Parses the given date string using the specified format into the given time zone.
 ¦ label:function[]
 |===
 
@@ -1066,104 +1067,100 @@ apoc.temporal.toZonedTemporal('2012-12-23 23:59:59','yyyy-MM-dd HH:mm:ss', 'UTC-
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.base64Decode[apoc.text.base64Decode icon:book[] ^] +
-apoc.text.base64Decode(text) YIELD value - Decode Base64 encoded string
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.base64Encode[apoc.text.base64Encode icon:book[] ^] +
-apoc.text.base64Encode(text) YIELD value - Encode a string with Base64
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.base64UrlDecode[apoc.text.base64UrlDecode icon:book[] ^] +
-apoc.text.base64UrlDecode(url) YIELD value - Decode Base64 encoded url
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.base64UrlEncode[apoc.text.base64UrlEncode icon:book[] ^] +
-apoc.text.base64UrlEncode(text) YIELD value - Encode a url with Base64
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.byteCount[apoc.text.byteCount icon:book[] ^] +
-apoc.text.byteCount(text,[charset]) - return size of text in bytes
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.bytes[apoc.text.bytes icon:book[] ^] +
-apoc.text.bytes(text,[charset]) - return bytes of the text
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.camelCase[apoc.text.camelCase icon:book[] ^] +
-apoc.text.camelCase(text) YIELD value - Convert a string to camelCase
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.capitalize[apoc.text.capitalize icon:book[] ^] +
-apoc.text.capitalize(text) YIELD value - capitalise the first letter of the word
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.capitalizeAll[apoc.text.capitalizeAll icon:book[] ^] +
-apoc.text.capitalizeAll(text) YIELD value - capitalise the first letter of every word in the text
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.charAt[apoc.text.charAt icon:book[] ^] +
-apoc.text.charAt(text, index) - the decimal value of the character at the given index
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.clean[apoc.text.clean icon:book[] ^] +
-apoc.text.clean(text) - strip the given string of everything except alpha numeric characters and convert it to lower case.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.code[apoc.text.code icon:book[] ^] +
-apoc.text.code(codepoint) - Returns the unicode character of the given codepoint
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.compareCleaned[apoc.text.compareCleaned icon:book[] ^] +
-apoc.text.compareCleaned(text1, text2) - compare the given strings stripped of everything except alpha numeric characters converted to lower case.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.decapitalize[apoc.text.decapitalize icon:book[] ^] +
-apoc.text.decapitalize(text) YIELD value - decapitalize the first letter of the word
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.decapitalizeAll[apoc.text.decapitalizeAll icon:book[] ^] +
-apoc.text.decapitalizeAll(text) YIELD value - decapitalize the first letter of all words
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.distance[apoc.text.distance icon:book[] ^] +
-apoc.text.distance(text1, text2) - compare the given strings with the Levenshtein distance algorithm.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.doubleMetaphone[apoc.text.doubleMetaphone icon:book[] ^] +
-apoc.text.doubleMetaphone(value) yield value - Compute the Double Metaphone phonetic encoding of all words of the text value
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.doubleMetaphone[apoc.text.doubleMetaphone icon:book[] ^] +
-apoc.text.doubleMetaphone(value) yield value - Compute the Double Metaphone phonetic encoding of all words of the text value which can be a single string or a list of strings
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.format[apoc.text.format icon:book[] ^] +
-apoc.text.format(text,[params],language) - sprintf format the string with the params given
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.fuzzyMatch[apoc.text.fuzzyMatch icon:book[] ^] +
-apoc.text.fuzzyMatch(text1, text2) - check if 2 words can be matched in a fuzzy way. Depending on the length of the String it will allow more characters that needs to be edited to match the second String.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.hammingDistance[apoc.text.hammingDistance icon:book[] ^] +
-apoc.text.hammingDistance(text1, text2) - compare the given strings with the Hamming distance algorithm.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.hexCharAt[apoc.text.hexCharAt icon:book[] ^] +
-apoc.text.hexCharAt(text, index) - the hex value string of the character at the given index
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.hexValue[apoc.text.hexValue icon:book[] ^] +
-apoc.text.hexValue(value) - the hex value string of the given number
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.indexOf[apoc.text.indexOf icon:book[] ^] +
-apoc.text.indexOf(text, lookup, from=0, to=-1==len) - find the first occurence of the lookup string in the text, from inclusive, to exclusive, -1 if not found, null if text is null.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.indexesOf[apoc.text.indexesOf icon:book[] ^] +
-apoc.text.indexesOf(text, lookup, from=0, to=-1==len) - finds all occurences of the lookup string in the text, return list, from inclusive, to exclusive, empty list if not found, null if text is null.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.jaroWinklerDistance[apoc.text.jaroWinklerDistance icon:book[] ^] +
-apoc.text.jaroWinklerDistance(text1, text2) - compare the given strings with the Jaro-Winkler distance algorithm.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.join[apoc.text.join icon:book[] ^] +
-apoc.text.join(['text1','text2',...], delimiter) - join the given strings with the given delimiter.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.levenshteinDistance[apoc.text.levenshteinDistance icon:book[] ^] +
-apoc.text.levenshteinDistance(text1, text2) - compare the given strings with the Levenshtein distance algorithm.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.levenshteinSimilarity[apoc.text.levenshteinSimilarity icon:book[] ^] +
-apoc.text.levenshteinSimilarity(text1, text2) - calculate the similarity (a value within 0 and 1) between two texts.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.lpad[apoc.text.lpad icon:book[] ^] +
-apoc.text.lpad(text,count,delim) YIELD value - left pad the string to the given width
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.phonetic[apoc.text.phonetic icon:book[] ^] +
-apoc.text.phonetic(text) yield value - Compute the US_ENGLISH phonetic soundex encoding of all words of the text
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.phonetic[apoc.text.phonetic icon:book[] ^] +
-apoc.text.phonetic(value) yield value - Compute the US_ENGLISH phonetic soundex encoding of all words of the text value which can be a single string or a list of strings
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.phoneticDelta[apoc.text.phoneticDelta icon:book[] ^] +
-apoc.text.phoneticDelta(text1, text2) yield phonetic1, phonetic2, delta - Compute the US_ENGLISH soundex character difference between two given strings
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.random[apoc.text.random icon:book[] ^] +
-apoc.text.random(length, valid) YIELD value - generate a random string
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.regexGroups[apoc.text.regexGroups icon:book[] ^] +
-apoc.text.regexGroups(text, regex) - return all matching groups of the regex on the given text.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.regreplace[apoc.text.regreplace icon:book[] ^] +
-apoc.text.regreplace(text, regex, replacement) - replace each substring of the given string that matches the given regular expression with the given replacement.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.repeat[apoc.text.repeat icon:book[] ^] +
-apoc.text.repeat(item, count) - string multiplication
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.replace[apoc.text.replace icon:book[] ^] +
-apoc.text.replace(text, regex, replacement) - replace each substring of the given string that matches the given regular expression with the given replacement.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.rpad[apoc.text.rpad icon:book[] ^] +
-apoc.text.rpad(text,count,delim) YIELD value - right pad the string to the given width
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.slug[apoc.text.slug icon:book[] ^] +
-apoc.text.slug(text, delim) - slug the text with the given delimiter
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.snakeCase[apoc.text.snakeCase icon:book[] ^] +
-apoc.text.snakeCase(text) YIELD value - Convert a string to snake-case
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.sorensenDiceSimilarity[apoc.text.sorensenDiceSimilarity icon:book[] ^] +
-apoc.text.sorensenDiceSimilarityWithLanguage(text1, text2, languageTag) - compare the given strings with the Sørensen–Dice coefficient formula, with the provided IETF language tag
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.split[apoc.text.split icon:book[] ^] +
-apoc.text.split(text, regex, limit) - splits the given text around matches of the given regex.
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.swapCase[apoc.text.swapCase icon:book[] ^] +
-apoc.text.swapCase(text) YIELD value - Swap the case of a string
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.toCypher[apoc.text.toCypher icon:book[] ^] +
-apoc.text.toCypher(value, {skipKeys,keepKeys,skipValues,keepValues,skipNull,node,relationship,start,end}) | tries it's best to convert the value to a cypher-property-string
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.toUpperCase[apoc.text.toUpperCase icon:book[] ^] +
-apoc.text.toUpperCase(text) YIELD value - Convert a string to UPPER_CASE
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.upperCamelCase[apoc.text.upperCamelCase icon:book[] ^] +
-apoc.text.upperCamelCase(text) YIELD value - Convert a string to camelCase
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.urldecode[apoc.text.urldecode icon:book[] ^] +
-apoc.text.urldecode(text) - return the urldecoded text
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.text/apoc.text.urlencode[apoc.text.urlencode icon:book[] ^] +
-apoc.text.urlencode(text) - return the urlencoded text
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.base64Decode[apoc.text.base64Decode icon:book[] ^] +
+Decodes the given Base64 encoded string.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.base64Encode[apoc.text.base64Encode icon:book[] ^] +
+Encodes the given string with Base64.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.base64UrlDecode[apoc.text.base64UrlDecode icon:book[] ^] +
+Decodes the given Base64 encoded URL.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.base64UrlEncode[apoc.text.base64UrlEncode icon:book[] ^] +
+Encodes the given URL with Base64.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.byteCount[apoc.text.byteCount icon:book[] ^] +
+Returns the size of the given string in bytes.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.bytes[apoc.text.bytes icon:book[] ^] +
+Returns the given string as bytes.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.camelCase[apoc.text.camelCase icon:book[] ^] +
+Converts the given string to camel case.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.capitalize[apoc.text.capitalize icon:book[] ^] +
+Capitalizes the first letter of the given string.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.capitalizeAll[apoc.text.capitalizeAll icon:book[] ^] +
+Capitalizes the first letter of every word in the given string.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.charAt[apoc.text.charAt icon:book[] ^] +
+Returns the long value of the character at the given index.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.clean[apoc.text.clean icon:book[] ^] +
+Strips the given string of everything except alpha numeric characters and converts it to lower case.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.code[apoc.text.code icon:book[] ^] +
+Converts the long value into a string.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.compareCleaned[apoc.text.compareCleaned icon:book[] ^] +
+Compares two given strings stripped of everything except alpha numeric characters converted to lower case.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.decapitalize[apoc.text.decapitalize icon:book[] ^] +
+Turns the first letter of the given string from upper case to lower case.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.decapitalizeAll[apoc.text.decapitalizeAll icon:book[] ^] +
+Turns the first letter of every word in the given string to lower case.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.distance[apoc.text.distance icon:book[] ^] +
+Compares the two given strings using the Levenshtein distance algorithm.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.doubleMetaphone[apoc.text.doubleMetaphone icon:book[] ^] +
+Returns the double metaphone phonetic encoding of all words in the given string value.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.format[apoc.text.format icon:book[] ^] +
+Formats the given string with the given parameters.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.fuzzyMatch[apoc.text.fuzzyMatch icon:book[] ^] +
+Performs a fuzzy match search of the two given strings.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.hammingDistance[apoc.text.hammingDistance icon:book[] ^] +
+compares the two given strings using the Hamming distance algorithm.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.hexCharAt[apoc.text.hexCharAt icon:book[] ^] +
+Returns the hexadecimal value of the given string at the given index.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.hexValue[apoc.text.hexValue icon:book[] ^] +
+Returns the hexadecimal value of the given value.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.indexOf[apoc.text.indexOf icon:book[] ^] +
+Returns the first occurrence of the lookup string in the given string, or -1 if not found.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.indexesOf[apoc.text.indexesOf icon:book[] ^] +
+Returns all occurences of the lookup string in the given string, or an empty list if not found.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.jaroWinklerDistance[apoc.text.jaroWinklerDistance icon:book[] ^] +
+compares the two given strings using the Jaro-Winkler distance algorithm.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.join[apoc.text.join icon:book[] ^] +
+Joins the given strings using the given delimiter.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.levenshteinDistance[apoc.text.levenshteinDistance icon:book[] ^] +
+Compares the given strings using the Levenshtein distance algorithm.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.levenshteinSimilarity[apoc.text.levenshteinSimilarity icon:book[] ^] +
+Returns the similarity (a value within 0 and 1) between the two given strings based on the Levenshtein distance algorithm.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.lpad[apoc.text.lpad icon:book[] ^] +
+Left pads the given string by the given width.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.phonetic[apoc.text.phonetic icon:book[] ^] +
+Returns the US_ENGLISH phonetic soundex encoding of all words of the string.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.phoneticDelta[apoc.text.phoneticDelta icon:book[] ^] +
+Returns the US_ENGLISH soundex character difference between the two given strings.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.random[apoc.text.random icon:book[] ^] +
+Generates a random string to the given length using a length parameter and an optional string of valid characters.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.regexGroups[apoc.text.regexGroups icon:book[] ^] +
+Returns all groups matching the given regular expression in the given text.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.regreplace[apoc.text.regreplace icon:book[] ^] +
+Finds and replaces all matches found by the given regular expression with the given replacement.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.repeat[apoc.text.repeat icon:book[] ^] +
+Returns the result of the given item multiplied by the given count.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.replace[apoc.text.replace icon:book[] ^] +
+Finds and replaces all matches found by the given regular expression with the given replacement.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.rpad[apoc.text.rpad icon:book[] ^] +
+Right pads the given string by the given width.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.slug[apoc.text.slug icon:book[] ^] +
+Replaces the whitespace in the given string with the given delimiter.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.snakeCase[apoc.text.snakeCase icon:book[] ^] +
+Converts the given string to snake case.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.sorensenDiceSimilarity[apoc.text.sorensenDiceSimilarity icon:book[] ^] +
+Compares the two given strings using the Sørensen–Dice coefficient formula, with the provided IETF language tag.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.split[apoc.text.split icon:book[] ^] +
+Splits the given string using a given regular expression as a separator.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.swapCase[apoc.text.swapCase icon:book[] ^] +
+Swaps the cases in the given string.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.toCypher[apoc.text.toCypher icon:book[] ^] +
+Converts the given value to a Cypher property string.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.toUpperCase[apoc.text.toUpperCase icon:book[] ^] +
+Converts the given string to upper case.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.upperCamelCase[apoc.text.upperCamelCase icon:book[] ^] +
+Converts the given string to upper camel case.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.urldecode[apoc.text.urldecode icon:book[] ^] +
+Decodes the given URL encoded string.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.urlencode[apoc.text.urlencode icon:book[] ^] +
+Encodes the given URL string.
 ¦ label:function[]
 |===
 
@@ -1173,22 +1170,23 @@ apoc.text.urlencode(text) - return the urlencoded text
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.util/apoc.util.md5[apoc.util.md5 icon:book[] ^] +
-apoc.util.md5([values]) | computes the md5 of the concatenation of all string values of the list
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.util/apoc.util.sha1[apoc.util.sha1 icon:book[] ^] +
-apoc.util.sha1([values]) | computes the sha1 of the concatenation of all string values of the list
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.util/apoc.util.sha256[apoc.util.sha256 icon:book[] ^] +
-apoc.util.sha256([values]) | computes the sha256 of the concatenation of all string values of the list
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.util/apoc.util.sha384[apoc.util.sha384 icon:book[] ^] +
-apoc.util.sha384([values]) | computes the sha384 of the concatenation of all string values of the list
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.util/apoc.util.sha512[apoc.util.sha512 icon:book[] ^] +
-apoc.util.sha512([values]) | computes the sha512 of the concatenation of all string values of the list
-¦ label:function[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.util/apoc.util.sleep[apoc.util.sleep icon:book[] ^] +
-apoc.util.sleep(<duration>) | sleeps for <duration> millis, transaction termination is honored
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.util/apoc.util.validate[apoc.util.validate icon:book[] ^] +
-apoc.util.validate(predicate, message, params) | if the predicate yields to true raise an exception
-¦ label:procedure[]¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.util/apoc.util.validatePredicate[apoc.util.validatePredicate icon:book[] ^] +
-apoc.util.validatePredicate(predicate, message, params) | if the predicate yields to true raise an exception else returns true, for use inside WHERE subclauses
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.util/apoc.util.md5[apoc.util.md5 icon:book[] ^] +
+Returns the MD5 checksum of the concatenation of all string values in the given list.
+MD5 is a weak hashing algorithm which is unsuitable for cryptographic use-cases.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.util/apoc.util.sha1[apoc.util.sha1 icon:book[] ^] +
+Returns the SHA1 of the concatenation of all string values in the given list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.util/apoc.util.sha256[apoc.util.sha256 icon:book[] ^] +
+Returns the SHA256 of the concatenation of all string values in the given list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.util/apoc.util.sha384[apoc.util.sha384 icon:book[] ^] +
+Returns the SHA384 of the concatenation of all string values in the given list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.util/apoc.util.sha512[apoc.util.sha512 icon:book[] ^] +
+Returns the SHA512 of the concatenation of all string values in the list.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.util/apoc.util.sleep[apoc.util.sleep icon:book[] ^] +
+Causes the currently running Cypher to sleep for the given duration of milliseconds (the transaction termination is honored).
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.util/apoc.util.validate[apoc.util.validate icon:book[] ^] +
+If the given predicate is true an exception is thrown.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.util/apoc.util.validatePredicate[apoc.util.validatePredicate icon:book[] ^] +
+If the given predicate is true an exception is thrown, otherwise it returns true (for use inside `WHERE` subclauses).
 ¦ label:function[]
 |===
 
@@ -1198,8 +1196,8 @@ apoc.util.validatePredicate(predicate, message, params) | if the predicate yield
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.warmup/apoc.warmup.run[apoc.warmup.run icon:book[] ^] +
-apoc.warmup.run(loadProperties=false,loadDynamicProperties=false,loadIndexes=false) - quickly loads all nodes and rels into memory by skipping one page at a time
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.warmup/apoc.warmup.run[apoc.warmup.run icon:book[] ^] +
+Loads all nodes and relationships in the database into memory.
 ¦ label:procedure[]
 |===
 
@@ -1209,7 +1207,7 @@ apoc.warmup.run(loadProperties=false,loadDynamicProperties=false,loadIndexes=fal
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/labs/apoc/4.4/overview/apoc.xml/apoc.xml.parse[apoc.xml.parse icon:book[] ^] +
-RETURN apoc.xml.parse(<xml string>, <xPath string>, config, false) AS value
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.xml/apoc.xml.parse[apoc.xml.parse icon:book[] ^] +
+Parses the given XML string as a map.
 ¦ label:function[]
 |===

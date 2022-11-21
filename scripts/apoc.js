@@ -35,8 +35,6 @@ session.readTransaction(tx => tx.run(`
         const parts = name.split('.')
         const namespace = parts.length == 2 ? 'apoc' : parts.slice(0, 2).join('.')
 
-        const description = text.split(' - ')[1]
-
         return {
             name,
             text,
