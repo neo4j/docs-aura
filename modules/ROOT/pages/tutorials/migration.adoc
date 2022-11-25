@@ -2,13 +2,35 @@
 
 Neo4j 5 introduces many new features. Existing code and data flows may therefore be affected.
 
-== Backup and restore
+== Preparation
+
+=== Drivers
+
+. Make sure on latest
+. Error messaging (check with 5 KB)
+. Extra material from the Core guide
+
+=== Cypher updates
+
+. Changes to Cypher available on the link:https://neo4j.com/docs/cypher-manual/current/deprecations-additions-removals-compatibility/#cypher-deprecations-additions-removals[Cypher manual]. 
+. Use deprecation list to check codebase
+. Extra material from the Core guide
+
+=== Indexes
+. How to pick the right index: examples from the core migration guide (e.g. BTREE indexes - use RANGE and POINT indexes instead.)
+. How to drop
+
+[EXAMPLE]
+====
+Example + details
+====
+
+=== Backup and restore
 
 TBD
 
-== APOC
+=== APOC
 
-9.1. Support
 Starting with Neo4j 5, a selected number of APOC methods (procedures and functions), formerly known as APOC Core, are supported by Neo4j engineering:
 
 * Neo4j 5 APOC Library is link:https://neo4j.com/docs/aura/platform/apoc/[supported] in Aura with the some exceptions.
@@ -19,18 +41,6 @@ Starting with Neo4j 5, a selected number of APOC methods (procedures and functio
 ====
 Neo4j does not recommend or encourage the use of the APOC Extended methods in production.
 ====
-
-== Indexes
-BTREE indexes - use RANGE and POINT indexes instead.
-
-[EXAMPLE]
-====
-Example + details
-====
-
-== Cypher updates
-
-Changes to Cypher available on the link:https://neo4j.com/docs/cypher-manual/current/deprecations-additions-removals-compatibility/#cypher-deprecations-additions-removals[Cypher manual]. 
 
 === Procedures
 
@@ -94,9 +104,21 @@ Changes to Cypher available on the link:https://neo4j.com/docs/cypher-manual/cur
 |-
 |===
 
-== Miscellaneous
+=== Miscellaneous
 
 * Disallow repeated relationship variables.
 * Automatic coercion of a list to a boolean.
 * `exists()` function to test if property is null.
 * apoc.create.uuid() and apoc.create.uuids() — deprecated and replaced by the existing UUID.randomUUID().
+
+== Less that 4.4 (store format in focus)
+Store Upgrade (can we link to the existing KB from docs to get us out of trouble_ 
+
+Look at how to upgrade from 4.3 to >4.4?
+
+== Migrating (self managed)  to Aura
+Push to cloud  / Import pages
+
+== Existing Aura
+. Clone to 5
+. Create a new 5
