@@ -106,13 +106,7 @@ In Neo4j v5, the metadata returned by Cypher queries is improved.
 Starting with Neo4j 5, a selected number of APOC methods (procedures and functions), formerly known as APOC Core, are supported by Neo4j engineering:
 
 * Neo4j 5 APOC Library is link:https://neo4j.com/docs/aura/platform/apoc/[supported] in Aura with the some exceptions.
-* APOC Extended library has not been included in the Neo4j 5 APOC Library and therefore is supported by the Neo4j Community exclusively.
-* APOC Extended library code persists, as well as other Labs projects, in the extended repository, together with the APOC Core 4.x code.
-
-[IMPORTANT]
-====
-Neo4j does not recommend or encourage the use of the APOC Extended methods in production.
-====
+* APOC Extended library is not included in Aura.
 
 === Procedures
 
