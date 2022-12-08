@@ -46,7 +46,7 @@ The following example instead shows how to create a constraint backed by a RANGE
 CREATE CONSTRAINT constraint_with_provider FOR (n:Label) REQUIRE (n.prop1) IS UNIQUE OPTIONS {indexProvider: 'range-1.0'}
 ----
 
-For more information about creating indexes, see link:{cypher-manual-5-uri}/indexes-for-search-performance/#administration-indexes-examples[Cypher Manual -> Creating indexes].
+For more information about creating indexes, see link:https://neo4j.com/docs/cypher-manual/current/indexes-for-search-performance/#administration-indexes-examples[Cypher Manual -> Creating indexes].
 
 === Cypher updates
 
@@ -229,4 +229,5 @@ If you are updating an existing Aura instance, you can either:
 
 If you are migrating from a self-managed Neo4j 4.4 or 4.3 instance, you can use the link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[`neo4j-admin database upload`] command to upload the database dump into a Neo4j Aura instance.
 
+If your local Neo4j version is less than 4.3, you need to upgrade to Neo4j 4.4 first as explained in link:https://neo4j.com/docs/upgrade-migration-guide/current/version-4/[Upgrade and Migration Guide -> Neo4j 4 upgrades and migration].
 If your local Neo4j version is less than 4.3, you need to upgrade to Neo4j 4.4 first as explained in link:https://neo4j.com/docs/upgrade-migration-guide/current/version-4/[Upgrade and Migration Guide -> Neo4j 4 upgrades and migration].
