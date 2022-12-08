@@ -217,14 +217,14 @@ Some procedures have been replaced by commands:
 
 Refer to the link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/#_removals[Update and migration guide] for a full list of removals and deprecations.
 
-== Migrate from existing Aura
+== Migrate from an existing Aura instance
 
 If you are updating an existing Aura instance, you can either:
 
 * xref:aurads/managing-instances/instance-actions.adoc[Clone] to Aura Neo4j 5
 * xref:aurads/create-instance.adoc[Create] a new Aura Neo4j 5 instance and copy your data
 
-== Migrating from self-managed
+== Migrating from a self-managed instance
 
 If you are migrating from a self-managed Neo4j 4.4 or 4.3 instance, you can use the link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[`neo4j-admin database upload`] command to upload the database dump into a Neo4j Aura instance.
 
