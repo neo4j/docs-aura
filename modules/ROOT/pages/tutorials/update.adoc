@@ -213,7 +213,7 @@ Some procedures have been replaced by commands:
 * Disallow repeated relationship variables.
 * Automatic coercion of a list to a boolean.
 * `exists()` function to test if property is null.
-* apoc.create.uuid() and apoc.create.uuids()— deprecated and replaced by the existing UUID.randomUUID().
+* `apoc.create.uuid()` and `apoc.create.uuids()` have been deprecated and replaced by the existing `UUID.randomUUID()`.
 
 Refer to the link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/#_removals[Update and migration guide] for a full list of removals and deprecations.
 
