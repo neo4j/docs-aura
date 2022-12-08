@@ -46,7 +46,7 @@ The following example instead shows how to create a constraint backed by a RANGE
 CREATE CONSTRAINT constraint_with_provider FOR (n:Label) REQUIRE (n.prop1) IS UNIQUE OPTIONS {indexProvider: 'range-1.0'}
 ----
 
-For more information about creating indexes, see link:{cypher-manual-5-uri}/indexes-for-search-performance/#administration-indexes-examples[Cypher Manual -> Creating indexes].
+For more information about creating indexes, see link:https://neo4j.com/docs/cypher-manual/current/indexes-for-search-performance/#administration-indexes-examples[Cypher Manual -> Creating indexes].
 
 === Cypher updates
 
