@@ -1,0 +1,232 @@
+= Updating/migrating to Neo4j 5 Aura
+:description: This section describes how to upgrade/migrate to Neo4j 5 Aura.
+Neo4j 5 introduces many new features. 
+Existing code and data flows may therefore be affected.
+
+== Preparing for the update/migration
+
+The following sections apply regardless of whether you are updating your Aura instance of migrating to Aura from a self-managed instance.
+
+=== Drivers
+
+Neo4j's official drivers have some significant and breaking changes you need to be aware of. 
+For a smooth migration:
+
+. Check the breaking changes for each driver you use, for example in the link:https://neo4j.com/docs/api/python-driver/5.0/breaking_changes.html#breaking-changes[Python driver] and in the link:https://github.com/neo4j/graph-data-science-client/blob/main/changelog.md[GDS client].
+. Make sure you switch to the latest version of the driver in line with the version of the Neo4j database.
+
+The link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/drivers/breaking-changes/[Update and migration guide] contains all information and lists all the breaking changes.
+
+=== Indexes
+
+In Neo4j 5, BTREE indexes are replaced by RANGE, POINT, and TEXT indexes. 
+Before migrating a database, in Neo4j 4.4, you should create a matching RANGE, POINT, or TEXT index for each BTREE index (or index-backed constraint). 
+You can run `SHOW INDEXES` on your Neo4j 4.4 database to display its indexes.
+
+In most cases, RANGE indexes can replace BTREE. 
+However, there might be occasions when a different index type is more suitable, such as:
+
+* Use POINT indexes if the property value type is `point` and `distance` or `bounding box` queries are used for the property.
+* Use TEXT indexes if the property value type is `text` and the values can be larger than 8Kb.
+* Use TEXT indexes if the property value type is `text` and `CONTAINS` and `ENDS WITH` are used in queries for the property.
+
+After creating the new index, the old index should be dropped. 
+The following example shows how to create a new RANGE index and drop an existing `index_name` index:
+
+[source, Cypher, role="noplay"]
+----
+CREATE RANGE INDEX range_index_name FOR (n:Label) ON (n.prop1);
+DROP INDEX index_name;
+----
+
+The following example instead shows how to create a constraint backed by a RANGE index:
+
+[source, Cypher, role="noplay"]
+----
+CREATE CONSTRAINT constraint_with_provider FOR (n:Label) REQUIRE (n.prop1) IS UNIQUE OPTIONS {indexProvider: 'range-1.0'}
+----
+
+For more information about creating indexes, see link:{cypher-manual-5-uri}/indexes-for-search-performance/#administration-indexes-examples[Cypher Manual -> Creating indexes].
+
+=== Cypher updates
+
+Neo4j 5 introduces some changes to the Cypher syntax and error handling.
+
+==== Cypher syntax
+
+A short list of the main changes introduced in Neo4j 5:
+
+[cols="1a,1a", options="header"]
+|===
+|*Deprecated feature*
+|*Details*
+
+|[source, Cypher, role="noplay"]
+----
+MATCH (n)-[r:REL]->(m) SET n=r
+----
+|Use the `properties()` function instead to get the map of properties of nodes/relationships that can then be used in a `SET` clause:
+
+[source, Cypher, role="noplay"]
+----
+MATCH (n)-[r:REL]->(m) SET n=properties(r)
+----
+
+|[source, Cypher, role="noplay"]
+----
+MATCH (a), (b), allShortestPaths((a)-[r]->(b)) RETURN b
+
+MATCH (a), (b), shortestPath((a)-[r]->(b)) RETURN b
+----
+|`shortestPath` and `allShortestPaths` without link:https://neo4j.com/docs/cypher-manual/5/syntax/patterns/#cypher-pattern-varlength[variable-length relationship] are deprecated. Instead, use a `MATCH` with a `LIMIT` of 1 or:
+[source, Cypher, role="noplay"]
+----
+MATCH (a), (b), shortestPath((a)-[r*1..1]->(b)) RETURN b
+----
+
+|[source, Cypher, role="noplay"]
+----
+CREATE DATABASE databaseName.withDot ...
+----
+|Creating a database with unescaped dots in the name has been deprecated, instead escape the database name:
+[source, Cypher, role="noplay"]
+----
+CREATE DATABASE `databaseName.withDot` ...
+----
+|===
+
+All changes in the Cypher language syntax are detailed in link:https://neo4j.com/docs/cypher-manual/5/deprecations-additions-removals-compatibility[Cypher Manual -> Removals, deprecations, additions and extensions].
+Thoroughly review this section in the version you are moving to and make the necessary changes in your code.
+
+==== Error/Warning/Info handling in Cypher
+
+Many semantic errors that Cypher finds are reported as `Neo.ClientError.Statement.SyntaxError` even though they are semantic and not syntax errors.
+In Neo4j 5, the metadata returned by Cypher queries is improved.
+
+* The severity of some of the Warning codes is moved to Info:
+
+** `SubqueryVariableShadowingWarning` -> `SubqueryVariableShadowing`
+** `NoApplicableIndexWarning` -> `NoApplicableIndex`
+** `CartesianProductWarning` -> `CartesianProduct`
+** `DynamicPropertyWarning` -> `DynamicProperty`
+** `EagerOperatorWarning` -> `EagerOperator`
+** `ExhustiveShortestPathWarning` -> `ExhaustiveShortestPath`
+** `UnboundedVariableLengthPatternWarning` -> `UnboundedVariableLengthPattern`
+** `ExperimentalFeature` -> `RuntimeExperimental`
+
+=== APOC
+
+The APOC Core library is link:https://neo4j.com/docs/aura/platform/apoc/[supported] in Aura with some exceptions. 
+The following procedures and functions are not supported:
+
+// From https://gist.github.com/mauvo/b996b81e065f1b98e3f19d97eba5f491
+
+* `apoc.any.isDeleted`
+* `apoc.coll.pairWithOffset`
+* `apoc.coll.stdev`
+* `apoc.create.clonePathToVirtual`
+* `apoc.create.clonePathsToVirtual`
+* `apoc.create.uuidBase64ToHex`
+* `apoc.create.uuidBase64`
+* `apoc.create.uuidHexToBase64`
+* `apoc.create.virtualPath`
+* `apoc.cypher.runManyReadOnly`
+* `apoc.cypher.runSchema`
+* `apoc.cypher.runWrite`
+* `apoc.export.arrow.all`
+* `apoc.export.arrow.graph`
+* `apoc.export.arrow.query`
+* `apoc.export.arrow.stream.all`
+* `apoc.export.arrow.stream.graph`
+* `apoc.export.arrow.stream.query`
+* `apoc.import.json`
+* `apoc.import.xml`
+* `apoc.load.arrow.stream`
+* `apoc.load.arrow`
+* `apoc.load.html`
+* `apoc.load.jsonParams`
+* `apoc.log.stream`
+* `apoc.math.cosh`
+* `apoc.math.coth`
+* `apoc.math.csch`
+* `apoc.math.sech`
+* `apoc.math.sigmoidPrime`
+* `apoc.math.sigmoid`
+* `apoc.math.sinh`
+* `apoc.math.tanh`
+* `apoc.merge.nodeWithStats.eager`
+* `apoc.merge.nodeWithStats`
+* `apoc.merge.relationshipWithStats.eager`
+* `apoc.merge.relationshipWithStats`
+* `apoc.meta.data.of`
+* `apoc.meta.graph.of`
+* `apoc.meta.nodes.count`
+* `apoc.nodes.cycles`
+* `apoc.periodic.truncate`
+* `apoc.refactor.deleteAndReconnect`
+* `apoc.rel.endNode`
+* `apoc.rel.startNode`
+* `apoc.schema.relationship.indexExists`
+* `apoc.systemdb.execute`
+* `apoc.trigger.add`
+* `apoc.trigger.list`
+* `apoc.trigger.nodesByLabel`
+* `apoc.trigger.pause`
+* `apoc.trigger.propertiesByKey`
+* `apoc.trigger.removeAll`
+* `apoc.trigger.remove`
+* `apoc.trigger.resume`
+* `apoc.util.compress`
+* `apoc.util.decompress`
+* `apoc.xml.import`
+
+See the link:https://neo4j.com/docs/apoc/5/[APOC documentation] for further details.
+
+=== Procedures
+
+Some procedures have been replaced by commands:
+
+[cols="1,2", options="header"]
+|===
+| Procedure                                   | Replacement
+| `db.indexes`                                | `SHOW INDEXES` command
+| `db.indexDetails`                           | `SHOW INDEXES YIELD *` command
+| `db.schemaStatements`                       | `SHOW INDEXES YIELD *` command and `SHOW CONSTRAINTS YIELD *` command
+| `db.constraints`                            | `SHOW CONSTRAINTS` command
+| `db.createIndex`                            | `CREATE INDEX` command
+| `db.createUniquePropertyConstraint`         | `CREATE CONSTRAINT ... IS UNIQUE` command
+| `db.index.fulltext.createNodeIndex`         | `CREATE FULLTEXT INDEX` command
+| `db.index.fulltext.createRelationshipIndex` | `CREATE FULLTEXT INDEX` command
+| `db.index.fulltext.drop`                    | `DROP INDEX` command
+| `dbms.procedures`                           | `SHOW PROCEDURES` command
+| `dbms.functions`                            | `SHOW FUNCTIONS` command
+| `dbms.listTransactions`                     | `SHOW TRANSACTIONS` command
+| `dbms.killTransaction`                      | `TERMINATE TRANSACTIONS` command
+| `dbms.killTransactions`                     | `TERMINATE TRANSACTIONS` command
+| `dbms.listQueries`                          | `SHOW TRANSACTIONS` command
+| `dbms.killQuery`                            | `TERMINATE TRANSACTIONS` command
+| `dbms.killQueries`                          | `TERMINATE TRANSACTIONS` command
+| `dbms.scheduler.profile`                    | -
+|===
+
+=== Miscellaneous
+
+* Disallow repeated relationship variables.
+* Automatic coercion of a list to a boolean.
+* `exists()` function to test if property is null.
+* `apoc.create.uuid()` and `apoc.create.uuids()` have been deprecated and replaced by the existing `UUID.randomUUID()`.
+
+Refer to the link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/#_removals[Update and migration guide] for a full list of removals and deprecations.
+
+== Migrating from an existing Aura instance
+
+If you are updating an existing Aura instance, you can either:
+
+* Clone to xref:auradb/managing-databases/database-actions.adoc#_clone_to_a_new_auradb_instance[AuraDB] or xref:aurads/managing-instances/instance-actions.adoc#_clone_to_a_new_aurads_instance[AuraDS] Neo4j 5
+* Create a new xref:auradb/getting-started/create-database.adoc[AuraDB] or xref:aurads/create-instance.adoc[AuraDS] Neo4j 5 instance and copy your data
+
+== Migrating from a self-managed instance
+
+If you are migrating from a self-managed Neo4j 4.4 or 4.3 instance, you can use the link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[`neo4j-admin database upload`] command to upload the database dump into a Neo4j Aura instance.
+
+If your local Neo4j version is less than 4.3, you need to upgrade to Neo4j 4.4 first as explained in link:https://neo4j.com/docs/upgrade-migration-guide/current/version-4/[Upgrade and Migration Guide -> Neo4j 4 upgrades and migration].
