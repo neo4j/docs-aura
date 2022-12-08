@@ -100,7 +100,7 @@ Thoroughly review this section in the version you are moving to and make the nec
 
 ==== Error/Warning/Info handling in Cypher
 
-Many semantic errors that Cypher finds are reported as `Neo.ClientError.Statement.SyntaxError` when they are semantic errors.
+Many semantic errors that Cypher finds are reported as `Neo.ClientError.Statement.SyntaxError` even though they are semantic and not syntax errors.
 In Neo4j v5, the metadata returned by Cypher queries is improved.
 
 * The severity of some of the Warning codes is moved to Info:
