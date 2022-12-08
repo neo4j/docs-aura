@@ -23,7 +23,8 @@ In Neo4j 5, BTREE indexes are replaced by RANGE, POINT, and TEXT indexes.
 Before migrating a database, in Neo4j 4.4, you should create a matching RANGE, POINT, or TEXT index for each BTREE index (or index-backed constraint). 
 You can run `SHOW INDEXES` on your Neo4j 4.4 database to display its indexes.
 
-In most cases, RANGE indexes can replace BTREE. However, there might be occasions when a different index type is more suitable, such as:
+In most cases, RANGE indexes can replace BTREE. 
+However, there might be occasions when a different index type is more suitable, such as:
 
 * Use POINT indexes if the property value type is `point` and `distance` or `bounding box` queries are used for the property.
 * Use TEXT indexes if the property value type is `text` and the values can be larger than 8Kb.
