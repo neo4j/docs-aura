@@ -13,7 +13,7 @@ Neo4j's official drivers have some significant and breaking changes you need to 
 For a smooth migration:
 
 . Check the breaking changes for each driver you use, for example in the link:https://neo4j.com/docs/api/python-driver/5.0/breaking_changes.html#breaking-changes[Python driver] and in the link:https://github.com/neo4j/graph-data-science-client/blob/main/changelog.md[GDS client].
-. Make sure you switch to the latest version of the driver in line with the version of the Neo4j database.
+. Make sure you switch to the latest version of the driver in line with the version of the Neo4j database. You can do this ahead as 5.x drivers are backward compatible.
 
 The link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/drivers/breaking-changes/[Update and migration guide] contains all information and lists all the breaking changes.
 
@@ -217,6 +217,10 @@ Some procedures have been replaced by commands:
 * `apoc.create.uuid()` and `apoc.create.uuids()` have been deprecated and replaced by the existing `UUID.randomUUID()`.
 
 Refer to the link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/#_removals[Update and migration guide] for a full list of removals and deprecations.
+
+=== Neo4j Connectors
+
+If you are using a Neo4j Connector for link:https://github.com/neo4j-contrib/neo4j-spark-connector/releases/[Apache Spark] or link:https://github.com/neo4j-contrib/neo4j-streams/releases[Apache Kafka], you need to upgrade it to a version compatible with Neo4j 5.
 
 == Migrating from an existing Aura instance
 
