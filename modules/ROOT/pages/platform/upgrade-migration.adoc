@@ -4,10 +4,61 @@
 
 This tutorial describes how to upgrade Aura tiers and migrate from non-cloud setups.
 
+== Compacting database store before migration
+
+Currently, Aura does not offer a compaction feature, but this action can be performed by following these steps:
+
+. _On-premise_: Set up a Neo4j with the same minor version as Aura (e.g. version 4.3.5 for Aura 4.3). +
++
+[NOTE]
+====
+It is recommended downloading Neo4j through link:https://neo4j.com/download-center/#desktop[Neo4j Desktop] for an easy selection of the version and administration.
+====
++
+[NOTE]
+====
+When using Enterprise, ensure you have access to the essential database administration tools for the next operations.
+====
+
+. _On Aura_: download a Dump file (xref:auradb/managing-databases/backup-restore-export.adoc#_snapshot_actions[Export]) from your Aura instance.
+
+. _On-premise_: load the dump file `neo4j-admin load`. 
+This will create the store and should require the same disk space as in your Aura instance (i.e. before disk compaction). 
+See more details in link:https://neo4j.com/docs/operations-manual/current/backup-restore/restore-dump#restore-dump-syntax[Restore a database dump].
+
+. From Neo4j Desktop, start the database to validate it was imported properly. 
+If everything is correct, stop the database from Neo4j Desktop.
+
+. Run `neo4j-admin copy --compact-node-store` to copy and compact the datastore. 
+Read more about link:https://neo4j.com/docs/operations-manual/current/backup-restore/copy-database#copy-database-syntax[Copy a database store]. +
++
+[NOTE]
+====
+* Indexes will not be copied, but a file is generated containing the commands to recreate them later.
+* Your machine needs a lot of memory and excellent disk performance for this task. +
+If your datastore is large, you need to help allocate more memory to process large chunks at a time by using `--to-pagecache=4G 
+--from-pagecache=16G` (as close to as possible of the source datastore size). +
+* In regards to disk space, you will need the original store size + the compacted size (or use different disks/partitions ).
+====
+
+. Start the compacted database to validate it is working correctly and that the copy operation was successful.
+
+. Stop the database and create a Dump file with `neo4j-admin dump`. 
+The file will be based on compacted data.
+See more details about link:https://neo4j.com/docs/operations-manual/current/backup-restore/offline-backup/#offline-command-syntax[Back up an offline database].
+
+. Run `push-to-cloud` to validate the size of the file.
+
+. _On Aura_: Once the dump is loaded, verify the Metrics -> Storage Used (%) chart on Aura and check if the size change was reflected. 
+You may need to select a 6-hour time range to see that.
+
+. Connect to your AuraDB instance and run the Cypher commands to re-create the indexes based on step 5.
+
 == Migration from Community Edition to AuraDB Enterprise
 
 . Take the latest backup via `neo4j-admin backup --backup-dir=/backup --name=mydb --from=backuphost:6363`.
 Refer to the link:https://neo4j.com/docs/upgrade-migration-guide/current/tutorials/online-backup-copy-database/[database backup tutorial] for more details.
+
 . Perform migration using `neo4j-admin copy` as in the following example: `./neo4j-admin copy --from-path=/backup --to-database=myDB --to-format=aligned`.
 +
 [NOTE]
@@ -42,20 +93,41 @@ CREATE LOOKUP INDEX rel_type_lookup FOR ()-[r]-() ON EACH type(r)
 == Migration from AuraDB Pro to AuraDB Enterprise
 
 . Download a snapshot from your Aura Pro instance.
-Read the instructions link:https://neo4j.com/docs/aura/current/managing-databases/backup-restore-export/[here].
+Read the xref:auradb/managing-databases/backup-restore-export.adoc[instructions].
 
-. link:https://neo4j.com/docs/aura/current/getting-started/create-database/[Create a database] in AuraDB Enterprise.
+. xref:auradb/getting-started/create-database.adoc[Create a database] in AuraDB Enterprise.
 
-. link:https://neo4j.com/docs/aura/current/getting-started/importing-data/[Import data] into the database.
+. xref:auradb/importing/importing-data.adoc[Import data] into the database.
 
 == Migration from self-managed Neo4j to AuraDB Enterprise
+
+Before starting, follow these steps:
+
+. *Leverage the power of the causal cluster*: designate read-only (RO) and read-write (RW) operations explicitly. 
+At this stage, consider the driver language used for your application.
+
+. *Control the number of connections*: with AuraDB the maximum number of connections a cluster node can accept is limited by the setting `dbms.connector.bolt.thread_pool_max_size = 400`. 
+Consider limiting the number of driver instances created to a low number and also adjust the setting of the connection pool in your driver configuration. +
++
+[NOTE]
+====
+Remember that you can scale by creating sessions within a driver.
+This option is fast to create and manage, and will only consume connections from the pool.
+====
+
+. *Ensure you have the store format for Aura*: the best option for a cloud service (that makes best use of the IOPS resources) is not set to default, so consider checking it.
+
+. *Drop your index when importing a dump file*: for improved efficiency, drop index beforehand, and rebuild them after loading the dump file.
+
+. *Update your driver version*: keep your drivers updated for better usage of the database. 
+Consider upgrading your drivers to catch up regularly with the latest improvements and benefit from the latest bug fixes.
 
 The following steps apply to both on-premise and hosted self-managed instances of Neo4j.
 
 [WARNING]
 ====
-Before starting, make sure your new AuraDB Enterprise database is sized correctly to support the migration.
-The new database you will create must be at least as large as your self-managed cluster to accommodate the data.
+Before starting, make sure your new AuraDB Enterprise database is sized correctly to support the migration. 
+The new database you will create must be at least as large as your self-managed cluster to accommodate the data. 
 The AuraDB RAM-to-storage ratio is 1:2, which means, for example, that a 32 GB AuraDB database will provide 64 GB of storage.
 ====
 
@@ -72,35 +144,42 @@ This process requires a short downtime for the existing cluster.
 .. Signed in as neo4j-admin, create a dump file from your self-managed instance by following the steps below.
 
 . **Creating a dump file of Neo4j:** +
-.. Log into the server running your Neo4j database.
-.. Run `cd` to the directory containing your Neo4j installation.
-If you are unsure of the location and you are running on your local machine, you can open a terminal in Neo4j Desktop to navigate to it.
-.. Stop the existing database by running `bin/neo4j stop`.
-.. Make sure the backup directory exists by running `mkdir -p backups/graph.db`.
-.. Take the backup by running
-+
-[source, Cypher-shell]
-----
-bin/neo4j-admin dump --database=graph.db --to=backups/graph.db/`date +%Y%m%d`.dump
-----
+.. Stop your database and produce the latest backup of your current on premise version with `neo4j-admin backup --backup-dir=/backup --name=mydb --from=backuphost:<<port_number>>`.
 
-. **Import to the AuraDB Enterprise database:** +
-.. The final step is to import your data.
-If the dump file is smaller than 4GB, you can drag and drop the file into the AuraDB console.
-If the dump file is 4GB or larger, please use the command line tool `push-to-cloud`.
-.. Open the new database and click the "Import Data" tab.
-.. Click the "Choose file" button to navigate to the location of the `.dump` file you created earlier.
-
-. **Check that the data was imported properly:** +
-.. Before using the new database, perform some tests to make sure that everything is working as expected.
-One quick way to do this is to open a browser window for both the original and new databases and run this Cypher query against them, comparing the output:
+.. On your local 4.4.4, perform migration using `neo4j-admin copy`. 
+A sample command would be `./neo4j-admin copy --from-path=/backup --to-database=myDB --to-format=aligned`. +
 +
-[source, cypher, role=noplay]
+[NOTE]
+====
+This will drop your indexes and constraints, which is what you want to happen. 
+The `--to-format=aligned` option will force the copied database to be created using the aligned store format.
+====
+
+.. Once the migration is complete you should be able to see a migrated db in the 4.4.4 databases directory. 
+Make sure the `neo4j.conf` is updated with the default database to the migrated database name in the config.
+
+.. Start the neo4j 4.4.4 instance. 
+Once the instance comes up check if migrated DB is available.
+
+.. Perform basic validations (node counts and relationships counts etc).
+
+.. If all validations are good, stop the database, and upload the dump to the Aura instance using link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[push-to-cloud]. 
+
+.. Apply the indexes to the database. 
+These index statements are available in the migration log.
+
+.. Once the above steps are complete, validate the data.
+One quick way to do this is to open a browser window for both the original and new databases, and run this Cypher query against them, comparing the output: +
++
+[source, cypher]
 ----
 MATCH (n)
 RETURN DISTINCT labels(n) as Labels, count(labels(n)) as NumberOfNodes
 ----
++
+[NOTE]
+====
+The number of labels should be the same as in the original database. If they are not, contact support.
+====
 
-.. The number of labels should be the same as in the original database.
-If they are not, contact support.
 .. Finally, run any other tests you already have in place.
