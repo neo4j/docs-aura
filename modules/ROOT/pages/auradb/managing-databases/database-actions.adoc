@@ -105,6 +105,11 @@ There are four ways to clone an instance:
 * Clone to an existing AuraDB instance.
 * Clone to an existing AuraDS instance.
 
+[NOTE]
+====
+You cannot clone from a Neo4j version 5 instance to a Neo4j version 4 instance.
+====
+
 === Clone to a new AuraDB instance
 
 . Select the ellipsis (*...*) button on the instance you want to clone.

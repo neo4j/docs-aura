@@ -8,6 +8,7 @@
     "start": "nodemon -e adoc --exec \"npm run build && npm run serve\"",
     "serve": "node server.js",
     "build": "antora preview.yml --stacktrace --log-format=pretty",
+    "build-verify": "antora --stacktrace --fetch preview.yml --log-format=json --log-level=info --log-file ./build/log/log.json",
     "lint": "node scripts/lint-links.js",
     "apoc": "node scripts/apoc"
   },
@@ -26,7 +27,7 @@
     "@antora/cli": "^3.0.0",
     "@antora/site-generator-default": "^3.0.0",
     "@neo4j-antora/antora-add-notes": "^0.1.6",
-    "@neo4j-antora/antora-modify-sitemaps": "^0.4.3",
+    "@neo4j-antora/antora-modify-sitemaps": "^0.4.4",
     "@neo4j-documentation/macros": "^1.0.2",
     "@neo4j-documentation/remote-include": "^1.0.0",
     "nodemon": "^1.19.4"

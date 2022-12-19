@@ -1,0 +1,8 @@
+`database upload` is a Neo4j Admin command that you can run to upload the contents of a Neo4j database into an Aura instance, regardless of the database's size.
+
+Details on how to use the command, along with a full list of options, can be found in the https://neo4j.com/docs/operations-manual/5/tools/neo4j-admin/push-to-cloud/[Neo4j Admin database upload documentation].
+
+[NOTE]
+====
+The `database upload` command was introduced in Neo4j Admin version 5, replacing the `push-to-cloud` command that was present in Neo4j Admin version 4.4 and earlier. If you have an earlier version of the Neo4j Admin tool, please see the https://neo4j.com/docs/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[Neo4j Admin push-to-cloud documentation].
+====

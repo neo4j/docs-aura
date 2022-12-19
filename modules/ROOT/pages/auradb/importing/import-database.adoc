@@ -4,15 +4,15 @@
 
 [NOTE]
 ====
-The process of importing or loading data requires you to xref:auradb/getting-started/create-database.adoc[create an AuraDB instance] beforehand. 
+The process of importing or loading data requires you to xref:auradb/getting-started/create-database.adoc[create an AuraDB instance] beforehand.
 ====
 
 There are two ways you can import data from an existing Neo4j database into an AuraDB instance.
 
 The easiest way is to export a Neo4j database as a *_.dump_* file and use the <<_import_database>> process.
-This process, however, only works for *_.dump_* files under 4GB. 
+This process, however, only works for *_.dump_* files under 4GB.
 
-If the size of the *_.dump_* file exported from a database is greater than 4GB, you must use the <<_push_to_cloud>> method.
+If the size of the *_.dump_* file exported from a database is greater than 4GB, you must use the <<_neo4j_admin_database_upload>> method.
 
 == Import database
 
@@ -24,11 +24,9 @@ To import a *_.dump_* file under 4GB:
 . Drag and drop your *_.dump_* file into the provided window or select *Select a .dump file* and select your file.
 . Select *Upload*.
 
-When the upload is complete, the instance goes into a 'Loading' state as the dump is applied. 
+When the upload is complete, the instance goes into a 'Loading' state as the dump is applied.
 Once this has finished, the instance returns to its 'Running' state; and the data is ready.
 
-== Push-to-cloud
+== Neo4j Admin `database upload`
 
-`Push-to-cloud` is a Neo4j Admin command that you can run to upload the contents of a Neo4j database into an AuraDB instance, regardless of the database's size.
-
-Details on how to use the command, along with a full list of options, can be found in the https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/push-to-cloud/[Neo4j Admin push-to-cloud documentation].
+include::partial$database-upload.adoc[]

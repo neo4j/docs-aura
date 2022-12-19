@@ -1,0 +1,24 @@
+# This is an example of the docs-teardown.yml workflow available from the recrwplay org
+name: "Documentation Teardown"
+
+on:
+  pull_request_target:
+    branches:
+      - main
+      - dev
+    types:
+      - closed
+
+jobs:
+  teardown-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: lts/*
+      - name: Teardown documentation
+        run: |
+          npm install -g surge
+          surge teardown ${{ github.event.repository.owner.login}}-${{ github.event.repository.name}}-${{ github.event.pull_request.number }}.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+          

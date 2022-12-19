@@ -4,7 +4,7 @@
 
 == Prerequisites
 
-- Go runtime
+- Go runtime at supported version (see https://go.dev/doc/devel/release#policy[Go release policy])
 
 == Initializing the project
 
@@ -23,9 +23,10 @@ go get
 package main
 
 import (
+	"context"
 	"fmt"
 
-	"github.com/neo4j/neo4j-go-driver/v4/neo4j"
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
 )
 
 func main() {
@@ -36,20 +37,25 @@ func main() {
 	// You typically have one driver instance for the entire application. The
 	// driver maintains a pool of instance connections to be used by the sessions.
 	// The driver is thread safe.
-	driver, err := neo4j.NewDriver(uri, auth)
+	driver, err := neo4j.NewDriverWithContext(uri, auth)
 	if err != nil {
 		panic(err)
 	}
+	// You can specify custom contexts to control the execution of the driver operations
+	// This one never cancels, never times out and is used in subsequent calls
+	// You can instead specify different contexts for different operations
+	// Read more about contexts in https://pkg.go.dev/context
+	ctx := context.Background()
 	// Don't forget to close the driver connection when you are finished with it
-	defer driver.Close()
+	defer driver.Close(ctx)
 	// Create a session to run transactions in. Sessions are lightweight to
 	// create and use. Sessions are NOT thread safe.
-	session := driver.NewSession(neo4j.SessionConfig{DatabaseName: "neo4j"})
-	defer session.Close()
+	session := driver.NewSession(ctx, neo4j.SessionConfig{DatabaseName: "neo4j"})
+	defer session.Close(ctx)
 	// WriteTransaction retries the operation in case of transient errors by
 	// invoking the anonymous function multiple times until it succeeds.
-	records, err := session.WriteTransaction(
-		func(tx neo4j.Transaction) (interface{}, error) {
+	records, err := session.ExecuteWrite(ctx,
+		func(tx neo4j.ManagedTransaction) (any, error) {
 			// To learn more about the Cypher syntax, see https://neo4j.com/docs/cypher-manual/current/
 			// The Reference Card is also a good resource for keywords https://neo4j.com/docs/cypher-refcard/current/
 			createRelationshipBetweenPeopleQuery := `
@@ -57,7 +63,7 @@ func main() {
 				MERGE (p2:Person { name: $person2_name })
 				MERGE (p1)-[:KNOWS]->(p2)
 				RETURN p1, p2`
-			result, err := tx.Run(createRelationshipBetweenPeopleQuery, map[string]interface{}{
+			result, err := tx.Run(ctx, createRelationshipBetweenPeopleQuery, map[string]any{
 				"person1_name": "Alice",
 				"person2_name": "David",
 			})
@@ -69,7 +75,7 @@ func main() {
 			// Collects all records and commits the transaction (as long as
 			// Collect doesn't return an error).
 			// Beware that Collect will buffer the records in memory.
-			return result.Collect()
+			return result.Collect(ctx)
 		})
 	if err != nil {
 		panic(err)
@@ -83,14 +89,14 @@ func main() {
 
 	// Now read the created persons. By using ReadTransaction method a connection
 	// to a read replica can be used which reduces load on writer nodes in cluster.
-	_, err = session.ReadTransaction(func(tx neo4j.Transaction) (interface{}, error) {
+	_, err = session.ExecuteRead(ctx, func(tx neo4j.ManagedTransaction) (any, error) {
 		// Code within this function might be invoked more than once in case of
 		// transient errors.
 		readPersonByName := `
 			MATCH (p:Person)
 			WHERE p.name = $person_name
 			RETURN p.name AS name`
-		result, err := tx.Run(readPersonByName, map[string]interface{}{
+		result, err := tx.Run(ctx, readPersonByName, map[string]any{
 			"person_name": "Alice",
 		})
 		if err != nil {
@@ -100,7 +106,7 @@ func main() {
 		// Collect (just to show how it looks...). Result.Next returns true
 		// while a record could be retrieved, in case of error result.Err()
 		// will return the error.
-		for result.Next() {
+		for result.Next(ctx) {
 			fmt.Printf("Person name: '%s' \n", result.Record().Values[0].(string))
 		}
 		// Again, return any error back to driver to indicate rollback and
