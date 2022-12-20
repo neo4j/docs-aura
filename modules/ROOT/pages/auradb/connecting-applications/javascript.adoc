@@ -137,11 +137,11 @@ Two functions are then called:
 
 [NOTE]
 ====
-Developing with Neo4j Aura requires the use of https://neo4j.com/docs/javascript-manual/current/session-api/#js-driver-async-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
+Developing with Neo4j Aura requires the use of link:{neo4j-docs-base-uri}/javascript-manual/current/session-api/#js-driver-async-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
 ====
 
 Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging.
 
 == References
 
-- https://neo4j.com/docs/javascript-manual/current/[Neo4j JavaScript Driver Documentation]
+- link:{neo4j-docs-base-uri}/javascript-manual/[Neo4j JavaScript Driver Documentation]

@@ -182,11 +182,11 @@ The `Main` function calls the following two functions:
 
 [NOTE]
 ====
-Developing with Neo4j Aura requires the use of https://neo4j.com/docs/dotnet-manual/current/session-api/#dotnet-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
+Developing with Neo4j Aura requires the use of link:{neo4j-docs-base-uri}/dotnet-manual/current/session-api/#dotnet-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
 ====
 
 Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging. This example catches a `Neo4jException`.
 
 == References
 
-- https://neo4j.com/docs/dotnet-manual/current/[Neo4j .NET Driver Documentation]
+- link:{neo4j-docs-base-uri}/dotnet-manual/[Neo4j .NET Driver Documentation]

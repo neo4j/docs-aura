@@ -11,7 +11,7 @@
 
 There are two ways you can import data from an existing Neo4j database into an AuraDS instance.
 
-The easiest way is to export a Neo4j database as a *_.dump_* file (as shown in the https://neo4j.com/docs/operations-manual/current/backup-restore/offline-backup/[operations manual]) and use the <<_import_database>> process.
+The easiest way is to export a Neo4j database as a *_.dump_* file (as shown in the link:{neo4j-docs-base-uri}/operations-manual/current/backup-restore/offline-backup/[operations manual]) and use the <<_import_database>> process.
 This process, however, only works for *_.dump_* files under 4GB. If the size of the *_.dump_* file exported from a database is greater than 4GB, you must use the <<_push_to_cloud>> method.
 
 === Import database
