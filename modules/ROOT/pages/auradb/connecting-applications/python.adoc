@@ -117,11 +117,11 @@ The `Main` function calls the following two functions:
 
 [NOTE]
 ====
-Developing with Neo4j Aura requires the use of https://neo4j.com/docs/python-manual/current/session-api/#python-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
+Developing with Neo4j Aura requires the use of link:{neo4j-docs-base-uri}/python-manual/current/session-api/#python-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
 ====
 
 Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging.
 
 == References
 
-- https://neo4j.com/docs/python-manual/current/[Neo4j Python Driver Documentation]
+- link:{neo4j-docs-base-uri}/python-manual/[Neo4j Python Driver Documentation]
