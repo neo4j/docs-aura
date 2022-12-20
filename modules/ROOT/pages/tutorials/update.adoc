@@ -234,6 +234,9 @@ If you are updating an existing Aura instance, you can either:
 
 == Migrating from a self-managed instance
 
-If you are migrating from a self-managed Neo4j 4.4 or 4.3 instance, you can use the link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[`neo4j-admin database upload`] command to upload the database dump into a Neo4j Aura instance.
+If you are migrating from a self-managed instance, you can upload the database dump into a Neo4j Aura instance:
+
+- With the link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[`neo4j-admin database upload`] command (if your instance uses Neo4j 5)
+- With the link:https://neo4j.com/docs/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[`neo4j-admin push-to-cloud`] command (if your instance uses Neo4j 4.4 or 4.3)
 
 If your local Neo4j version is less than 4.3, you need to upgrade to Neo4j 4.4 first as explained in link:https://neo4j.com/docs/upgrade-migration-guide/current/version-4/[Upgrade and Migration Guide -> Neo4j 4 upgrades and migration].
