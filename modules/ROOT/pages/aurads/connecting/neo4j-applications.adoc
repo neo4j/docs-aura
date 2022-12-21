@@ -24,7 +24,7 @@ To open an AuraDS instance with Neo4j Browser:
 These are the same credentials you stored when you xref:aurads/create-instance.adoc[created the instance].
 . Select *Connect*.
 
-Once you have successfully connected, there are built-in guides you can complete to familiarize yourself with Neo4j Browser. See the https://neo4j.com/docs/browser-manual/current/[Browser manual^] for more information.
+Once you have successfully connected, there are built-in guides you can complete to familiarize yourself with Neo4j Browser. See the link:{neo4j-docs-base-uri}/browser-manual/[Browser manual^] for more information.
 
 == Neo4j Bloom
 
@@ -36,7 +36,7 @@ To open an AuraDS instance with Neo4j Bloom:
 These are the same credentials you stored when you xref:aurads/create-instance.adoc[created the instance].
 . Select *Connect*.
 
-See the https://neo4j.com/docs/bloom-user-guide/current/[Neo4j Bloom documentation^] for more details.
+See the link:{neo4j-docs-base-uri}/bloom-user-guide/[Neo4j Bloom documentation^] for more details.
 
 [NOTE]
 .Perspectives in AuraDS
@@ -56,7 +56,7 @@ To export a Perspective:
 You can import perspectives by clicking the blue "Import Perspective" button in the Perspective gallery.
 Please note that the Perspective exposes details about your graph's schema but not the actual data within.
 
-For more information, see https://neo4j.com/docs/bloom-user-guide/1.5/bloom-perspectives/[Bloom Perspectives^].
+For more information, see link:{neo4j-docs-base-uri}/bloom-user-guide/current/bloom-perspectives/[Bloom Perspectives^].
 
 *Deep links*
 
@@ -92,7 +92,7 @@ As with other databases in Neo4j Desktop, you can install https://install.grapha
 
 == Neo4j Cypher Shell
 
-You can connect to an AuraDS instance using the Neo4j Cypher Shell command-line interface (CLI) and run Cypher commands against your instance from the command line. Refer to the https://neo4j.com/docs/operations-manual/current/tools/cypher-shell/[Operations manual^] for instructions on how to install the Cypher Shell.
+You can connect to an AuraDS instance using the Neo4j Cypher Shell command-line interface (CLI) and run Cypher commands against your instance from the command line. Refer to the link:{neo4j-docs-base-uri}/operations-manual/current/tools/cypher-shell/[Operations manual^] for instructions on how to install the Cypher Shell.
 
 To connect to an AuraDS instance using Neo4j Cypher Shell:
 
@@ -111,4 +111,4 @@ To connect to an AuraDS instance using Neo4j Cypher Shell:
 
 Once connected, you can run `:help` for a list of available commands.
 
-For more information on Cypher Shell, including how to install it, see the https://neo4j.com/docs/operations-manual/current/tools/cypher-shell/[Cypher Shell documentation^].
+For more information on Cypher Shell, including how to install it, see the link:{neo4j-docs-base-uri}/operations-manual/current/tools/cypher-shell/[Cypher Shell documentation^].

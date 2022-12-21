@@ -5,7 +5,7 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1EfICJ1T9Ey6jIQP4YlEcLRxGtpJVXx5E?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-This example shows how to train, save, publish, and drop a machine learning model using the https://neo4j.com/docs/graph-data-science/current/model-catalog/[Model Catalog].
+This example shows how to train, save, publish, and drop a machine learning model using the link:{neo4j-docs-base-uri}/graph-data-science/current/model-catalog/[Model Catalog].
 
 include::partial$aurads/setup.adoc[]
 
@@ -196,7 +196,7 @@ with driver.session() as session:
 
 == Train a model
 
-Machine learning algorithms that support the `train` mode produce trained models which are stored in the Model Catalog. Similarly, `predict` procedures can use such trained models to produce predictions. In this example we train a model for the https://neo4j.com/docs/graph-data-science/current/machine-learning/node-embeddings/graph-sage/[GraphSAGE algorithm^] using the `train` mode.
+Machine learning algorithms that support the `train` mode produce trained models which are stored in the Model Catalog. Similarly, `predict` procedures can use such trained models to produce predictions. In this example we train a model for the link:{neo4j-docs-base-uri}/graph-data-science/current/machine-learning/node-embeddings/graph-sage/[GraphSAGE algorithm^] using the `train` mode.
 
 [.tabbed-example]
 ====
@@ -275,7 +275,7 @@ with driver.session() as session:
 
 == View the model catalog
 
-We can use the https://neo4j.com/docs/graph-data-science/current/model-catalog/list/[`gds.beta.model.list`^] procedure to get information on all the models currently available in the catalog. Along with information on the graph schema, the model name, and the training configuration, the result of the call contains the following fields:
+We can use the link:{neo4j-docs-base-uri}/graph-data-science/current/model-catalog/list/[`gds.beta.model.list`^] procedure to get information on all the models currently available in the catalog. Along with information on the graph schema, the model name, and the training configuration, the result of the call contains the following fields:
 
 * `loaded`: flag denoting if the model is in memory (`true`) or available on disk (`false`)
 * `stored`: flag denoting whether the model has been persisted to disk
@@ -323,7 +323,7 @@ with driver.session() as session:
 
 == Save a model to disk
 
-The https://neo4j.com/docs/graph-data-science/current/model-catalog/store/[`gds.alpha.model.store`^] procedure can be used to persist a model to disk. This is useful both to keep models for later reuse and to free up memory.
+The link:{neo4j-docs-base-uri}/graph-data-science/current/model-catalog/store/[`gds.alpha.model.store`^] procedure can be used to persist a model to disk. This is useful both to keep models for later reuse and to free up memory.
 
 [WARNING]
 ====
@@ -422,7 +422,7 @@ IMPORTANT: A model can only be shared with other users of the same AuraDS instan
 
 === Create a new user
 
-In order to see how this works in practice on AuraDS, we first of all need to https://neo4j.com/docs/cypher-manual/current/administration/security/users-and-roles/[create another user^] to share the model with.
+In order to see how this works in practice on AuraDS, we first of all need to link:{neo4j-docs-base-uri}/cypher-manual/current/administration/security/users-and-roles/[create another user^] to share the model with.
 
 [.tabbed-example]
 ====
@@ -478,7 +478,7 @@ with driver.session(database="system") as session:
 
 === Publish the model
 
-A model can be _published_ (made accessible to other users) using the https://neo4j.com/docs/graph-data-science/current/model-catalog/publish/[`gds.alpha.model.publish`] procedure. Upon publication, the model name is updated by appending `{leading-underscore}public` to its original name.
+A model can be _published_ (made accessible to other users) using the link:{neo4j-docs-base-uri}/graph-data-science/current/model-catalog/publish/[`gds.alpha.model.publish`] procedure. Upon publication, the model name is updated by appending `{leading-underscore}public` to its original name.
 
 [.tabbed-example]
 ====
