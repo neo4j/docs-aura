@@ -48,11 +48,15 @@ Each plan offers different levels of functionality and support:
 | Multi-tenant
 | Single-tenant with VPC isolation, dedicated cloud infrastructure
 
-
 | Cloud providers
 | GCP
 | GCP
-| AWS, GCP
+| AWS, Azure, GCP
+
+| On-demand query logs
+|
+| {check-mark}
+| {check-mark}
 
 | Service availability SLA
 |
@@ -71,8 +75,18 @@ Each plan offers different levels of functionality and support:
 
 | Clone database
 |
-|
 | {check-mark}
+| {check-mark}
+
+| Pause database
+| Automatic after 3 days of inactivity
+| On demand
+| On demand
+
+| Resume database
+| On demand or auto-deleted after 90 days
+| On demand or auto-resumed after 30 days
+| On demand or auto-resumed after 30 days
 |===
 
 .Tools integrations and ecosystem
@@ -93,12 +107,22 @@ Each plan offers different levels of functionality and support:
 | {check-mark}
 | {check-mark}
 
-| Support Apache Spark connector
+| Standard procedure library (xref:platform/apoc.adoc[APOC-core])
 | {check-mark}
 | {check-mark}
 | {check-mark}
 
-| Standard procedure library (apoc-core)
+| Data Connector: Apache Spark
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Data Connector: Apache Kafka
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Data Connector: Business Intelligence (BI)
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -151,15 +175,20 @@ Each plan offers different levels of functionality and support:
 |
 | {check-mark}
 
-| Single sign-on
+| Private VPC endpoints
+|
+|
+| AWS PrivateLink, Azure Private Link, GCP Private Service Connect
+
+| Security logs
 |
 |
 | {check-mark}
 
-| Private VPC endpoints
+| Single sign-on
 |
 |
-| AWS using AWS PrivateLink
+| {check-mark}
 |===
 
 .Pricing and usage
@@ -194,6 +223,11 @@ Each plan offers different levels of functionality and support:
 | Click-through
 | Click-through
 | Enterprise with commercial negotiations
+
+| Cloud marketplace private offers
+|
+|
+| {check-mark}
 |===
 
 [NOTE]

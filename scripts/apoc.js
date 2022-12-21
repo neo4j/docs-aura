@@ -8,7 +8,7 @@ const neo4j = require('neo4j-driver')
 const { NEO4J_HOST,
     NEO4J_USERNAME,
     NEO4J_PASSWORD,
-    AURA_VERSION,
+    DOCS_VERSION,
 } = process.env
 
 const header = `[.procedures, opts=header, cols='5a,1a', separator=¦]
@@ -35,18 +35,6 @@ session.readTransaction(tx => tx.run(`
         const parts = name.split('.')
         const namespace = parts.length == 2 ? 'apoc' : parts.slice(0, 2).join('.')
 
-        // REMOVED UNTIL DESCRIPTION SYNTAX IS IMPROVED
-        // let description = ''
-        // if (text.includes(' - ')){
-        //     description = text.split(' - ')[1]
-        // } else if(text.includes(' | ')){
-        //     description = text.split(' | ')[1]
-        // } else if(text.startsWith(name)) {
-        //     description = text.split(') ')[1]
-        // } else {
-        //     description = text
-        // }
-
         return {
             name,
             text,
@@ -67,7 +55,7 @@ session.readTransaction(tx => tx.run(`
 == ${namespace}
 
 ${header}
-${procedures.map(({ name, text, type }) => `¦ link:https://neo4j.com/labs/apoc/${AURA_VERSION}/overview/${namespace}/${name}[${name} icon:book[] ^] +
+${procedures.map(({ name, text, type }) => `¦ link:https://neo4j.com/docs/apoc/${DOCS_VERSION}/overview/${namespace}/${name}[${name} icon:book[] ^] +
 ${text || ''}
 ¦ label:${type}[]`).join('')}
 ${footer}`).join('\n\n'))
