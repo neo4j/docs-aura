@@ -169,7 +169,7 @@ But before doing that, follow these steps:
 . *Leverage the power of the causal cluster*: designate read-only (RO) and read-write (RW) operations explicitly. 
 At this stage, consider the driver language used for your application.
 
-. *Control the number of connections*: with AuraDB the maximum number of connections a cluster node can accept is limited by the setting `dbms.connector.bolt.thread_pool_max_size = 400`. 
+. *Control the number of connections*: with Aura the maximum number of connections a cluster node can accept is limited by the setting `dbms.connector.bolt.thread_pool_max_size = 400`. 
 Consider limiting the number of driver instances created to a low number and also adjust the setting of the connection pool in your driver configuration. +
 +
 [NOTE]
@@ -197,12 +197,12 @@ The following steps apply to both on-premise and hosted self-managed instances o
 
 [WARNING]
 ====
-Before starting, make sure your new AuraDB Enterprise database is sized correctly to support the migration. 
+Before starting, make sure your new Aura database is sized correctly to support the migration. 
 The new database you will create must be at least as large as your self-managed cluster to accommodate the data. 
-The AuraDB RAM-to-storage ratio is 1:2, which means, for example, that a 32 GB AuraDB database will provide 64 GB of storage.
+The Aura RAM-to-storage ratio is 1:2, which means, for example, that a 32 GB Aura database will provide 64 GB of storage.
 ====
 
-. Data from Neo4j v3.5.x and/or Neo4j 4.x can be directly migrated to your AuraDB Enterprise instance.
+. Data from Neo4j v3.5.x and/or Neo4j 4.x can be directly migrated to your Aura Enterprise instance.
 If you are running an older version of Neo4j, use link:https://neo4j.com/docs/operations-manual/3.5/upgrade/planning/[this migration guide] to upgrade to Neo4j 3.5.x.
 In case your version is older, refer to link:https://neo4j.com/docs/operations-manual/3.4/upgrade/planning/[these migration instructions].
 +
