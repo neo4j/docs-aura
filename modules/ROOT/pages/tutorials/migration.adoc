@@ -1,0 +1,90 @@
+= Migrate from self-managed to Aura
+:description: This section describes how to migrate from a self-managed Neo4j instance to Aura.
+
+This tutorial describes how to migrate from a self-managed Neo4j instance to Aura.
+Before proceeding, be sure to follow the preparation steps.
+
+== Preparation
+
+[NOTE]
+====
+In case you are migrating from self-managed Neo4j 4 to Neo4j 5 on Aura, make sure you take the necessary preparation steps as detailed in the xref:tutorials/upgrade.adoc#_preparation[Upgrade tutorial].
+====
+
+=== APOC
+
+If you are using any APOC procedures and functions, make sure they are all available in Aura by checking the link:https://neo4j.com/docs/aura/platform/apoc/[APOC Core library].
+See the link:https://neo4j.com/docs/apoc/5/[APOC documentation] for further details.
+
+=== Data store compaction
+
+In some cases, data store compaction might be a necessary step to be performed before migrating to Aura, so that you may include a strategy in https://neo4j.com/docs/operations-manual/current/performance/space-reuse/#space-reuse-reclaim-space[space reuse] to your process.
+You can do this by using an https://aura.support.neo4j.com/hc/en-us/articles/4409819652755-Performing-data-store-compaction-using-an-AWS-EC2-instance-[AWS EC2 instance] or using https://aura.support.neo4j.com/hc/en-us/articles/4408091782675[Neo4j Desktop].
+
+== Migrating from self-managed Neo4j to Aura
+
+If you are migrating from a self-managed instance, you can upload the database dump into a Neo4j Aura instance.
+Jump to this section to read the instructions on how to xref:/tutorials/migration.adoc#_creating_a_database_dump[create the database dump file].
+
+[WARNING]
+====
+Before starting, make sure your new Aura database is sized correctly to support the migration. 
+The new database you will create must be at least as large as your self-managed cluster to accommodate the data. 
+The Aura RAM-to-storage ratio is 1:2, which means, for example, that a 32 GB Aura database will provide 64 GB of storage.
+====
+
+* Data from Neo4j 4.x can be directly migrated to your Aura instance.
+If you are running an older version of Neo4j, use link:https://neo4j.com/docs/operations-manual/3.5/upgrade/planning/[this migration guide].
++
+[NOTE]
+====
+This process requires a short downtime for the existing cluster.
+====
++
+* Signed in as `neo4j-admin`, create a dump file from your self-managed instance by following the steps below.
+
+* If your instance uses Neo4j 5, use the link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[`neo4j-admin database upload`] command.
+* If your instance uses Neo4j 4.4 or 4.3, use the link:https://neo4j.com/docs/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[`neo4j-admin push-to-cloud`] command.
+* If your local Neo4j version is previous to 4.3, you need to upgrade to Neo4j 4.4 first as explained in link:https://neo4j.com/docs/upgrade-migration-guide/current/version-4/[Upgrade and Migration Guide -> Neo4j 4 upgrades and migration].
+
+=== Creating a database dump
+
+. Stop your database and produce the latest backup of your current self-managed version with `neo4j-admin backup --backup-dir=/backup --name=mydb --from=backuphost:<<port_number>>`.
+
+. On your local 4.4, perform migration using `neo4j-admin copy`. 
+A sample command would be `./neo4j-admin copy --from-path=/backup --to-database=myDB --to-format=aligned`. +
++
+[NOTE]
+====
+This will drop your indexes and constraints, which is what you want to happen. 
+The `--to-format=aligned` option will force the copied database to be created using the aligned store format.
+====
+
+. Once the migration is complete you should be able to see a migrated db in the 4.4 databases directory. 
+Make sure the `neo4j.conf` is updated with the default database to the migrated database name in the config.
+
+. Start the neo4j 4.4 instance. 
+Once the instance comes up check if migrated DB is available.
+
+. Perform basic validations (node counts and relationships counts etc).
+
+. If all validations are good, stop the database, and upload the dump to the Aura instance using link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[push-to-cloud]. 
+
+.. Apply the indexes to the database. 
+These index statements are available in the migration log.
+
+.. Once the above steps are complete, validate the data.
+One quick way to do this is to open a browser window for both the original and new databases, and run this Cypher query against them, comparing the output: +
++
+[source, cypher]
+----
+MATCH (n)
+RETURN DISTINCT labels(n) as Labels, count(labels(n)) as NumberOfNodes
+----
++
+[NOTE]
+====
+The number of labels should be the same as in the original database. If they are not, contact support.
+====
+
+.. Finally, run any other tests you already have in place.
