@@ -193,7 +193,7 @@ Consider upgrading your drivers to catch up regularly with the latest improvemen
 
 === Initial data loading
 
-The following steps apply to both on-premise and hosted self-managed instances of Neo4j. 
+The following steps apply to self-managed instances of Neo4j. 
 
 [WARNING]
 ====
@@ -214,7 +214,7 @@ This process requires a short downtime for the existing cluster.
 . Signed in as neo4j-admin, create a dump file from your self-managed instance by following the steps below.
 
 . **Creating a dump file of Neo4j:** +
-.. Stop your database and produce the latest backup of your current on premise version with `neo4j-admin backup --backup-dir=/backup --name=mydb --from=backuphost:<<port_number>>`.
+.. Stop your database and produce the latest backup of your current self-managed version with `neo4j-admin backup --backup-dir=/backup --name=mydb --from=backuphost:<<port_number>>`.
 
 .. On your local 4.4.4, perform migration using `neo4j-admin copy`. 
 A sample command would be `./neo4j-admin copy --from-path=/backup --to-database=myDB --to-format=aligned`. +
