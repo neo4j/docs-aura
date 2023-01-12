@@ -2,157 +2,16 @@
 :description: This section describes how to migrate from a self-managed instance to Aura.
 
 This tutorial describes how to migrate from a self-managed instance to Aura.
-Be sure to follow the preparation steps beforehand.
+In case you are migrating from Neo4j 4 to Neo4j 5 within Aura, check the xref:/tutorial/upgrade.adoc[upgrade page] instead.
+
+Before proceeding, be sure to follow the preparation steps.
 
 == Preparation
-
-=== Drivers
-
-Neo4j's official drivers have some significant and breaking changes you need to be aware of. 
-For a smooth migration:
-
-. Check the breaking changes for each driver you use, for example in the link:https://neo4j.com/docs/api/python-driver/5.0/breaking_changes.html#breaking-changes[Python driver] and in the link:https://github.com/neo4j/graph-data-science-client/blob/main/changelog.md[GDS client].
-. Make sure you switch to the latest version of the driver in line with the version of the Neo4j database. 
-This can be done before upgrading the version of Neo4j that you are using with Aura, as 5.x drivers are backward compatible.
-
-The link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/drivers/breaking-changes/[Update and migration guide] contains all information and lists all the breaking changes.
-
-=== Indexes
-
-In Neo4j 5, BTREE indexes are replaced by RANGE, POINT, and TEXT indexes. 
-Before migrating a database, in Neo4j 4.4, you should create a matching RANGE, POINT, or TEXT index for each BTREE index (or index-backed constraint). 
-You can run `SHOW INDEXES` on your Neo4j 4.4 database to display its indexes.
-
-In most cases, RANGE indexes can replace BTREE. 
-However, there might be occasions when a different index type is more suitable, such as:
-
-* Use POINT indexes if the property value type is `point` and `distance` or `bounding box` queries are used for the property.
-* Use TEXT indexes if the property value type is `text` and the values can be larger than 8Kb.
-* Use TEXT indexes if the property value type is `text` and `CONTAINS` and `ENDS WITH` are used in queries for the property.
-
-After creating the new index, the old index should be dropped. 
-The following example shows how to create a new RANGE index and drop an existing `index_name` index:
-
-[source, Cypher, role="noplay"]
-----
-CREATE RANGE INDEX range_index_name FOR (n:Label) ON (n.prop1);
-DROP INDEX index_name;
-----
-
-The following example instead shows how to create a constraint backed by a RANGE index:
-
-[source, Cypher, role="noplay"]
-----
-CREATE CONSTRAINT constraint_with_provider FOR (n:Label) REQUIRE (n.prop1) IS UNIQUE OPTIONS {indexProvider: 'range-1.0'}
-----
-
-For more information about creating indexes, see link:https://neo4j.com/docs/cypher-manual/current/indexes-for-search-performance/#administration-indexes-examples[Cypher Manual -> Creating indexes].
-
-=== Cypher updates
-
-Neo4j 5 introduces some changes to the Cypher syntax and error handling.
-
-==== Cypher syntax
-
-All changes in the Cypher language syntax are detailed in link:https://neo4j.com/docs/cypher-manual/5/deprecations-additions-removals-compatibility[Cypher Manual -> Removals, deprecations, additions and extensions].
-Thoroughly review this section in the version you are moving to and make the necessary changes in your code.
-
-Here is a short list of the main changes introduced in Neo4j 5:
-
-[cols="1a,1a", options="header"]
-|===
-|*Deprecated feature*
-|*Details*
-
-|[source, Cypher, role="noplay"]
-----
-MATCH (n)-[r:REL]->(m) SET n=r
-----
-|Use the `properties()` function instead to get the map of properties of nodes/relationships that can then be used in a `SET` clause:
-
-[source, Cypher, role="noplay"]
-----
-MATCH (n)-[r:REL]->(m) SET n=properties(r)
-----
-
-|[source, Cypher, role="noplay"]
-----
-MATCH (a), (b), allShortestPaths((a)-[r]->(b)) RETURN b
-
-MATCH (a), (b), shortestPath((a)-[r]->(b)) RETURN b
-----
-|`shortestPath` and `allShortestPaths` without link:https://neo4j.com/docs/cypher-manual/5/syntax/patterns/#cypher-pattern-varlength[variable-length relationship] are deprecated. Instead, use a `MATCH` with a `LIMIT` of 1 or:
-[source, Cypher, role="noplay"]
-----
-MATCH (a), (b), shortestPath((a)-[r*1..1]->(b)) RETURN b
-----
-
-|[source, Cypher, role="noplay"]
-----
-CREATE DATABASE databaseName.withDot ...
-----
-|Creating a database with unescaped dots in the name has been deprecated, instead escape the database name:
-[source, Cypher, role="noplay"]
-----
-CREATE DATABASE `databaseName.withDot` ...
-----
-|===
-
-==== Error/Warning/Info handling in Cypher
-
-Many semantic errors that Cypher finds are reported as `Neo.ClientError.Statement.SyntaxError` even though they are semantic and not syntax errors.
-In Neo4j 5, the metadata returned by Cypher queries is improved.
-
-* The severity of some of the Warning codes is moved to Info:
-
-** `SubqueryVariableShadowingWarning` -> `SubqueryVariableShadowing`
-** `NoApplicableIndexWarning` -> `NoApplicableIndex`
-** `CartesianProductWarning` -> `CartesianProduct`
-** `DynamicPropertyWarning` -> `DynamicProperty`
-** `EagerOperatorWarning` -> `EagerOperator`
-** `ExhustiveShortestPathWarning` -> `ExhaustiveShortestPath`
-** `UnboundedVariableLengthPatternWarning` -> `UnboundedVariableLengthPattern`
-** `ExperimentalFeature` -> `RuntimeExperimental`
 
 === APOC
 
 All APOC procedures and functions available in Aura are listed in the link:https://neo4j.com/docs/aura/platform/apoc/[APOC Core library].
 See the link:https://neo4j.com/docs/apoc/5/[APOC documentation] for further details.
-
-=== Procedures
-
-Some procedures have been replaced by commands:
-
-[cols="1,2", options="header"]
-|===
-| Procedure                                   | Replacement
-| `db.indexes`                                | `SHOW INDEXES` command
-| `db.indexDetails`                           | `SHOW INDEXES YIELD *` command
-| `db.schemaStatements`                       | `SHOW INDEXES YIELD *` command and `SHOW CONSTRAINTS YIELD *` command
-| `db.constraints`                            | `SHOW CONSTRAINTS` command
-| `db.createIndex`                            | `CREATE INDEX` command
-| `db.createUniquePropertyConstraint`         | `CREATE CONSTRAINT ... IS UNIQUE` command
-| `db.index.fulltext.createNodeIndex`         | `CREATE FULLTEXT INDEX` command
-| `db.index.fulltext.createRelationshipIndex` | `CREATE FULLTEXT INDEX` command
-| `db.index.fulltext.drop`                    | `DROP INDEX` command
-| `dbms.procedures`                           | `SHOW PROCEDURES` command
-| `dbms.functions`                            | `SHOW FUNCTIONS` command
-| `dbms.listTransactions`                     | `SHOW TRANSACTIONS` command
-| `dbms.killTransaction`                      | `TERMINATE TRANSACTIONS` command
-| `dbms.killTransactions`                     | `TERMINATE TRANSACTIONS` command
-| `dbms.listQueries`                          | `SHOW TRANSACTIONS` command
-| `dbms.killQuery`                            | `TERMINATE TRANSACTIONS` command
-| `dbms.killQueries`                          | `TERMINATE TRANSACTIONS` command
-| `dbms.scheduler.profile`                    | -
-|===
-
-Refer to the link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/#_removals[Update and migration guide] for a full list of removals and deprecations.
-
-=== Neo4j Connectors
-
-If you are using a Neo4j Connector for link:https://github.com/neo4j-contrib/neo4j-spark-connector/releases/[Apache Spark] or link:https://github.com/neo4j-contrib/neo4j-streams/releases[Apache Kafka], make sure its version is compatible with Neo4j 5.
-
-The Neo4j BI Connectors available on the link:https://neo4j.com/download-center/#integrations[Download center] are compatible with Neo4j 5.
 
 === Data store compaction
 
@@ -202,9 +61,8 @@ The new database you will create must be at least as large as your self-managed 
 The Aura RAM-to-storage ratio is 1:2, which means, for example, that a 32 GB Aura database will provide 64 GB of storage.
 ====
 
-. Data from Neo4j v3.5.x and/or Neo4j 4.x can be directly migrated to your Aura Enterprise instance.
-If you are running an older version of Neo4j, use link:https://neo4j.com/docs/operations-manual/3.5/upgrade/planning/[this migration guide] to upgrade to Neo4j 3.5.x.
-In case your version is older, refer to link:https://neo4j.com/docs/operations-manual/3.4/upgrade/planning/[these migration instructions].
+. Data from Neo4j 4.x can be directly migrated to your Aura instance.
+If you are running an older version of Neo4j, use link:https://neo4j.com/docs/operations-manual/3.5/upgrade/planning/[this migration guide].
 +
 [NOTE]
 ====
@@ -216,7 +74,7 @@ This process requires a short downtime for the existing cluster.
 . **Creating a dump file of Neo4j:** +
 .. Stop your database and produce the latest backup of your current self-managed version with `neo4j-admin backup --backup-dir=/backup --name=mydb --from=backuphost:<<port_number>>`.
 
-.. On your local 4.4.4, perform migration using `neo4j-admin copy`. 
+.. On your local 4.4, perform migration using `neo4j-admin copy`. 
 A sample command would be `./neo4j-admin copy --from-path=/backup --to-database=myDB --to-format=aligned`. +
 +
 [NOTE]
@@ -225,10 +83,10 @@ This will drop your indexes and constraints, which is what you want to happen.
 The `--to-format=aligned` option will force the copied database to be created using the aligned store format.
 ====
 
-.. Once the migration is complete you should be able to see a migrated db in the 4.4.4 databases directory. 
+.. Once the migration is complete you should be able to see a migrated db in the 4.4 databases directory. 
 Make sure the `neo4j.conf` is updated with the default database to the migrated database name in the config.
 
-.. Start the neo4j 4.4.4 instance. 
+.. Start the neo4j 4.4 instance. 
 Once the instance comes up check if migrated DB is available.
 
 .. Perform basic validations (node counts and relationships counts etc).
