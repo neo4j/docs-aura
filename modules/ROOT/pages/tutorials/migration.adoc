@@ -1,18 +1,18 @@
 = Migrate from self-managed to Aura
-:description: This section describes how to migrate from a self-managed instance to Aura.
+:description: This section describes how to migrate from a self-managed Neo4j instance to Aura.
 
-This tutorial describes how to migrate from a self-managed instance to Aura.
+This tutorial describes how to migrate from a self-managed Neo4j instance to Aura.
 Before proceeding, be sure to follow the preparation steps.
 
 == Preparation
 
 === Upgrading from Neo4j 4 to Neo4j 5
 
-In case you are migrating from Neo4j 4 to Neo4j 5 within Aura, check the xref:tutorials/upgrade.adoc[upgrade page] instead.
+In case you are migrating from self-managed Neo4j 4 to Neo4j 5 on Aura, make sure you take the necessary preparation steps as detailed in the xref:tutorials/upgrade.adoc#_preparation[Upgrade tutorial].
 
 === APOC
 
-All APOC procedures and functions available in Aura are listed in the link:https://neo4j.com/docs/aura/platform/apoc/[APOC Core library].
+If you are using any APOC procedures and functions, make sure they are all available in Aura by checking the link:https://neo4j.com/docs/aura/platform/apoc/[APOC Core library].
 See the link:https://neo4j.com/docs/apoc/5/[APOC documentation] for further details.
 
 === Data store compaction
@@ -71,7 +71,7 @@ If you are running an older version of Neo4j, use link:https://neo4j.com/docs/op
 This process requires a short downtime for the existing cluster.
 ====
 +
-. Signed in as neo4j-admin, create a dump file from your self-managed instance by following the steps below.
+. Signed in as `neo4j-admin`, create a dump file from your self-managed instance by following the steps below.
 
 . **Creating a dump file of Neo4j:** +
 .. Stop your database and produce the latest backup of your current self-managed version with `neo4j-admin backup --backup-dir=/backup --name=mydb --from=backuphost:<<port_number>>`.
