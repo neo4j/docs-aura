@@ -6,24 +6,15 @@
 npm install
 npm start
 
-
 == Generate APOC Docs
 
-1. Copy .env.example to .env and update the credentials to a valid aura database
-    NEO4J_HOST=neo4j+s://mydb.databases.neo4j.io
-    NEO4J_USERNAME=neo4j
-    NEO4J_PASSWORD=password
-    AURA_VERSION=4.3
+1. Copy .env.example to .env and update the credentials to a valid aura instance.
 
-
-2. Run the APOC command to connect to a server, get a list of functions/procedures and load them into `modules/ROOT/partials/apoc-procedures.adoc`
-    npm run apoc
+2. Run `npm run apoc` to get a list of currently valid APOC functions/procedures and load them into `modules/ROOT/partials/apoc-procedures.adoc`.
 
 
 === Editing a Function or Procedure Description
 
-1. Find the procedure or function within [https://github.com/neo4j-contrib/neo4j-apoc-procedures](the APOC repo)
-2. Update the description in the `@Description` annotation above the procedure
-3. Create the PR
-4. Potentially cherrypick/merge the changes into the previous branches
-5. Or alternatively, ask in the #apoc channel on Slack
+Aura supports a subset of APOC Core, the documentation for which can be found [https://github.com/neo4j/docs-apoc](here).
+
+To request a change to these descriptions, please ask in the #team-documentation channel on Slack.
