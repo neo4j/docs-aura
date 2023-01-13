@@ -1,5 +1,8 @@
 = Migrate from self-managed Neo4j to Aura
 :description: This section describes how to migrate from a self-managed Neo4j instance to Aura.
+:database: neo4j
+:dump-folder: /dumps/neo4j
+:aura-uri: neo4j+s://xxxxxxxx.databases.neo4j.io
 
 This tutorial describes how to migrate from a self-managed Neo4j instance to Aura.
 
@@ -21,43 +24,94 @@ If your local Neo4j version is older than 4.3, you need to upgrade to Neo4j 4.4 
 If you are using any APOC procedures and functions, make sure they are all available in Aura by checking the link:https://neo4j.com/docs/aura/platform/apoc/[APOC Core library].
 See the link:https://neo4j.com/docs/apoc/5/[APOC documentation] for further details.
 
-== Creating a database dump
+== Creating and uploading a database dump
 
 [NOTE]
 ====
 This process requires a short downtime for the existing cluster.
 ====
 
-All admin commands must be invoked with the same user as Neo4j runs as. This guarantees that Neo4j will have full rights to start and work with the database files you use.
+All admin commands must be invoked with the same user as your self-managed Neo4j instance runs as. This guarantees that Neo4j will have full rights to start and work with the database files you use.
 
 . Stop your Neo4j instance.
 
-. Create the database dump using the following command:
+. Make sure the target directory where to store the database dumps into (for instance `{dump-folder}`) exists. If it does not, create it.
 
-```
-./neo4j-admin database dump neo4j --to-path=/path/to/data/dumps
-```
+. Create your database (for instance `{database}`) dump:
+
++
+[.tabbed-example]
+====
+[.include-with-From-Neo4j-4]
+=====
+Using the link:https://neo4j.com/docs/operations-manual/4.4/backup-restore/offline-backup/[`neo4j-admin dump`] command:
+
+[source,shell,subs=attributes+]
+----
+bin/neo4j-admin dump --database={database} --to={dump-folder}
+----
+=====
+
+[.include-with-From-Neo4j-5]
+=====
+Using the link:https://neo4j.com/docs/operations-manual/current/backup-restore/offline-backup/[`neo4j-admin database dump`] command:
+
+[source,shell,subs=attributes+]
+----
+bin/neo4j-admin database dump {database} --to-path={dump-folder}
+----
+=====
+====
++
 
 . Restart your Neo4j instance (if needed).
 
-== Uploading a database dump to Aura
+. Upload the database dump to Aura.
 
-* If your instance uses Neo4j 5, use the link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[`neo4j-admin database upload`] command.
-* If your instance uses Neo4j 4.4 or 4.3, use the link:https://neo4j.com/docs/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[`neo4j-admin push-to-cloud`] command.
-
-```
-./neo4j-admin database upload neo4j --from-path=/path/to/data/dumps/ --to-uri=neo4j+s://xxxxxxxx.databases.neo4j.io --overwrite-destination=true
-```
-
-.. Once the above steps are complete, validate the data.
-One quick way to do this is to open a browser window for both the original and new databases, and run this Cypher query against them, comparing the output: +
 +
+[.tabbed-example]
+====
+[.include-with-From-Neo4j-4]
+=====
+
+Use the link:https://neo4j.com/docs/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[`neo4j-admin push-to-cloud`] command.
+
+[NOTE]
+You should use the `--overwrite` option to overwrite the target database. Otherwise, the command aborts and throws an error.
+
+[source,shell,subs=attributes+]
+----
+bin/neo4j-admin push-to-cloud --dump={dump-folder}/file.dump --bolt-uri={aura-uri} --overwrite
+----
+=====
+
+[.include-with-From-Neo4j-5]
+=====
+Use the link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[`neo4j-admin database upload`] command.
+
+[NOTE]
+You should use the `--overwrite-destination=true` option to overwrite the target database. Otherwise, the command aborts and throws an error.
+
+[source,shell,subs=attributes+]
+----
+bin/neo4j-admin database upload {database} --from-path={dump-folder} --to-uri={aura-uri} --overwrite-destination=true
+----
+=====
+====
++
+
+
+== Validate the uploaded database
+
+Once the above steps are complete, validate the data.
+One quick way to do this is to open a browser window for both the original and new databases, and run this Cypher query against them, comparing the output: +
+
 [source, cypher]
 ----
 MATCH (n)
 RETURN DISTINCT labels(n) as Labels, count(labels(n)) as NumberOfNodes
 ----
-+
+
 [NOTE]
 ====
 The number of labels should be the same as in the original database. If they are not, contact support.
