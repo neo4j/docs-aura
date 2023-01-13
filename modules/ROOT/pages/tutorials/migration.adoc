@@ -103,16 +103,4 @@ bin/neo4j-admin database upload {database} --from-path={dump-folder} --to-uri={a
 
 == Validate the uploaded database
 
-Once the above steps are complete, validate the data.
-One quick way to do this is to open a browser window for both the original and new databases, and run this Cypher query against them, comparing the output: +
-
-[source, cypher]
-----
-MATCH (n)
-RETURN DISTINCT labels(n) as Labels, count(labels(n)) as NumberOfNodes
-----
-
-[NOTE]
-====
-The number of labels should be the same as in the original database. If they are not, contact support.
-====
+Once the above steps are complete, validate the data (for example, by checking that the number of nodes and relationships is the same).
