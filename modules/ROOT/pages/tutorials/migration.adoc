@@ -16,11 +16,13 @@ If your local Neo4j version is older than 4.3, you need to upgrade to Neo4j 4.4 
 == Preparing for the migration
 
 .Aura database size
+
 Before starting, make sure your new Aura database is sized correctly to support the migration. 
 The new database you will create must be at least as large as your self-managed cluster to accommodate the data. 
 The Aura RAM-to-storage ratio is 1:2, which means, for example, that a 32 GB Aura database will provide 64 GB of storage.
 
 .APOC compatibility
+
 If you are using any APOC procedures and functions, make sure they are all available in Aura by checking the link:https://neo4j.com/docs/aura/platform/apoc/[APOC Core library].
 See the link:https://neo4j.com/docs/apoc/5/[APOC documentation] for further details.
 
