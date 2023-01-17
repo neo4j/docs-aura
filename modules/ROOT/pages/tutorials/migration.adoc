@@ -8,37 +8,43 @@ This tutorial describes how to migrate from a self-managed Neo4j instance to Aur
 
 [CAUTION]
 ====
-In case you are migrating from self-managed Neo4j 4.3 and above to Neo4j 5 on Aura, make sure you take the necessary preparation steps as detailed in the xref:tutorials/upgrade.adoc#_preparation[Upgrade tutorial].
-
-If your local Neo4j version is older than 4.3, you need to upgrade to Neo4j 4.4 first as explained in link:https://neo4j.com/docs/upgrade-migration-guide/current/version-4/[Upgrade and Migration Guide -> Neo4j 4 upgrades and migration].
+If your local Neo4j version is older than 4.3, you need to upgrade to at least Neo4j 4.3 first as explained in link:https://neo4j.com/docs/upgrade-migration-guide/current/version-4/[Upgrade and Migration Guide -> Neo4j 4 upgrades and migration].
 ====
 
 == Preparing for the migration
 
-.Aura database size
+=== Migrating to Neo4j 5
 
-Before starting, make sure the Aura instance you are migrating to is sized accordingly. 
-The instance must be at least as large as your self-managed cluster to accommodate the data. 
-The Aura RAM-to-storage ratio is 1:2, which means, for example, that a 32 GB Aura instance will provide 64 GB of storage.
+If you are migrating from self-managed Neo4j 4.3 or 4.4 to Neo4j 5 on Aura, carefully read the xref:tutorials/upgrade.adoc#_preparation[Preparation section in the Upgrade tutorial] to ensure you are well prepared for the migration.
 
-.APOC compatibility
+=== Aura database size
+
+Before starting, verify that the Aura instance you are migrating to is sized accordingly.
+The instance must be at least as large as your self-managed cluster to accommodate the data.
+The Aura RAM-to-storage ratio is 1:2, which means, for example, that a 32 GB Aura instance provides 64 GB of storage.
+
+=== APOC compatibility
 
 If you are using any APOC procedures and functions, make sure they are all available in Aura by checking the link:https://neo4j.com/docs/aura/platform/apoc/[APOC support page].
 
 == Creating and uploading a database dump
+
+In order to move data from your self-managed instance to Aura, you need to create a dump of the existing database.
 
 [NOTE]
 ====
 This process requires a short downtime for your self-managed instance.
 ====
 
-The following admin commands must be invoked with the same user as your self-managed Neo4j instance. This guarantees that Neo4j will have full rights to start and work with the database files you use.
+The following admin commands must be invoked with the same user as your self-managed Neo4j instance.
+This guarantees that Neo4j has full rights to start and work with the database files you use.
 
-. Stop your Neo4j instance.
+. Stop your self-managed Neo4j DBMS.
+If you are running an Enterprise Edition, you can stop only the database you want to dump using the command `STOP DATABASE {database}` in Cypher Shell or Browser.
 
-. Make sure the target directory where to store the database dumps into (for instance `{dump-folder}`) exists. If it does not, create it.
+. Ensure the target directory to store the database dumps (for instance `{dump-folder}`) exists.
 
-. Create the dump from your self-managed database (for instance `{database}`):
+. Depending on your self-managed Neo4j version, create a dump of your database (e.g., `{database}`) using one of the options:
 
 +
 [.tabbed-example]
@@ -65,9 +71,7 @@ bin/neo4j-admin database dump {database} --to-path={dump-folder}
 ====
 +
 
-. Restart your Neo4j instance (if needed).
-
-. Upload the database dump to your Aura instance.
+. Depending on your self-managed Neo4j version, upload the database dump (e.g., `{database}`) to your Aura instance using one of the options:
 
 +
 [.tabbed-example]
@@ -100,8 +104,3 @@ bin/neo4j-admin database upload {database} --from-path={dump-folder} --to-uri={a
 =====
 ====
 +
-
-
-== Validate the uploaded database
-
-Once the above steps are complete, validate the data (for example, by checking that the number of nodes and relationships is the same).
