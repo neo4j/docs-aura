@@ -1,10 +1,10 @@
 = Migrate from self-managed Neo4j to Aura
-:description: This section describes how to migrate from a self-managed Neo4j instance to Aura.
+:description: This section describes how to migrate from a self-managed Neo4j database to Aura.
 :database: neo4j
 :dump-folder: /dumps/neo4j
 :aura-uri: neo4j+s://xxxxxxxx.databases.neo4j.io
 
-This tutorial describes how to migrate from a self-managed Neo4j instance to Aura.
+This tutorial describes how to migrate from a self-managed Neo4j database to Aura.
 
 [CAUTION]
 ====
@@ -17,10 +17,10 @@ If your local Neo4j version is older than 4.3, you need to upgrade to at least N
 
 If you are migrating from self-managed Neo4j 4.3 or 4.4 to Neo4j 5 on Aura, carefully read the xref:tutorials/upgrade.adoc#_preparation[Preparation section in the Upgrade tutorial] to ensure you are well prepared for the migration.
 
-=== Aura database size
+=== Aura instance size
 
 Before starting, verify that the Aura instance you are migrating to is sized accordingly.
-The instance must be at least as large as your self-managed cluster to accommodate the data.
+The instance must be at least as large as your self-managed database to accommodate the data.
 The Aura RAM-to-storage ratio is 1:2, which means, for example, that a 32 GB Aura instance provides 64 GB of storage.
 
 === APOC compatibility
@@ -29,22 +29,22 @@ If you are using any APOC procedures and functions, make sure they are all avail
 
 == Creating and uploading a database dump
 
-In order to move data from your self-managed instance to Aura, you need to create a dump of the existing database.
+In order to move data from your self-managed database to Aura, you need to create a dump of the existing database.
 
 [NOTE]
 ====
-This process requires a short downtime for your self-managed instance.
+This process requires a short downtime for your self-managed database.
 ====
 
-The following admin commands must be invoked with the same user as your self-managed Neo4j instance.
+The following admin commands must be invoked with the same user as your self-managed Neo4j database.
 This guarantees that Neo4j has full rights to start and work with the database files you use.
 
-. Stop your self-managed Neo4j DBMS.
+. Stop your self-managed Neo4j database.
 If you are running an Enterprise Edition, you can stop only the database you want to dump using the command `STOP DATABASE {database}` in Cypher Shell or Browser.
 
 . Ensure the target directory to store the database dumps (for instance `{dump-folder}`) exists.
 
-. Depending on your self-managed Neo4j version, create a dump of your database (e.g., `{database}`) using one of the options:
+. Depending on your self-managed Neo4j version, create a dump of your database (e.g., `{database}`) using one of the following options:
 
 +
 [.tabbed-example]
@@ -71,7 +71,7 @@ bin/neo4j-admin database dump {database} --to-path={dump-folder}
 ====
 +
 
-. Depending on your self-managed Neo4j version, upload the database dump (e.g., `{database}`) to your Aura instance using one of the options:
+. Depending on your self-managed Neo4j version, upload the database dump (e.g., `{database}`) to your Aura instance using one of the following options:
 
 +
 [.tabbed-example]
@@ -80,9 +80,6 @@ bin/neo4j-admin database dump {database} --to-path={dump-folder}
 =====
 
 Use the link:https://neo4j.com/docs/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[`neo4j-admin push-to-cloud`] command.
-
-[IMPORTANT]
-You should use the `--overwrite` option to overwrite the target database. Otherwise, the command aborts and throws an error.
 
 [source,shell,subs=attributes+]
 ----
@@ -93,9 +90,6 @@ bin/neo4j-admin push-to-cloud --dump={dump-folder}/file.dump --bolt-uri={aura-ur
 [.include-with-From-Neo4j-5]
 =====
 Use the link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[`neo4j-admin database upload`] command.
-
-[IMPORTANT]
-You should use the `--overwrite-destination=true` option to overwrite the target database. Otherwise, the command aborts and throws an error.
 
 [source,shell,subs=attributes+]
 ----
