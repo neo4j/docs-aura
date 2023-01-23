@@ -1,3 +1,28 @@
 [[aura-api]]
 = Neo4j Aura API overview
 
+== Authentication
+
+The Aura API uses OAuth 2.0 for API authentication.
+
+=== Creating credentials
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console Account Details page] in your browser.
+. Select the *Create* button in the *OAuth 2.0 Clients* section.
+. Enter a *Client name*, and select *Create*.
+. Securely save the *Client ID* and *Client Secret* you are given in the resulting modal; you will need these for the next step.
+
+[CAUTION]
+====
+You will not be able to retrieve your secret after you close the modal, so make sure you save it securely.
+====
+
+=== Receiving a bearer token
+
+To make API calls, you must first retrieve an access token using what is known as a client credentials grant as defined in the https://datatracker.ietf.org/doc/html/rfc6749#section-4.4[OAuth 2.0 specification].
+
+The `POST /aura-oauth/token` endpoint returns a bearer token needed to authenticate other API endpoints.
+
+Authentication to the `POST /aura-oauth/token` endpoint uses HTTP Basic Auth using your client id as the username and client secret as the password.
+
+=== Authenticating API requests
