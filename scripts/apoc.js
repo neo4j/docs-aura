@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const neo4j = require('neo4j-driver')
 
-const { NEO4J_HOST,
+const { NEO4J_URI,
     NEO4J_USERNAME,
     NEO4J_PASSWORD,
     DOCS_VERSION,
@@ -17,7 +17,7 @@ const header = `[.procedures, opts=header, cols='5a,1a', separator=¦]
 
 const footer = `|===`
 
-const driver = new neo4j.driver(NEO4J_HOST, neo4j.auth.basic(NEO4J_USERNAME, NEO4J_PASSWORD))
+const driver = new neo4j.driver(NEO4J_URI, neo4j.auth.basic(NEO4J_USERNAME, NEO4J_PASSWORD))
 
 const session = driver.session()
 
