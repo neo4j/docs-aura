@@ -1,9 +1,5 @@
 = Aura Documentation
 
-[CAUTION]
-====
-The `experimental` branch should NOT be used for PRs. Please raise any PR against the `main` branch.
-====
 
 == Run Live Preview
 
@@ -20,10 +16,11 @@ npm start
 
 === Editing a Function or Procedure Description
 
-Aura supports a subset of APOC Core, the documentation for which can be found [https://github.com/neo4j/docs-apoc](here).
+Aura supports a subset of APOC Core, the documentation for which can be found [here](https://github.com/neo4j/docs-apoc).
 
 To request a change to these descriptions, please ask in the #team-documentation channel on Slack.
 
 == Publication process
 
-This repository is set up so that, when a PR is merged onto the `main` branch, the changes are automatically published on https://neo4j.com/docs/aura/.
+This repository is set up so that, when a PR is merged onto the `main` branch, the changes are automatically published live to https://neo4j.com/docs/aura/ as well as the staging site.
+
