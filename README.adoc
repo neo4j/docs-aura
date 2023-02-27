@@ -11,3 +11,16 @@ npm start
 1. Copy .env.example to .env and update the credentials to a valid aura instance.
 
 2. Run `npm run apoc` to get a list of currently valid APOC functions/procedures and load them into `modules/ROOT/partials/apoc-procedures.adoc`.
+
+== Create/Destroy an Aura instance
+
+**NOTE: Remember to destroy Aura instances when no longer in use!**
+
+This script requires Python 3.
+
+1. Copy `aura_api.env.example` to `aura_api.env` and update it to use actual API access credentials (client ID and client secret).
+2. Create a Python virtual environment: `python -m venv venv`.
+3. Activate the virtual environment: `source venv/bin/activate`.
+4. Install the requirements: `pip install -r scripts/requirements.txt`.
+5. Run `python scripts/manage_aura.py --create` to create an Aura instance or `python scripts/manage_aura.py --destroy` to destroy it.
+
