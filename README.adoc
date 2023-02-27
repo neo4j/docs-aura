@@ -23,6 +23,7 @@ This script requires Python 3.
 3. Activate the virtual environment: `source venv/bin/activate`.
 4. Install the requirements: `pip install -r scripts/requirements.txt`.
 5. Run `python scripts/manage_aura.py --create` to create an Aura instance or `python scripts/manage_aura.py --destroy` to destroy it.
+  - The scripts creates an `aura.env` file containing the Aura instance credentials.
 
 == Replace partials in an AsciiDoc file
 
