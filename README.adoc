@@ -24,3 +24,12 @@ This script requires Python 3.
 4. Install the requirements: `pip install -r scripts/requirements.txt`.
 5. Run `python scripts/manage_aura.py --create` to create an Aura instance or `python scripts/manage_aura.py --destroy` to destroy it.
 
+== Replace partials in an AsciiDoc file
+
+This script requires Python 3.
+
+1. Create a Python virtual environment: `python -m venv venv`.
+2. Activate the virtual environment: `source venv/bin/activate`.
+3. Install the requirements: `pip install -r scripts/requirements.txt`.
+4. Run `scripts/replace_partials.py _<source-asciidoc>_ _<partials-dir>_`, where `_<source-asciidoc>_` is the source file to be processed and `_<partials-dir>_` is the location where the partials are. The "enriched" file will be created in the directory where the command is run from, unless the `--outdir` option is specified.
+  - Run `scripts/replace_partials.py --help` for more details.
