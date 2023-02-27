@@ -95,7 +95,7 @@ Solution:::
 
 To resolve the issue, follow these steps:
 
-. If you are not on version 3.5, link:https://neo4j.com/docs/operations-manual/current/upgrade/deployment-upgrading/#upgrade-instructions-3x[upgrade your local database to the latest 3.5].
+. Make sure you are at least on Neo4j version 4.4 or later. See more information about link:https://neo4j.com/docs/upgrade-migration-guide/current/[upgrade and migration].
 . In your local graph, use the following commands to get a list of the indexes and their types.
 This will also provide the sequential list of commands to drop and then recreate the indexes. +
 +
@@ -125,7 +125,7 @@ When pushing to cloud, you may get this error if the store you are uploading is 
 
 Solution:::
 
-. Follow the Neo4j Documentation to link:https://neo4j.com/docs/operations-manual/3.5/upgrade/deployment-upgrading/[upgrade your database] to Neo4j version 3.5 and then retry the upload.
+. link:https://neo4j.com/docs/upgrade-migration-guide/current/[Upgrade your database]. Make sure you are on Neo4j 4.4 or later.
 . If you encounter problems upgrading, please raise a ticket with our link:https://aura.support.neo4j.com/[Customer Support] team.
 
 === `LogicalRestrictions`
