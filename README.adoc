@@ -16,21 +16,36 @@ npm start
 
 **NOTE: Remember to destroy Aura instances when no longer in use!**
 
-This script requires Python 3.
+NOTE: The script requires Python 3.
+
+=== Setup
 
 1. Copy `aura_api.env.example` to `aura_api.env` and update it to use actual API access credentials (client ID and client secret).
 2. Create a Python virtual environment: `python -m venv venv`.
 3. Activate the virtual environment: `source venv/bin/activate`.
 4. Install the requirements: `pip install -r scripts/requirements.txt`.
-5. Run `python scripts/manage_aura.py --create` to create an Aura instance or `python scripts/manage_aura.py --destroy` to destroy it.
-  - The scripts creates an `aura.env` file containing the Aura instance credentials.
+
+=== Running the script
+
+1. Activate the virtual environment (if not already active): `source venv/bin/activate`.
+2. Run `python scripts/manage_aura.py --create` to create an Aura instance or `python scripts/manage_aura.py --destroy` to destroy it.
+  - Run `python scripts/manage_aura.py --help` for more details on the usage.
+
+The script creates an `aura.env` file containing the Aura instance credentials.
 
 == Replace partials in an AsciiDoc file
 
-This script requires Python 3.
+Some applications cannot use Asciidoc files that use partials. The `replace_partials.py` script can be used to preprocess an Asciidoc file and replace the `include::partial` lines with the actual content of the referenced partials. 
+
+NOTE: The script requires Python 3.
+
+=== Setup
 
 1. Create a Python virtual environment: `python -m venv venv`.
 2. Activate the virtual environment: `source venv/bin/activate`.
 3. Install the requirements: `pip install -r scripts/requirements.txt`.
-4. Run `scripts/replace_partials.py _<source-asciidoc>_ _<partials-dir>_`, where `_<source-asciidoc>_` is the source file to be processed and `_<partials-dir>_` is the location where the partials are. The "enriched" file will be created in the directory where the command is run from, unless the `--outdir` option is specified.
-  - Run `scripts/replace_partials.py --help` for more details.
+
+=== Running the script
+1. Activate the virtual environment (if not already active): `source venv/bin/activate`.
+2. Run `scripts/replace_partials.py _<source-asciidoc>_ _<partials-dir>_`, where `_<source-asciidoc>_` is the source file to be processed and `_<partials-dir>_` is the location where the partials are. The "enriched" file will be created in the directory where the command is run from, unless the `--outdir` option is specified.
+  - Run `scripts/replace_partials.py --help` for more details on the usage.
