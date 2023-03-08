@@ -33,6 +33,27 @@ NOTE: The script requires Python 3.
 
 The script creates an `aura.env` file containing the Aura instance credentials.
 
+== Extract runnable code from AuraDS docs
+
+This script can be used to extract runnable code (Python or Cypher statements) from a doc HTML page. This means that the docset has to be built first, for example by running `npm run build`.
+
+NOTE: The script requires Python 3. 
+
+NOTE: AuraDS credentials must be available in an `aura.env` file.
+
+=== Setup
+
+1. Create a Python virtual environment: `python -m venv venv`.
+2. Activate the virtual environment: `source venv/bin/activate`.
+3. Install the requirements: `pip install -r scripts/requirements.txt`.
+
+=== Running the script
+
+1. Activate the virtual environment (if not already active): `source venv/bin/activate`.
+2. Run `python scripts/extract_code.py _<source-html-file>_` to extract the content of (GDS client, by default) code blocks from the _<source-html-file>_ doc.
+  - The `--code-type` parameter can be used to select the type of code blocks to extract.
+  - Run `python scripts/extract_code.py --help` for more details on the usage.
+
 == Replace partials in an AsciiDoc file
 
 Some applications cannot use Asciidoc files that use partials. The `replace_partials.py` script can be used to preprocess an Asciidoc file and replace the `include::partial` lines with the actual content of the referenced partials. 
