@@ -2,73 +2,73 @@
 [[aura-troubleshooting]]
 = Troubleshooting
 
-You can review the link:/docs/aura/platform/logging/[Aura query log] to monitor processes and verify any problems.
-If any issues are found, the following known troubleshooting information can help you diagnose and correct them.
+This page provides possible solutions to several common issues you may encounter when using Neo4j Aura.
 
-[[aura-troubleshooting-query-performance]]
+Regardless of the issue, viewing the link:/docs/aura/platform/logging/[Aura query log] is always recommended to monitor processes and verify any problems.
+
 == Query performance
 
 === Missing index and constraint
 
-If you create some constraint (`CREATE CONSTRAINT`) or index (`CREATE INDEX`) on nodes, or relationship (or legacy fulltext index via `db.index.fulltext.createNodeIndex` or `db.index.fulltext.createRelationshipIndex`), and subsequently receive an error stating that the index or constraint is missing when making a Cypher query or any API call that would rely on that same index/constraint, check the following:
+If you receive an error stating that an index or constraint is missing when making a Cypher query or API call:
 
-* Check if the index or constraint was successfully created with `CALL db.index().
-* Review the query log for any index or constraint drop (drop index, drop constraint).
-* Review your queries and check any calls to `CALL apoc.schema.assert(...)`.
-In this specific case, the default behavior is that when calling
+* Check that the index or constraint was successfully created with `CALL db.index()`.
+* Review the query log for indexes or constraints that may have been dropped (`drop index` or `drop constraint`).
+* Review your queries and check any calls to `CALL apoc.schema.assert(...)`:
+** In this specific case, the default behavior when calling
 `apoc.schema.assert({indexLabel:[indexKeys],…​},{constraintLabel:[constraintKeys],…​}, dropExisting : true) yield label, key, unique, action`,
-the last parameter `dropExisting` is by default `true` and therefore the schema is replaced.
+is that the last parameter `dropExisting` is `true` by default, and therefore the schema is replaced.
 Read more about link:https://neo4j.com/labs/apoc/current/indexes/schema-index-operations/[Schema information].
-* Check that no database dump or database export has been loaded, so that it would overwrite the existing "schema".
-This can be found in the `neo4j.log` file.
-* Finally, if all the above fail, try to regularly poll on `CALL db.index()` and log the output to a debug file in order to narrow down the time interval of the issue, as well as review the queries or events.
+* Check that no database dump or database export has been loaded, which would overwrite the existing schema.
+(This can be found in the `neo4j.log` file.)
+* Finally, if all the above fail, try to regularly poll on `CALL db.index()` and log the output to a debug file to narrow down the time interval of the issue, as well as review the queries or events.
 
 === `MemoryLimitExceededException`
 
 During regular operations of your Aura instance, you may at times see that some of your queries fail with the error:
 
-[example]
+[source, error, role=nocopy]
 ----
 org.neo4j.memory.MemoryLimitExceededException: The allocation of an extra 8.3 MiB would use more than the limit 278.0 MiB.
 Currently using 275.1 MiB. dbms.memory.transaction.global_max_size threshold reached
 ----
 
-As its name suggests, this configuration `org.neo4j.memory.MemoryLimitExceededException` acts as a safeguard by limiting the quantity of memory allocated to all transactions while also preserving the regular operation of the AuraDB instance.
-Similarly, the property `dbms.memory.transaction.global_max_size` also aims to protect the AuraDB Instance from experiencing an OOMs (OutOfMemory) and increase resiliency.
+The `org.neo4j.memory.MemoryLimitExceededException` configuration acts as a safeguard, limiting the quantity of memory allocated to all transactions while preserving the regular operations of the Aura instance.
+Similarly, the property `dbms.memory.transaction.global_max_size` also aims to protect the Aura Instance from experiencing any OOMs (OutOfMemory exceptions) and increase resiliency.
 It is enabled in Aura and cannot be disabled.
 
 However, the measured heap usage of all transactions is only an estimate and may differ from the actual number.
 The estimation algorithm relies on a conservative approach, which can lead to overestimations of memory usage.
-In such cases, the identities of all contributing objects are not known, and cannot be assumed to be shared.
+In such cases, all contributing objects' identities are unknown and cannot be assumed to be shared.
 
 Solution::
 
 [NOTE]
 ====
-This error should be handled by your application code as it may be intermittent.
+We recommend handling this error in your application code, as it may be intermittent.
 ====
 
 Overestimations are most likely to happen when using `UNWIND` on long lists or when expanding a variable length or shortest path pattern.
-The many relationships shared between the computed result paths could be the reason why the estimation algorithm is not as precise.
+The many relationships shared between the computed result paths could be the cause of a lack of precision in the estimation algorithm.
 
-In order to avoid this scenario, try to run the same query without using a sorting operation like `ORDER BY` or `DISTINCT`.
+To avoid this scenario, try running the same query without using a sorting operation like `ORDER BY` or `DISTINCT`.
 Additionally, if possible, handle this ordering or uniqueness in your application.
 
 If removing the `ORDER BY` or `DISTINCT` clauses does not solve the issue, the primary mitigation for this error is to perform one or more of these actions:
 
 * Handle this exception in your code and be prepared to retry if this is an intermittent error.
-Keep in mind that the query can succeed in spite of that.
+Keep in mind that the query can succeed regardless.
 +
 * Rework the relevant query to optimize it. 
 ** Use `EXPLAIN` or `PROFILE` to review the plans (see more about link:https://neo4j.com/docs/cypher-manual/current/query-tuning/[query tuning]).
 ** Use `PROFILE` in cypher-shell to check the overall memory footprint of a query.
-he output will include information on memory consumption, along with the query's result if any and the execution plan.
+The output will include memory consumption information, the query's result, if any, and the execution plan.
 In the following example, the memory consumed is 11,080 Bytes:
 +
 image::planSummary.png[]
 
 * Increase the instance size of your Aura deployment to get more resources.
-* Reduce concurrency of heavy on resource queries to get a better chance of success.
+* Reduce the concurrency of queries heavy on resources to get a better chance of success.
 
 [NOTE]
 ====
@@ -78,7 +78,6 @@ Read more information about link:https://aura.support.neo4j.com/hc/en-us/article
 
 See link:https://neo4j.com/docs/operations-manual/current/performance/memory-configuration/#memory-configuration-considerations[Considerations on memory configuration] for further reading on memory management.
 
-[[aura-troubleshooting-cloud]]
 == Push-to-cloud errors
 
 === `LegacyIndexes`
@@ -146,7 +145,6 @@ Solution:::
 . Check the file and try again.
 . If you have received this error after confirming the type of file being uploaded is correct, please raise a ticket with our link:https://aura.support.neo4j.com/[Customer Support] team.
 
-[[aura-troubleshooting-driver-integration]]
 == Driver integration
 
 === JavaScript routing table error
