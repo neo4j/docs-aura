@@ -27,7 +27,7 @@ Read more about link:https://neo4j.com/labs/apoc/current/indexes/schema-index-op
 
 During regular operations of your Aura instance, you may at times see that some of your queries fail with the error:
 
-[source, error, role=nocopy]
+[source, error, role=nocopy wrap]
 ----
 org.neo4j.memory.MemoryLimitExceededException: The allocation of an extra 8.3 MiB would use more than the limit 278.0 MiB.
 Currently using 275.1 MiB. dbms.memory.transaction.global_max_size threshold reached
@@ -78,25 +78,27 @@ Read more information about link:https://aura.support.neo4j.com/hc/en-us/article
 
 See link:https://neo4j.com/docs/operations-manual/current/performance/memory-configuration/#memory-configuration-considerations[Considerations on memory configuration] for further reading on memory management.
 
-== Push-to-cloud errors
+== Neo4j Admin database upload errors
+
+The `database upload` command was introduced in Neo4j Admin version 5, replacing the `push-to-cloud` command that was present in Neo4j Admin version 4.4 and earlier. The following solutions are relevant to both commands.
 
 === `LegacyIndexes`
 
-When attempting to push to cloud from Neo4j Desktop, where there are native `LegacyIndexes` present, the request might fail with the following error:
+When attempting to use `database upload` where there are native `LegacyIndexes` present, the request might fail with the following error:
 
-[example]
+[source, error, role=nocopy wrap]
 ----
 ERROR: Source dumpfile has legacy indexes enabled, which we do not support.
 User needs to manually follow instructions in neo4j logs to upgrade indexes.
 ----
 
-Solution:::
+Solution::
 
 To resolve the issue, follow these steps:
 
 . Make sure you are at least on Neo4j version 4.4 or later. See more information about link:https://neo4j.com/docs/upgrade-migration-guide/current/[upgrade and migration].
 . In your local graph, use the following commands to get a list of the indexes and their types.
-This will also provide the sequential list of commands to drop and then recreate the indexes. +
+This will also provide the sequential list of commands to drop and then recreate the indexes: 
 +
 [source, cypher, role=noplay]
 ----
@@ -104,46 +106,45 @@ CALL db.constraints() YIELD description
 UNWIND ["DROP", "CREATE"] AS command
 RETURN command + " " + description
 ----
-[start=3]
++
 . In Neo4j Browser, select the "Enable multi statement query editor" option under the browser settings.
-. Take the list of commands from the 2nd step and copy them in one list of multiple queries into Browser.
-Run those queries.
-. After the indexes are recreated, attempt the push-to-cloud command again.
+. Take the list of commands from the 2nd step and copy them in one list of multiple queries into Browser and run those queries.
+. After the indexes are recreated, attempt the `database upload` command again.
 
 === `InconsistentData`
 
-This error message will likely trigger when Neo4j Aura was unable to safely load the data provided due to inconsistencies.
+This error message will likely trigger when Neo4j Aura cannot safely load the data provided due to inconsistencies.
 
-Solution:::
+Solution::
 
-If that happened to you, please raise a ticket with our link:https://aura.support.neo4j.com/[Customer Support] team.
+If you encounter this error, please raise a ticket with our link:https://aura.support.neo4j.com/[Customer Support] team.
 
 === `UnsupportedStoreFormat`
 
-When pushing to cloud, you may get this error if the store you are uploading is in a Neo4j version we don't support directly importing into Neo4j Aura.
+You may get this error if the store you are uploading is in a Neo4j version that is not directly supported in Neo4j Aura.
 
-Solution:::
+Solution::
 
 . link:https://neo4j.com/docs/upgrade-migration-guide/current/[Upgrade your database]. Make sure you are on Neo4j 4.4 or later.
 . If you encounter problems upgrading, please raise a ticket with our link:https://aura.support.neo4j.com/[Customer Support] team.
 
 === `LogicalRestrictions`
 
-You might get this error in case the store you are uploading exceeds the logical limits of your database.
+You may get this error when the store you are uploading exceeds the logical limits of your database.
 
-Solution:::
+Solution::
 
-. Delete nodes and/or relationships to ensure the data is within the specified limits for your tier, and try the upload again.
-. If you are certain you have not exceeded these limits, please raise a ticket with our link:https://aura.support.neo4j.com/[Customer Support] team.
+. Delete nodes and relationships to ensure the data is within the specified limits for your instance, and try the upload again.
+. If you are confident you have not exceeded these limits, please raise a ticket with our link:https://aura.support.neo4j.com/[Customer Support] team.
 
 === `Fallback`
 
-This error might be triggered when the uploaded file is not recognized as a valid Neo4j dump file.
+This error can be triggered when the uploaded file is not recognized as a valid Neo4j dump file.
 
-Solution:::
+Solution::
 
 . Check the file and try again.
-. If you have received this error after confirming the type of file being uploaded is correct, please raise a ticket with our link:https://aura.support.neo4j.com/[Customer Support] team.
+. If you are confident the file being uploaded is correct, please raise a ticket with our link:https://aura.support.neo4j.com/[Customer Support] team.
 
 == Driver integration
 
