@@ -151,22 +151,22 @@ Solution::
 === JavaScript routing table error
 
 JavaScript driver version 4.4.5 and greater assumes the existence of database connectivity.
-When connection fails, the two most common error messages are "Session Expired" or a routing table error:
+When the connection fails, the two most common error messages are "Session Expired" or a routing table error:
 
-[example]
+[source, error, role=nocopy wrap]
 ----
 Neo4jError: Could not perform discovery.
 No routing servers available.
 Known routing table: RoutingTable[database=default database, expirationTime=0, currentTime=1644933316983, routers=[], readers=[], writers=[]]
 ----
 
-This error can also be triggered in case no default database is defined.
+This error can also be encountered when no default database is defined.
 
-Solution:::
+Solution::
 
-To avoid such occurrences, verify connectivity before creating a session object, and specify the default database in your driver definition.
+Verify connectivity before creating a session object, and specify the default database in your driver definition.
 
-[example]
+[source, javascript, role=nocopy]
 ----
 const session = driver.session({ database: "neo4j" })
 driver.verifyConnectivity()
