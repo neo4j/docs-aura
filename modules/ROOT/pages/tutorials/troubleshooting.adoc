@@ -12,7 +12,8 @@ Regardless of the issue, viewing the link:/docs/aura/platform/logging/[Aura quer
 
 During regular operations of your Aura instance, you may at times see that some of your queries fail with the error:
 
-[source, error, role=nocopy wrap]
+.MemoryLimitExceededException error
+[source, shell, role=nocopy wrap]
 ----
 org.neo4j.memory.MemoryLimitExceededException: The allocation of an extra 8.3 MiB would use more than the limit 278.0 MiB.
 Currently using 275.1 MiB. dbms.memory.transaction.global_max_size threshold reached
@@ -71,7 +72,8 @@ The `database upload` command was introduced in Neo4j Admin version 5, replacing
 
 When attempting to use `database upload` where there are native `LegacyIndexes` present, the request might fail with the following error:
 
-[source, error, role=nocopy wrap]
+.LegacyIndexes error
+[source, shell, role=nocopy wrap]
 ----
 ERROR: Source dumpfile has legacy indexes enabled, which we do not support.
 User needs to manually follow instructions in neo4j logs to upgrade indexes.
@@ -83,8 +85,9 @@ To resolve the issue, follow these steps:
 
 . Make sure you are at least on Neo4j version 4.4 or later. See more information about link:https://neo4j.com/docs/upgrade-migration-guide/current/[upgrade and migration].
 . In your local graph, use the following commands to get a list of the indexes and their types.
-This will also provide the sequential list of commands to drop and then recreate the indexes: 
+This will also provide the sequential list of commands to drop and then recreate the indexes:
 +
+.Return a list of indexes and their types
 [source, cypher, role=noplay]
 ----
 CALL db.constraints() YIELD description
@@ -138,7 +141,8 @@ Solution::
 JavaScript driver version 4.4.5 and greater assumes the existence of database connectivity.
 When the connection fails, the two most common error messages are "Session Expired" or a routing table error:
 
-[source, error, role=nocopy wrap]
+.Routing table error
+[source, shell, role=nocopy wrap]
 ----
 Neo4jError: Could not perform discovery.
 No routing servers available.
@@ -151,7 +155,8 @@ Solution::
 
 Verify connectivity before creating a session object, and specify the default database in your driver definition.
 
-[source, javascript, role=nocopy]
+.Verifying connectivity
+[source, javascript]
 ----
 const session = driver.session({ database: "neo4j" })
 driver.verifyConnectivity()
