@@ -22,12 +22,12 @@ NOTE: The script requires Python 3.
 
 1. Copy `aura_api.env.example` to `aura_api.env` and update it to use actual API access credentials (client ID and client secret).
 2. Create a Python virtual environment: `python -m venv venv`.
-3. Activate the virtual environment: `source venv/bin/activate`.
+3. Activate the virtual environment: `source venv/bin/activate` (`venv\Scripts\activate` on Windows).
 4. Install the requirements: `pip install -r scripts/requirements.txt`.
 
 === Running the script
 
-1. Activate the virtual environment (if not already active): `source venv/bin/activate`.
+1. Activate the virtual environment (if not already active): `source venv/bin/activate` (`venv\Scripts\activate` on Windows).
 2. Run `python scripts/manage_instances.py --create` to create an Aura instance or `python scripts/manage_instances.py --destroy` to destroy it.
   - Run `python scripts/manage_instances.py --help` for more details on the usage.
 
@@ -44,12 +44,12 @@ NOTE: AuraDS credentials must be available in an `aura.env` file.
 === Setup
 
 1. Create a Python virtual environment: `python -m venv venv`.
-2. Activate the virtual environment: `source venv/bin/activate`.
+2. Activate the virtual environment: `source venv/bin/activate` (`venv\Scripts\activate` on Windows).
 3. Install the requirements: `pip install -r scripts/requirements.txt`.
 
 === Running the script
 
-1. Activate the virtual environment (if not already active): `source venv/bin/activate`.
+1. Activate the virtual environment (if not already active): `source venv/bin/activate` (`venv\Scripts\activate` on Windows).
 2. Run `python scripts/extract_code.py _<source-html-file>_` to extract the content of (GDS client, by default) code blocks from the _<source-html-file>_ doc.
   - The `--code-type` parameter can be used to select the type of code blocks to extract.
   - Run `python scripts/extract_code.py --help` for more details on the usage.
@@ -63,10 +63,10 @@ NOTE: The script requires Python 3.
 === Setup
 
 1. Create a Python virtual environment: `python -m venv venv`.
-2. Activate the virtual environment: `source venv/bin/activate`.
+2. Activate the virtual environment: `source venv/bin/activate` (`venv\Scripts\activate` on Windows).
 3. Install the requirements: `pip install -r scripts/requirements.txt`.
 
 === Running the script
-1. Activate the virtual environment (if not already active): `source venv/bin/activate`.
+1. Activate the virtual environment (if not already active): `source venv/bin/activate` (`venv\Scripts\activate` on Windows).
 2. Run `scripts/replace_partials.py _<source-asciidoc>_ _<partials-dir>_`, where `_<source-asciidoc>_` is the source file to be processed and `_<partials-dir>_` is the location where the partials are. The "enriched" file will be created in the directory where the command is run from, unless the `--outdir` option is specified.
   - Run `scripts/replace_partials.py --help` for more details on the usage.
