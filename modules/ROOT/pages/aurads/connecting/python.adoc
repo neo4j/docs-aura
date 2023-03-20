@@ -259,23 +259,6 @@ with driver.session() as session:
 
 == Closing the connection
 
-[.tabbed-example]
-====
-[.include-with-GDS-client]
-=====
-The GDS client automatically closes the connection when the object is deleted.
-=====
-
-[.include-with-Python-driver]
-=====
-The driver connection should be closed when no longer needed.
-
-[source, python]
-----
-# Close the driver connection
-driver.close()
-----
-=====
-====
+include::partial$aurads/close-connection.adoc[]
 
 include::partial$aurads/references.adoc[]
