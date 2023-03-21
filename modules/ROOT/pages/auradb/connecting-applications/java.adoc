@@ -23,8 +23,9 @@ To download the latest version of the Neo4j Java Driver:
 
 To download the compatible version of Reactive Streams:
 
-. Navigate to the Maven Central page of the version of the Neo4j Java Driver you previously downloaded.
-. Find the `reactive-streams` artifact dependency in the pom.xml file on the left side of the page to find the version.
+. Navigate to the https://search.maven.org/artifact/org.neo4j.driver/neo4j-java-driver-parent[Neo4j Java Driver Parent page] of Maven Central.
+. Select the same version as the downloaded driver.
+. Find the `reactive-streams` version in the pom.xml file on the left side of the page.
 . Navigate to the https://search.maven.org/artifact/org.reactivestreams/reactive-streams[Reactive Streams page] of Maven Central.
 . Select the same version as the one present in the pom.xml file previously.
 . Select *Downloads* from the top right of the page and then select *jar* to download the jar file.
