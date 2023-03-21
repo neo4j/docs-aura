@@ -1,0 +1,16 @@
+[[aura-user-management]]
+= User management
+:description: This page describes how to manage users in Neo4j Aura.
+
+label:AuraDB-Enterprise[] label:AuraDS-Enterprise[]
+
+User management is a feature within Aura that allows you to manage users and their roles within an isolated environment.
+
+== Tenants
+
+Tenants are the primary mechanism for isolating environments within Aura. 
+Each tenant consists of a single team that allows multiple users with individual accounts to access the same environment.
+
+It is possible to be a member of multiple tenants, in which case you will have access to the **Tenant Switcher** in the header of the console that lets you switch between tenants.
+
+== Teams
