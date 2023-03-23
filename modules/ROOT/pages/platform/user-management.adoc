@@ -9,8 +9,75 @@ User management is a feature within Aura that allows you to manage users and the
 == Tenants
 
 Tenants are the primary mechanism for isolating environments within Aura. 
+
+The tenant you're currently viewing is displayed in the header of the Console. You can select the tenant name to open the **Tenant Dropdown** menu, which allows you to view the _Tenant ID_.
+
+It is possible to be a member of multiple tenants, in which case you will have access to all of your tenants from the **Tenant Dropdown**, and can switch between them by clicking on the individual tenant.
+
+== Team Members
+
 Each tenant consists of a single team that allows multiple users with individual accounts to access the same environment.
 
-It is possible to be a member of multiple tenants, in which case you will have access to the **Tenant Switcher** in the header of the console that lets you switch between tenants.
+The team and its members can be viewed and managed from the **Team Members** page. You can access the **Team Members** page by selecting **Team Members** from the sidebar menu of the Console.
 
-== Teams
+=== Roles
+
+Users within a team can have one of two roles, _Admin_ or _Member_.
+
+[NOTE]
+====
+Each team must have at least one _Admin_, but it is also possible for teams to have multiple _Admins_.
+====
+
+_Admins_ can:
+
+* View the team members and their roles.
+* Invite new members to the team.
+* Edit an existing team member's role.
+* Delete existing team members from the team.
+
+_Members_ can:
+
+* View the team members and their roles.
+
+=== Inviting team members
+
+As an _Admin_, to invite a new team member:
+
+. Select **Invite member** from the **Team Members** page.
+. Enter the **Email** address of the person you want to invite.
+. Select the team member's **Role**.
+. Select **Invite**.
+
+The new team member will appear within the list of team members on the **Team Members** page with the _Pending invite_ **Status** until they accept the invite.
+
+=== Editing team members
+
+As an _Admin_, to edit an existing team member's role:
+
+. Select the **Edit member** pencil icon next to the team member's name from the **Team Members** page.
+. Select the team member's new **Role**.
+. Select **Save changes**.
+
+=== Deleting team members
+
+As an _Admin_, to delete an existing team member from the team:
+
+. Select the **Delete member** trash can icon next to the team member's name from the **Team Members** page.
+. Select **Delete**.
+
+[NOTE]
+====
+Deleting a team member whose **Status** is _Pending invite_ is also possible by selecting the **Delete member** trash can icon next to the team member's name and then selecting **Revoke**.
+====
+
+=== Accepting an invite
+
+When invited to a team, a **Tenant invitation** modal will appear the next time you reload the Console. You can select the tenant(s) you have been invited to and choose to accept or decline the invite(s). 
+
+You can also close the **Tenant invitation** modal without accepting or declining the invite(s) and later manually re-open the modal by selecting the **Pending invites** envelope icon in the Console header.
+
+[TIP]
+====
+User management within Aura does not offer fine-grained RBAC at the database level nor limits the ability to perform operations such as instance creation within the Console. 
+====
