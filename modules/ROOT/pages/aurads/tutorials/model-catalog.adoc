@@ -436,7 +436,7 @@ gds.set_database("system")
 
 gds.run_cypher("""
     CREATE USER testUser IF NOT EXISTS
-    SET PASSWORD 'test'
+    SET PASSWORD 'password'
     SET PASSWORD CHANGE NOT REQUIRED
 """)
 ----
@@ -449,7 +449,7 @@ gds.run_cypher("""
 :connect system
 
 CREATE USER testUser IF NOT EXISTS
-SET PASSWORD 'test'
+SET PASSWORD 'password'
 SET PASSWORD CHANGE NOT REQUIRED
 ----
 =====
@@ -461,7 +461,7 @@ SET PASSWORD CHANGE NOT REQUIRED
 # Cypher query
 create_a_new_user_query = """
     CREATE USER testUser IF NOT EXISTS
-    SET PASSWORD 'test'
+    SET PASSWORD 'password'
     SET PASSWORD CHANGE NOT REQUIRED
 """
 
@@ -538,7 +538,7 @@ In order to verify that the published model is visible to the user we have just 
 ----
 test_user_gds = GraphDataScience(
     AURA_CONNECTION_URI,
-    auth=("testUser", "test"),
+    auth=("testUser", "password"),
     aura_ds=True
 )
 
@@ -554,7 +554,7 @@ print(results)
 ----
 // First, open a new Cypher shell with the following command:
 //
-// ./cypher-shell -a $AURA_CONNECTION_URI -u testUser -p test
+// ./cypher-shell -a $AURA_CONNECTION_URI -u testUser -p password
 
 CALL gds.beta.model.list()
 ----
@@ -566,7 +566,7 @@ CALL gds.beta.model.list()
 ----
 test_user_driver = GraphDatabase.driver(
     AURA_CONNECTION_URI,
-    auth=("testUser", "test")
+    auth=("testUser", "password")
 )
 
 # Create the driver session
