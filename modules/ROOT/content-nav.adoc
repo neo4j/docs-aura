@@ -8,6 +8,7 @@ Generic Start
 * xref:platform/create-account.adoc[]
 * xref:platform/cloud-providers.adoc[Cloud provider marketplaces]
 * xref:platform/security.adoc[]
+* xref:platform/user-management.adoc[]
 * xref:platform/apoc.adoc[]
 * xref:platform/logging.adoc[Logging]
 
@@ -81,11 +82,10 @@ AuraDS Start
 ** xref:aurads/tutorials/algorithm-progress.adoc[]
 ** xref:aurads/tutorials/model-catalog.adoc[]
 
-* Importing data
-** xref:aurads/importing-data/load-csv.adoc[]
+* xref:aurads/importing-data/index.adoc[]
+** xref:aurads/importing-data/import-db.adoc[]
 ** xref:aurads/importing-data/data-importer.adoc[]
-
-* xref:aurads/import-db.adoc[]
+** xref:aurads/importing-data/load-csv.adoc[]
 
 * Managing instances
 ** xref:aurads/managing-instances/monitoring.adoc[]
@@ -98,7 +98,11 @@ AuraDS End
 ////
 
 * *Tutorials*
+* Upgrade and migration
+** xref:tutorials/upgrade.adoc[]
+** xref:tutorials/migration.adoc[]
 * Integrating with Neo4j Connectors
 ** xref:tutorials/spark.adoc[]
 ** xref:tutorials/bi.adoc[]
 * xref:tutorials/performance-improvements.adoc[]
+* xref:tutorials/troubleshooting.adoc[]

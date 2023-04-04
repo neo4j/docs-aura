@@ -5,7 +5,7 @@
 
 TIP: Follow along with a notebook in https://colab.research.google.com/drive/1-Cc8LcR-vLwmPjMI6_A2qQ1nziwzJwE6?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
 
-This example explains https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos[execution modes^] for GDS algorithms and how to use each one of them.
+This example explains link:{neo4j-docs-base-uri}/graph-data-science/current/common-usage/running-algos[execution modes^] for GDS algorithms and how to use each one of them.
 
 include::partial$aurads/setup.adoc[]
 
@@ -198,7 +198,7 @@ In the following we'll use the PageRank algorithm to show the usage of every exe
 
 === Stats
 
-The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stats[`stats`^] mode can be useful for evaluating an algorithm performance without mutating the in-memory graph. When running an algorithm in this mode, a single row containing a summary of the algorithm statistics (for example, counts or percentile distributions) is returned.
+The link:{neo4j-docs-base-uri}/graph-data-science/current/common-usage/running-algos/#running-algos-stats[`stats`^] mode can be useful for evaluating an algorithm performance without mutating the in-memory graph. When running an algorithm in this mode, a single row containing a summary of the algorithm statistics (for example, counts or percentile distributions) is returned.
 
 [.tabbed-example]
 ====
@@ -270,9 +270,9 @@ The result contains the estimated time to run the algorithm (`computeMillis`) al
 
 === Stream
 
-The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-stream[`stream`^] mode returns the results of an algorithm as Cypher result rows. This is similar to how standard Cypher reading queries operate.
+The link:{neo4j-docs-base-uri}/graph-data-science/current/common-usage/running-algos/#running-algos-stream[`stream`^] mode returns the results of an algorithm as Cypher result rows. This is similar to how standard Cypher reading queries operate.
 
-With the PageRank example, this mode returns a node ID and the computed PageRank score for each node. The https://neo4j.com/docs/graph-data-science/current/management-ops/utility-functions/#utility-functions-node-path[`gds.util.asNode`^] procedure can then be used to find a node from its node ID.
+With the PageRank example, this mode returns a node ID and the computed PageRank score for each node. The link:{neo4j-docs-base-uri}/graph-data-science/current/management-ops/utility-functions/#utility-functions-node-path[`gds.util.asNode`^] procedure can then be used to find a node from its node ID.
 
 [.tabbed-example]
 ====
@@ -332,7 +332,7 @@ Since an algorithm can run for a long time and the connection may suddenly drop,
 
 === Mutate
 
-The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-mutate[`mutate`^] mode operates on the in-memory graph and updates it with a new property specified with the `mutateProperty` configuration parameter. The new property must not already exist in the in-memory graph.
+The link:{neo4j-docs-base-uri}/graph-data-science/current/common-usage/running-algos/#running-algos-mutate[`mutate`^] mode operates on the in-memory graph and updates it with a new property specified with the `mutateProperty` configuration parameter. The new property must not already exist in the in-memory graph.
 
 This mode is useful when chaining the execution of several algorithms each of which relying on the results on the previous.
 
@@ -395,7 +395,7 @@ with driver.session() as session:
 
 === Write
 
-The https://neo4j.com/docs/graph-data-science/current/common-usage/running-algos/#running-algos-write[`write`^] mode writes the results of the algorithm computation back to the Neo4j database. The written data can be node properties (such as PageRank scores), new relationships (such as Node Similarity similarities), or relationship properties (only for newly created relationships).
+The link:{neo4j-docs-base-uri}/graph-data-science/current/common-usage/running-algos/#running-algos-write[`write`^] mode writes the results of the algorithm computation back to the Neo4j database. The written data can be node properties (such as PageRank scores), new relationships (such as Node Similarity similarities), or relationship properties (only for newly created relationships).
 
 Similarly to the previous example, here we add the calculated score of the PageRank algorithm to each node of the Neo4j database as the value of a new property called `pageRankScore`.
 
@@ -515,5 +515,9 @@ with driver.session() as session:
 ----
 =====
 ====
+
+=== Closing the connection
+
+include::partial$aurads/close-connection.adoc[]
 
 include::partial$aurads/references.adoc[]

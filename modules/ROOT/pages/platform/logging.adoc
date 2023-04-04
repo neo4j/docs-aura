@@ -81,7 +81,7 @@ Downloaded query logs take the form of a zipped JSON file that, when extracted, 
 `success` - The query executed successfully or was canceled.
 
 | executingUser
-| The name of the user who executed the query either through authentication (`authenticatedUser`) or through https://neo4j.com/docs/cypher-manual/current/access-control/dbms-administration/#access-control-dbms-administration-impersonation[impersonation].
+| The name of the user who executed the query either through authentication (`authenticatedUser`) or through link:{neo4j-docs-base-uri}/cypher-manual/current/access-control/dbms-administration/#access-control-dbms-administration-impersonation[impersonation].
 
 | id
 | The ID of the query.
@@ -99,7 +99,7 @@ Downloaded query logs take the form of a zipped JSON file that, when extracted, 
 | The full query text.
 
 | runtime
-| The https://neo4j.com/docs/cypher-manual/current/query-tuning/#cypher-runtime[Cypher runtime] used to execute the query.
+| The link:{neo4j-docs-base-uri}/cypher-manual/current/query-tuning/#cypher-runtime[Cypher runtime] used to execute the query.
 
 | type
 | The type of log message.
@@ -120,7 +120,7 @@ Security events include:
 
 * Login attempts: both successful and unsuccessful.
 * Authorization failures from role-based access control.
-* https://neo4j.com/docs/operations-manual/current/authentication-authorization/access-control/#auth-access-control-security[Administration commands] run against the `system` database.
+* link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/access-control/#auth-access-control-security[Administration commands] run against the `system` database.
 
 === Requesting security logs
 
@@ -162,7 +162,7 @@ Downloaded security logs take the form of a zipped JSON file that, when extracte
 | The ID of the instance the security event occurred on.
 
 | executingUser
-| The name of the user who executed the security event either through authentication (`authenticatedUser`) or through https://neo4j.com/docs/cypher-manual/current/access-control/dbms-administration/#access-control-dbms-administration-impersonation[impersonation].
+| The name of the user who executed the security event either through authentication (`authenticatedUser`) or through link:{neo4j-docs-base-uri}/cypher-manual/current/access-control/dbms-administration/#access-control-dbms-administration-impersonation[impersonation].
 
 | message
 | The log message.

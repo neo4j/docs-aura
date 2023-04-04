@@ -1,0 +1,29 @@
+There are two ways you can import data from an existing Neo4j database into an Aura instance.
+
+The easiest way is to export a Neo4j database as a *_.dump_* file and use the <<_import_database>> process.
+This process, however, only works for *_.dump_* files under 4GB.
+
+If the size of the *_.dump_* file exported from a database is greater than 4GB, you must use the <<_neo4j_admin_database_upload>> method.
+
+== Import database
+
+To import a *_.dump_* file under 4GB:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Select the instance you want to import the data.
+. Select the *Import Database* tab.
+. Drag and drop your *_.dump_* file into the provided window or select *Select a .dump file* and select your file.
+. Select *Upload*.
+
+When the upload is complete, the instance goes into a `Loading` state as the dump is applied.
+Once this has finished, the instance returns to its `Running` state; and the data is ready.
+
+== Neo4j Admin `database upload`
+`database upload` is a Neo4j Admin command that you can run to upload the contents of a Neo4j database into an Aura instance, regardless of the database's size.
+
+For details of how to use the `neo4j-admin database upload` command, along with a full list of options, see link:{neo4j-docs-base-uri}/operations-manual/current/tools/neo4j-admin/upload-to-aura/[Upload to Neo4j Aura].
+
+[NOTE]
+====
+The `database upload` command was introduced in Neo4j Admin version 5, replacing the `push-to-cloud` command that was present in Neo4j Admin version 4.4 and earlier. If you have an earlier version of the Neo4j Admin tool, please see the link:{neo4j-docs-base-uri}/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[Neo4j Admin push-to-cloud documentation].
+====

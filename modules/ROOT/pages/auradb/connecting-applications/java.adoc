@@ -23,8 +23,9 @@ To download the latest version of the Neo4j Java Driver:
 
 To download the compatible version of Reactive Streams:
 
-. Navigate to the Maven Central page of the version of the Neo4j Java Driver you previously downloaded.
-. Find the `reactive-streams` artifact dependency in the pom.xml file on the left side of the page to find the version.
+. Navigate to the https://search.maven.org/artifact/org.neo4j.driver/neo4j-java-driver-parent[Neo4j Java Driver Parent page] of Maven Central.
+. Select the same version as the downloaded driver.
+. Find the `reactive-streams` version in the pom.xml file on the left side of the page.
 . Navigate to the https://search.maven.org/artifact/org.reactivestreams/reactive-streams[Reactive Streams page] of Maven Central.
 . Select the same version as the one present in the pom.xml file previously.
 . Select *Downloads* from the top right of the page and then select *jar* to download the jar file.
@@ -154,11 +155,11 @@ The `main` function calls the following two functions:
 
 [NOTE]
 ====
-Developing with Neo4j Aura requires the handling of transient errors and retry management. One of the ways you can meet this requirement is by using https://neo4j.com/docs/java-manual/current/session-api/#java-driver-simple-transaction-fn[Transaction Functions].
+Developing with Neo4j Aura requires the handling of transient errors and retry management. One of the ways you can meet this requirement is by using link:{neo4j-docs-base-uri}/java-manual/current/session-api/#java-driver-simple-transaction-fn[Transaction Functions].
 ====
 
 Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging.
 
 == References
 
-- https://neo4j.com/docs/java-manual/current/[Neo4j Java Driver Documentation]
+- link:{neo4j-docs-base-uri}/java-manual/[Neo4j Java Driver Documentation]

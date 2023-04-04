@@ -150,11 +150,11 @@ Within the `main` function, a write transaction creates two 'Person' nodes, Alic
 
 [NOTE]
 ====
-Developing with Neo4j Aura requires the use of https://neo4j.com/docs/go-manual/current/session-api/#go-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
+Developing with Neo4j Aura requires the use of link:{neo4j-docs-base-uri}/go-manual/current/session-api/#go-driver-simple-transaction-fn[Transaction Functions]. Transaction Functions enable automatic recovery from transient network errors and enable load balancing.
 ====
 
 Make sure to log queries and data sent from your application as it is useful when you encounter errors and can help with debugging.
 
 == References
 
-- https://neo4j.com/docs/go-manual/current/[Neo4j Go Driver Documentation]
+- link:{neo4j-docs-base-uri}/go-manual/[Neo4j Go Driver Documentation]
