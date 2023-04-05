@@ -19,6 +19,12 @@ When the upload is complete, the instance goes into a `Loading` state as the dum
 Once this has finished, the instance returns to its `Running` state; and the data is ready.
 
 == Neo4j Admin `database upload`
+
+[CAUTION]
+====
+This command does not currently support xref:platform/security.adoc#_vpc_isolation[private linking]. Please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket] if you have public traffic disabled and need to use this command.
+====
+
 `database upload` is a Neo4j Admin command that you can run to upload the contents of a Neo4j database into an Aura instance, regardless of the database's size.
 
 For details of how to use the `neo4j-admin database upload` command, along with a full list of options, see link:{neo4j-docs-base-uri}/operations-manual/current/tools/neo4j-admin/upload-to-aura/[Upload to Neo4j Aura].
