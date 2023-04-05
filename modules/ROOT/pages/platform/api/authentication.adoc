@@ -1,0 +1,146 @@
+[[aura-api-authentication]]
+= Authentication
+
+The Aura API uses OAuth 2.0 for API authentication.
+
+== Creating credentials
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console Account Details page] in your browser.
+. Select the *Create* button in the *OAuth 2.0 Clients* section.
+. Enter a *Client name*, and select *Create*.
+. Securely save the *Client ID* and *Client Secret* you are given in the resulting modal; you will need these for the next step.
+
+[CAUTION]
+====
+You cannot retrieve your secret after you close the modal, so save it securely.
+====
+
+== Authenticating API requests
+
+To authenticate API requests to the link:{neo4j-docs-base-uri}/aura/api/specification/[Aura API endpoints], you must provide a Bearer token in the `Authorization` header of your request as shown below:
+
+`Authorization: Bearer <access_token>`
+
+You can retrieve an access token using the <<#_authentication_endpoint>> outlined below.
+
+== Authentication endpoint
+
+The `POST /aura-oauth/token` endpoint returns a bearer token to authenticate requests sent to all other endpoints.
+
+Authentication to the `POST /aura-oauth/token` endpoint uses HTTP Basic Auth using your client id as the username and client secret as the password.
+
+[CAUTION]
+====
+Both the request and response contain sensitive information and must be kept secure. 
+
+You are responsible for keeping the client credentials and access tokens confidential, whether in transit (by specifying HTTPS), if stored at rest, in log files, etc.
+====
+
+=== URI
+
+`POST /aura-oauth/token`
+
+=== Request Header
+
+[cols="1,1,1"]
+|===
+|Field name |Type |Description
+
+|Authorization
+|string
+|HTTP Basic authentication header using client_id and client_secret as the credentials footnote:[In the form of 'Authorization: Basic <encoded-credentials>', where <encoded-credentials> is the client_id and client_secret separated by a single colon and base64 encoded.]
+
+|Content-Type
+|string
+|Set this to 'application/x-www-form-urlencoded'
+|===
+
+=== Request Body
+
+[cols="1,1"]
+|===
+|Form field name |Value
+
+|grant_type
+|'client_credentials'
+|===
+
+=== Response Body
+
+TODO: Add Auth0 response body token  
+
+=== HTTP Response Codes
+
+[cols="1,1,1"]
+|===
+|Code |Message |Description
+
+|200
+|Success
+|Access token requested successfully.
+
+|400
+|Bad Request
+|Request is invalid.
+
+|401
+|Unauthorized
+|The provided credentials are invalid, expired, or revoked.
+|===
+
+=== Examples
+
+==== cURL
+
+.-user HTTP Basic Auth flag
+[source, shell]
+----
+curl --request POST 'https://api.neo4j.io/aura-oauth/token' \
+     --user '<client_id>:<client_secret>' \
+     --header 'Content-Type: application/x-www-form-urlencoded' \
+     --data-urlencode 'grant_type=client_credentials'
+----
+
+.manually encoded HTTP Basic Auth header
+[source, shell]
+----
+curl --request POST 'https://api.neo4j.io/aura-oauth/token' \
+     --header 'Authorization: Basic <encoded_string>' \ <1>
+     --header 'Content-Type: application/x-www-form-urlencoded' \
+     --data-urlencode 'grant_type=client_credentials'
+----
+<1> `<encoded_string>` is the base64 encoding of your client id and client secret, separated by a colon.
+
+==== URI
+
+`POST /aura-oauth/token`
+
+*Request Headers*
+
+```
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic <encoded_string>
+```
+
+*Request Body*
+
+`grant_type=client_credentials`
+
+*HTTP Response*
+
+`200 Success`
+
+*Response Body*
+
+```
+{
+  "access_token": "<token>",
+  "expires_in": 3600,
+  "token_type": "bearer"
+}
+```
+
+=== Token expiration
+
+If you attempt to send a request authenticated using an expired access token, you will receive a 403 Forbidden response. 
+You will need to obtain a new token to continue using the API.
