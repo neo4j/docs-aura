@@ -2,13 +2,21 @@
 = Overview
 :description: This page introduces the Aura API.
 
-The Aura API allows you to programmatically perform actions on your Aura instances without the need to login to the Console.
-
-A full list of the available endpoints can be seen and tested in the link:{neo4j-docs-base-uri}/aura/api/specification/[API Specification].
+label:AuraDB-Enterprise[]
+label:AuraDS-Enterprise[]
 
 [TIP]
 ====
-Before you can use the API, you will need to follow the steps outlined in xref:platform/api/authentication.adoc[] in order to create your credentials and authenticate your requests.
+The Aura API is currently in Public Beta for Aura Enterprise customers only. If you wish to participate in the Public Beta, please contact your Customer Success Manager.
+====
+
+The Aura API allows you to programmatically perform actions on your Aura instances without the need to log in to the Console.
+
+A complete list of the available endpoints can be seen and tested in the link:{neo4j-docs-base-uri}/aura/api/specification/[API Specification].
+
+[TIP]
+====
+Before using the API, you must follow the steps outlined in xref:platform/api/authentication.adoc[] to create your credentials and authenticate your requests.
 ====
 
 == API URL
