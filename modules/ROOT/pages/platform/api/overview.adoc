@@ -27,15 +27,12 @@ The base URL for the Aura API is `\https://api.neo4j.io`.
 
 === Versioning
 
-There are currently two versions of the Aura API available:
-
-* `link:{neo4j-docs-base-uri}/aura/api/specification/?urls.primaryName=Aura%20v1beta2[V1beta2]` - This is the latest version of the API.
-* `link:{neo4j-docs-base-uri}/aura/api/specification/?urls.primaryName=Aura%20v1beta1[V1beta1]` - This was the initial release of the API and is only available for backward compatibility.
+The current version of the Aura API  is `link:{neo4j-docs-base-uri}/aura/api/specification/?urls.primaryName=Aura%20v1beta3[v1beta3]`
 
 [NOTE]
 ====
-`V1beta2` indicates that this is the second beta release of V1 of the Public API. 
-Once the API becomes generally available, the version will be updated to `V1`.
+`V1beta3` indicates that this is the third beta release of V1 of the Public API. 
+Once the API becomes generally available, the version will update to `V1`.
 ====
 
 As and when we need to introduce breaking changes to the API, we will release a new version to ensure we do not break existing integrations.
@@ -47,7 +44,7 @@ Once the expiry date for a deprecated version has passed, that version will no l
 
 The following example shows how to use the base URL and versioning to make a request to the API:
 
-`GET \https://api.neo4j.io/v1beta2/instances`
+`GET \https://api.neo4j.io/v1beta3/instances`
 
 == Retries
 
