@@ -39,14 +39,7 @@ You can use the *Authorize* button on the link:{neo4j-docs-base-uri}/aura/api/sp
 
 You can use the following `/oauth/token` endpoint to obtain a Bearer Token for authenticating API requests.
 
-Authentication to the token endpoint uses HTTP Basic Auth with your client ID as the username and client secret as the password.
-
-[CAUTION]
-====
-Both the request and response contain sensitive information and must be kept secure. 
-
-You are responsible for keeping the client credentials and access tokens confidential, whether in transit (by specifying HTTPS), if stored at rest, in log files, etc.
-====
+Authentication to the token endpoint uses HTTP Basic Authentication, where the client ID and client secret are provided as the username and password, respectively.
 
 ==== Request parameters
 
@@ -58,6 +51,9 @@ You are responsible for keeping the client credentials and access tokens confide
 [cols="1,1"]
 |===
 |Parameter |Value
+
+|Authorization footnote:[This header is set for you when providing your client ID as the username and client secret as the password.]
+|`Basic <credentials>` footnote:[Where `<credentials>` is the base64-encoded string of your client ID and client secret, joined by a colon (`:`).]
 
 |Content-Type
 |`application/x-www-form-urlencoded`
@@ -73,15 +69,24 @@ You are responsible for keeping the client credentials and access tokens confide
 |`client_credentials`
 |===
 
+[CAUTION]
+====
+Both the request and response contain sensitive information and must be kept secure. 
+
+You are responsible for keeping the client credentials and access tokens confidential, whether in transit (by specifying HTTPS), if stored at rest, in log files, etc.
+====
+
 ==== cURL example
 
 [source, shell]
 ----
 curl --request POST 'https://api.neo4j.io/oauth/token' \
-     --user '<client_id>:<client_secret>' \
+     --user '<client_id>:<client_secret>' \ <1>
      --header 'Content-Type: application/x-www-form-urlencoded' \
      --data-urlencode 'grant_type=client_credentials'
 ----
+
+<1> The `--user` parameter sets the `Authorization` header for you, handling the base64 encoding of the client ID and client secret.
 
 ==== Response body example
 
@@ -113,6 +118,14 @@ curl --request POST 'https://api.neo4j.io/oauth/token' \
 |401
 |Unauthorized
 |The provided credentials are invalid, expired, or revoked.
+
+|403 
+|Forbidden
+|The request body is invalid.
+
+|404
+|Not Found 
+|The request body is missing.
 |===
 
 === Token expiration
