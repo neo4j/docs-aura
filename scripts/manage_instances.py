@@ -1,4 +1,5 @@
 import json
+import os
 
 import click
 import dotenv
@@ -13,6 +14,8 @@ CLIENT_ID = dotenv.get_key(AURA_API_ENV, "CLIENT_ID")
 CLIENT_SECRET = dotenv.get_key(AURA_API_ENV, "CLIENT_SECRET")
 TOKEN_URL = dotenv.get_key(AURA_API_ENV, "TOKEN_URL")
 API_BASE_URL = dotenv.get_key(AURA_API_ENV, "API_BASE_URL")
+
+INSTANCE_TYPES = ("enterprise-ds", "enterprise-db", "professional-ds", "professional-db")
 
 
 def init_oauth_session():
@@ -31,6 +34,10 @@ def list_instances(oauth_session):
     print(json.dumps(res.json(), indent=2))
 
 
+def get_dotenv_filename(instance_name):
+    return instance_name + ".env"
+
+
 def write_dotenv_file(aura_env_file, instance_data):
     dotenv.set_key(aura_env_file, "NEO4J_URI", instance_data["connection_url"])
     dotenv.set_key(aura_env_file, "NEO4J_USERNAME", instance_data["username"])
@@ -38,13 +45,21 @@ def write_dotenv_file(aura_env_file, instance_data):
     dotenv.set_key(aura_env_file, "AURA_INSTANCEID", instance_data["id"])
 
 
-def create_instance(oauth_session, aura_env_file):
+def create_instance(oauth_session, instance_type, instance_name):
+    if instance_type not in INSTANCE_TYPES:
+        raise ValueError(f"Instance type {instance_type} not allowed")
+    
+    aura_env_file = get_dotenv_filename(instance_name)
+
+    if os.path.exists(aura_env_file):
+        raise FileExistsError(f"The env file for an instance named {instance_name} already exists")
+
     body = {
         "version": "5",
         "region": "europe-west1",
         "memory": "8GB",
-        "name": "test",
-        "type": "enterprise-ds",
+        "name": instance_name,
+        "type": instance_type,
     }
     res = oauth_session.post(f"{API_BASE_URL}/instances", json=body)
     res.raise_for_status()
@@ -70,7 +85,12 @@ def create_instance(oauth_session, aura_env_file):
     print(f"Instance created: {connection_url}")
 
 
-def destroy_instance(oauth_session, aura_env_file):
+def destroy_instance(oauth_session, instance_name):
+    aura_env_file = get_dotenv_filename(instance_name)
+
+    if not os.path.exists(aura_env_file):
+        raise FileNotFoundError(f"The env file for an instance named {instance_name} does not exist")
+
     connection_url = dotenv.get_key(aura_env_file, "NEO4J_URI")
     instance_id = dotenv.get_key(aura_env_file, "AURA_INSTANCEID")
 
@@ -84,22 +104,25 @@ def destroy_instance(oauth_session, aura_env_file):
 @click.option("--create", default=False, is_flag=True, help="Create an Aura instance")
 @click.option("--destroy", default=False, is_flag=True, help="Destroy an Aura instance")
 @click.option(
-    "--aura-env-file",
-    default="aura.env",
-    type=click.Path(dir_okay=False),
-    help="Location of the Aura env file to create",
+    "--instance-type",
+    default="enterprise-ds",
+    type=click.Choice(INSTANCE_TYPES),
+    help="The type of instance to create",
 )
-def main(create, destroy, aura_env_file):
+@click.argument("instance_name")
+def main(create, destroy, instance_type, instance_name):
+    """Create or destroy an instance with name INSTANCE_NAME.
+    """
     oauth_session = None
 
     if create or destroy:
         oauth_session = init_oauth_session()
 
     if create:
-        create_instance(oauth_session, aura_env_file)
+        create_instance(oauth_session, instance_type, instance_name)
 
     if destroy:
-        destroy_instance(oauth_session, aura_env_file)
+        destroy_instance(oauth_session, instance_name)
 
     if oauth_session is not None:
         oauth_session.close()

@@ -28,10 +28,11 @@ NOTE: The script requires Python 3.
 === Running the script
 
 1. Activate the virtual environment (if not already active): `source venv/bin/activate` (`venv\Scripts\activate` on Windows).
-2. Run `python scripts/manage_instances.py --create` to create an Aura instance or `python scripts/manage_instances.py --destroy` to destroy it.
+2. Run `python scripts/manage_instances.py --create INSTANCE_NAME` to create an Aura instance with name _INSTANCE_NAME_, or `python scripts/manage_instances.py --destroy INSTANCE_NAME` to destroy it.
+  - You can use the optional parameter `--instance-type` together with `--create` to select the instance type to create (the default is `enterprise-ds`).
   - Run `python scripts/manage_instances.py --help` for more details on the usage.
 
-The script creates an `aura.env` file containing the Aura instance credentials.
+The script creates an _INSTANCE_NAME_.env file containing the Aura instance credentials.
 
 == Extract runnable code from AuraDS docs
 
