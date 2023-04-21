@@ -86,7 +86,7 @@ curl --request POST 'https://api.neo4j.io/oauth/token' \
      --data-urlencode 'grant_type=client_credentials'
 ----
 
-<1> The `--user` parameter sets the `Authorization` header for you, handling the base64 encoding of the client ID and client secret.
+<1> The `--user` option sets the `Authorization` header for you, handling the base64 encoding of the client ID and client secret.
 
 ==== Response body example
 
