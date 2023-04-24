@@ -2,8 +2,9 @@
 = Loading CSV files
 :description: This page describes how to load CSV files into a Neo4j AuraDS instance.
 :star: *
+:notebook-name: Loading_CSV_files_(GDS_client).ipynb
 
-TIP: Follow along with a notebook in https://colab.research.google.com/github/neo4j/docs-aura/blob/main/notebooks/Loading_CSV_files_(GDS_client).ipynb[image:colab.svg[Colab,24] Google Colab^]
+include::partial$aurads/colab.adoc[]
 
 A CSV file can be loaded into an AuraDS instance using the link:{neo4j-docs-base-uri}/cypher-manual/current/clauses/load-csv/[`LOAD CSV`^] Cypher clause. For security reasons it is not possible to load local CSV files, which must be instead publicly accessible on HTTP or HTTPS servers such as GitHub, Google Drive, and Dropbox. Another way to make CSV files available is to upload them to a cloud bucket storage (such as Google Cloud Storage or Amazon S3) and configure the bucket as a static website.
 
