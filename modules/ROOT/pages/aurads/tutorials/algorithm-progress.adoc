@@ -2,8 +2,9 @@
 = Monitoring the progress of a running algorithm
 :description: This page describes how to use monitor the algorithm progress.
 :generated-graph-size: 1000000
+:notebook-name: Monitoring_the_progress_of_a_running_algorithm_(GDS_client).ipynb
 
-TIP: Follow along with a notebook in https://colab.research.google.com/drive/1wCign36IRzxQacjD9vL7wkpBNjZDGace?usp=sharing[image:colab.svg[Colab,24] Google Colab^]
+include::partial$aurads/colab.adoc[]
 
 Running algorithms on large graphs can be computationally expensive. This example shows how to use the link:{neo4j-docs-base-uri}/graph-data-science/current/common-usage/logging/#logging-progress-logging[`gds.beta.listProgress`^] procedure to monitor the progress of an algorithm, both to get an idea of the processing speed and to determine when the computation is completed.
 
