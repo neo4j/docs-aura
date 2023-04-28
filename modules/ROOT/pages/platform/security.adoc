@@ -5,7 +5,7 @@
 
 All data stored in Neo4j Aura is encrypted using intra-cluster encryption between the various nodes comprising your database and encrypted at rest using the underlying cloud provider's encryption mechanism.
 
-By default, all cloud providers encrypt all backup buckets (including the objects stored inside) with either https://cloud.google.com/storage/docs/encryption/default-keys[Google-managed encryption], https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html[AWS SSE-S3 encryption] or https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption[Azure Storage encryption].
+By default, each cloud provider encrypts all backup buckets (including the objects stored inside) using either https://cloud.google.com/storage/docs/encryption/default-keys[Google-managed encryption], https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html[AWS SSE-S3 encryption], or https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption[Azure Storage encryption].
 
 == VPC isolation
 
