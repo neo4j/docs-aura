@@ -20,7 +20,7 @@ include::partial$aurads/setup.adoc[]
 
 == Create constraints
 
-Adding constraints before loading any data usally improves data loading performance. In fact, besides adding an integrity check, a unique constraint adds an index on a property at the same time, so that `MATCH` and `MERGE` operations during loading are faster.
+Adding constraints before loading any data usually improves data loading performance. In fact, besides adding an integrity check, a unique constraint adds an index on a property at the same time, so that `MATCH` and `MERGE` operations during loading are faster.
 
 WARNING: *Warning*: For best performance when using `MERGE` or `MATCH` with `LOAD CSV`, make sure an index or a unique constraint has been created on the property used for merging. For more information, follow the link:{neo4j-docs-base-uri}/getting-started/current/cypher-intro/load-csv/#_prepare_the_database[Import data] tutorial in the Cypher documentation.
 
@@ -254,7 +254,7 @@ with driver.session() as session:
 
 == Run a Cypher query
 
-Once all the nodes and relationships have been created, we can run a query to check that the data have been inserted correctly. The following query looks for movies with Keanu Reeves, orders them by release date and groups their titles.
+Once all the nodes and relationships have been created, we can run a query to check that the data have been inserted correctly. The following query looks for movies with `Keanu Reeves`, orders them by release date and groups their titles.
 
 [.tabbed-example]
 ====
