@@ -3,7 +3,7 @@
 
 == Encryption
 
-All data stored in Neo4j Aura is encrypted using intra-cluster encryption between the various nodes comprising your database and encrypted at rest using the underlying cloud provider's encryption mechanism.
+All data stored in Neo4j Aura is encrypted using intra-cluster encryption between the various nodes comprising your instance and encrypted at rest using the underlying cloud provider's encryption mechanism.
 
 By default, each cloud provider encrypts all backup buckets (including the objects stored inside) using either https://cloud.google.com/storage/docs/encryption/default-keys[Google-managed encryption], https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html[AWS SSE-S3 encryption], or https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption[Azure Storage encryption].
 
@@ -16,7 +16,7 @@ AuraDB Enterprise and AuraDS Enterprise run within a Virtual Private Cloud (VPC)
 
 The VPC enables you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
 
-Please note that the Aura console runs in a separate VPC.
+Please note that the Aura Console runs in a separate VPC.
 
 === AWS Private endpoints
 
@@ -29,25 +29,26 @@ Once activated, you can create an endpoint in your VPC that connects to Aura.
 image::privatelink.png[title="VPC connectivity with AWS PrivateLink"]
 
 All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet.
-You can then disable public traffic, ensuring all traffic to the database remains private to your VPC.
+You can then disable public traffic, ensuring all traffic to the instance remains private to your VPC.
 
 [NOTE]
 ====
-* When activated, PrivateLink applies to all databases in the region.
-* If you disable public traffic, you must use a dedicated VPN to connect to your database via Browser or Bloom.
+* When activated, PrivateLink applies to all instances in the region. 
+* A *Private Connection* label and shield icon will appear on any instance tile using PrivateLink in the Aura Console.
+* If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
 * Connections using private endpoints are one-way. Aura VPCs can't initiate connections back to your VPCs.
 * In AWS region us-east-1, we do not support the Availability Zone with ID use1-az3 for private endpoints.
 ====
 
 ==== Browser and Bloom access over private endpoints
 
-To connect to your database via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your database, this applies to all connections, including those from your computer when using Browser or Bloom.
+To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
 image::privatelink_01_before_enabling.png[title="Architecture overview before enabling private endpoints"]
 
-When you have enabled private endpoints **and** disabled public internet access, you can no longer connect Browser or Bloom to your databases over the internet:
+When you have enabled private endpoints **and** disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet:
 
 image::privatelink_02_enabled_private_traffic_only.png[title="Architecture overview with private endpoints enabled and public traffic disabled"]
 
@@ -82,24 +83,25 @@ Once activated, you can create an endpoint in your VPC that connects to Aura.
 image::privateserviceconnect.png[title="VPC connectivity with GCP Private Service Connect"]
 
 All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet.
-You can then disable public traffic, ensuring all traffic to the database remains private to your VPC.
+You can then disable public traffic, ensuring all traffic to the instance remains private to your VPC.
 
 [NOTE]
 ====
-* When activated, Private Service Connect applies to all databases in the region.
-* If you disable public traffic, you must use a dedicated VPN to connect to your database via Browser or Bloom.
-* Connections using private endpoints are one-way. Aura VPCs can’t initiate connections back to your VPCs.
+* When activated, Private Service Connect applies to all instances in the region.
+* A *Private Connection* label and shield icon will appear on any instance tile using Private Service Connect in the Aura Console.
+* If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
+* Connections using private endpoints are one-way. Aura VPCs can't initiate connections back to your VPCs.
 ====
 
 ==== Browser and Bloom access over private endpoints
 
-To connect to your database via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your database, this applies to all connections, including those from your computer when using Browser or Bloom.
+To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
 image::privateserviceconnect_01_before_enabling.png[title="Architecture overview before enabling private endpoints"]
 
-When you have enabled private endpoints and disabled public internet access, you can no longer connect Browser or Bloom to your databases over the internet:
+When you have enabled private endpoints and disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet:
 
 image::privateserviceconnect_02_enabled_private_traffic_only.png[title="Architecture overview with private endpoints enabled and public traffic disabled"]
 
@@ -117,7 +119,7 @@ image::privateserviceconnect_03_browser_bloom_over_vpn.png[title="Accessing Brow
 
 ==== Enabling private endpoints
 
-To enable private endpoints using GCP Private Service Connect, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket], and we’ll be in touch.
+To enable private endpoints using GCP Private Service Connect, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket], and we'll be in touch.
 
 Please see the https://cloud.google.com/vpc/docs/configure-private-service-connect-services[GCP Documentation] for required roles and permissions.
 
@@ -132,24 +134,25 @@ Once activated, you can create an endpoint in your Virtual Network (VNet) that c
 image::azure_privatelink.png[title="VNet connectivity with Azure Private Link"]
 
 All applications running Neo4j workloads inside the VNet are routed directly to your isolated environment in Aura without traversing the public internet.
-You can then disable public traffic, ensuring all traffic to the database remains private to your VNet.
+You can then disable public traffic, ensuring all traffic to the instance remains private to your VNet.
 
 [NOTE]
 ====
-* When activated, Private Link applies to all databases in the region.
-* If you disable public traffic, you must use a dedicated VPN to connect to your database via Browser or Bloom.
-* Connections using private endpoints are one-way. Aura VNets can’t initiate connections back to your VNets.
+* When activated, Private Link applies to all instances in the region.
+* A *Private Connection* label and shield icon will appear on any instance tile using Private Link in the Aura Console.
+* If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
+* Connections using private endpoints are one-way. Aura VNets can't initiate connections back to your VNets.
 ====
 
 ==== Browser and Bloom access over private endpoints
 
-To connect to your database via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your database, this applies to all connections, including those from your computer when using Browser or Bloom.
+To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
 image::azure_privatelink_01_before_enabling.png[title="Architecture overview before enabling private endpoints"]
 
-When you have enabled private endpoints and disabled public internet access, you can no longer connect Browser or Bloom to your databases over the internet:
+When you have enabled private endpoints and disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet:
 
 image::azure_privatelink_02_enabled_private_traffic_only.png[title="Architecture overview with private endpoints enabled and public traffic disabled"]
 
@@ -192,9 +195,9 @@ If the IdP you are currently using is not in our list of certified IdPs above, p
 
 Aura supports Authorization Code Flow with PKCE to ensure best practice security.
 
-To add SSO for Browser and Bloom to your AuraDB Enterprise databases, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket] including the following information:
+To add SSO for Browser and Bloom to your AuraDB Enterprise instances, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket] including the following information:
 
-. The *Connection URI* of the database(s) you want to use SSO.
+. The *Connection URI* of the instance(s) you want to use SSO.
 . Whether or not you want Browser, Bloom, or both enabled.
 . The name of your IdP.
 . Confirmation that the authorization flow is PKCE.
