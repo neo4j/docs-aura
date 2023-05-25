@@ -33,8 +33,8 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 
 [NOTE]
 ====
-* When activated, PrivateLink applies to all instances in the region. 
-* A *Private Connection* label and shield icon will appear on any instance tile using PrivateLink in the Aura Console.
+* PrivateLink applies to all instances in the region. 
+* When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using PrivateLink in the Aura Console.
 * If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
 * Connections using private endpoints are one-way. Aura VPCs can't initiate connections back to your VPCs.
 * In AWS region us-east-1, we do not support the Availability Zone with ID use1-az3 for private endpoints.
@@ -87,8 +87,8 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 
 [NOTE]
 ====
-* When activated, Private Service Connect applies to all instances in the region.
-* A *Private Connection* label and shield icon will appear on any instance tile using Private Service Connect in the Aura Console.
+* Private Service Connect applies to all instances in the region.
+* When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using Private Service Connect in the Aura Console.
 * If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
 * Connections using private endpoints are one-way. Aura VPCs can't initiate connections back to your VPCs.
 ====
@@ -138,8 +138,8 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 
 [NOTE]
 ====
-* When activated, Private Link applies to all instances in the region.
-* A *Private Connection* label and shield icon will appear on any instance tile using Private Link in the Aura Console.
+* Private Link applies to all instances in the region.
+* When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using Private Link in the Aura Console.
 * If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
 * Connections using private endpoints are one-way. Aura VNets can't initiate connections back to your VNets.
 ====
