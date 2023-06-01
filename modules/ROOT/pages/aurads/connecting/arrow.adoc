@@ -1,0 +1,81 @@
+[[connecting-arrow]]
+= Using Apache Arrow on AuraDS
+:description: This page describes how to use Apache Arrow on AuraDS.
+:notebook-name: Arrow_example.ipynb
+
+include::partial$aurads/colab.adoc[]
+
+Apache Arrow is already installed and configured on AuraDS.
+The easiest way to use Arrow is via the GDS Python client. When initialized, the client by default tries to use it (via the `arrow` parameter) if it is available on the server.
+
+To see the difference in performance that Arrow enables, you can load a dataset with Arrow enabled (`arrow=True`, the default) and disabled (`arrow=False`) and compare the time.
+
+== Setup
+
+[source, python]
+----
+# The `ogb` extra is needed for OGBN datasets
+%pip install 'graphdatascience[ogb]==1.7a1'
+
+from graphdatascience import GraphDataScience
+
+# Replace with the actual connection URI and credentials
+NEO4J_CONNECTION_URI = "neo4j+s://xxxxxxxx.databases.neo4j.io"
+NEO4J_USERNAME = "neo4j"
+NEO4J_PASSWORD = ""
+----
+
+== Default client (Arrow enabled)
+
+[source, python]
+----
+# Default constructor with `arrow=True`
+gds = GraphDataScience(NEO4J_CONNECTION_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD), aura_ds=True)
+
+# Necessary if Arrow is enabled (as is by default)
+gds.set_database("neo4j")
+
+# Run it once to download the dataset
+g = gds.graph.ogbn.load("ogbn-arxiv")
+g.drop()
+----
+
+Time the loading:
+
+[source, python]
+----
+%%timeit -n 1 -r 1
+
+gds.graph.ogbn.load("ogbn-arxiv")
+----
+
+== Arrow disabled
+
+Drop the graph and recreate the client with Arrow disabled:
+
+[source, python]
+----
+gds.graph.get("ogbn-arxiv").drop()
+gds.close()
+
+gds = GraphDataScience(NEO4J_CONNECTION_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD), aura_ds=True, arrow=False)
+----
+
+Time the loading:
+
+[source, python]
+----
+%%timeit -n 1 -r 1
+
+gds.graph.ogbn.load("ogbn-arxiv")
+----
+
+This takes longer.
+
+== Cleanup
+
+[source, python]
+----
+gds.graph.get("ogbn-arxiv").drop()
+gds.close()
+----
