@@ -3,6 +3,8 @@
 :description: This section introduces Neo4j AuraDS.
 :check-mark: icon:check[]
 :table-caption!:
+:fn-encryption: footnote:encryption[At rest and in transit]
+:fn-eap: footnote:eap[Early Access]
 
 AuraDS is the fully managed version of Neo4j Graph Data Science. 
 
@@ -34,6 +36,14 @@ AuraDS offers the *AuraDS Professional* and *AuraDS Enterprise* subscription pla
 | Pregel API (algorithm authoring tool)
 | _not available_
 | _not available_
+
+| Apache Arrow integration for graph projections
+| {check-mark}
+| {check-mark}
+
+| Memory optimized projections
+| {check-mark}
+| {check-mark}
 
 | Parallelization
 | Use up to 20 CPUs
@@ -79,9 +89,9 @@ AuraDS offers the *AuraDS Professional* and *AuraDS Enterprise* subscription pla
 | {check-mark}
 | {check-mark}
 
-| Cloud tenancy
-| multi-tenant
-| VPC-isolated
+| On-demand query logs
+| {check-mark}
+| {check-mark}
 
 | Read replica
 | _not available_
@@ -92,8 +102,12 @@ AuraDS offers the *AuraDS Professional* and *AuraDS Enterprise* subscription pla
 | _not available_
 
 | Pay with committed spend from cloud provider
-| GCP
-| GCP
+| AWS, Azure, GCP
+| AWS, Azure, GCP
+
+| VPC Network Integration
+| GCP, AWS{fn-eap}, Azure{fn-eap}
+| GCP, AWS{fn-eap}, Azure{fn-eap}
 |===
 
 .Tools, integrations and ecosystem
@@ -122,6 +136,14 @@ AuraDS offers the *AuraDS Professional* and *AuraDS Enterprise* subscription pla
 | Neo4j Kafka Connector
 | {check-mark}
 | {check-mark}
+
+| Neo4j BI Connector
+| {check-mark}
+| {check-mark}
+
+| Neo4j Data Warehouse Connector
+| {check-mark}
+| {check-mark}
 |===
 
 .Backup
@@ -136,8 +158,8 @@ AuraDS offers the *AuraDS Professional* and *AuraDS Enterprise* subscription pla
 | {check-mark}
 
 | Backup method
-| Ad-hoc backups
-| Ad-hoc backups
+| One-click backups
+| One-click backups
 
 | Backup retention
 | 180 days
@@ -151,17 +173,29 @@ AuraDS offers the *AuraDS Professional* and *AuraDS Enterprise* subscription pla
 | label:AuraDS-Professional[]
 | label:AuraDS-Enterprise[]
 
+| Cloud tenancy
+| multi-tenant
+| VPC-isolated
+
 | Encryption
-| {check-mark}footnote:encryption[At rest and in transit]
-| {check-mark}footnote:encryption[]
+| {check-mark}{fn-encryption}
+| {check-mark}{fn-encryption}
 
 | Multiple database users
 | {check-mark}
 | {check-mark}
 
-| RBAC (role based access control)
-| _not available_
-| _not available_
+| Fine-grained access control
+|
+| {check-mark}
+
+| Security logs
+|
+| {check-mark}
+
+| Private VPC endpoints available
+|
+| {check-mark}
 |===
 
 .Customer support
