@@ -2,7 +2,7 @@
 = Creating an instance
 :description: This page describes how to create a Neo4j AuraDB instance.
 
-The process of creating a instance differs depending on the type.
+The process of creating an instance differs depending on the type.
 
 You can select from the options below to display the relevant process.
 
@@ -14,16 +14,10 @@ You can select from the options below to display the relevant process.
 To create an *AuraDB Free* instance in Neo4j AuraDB:
 
 . Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
-. Select *New Instance* to open the *Create an instance* page.
-. Select *AuraDB Free* as your *Instance type*.
-. Set your *Instance details*:
-* *Instance Name* - The name to give the instance. This name can be whatever you like.
-* *Region* - The physical location of the instance. Set this as close to your location as possible. The closer the region to your location, the faster the response time for any network interactions with the instance.
-. (Optional) Select a *Starting dataset*. Selecting a starting dataset pre-populates your instance with data from the selected dataset. 
-. Select *Create Instance* when you are happy with your instance details.
-. Copy and store the *Username* and *Generated password* credentials for the instance.
-. (Optional) Download the credentials as a `.txt` file.
-. Tick the *I have stored these credentials safely to use later* checkbox, and select *Continue*.
+. Select *New Instance*.
+. Select *Create Free instance*.
+. Copy and store the instance's *Username* and *Generated password* or download the credentials as a `.txt` file.
+. Tick the confirmation checkbox, and select *Continue*.
 
 [NOTE]
 ======
@@ -34,21 +28,24 @@ You can only create one AuraDB Free instance per account.
 [.include-with-AuraDB-Professional]
 =====
 
+[NOTE]
+======
+If you have yet to create a Free instance, you will always be presented with the option to do so. If you still wish to create a professional instance, select *Select Professional instance* and follow the instructions below from step 3 onwards.
+======
+
 To create an *AuraDB Professional* instance in Neo4j AuraDB:
 
 . Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Select *New Instance* to open the *Create an instance* page.
-. Select *AuraDB Professional* as your *Instance type*.
 . Set your *Instance size*, the memory, CPU, and storage allocated to the instance. The larger the instance size, the more it costs to run. Once selected, you can see the running cost at the bottom of the page.
 . Set your *Instance details*:
 * *Instance Name* - The name to give the instance. This name can be whatever you like.
 * *Neo4j Version* - The version of the Neo4j instance.
 * *Region* - The physical location of the instance. Set this as close to your location as possible. The closer the region to your location, the faster the response time for any network interactions with the instance.
 . Tick the *I understand* checkbox next to the running cost confirmation.
-. Select *Create Instance* when you are happy with your instance details and size.
-. Copy and store the *Username* and *Generated password* credentials for the instance.
-. (Optional) Download the credentials as a `.txt` file.
-. Tick the *I have stored these credentials safely to use later* checkbox, and select *Continue*.
+. Select *Create Instance* when happy with your instance details and size.
+. Copy and store the instance's *Username* and *Generated password* or download the credentials as a `.txt` file.
+. Tick the confirmation checkbox, and select *Continue*.
 
 [NOTE]
 ======
@@ -69,10 +66,9 @@ To create an *AuraDB Enterprise* instance in Neo4j AuraDB:
 * *Neo4j Version* - The version of the Neo4j instance.
 * *Region* - The physical location of the instance. Set this as close to your location as possible. The closer the region to your location, the faster the response time for any network interactions with the instance.
 . Tick the *I understand* checkbox.
-. Select *Create Instance* when you are happy with your instance details and size.
-. Copy and store the *Username* and *Generated password* credentials for the instance.
-. (Optional) Download the credentials as a `.txt` file.
-. Tick the *I have stored these credentials safely to use later* checkbox, and select *Continue*.
+. Select *Create Instance* when happy with your instance details and size.
+. Copy and store the instance's *Username* and *Generated password* or download the credentials as a `.txt` file.
+. Tick the confirmation checkbox, and select *Continue*.
 
 [NOTE]
 ======
