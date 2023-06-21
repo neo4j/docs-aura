@@ -49,7 +49,7 @@ def get_tenant(oauth_session, tenant_name):
         for tenant in res_json["data"]:
             if tenant["name"].endswith(f"-{tenant_name}"):
                 return tenant["id"]
-            
+
     raise ValueError(f"Tenant '{tenant_name}' not found")
 
 
@@ -67,12 +67,12 @@ def write_dotenv_file(aura_env_file, instance_data):
 def create_instance(oauth_session, instance_type, instance_name, tenant):
     if instance_type not in INSTANCE_TYPES:
         raise ValueError(f"Instance type {instance_type} not allowed")
-    
+
     aura_env_file = get_dotenv_filename(instance_name)
 
     if os.path.exists(aura_env_file):
         raise FileExistsError(f"The env file for an instance named {instance_name} already exists")
-    
+
     region = TENANT_REGIONS[tenant]
     tenant_id = get_tenant(oauth_session, tenant)
 
@@ -82,7 +82,7 @@ def create_instance(oauth_session, instance_type, instance_name, tenant):
         "type": instance_type,
         "region": region,
         "memory": "8GB",
-        "tenant_id": tenant_id
+        "tenant_id": tenant_id,
     }
     res = oauth_session.post(f"{API_BASE_URL}/instances", json=body)
     res.raise_for_status()
@@ -140,8 +140,7 @@ def destroy_instance(oauth_session, instance_name):
 )
 @click.argument("instance_name")
 def main(create, destroy, instance_type, instance_name, tenant):
-    """Create or destroy an instance with name INSTANCE_NAME.
-    """
+    """Create or destroy an instance with name INSTANCE_NAME."""
     oauth_session = None
 
     if create or destroy:
