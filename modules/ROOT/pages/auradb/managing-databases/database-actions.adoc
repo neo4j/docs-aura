@@ -15,23 +15,10 @@ To rename an instance:
 . Enter a new name for the instance.
 . Select *Rename*.
 
-== Loading a dataset
-
-[WARNING]
-====
-Loading a dataset will erase all existing data in the instance. 
-====
-
-You can load a dataset into an instance using the *Load dataset* action.
-
-To load a dataset:
-
-. Select the ellipsis (*...*) button on the instance you want to load the dataset into.
-. Select *Load dataset* from the resulting menu.
-. Select the dataset you want to load.
-. Select *Load dataset*.  
-
 == Resetting an instance
+
+label:AuraDB-Free[]
+label:AuraDB-Professional[]
 
 You can clear all data in an instance using the *Reset to blank* action.
 
@@ -40,6 +27,21 @@ To reset an instance:
 . Select the ellipsis (*...*) button on the instance you want to reset.
 . Select *Reset to blank* from the resulting menu.
 . Select *Reset*.
+
+== Upgrading an instance
+
+label:AuraDB-Free[]
+
+You can upgrade an AuraDB Free instance to an AuraDB Professional instance using the *Upgrade to Professional* action.
+
+Upgrading your instance clones your Free instance data to a new Professional instance, leaving your existing Free instance untouched.
+
+To upgrade a Free instance:
+
+. Select the ellipsis (*...*) button on the free instance you want to upgrade.
+. Select *Upgrade to Professional* from the resulting menu.
+. Set your desired settings for the new instance. For more information on AuraDB instance creation settings, see xref:auradb/getting-started/create-database.adoc[].
+. Tick the *I understand* checkbox and select *Upgrade Instance*.
 
 == Resizing an instance
 
@@ -53,7 +55,7 @@ To resize an instance:
 . Select the ellipsis (*...*) button on the instance you want to resize.
 . Select *Resize* from the resulting menu.
 . Select the new size you want your instance to be.
-. Tick the *I understand* checkbox and select *Submit*.
+. Tick the *I understand* checkbox and select *Upgrade instance*.
 
 An instance remains available during the resize operation.
 
