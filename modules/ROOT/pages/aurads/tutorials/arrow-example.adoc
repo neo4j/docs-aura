@@ -85,6 +85,8 @@ We can now time the loading process again. On an 8 GB AuraDS instance, this shou
 gds.graph.ogbn.load("ogbn-arxiv")
 ----
 
+Therefore, with this dataset, Arrow provides at least a 2x speedup.
+
 == Cleanup
 
 [source, python]
