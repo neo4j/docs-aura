@@ -47,15 +47,69 @@ The `gds.debug.arrow()` procedure can be used to verify that Arrow is enabled an
 gds.run_cypher("CALL gds.debug.arrow() YIELD enabled, running")
 ----
 
-=== Loading data
+== Loading data
 
-TODO
+https://neo4j.com/docs/graph-data-science-client/current/graph-object/#construct
 
-=== Streaming node properties
+For this example we need to install and import the link:https://pandas.pydata.org/[`pandas`] library.
 
-TODO
+[source, python]
+----
+%pip install pandas
 
-=== Performance
+import pandas as pd
+----
+
+We can create a graph as follows:
+
+[source, python]
+----
+nodes = pd.DataFrame(
+    {
+        "nodeId": [0, 1, 2],
+        "labels":  ["Article", "Article", "Article"],
+        "pages": [3, 7, 12],
+    }
+)
+
+relationships = pd.DataFrame(
+    {
+        "sourceNodeId": [0, 1],
+        "targetNodeId": [1, 2],
+        "relationshipType": ["CITES", "CITES"],
+        "times": [2, 1]
+    }
+)
+
+article_graph = gds.graph.construct(
+    "article-graph",
+    nodes,
+    relationships
+)
+----
+
+Now we can check that the graph has been created:
+
+[source, python]
+----
+gds.graph.list()
+----
+
+== Streaming node and relationship properties
+
+https://neo4j.com/docs/graph-data-science-client/current/graph-object/#graph-object-streaming-properties
+
+[source, python]
+----
+gds.graph.nodeProperties.stream(article_graph, "pages")
+----
+
+[source, python]
+----
+gds.graph.relationshipProperties.stream(article_graph, "times")
+----
+
+== Performance
 
 For this example, the `ogb` extra is needed in order to load OGBN datasets.
 
@@ -64,13 +118,12 @@ For this example, the `ogb` extra is needed in order to load OGBN datasets.
 %pip install 'graphdatascience[ogb]>=1.7'
 ----
 
-First, we load and drop a built-in link:https://neo4j.com/docs/graph-data-science-client/current/common-datasets/#_ogbn_graphs[OGBN dataset] in order to download the data.
+First, we load and immediately drop a built-in link:https://neo4j.com/docs/graph-data-science-client/current/common-datasets/#_ogbn_graphs[OGBN dataset] in order to download the data.
 
 [source, python]
 ----
-# Run it once to download the dataset
-g = gds.graph.ogbn.load("ogbn-arxiv")
-g.drop()
+ogbn_arxiv = gds.graph.ogbn.load("ogbn-arxiv")
+ogbn_arxiv.drop()
 ----
 
 We can now time the actual loading process by loading the same dataset. On an 8 GB AuraDS instance, this should take less than 30 s.
@@ -87,10 +140,10 @@ Therefore, with this dataset, Arrow provides at least a 2x speedup.
 
 == Cleanup
 
-TODO: remove other graph
-
 [source, python]
 ----
-gds.graph.get("ogbn-arxiv").drop()
+article_graph.drop()
+ogbn_arxiv.drop()
+
 gds.close()
 ----
