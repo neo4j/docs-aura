@@ -188,7 +188,7 @@ Aura requires Authorization Code Flow with PKCE to ensure best practice security
 
 === Console SSO
 
-Console SSO allows users to log in to the Aura Console using their company IdP credentials and grants Public Access privileges to all instances in the tenant.
+Console SSO allows users to log in to the Aura Console using their company IdP credentials and grants link:{neo4j-docs-base-uri}/cypher-manual/current/administration/access-control/built-in-roles#access-control-built-in-roles-public[Public Access privileges] to all instances in the tenant.
 
 The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are currently supported for Console-level Authentication:
 
@@ -202,7 +202,7 @@ To enable Console SSO on your Aura Enterprise tenant(s), please https://aura.sup
 
 === Instance SSO
 
-Instance SSO allows you to directly map DBMS RBAC roles when launching Workspace, Bloom and Browser clients from an Aura instance.
+Instance SSO allows you to directly map groups of users (as defined in your IdP) to DBMS RBAC roles when launching Workspace, Bloom and Browser clients from an Aura instance.
 
 The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are currently supported for instance-level Authentication:
 
