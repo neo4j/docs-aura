@@ -1,17 +1,30 @@
 [[connecting-arrow]]
-= Using Apache Arrow
+= Loading and streaming data with Apache Arrow
 :description: This page describes how to use Apache Arrow on AuraDS.
 :notebook-name: Arrow_example.ipynb
 
 include::partial$aurads/colab.adoc[]
 
-Apache Arrow is already installed and configured on AuraDS.
-The easiest way to use Arrow is via the GDS Python client. 
-When initialized, the client by default tries to use it (via the `arrow` parameter) if it is available on the server.
+The Enterprise Edition of GDS installed on AuraDS includes an link:https://neo4j.com/docs/graph-data-science/current/installation/configure-apache-arrow-server/[Arrow Flight server], configured and running by default.
+The Arrow Flight server speeds up data-intensive processes such as:
 
-To see the difference in performance that Arrow enables, we load a dataset with Arrow enabled (`arrow=True`, the default) and disabled (`arrow=False`) and compare the time.
+* creating a graph directly from in-memory data;
+* streaming node and relationship properties;
+* streaming the relationship topology of a graph.
+
+There are two ways to use the Arrow Flight server with GDS:
+
+. by implementing a custom Arrow Flight client as explained in the link:https://neo4j.com/docs/graph-data-science/current/graph-catalog-apache-arrow-ops/[GDS manual];
+. by using the GDS Python client, which includes an Arrow Flight client.
+
+In the following examples we use the GDS client as it is the most convenient option.
 
 == Setup
+
+When initialized, the client tries to use Arrow if it is available on the server.
+This behaviour is controlled by the `arrow` parameter, which is set to `True` by default.
+
+To see the difference in performance that Arrow enables, we load a dataset with Arrow enabled (`arrow=True`, the default) and disabled (`arrow=False`) and compare the time.
 
 For this example, the `ogb` extra is needed in order to load OGBN datasets.
 
