@@ -121,27 +121,21 @@ In this example we use a built-in link:https://neo4j.com/docs/graph-data-science
 [source, python]
 ----
 %pip install 'graphdatascience[ogb]>=1.7'
+
+# Load and immediately drop the dataset to download and cache the data
+ogbn_arxiv = gds.graph.ogbn.load("ogbn-arxiv")
+ogbn_arxiv.drop()
 ----
 
-First, we load and immediately drop the dataset in order to download the data.
-
-[source, python]
-----
-with gds.graph.ogbn.load("ogbn-arxiv") as ogbn_arxiv:
-    # No action needed
-    pass
-----
-
-We can now time the actual loading process by running the loader again.
+We can then time the loading process.
 On an 8 GB AuraDS instance, this should take less than 30 s.
 
 [source, python]
 ----
 %%timeit -n 1 -r 1
 
-with gds.graph.ogbn.load("ogbn-arxiv") as ogbn_arxiv:
-    # No action needed
-    pass
+# This call uses the cached dataset, so only the actual loading is timed
+ogbn_arxiv = gds.graph.ogbn.load("ogbn-arxiv")
 ----
 
 With Arrow disabled by adding `arrow=False` to the `GraphDataScience` constructor, the same loading process would take more than 1 minute.
@@ -152,6 +146,7 @@ Therefore, with this dataset, Arrow provides at least a 2x speedup.
 [source, python]
 ----
 article_graph.drop()
+ogbn_arxiv.drop()
 
 gds.close()
 ----
