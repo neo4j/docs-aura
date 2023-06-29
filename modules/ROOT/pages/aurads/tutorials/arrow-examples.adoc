@@ -1,21 +1,21 @@
 [[connecting-arrow]]
 = Loading and streaming data with Apache Arrow
 :description: This page describes how to use Apache Arrow on AuraDS.
-:notebook-name: Arrow_example.ipynb
+:notebook-name: Arrow_examples.ipynb
 
 include::partial$aurads/colab.adoc[]
 
 The Enterprise Edition of GDS installed on AuraDS includes an link:https://neo4j.com/docs/graph-data-science/current/installation/configure-apache-arrow-server/[Arrow Flight server], configured and running by default.
 The Arrow Flight server speeds up data-intensive processes such as:
 
-* creating a graph directly from in-memory data;
-* streaming node and relationship properties;
-* streaming the relationship topology of a graph.
+* Creating a graph directly from in-memory data.
+* Streaming node and relationship properties.
+* Streaming the relationship topology of a graph.
 
 There are two ways to use the Arrow Flight server with GDS:
 
-. by implementing a custom Arrow Flight client as explained in the link:https://neo4j.com/docs/graph-data-science/current/graph-catalog-apache-arrow-ops/[GDS manual];
-. by using the GDS Python client, which includes an Arrow Flight client.
+. By implementing a custom Arrow Flight client as explained in the link:https://neo4j.com/docs/graph-data-science/current/graph-catalog-apache-arrow-ops/[GDS manual].
+. By using the GDS Python client, which includes an Arrow Flight client.
 
 In the following examples we use the GDS client as it is the most convenient option.
 
@@ -40,18 +40,13 @@ gds = GraphDataScience(NEO4J_CONNECTION_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWOR
 gds.set_database("neo4j")
 ----
 
-The `gds.debug.arrow()` procedure can be used to verify that Arrow is enabled and running.
-
-[source, python]
-----
-gds.run_cypher("CALL gds.debug.arrow() YIELD enabled, running")
-----
+You can call the `gds.debug.arrow()` procedure to verify that Arrow is enabled and running.
 
 == Loading data
 
-https://neo4j.com/docs/graph-data-science-client/current/graph-object/#construct
+You can load data directly into a graph using the link:https://neo4j.com/docs/graph-data-science-client/current/graph-object/#construct[`gds.graph.construct`] client method.
 
-For this example we need to install and import the link:https://pandas.pydata.org/[`pandas`] library.
+The data must be a Pandas `DataFrame`, so we need to install and import the link:https://pandas.pydata.org/[`pandas`] library.
 
 [source, python]
 ----
@@ -60,7 +55,8 @@ For this example we need to install and import the link:https://pandas.pydata.or
 import pandas as pd
 ----
 
-We can create a graph as follows:
+We can then create a graph as in the following example.
+The format of the `DataFrame`s with the required columns is specified in the link:https://neo4j.com/docs/graph-data-science-client/current/graph-object/#construct[GDS manual].
 
 [source, python]
 ----
@@ -97,28 +93,32 @@ gds.graph.list()
 
 == Streaming node and relationship properties
 
-https://neo4j.com/docs/graph-data-science-client/current/graph-object/#graph-object-streaming-properties
+After creating the graph, you can read the node and relationship properties link:https://neo4j.com/docs/graph-data-science-client/current/graph-object/#graph-object-streaming-properties[as streams].
+These procedures do not require Arrow, but are more efficient if Arrow is available.
 
 [source, python]
 ----
+# Read all the values for the node property `pages`
 gds.graph.nodeProperties.stream(article_graph, "pages")
 ----
 
 [source, python]
 ----
+# Read all the values for the relationship property `times`
 gds.graph.relationshipProperties.stream(article_graph, "times")
 ----
 
 == Performance
 
-For this example, the `ogb` extra is needed in order to load OGBN datasets.
+To see the difference in performance when Arrow is available, we can measure the time needed to load a dataset into a graph.
+In this example we use a built-in link:https://neo4j.com/docs/graph-data-science-client/current/common-datasets/#_ogbn_graphs[OGBN dataset], so we need to install the `ogb` extra.
 
 [source, python]
 ----
 %pip install 'graphdatascience[ogb]>=1.7'
 ----
 
-First, we load and immediately drop a built-in link:https://neo4j.com/docs/graph-data-science-client/current/common-datasets/#_ogbn_graphs[OGBN dataset] in order to download the data.
+First, we load and immediately drop the dataset in order to download the data.
 
 [source, python]
 ----
@@ -126,7 +126,8 @@ ogbn_arxiv = gds.graph.ogbn.load("ogbn-arxiv")
 ogbn_arxiv.drop()
 ----
 
-We can now time the actual loading process by loading the same dataset. On an 8 GB AuraDS instance, this should take less than 30 s.
+We can now time the actual loading process by running the loader again.
+On an 8 GB AuraDS instance, this should take less than 30 s.
 
 [source, python]
 ----
