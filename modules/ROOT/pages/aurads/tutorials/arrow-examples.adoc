@@ -1,5 +1,5 @@
 [[connecting-arrow]]
-= Loading and streaming data with Apache Arrow
+= Loading and streaming back data with Apache Arrow
 :description: This page describes how to use Apache Arrow on AuraDS.
 :notebook-name: Arrow_examples.ipynb
 
@@ -14,10 +14,11 @@ The Arrow Flight server speeds up data-intensive processes such as:
 
 There are two ways to use the Arrow Flight server with GDS:
 
-. By implementing a custom Arrow Flight client as explained in the link:https://neo4j.com/docs/graph-data-science/current/graph-catalog-apache-arrow-ops/[GDS manual].
 . By using the GDS Python client, which includes an Arrow Flight client.
+. By implementing a custom Arrow Flight client as explained in the link:https://neo4j.com/docs/graph-data-science/current/graph-catalog-apache-arrow-ops/[GDS manual].
 
 In the following examples we use the GDS client as it is the most convenient option.
+All the loading and streaming methods can be used without Arrow, but are more efficient if Arrow is available.
 
 == Setup
 
@@ -40,7 +41,12 @@ gds = GraphDataScience(NEO4J_CONNECTION_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWOR
 gds.set_database("neo4j")
 ----
 
-You can call the `gds.debug.arrow()` procedure to verify that Arrow is enabled and running.
+You can call the `gds.debug.arrow()` method to verify that Arrow is enabled and running:
+
+[source, python]
+----
+gds.debug.arrow()
+----
 
 == Loading data
 
@@ -94,7 +100,6 @@ gds.graph.list()
 == Streaming node and relationship properties
 
 After creating the graph, you can read the node and relationship properties link:https://neo4j.com/docs/graph-data-science-client/current/graph-object/#graph-object-streaming-properties[as streams].
-These procedures do not require Arrow, but are more efficient if Arrow is available.
 
 [source, python]
 ----
@@ -122,8 +127,9 @@ First, we load and immediately drop the dataset in order to download the data.
 
 [source, python]
 ----
-ogbn_arxiv = gds.graph.ogbn.load("ogbn-arxiv")
-ogbn_arxiv.drop()
+with gds.graph.ogbn.load("ogbn-arxiv") as ogbn_arxiv:
+    # No action needed
+    pass
 ----
 
 We can now time the actual loading process by running the loader again.
@@ -133,7 +139,9 @@ On an 8 GB AuraDS instance, this should take less than 30 s.
 ----
 %%timeit -n 1 -r 1
 
-gds.graph.ogbn.load("ogbn-arxiv")
+with gds.graph.ogbn.load("ogbn-arxiv") as ogbn_arxiv:
+    # No action needed
+    pass
 ----
 
 With Arrow disabled by adding `arrow=False` to the `GraphDataScience` constructor, the same loading process would take more than 1 minute.
@@ -144,7 +152,6 @@ Therefore, with this dataset, Arrow provides at least a 2x speedup.
 [source, python]
 ----
 article_graph.drop()
-ogbn_arxiv.drop()
 
 gds.close()
 ----
