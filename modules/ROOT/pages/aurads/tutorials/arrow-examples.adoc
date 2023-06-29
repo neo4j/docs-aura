@@ -56,9 +56,9 @@ import pandas as pd
 ----
 
 We can then create a graph as in the following example.
-The format of the `DataFrame`s with the required columns is specified in the link:https://neo4j.com/docs/graph-data-science-client/current/graph-object/#construct[GDS manual].
+The format of each `DataFrame` with the required columns is specified in the link:https://neo4j.com/docs/graph-data-science-client/current/graph-object/#construct[GDS manual].
 
-[source, python]
+[source, python, role=nocollapse]
 ----
 nodes = pd.DataFrame(
     {
