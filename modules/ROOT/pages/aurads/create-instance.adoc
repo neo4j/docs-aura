@@ -3,18 +3,19 @@
 :description: This page describes how to create a Neo4j AuraDS instance.
 
 . Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^].
-. Select *Create an instance* to open the *Create an instance* page.
+. Select *New instance* to open the *Create an instance* page.
 . Set the *Instance details*:
 * *Instance Name* - The name to give to the instance. A descriptive name makes it easier to find a specific instance among many.
+* *Region* - The physical location of the instance. Set this as close to your location as possible. The closer the region is to your location, the faster the response time for any network interactions with the instance.
 * *Number of nodes/relationships* - The estimated number of nodes and relationships that the instance should support.
 . Select one or more algorithm categories from the *Which algorithms are you going to use?* section (or the *I'm not sure yet* option) to help estimate the most appropriate instance size. An overview of each algorithm category can be found link:{neo4j-docs-base-uri}/graph-data-science/current/algorithms/[here^].
 . Select *Calculate Estimate* to get an estimate of the resources needed to run the graph (memory, CPU, storage) along with the expected price.
-. Select *Create Instance* to proceed.
+. Select *Create* to proceed.
 . Copy and store the *Username* and *Generated password* credentials to access the instance just created. Alternatively, you can download the credentials as a `.txt` file.
 +
 WARNING: *Warning*: Make sure that the username and password are stored safely before continuing. Credentials cannot be recovered afterwards.
 +
-. Tick the *I have stored these credentials safely to use later* checkbox and select *Continue*.
+. Tick the confirmation checkbox and select *Continue*.
 
 [NOTE]
 ====
