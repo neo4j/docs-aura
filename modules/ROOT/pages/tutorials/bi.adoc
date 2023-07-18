@@ -164,6 +164,8 @@ You can then explore the table to find the example data.
 [NOTE]
 ====
 This example requires Microsoft Windows and https://powerbi.microsoft.com/en-us/desktop/[Power BI Desktop].
+
+Refer to the link:https://docs.microsoft.com/en-us/power-bi/connect-data/desktop-connect-using-generic-interfaces[Power BI documentation] for more information on how to add an ODBC database.
 ====
 
 After downloading and installing the ODBC Neo4j Connector for BI from the https://neo4j.com/download-center/#integrations[Download Center]:
@@ -174,8 +176,3 @@ After downloading and installing the ODBC Neo4j Connector for BI from the https:
 - Insert the connection string `Host=xxxxxxxx.databases.neo4j.io;SSL=1` in the *Advanced options* section.
 
 Once connected, open sequentially `ODBC` -> `neo4j` -> `Node` -> `Person` in the *Navigator* window to see a preview of the table.
-
-[TIP]
-====
-For more information on how to add an ODBC database to Power BI, check the https://docs.microsoft.com/en-us/power-bi/connect-data/desktop-connect-using-generic-interfaces[Power BI documentation^].
-====
