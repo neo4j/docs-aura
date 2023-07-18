@@ -140,6 +140,8 @@ The correct protocol to use for connection via a JDBC driver is `neo4j` (not `ne
 [NOTE]
 ====
 This example requires https://www.tableau.com/en-gb/products/desktop[Tableau Desktop].
+
+Refer to the link:https://help.tableau.com/current/pro/desktop/en-us/examples_otherdatabases_jdbc.htm[Tableau documentation] for more information on how to add a JDBC database.
 ====
 
 After downloading the JDBC Neo4j Connector for BI from the https://neo4j.com/download-center/#integrations[Download Center]:
@@ -149,13 +151,13 @@ After downloading the JDBC Neo4j Connector for BI from the https://neo4j.com/dow
 - Start Tableau and search for the `Other Databases (JDBC)` option.
 - Insert the Aura URL as `jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true`, leave the SQL dialect as `SQL92`, and complete the relevant credentials.
 
-After the connection is established, it is possible to select the `neo4j` database and the `Node` schema to find the `Person` table. 
-The table can then be explored to find the example data.
+If the connection fails with a `Generic JDBC connection error`, you can do one of the following:
 
-[TIP]
-====
-For more information on how to add a JDBC database to Tableau, please refer to the https://help.tableau.com/current/pro/desktop/en-us/examples_otherdatabases_jdbc.htm[Tableau documentation^].
-====
+* Download the SSL.com CA root certificate from link:https://www.ssl.com/how-to/install-ssl-com-ca-root-certificates/[ssl.com] and install it as explained in the link:https://help.tableau.com/current/pro/desktop/en-us/jdbc_ssl_config.htm[Tableau documentation], then restart Tableau and repeat the previous steps (recommended option).
+* Add `&sslTrustStrategy=TRUST_ALL_CERTIFICATES` to the connection string (after `SSL=true`) and try to connect again. **This option requires caution and should not be used in a production environment**.
+
+After the connection is established, you can select the `neo4j` database and the `Node` schema to find the `Person` table.
+You can then explore the table to find the example data.
 
 === Power BI
 
