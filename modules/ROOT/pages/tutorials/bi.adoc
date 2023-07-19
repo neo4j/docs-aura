@@ -30,7 +30,7 @@ Commonly used BI tools include <<_tableau>> (which uses the JDBC driver) and <<_
 
 [TIP]
 ====
-When connecting with a JDBC driver, the `neo4j+s` URI scheme must be changed into `neo4j` and the `SSL=true` parameter added to the URL.
+When connecting with a JDBC driver, the `neo4j+s` URI scheme must be changed into `neo4j` and the `SSL=true` parameter must be added to the URL.
 ====
 
 === Tableau
@@ -83,7 +83,7 @@ Common JDBC-based command-line SQL clients include <<_sqlline>> and <<_jdbcsql>>
 
 [TIP]
 ====
-When connecting with a JDBC driver, the `neo4j+s` URI scheme must be changed into `neo4j` and the `SSL=true` parameter added to the URL.
+When connecting with a JDBC driver, the `neo4j+s` URI scheme must be changed into `neo4j` and the `SSL=true` parameter must be added to the URL.
 ====
 
 === sqlline
