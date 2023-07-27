@@ -24,6 +24,58 @@ CREATE
   (john)-[:KNOWS]->(jane)
 ----
 
+== Using BI tools
+
+Commonly used BI tools include <<_tableau>> (which uses the JDBC driver) and <<_power_bi>> (which uses the ODBC driver).
+
+[TIP]
+====
+When connecting with a JDBC driver, the `neo4j+s` URI scheme must be changed into `neo4j` and the `SSL=true` parameter must be added to the URL.
+====
+
+=== Tableau
+
+[NOTE]
+====
+This example requires https://www.tableau.com/en-gb/products/desktop[Tableau Desktop].
+
+Refer to the link:https://help.tableau.com/current/pro/desktop/en-us/examples_otherdatabases_jdbc.htm[Tableau documentation] for more information on how to add a JDBC database.
+====
+
+After downloading the JDBC Neo4j Connector for BI from the https://neo4j.com/download-center/#integrations[Download Center]:
+
+- Close any running instances of Tableau Desktop.
+- Copy the Neo4j driver to the appropriate Tableau drivers folder (e.g. `C:\Program Files\Tableau\Drivers` on Windows, or `~/Library/Tableau/Drivers` on macOS).
+- Start Tableau and search for the `Other Databases (JDBC)` option.
+- Insert the Aura URL as `jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true`, leave the SQL dialect as `SQL92`, and complete the relevant credentials.
+
+If the connection fails with a `Generic JDBC connection error`, you can do one of the following:
+
+* Download the SSL.com CA root certificate from link:https://www.ssl.com/how-to/install-ssl-com-ca-root-certificates/[ssl.com] and install it as explained in the link:https://help.tableau.com/current/pro/desktop/en-us/jdbc_ssl_config.htm[Tableau documentation], then restart Tableau and repeat the previous steps (recommended option).
+* Add `&sslTrustStrategy=TRUST_ALL_CERTIFICATES` to the connection string (after `SSL=true`) and try to connect again. **This option requires caution and should not be used in a production environment**.
+
+After the connection is established, you can select the `neo4j` database and the `Node` schema to find the `Person` table.
+You can then explore the table to find the example data.
+
+=== Power BI
+
+[NOTE]
+====
+This example requires Microsoft Windows and https://powerbi.microsoft.com/en-us/desktop/[Power BI Desktop].
+
+Refer to the link:https://docs.microsoft.com/en-us/power-bi/connect-data/desktop-connect-using-generic-interfaces[Power BI documentation] for more information on how to add an ODBC database.
+====
+
+After downloading and installing the ODBC Neo4j Connector for BI from the https://neo4j.com/download-center/#integrations[Download Center]:
+
+- Open Power BI Desktop.
+- Search for `ODBC` in the *Get data from another source* panel.
+- Select `Simba Neo4j` in the *DSN dropdown* menu.
+- Insert the connection string `Host=xxxxxxxx.databases.neo4j.io;SSL=1` in the *Advanced options* section.
+- Insert your username and password.
+
+Once connected, open sequentially `ODBC` -> `neo4j` -> `Node` -> `Person` in the *Navigator* window to see a preview of the table.
+
 == Using command-line SQL clients
 
 In order to run SQL queries, we need a SQL client that can use a custom driver. 
@@ -31,7 +83,7 @@ Common JDBC-based command-line SQL clients include <<_sqlline>> and <<_jdbcsql>>
 
 [TIP]
 ====
-The correct protocol to use for connection via a JDBC driver is `neo4j` (not `neo4j+s`). Make sure to add the `SSL=true` parameter to the URL.
+When connecting with a JDBC driver, the `neo4j+s` URI scheme must be changed into `neo4j` and the `SSL=true` parameter must be added to the URL.
 ====
 
 === sqlline
@@ -125,55 +177,3 @@ The result of the query is:
 0	42	John	Doe
 1	40	Jane	Doe
 ----
-
-== Using BI tools
-
-Commonly used BI tools include <<_tableau>> (which uses the JDBC driver) and <<_power_bi>> (which uses the ODBC driver).
-
-[TIP]
-====
-The correct protocol to use for connection via a JDBC driver is `neo4j` (not `neo4j+s`). Make sure to add the `SSL=true` parameter to the URL.
-====
-
-=== Tableau
-
-[NOTE]
-====
-This example requires https://www.tableau.com/en-gb/products/desktop[Tableau Desktop].
-====
-
-After downloading the JDBC Neo4j Connector for BI from the https://neo4j.com/download-center/#integrations[Download Center]:
-
-- Close any running instances of Tableau Desktop.
-- Copy the Neo4j driver to the appropriate Tableau drivers folder (e.g. `C:\Program Files\Tableau\Drivers` on Windows, or `~/Library/Tableau/Drivers` on macOS).
-- Start Tableau and search for the `Other Databases (JDBC)` option.
-- Insert the Aura URL as `jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true`, leave the SQL dialect as `SQL92`, and complete the relevant credentials.
-
-After the connection is established, it is possible to select the `neo4j` database and the `Node` schema to find the `Person` table. 
-The table can then be explored to find the example data.
-
-[TIP]
-====
-For more information on how to add a JDBC database to Tableau, please refer to the https://help.tableau.com/current/pro/desktop/en-us/examples_otherdatabases_jdbc.htm[Tableau documentation^].
-====
-
-=== Power BI
-
-[NOTE]
-====
-This example requires Microsoft Windows and https://powerbi.microsoft.com/en-us/desktop/[Power BI Desktop].
-====
-
-After downloading and installing the ODBC Neo4j Connector for BI from the https://neo4j.com/download-center/#integrations[Download Center]:
-
-- Open Power BI Desktop.
-- Search for `ODBC` in the *Get data from another source* panel.
-- Select `Simba Neo4j` in the *DSN dropdown* menu.
-- Insert the connection string `Host=xxxxxxxx.databases.neo4j.io;SSL=1` in the *Advanced options* section.
-
-Once connected, open sequentially `ODBC` -> `neo4j` -> `Node` -> `Person` in the *Navigator* window to see a preview of the table.
-
-[TIP]
-====
-For more information on how to add an ODBC database to Power BI, check the https://docs.microsoft.com/en-us/power-bi/connect-data/desktop-connect-using-generic-interfaces[Power BI documentation^].
-====
