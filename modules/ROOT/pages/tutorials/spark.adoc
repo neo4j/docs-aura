@@ -1,33 +1,33 @@
 = Using the Apache Spark Connector
 :product: Aura
 
-In this tutorial we use the Neo4j Connector for Apache Spark to write to and read graph data from an Aura instance.
+This tutorial shows how to use the Neo4j Connector for Apache Spark to write to and read data from an Aura instance.
 
 == Setup
 
-. Download Spark from the https://spark.apache.org/downloads.html[Download^] page (latest version, for example 3.3.0, pre-built for Apache Hadoop 3.3 and later).
-. Download the Spark Neo4j Connector from the https://github.com/neo4j-contrib/neo4j-spark-connector/releases[GitHub release^] page.
+. Download link:https://spark.apache.org/downloads.html[Apache Spark^].
 +
-[TIP]
-====
-Make sure to match both the Spark version and the Scala version.
-====
+_Example: Spark 3.4.1, pre-built for Apache Hadoop 3.3 and later with Scala 2.12._
+
+. Download the link:https://github.com/neo4j-contrib/neo4j-spark-connector/releases[Neo4j Connector JAR file^], making sure to match both the Spark version and the Scala version.
 +
-. Decompress the downloaded file and launch the Spark shell as follows:
+_Example: Neo4j Connector 5.1.0, built for Spark 3.x with Scala 2.12._
+
+. Decompress the Spark file and launch the Spark shell as in the following example:
 +
 [source, shell]
 ----
-$ spark-3.3.0-bin-hadoop3/bin/spark-shell --jars neo4j-connector-apache-spark_2.12-4.1.3_for_spark_3.jar
+$ spark-3.4.1-bin-hadoop3/bin/spark-shell --jars neo4j-connector-apache-spark_2.12-5.1.0_for_spark_3.jar
 ----
 
 == Running code in Spark
 
 [TIP]
 ====
-Scala code can be copy-pasted in the Spark shell by activating the `paste` mode with the `:paste` command.
+You can copy-paste Scala code in the Spark shell by activating the `paste` mode with the `:paste` command.
 ====
 
-First of all, we need to create a Spark session and set the Aura connection credentials:
+Create a Spark session and set the Aura connection credentials:
 
 [source, scala]
 ----
@@ -41,7 +41,7 @@ val username = "neo4j"
 val password = ""
 ----
 
-Then, we create the `Person` class and a Spark `Dataset` with some example data:
+Then, create the `Person` class and a Spark `Dataset` with some example data:
 
 [source, scala]
 ----
@@ -54,7 +54,7 @@ val ds = Seq(
 ).toDS()
 ----
 
-We can now write the data to Aura:
+Write the data to Aura:
 
 [source, scala]
 ----
@@ -69,7 +69,9 @@ ds.write.format("org.neo4j.spark.DataSource")
     .save()
 ----
 
-The written data can be queried and visualized using the Neo4j Browser. We can also read the data back from Aura:
+You can then query and visualize the data using the Neo4j Browser.
+
+You can also read the data back from Aura:
 
 [source, scala]
 ----
@@ -81,7 +83,8 @@ val data = spark.read.format("org.neo4j.spark.DataSource")
     .option("labels", "Person")
     .load()
 
+// Visualize the data as a table
 data.show()
 ----
 
-For further information on how to use the connector, check the link:{neo4j-docs-base-uri}/spark/[Neo4j Spark Connector docs].
+For further information on how to use the connector, read the link:{neo4j-docs-base-uri}/spark/[Neo4j Spark Connector docs].
