@@ -6,7 +6,13 @@ The data in your AuraDB instance can be backed up, exported, and restored using 
 
 A snapshot is a copy of the data in an instance at a specific point in time.
 
-The *Snapshots* tab within an AuraDB instance shows a list of available snapshots. footnote:[Snapshots are kept in the system for 7 days for Professional instances, 30 days for Free instances, and 90 days for Enterprise instances. Only the latest snapshot is available for Free instances.]
+The *Snapshots* tab within an AuraDB instance shows a list of available snapshots.
+
+[NOTE]
+====
+Snapshots are kept in the system for 7 days for Professional instances, 30 days for Free instances, and 90 days for Enterprise instances.
+Only the latest snapshot is available for Free instances.
+====
 
 To access the *Snapshots* tab:
 
@@ -18,27 +24,29 @@ To access the *Snapshots* tab:
 
 There are three different types of snapshot:
 
-* label:AuraDB-Professional[] label:AuraDB-Enterprise[] *Scheduled* - Runs when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and automatically at a cadence depending on your plan type.
-footnote:[Automatic scheduled snapshots run once a day for Professional instances and once an hour for Enterprise instances.] 
+* label:AuraDB-Professional[] label:AuraDB-Enterprise[] *Scheduled* - Runs when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and automatically at a cadence depending on your plan type. 
+Scheduled snapshots are run automatically once a day for Professional instances and once an hour for Enterprise instances.
 * label:AuraDB-Professional[] label:AuraDB-Enterprise[] *Load* - Runs when you load a dump file from the *Import Database* tab of a instance and when you run the `push-to-cloud` command from the *Import* section of the sidebar menu of the Aura Console.
 * *On-demand* - Runs when you select *Take snapshot* from the *Snapshots* tab of an instance.
 
 == Snapshot actions
 
-=== Backup and export
+=== Take a snapshot
 
-You can use any of the *Scheduled* snapshots as a backup or manually trigger an *On-demand* snapshot by selecting *Take snapshot*.
-
-By selecting the ellipses (*...*) button next to a snapshot, you can:
-
-* *Export* - Download the instance as *_.dump_* file, allowing you to store a local copy and work on your data offline.
-* *Create instance from snapshot* - Create a new AuraDB instance using the data from the snapshot.
+You can manually trigger an *On-demand* snapshot by selecting *Take snapshot*.
 
 === Restore
 
 You can restore data in your instance to a previous snapshot by selecting *Restore* next to the snapshot you want to restore.
 
 Restoring a snapshot requires you to confirm the action by typing RESTORE and selecting *Restore*. 
+
+=== Export/Create footnote:[The ability to Export or Create an instance from a Scheduled Enterprise snapshot is limited to 14 days.] 
+
+By selecting the ellipses (*...*) button next to an existing snapshot, you can:
+
+* *Export* - Download the instance as *_.dump_* file, allowing you to store a local copy and work on your data offline.
+* *Create instance from snapshot* - Create a new AuraDB instance using the data from the snapshot.
 
 [CAUTION]
 ====
