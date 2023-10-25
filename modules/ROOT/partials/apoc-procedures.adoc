@@ -1128,6 +1128,7 @@ Returns the US_ENGLISH phonetic soundex encoding of all words of the string.
 Returns the US_ENGLISH soundex character difference between the two given strings.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.random[apoc.text.random icon:book[] ^] +
 Generates a random string to the given length using a length parameter and an optional string of valid characters.
+Unsuitable for cryptographic use-cases.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.regexGroups[apoc.text.regexGroups icon:book[] ^] +
 Returns all groups matching the given regular expression in the given text.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.regreplace[apoc.text.regreplace icon:book[] ^] +
@@ -1172,6 +1173,7 @@ Returns the MD5 checksum of the concatenation of all string values in the given 
 MD5 is a weak hashing algorithm which is unsuitable for cryptographic use-cases.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.util/apoc.util.sha1[apoc.util.sha1 icon:book[] ^] +
 Returns the SHA1 of the concatenation of all string values in the given list.
+SHA1 is a weak hashing algorithm which is unsuitable for cryptographic use-cases.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.util/apoc.util.sha256[apoc.util.sha256 icon:book[] ^] +
 Returns the SHA256 of the concatenation of all string values in the given list.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.util/apoc.util.sha384[apoc.util.sha384 icon:book[] ^] +

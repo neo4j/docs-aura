@@ -5,11 +5,6 @@
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
 
-[TIP]
-====
-The Aura API is currently in beta for Aura Enterprise customers only. If you wish to participate in the beta stage, please contact your Customer Success Manager.
-====
-
 The Aura API allows you to programmatically perform actions on your Aura instances without the need to log in to the Console.
 
 A complete list of the available endpoints can be seen and tested in the link:{neo4j-docs-base-uri}/aura/platform/api/specification/[API Specification].
@@ -27,13 +22,7 @@ The base URL for the Aura API is `\https://api.neo4j.io`.
 
 === Versioning
 
-The current version of the Aura API  is `link:{neo4j-docs-base-uri}/aura/platform/api/specification/[v1beta3]`
-
-[NOTE]
-====
-`V1beta3` indicates that this is the third beta release of V1 of the API. 
-Once the API becomes generally available, the version will update to `V1`.
-====
+The current version of the Aura API is `link:{neo4j-docs-base-uri}/aura/platform/api/specification/[v1]`
 
 As and when we need to introduce breaking changes to the API, we will release a new version to ensure we do not break existing integrations.
 
@@ -44,7 +33,7 @@ Once the expiry date for a deprecated version has passed, that version will no l
 
 The following example shows how to use the base URL and versioning to make a request to the API:
 
-`GET \https://api.neo4j.io/v1beta3/instances`
+`GET \https://api.neo4j.io/v1/instances`
 
 == Retries
 
@@ -60,4 +49,10 @@ In the case of `429 Too Many Requests`, we would recommend slowing down the rate
 
 For other `4xx` client error responses, you should not resend such requests without first correcting them.
 
+== Request tracing and troubleshooting
 
+An `X-Request-Id` response header is returned with each request and can be used for troubleshooting.
+
+The value of this header contains a unique ID that can be used to track the journey of a request.
+
+If you run into any issues with a particular request, you can https://aura.support.neo4j.com/hc/en-us/[raise a support ticket] and provide the `X-Request-Id`.
