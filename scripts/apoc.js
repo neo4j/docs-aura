@@ -23,14 +23,15 @@ const session = driver.session()
 
 session.readTransaction(tx => tx.run(`
     CALL apoc.help('')
-    YIELD name, text, type
-    RETURN name, text, type
+    YIELD name, text, type, isDeprecated
+    RETURN name, text, type, isDeprecated
     ORDER BY CASE WHEN size(split(name, '.')) = 2 THEN [1] ELSE [2] END ASC, name ASC
 `))
     .then(res => res.records.map(row => {
         const name = row.get('name')
         const text = row.get('text')
         const type = row.get('type')
+        const isDeprecated = row.get('isDeprecated')
 
         const parts = name.split('.')
         const namespace = parts.length == 2 ? 'apoc' : parts.slice(0, 2).join('.')
@@ -39,6 +40,7 @@ session.readTransaction(tx => tx.run(`
             name,
             text,
             type,
+            isDeprecated,
             namespace,
         }
     }))
@@ -55,9 +57,9 @@ session.readTransaction(tx => tx.run(`
 == ${namespace}
 
 ${header}
-${procedures.map(({ name, text, type }) => `¦ link:https://neo4j.com/docs/apoc/${DOCS_VERSION}/overview/${namespace}/${name}[${name} icon:book[] ^] +
+${procedures.map(({ name, text, type, isDeprecated }) => `¦ link:https://neo4j.com/docs/apoc/${DOCS_VERSION}/overview/${namespace}/${name}[${name} icon:book[] ^] +
 ${text || ''}
-¦ label:${type}[]`).join('')}
+¦ label:${type}[]${isDeprecated ? ' label:deprecated[]' : ''}`).join('')}
 ${footer}`).join('\n\n'))
     .then(adoc => {
         const dir = path.join(__dirname, '..', 'modules', 'root', 'partials', 'apoc-procedures.adoc')
