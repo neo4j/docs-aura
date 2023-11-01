@@ -307,9 +307,9 @@ Sets the given properties on the `RELATIONSHIP` values.
 Sets the given property on the `RELATIONSHIP` values.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.uuid[apoc.create.uuid icon:book[] ^] +
 Returns a UUID.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.uuids[apoc.create.uuids icon:book[] ^] +
+¦ label:function[] label:deprecated[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.uuids[apoc.create.uuids icon:book[] ^] +
 Returns a stream of UUIDs.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.vNode[apoc.create.vNode icon:book[] ^] +
+¦ label:procedure[] label:deprecated[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.vNode[apoc.create.vNode icon:book[] ^] +
 Returns a virtual `NODE`.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.create/apoc.create.vNode[apoc.create.vNode icon:book[] ^] +
 Returns a virtual `NODE`.
@@ -1200,7 +1200,7 @@ If the given predicate is true an exception is thrown, otherwise it returns true
 ¦ Qualified Name ¦ Type
 ¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.warmup/apoc.warmup.run[apoc.warmup.run icon:book[] ^] +
 Loads all `NODE` and `RELATIONSHIP` values in the database into memory.
-¦ label:procedure[]
+¦ label:procedure[] label:deprecated[]
 |===
 
 
