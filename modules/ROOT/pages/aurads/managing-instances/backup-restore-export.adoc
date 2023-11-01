@@ -6,13 +6,6 @@ The data in your AuraDS instance can be backed up, exported, and restored using 
 A snapshot is a copy of the data in an instance at a specific point in time.
 
 The *Snapshots* tab within an AuraDS instance shows a list of available snapshots.
-
-[NOTE]
-====
-_Scheduled_ daily snapshots are kept for 7 days for Professional instances and 14 days for Enterprise instances.
-_On-demand_ snapshots are kept in the system for 180 days for all instances.
-====
-
 To access the *Snapshots* tab:
 
 . Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
@@ -26,6 +19,12 @@ There are two different types of snapshot:
 * *Scheduled* - Runs when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and automatically at a cadence depending on your plan type. 
 Scheduled snapshots are run automatically once a day for Professional instances and once an hour for Enterprise instances.
 * *On-demand* - Runs when you select *Take snapshot* from the *Snapshots* tab of an instance.
+
+[NOTE]
+====
+_Scheduled_ daily snapshots are kept for 7 days for Professional instances and 14 days for Enterprise instances.
+_On-demand_ snapshots are kept in the system for 180 days for all instances.
+====
 
 == Snapshot actions
 
