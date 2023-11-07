@@ -165,7 +165,7 @@ with driver.session() as session:
 == Add relationships from CSV files
 
 Similarly to what we have done for nodes, we now create relationships from the `actors.csv` file.
-In the following examples, `LOAD CSV` is used with the `WITH HEADERS` option to access the fields in each `row` by their corresponding column name.
+In the following example, `LOAD CSV` is used with the `WITH HEADERS` option to access the fields in each `row` by their corresponding column name.
 
 [TIP]
 ====
