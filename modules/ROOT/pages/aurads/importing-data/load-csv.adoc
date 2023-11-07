@@ -14,7 +14,7 @@ In this example we will load three CSV files:
 * `people.csv`: a list of actors with their year of birth
 * `actors.csv`: a list of acting roles, where actors are matched with the movies they had a role in
 
-WARNING: *Warning*: The `LOAD CSV` command is built to handle small to medium-sized data sets, such as anything up to 10 million nodes and relationships. You should avoid using this command for any data sets exceeding this limit.
+WARNING: The `LOAD CSV` command is built to handle small to medium-sized data sets, such as anything up to 10 million nodes and relationships. You should avoid using this command for any data sets exceeding this limit.
 
 include::partial$aurads/setup.adoc[]
 
@@ -22,7 +22,7 @@ include::partial$aurads/setup.adoc[]
 
 Adding constraints before loading any data usually improves data loading performance. In fact, besides adding an integrity check, a unique constraint adds an index on a property at the same time, so that `MATCH` and `MERGE` operations during loading are faster.
 
-WARNING: *Warning*: For best performance when using `MERGE` or `MATCH` with `LOAD CSV`, make sure an index or a unique constraint has been created on the property used for merging. For more information, follow the link:{neo4j-docs-base-uri}/getting-started/current/cypher-intro/load-csv/#_prepare_the_database[Import data] tutorial in the Cypher documentation.
+WARNING: For best performance when using `MERGE` or `MATCH` with `LOAD CSV`, make sure an index or a unique constraint has been created on the property used for merging. For more information, follow the link:{neo4j-docs-base-uri}/getting-started/current/cypher-intro/load-csv/#_prepare_the_database[Import data] tutorial in the Cypher documentation.
 
 In this example we add uniqueness constraints on both movie titles and actors' names.
 
@@ -172,7 +172,7 @@ In the following examples, `LOAD CSV` is used with the `WITH HEADERS` option to 
 The default field delimiter for `LOAD CSV` is the comma (`,`).
 Use the link:{neo4j-docs-base-uri}/cypher-manual/current/clauses/load-csv/#load-csv-import-data-from-a-csv-file-with-a-custom-field-delimiter[`FIELDTERMINATOR` option] to set a different delimiter.
 
-If the CSV file is large, use the link:{neo4j-docs-base-uri}/cypher-manual/current/clauses/load-csv/#load-csv-importing-large-amounts-of-data[`CALL IN TRANSACTIONS` clause] with a suitable number of rows per transaction.
+If the CSV file is large, use the link:{neo4j-docs-base-uri}/cypher-manual/current/clauses/load-csv/#load-csv-importing-large-amounts-of-data[`CALL IN TRANSACTIONS` clause] to commit a number of rows per transaction instead of the whole file.
 ====
 
 Furthermore:
