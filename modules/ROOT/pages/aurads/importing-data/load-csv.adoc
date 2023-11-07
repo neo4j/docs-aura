@@ -99,10 +99,7 @@ gds.run_cypher("""
       ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
     RETURN count({star})
 """)
-----
 
-[source, python, subs=attributes+]
-----
 gds.run_cypher("""
     LOAD CSV
       WITH HEADERS
@@ -124,10 +121,7 @@ LOAD CSV
 MERGE (m:Movie {title: row.title})
   ON CREATE SET m.released = toInteger(row.released), m.tagline = row.tagline
 RETURN count({star});
-----
 
-[source, cypher, subs=attributes+]
-----
 LOAD CSV
   WITH HEADERS
   FROM 'https://data.neo4j.com/intro/movies/people.csv' AS row
@@ -150,14 +144,6 @@ load_movies_csv = """
     RETURN count({star})
 """
 
-# Create the driver session
-with driver.session() as session:
-    # Load the CSV file
-    session.run(load_movies_csv).data()
-----
-
-[source, python, subs=attributes+]
-----
 load_people_csv = """
     LOAD CSV
       WITH HEADERS
@@ -169,7 +155,8 @@ load_people_csv = """
 
 # Create the driver session
 with driver.session() as session:
-    # Load the CSV file
+    # Load the CSV files
+    session.run(load_movies_csv).data()
     session.run(load_people_csv).data()
 ----
 =====
@@ -177,11 +164,16 @@ with driver.session() as session:
 
 == Add relationships from CSV files
 
-Similarly to what we have done for nodes, we now create relationships from the `actors.csv` file. In the following examples, `LOAD CSV` is used with:
+Similarly to what we have done for nodes, we now create relationships from the `actors.csv` file.
+In the following examples, `LOAD CSV` is used with the `WITH HEADERS` option to access the fields in each `row` by their corresponding column name.
 
-* `WITH HEADERS` to access `row` fields by their corresponding column name;
-* `USING PERIODIC COMMIT` is used to control memory usage by creating a commit every _n_ processed rows rather than after processing the whole file. This is especially useful when loading large files;
-* `FIELDTERMINATOR` is used to explicitly set the field terminator character (although the comma is the default).
+[TIP]
+====
+The default field delimiter for `LOAD CSV` is the comma (`,`).
+Use the link:{neo4j-docs-base-uri}/cypher-manual/current/clauses/load-csv/#load-csv-import-data-from-a-csv-file-with-a-custom-field-delimiter[`FIELDTERMINATOR` option] to set a different delimiter.
+
+If the CSV file is large, use the link:{neo4j-docs-base-uri}/cypher-manual/current/clauses/load-csv/#load-csv-importing-large-amounts-of-data[`CALL IN TRANSACTIONS` clause] with a suitable number of rows per transaction.
+====
 
 Furthermore:
 
@@ -196,11 +188,9 @@ Furthermore:
 [source, python, subs=attributes+]
 ----
 gds.run_cypher("""
-    USING PERIODIC COMMIT 50
     LOAD CSV
       WITH HEADERS
       FROM 'https://data.neo4j.com/intro/movies/actors.csv' AS row
-      FIELDTERMINATOR ','
     MATCH (p:Person {name: row.person})
     MATCH (m:Movie {title: row.movie})
     MERGE (p)-[actedIn:ACTED_IN]->(m)
@@ -214,11 +204,9 @@ gds.run_cypher("""
 =====
 [source, cypher, subs=attributes+]
 ----
-USING PERIODIC COMMIT 50
 LOAD CSV
   WITH HEADERS
   FROM 'https://data.neo4j.com/intro/movies/actors.csv' AS row
-  FIELDTERMINATOR ','
 MATCH (p:Person {name: row.person})
 MATCH (m:Movie {title: row.movie})
 MERGE (p)-[actedIn:ACTED_IN]->(m)
@@ -232,11 +220,9 @@ RETURN count({star})
 [source, python, subs=attributes+]
 ----
 load_actors_csv = """
-    USING PERIODIC COMMIT 50
     LOAD CSV
       WITH HEADERS
       FROM 'https://data.neo4j.com/intro/movies/actors.csv' AS row
-      FIELDTERMINATOR ','
     MATCH (p:Person {name: row.person})
     MATCH (m:Movie {title: row.movie})
     MERGE (p)-[actedIn:ACTED_IN]->(m)
@@ -293,7 +279,10 @@ query = """
 # Create the driver session
 with driver.session() as session:
     # Run the Cypher query
-    session.run(query).data()
+    result = session.run(query).data()
+
+    # Print the formatted result
+    print(json.dumps(result, indent=2))
 ----
 =====
 ====
