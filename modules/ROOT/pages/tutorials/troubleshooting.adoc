@@ -20,7 +20,7 @@ Currently using 275.1 MiB. dbms.memory.transaction.global_max_size threshold rea
 ----
 
 The `org.neo4j.memory.MemoryLimitExceededException` configuration acts as a safeguard, limiting the quantity of memory allocated to all transactions while preserving the regular operations of the Aura instance.
-Similarly, the property `dbms.memory.transaction.global_max_size` also aims to protect the Aura Instance from experiencing any OOMs (OutOfMemory exceptions) and increase resiliency.
+Similarly, the property `dbms.memory.transaction.global_max_size` also aims to protect the Aura instance from experiencing any OOMs (OutOfMemory exceptions) and increase resiliency.
 It is enabled in Aura and cannot be disabled.
 
 However, the measured heap usage of all transactions is only an estimate and may differ from the actual number.
