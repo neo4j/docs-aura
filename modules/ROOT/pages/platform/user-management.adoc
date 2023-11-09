@@ -25,23 +25,36 @@ You can access the **Team Members** page by selecting **Team Members** from the 
 
 === Roles
 
-Users within a team can have one of two roles, _Admin_ or _Member_.
+Users within a team can be assigned one of the following roles:
+
+* _Viewer_
+* _Member_
+* _Admin_
+
+_Viewers_ can:
+
+* View the team members and their roles.
+* View and open instances.
+
+_Members_ can do everything _Viewers_ can do, plus:
+
+* Perform all actions on instances. 
+footnote:[Actions include creating, deleting, pausing, resuming and editing instances.]
+* Clone data to new and existing instances.
+* Take on demand snapshots.
+* Restore from snapshots.
+
+_Admins_ can do everything _Members_ can do, plus:
+
+* Invite new users to the team.
+* Edit existing team member's roles.
+* Delete existing team members from the team.
+* View and edit billing information.
 
 [NOTE]
 ====
 Each team must have at least one _Admin_, but it is also possible for teams to have multiple _Admins_.
 ====
-
-_Admins_ can:
-
-* View the team members and their roles.
-* Invite new members to the team.
-* Edit an existing team member's role.
-* Delete existing team members from the team.
-
-_Members_ can:
-
-* View the team members and their roles.
 
 === Inviting team members
 
@@ -88,5 +101,5 @@ You can also close the **Tenant invitation** modal without accepting or declinin
 
 [TIP]
 ====
-User management within the Aura Console does not replace built-in roles or fine-grained RBAC at the database level, nor does it limit the ability to perform Console operations such as instance creation. 
+User management within the Aura Console does not replace built-in roles or fine-grained RBAC at the database level. 
 ====
