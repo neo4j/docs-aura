@@ -27,29 +27,27 @@ You can access the **Team Members** page by selecting **Team Members** from the 
 
 Users within a team can be assigned one of the following roles:
 
-* _Viewer_
-* _Member_
 * _Admin_
+* _Member_
+* _Viewer_
 
-_Viewers_ can:
+:check-mark: icon:check[]
 
-* View the team members and their roles.
-* View and open instances.
-
-_Members_ can do everything _Viewers_ can do, plus:
-
-* Perform all actions on instances. 
-footnote:[Actions include creating, deleting, pausing, resuming and editing instances.]
-* Clone data to new and existing instances.
-* Take on demand snapshots.
-* Restore from snapshots.
-
-_Admins_ can do everything _Members_ can do, plus:
-
-* Invite new users to the team.
-* Edit existing team member's roles.
-* Delete existing team members from the team.
-* View and edit billing information.
+.Roles
+[opts="header",cols="3,1,1,1"]
+|===
+| Capability | Admin | Member | Viewer
+| View team members and their roles | {check-mark} | {check-mark} | {check-mark}
+| View and open instances | {check-mark} | {check-mark} | {check-mark}
+| Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming and editing instances.] | {check-mark} | {check-mark} |
+| Clone data to new and existing instances | {check-mark} | {check-mark} |
+| Take on-demand snapshots | {check-mark} | {check-mark} |
+| Restore from snapshots | {check-mark} | {check-mark} |
+| Invite new users to the team | {check-mark} | |
+| Edit existing team members' roles | {check-mark} | |
+| Delete existing team members from the team | {check-mark} | |
+| View and edit billing information | {check-mark} | |
+|===
 
 [NOTE]
 ====
