@@ -8,49 +8,71 @@ A snapshot is a copy of the data in an instance at a specific point in time.
 
 The *Snapshots* tab within an AuraDB instance shows a list of available snapshots.
 
-[NOTE]
-====
-Snapshots are kept in the system for 7 days for Professional instances, 30 days for Free instances, and 90 days for Enterprise instances.
-Only the latest snapshot is available for Free instances.
-====
-
 To access the *Snapshots* tab:
 
 . Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Select the instance you want to access.
 . Select the *Snapshots* tab.
 
+[NOTE]
+====
+Snapshots are kept in the system for 7 days for Professional instances, 30 days for Free instances, and 90 days for Enterprise instances.
+Only the latest snapshot is available for Free instances.
+====
+
 == Snapshot types
 
-There are three different types of snapshot:
+=== Scheduled
 
-* label:AuraDB-Professional[] label:AuraDB-Enterprise[] *Scheduled* - Runs when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and automatically at a cadence depending on your plan type. 
+label:AuraDB-Professional[] 
+label:AuraDB-Enterprise[]
+
+A *Scheduled* snapshot is a snapshot that is automatically triggered when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and at a cadence depending on your plan type.
+
 Scheduled snapshots are run automatically once a day for Professional instances and once an hour for Enterprise instances.
-* label:AuraDB-Professional[] label:AuraDB-Enterprise[] *Load* - Runs when you load a dump file from the *Import Database* tab of a instance and when you run the `push-to-cloud` command from the *Import* section of the sidebar menu of the Aura Console.
-* *On-demand* - Runs when you select *Take snapshot* from the *Snapshots* tab of an instance.
+
+[NOTE]
+====
+For Enterprise instances running Neo4j version 4, only one scheduled snapshot will be retained per day after 7 days.
+====
+
+=== Load
+
+label:AuraDB-Professional[] 
+label:AuraDB-Enterprise[]
+
+A *Load* snapshot is a snapshot that is automatically triggered when you load a dump file from the *Import Database* tab of an instance or when you run the xref:auradb/importing/import-database.adoc#_neo4j_admin_database_upload[Neo4j Admin `database upload` command].
+
+=== On Demand
+
+An *On Demand* snapshot is a snapshot that you manually trigger by selecting *Take snapshot* from the *Snapshots* tab of an instance.
 
 == Snapshot actions
 
-=== Take a snapshot
-
-You can manually trigger an *On-demand* snapshot by selecting *Take snapshot*.
-
 === Restore
+
+[CAUTION]
+====
+Restoring a snapshot overwrites the data in your instance, replacing it with the data contained in the snapshot.
+====
 
 You can restore data in your instance to a previous snapshot by selecting *Restore* next to the snapshot you want to restore.
 
 Restoring a snapshot requires you to confirm the action by typing RESTORE and selecting *Restore*. 
 
-=== Export/Create footnote:[The ability to Export or Create an instance from a Scheduled Enterprise snapshot is limited to 14 days.] 
+=== Export/Create
 
 By selecting the ellipses (*...*) button next to an existing snapshot, you can:
 
 * *Export* - Download the instance as *_.dump_* file, allowing you to store a local copy and work on your data offline.
 * *Create instance from snapshot* - Create a new AuraDB instance using the data from the snapshot.
 
-[CAUTION]
+[NOTE]
 ====
-Restoring a snapshot overwrites the data in your instance, replacing it with the data contained in the snapshot.
+The ability to Export or Create an instance from a Scheduled Enterprise snapshot is limited to 14 days.
+
+Additionally, for Enterprise instances running Neo4j version 5, the ability to export or create an instance from a Scheduled snapshot is limited to the first full snapshot, taken once per day.
 ====
+
 
 
