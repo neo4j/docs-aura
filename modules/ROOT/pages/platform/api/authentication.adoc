@@ -6,10 +6,10 @@ The Aura API uses OAuth 2.0 for API authentication.
 
 == Creating credentials
 
-[NOTE]
-====
-Users with Free and Professional instances can create API credentials as long as they have entered billing information or are a member of a marketplace tenant. 
-====
+// [NOTE]
+// ====
+// Users with Free and Professional instances can create API credentials as long as they have entered billing information or are a member of a marketplace tenant.
+// ====
 
 . Navigate to the https://console.neo4j.io/#account[Neo4j Aura Console Account Details page] in your browser.
 . Select the *Create* button in the *Aura API Credentials* section.
@@ -68,7 +68,7 @@ Authentication to the token endpoint uses HTTP Basic Authentication, where the c
 
 [CAUTION]
 ====
-Both the request and response contain sensitive information and must be kept secure. 
+Both the request and response contain sensitive information and must be kept secure.
 
 You are responsible for keeping the client credentials and access tokens confidential, whether in transit (by specifying HTTPS), if stored at rest, in log files, etc.
 ====
@@ -116,16 +116,16 @@ curl --request POST 'https://api.neo4j.io/oauth/token' \
 |Unauthorized
 |The provided credentials are invalid, expired, or revoked.
 
-|403 
+|403
 |Forbidden
 |The request body is invalid.
 
 |404
-|Not Found 
+|Not Found
 |The request body is missing.
 |===
 
 === Token expiration
 
-If you attempt to send a request to the Aura API, authenticated using an expired access token, you will receive a 403 Forbidden response. 
+If you attempt to send a request to the Aura API, authenticated using an expired access token, you will receive a 403 Forbidden response.
 You will need to obtain a new token to continue using the API.
