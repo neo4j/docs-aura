@@ -2,12 +2,14 @@
 = Authentication
 :description: This page describes how to authenticate requests to the Aura API.
 
-label:AuraDB-Enterprise[]
-label:AuraDS-Enterprise[]
-
 The Aura API uses OAuth 2.0 for API authentication.
 
 == Creating credentials
+
+[NOTE]
+====
+Users with Free and Professional instances can create API credentials as long as they have entered billing information or are a member of a marketplace tenant. 
+====
 
 . Navigate to the https://console.neo4j.io/#account[Neo4j Aura Console Account Details page] in your browser.
 . Select the *Create* button in the *Aura API Credentials* section.
