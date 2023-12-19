@@ -59,14 +59,17 @@ To continue accessing Browser and Bloom, you can configure a VPN (Virtual Privat
 To access Bloom and Browser over a VPN, you must ensure that:
 
 * The VPN server uses the https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#AmazonDNS[VPC's DNS servers].
-* You use the private URL provided by support when you completed setting up the private endpoint. It will be different from the URL you used before.
+* You use the *Private URI* shown on the instance tile and in the instance details. It will be different from the *Connection URI* you used before.
 ====
 
 image::privatelink_03_browser_bloom_over_vpn.png[title="Accessing Browser and Bloom over a VPN"]
 
 ==== Enabling private endpoints
 
-To enable private endpoints using AWS PrivateLink, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket], and we'll be in touch.
+To enable private endpoints using AWS PrivateLink: 
+
+. Select *Network access* from the sidebar menu of the Console.
+. Select *New network access configuration* and follow the setup instructions.
 
 You will need an AWS account with permissions to create, modify, describe and delete endpoints.
 Please see the https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.html[AWS Documentation] for more information.
@@ -112,14 +115,17 @@ To continue accessing Browser and Bloom, you can configure a https://cloud.googl
 To access Bloom and Browser over a VPN, you must ensure that:
 
 * You have setup https://cloud.google.com/dns/docs/zones/manage-response-policies[GCP Cloud DNS], or an equivalent DNS service, inside of the VPC.
-* You use the private URL provided by support when you completed setting up the private endpoint. It will be different from the URL you used before.
+* You use the *Private URI* shown on the instance tile and in the instance details. It will be different from the *Connection URI* you used before.
 ====
 
 image::privateserviceconnect_03_browser_bloom_over_vpn.png[title="Accessing Browser and Bloom over a VPN"]
 
 ==== Enabling private endpoints
 
-To enable private endpoints using GCP Private Service Connect, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket], and we'll be in touch.
+To enable private endpoints using GCP Private Service Connect: 
+
+. Select *Network access* from the sidebar menu of the Console.
+. Select *New network access configuration* and follow the setup instructions.
 
 Please see the https://cloud.google.com/vpc/docs/configure-private-service-connect-services[GCP Documentation] for required roles and permissions.
 
@@ -163,14 +169,17 @@ To continue accessing Browser and Bloom, you can configure a VPN (Virtual Privat
 To access Bloom and Browser over a VPN, you must ensure that:
 
 * You have setup https://learn.microsoft.com/en-us/azure/dns/private-dns-overview[Azure Private DNS], or an equivalent DNS service, inside of the VNet.
-* You use the private URL provided by support when you completed setting up the private endpoint. It will be different from the URL you used before.
+* You use the *Private URI* shown on the instance tile and in the instance details. It will be different from the *Connection URI* you used before.
 ====
 
 image::azure_privatelink_03_browser_bloom_over_vpn.png[title="Accessing Browser and Bloom over a VPN"]
 
 ==== Enabling private endpoints
 
-To enable private endpoints using Azure Private Link, please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket].
+To enable private endpoints using Azure Private Link: 
+
+. Select *Network access* from the sidebar menu of the Console.
+. Select *New network access configuration* and follow the setup instructions.
 
 Please see the https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
 
