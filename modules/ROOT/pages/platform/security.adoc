@@ -183,7 +183,10 @@ Aura Enterprise supports Single Sign-On (SSO) at both the Console level and for 
 
 [NOTE]
 ====
-Aura requires Authorization Code Flow with PKCE to ensure best practice security.
+Accessing Aura with SSO requires:
+ 
+* Authorization Code Flow with PKCE.
+* A publicly accessible Identity Provider (IdP) server.
 ====
 
 === Console SSO
