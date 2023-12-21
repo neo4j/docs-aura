@@ -25,19 +25,22 @@
   "homepage": "https://github.com/neo-technology/aura-documentation#readme",
   "dependencies": {
     "@antora/cli": "^3.1.6",
-    "@antora/site-generator-default": "^3.1.5",
+    "@antora/site-generator-default": "^3.1.6",
     "@neo4j-antora/antora-add-notes": "^0.1.6",
     "@neo4j-antora/antora-modify-sitemaps": "^0.4.4",
     "@neo4j-antora/antora-table-footnotes": "^0.3.2",
     "@neo4j-documentation/macros": "^1.0.2",
     "@neo4j-documentation/remote-include": "^1.0.0",
-    "nodemon": "^1.19.4"
+    "nodemon": "^3.0.2"
   },
   "devDependencies": {
-    "cheerio": "^1.0.0-rc.3",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "hyperlink": "^4.6.0",
-    "neo4j-driver": "^5.15.0"
+    "neo4j-driver": "^5.1.5"
+  },
+  "overrides": {
+    "@antora/site-generator-default": {
+      "glob-parent": "6.0.2"
+    }
   }
 }
