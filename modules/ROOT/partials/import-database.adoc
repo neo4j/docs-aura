@@ -22,7 +22,10 @@ Once this has finished, the instance returns to its `Running` state; and the dat
 
 [CAUTION]
 ====
-This command does not currently support xref:platform/security.adoc#_vpc_isolation[private linking]. Please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket] if you have public traffic disabled and need to use this command.
+If you have enabled xref:platform/security.adoc#_vpc_isolation[private linking], you must ensure public traffic is enabled for the region your instance is hosted in before you can use this command.
+
+Public traffic can be enabled from the *Network access* section of the Console by selecting *Configure* on the region you want to change and un-ticking the *Disable public access* option in step 4.
+Once the command has completed, you can disable public traffic again.
 ====
 
 `database upload` is a Neo4j Admin command that you can run to upload the contents of a Neo4j database into an Aura instance, regardless of the database's size.
