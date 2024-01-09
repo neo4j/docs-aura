@@ -22,10 +22,8 @@ Once this has finished, the instance returns to its `Running` state; and the dat
 
 [CAUTION]
 ====
-If you have enabled xref:platform/security.adoc#_vpc_isolation[private linking], you must ensure public traffic is enabled for the region your instance is hosted in before you can use this command.
-
-Public traffic can be enabled from the *Network access* section of the Console by selecting *Configure* on the region you want to change and un-ticking the *Disable public access* option in step 4.
-Once the command has completed, you can disable public traffic again.
+This command will not work if you have a network access configuration setup that prevents public traffic to the region your instance is hosted in.
+See <<_public_traffic>> below for more information.
 ====
 
 `database upload` is a Neo4j Admin command that you can run to upload the contents of a Neo4j database into an Aura instance, regardless of the database's size.
@@ -36,3 +34,15 @@ For details of how to use the `neo4j-admin database upload` command, along with 
 ====
 The `database upload` command was introduced in Neo4j Admin version 5, replacing the `push-to-cloud` command that was present in Neo4j Admin version 4.4 and earlier. If you have an earlier version of the Neo4j Admin tool, please see the link:{neo4j-docs-base-uri}/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[Neo4j Admin push-to-cloud documentation].
 ====
+
+=== Public traffic
+If you have created a network access configuration from the *Network access* page, accessed through the sidebar menu of the Console, 
+*Public traffic* must be enabled for the region your instance is hosted in before you can use the `database upload` command on that instance.
+
+To enable *Public traffic* on a network access configuration:
+
+. Select *Configure* next to the region that has *Public traffic* disabled.
+. Select *Next* until you reach step 4 of 4 in the resulting *Edit network access configuration* modal.
+. Clear the *Disable public traffic* checkbox and select *Save*.
+
+You can now use the `database upload` command on the instances within that region. Once the command has completed, you can disable *Public traffic* again by following the same steps and re-selecting the *Disable public traffic* checkbox.
