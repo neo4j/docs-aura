@@ -13,19 +13,19 @@ Tenants are the primary mechanism for granting users access to an Aura environme
 The tenant you're currently viewing is displayed in the header of the Console. 
 You can select the tenant name to open the **Tenant Dropdown** menu, which allows you to view and copy the _Tenant ID_ by selecting the clipboard icon that appears when you hover over the tenant menu item.
 
-It is possible to be a member of multiple tenants, in which case the **Tenant Dropdown** will also display the other tenants you have access to. 
+It is possible to be a user of multiple tenants, in which case the **Tenant Dropdown** will also display the other tenants you have access to. 
 You can switch between these tenants by clicking on the individual tenant from the **Tenant Dropdown**, and you can copy the _Tenant ID_ of any of the tenants in the list as described previously.
 
-== Team members
+== Users
 
-Each tenant consists of a single team that allows multiple users with individual accounts to access the same environment.
+Each tenant can have multiple users with individual accounts allowing access to the same environment.
 
-The team and its members can be viewed and managed from the **Team Members** page. 
-You can access the **Team Members** page by selecting **Team Members** from the sidebar menu of the Console.
+The users with access to a tenant can be viewed and managed from the **User Management** page. 
+You can access the **User Management** page by selecting **User Management** from the sidebar menu of the Console.
 
 === Roles
 
-Users within a team can be assigned one of the following roles:
+Users within a tenant can be assigned one of the following roles:
 
 * _Admin_
 * _Member_
@@ -37,61 +37,61 @@ Users within a team can be assigned one of the following roles:
 [opts="header",cols="3,1,1,1"]
 |===
 | Capability | Admin | Member | Viewer
-| View team members and their roles | {check-mark} | {check-mark} | {check-mark}
+| View users and their roles | {check-mark} | {check-mark} | {check-mark}
 | View and open instances | {check-mark} | {check-mark} | {check-mark}
 | Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instances.] | {check-mark} | {check-mark} |
 | Clone data to new and existing instances | {check-mark} | {check-mark} |
 | Take on-demand snapshots | {check-mark} | {check-mark} |
 | Restore from snapshots | {check-mark} | {check-mark} |
-| Invite new users to the team | {check-mark} | |
-| Edit existing team members' roles | {check-mark} | |
-| Delete existing team members from the team | {check-mark} | |
+| Invite new users to the tenant | {check-mark} | |
+| Edit existing users' roles | {check-mark} | |
+| Delete existing users from the tenant | {check-mark} | |
 | View and edit billing information | {check-mark} | |
 |===
 
 [NOTE]
 ====
-Each team must have at least one _Admin_, but it is also possible for teams to have multiple _Admins_.
+Each tenant must have at least one _Admin_, but it is also possible for tenants to have multiple _Admins_.
 ====
 
-=== Inviting team members
+=== Inviting users
 
-As an _Admin_, to invite a new team member:
+As an _Admin_, to invite a new user:
 
-. Select **Invite member** from the **Team Members** page.
+. Select **Invite user** from the **User Management** page.
 . Enter the **Email** address of the person you want to invite.
-. Select the team member's **Role**.
+. Select the user's **Role**.
 . Select **Invite**.
 
-The new team member will appear within the list of team members on the **Team Members** page with the _Pending invite_ **Status** until they accept the invite.
+The new user will appear within the list of users on the **User Management** page with the _Pending invite_ **Status** until they accept the invite.
 
-An email will be sent to the team member with a link to accept the invite.
+An email will be sent to the user with a link to accept the invite.
 
-=== Editing team members
+=== Editing users
 
-As an _Admin_, to edit an existing team member's role:
+As an _Admin_, to edit an existing user's role:
 
-. Select the **Edit member** pencil icon next to the team member's name from the **Team Members** page.
-. Select the team member's new **Role**.
+. Select the pencil icon next to the user's name from the **User Management** page.
+. Select the user's new **Role**.
 . Select **Save changes**.
 
-=== Deleting team members
+=== Deleting users
 
-As an _Admin_, to delete an existing team member from the team:
+As an _Admin_, to delete an existing user:
 
-. Select the **Delete member** trash can icon next to the team member's name from the **Team Members** page.
+. Select the trash can icon next to the user's name from the **User Management** page.
 . Select **Delete**.
 
 [NOTE]
 ====
-It is also possible to delete a team member whose **Status** is _Pending invite_.
+It is also possible to delete a user whose **Status** is _Pending invite_.
 
-Select the **Delete member** trash can icon next to the team member's name, and then select **Revoke**.
+Select the trash can icon next to the user's name, and then select **Revoke**.
 ====
 
 === Accepting an invite
 
-When invited to a team, you will receive an email with a link to accept the invite. 
+When invited to a tenant, you will receive an email with a link to accept the invite. 
 This link will direct you to the Aura Console, where a **Tenant invitation** modal will appear.
 You can select the tenant(s) you have been invited to and choose to accept or decline the invite(s). 
 
