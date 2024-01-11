@@ -11,10 +11,12 @@ User management is a feature within Aura that allows you to invite users and set
 Tenants are the primary mechanism for granting users access to an Aura environment.
 
 The tenant you're currently viewing is displayed in the header of the Console. 
-You can select the tenant name to open the **Tenant Dropdown** menu, which allows you to view and copy the _Tenant ID_ by selecting the clipboard icon that appears when you hover over the tenant menu item.
+You can select the tenant name to open the tenant dropdown menu, allowing you to view all the tenants that you have access to and switch between them.
 
-It is possible to be a user of multiple tenants, in which case the **Tenant Dropdown** will also display the other tenants you have access to. 
-You can switch between these tenants by clicking on the individual tenant from the **Tenant Dropdown**, and you can copy the _Tenant ID_ of any of the tenants in the list as described previously.
+Additionally, you can perform the following actions from the tenant dropdown menu:
+
+* Copy the _Tenant ID_ of any tenant in the list by selecting the clipboard icon that appears when you hover over the tenant.
+* Edit the name of the tenant you are currently viewing by selecting the pencil icon next to the tenant. This action requires you to be an _Admin_ of the tenant.
 
 == Users
 
@@ -43,6 +45,7 @@ Users within a tenant can be assigned one of the following roles:
 | Clone data to new and existing instances | {check-mark} | {check-mark} |
 | Take on-demand snapshots | {check-mark} | {check-mark} |
 | Restore from snapshots | {check-mark} | {check-mark} |
+| Edit the tenant name | {check-mark} | |
 | Invite new users to the tenant | {check-mark} | |
 | Edit existing users' roles | {check-mark} | |
 | Delete existing users from the tenant | {check-mark} | |
