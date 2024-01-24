@@ -15,7 +15,7 @@ The Arrow Flight server speeds up data-intensive processes such as:
 There are two ways to use the Arrow Flight server with GDS:
 
 . By using the GDS Python client, which includes an Arrow Flight client.
-. By implementing a custom Arrow Flight client as explained in the link:https://neo4j.com/docs/graph-data-science/current/graph-catalog-apache-arrow-ops/[GDS manual].
+. By implementing a custom Arrow Flight client as explained in the link:https://neo4j.com/docs/graph-data-science/current/management-ops/graph-creation/graph-project-apache-arrow/[GDS manual].
 
 In the following examples we use the GDS client as it is the most convenient option.
 All the loading and streaming methods can be used without Arrow, but are more efficient if Arrow is available.

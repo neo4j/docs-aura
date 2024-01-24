@@ -1,6 +1,6 @@
 == Create an example graph
 
-An easy way to create an in-memory graph is through the GDS https://neo4j.com/docs/graph-data-science/current/management-ops/projections/graph-generation/ [graph generation^] algorithm. By specifing the number of nodes, the average number of relationships going out of each node and the relationship distribution function, the algorithm creates a graph having the following shape:
+An easy way to create an in-memory graph is through the GDS https://neo4j.com/docs/graph-data-science/current/management-ops/graph-creation/graph-generation/[graph generation^] algorithm. By specifing the number of nodes, the average number of relationships going out of each node and the relationship distribution function, the algorithm creates a graph having the following shape:
 
 `(:{generated-graph-size}_Nodes)-[:REL]->(:{generated-graph-size}_Nodes)`
 
