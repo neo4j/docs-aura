@@ -17,7 +17,7 @@ A query log provides a log of queries executed on an instance within a specified
 
 [NOTE]
 ====
-Queries that complete succesfully within 50ms are not logged.
+Queries that complete successfully within 50ms are not logged.
 ====
 
 === Requesting query logs
@@ -71,7 +71,7 @@ Downloaded query logs take the form of a zipped JSON file that, when extracted, 
 | The name of the database the query was executed on.
 
 | dbid
-| The ID of the instace the query was executed on.
+| The ID of the instance the query was executed on.
 
 | elapsedTimeMs
 | The time the query took to complete in milliseconds.
