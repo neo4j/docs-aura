@@ -13,7 +13,12 @@ To access the *Logs* tab:
 
 == Query logs
 
-A query log provides a log of queries executed on an instance within a specified time range. 
+A query log provides a log of queries executed on an instance within a specified time range.
+
+[NOTE]
+====
+Queries that complete succesfully within 50ms are not logged.
+====
 
 === Requesting query logs
 
