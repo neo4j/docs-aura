@@ -1,0 +1,48 @@
+[[aura-monitoring]]
+= Advanced metrics
+
+Advanced metrics is a feature that enables access to a broad range of different instance and database metrics.
+
+To access *Advanced metrics*:
+
+. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
+. Select the instance you want to access.
+. Select the *Metrics* tab.
+. Select the *Advanced metrics* button.
+
+The presented metrics will be laid out across three tabs according to their category:
+
+* *Resources* - Overall system resources, such as CPU, RAM and disk usage.
+* *Instance* - Information about the Neo4j instance(s) running the database.
+* *Database* - Metrics concerning the database itself, such as usage statistics and entity counts.
+
+When viewing metrics, you can select from the following time intervals:
+
+* 30 minutes
+* 6 hours
+* 24 hours
+* 3 days
+* 7 days
+* 14 days
+* 30 days
+
+== Chart options
+
+[NOTE]
+====
+Select charts can be toggled between absolute and relative values using the *%* toggle.
+====
+
+To access the chart options menu, select the *...* button on any chart.
+
+=== Reset zoom
+
+If the zoom level has been altered by selecting and dragging across a chart, *Reset zoom* resets the zoom back to the selected interval.
+
+=== Expand
+
+*Expand* gives you a better view of a particular metric by expanding the chart to take up all the available screen estate.
+
+=== More info
+
+Selecting *More info* brings up an explanation of the particular metric.
