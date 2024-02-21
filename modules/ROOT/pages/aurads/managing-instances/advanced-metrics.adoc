@@ -1,6 +1,9 @@
 [[aura-monitoring]]
 = Advanced metrics
 
+label:AuraDB-Professional[]
+label:AuraDB-Enterprise[]
+
 Advanced metrics is a feature that enables access to a broad range of different instance and database metrics.
 
 To access *Advanced metrics*:
@@ -26,23 +29,25 @@ When viewing metrics, you can select from the following time intervals:
 * 14 days
 * 30 days
 
+== Chart interactions
+
 [NOTE]
 ====
 Some charts can be toggled between absolute and relative values using the *%* toggle.
 ====
 
-== Chart options
+=== Zoom
 
-To access the chart options menu, select the *...* button on any chart.
+To zoom in to a narrower time interval, click inside any chart and drag to select your desired time interval. The data will automatically update to match the increased resolution.
 
-=== Reset zoom
+To reset zoom, double-click anywhere inside the chart or use the option in the context menu.
 
-If the zoom level has been altered by selecting and dragging across a chart, *Reset zoom* resets the zoom back to the selected interval. The same can be done by double-clicking anywhere inside the chart.
+=== Context menu
 
-=== Expand
+To access the chart context menu, select the *...* button on any chart.
 
-*Expand* gives you a better view of a particular metric by expanding the chart to take up all the available screen estate.
+* *Reset zoom* - If the zoom level has been altered by selecting and dragging across a chart, *Reset zoom* resets the zoom back to the selected interval.
 
-=== More info
+* *Expand* - Expand gives you a better view of a particular metric by expanding the chart to take up all the available screen estate.
 
-Selecting *More info* brings up an explanation of the particular metric. For some metrics it also provides hints about possible actions to take if that metric falls outside the expected range.
+* *More info* - Selecting *More info* brings up an explanation of the particular metric. For some metrics it also provides hints about possible actions to take if that metric falls outside the expected range.
