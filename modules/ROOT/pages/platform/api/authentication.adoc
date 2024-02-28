@@ -96,14 +96,11 @@ curl --request POST 'https://api.neo4j.io/oauth/token' \
 =====
 
 [source, python]
-
+----
 from requests.auth import HTTPBasicAuth
 import requests 
 
 # Make the request to the Aura API Auth endpoint
-
-[source, python]
-----
 response = requests.request(
         "POST",
         "https://api.neo4j.io/oauth/token",
