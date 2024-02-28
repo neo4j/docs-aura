@@ -101,6 +101,9 @@ from requests.auth import HTTPBasicAuth
 import requests 
 
 # Make the request to the Aura API Auth endpoint
+
+[source, python]
+----
 response = requests.request(
         "POST",
         "https://api.neo4j.io/oauth/token",
@@ -112,6 +115,7 @@ response = requests.request(
 
 # Obtain the token to use with our Aura API from the response
 token = response.json()["access_token"]
+----
 
 =====
 ====
