@@ -97,18 +97,18 @@ curl --request POST 'https://api.neo4j.io/oauth/token' \
 
 [source, python]
 ----
+import requests
 from requests.auth import HTTPBasicAuth
-import requests 
 
 # Make the request to the Aura API Auth endpoint
 response = requests.request(
-        "POST",
-        "https://api.neo4j.io/oauth/token",
-        headers={"Content-Type": "application/x-www-form-urlencoded"},
-        data={"grant_type": "client_credentials"},
-        auth=HTTPBasicAuth(client_id, client_secret),
-        timeout=10
-    )
+    "POST",
+    "https://api.neo4j.io/oauth/token",
+    headers={"Content-Type": "application/x-www-form-urlencoded"},
+    data={"grant_type": "client_credentials"},
+    auth=HTTPBasicAuth(client_id, client_secret),
+    timeout=10
+)
 
 # Obtain the token to use with our Aura API from the response
 token = response.json()["access_token"]
