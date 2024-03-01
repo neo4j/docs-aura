@@ -5,15 +5,33 @@
 label:AuraDB-Professional[] 
 label:AuraDB-Enterprise[]
 
-Change Data Capture (CDC) tracks changes to your data, which allows you to keep your other data sources up-to-date and accurate. For more information see the link:https://neo4j.com/docs/cdc/current/[Neo4j DBMS CDC documentation]. 
 
-CDC enrichment mode can be set to OFF, DIFF, or FULL. See the link:https://neo4j.com/docs/cdc/current/getting-started/enrichment-mode/[Enrichment mode] documentation for more information. Choosing OFF, DIFF, or FULL does not affect the cost of an instance.
 
-If an instance is paused or resumed, the CDC enrichment mode does not change.
+Change Data Capture tracks changes to your data, which allows you to keep your other data sources up-to-date and accurate. 
+For more information see link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> Change Data Capture (CDC)].
 
-== Edit CDC enrichment mode from within the Aura Console
+Log enrichment mode can be set to `OFF`, `DIFF` or `FULL`. 
+For more information see link:{neo4j-docs-base-uri}/cdc/current/getting-started/enrichment-mode/[Neo4j DBMS -> Enrichment mode].
 
-View an instance's current CDC enrichment mode by clicking on an instance’s card in the Aura Console dashboard. Enrichment mode is set to OFF by default. 
 
-Only Admins can change the CDC status. If an Admin changes the CDC enrichment mode from DIFF or FULL to OFF they will see a message within the Aura Console that says, "Please note, applications dependent on CDC will stop working. See link:https://neo4j.com/docs/cdc/current/getting-started/enrichment-mode/#_disabling_log_enrichment[Disabling Log Enrichment] for more info”.
+If an instance is paused or resumed, the log enrichment mode does not change.
 
+== Modifying log enrichment mode from within the Aura Console
+
+View an instance’s current log enrichment mode by clicking on an instance in the Aura Console. 
+
+Note that default log enrichment mode is `OFF` and change data capture is disabled until it is set as `DIFF` or `FULL`.
+
+Only Admins can change the log enrichment mode. 
+If an Admin changes log enrichment mode from `DIFF` or `FULL` to `OFF` they will see a message within the Aura Console that says, “Please note, applications dependent on CDC will stop working. 
+See Disabling Log Enrichment for more info" with linked text to link:https://neo4j.com/docs/cdc/current/getting-started/enrichment-mode/#_disabling_log_enrichment[Neo4j DBMS -> Disabling Log Enrichment] documentation.
+
+== Performing a restore in Aura with log enrichment mode enabled
+
+If you want to take a snapshot and restore it to the same DBMS, or create a new instance from that snapshot, by default log enrichment mode is `OFF`. 
+If the original status of that instance had log enrichment mode set to `DIFF` or `FULL`, the status would change. 
+You need to proactively enable it.
+
+CDC assumes that changes can be represented as a continuous stream of changes, each new change building on top of the state of the previous changes. 
+Restoring your Neo4j database breaks this continuous stream. 
+Ensure that you have read and understood the implications documented in link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> Backup and Restore Operations] before proceeding with restoring your backup.
