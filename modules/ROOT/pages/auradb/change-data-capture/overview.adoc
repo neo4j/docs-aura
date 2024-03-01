@@ -10,7 +10,7 @@ Change Data Capture tracks changes to your data by querying the transaction logs
 For more information see link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> Change Data Capture (CDC)].
 
 Log enrichment mode can be set to `OFF`, `DIFF` or `FULL`. 
-For more information see link:{neo4j-docs-base-uri}/cdc/current/getting-started/enrichment-mode/[Neo4j DBMS -> Enrichment mode].
+For more information see link:{neo4j-docs-base-uri}/cdc/current/getting-started/enrichment-mode/[Neo4j DBMS -> CDC -> Enrichment mode].
 
 
 If an instance is paused or resumed, the log enrichment mode does not change.
@@ -22,8 +22,7 @@ View an instance’s current log enrichment mode by clicking on an instance in t
 Note that default log enrichment mode is `OFF` and change data capture is disabled until it is set as `DIFF` or `FULL`.
 
 Only Admins can change the log enrichment mode. 
-If an Admin changes log enrichment mode from `DIFF` or `FULL` to `OFF` they will see a message within the Aura Console that says, “Please note, applications dependent on CDC will stop working. 
-See Disabling Log Enrichment for more info" with linked text to link:https://neo4j.com/docs/cdc/current/getting-started/enrichment-mode/#_disabling_log_enrichment[Neo4j DBMS -> Disabling Log Enrichment] documentation.
+If an Admin changes log enrichment mode from `DIFF` or `FULL` to `OFF` applications dependent on CDC will stop working. For more info see link:https://neo4j.com/docs/cdc/current/getting-started/enrichment-mode/#_disabling_log_enrichment[Neo4j DBMS -> CDC -> Disabling Log Enrichment].
 
 == Performing a restore in Aura with log enrichment mode enabled
 
@@ -33,4 +32,4 @@ You need to proactively enable it.
 
 CDC assumes that changes can be represented as a continuous stream of changes, each new change building on top of the state of the previous changes. 
 Restoring your Neo4j database breaks this continuous stream. 
-Ensure that you have read and understood the implications documented in link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> Backup and Restore Operations] before proceeding with restoring your backup.
+Ensure that you have read and understood the implications documented in link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> CDC -> Backup and Restore Operations] before proceeding with restoring your backup.
