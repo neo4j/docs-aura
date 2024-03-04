@@ -110,8 +110,7 @@ response = requests.request(
     timeout=10
 )
 
-# Obtain the token to use with our Aura API from the response
-token = response.json()["access_token"]
+print(response.json())
 ----
 
 =====
