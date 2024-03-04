@@ -106,13 +106,13 @@ response = requests.request(
     "https://api.neo4j.io/oauth/token",
     headers={"Content-Type": "application/x-www-form-urlencoded"},
     data={"grant_type": "client_credentials"},
-    auth=HTTPBasicAuth(client_id, client_secret),
-    timeout=10
+    auth=HTTPBasicAuth(client_id, client_secret) <1>
 )
 
 print(response.json())
 ----
 
+<1> `client_id` and `client_secret` must be set to the values obtained from the Aura Console.
 =====
 ====
 
