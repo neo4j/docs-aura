@@ -12,9 +12,6 @@ For more information see link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> Ch
 Log enrichment mode can be set to `OFF`, `DIFF` or `FULL`. 
 For more information see link:{neo4j-docs-base-uri}/cdc/current/getting-started/enrichment-mode/[Neo4j DBMS -> CDC -> Enrichment mode].
 
-
-If an instance is paused or resumed, the log enrichment mode does not change.
-
 == Modifying log enrichment mode from within the Aura Console
 
 View an instance’s current log enrichment mode by clicking on an instance in the Aura Console. 
@@ -26,10 +23,24 @@ If an Admin changes log enrichment mode from `DIFF` or `FULL` to `OFF` applicati
 
 == Performing a restore in Aura with log enrichment mode enabled
 
-If you want to take a snapshot and restore it to the same DBMS, or create a new instance from that snapshot, by default log enrichment mode is `OFF`. 
-If the original status of that instance had log enrichment mode set to `DIFF` or `FULL`, the status would change. 
+If you take a snapshot and restore it to the same instance, or create a new instance from that snapshot, by default log enrichment mode will be set to `OFF`. 
+If the original status of that instance had log enrichment mode set to `DIFF` or `FULL`, the status changes. 
 You need to proactively enable it.
 
 CDC assumes that changes can be represented as a continuous stream of changes, each new change building on top of the state of the previous changes. 
-Restoring your Neo4j database breaks this continuous stream. 
-Ensure that you have read and understood the implications documented in link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> CDC -> Backup and Restore Operations] before proceeding with restoring your backup.
+Restoring a Neo4j database breaks this continuous stream. 
+See the implications documented in link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> CDC -> Backup and Restore Operations] before proceeding with restoring your backup.
+
+== Pause and resume
+
+This is currently unsupported for databases enabled with CDC.
+
+== Design considerations for applications with CDC in Aura
+
+When designing applications that query using CDC's procedures, those applications track their position in the stream of changes using a cursor. 
+The cursor is valid for a limited time. For more information see link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> CDC -> Transaction log retention].
+
+Developers should therefore consider high availability for their application so that continuity is maintained in querying in the event the application fails. 
+For example, use Kubernetes to automatically restart the application or a 3rd party product like Apache Kafka or Confluent. 
+
+For more information see link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> Change Data Capture (CDC)].
