@@ -42,5 +42,3 @@ The cursor is valid for a limited time. For more information see link:{neo4j-doc
 
 Developers should therefore consider high availability for their application so that continuity is maintained in querying in the event the application fails. 
 For example, use Kubernetes to automatically restart the application or a 3rd party product like Apache Kafka or Confluent. 
-
-For more information see link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> Change Data Capture (CDC)].
