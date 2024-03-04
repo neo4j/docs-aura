@@ -74,7 +74,12 @@ Both the request and response contain sensitive information and must be kept sec
 You are responsible for keeping the client credentials and access tokens confidential, whether in transit (by specifying HTTPS), if stored at rest, in log files, etc.
 ====
 
-==== cURL example
+==== Request examples 
+
+[.tabbed-example]
+====
+[.include-with-cURL]
+=====
 
 [source, shell]
 ----
@@ -85,6 +90,32 @@ curl --request POST 'https://api.neo4j.io/oauth/token' \
 ----
 
 <1> The `--user` option sets the `Authorization` header for you, handling the base64 encoding of the client ID and client secret.
+
+=====
+[.include-with-Python]
+=====
+
+[source, python]
+----
+import requests
+from requests.auth import HTTPBasicAuth
+
+# Make the request to the Aura API Auth endpoint
+response = requests.request(
+    "POST",
+    "https://api.neo4j.io/oauth/token",
+    headers={"Content-Type": "application/x-www-form-urlencoded"},
+    data={"grant_type": "client_credentials"},
+    auth=HTTPBasicAuth(client_id, client_secret),
+    timeout=10
+)
+
+print(response.json())
+----
+
+=====
+====
+
 
 ==== Response body example
 
