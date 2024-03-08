@@ -16,7 +16,10 @@ For more information see link:{neo4j-docs-base-uri}/cdc/current/getting-started/
 
 View an instance’s current log enrichment mode by clicking on an instance in the Aura Console. 
 
-Note that default log enrichment mode is `OFF` and change data capture is disabled until it is set as `DIFF` or `FULL`.
+[NOTE]
+====
+The default log enrichment mode is `OFF` and CDC is disabled unless set as `DIFF` or `FULL`.
+====
 
 Only Admins can change the log enrichment mode. 
 If an Admin changes log enrichment mode from `DIFF` or `FULL` to `OFF` applications dependent on CDC will stop working. For more information see link:https://neo4j.com/docs/cdc/current/getting-started/enrichment-mode/#_disabling_log_enrichment[Neo4j DBMS -> CDC -> Disabling Log Enrichment].
