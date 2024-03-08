@@ -30,7 +30,7 @@ If you take a snapshot and restore it to the same instance, or create a new inst
 If the original status of that instance had log enrichment mode set to `DIFF` or `FULL`, the status changes. 
 You need to proactively enable it.
 
-CDC assumes that changes can be represented as a continuous stream of changes, each new change building on top of the state of the previous changes. 
+CDC assumes that changes can be represented as a continuous stream, each new change building on top of the state of the previous changes. 
 Restoring a Neo4j database breaks this continuous stream. 
 See the implications documented in link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> CDC -> Backup and Restore Operations] before proceeding with restoring your backup.
 
