@@ -62,9 +62,12 @@ To access the chart context menu, select the *...* button on any chart.
 
 label:AuraDB-Enterprise[]
 
-A database may be underpinned by more than one cluster member for increased resilience and performance.
+Most metrics will have several values for a given timestamp because of the following reasons:
 
-Metrics coming from several cluster members will be aggregated. To convey a more detailed picture of the state of the system, several aggregations can be shown.
+* Multiple database replicas
+* Compressing several data points into one, depending on zoom level
+
+Aggregating functions are used to reconcile metrics having multiple data points and make the most sense of that particular metric. To convey an even more detailed picture of the state of the system, several aggregations can be shown.
 
 The possible aggregations are:
 
