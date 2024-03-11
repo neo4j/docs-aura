@@ -22,7 +22,7 @@ The default log enrichment mode is `OFF` and CDC is disabled unless set as `DIFF
 ====
 
 Only Admins can change the log enrichment mode. 
-If the log enrichment mode is changed from `DIFF` or `FULL` to `OFF`, applications dependent on CDC stop working. 
+If log enrichment mode is changed from `DIFF` or `FULL` to `OFF`, applications dependent on CDC stop working. 
 For more information see link:https://neo4j.com/docs/cdc/current/getting-started/enrichment-mode/#_disabling_log_enrichment[Neo4j DBMS -> CDC -> Disabling Log Enrichment].
 
 == Performing a restore in Aura with log enrichment mode enabled
