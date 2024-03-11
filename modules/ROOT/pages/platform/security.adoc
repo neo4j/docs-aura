@@ -262,15 +262,16 @@ label:AuraDB-Enterprise[]
 
 Use keys from the AWS Key Management Service (KMS) to encrypt a database.
 
-[CAUTION]
+[WARNING]
 ====
 Deleting a key makes all data encrypted under that key unrecoverable.
 Neo4j cannot administer instances when keys are disabled, deleted or permissions revoked. 
 ====
 
-* Create a single-region key in the AWS KMS console ensuring the region matches your Neo4j instance. 
-* Within the Neo4j Aura Console, navigate to the security settings and create a customer managed key.
-* Edit the AWS key policy. Refer to the example key policy structure for guidance on formatting.
+* Create a single-region key in the AWS console ensuring the region matches your Neo4j instance. 
+* Go to security settings in the Aura Console, create a customer managed key and copy the generated JSON code.
+* Within the AWS console, edit the key policy to include the JSON code. 
+Refer to the example key policy structure for guidance on formatting.
 
 ==== Key policy structure
 
