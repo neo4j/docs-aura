@@ -41,8 +41,7 @@ This is currently unsupported for databases enabled with CDC.
 
 == Design considerations for applications with CDC in Aura
 
-When designing applications that query using CDC's procedures, those applications track their position in the stream of changes using a cursor. 
-The cursor is valid for a limited time. For more information see link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> CDC -> Transaction log retention].
-
-Developers should therefore consider high availability for their application so that continuity is maintained in querying in the event the application fails. 
-For example, use Kubernetes to automatically restart the application or a 3rd party product like Apache Kafka or Confluent. 
+Applications that use CDC's procedures to query, track their position in the stream of changes using a cursor.
+This cursor is valid only for a limited time, see link:{neo4j-docs-base-uri}/cdc/current[Neo4j DBMS -> CDC -> Transaction log retention] for more information.
+Therefore, developers should consider high availability for their applications to ensure that query continuity is maintained in the event of application failure.
+Kubernetes, Apache Kafka, or Confluent can be used to automatically restart the application.
