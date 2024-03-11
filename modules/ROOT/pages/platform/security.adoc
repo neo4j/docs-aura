@@ -268,9 +268,9 @@ Deleting a key makes all data encrypted under that key unrecoverable.
 Neo4j cannot administer instances when keys are disabled, deleted or permissions revoked. 
 ====
 
-* Create a single-region key in the AWS console ensuring the region matches your Neo4j instance. 
+* Create a single-region key in the AWS Console ensuring the region matches your Neo4j instance. 
 * Go to security settings in the Aura Console, create a customer managed key and copy the generated JSON code.
-* Within the AWS console, edit the key policy to include the JSON code. 
+* Within the AWS Console, edit the key policy to include the JSON code. 
 Refer to the example key policy structure for guidance on formatting.
 
 ==== Key policy structure
