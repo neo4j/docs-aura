@@ -272,6 +272,7 @@ Use keys from the AWS Key Management Service (KMS) to encrypt a database.
 ====
 Deleting a key makes all data encrypted under that key unrecoverable.
 Neo4j cannot administer instances when keys are disabled, deleted or permissions revoked. 
+There may be a delay between disabling a key, and when the key can no longer be used to encrypt and decrypt data.
 ====
 
 * Create a single-region key in the AWS Console ensuring the region matches your Neo4j instance. 
