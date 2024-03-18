@@ -260,19 +260,30 @@ TLS v1.2:
 
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
+label:Beta[]
 
 [CAUTION]
 ====
-This feature has been released as a public beta for AuraDB Enterprise and AuraDS Enterprise. Managed keys are currently AWS compatible, with GCP and Azure coming soon.
+
+This feature has been released as a public GA for AuraDB Enterprise and AuraDS Enterprise for AWS managed keys. 
+GCP's Cloud Key Management is in public beta, and support for Azure's Key Vault is coming soon.
 ====
 
-Use keys from the AWS Key Management Service (KMS) to encrypt a database.
+For more control over key operations than the standard Neo4j encryption, use customer-managed keys. 
+These keys are created and managed using a supported Cloud Key Management Service provider. 
+When using a customer managed key, all data at rest is encrypted with the key.
 
 [WARNING]
 ====
 Deleting a key makes all data encrypted under that key unrecoverable.
 Neo4j cannot administer instances when keys are disabled, deleted or permissions revoked. 
-On the cloud provider's side, there may be a delay between disabling a key and when the key can no longer be used to encrypt and decrypt data.
+====
+
+Please note that within Aura there is a limit to one key per product per region.
+Depending on the Cloud Key Management Service provider, there may be a delay between disabling a key, 
+and when the key can no longer be used to encrypt and decrypt data.
+
+=== AWS key  provider's side, there may be a delay between disabling a key and when the key can no longer be used to encrypt and decrypt data.
 ====
 
 * Create a single-region key in the AWS Console ensuring the region matches your Neo4j instance. 
