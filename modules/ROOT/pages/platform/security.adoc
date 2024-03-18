@@ -283,8 +283,7 @@ Please note that within Aura there is a limit to one key per product per region.
 Depending on the Cloud Key Management Service provider, there may be a delay between disabling a key, 
 and when the key can no longer be used to encrypt and decrypt data.
 
-=== AWS key  provider's side, there may be a delay between disabling a key and when the key can no longer be used to encrypt and decrypt data.
-====
+=== AWS key
 
 * Create a single-region key in the AWS Console ensuring the region matches your Neo4j instance. 
 * Go to security settings in the Aura Console, create a customer managed key and copy the generated JSON code.
