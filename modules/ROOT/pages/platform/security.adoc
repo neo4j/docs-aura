@@ -279,7 +279,7 @@ Deleting a key makes all data encrypted under that key unrecoverable.
 Neo4j cannot administer instances when keys are disabled, deleted or permissions revoked. 
 ====
 
-Please note that within Aura there is a limit to one key for AuraDB and one key for AuraDS per region.
+There is a limit of one key for AuraDB and one key for AuraDS per region.
 Depending on the Cloud Key Management Service provider, there may be a delay between disabling a key, 
 and when the key can no longer be used to encrypt and decrypt data.
 
