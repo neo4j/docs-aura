@@ -29,8 +29,10 @@ label:AuraDB-Enterprise[]
 
 A *Scheduled* snapshot is a snapshot that is automatically triggered when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and at a cadence depending on your plan type.
 
-Scheduled snapshots are run automatically once a day for Professional instances and once an hour for Enterprise instances. 
-Only one scheduled snapshot is retained per day after 7 days for Enterprise instances.
+Scheduled snapshots are run automatically once a day for Professional instances.
+
+For AuraDB Enterprise instances using Neo4j 4, during day 0 to 7 after an instance is created, scheduled snapshots run automatically once every 6 hours. 
+During day 8 to 60, snapshots run once a day. 
 
 === Load
 
