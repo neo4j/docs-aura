@@ -29,7 +29,7 @@ To enable this, customers need to create a private endpoint in their own VPC.
 == Private endpoints
 
 Private endpoints are network interfaces inside your own VPC, which can only accessed within your private network. 
-The cloud provider connects them over their backbone network to Neo4j Aura. 
+The cloud provider connects them over their network to Neo4j Aura. 
 By design they are not exposed to the public internet, ensuring that critical services are accessible only through private, secure networks.
 
 === AWS private endpoints
