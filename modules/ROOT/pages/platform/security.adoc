@@ -276,8 +276,8 @@ When using a customer managed key, all data at rest is encrypted with the key.
 
 [WARNING]
 ====
-Deleting a key makes all data encrypted under that key unrecoverable.
-Neo4j cannot administer instances when keys are disabled, deleted or permissions revoked. 
+The loss of a key, through deletion, disabling, or expiration, renders all data encrypted with that key unrecoverable.
+Neo4j cannot administer database instances when keys are disabled, deleted or permissions revoked. 
 ====
 
 There is a limit of one key for AuraDB and one key for AuraDS per region.
