@@ -256,7 +256,7 @@ TLS v1.2:
 * `TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (RFC7905)`
 * `TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5288)`
 
-== Customer managed keys
+== Customer managed key
 
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
@@ -270,23 +270,37 @@ GCP's Cloud Key Management is now in public beta, contact Aura Support to join.
 Support for Azure's Key Vault is coming soon.
 ====
 
-For more control over key operations than the standard Neo4j encryption, use customer managed keys. 
-These keys are created and managed using a supported Cloud Key Management Service provider. 
-When using a customer managed key, all data at rest is encrypted with the key.
+For more control over key operations than the standard Neo4j encryption, use a customer managed key (CMK).
+Create and manage keys using a supported cloud key management service (KMS). 
+
+Externally, customer managed keys are also known as customer managed encryption keys (CMEK).
+
+When using a customer managed key, all data at rest is encrypted with the key. 
+You give Aura permission to encrypt and decrypt using the key, but Aura has no access to the key's material. 
+Aura has no control over the availability of your externally managed key in the KMS. 
+If you lose keys that are managed outside of Aura, Aura can't recover your data.
 
 [WARNING]
 ====
-The loss of a key, through deletion, disabling, or expiration, renders all data encrypted with that key unrecoverable.
+The loss of a customer managed key, through deletion, disabling, or expiration, renders all data encrypted with that key unrecoverable.
 Neo4j cannot administer database instances when keys are disabled, deleted or permissions revoked. 
 ====
 
 There is a limit of one key for AuraDB and one key for AuraDS per region.
-Depending on the Cloud Key Management Service provider, there may be a delay between disabling a key, 
-and when the key can no longer be used to encrypt and decrypt data.
+Depending on the KMS, there may be a delay between disabling a key, and when it can no longer be used to encrypt and decrypt data.
 
 === AWS key
 
-* Create a single-region key in the AWS Key Management Service ensuring the region matches your Neo4j instance. 
-* Go to security settings in the Aura Console, create a customer managed key and copy the generated JSON code.
-* Within the AWS Key Management Service, edit the key policy to include the JSON code. 
+* Create a key in the AWS KMS ensuring the region matches your Aura database instance. 
+* Go to *security settings* in the Aura Console, create a *customer managed key* and copy the generated JSON code.
+* In the AWS KMS, edit the key policy to include the JSON code. 
+
+=== Key rotation
+==== AWS automatic key rotation
+
+Aura supports automatic key rotation via the AWS KMS. 
+To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbox after initially creating a key, to automatically rotate the key once a year.
+
+We do not recommend you rotate a key manually. 
+Although automatic rotation is not enforced by Aura, it is best practice to rotate keys regularly, such as annually.
 
