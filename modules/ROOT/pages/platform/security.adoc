@@ -291,16 +291,30 @@ Depending on the KMS, there may be a delay between disabling a key, and when it 
 
 === AWS key
 
-* Create a key in the AWS KMS ensuring the region matches your Aura database instance. 
+* Create a key in the AWS KMS ensuring the region matches your Aura database instance. Copy the generated ARN but do not include "arn:". You need it in the next step. 
 * Go to *security settings* in the Aura Console, create a *customer managed key* and copy the generated JSON code.
 * In the AWS KMS, edit the key policy to include the JSON code. 
 
 === Key rotation
+
+In your KMS platform, you can either configure automatic rotation for the CMEK key, or you can perform a manual rotation.
+
 ==== AWS automatic key rotation
 
 Aura supports automatic key rotation via the AWS KMS. 
 To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbox after initially creating a key, to automatically rotate the key once a year.
 
 We do not recommend you rotate a key manually. 
-Although automatic rotation is not enforced by Aura, it is best practice to rotate keys regularly, such as annually.
+Although automatic rotation is not enforced by Aura, it is best practice to rotate keys regularly.
+
+=== Regionality
+
+When creating a customer managed key in the AWS KMS, you can create a single-region key in a single AWS region, or create a multi-region key that you can replicate into multiple AWS regions.
+
+In Aura, you can use AWS single-region keys, multi-region keys or replica keys as long as the key resides in the same region as the aura instace.
+
+[CAUTION]
+====
+Aura only supports AWS customer managed keys that reside in the same region as the instance. 
+====
 
