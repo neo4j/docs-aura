@@ -291,27 +291,35 @@ Depending on the KMS, there may be a delay between disabling a key, and when it 
 
 === AWS key
 
-* Create a key in the AWS KMS ensuring the region matches your Aura database instance. Copy the generated ARN but do not include "arn:". You need it in the next step. 
+* Create a key in the AWS KMS ensuring the region matches your Aura database instance. Copy the generated ARN. You need it in the next step. 
 * Go to *security settings* in the Aura Console, create a *customer managed key* and copy the generated JSON code.
 * In the AWS KMS, edit the key policy to include the JSON code. 
 
+==== Editing the key policy
+
+After you have initially created the a key in the AWS KMS, you can edit the key policy.
+In the AWS key policy, "Statement" is an array that consists of one or more objects. 
+Each object in the array describes a security identifier (SID).
+The objects in the AWS code array are comma-separated, e.g. `{[{'a'}, {'b'}, {'c'}]}`
+
+Add a comma after the curly brace in the final SID, and then paste the JSON code that was generated in the Aura Console, e.g. `{[{'a'}, {'b'}, {'c'}, _add code here_]}`
+
 === Key rotation
 
-In your KMS platform, you can either configure automatic rotation for the CMEK key, or you can perform a manual rotation.
+In your KMS platform, you can either configure automatic rotation for the customer managed key, or you can perform a manual rotation.
+
+Although automatic rotation is not enforced by Aura, it is best practice to rotate keys regularly. We do not recommend you rotate a key manually. 
 
 ==== AWS automatic key rotation
 
 Aura supports automatic key rotation via the AWS KMS. 
 To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbox after initially creating a key, to automatically rotate the key once a year.
 
-We do not recommend you rotate a key manually. 
-Although automatic rotation is not enforced by Aura, it is best practice to rotate keys regularly.
-
 === Regionality
 
 When creating a customer managed key in the AWS KMS, you can create a single-region key in a single AWS region, or create a multi-region key that you can replicate into multiple AWS regions.
 
-In Aura, you can use AWS single-region keys, multi-region keys or replica keys as long as the key resides in the same region as the aura instace.
+In Aura, you can use AWS single-region keys, multi-region keys or replica keys as long as the key resides in the same region as the Aura instace.
 
 [CAUTION]
 ====
