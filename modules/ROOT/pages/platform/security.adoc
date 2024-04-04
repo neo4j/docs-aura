@@ -325,7 +325,7 @@ Although automatic rotation is not enforced by Aura, it is best practice to rota
 Aura supports automatic key rotation via the AWS KMS. 
 To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbox after initially creating a key, to automatically rotate the key once a year.
 
-==== Deleting a key
+=== Deleting a key
 
 In the Aura Console, if a customer managed key is being used to encrypt one or more Aura instances, it cannot be deleted.
 To delete a customer managed key in the Aura Console, first delete the Aura database instances encrypted with the key, then delete the customer managed key.
