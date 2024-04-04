@@ -297,12 +297,22 @@ Depending on the KMS, there may be a delay between disabling a key, and when it 
 
 ==== Editing the key policy
 
-After you have initially created the a key in the AWS KMS, you can edit the key policy.
+After you have initially created a key in the AWS KMS, you can edit the key policy.
 In the AWS key policy, "Statement" is an array that consists of one or more objects. 
 Each object in the array describes a security identifier (SID).
 The objects in the AWS code array are comma-separated, e.g. `{[{'a'}, {'b'}, {'c'}]}`
 
 Add a comma after the curly brace in the final SID, and then paste the JSON code that was generated in the Aura Console, e.g. `{[{'a'}, {'b'}, {'c'}, _add code here_]}`
+
+=== Regionality
+
+When creating a customer managed key in the AWS KMS, you can create a single-region key in a single AWS region, or create a multi-region key that you can replicate into multiple AWS regions.
+Aura only supports AWS customer managed keys that reside in the same region as the instance. 
+
+[CAUTION]
+====
+In Aura, you can use AWS single-region keys, multi-region keys or replica keys as long as the key resides in the same region as the Aura instace.
+====
 
 === Key rotation
 
@@ -315,14 +325,7 @@ Although automatic rotation is not enforced by Aura, it is best practice to rota
 Aura supports automatic key rotation via the AWS KMS. 
 To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbox after initially creating a key, to automatically rotate the key once a year.
 
-=== Regionality
+==== Deleting a key
 
-When creating a customer managed key in the AWS KMS, you can create a single-region key in a single AWS region, or create a multi-region key that you can replicate into multiple AWS regions.
-
-In Aura, you can use AWS single-region keys, multi-region keys or replica keys as long as the key resides in the same region as the Aura instace.
-
-[CAUTION]
-====
-Aura only supports AWS customer managed keys that reside in the same region as the instance. 
-====
-
+In the Aura Console, if a customer managed key is being used to encrypt one or more Aura instances, it cannot be deleted.
+To delete a customer managed key in the Aura Console, first delete the Aura database instances encrypted with the key, then delete the customer managed key.
