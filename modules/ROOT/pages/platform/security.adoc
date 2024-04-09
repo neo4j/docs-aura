@@ -283,7 +283,7 @@ If you lose keys that are managed outside of Aura, Aura can't recover your data.
 [WARNING]
 ====
 The loss of a customer managed key, through deletion, disabling, or expiration, renders all data encrypted with that key unrecoverable.
-Neo4j cannot administer database instances when keys are disabled, deleted or permissions revoked. 
+Neo4j cannot administer database instances when keys are disabled, deleted, or permissions revoked. 
 ====
 
 There is a limit of one key for AuraDB and one key for AuraDS per region.
