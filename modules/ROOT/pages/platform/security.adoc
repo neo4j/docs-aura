@@ -291,7 +291,9 @@ Depending on the KMS, there may be a delay between disabling a key, and when it 
 
 === AWS key
 
-* Create a key in the AWS KMS ensuring the region matches your Aura database instance. Copy the generated ARN. You need it in the next step. 
+* Create a key in the AWS KMS ensuring the region matches your Aura database instance. 
+Copy the generated ARN. 
+You need it in the next step. 
 * Go to *security settings* in the Aura Console, create a *customer managed key* and copy the generated JSON code.
 * In the AWS KMS, edit the key policy to include the JSON code. 
 
