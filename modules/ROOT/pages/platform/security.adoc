@@ -336,7 +336,7 @@ To clone an instance protected by a Customer Managed Key, the key must be valid 
 The cloned instance, by default, uses the available Customer Managed Key for that region and product.
 
 You can override this behavior by selecting the Neo4j Managed Key when cloning the database. 
-If there is no valid CMK for the destination region and product, the Neo4j Managed Key will be used to encrypt the cloned instance.
+If there is no valid CMK for the destination region and product, the Neo4j Managed Key is used to encrypt the cloned instance.
 
 === Importing an existing database
 
