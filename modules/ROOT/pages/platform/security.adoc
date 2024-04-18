@@ -337,3 +337,7 @@ The cloned instance, by default, uses the available Customer Managed Key for tha
 
 You can override this behavior by selecting the Neo4j Managed Key when cloning the database. 
 If there is no valid CMK for the destination region and product, the Neo4j Managed Key will be used to encrypt the cloned instance.
+
+=== Importing an existing database
+
+Please use `neo4j-admin database upload` in Neo4j Admin version 5 to upload a database greater than 4GB to instances encrypted with Customer Managed Keys. The `neo4j-admin push-to-cloud` command in Neo4j Admin version 4.4 and earlier is not supported for instances encrypted with Customer Managed Keys.
