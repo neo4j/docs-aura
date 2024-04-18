@@ -340,4 +340,5 @@ If there is no valid CMK for the destination region and product, the Neo4j Manag
 
 === Importing an existing database
 
-Please use `neo4j-admin database upload` in Neo4j Admin version 5 to upload a database greater than 4GB to instances encrypted with Customer Managed Keys. The `neo4j-admin push-to-cloud` command in Neo4j Admin version 4.4 and earlier is not supported for instances encrypted with Customer Managed Keys.
+To upload a database greater than 4GB to instances encrypted with Customer Managed Keys in Neo4j 5, use `neo4j-admin database upload`. 
+The `neo4j-admin push-to-cloud` command in Neo4j v4.4 and earlier is not supported for instances encrypted with Customer Managed Keys.
