@@ -35,6 +35,12 @@ For details of how to use the `neo4j-admin database upload` command, along with 
 The `database upload` command was introduced in Neo4j Admin version 5, replacing the `push-to-cloud` command that was present in Neo4j Admin version 4.4 and earlier. If you have an earlier version of the Neo4j Admin tool, please see the link:{neo4j-docs-base-uri}/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[Neo4j Admin push-to-cloud documentation].
 ====
 
+[CAUTION]
+====
+The `neo4j-admin push-to-cloud` command in Neo4j Admin version 4.4 and earlier is not compatible with instances encrypted with xref:platform/security.adoc#_customer_managed_keys[Customer Managed Keys].
+Use `neo4j-admin database` upload in Neo4j Admin version 5 to upload data to instances encrypted with Customer Managed Keys.
+====
+
 === Public traffic
 If you have created a network access configuration from the *Network Access* page, accessed through the sidebar menu of the Console, 
 *Public traffic* must be enabled for the region your instance is hosted in before you can use the `database upload` command on that instance.
