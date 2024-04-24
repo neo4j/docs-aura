@@ -69,7 +69,7 @@ Use the Bearer token and Tenant ID to create the Aura instance.
 
 The following values are customizable `version`, `region`, `memory`, `name`, `type`, `tenantid` and `cloud provider`. 
 
-See the xref:platform/api/overview.adoc[Aura API documentation] for more details.
+See xref:platform/api/overview.adoc[Aura API documentation] for more details.
 
 [source, cURL]
 ----
@@ -78,15 +78,14 @@ curl --location 'https://api.neo4j.io/v1/instances' --header 'Content-Type: appl
 
 *An aura instance is provisioned.*
 Head to the Aura console if you want to see it.
-
-Optionally: Use this code to check the status.
+Optionally, use this code to check the status:
 
 [source, cURL]
 ----
 curl --location 'https://api.neo4j.io/v1/instances/YOUR_INSTANCE_ID' --header 'Accept: application/json' --header 'Authorization: Bearer YOUR_BEARER_TOKEN'
 ----
 
-Response
+*Response*
 
 [source, cURL]
 ----
