@@ -39,8 +39,8 @@ If the database you want to upload is running an earlier version of Neo4j, pleas
 
 [CAUTION]
 ====
-The `neo4j-admin push-to-cloud` command in Neo4j Admin version 4.4 and earlier is not compatible with instances encrypted with xref:platform/security.adoc#_customer_managed_keys[Customer Managed Keys].
-Use `neo4j-admin database` upload in Neo4j Admin version 5 to upload data to instances encrypted with Customer Managed Keys.
+The `neo4j-admin push-to-cloud` command in Neo4j 4.4 and earlier is not compatible with instances encrypted with xref:platform/security.adoc#_customer_managed_keys[Customer Managed Keys].
+Use `neo4j-admin database` upload in Neo4j 5 to upload data to instances encrypted with Customer Managed Keys.
 ====
 
 === Public traffic
