@@ -22,17 +22,19 @@ Once this has finished, the instance returns to its `Running` state; and the dat
 
 [CAUTION]
 ====
-This command will not work if you have a network access configuration setup that prevents public traffic to the region your instance is hosted in.
+This command does not work if you have a network access configuration setup that prevents public traffic to the region your instance is hosted in.
 See <<_public_traffic>> below for more information.
 ====
 
-`database upload` is a Neo4j Admin command that you can run to upload the contents of a Neo4j database into an Aura instance, regardless of the database's size.
+`database upload` is a `neo4j-admin` command that you can run to upload the contents of a Neo4j database into an Aura instance, regardless of the database's size.
+Keep in mind that the database you want to upload may run a different version of Neo4j than your Aura instance.
 
-For details of how to use the `neo4j-admin database upload` command, along with a full list of options, see link:{neo4j-docs-base-uri}/operations-manual/current/tools/neo4j-admin/upload-to-aura/[Upload to Neo4j Aura].
+For details of how to use the `neo4j-admin database upload` command, along with a full list of options and version compatibility, see link:{neo4j-docs-base-uri}/operations-manual/current/tools/neo4j-admin/upload-to-aura/[Upload to Neo4j Aura].
 
 [NOTE]
 ====
-The `database upload` command was introduced in Neo4j Admin version 5, replacing the `push-to-cloud` command that was present in Neo4j Admin version 4.4 and earlier. If you have an earlier version of the Neo4j Admin tool, please see the link:{neo4j-docs-base-uri}/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[Neo4j Admin push-to-cloud documentation].
+The `database upload` command, introduced in Neo4j 5, replaces the `push-to-cloud` command in Neo4j 4.4 and 4.3.
+If the database you want to upload is running an earlier version of Neo4j, please see the link:{neo4j-docs-base-uri}/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[Neo4j Admin push-to-cloud documentation].
 ====
 
 [CAUTION]
@@ -42,7 +44,7 @@ Use `neo4j-admin database` upload in Neo4j Admin version 5 to upload data to ins
 ====
 
 === Public traffic
-If you have created a network access configuration from the *Network Access* page, accessed through the sidebar menu of the Console, 
+If you have created a network access configuration from the *Network Access* page, accessed through the sidebar menu of the Console,
 *Public traffic* must be enabled for the region your instance is hosted in before you can use the `database upload` command on that instance.
 
 To enable *Public traffic* on a network access configuration:
