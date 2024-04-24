@@ -14,7 +14,7 @@ Note that the Aura Console runs in a separate VPC, separate from the rest of Aur
 
 == Network Access
 
-Neo4j provides authorized users with the ability to configure certain aspects of the infrastructure that is used to run and manage Aura instances, and the networking the platform leverages to establish secure connections between the database (Aura) and application VPCs.
+Authorized users can configure certain parts of the infrastructure for running and handling Aura instances, and the networking used to establish secure connections between the database (Aura) and the application VPCs.
 This includes the ability to connect over the cloud provider's private link and private endpoint.
 
 You can also choose whether traffic to your Aura instance is allowed to traverse the public internet, or if routes should be restricted to the private link by disabling public traffic. 
