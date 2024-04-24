@@ -16,7 +16,7 @@ To access the *Snapshots* tab:
 
 [NOTE]
 ====
-Snapshots are kept in the system for 7 days for Professional instances, 30 days for Free instances, and 60 days for Enterprise instances.
+Snapshots are kept in the system for 7 days for Professional instances, and 60 days for Enterprise instances. 
 Only the latest snapshot is available for Free instances.
 ====
 
@@ -32,12 +32,11 @@ A *Scheduled* snapshot is a snapshot that is automatically triggered when you fi
 Scheduled snapshots are run automatically once a day for Professional instances and once an hour for Enterprise instances. 
 Only one scheduled snapshot is retained per day after 7 days for Enterprise instances.
 
-// === Load
-
-// label:AuraDB-Professional[]
-// label:AuraDB-Enterprise[]
-
-// A *Load* snapshot is a snapshot that is automatically triggered when you load a dump file from the *Import Database* tab of an instance or when you run the xref:auradb/importing/import-database.adoc#_neo4j_admin_database_upload[Neo4j Admin `database upload` command].
+[NOTE]
+====
+For AuraDB Enterprise database instances running Neo4j v4.x, from day 0 to 7 scheduled snapshots run automatically once every 6 hours. 
+From day 8 to 60, snapshots run once a day.
+====
 
 === On Demand
 
