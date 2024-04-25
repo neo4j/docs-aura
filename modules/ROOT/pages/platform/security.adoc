@@ -24,7 +24,7 @@ It's your choice if you want to prevent your Aura instances from being publicly 
 
 == Private endpoints
 
-Private endpoints are network interfaces inside your own VPC, which can only accessed within your private network. 
+Private endpoints are network interfaces inside your own VPC, which can only be accessed within your private network. 
 The cloud provider connects them over their network to Neo4j Aura. 
 By design they are not exposed to the public internet, ensuring that critical services are accessible only through private, secure networks.
 
