@@ -18,7 +18,7 @@ Authorized users can configure certain parts of the infrastructure for running a
 This includes the ability to connect over the cloud provider's private link and private endpoint.
 
 You can also choose whether traffic to your Aura instance is allowed to traverse the public internet or instead uses the cloud provider's internal network. 
-To use the cloud provider's network, you can create a private endpoint inside your VPC. 
+To use the cloud provider's network, create a private endpoint inside your VPC. 
 This gives you a totally private connection to Aura.
 It's your choice if you want to prevent your Aura instances from being publicly accessible or if you want both public and private access.
 
