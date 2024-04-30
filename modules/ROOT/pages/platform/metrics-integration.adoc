@@ -65,11 +65,6 @@ ____
 *_NOTE_:* If, instead of removing the user, only the Aura API credentials used to retrieve metrics are removed, the revocation will take effect only after the tokens issued with these credentials expire, as no new token can be issued anymore. Currently used token expiration time is 1 hour.
 ____
 
-[#metric-definitions]
-== Metric definitions
-
-See <<metric-definitions,Metric Definitions>> for detailed information on the metrics exposed by the Aura Neo4j metrics endpoints.
-
 [#metric-labels]
 === Metric labels
 
