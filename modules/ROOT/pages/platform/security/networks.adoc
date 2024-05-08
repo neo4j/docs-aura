@@ -1,5 +1,6 @@
 [[aura-reference-security]]
-= Security
+= Network isolation
+:description: lalala.
 
 == VPC isolation
 
@@ -196,58 +197,6 @@ To enable private endpoints using Azure Private Link:
 
 Please see the https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
 
-== Single Sign-On
-
-label:AuraDB-Enterprise[]
-label:AuraDS-Enterprise[]
-
-Aura Enterprise supports Single Sign-On (SSO) at both the Console level and for accessing Workspace, Bloom and Browser clients directly at the instance level.
-
-[NOTE]
-====
-Accessing Aura with SSO requires:
- 
-* Authorization Code Flow with PKCE.
-* A publicly accessible Identity Provider (IdP) server.
-====
-
-=== Console SSO
-
-Console SSO allows users to log in to the Aura Console using their company IdP credentials and grants link:{neo4j-docs-base-uri}/cypher-manual/current/administration/access-control/built-in-roles#access-control-built-in-roles-public[Public Access privileges] to all instances in the tenant.
-
-The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are currently supported for Console-level Authentication:
-
-* Microsoft Azure Active Directory (AAD)
-* Okta
-
-To enable Console SSO on your Aura Enterprise tenant(s), please https://support.neo4j.com/[raise a support ticket] including the following information:
-
-. The _Tenant ID_ of the tenant(s) you want to use SSO. See xref:platform/user-management.adoc#_tenants[Tenants] for more information on how to find your __Tenant ID__.
-. The name of your IdP.
-
-=== Instance SSO
-
-Instance SSO allows you to directly map groups of users (as defined in your IdP) to DBMS RBAC roles when launching Workspace, Bloom and Browser clients from an Aura instance.
-
-The following OIDC certified IdPs are currently supported for instance-level Authentication:
-
-* Microsoft Azure Active Directory (AAD)
-* Okta
-* Keycloak
-* Google Authentication
-
-To add SSO for Workspace, Bloom, and Browser to your Aura Enterprise instances, please https://support.neo4j.com/[raise a support ticket] including the following information:
-
-. The *Connection URI* of the instance(s) you want to use SSO.
-. Whether or not you want Workspace, Bloom, Browser, or a combination of them enabled.
-. The name of your IdP.
-
-[NOTE]
-====
-If you have to specify an application type when configuring your client, Neo4j is a Single-page application.
-For more information on configuring your client, see link:{neo4j-docs-base-uri}/operations-manual/current/tutorial/tutorial-sso-configuration/[Neo4j Single Sign-On (SSO) Configuration].
-====
-
 == Supported TLS cipher suites
 
 For additional security, client communications are carried via TLS v1.2 and TLS v1.3.
@@ -269,96 +218,3 @@ TLS v1.2:
 * `TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (RFC7905)`
 * `TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5288)`
 
-== Encryption
-
-All data stored in Neo4j Aura is encrypted using intra-cluster encryption between the various nodes comprising your instance and encrypted at rest using the underlying cloud provider's encryption mechanism.
-
-By default, each cloud provider encrypts all backup buckets (including the objects stored inside) using either https://cloud.google.com/storage/docs/encryption/default-keys[Google-managed encryption], https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html[AWS SSE-S3 encryption], or https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption[Azure Storage encryption].
-
-== Customer Managed Keys
-
-label:AuraDB-Enterprise[]
-label:AuraDS-Enterprise[]
-
-[CAUTION]
-====
-This feature has been released as a public GA for AuraDB Enterprise and AuraDS Enterprise for AWS managed keys. 
-GCP’s Cloud Key Management and Azure’s Key Vault are coming soon.
-====
-
-For more control over key operations than the standard Neo4j encryption, use a Customer Managed Key (CMK).
-Create and manage keys using a supported cloud key management service (KMS). Externally, Customer Managed Keys are also known as Customer Managed Encryption Keys (CMEK).
-
-When using a Customer Managed Key, all data at rest is encrypted with the key. 
-You can encrypt new Aura v5 instances using Customer Managed Keys. 
-The feature is not supported for existing instances or v4.x instances.
-
-When using Customer Managed Keys, you give Aura permission to encrypt and decrypt using the key, but Aura has no access to the key’s material. 
-Aura has no control over the availability of your externally managed key in the KMS. 
-If you lose keys that are managed outside of Aura, Aura can’t recover your data.
-
-[WARNING]
-====
-The loss of a Customer Managed Key, through deletion, disabling, or expiration, renders all data encrypted with that key unrecoverable.
-Neo4j cannot administer database instances when keys are disabled, deleted, or permissions revoked. 
-====
-
-There is a limit of one key for AuraDB and one key for AuraDS per region.
-Depending on the KMS, there may be a delay between disabling a key, and when it can no longer be used to encrypt and decrypt data.
-
-=== AWS key
-
-* Create a key in the AWS KMS ensuring the region matches your Aura database instance. 
-Copy the generated ARN. 
-You need it in the next step. 
-* Go to *security settings* in the Aura Console, create a *Customer Managed Key* and copy the JSON code that is generated in the Aura Console when you add a key.
-* In the AWS KMS, edit the key policy to include the JSON code. 
-
-==== Editing the key policy
-
-After you have initially created a key in the AWS KMS, you can edit the key policy.
-In the AWS key policy, "Statement" is an array that consists of one or more objects. 
-Each object in the array describes a security identifier (SID).
-The objects in the AWS code array are comma-separated, e.g. `{[{'a'}, {'b'}, {'c'}]}`
-
-Add a comma after the curly brace in the final SID, and then paste the JSON code that was generated in the Aura Console, e.g. `{[{'a'}, {'b'}, {'c'}, _add code here_ ]}`
-
-=== Regionality
-
-When creating a Customer Managed Key in the AWS KMS, you can create a single-region key in a single AWS region, or create a multi-region key that you can replicate into multiple AWS regions.
-Aura only supports AWS Customer Managed Keys that reside in the same region as the instance. 
-
-[CAUTION]
-====
-In Aura, you can use AWS single-region keys, multi-region keys or replica keys as long as the key resides in the same region as the Aura instace.
-====
-
-=== Key rotation
-
-In your KMS platform, you can either configure automatic rotation for the Customer Managed Key, or you can perform a manual rotation.
-
-Although automatic rotation is not enforced by Aura, it is best practice to rotate keys regularly. 
-Manual key rotation is **not** recommended.
-
-==== AWS automatic key rotation
-
-Aura supports automatic key rotation via the AWS KMS. 
-To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbox after initially creating a key, to automatically rotate the key once a year.
-
-=== Deleting a key
-
-In the Aura Console, if a Customer Managed Key is being used to encrypt one or more Aura instances, it cannot be deleted.
-To delete a Customer Managed Key in the Aura Console, first delete the Aura database instances encrypted with the key, then delete the Customer Managed Key.
-
-=== Cloning an instance protected by CMK
-To clone an instance protected by a Customer Managed Key, the key must be valid and available to Aura. 
-The cloned instance, by default, uses the available Customer Managed Key for that region and product.
-
-You can override this behavior by selecting the Neo4j Managed Key when cloning the database. 
-If there is no valid CMK for the destination region and product, the Neo4j Managed Key is used to encrypt the cloned instance.
-
-=== Importing an existing database
-
-To upload a database greater than 4GB to instances encrypted with Customer Managed Keys in Neo4j 5, use `neo4j-admin database upload`. 
-The `neo4j-admin push-to-cloud` command in Neo4j v4.4 and earlier is not supported for instances encrypted with Customer Managed Keys.
-For more information see the xref:auradb/importing/import-database.adoc#_neo4j_admin_database_upload[Neo4j Admin `database upload`] documentation.
