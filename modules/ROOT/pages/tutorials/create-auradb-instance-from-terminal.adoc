@@ -78,6 +78,7 @@ The following values are customizable `version`, `region`, `memory`, `name`, `ty
 ----
 curl --location 'https://api.neo4j.io/v1/instances' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer YOUR_BEARER_TOKEN' --data ' { "version": "5", "region": "europe-west1", "memory": "8GB", "name": "instance01", "type": "enterprise-db", "tenant_id": "YOUR_TENANT_ID", "cloud_provider": "gcp" }'
 ----
+See xref:platform/api/overview.adoc[Aura API documentation] for more details.
 
 *An aura instance is provisioned.*
 Head to the Aura console if you want to see it.
