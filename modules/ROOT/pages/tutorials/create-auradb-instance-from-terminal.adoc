@@ -37,9 +37,8 @@ curl --location 'https://api.neo4j.io/oauth/token' --header 'Content-Type: appli
 
 == Response body example
 
-At the end of the returned code, there is an `access_token`. 
-Save the `access_token`.
-It will look similar to this example:
+Save the `access_token` from the end of the returned code.
+It looks similar to this example:
 
 [source, cURL]
 ----
