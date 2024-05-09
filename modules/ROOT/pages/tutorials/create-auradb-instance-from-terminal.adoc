@@ -56,7 +56,7 @@ Replace 'YOUR_BEARER_TOKEN' with your token.
 curl --location 'https://api.neo4j.io/v1/tenants' --header 'Accept: application/json' --header 'Authorization: Bearer YOUR_BEARER_TOKEN'
 ----
 
-This will return something similar to:
+This returns something similar to:
 
 [source, cURL]
 ----
