@@ -14,16 +14,16 @@ Note that the Aura Console runs in a separate VPC, separate from the rest of Aur
 
 == Network access
 
-Authorized users can configure certain parts of the infrastructure for running and handling Aura instances, and the networking used to establish secure connections between the database (Aura) and the application VPCs.
-This includes the ability to connect over the cloud provider's private link and private endpoint.
-
 An Aura instance can be publicly available, completely private, or both. 
-To configure this go to the *Aura Console* > *Security* > *Network Access*.
+To configure this, you need to be authorized to access the part of the infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC.
+This includes the ability to connect over the cloud provider's private link and private endpoint.
 
 * If your Aura instances are public, traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password. 
 
 * For your instance to be completely private, turn public traffic off, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
 The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create. 
+
+To choose network access settings go to *Aura Console* > *Security* > *Network Access*.
 
 == Private endpoints
 
