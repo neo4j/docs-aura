@@ -6,13 +6,32 @@
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
 
-AuraDB Enterprise and AuraDS Enterprise run within a Virtual Private Cloud (VPC) isolation for your deployment.
+AuraDB Enterprise and AuraDS Enterprise run in a dedicated cloud Account (AWS), Subscription (Azure) or Project (GCP) to achieve complete isolation for your deployment.
 
-The VPC enables you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
+Additional VPC boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
 
-Please note that the Aura Console runs in a separate VPC.
+Note that the Aura Console runs in a separate VPC, separate from the rest of Aura.
 
-=== AWS Private endpoints
+== Network access
+
+An Aura instance can be publicly available, completely private, or both. 
+To configure this, you need to be authorized to access the part of the infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC.
+This includes the ability to connect over the cloud provider's private link and private endpoint.
+
+If your Aura instances are public, traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password. 
+
+For your instance to be completely private, turn public traffic off, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
+The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create. 
+
+To select network access settings go to *Aura Console* > *Security* > *Network Access*.
+
+== Private endpoints
+
+Private endpoints are network interfaces inside your own VPC, which can only be accessed within your private network. 
+The cloud provider connects them over their network to Neo4j Aura. 
+By design they are not exposed to the public internet, ensuring that critical services are accessible only through private, secure networks.
+
+=== AWS private endpoints
 
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]

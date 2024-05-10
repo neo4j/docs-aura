@@ -38,13 +38,6 @@ For AuraDB Enterprise database instances running Neo4j v4.x, from day 0 to 7 sch
 From day 8 to 60, snapshots run once a day.
 ====
 
-=== Load
-
-label:AuraDB-Professional[]
-label:AuraDB-Enterprise[]
-
-A *Load* snapshot is a snapshot that is automatically triggered when you load a dump file from the *Import Database* tab of an instance or when you run the xref:auradb/importing/import-database.adoc#_neo4j_admin_database_upload[Neo4j Admin `database upload` command].
-
 === On Demand
 
 An *On Demand* snapshot is a snapshot that you manually trigger by selecting *Take snapshot* from the *Snapshots* tab of an instance.
