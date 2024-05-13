@@ -9,7 +9,6 @@ Analyzing the metrics data allows users to:
 * Adjust Aura instance sizing
 * Set up notifications
 
-
 [aura-cmi-process-overview]
 == Process overview
 
@@ -33,7 +32,7 @@ Capabilities of users with the role "Metrics Integration Reader" are limited to 
 ====
 . In https://console.neo4j.io/#account["Account Details"^], create new Aura API credentials. Save client secret. +
 image:api_credentials.png[]
-. Configure the APM system to fetch metrics from the URL(s) or configuration templates shown in https://console.neo4j.io/#metrics-integration["Metrics Integration"^] of Neo4j Aura. Use `oauth2` type of authentication specifying the Client ID and Client Secret created in the previous step. See examples for <<example-of-using-prometheus,Prometheus and Grafana>> and <<example-of-using-datadog,Datadog>> below.
+. Configure the APM system to fetch metrics from the URL(s) or configuration templates shown in https://console.neo4j.io/#metrics-integration["Metrics Integration"^] of Neo4j Aura. Use `oauth2` type of authentication specifying the Client ID and Client Secret created in the previous step. See examples for <<_example_using_prometheus,Prometheus and Grafana>> and <<_example_using_datadog,Datadog>> below.
 . Use the APM system to create visualizations, dashboards, and alarms based on Neo4j metrics.
 
 [aura-cmi-security]
@@ -87,7 +86,7 @@ In Neo4j Aura Advanced Metrics, it is possible to find out the metric name that 
 
 image::advanced_metrics.png[]
 
-[aura-smi-metric-scrape-interval]
+[aura-cmi-metric-scrape-interval]
 == Metric scrape interval
 
 Recommended scrape interval for metrics is in the range of 30 seconds up to 2 minutes, depending on requirements. The metrics endpoint caches metrics for 30 seconds.
