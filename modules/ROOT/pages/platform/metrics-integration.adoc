@@ -1,78 +1,74 @@
-[#customer-metrics-integration-cmi-user-manual]
-= Customer Metrics Integration (CMI) User Manual
+[aura-customer-metrics-integration]
+= Customer Metrics Integration (CMI)
 
-This page describes how to configure users APM (Application Performance Monitoring) System to fetch metrics of Neo4j Aura Enterprise instances.
+An application performance monitoring system can be configured to fetch metrics of Neo4j Aura Enterprise instances.
+This gives users access to their Neo4j Aura instance metric data for monitoring purposes.
+Analyzing the metrics data allows users to:
+* Optimize their Neo4j load
+* Adjust Aura instance sizing
+* Set up notifications
 
-[#purpose-of-cmi]
-== Purpose of CMI
 
-Give customers access to their Neo4j Aura instance metric data to be able to monitor them.
-
-[#use-cases-of-cmi]
-== Use cases of CMI
-
-By analysing the metrics data customers can:
-
-* optimize their Neo4j load
-* adjust Aura instance sizing
-* setup notifications
-
-[#process-overview]
+[aura-cmi-process-overview]
 == Process overview
 
 image::process.png[]
 
-[#detailed-steps]
+[aura-cmi-steps]
 == Detailed steps
 
-. Make sure there is a dedicated Aura user that will be used for fetching metrics
- ** Either create a new user:
+. Make sure there is a dedicated Aura user to use for fetching metrics.
+You can either:
+ ** Create a new user:
   ... In https://console.neo4j.io/#user-management["User Management"^] of Neo4j Aura, invite a new user, selecting "Metrics Integration Reader" as a role.
 image:invite_user.png[]
   ... Follow the invitation link and log in to Neo4j Aura.
   ... Confirm the tenant membership.
- ** Alternatively, find an existing user in https://console.neo4j.io/#user-management["User Management"^] and change its role to "Metrics Integration Reader" +
+ ** Or you can find an existing user in https://console.neo4j.io/#user-management["User Management"^] and change its role to "Metrics Integration Reader" +
 +
-____
-*_NOTE_:* Capabilities of users having the role "Metrics Integration Reader" are limited to fetching the metrics and getting a read-only view of the tenant.
-____
+[NOTE]
+====
+Capabilities of users with the role "Metrics Integration Reader" are limited to fetching the metrics and getting a read-only view of the tenant.
+====
 . In https://console.neo4j.io/#account["Account Details"^], create new Aura API credentials. Save client secret. +
 image:api_credentials.png[]
 . Configure the APM system to fetch metrics from the URL(s) or configuration templates shown in https://console.neo4j.io/#metrics-integration["Metrics Integration"^] of Neo4j Aura. Use `oauth2` type of authentication specifying the Client ID and Client Secret created in the previous step. See examples for <<example-of-using-prometheus,Prometheus and Grafana>> and <<example-of-using-datadog,Datadog>> below.
-. Use APM system to create visualizations, dashboards and alarms based on Neo4j metrics.
+. Use the APM system to create visualizations, dashboards, and alarms based on Neo4j metrics.
 
-[#security]
+[aura-cmi-security]
 == Security
 
-Metrics for a Neo4j Aura instance will only be returned if all the following is true:
+Metrics for a Neo4j Aura instance are only returned if all the following are true:
 
-* `Authorization` header of the metrics request contains a valid token,
-* token was issued for Aura user having "Metrics Integration Reader" role,
-* Tenant is of type `enterprise`,
-* specified instance belongs to the specified tenant.
+* `Authorization` header of the metrics request contains a valid token.
+* The token was issued for an Aura user with "Metrics Integration Reader" role.
+* Tenant is of type `enterprise`.
+* The specified instance belongs to the specified tenant.
 
-[#revoke-access-to-metrics]
+[aur-cmi-revoke-access-to-metrics]
 === Revoke access to metrics
 
-To revoke user's access to metrics of a specific tenant, remove the user from that tenant in https://console.neo4j.io/#user-management["User Management"^]. After that, the user will still exist but its connection to the tenant will be removed.
+To revoke a user's access to metrics of a specific tenant, remove the user from that tenant in https://console.neo4j.io/#user-management["User Management"^]. 
+After that, the user still exists but its connection to the tenant is removed.
 
-____
-*_NOTE_:* The revocation described above takes effect after the authorization caches expire, which takes approximately 5 minutes.
+[NOTE]
+====
+The revocation described takes effect after the authorization caches expire, which takes approximately 5 minutes.
 It results in HTTP 401 being returned, along with the message `User doesn't have access to Metrics resources.`
-____
+However, if you remove only the Aura API credentials used to retrieve metrics, the revocation will take effect only after the tokens issued with these credentials expire, as no new token can be issued anymore. Currently used token expiration time is 1 hour.
+====
 
-____
-*_NOTE_:* If, instead of removing the user, only the Aura API credentials used to retrieve metrics are removed, the revocation will take effect only after the tokens issued with these credentials expire, as no new token can be issued anymore. Currently used token expiration time is 1 hour.
-____
-
-[#metric-labels]
+aura-cmi-metric-labels]
 === Metric labels
 
-Depending on the metric, following labels are applied:
+Depending on the metric, the following labels are applied:
 
-* `aggregation`: the aggregation used to calculate the metric value, set on every metric. Since the Neo4j instance is deployed as a Neo4j cluster, aggregations are performed to combine values from all relevant cluster nodes. Currently used aggregations: `MIN`, `MAX`, `AVG` and `SUM`.
+* `aggregation`: the aggregation used to calculate the metric value, set on every metric. 
+Since the Neo4j instance is deployed as a Neo4j cluster, aggregations are performed to combine values from all relevant cluster nodes. 
+The following aggregations are used: `MIN`, `MAX`, `AVG` and `SUM`.
 * `instance_id`: the Aura instance ID the metric is reported for, set on every metric.
-* `database`: the name of the Neo4j database the metric is reported for. Currently always set to `neo4j`.
+* `database`: the name of the Neo4j database the metric is reported for. 
+Set to `neo4j` by default.
 
 Example:
 
@@ -83,75 +79,73 @@ Example:
 neo4j_database_count_node{aggregation="MAX",database="neo4j",instance_id="78e7c3e0"} 778114.000000 1711462853000
 ----
 
-[#looking-up-metric-name-in-neo4j-aura-advanced-metrics]
+[aura-cmi-looking-up-metric-name]
 === Looking up metric name in Neo4j Aura Advanced Metrics
 
-In Neo4j Aura Advanced Metrics, it is possible to find out the metric name that corresponds to the chart, by using the chart menu item "Metrics Integration" as shown below.
+In Neo4j Aura Advanced Metrics, it is possible to find out the metric name that corresponds to the chart, by using the chart menu item "Metrics Integration" as shown.
 
 image::advanced_metrics.png[]
 
-[#metric-scrape-interval]
+[aura-smi-metric-scrape-interval]
 == Metric scrape interval
 
 Recommended scrape interval for metrics is in the range of 30 seconds up to 2 minutes, depending on requirements. The metrics endpoint caches metrics for 30 seconds.
 
-[#example-of-using-prometheus]
-== Example of using Prometheus
+[aura-cmi-example-using-prometheus]
+== Example using Prometheus
 
-[#install-prometheus]
-=== Install Prometheus
+.Install Prometheus
 
-E.g. by getting a tarball from https://prometheus.io/docs/prometheus/latest/installation/[^]
+One way is to get a tarball from link:https://prometheus.io/docs/prometheus/latest/installation/[^]
 
-[#configure-prometheus]
-=== Configure Prometheus
+.Configure Prometheus
 
 To monitor one or more instances, add a section to the Prometheus configuration file `prometheus.yml`.
 
-The simplest way is to copy the configuration section proposed in https://console.neo4j.io/#metrics-integration["Metrics Integration"^], by using the button right to the endpoint URL, as shown below.
+Copy the configuration section proposed in link:https://console.neo4j.io/#metrics-integration[Metrics Integration^], as shown.
 
-____
-*_NOTE:_* replace the placeholders `<AURA_CLIENT_ID>` and `<AURA_CLIENT_SECRET>` with corresponding values created in the previous step.
-____
+[NOTE]
+====
+Replace the placeholders `<AURA_CLIENT_ID>` and `<AURA_CLIENT_SECRET>` with corresponding values created in the previous step.
+====
 
 image::metrics_integration.png[]
 
 For details, see https://prometheus.io/docs/prometheus/latest/configuration/configuration/[Prometheus configuration reference^].
 
-[#start-prometheus]
-=== Start Prometheus
+.Start Prometheus
 
 [,shell]
 ----
 ./prometheus --config.file=prometheus.yml
 ----
 
-[#test-that-metrics-are-fetched]
-=== Test that metrics are fetched
+.Test that metrics are fetched
 
-Open http://localhost:9090 and enter a metric name or expression in the search field (ex. `neo4j_aura_cpu_usage`). After pressing enter, last metric values should show up.
+Open http://localhost:9090 and enter a metric name or expression in the search field (ex. `neo4j_aura_cpu_usage`). 
 
-[#use-grafana]
-=== Use Grafana
+.Use Grafana
 
-Install and configure Grafana, adding the endpoint of the Prometheus instance configured in the previous step as a data source. Create visualizations, dashboards and alarms based on Neo4j metrics.
+Install and configure Grafana, adding the endpoint of the Prometheus instance configured in the previous step as a data source. 
+You can create visualizations, dashboards, and alarms based on Neo4j metrics.
 
-[#example-of-using-datadog]
-== Example of using Datadog
+aura-cmi-example-using-datadog]
+== Example using Datadog
 
-* Get a Datadog account
-* Install a Datadog agent as described in Datadog documentation
+.Get a Datadog account, link:https://www.datadoghq.com/[^]
 
-[#configure-an-endpoint-with-token-authentication]
-=== Configure an endpoint with token authentication
+.Install a Datadog agent as described in Datadog documentation
 
-Edit `/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml` to be as follows.
+.Configure an endpoint with token authentication
 
-____
-*_NOTE:_* replace the placeholders `<ENDPOINT_URL>`, `<AURA_CLIENT_ID>` and `<AURA_CLIENT_SECRET>` with corresponding values from the previous steps.
-____
+Edit `/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml` as follows:
 
-[,yaml]
+[NOTE]
+====
+Replace the placeholders `<ENDPOINT_URL>`, `<AURA_CLIENT_ID>` and `<AURA_CLIENT_SECRET>` with corresponding values from the previous steps.
+====
+
+[source, yaml]
 ----
 
 init_config:
@@ -171,31 +165,31 @@ instances:
         value: "Bearer <TOKEN>"
 ----
 
-For details, see https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent documentation^] and https://github.com/DataDog/datadog-agent/blob/main/pkg/config/config_template.yaml[configuration reference^].
+For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent documentation^] and link:https://github.com/DataDog/datadog-agent/blob/main/pkg/config/config_template.yaml[configuration reference^].
 
-[#test-that-metrics-are-fetched-2]
-=== Test that metrics are fetched
+.Test that metrics are fetched
 
 * `sudo systemctl restart datadog-agent`
-* watch `/var/log/datadog/*` to see if fetching metrics happens or if there are warnings regarding parsing the config
-* check in Datadog metric explorer to see if metrics appear (after a couple of minutes)
+* Watch `/var/log/datadog/*` to see if fetching metrics happens or if there are warnings regarding parsing the config.
+* Check in Datadog metric explorer to see if metrics appear (after a couple of minutes).
 
-[#programmatic-support]
+[aura-cmi-programmatic-support]
 == Programmatic support
 
-[#aura-api-for-metrics-integration]
+aura-cmi-api-for-metrics-integration]
 === Aura API for Metrics Integration
 
 * Aura API (_v1beta5_) now supports fetching metrics integration endpoints using:
  ** endpoint `+/tenants/{tenantId}/metrics-integration+` (for tenant metrics)
  ** JSON property `metrics_integration_url` as part of `+/instances/{instanceId}+` response (for instance metrics)
-* Reference: https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1beta5#/[Aura API Specification^]
+* Reference: link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1beta5#/[Aura API Specification^]
 
-[#aura-cli-for-metrics-integration]
+[aura-cmi-cli-for-metrics-integration]
 === Aura CLI for Metrics Integration
 
-* Aura CLI has a new subcommand for `tenants` command to fetch tenant metrics endpoint:
+* Aura CLI has a subcommand for `tenants` command to fetch tenant metrics endpoint:
 +
+[source]
 ----
 aura tenants get-metrics-integration --tenant-id <YOUR_TENANT_ID>
 
@@ -210,6 +204,7 @@ aura tenants get-metrics-integration --tenant-id <YOUR_TENANT_ID> | jq '.endpoin
 
 * For instance metrics endpoint, Aura CLI `instances get` command JSON output includes a new property `metrics_integration_url`:
 +
+[source]
 ----
 aura instances get --instance-id <YOUR_INSTANCE_ID>
 
@@ -232,16 +227,21 @@ aura instances get --instance-id <YOUR_INSTANCE_ID>
 aura instances get --instance-id <YOUR_INSTANCE_ID> | jq '.metrics_integration_url'
 ----
 
-* Reference: https://neo4j.com/labs/aura-cli/1.0/cheatsheet/[Aura CLI cheetsheet^]
+* Reference: link:https://neo4j.com/labs/aura-cli/1.0/cheatsheet/[Aura CLI cheetsheet^]
 
-[#metric_definitions]
+[aura-cmi-metric_definitions]
 == Metric Definitions
 
 |===
-| Title | Description | MetricName | MetricType | DefaultAggregation
+| Title 
+| Description 
+| MetricName 
+| MetricType 
+| DefaultAggregation
 
-| Out of Memory Errors
-| The total number of Out of Memory Errors for the instance. Consider increasing the size of the instance if any OOM errors.
+| Out of Memory errors
+| The total number of Out of Memory errors for the instance. 
+Consider increasing the size of the instance if any OOM errors.
 | `neo4j_aura_out_of_memory_errors_total`
 | _Counter_
 | SUM
@@ -253,7 +253,9 @@ aura instances get --instance-id <YOUR_INSTANCE_ID> | jq '.metrics_integration_u
 | MAX
 
 | CPU Usage
-| CPU usage (cores). CPU is used for planning and serving queries. If this metric is constantly spiking or at its limits, consider increasing the size of your instance.
+| CPU usage (cores). 
+CPU is used for planning and serving queries. 
+If this metric is constantly spiking or at its limits, consider increasing the size of your instance.
 | `neo4j_aura_cpu_usage`
 | _Gauge_
 | MAX
@@ -277,27 +279,38 @@ aura instances get --instance-id <YOUR_INSTANCE_ID> | jq '.metrics_integration_u
 | MAX
 
 | Heap Used
-| The percentage of configured heap memory in use. The heap space is used for query execution, transaction state, management of the graph etc. +
-The size needed for the heap is very dependent on the nature of the usage of Neo4j. For example, long-running queries, or very complicated queries, are likely to require a larger heap than simpler queries. Generally speaking, in order to aid performance, the heap should be large enough to sustain concurrent operations. +
-This value should not exceed 80% for long periods of time, short spikes can be normal. In case of performance issues you may have to tune your queries, and monitor their memory usage, in order to determine whether the heap needs to be increased. If the workload of Neo4j and performance of queries indicates that more heap space is required, consider increasing the size of your instance. This will help avoid unwanted pauses for garbage collection.
+| The percentage of configured heap memory in use. 
+The heap space is used for query execution, transaction state, management of the graph etc. +
+The size needed for the heap is very dependent on the nature of the usage of Neo4j. 
+For example, long-running queries, or very complicated queries, are likely to require a larger heap than simpler queries. 
+To improve performance, the heap should be large enough to sustain concurrent operations. +
+This value should not exceed 80% for long periods, short spikes can be normal. 
+In case of performance issues, you may have to tune your queries and monitor their memory usage, to determine whether the heap needs to be increased. 
+If the workload of Neo4j and performance of queries indicates that more heap space is required, consider increasing the size of your instance. 
+This helps avoid unwanted pauses for garbage collection.
 | `neo4j_dbms_vm_heap_used_ratio`
 | _Gauge_
 | MAX
 
 | Page Cache Hit Ratio
-| The percentage of times data required during query execution was found in memory vs needing to be read from disk. Ideally the whole graph should fit into memory, and this should consistently be between 98% and 100%. If this value is consistently or significantly under 100%, check the page cache usage ratio to see if the graph is too large to fit into memory. A high amount of insert or update activity on a graph can also cause this value to change.
+| The percentage of times data required during query execution was found in memory vs needing to be read from disk. 
+Ideally, the whole graph should fit into memory, and this should consistently be between 98% and 100%. 
+If this value is consistently or significantly under 100%, check the page cache usage ratio to see if the graph is too large to fit into memory. 
+A high amount of insert or update activity on a graph can also cause this value to change.
 | `neo4j_dbms_page_cache_hit_ratio_per_minute`
 | _Gauge_
 | AVG
 
 | Page Cache Usage Ratio
-| The percentage of the allocated page cache in use. If this is close to or at 100%, then it is likely that the hit ratio will start dropping, and you should consider increasing the size of your instance so that more memory is available for the page cache.
+| The percentage of the allocated page cache in use. 
+If this is close to or at 100%, then it is likely that the hit ratio will start dropping, and you should consider increasing the size of your instance so that more memory is available for the page cache.
 | `neo4j_dbms_page_cache_usage_ratio`
 | _Gauge_
 | MIN
 
 | Bolt Connections Running
-| The total number of Bolt connections that are currently executing Cypher transactions and returning results. This is a set of snapshots over time and may appear to spike if workloads are all completed quickly.
+| The total number of Bolt connections that are currently executing Cypher transactions and returning results. 
+This is a set of snapshots over time and may appear to spike if workloads are all completed quickly.
 | `neo4j_dbms_bolt_connections_running`
 | _Gauge_
 | MAX
@@ -309,31 +322,41 @@ This value should not exceed 80% for long periods of time, short spikes can be n
 | MAX
 
 | Bolt Connections Closed
-| The total number of Bolt connections closed since startup. This includes both properly and abnormally ended connections. This value may drop if background maintenance is performed by Aura.
+| The total number of Bolt connections closed since startup. 
+This includes both properly and abnormally ended connections. 
+This value may drop if background maintenance is performed by Aura.
 | `neo4j_dbms_bolt_connections_closed_total`
 | _Counter_
 | MAX
 
 | Bolt Connections Opened
-| The total number of Bolt connections opened since startup. This includes both successful and failed connections. This value may drop if background maintenance is performed by Aura.
+| The total number of Bolt connections opened since startup. 
+This includes both successful and failed connections. 
+This value may drop if background maintenance is performed by Aura.
 | `neo4j_dbms_bolt_connections_opened_total`
 | _Counter_
 | MAX
 
 | Garbage Collection Young Generation
-| Shows the total time since startup spent clearing up heap space for short lived objects. Young garbage collections typically complete quickly, and the Aura instance will wait whilst the garbage collector is run. High values indicate that the instance is running low on memory for the workload and you should consider increasing the size of your instance.
+| Shows the total time since startup spent clearing up heap space for short lived objects. 
+Young garbage collections typically complete quickly, and the Aura instance waits while the garbage collector is run. 
+High values indicate that the instance is running low on memory for the workload and you should consider increasing the size of your instance.
 | `neo4j_dbms_vm_gc_time_g1_young_generation_total`
 | _Counter_
 | MAX
 
 | Garbage Collection Old Generation
-| Shows the total time since startup spent clearing up heap space for long lived objects. Old garbage collections can take time to complete, and the Aura instance will wait whilst the garbage collector is run. High values indicate that there are long running processes or queries which could be optimized, or your instance is running low on CPU or memory for the workload and you should consider reviewing these metrics and possibly increasing the size of your instance.
+| Shows the total time since startup spent clearing up heap space for long-lived objects. 
+Old garbage collections can take time to complete, and the Aura instance waits while the garbage collector is run. 
+High values indicate that there are long-running processes or queries that could be optimized, or that your instance is running low on CPU or memory for the workload and you should consider reviewing these metrics and possibly increasing the size of your instance.
 | `neo4j_dbms_vm_gc_time_g1_old_generation_total`
 | _Counter_
 | MAX
 
 | Replan Events
-| The total number of times Cypher has replanned a query since the server started. If this spikes or is increasing, check that the queries executed are using parameters correctly. This value may drop if background maintenance is performed by Aura.
+| The total number of times Cypher has replanned a query since the server started. 
+If this spikes or is increasing, check that the queries executed are using parameters correctly. 
+This value may drop if background maintenance is performed by Aura.
 | `neo4j_database_cypher_replan_events_total`
 | _Counter_
 | MAX
@@ -351,37 +374,44 @@ This value should not exceed 80% for long periods of time, short spikes can be n
 | MAX
 
 | Committed Transactions
-| The total number of committed transactions since the server was started. This value may drop if background maintenance is performed by Aura.
+| The total number of committed transactions since the server was started. 
+This value may drop if background maintenance is performed by Aura.
 | `neo4j_database_transaction_committed_total`
 | _Counter_
 | MAX
 
 | Peak Concurrent Transactions
-| The highest number of concurrent transactions detected since the server started. This value may drop if background maintenance is performed by Aura.
+| The highest number of concurrent transactions detected since the server started. 
+This value may drop if background maintenance is performed by Aura.
 | `neo4j_database_transaction_peak_concurrent_total`
 | _Counter_
 | MAX
 
 | Transaction Rollbacks
-| The total number of rolled back transactions. This value may drop if background maintenance is performed by Aura.
+| The total number of rolled-back transactions. 
+This value may drop if background maintenance is performed by Aura.
 | `neo4j_database_transaction_rollbacks_total`
 | _Counter_
 | MAX
 
 | Checkpoint Events
-| The total number of checkpoint events executed since the server started. This value may drop if background maintenance is performed by Aura.
+| The total number of checkpoint events executed since the server started. 
+This value may drop if background maintenance is performed by Aura.
 | `neo4j_database_check_point_events_total`
 | _Counter_
 | MAX
 
 | Checkpoint Events Cumulative Time
-| The total time in milliseconds spent in checkpointing since the server started. This value may drop if background maintenance is performed by Aura.
+| The total time in milliseconds spent in checkpointing since the server started. 
+This value may drop if background maintenance is performed by Aura.
 | `neo4j_database_check_point_total_time_total`
 | _Counter_
 | MAX
 
 | Last Checkpoint Duration
-| The duration of the last checkpoint event. Checkpoints should typically take several seconds to several minutes. Values over 30 minutes or so should be cause for some investigation.
+| The duration of the last checkpoint event. 
+Checkpoints should typically take several seconds to several minutes. 
+Values over 30 minutes warrant investigation.
 | `neo4j_database_check_point_duration`
 | _Gauge_
 | MAX
@@ -399,19 +429,26 @@ This value should not exceed 80% for long periods of time, short spikes can be n
 | MAX
 
 | Store Size Database
-| Amount of disk space used to store user database data, in bytes. Ideally the database should all fit into memory (page cache) for the best performance. Keep an eye on this metric to make sure you have enough storage for today and for future growth. Check this metric with page cache usage to see if the data is too large for the memory and consider increasing the size of your instance in this case.
+| Amount of disk space used to store user database data, in bytes. 
+Ideally, the database should all fit into memory (page cache) for the best performance. 
+Keep an eye on this metric to make sure you have enough storage for today and for future growth. 
+Check this metric with page cache usage to see if the data is too large for the memory and consider increasing the size of your instance in this case.
 | `neo4j_database_store_size_database`
 | _Gauge_
 | MAX
 
 | Page Cache Evictions
-| The number of times data in memory is being replaced. A spike can mean your workload is exceeding the instance's available memory, and you may notice a degradation in performance or query execution errors. Consider increasing the size of your instance to improve performance if this metric remains high.
+| The number of times data in memory is being replaced. 
+A spike can mean your workload is exceeding the instance's available memory, and you may notice a degradation in performance or query execution errors. 
+Consider increasing the size of your instance to improve performance if this metric remains high.
 | `neo4j_dbms_page_cache_evictions_per_minute`
 | _Gauge_
 | MAX
 
 | Page Cache Evictions
-| The number of times data in memory is being replaced. A spike can mean your workload is exceeding the instance's available memory, and you may notice a degradation in performance or query execution errors. Consider increasing the size of your instance to improve performance if this metric remains high.
+| The number of times data in memory is being replaced. 
+A spike can mean your workload is exceeding the instance's available memory, and you may notice a degradation in performance or query execution errors. 
+Consider increasing the size of your instance to improve performance if this metric remains high.
 | `neo4j_dbms_page_cache_evictions_total`
 | _Counter_
 | MAX
