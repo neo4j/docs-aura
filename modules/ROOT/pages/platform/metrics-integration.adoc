@@ -4,6 +4,7 @@
 An application performance monitoring system can be configured to fetch metrics of Neo4j Aura Enterprise instances.
 This gives users access to their Neo4j Aura instance metric data for monitoring purposes.
 Analyzing the metrics data allows users to:
+
 * Optimize their Neo4j load
 * Adjust Aura instance sizing
 * Set up notifications
@@ -46,7 +47,7 @@ Metrics for a Neo4j Aura instance are only returned if all the following are tru
 * The specified instance belongs to the specified tenant.
 
 [aur-cmi-revoke-access-to-metrics]
-=== Revoke access to metrics
+.Revoke access to metrics
 
 To revoke a user's access to metrics of a specific tenant, remove the user from that tenant in https://console.neo4j.io/#user-management["User Management"^]. 
 After that, the user still exists but its connection to the tenant is removed.
@@ -58,8 +59,8 @@ It results in HTTP 401 being returned, along with the message `User doesn't have
 However, if you remove only the Aura API credentials used to retrieve metrics, the revocation will take effect only after the tokens issued with these credentials expire, as no new token can be issued anymore. Currently used token expiration time is 1 hour.
 ====
 
-aura-cmi-metric-labels]
-=== Metric labels
+[aura-cmi-metric-labels]
+.Metric labels
 
 Depending on the metric, the following labels are applied:
 
@@ -70,9 +71,9 @@ The following aggregations are used: `MIN`, `MAX`, `AVG` and `SUM`.
 * `database`: the name of the Neo4j database the metric is reported for. 
 Set to `neo4j` by default.
 
-Example:
+.Example
 
-[,shell]
+[source, shell]
 ----
 # HELP neo4j_database_count_node The total number of nodes in the database.
 # TYPE neo4j_database_count_node gauge
@@ -80,7 +81,7 @@ neo4j_database_count_node{aggregation="MAX",database="neo4j",instance_id="78e7c3
 ----
 
 [aura-cmi-looking-up-metric-name]
-=== Looking up metric name in Neo4j Aura Advanced Metrics
+.Looking up metric name in Neo4j Aura Advanced Metrics
 
 In Neo4j Aura Advanced Metrics, it is possible to find out the metric name that corresponds to the chart, by using the chart menu item "Metrics Integration" as shown.
 
@@ -115,7 +116,7 @@ For details, see https://prometheus.io/docs/prometheus/latest/configuration/conf
 
 .Start Prometheus
 
-[,shell]
+[source, shell]
 ----
 ./prometheus --config.file=prometheus.yml
 ----
@@ -129,7 +130,7 @@ Open http://localhost:9090 and enter a metric name or expression in the search f
 Install and configure Grafana, adding the endpoint of the Prometheus instance configured in the previous step as a data source. 
 You can create visualizations, dashboards, and alarms based on Neo4j metrics.
 
-aura-cmi-example-using-datadog]
+[aura-cmi-example-using-datadog]
 == Example using Datadog
 
 .Get a Datadog account, link:https://www.datadoghq.com/[^]
@@ -145,9 +146,10 @@ Edit `/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml` as follows:
 Replace the placeholders `<ENDPOINT_URL>`, `<AURA_CLIENT_ID>` and `<AURA_CLIENT_SECRET>` with corresponding values from the previous steps.
 ====
 
+./etc/datadog-agent/conf.d/openmetrics.d/conf.yaml
+
 [source, yaml]
 ----
-
 init_config:
 instances:
   - openmetrics_endpoint: <ENDPOINT_URL>
@@ -176,8 +178,8 @@ For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent 
 [aura-cmi-programmatic-support]
 == Programmatic support
 
-aura-cmi-api-for-metrics-integration]
-=== Aura API for Metrics Integration
+[aura-cmi-api-for-metrics-integration]
+.Aura API for Metrics Integration
 
 * Aura API (_v1beta5_) now supports fetching metrics integration endpoints using:
  ** endpoint `+/tenants/{tenantId}/metrics-integration+` (for tenant metrics)
@@ -185,7 +187,7 @@ aura-cmi-api-for-metrics-integration]
 * Reference: link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1beta5#/[Aura API Specification^]
 
 [aura-cmi-cli-for-metrics-integration]
-=== Aura CLI for Metrics Integration
+.Aura CLI for Metrics Integration
 
 * Aura CLI has a subcommand for `tenants` command to fetch tenant metrics endpoint:
 +
@@ -232,12 +234,9 @@ aura instances get --instance-id <YOUR_INSTANCE_ID> | jq '.metrics_integration_u
 [aura-cmi-metric_definitions]
 == Metric Definitions
 
+[cols='1,1,1,1,1']
 |===
-| Title 
-| Description 
-| MetricName 
-| MetricType 
-| DefaultAggregation
+| Title | Description | MetricName | MetricType | DefaultAggregation
 
 | Out of Memory errors
 | The total number of Out of Memory errors for the instance. 
