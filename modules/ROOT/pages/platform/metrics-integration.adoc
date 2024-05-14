@@ -294,15 +294,6 @@ This helps avoid unwanted pauses for garbage collection.
 | _Gauge_
 | MAX
 
-| Page Cache Hit Ratio
-| The percentage of times data required during query execution was found in memory vs needing to be read from disk. 
-Ideally, the whole graph should fit into memory, and this should consistently be between 98% and 100%. 
-If this value is consistently or significantly under 100%, check the page cache usage ratio to see if the graph is too large to fit into memory. 
-A high amount of insert or update activity on a graph can also cause this value to change.
-| `neo4j_dbms_page_cache_hit_ratio_per_minute`
-| _Gauge_
-| AVG
-
 | Page Cache Usage Ratio
 | The percentage of the allocated page cache in use. 
 If this is close to or at 100%, then it is likely that the hit ratio will start dropping, and you should consider increasing the size of your instance so that more memory is available for the page cache.
@@ -440,30 +431,10 @@ Check this metric with page cache usage to see if the data is too large for the 
 | MAX
 
 | Page Cache Evictions
-| The number of times data in memory is being replaced per minute. 
-A spike can mean your workload is exceeding the instance's available memory, and you may notice a degradation in performance or query execution errors. 
-Consider increasing the size of your instance to improve performance if this metric remains high.
-| `neo4j_dbms_page_cache_evictions_per_minute`
-| _Gauge_
-| MAX
-
-| Page Cache Evictions
 | The number of times data in memory is being replaced in total. 
 A spike can mean your workload is exceeding the instance's available memory, and you may notice a degradation in performance or query execution errors. 
 Consider increasing the size of your instance to improve performance if this metric remains high.
 | `neo4j_dbms_page_cache_evictions_total`
-| _Counter_
-| MAX
-
-| Successful Query Executions
-| Description TODO
-| `neo4j_db_query_execution_success_total`
-| _Counter_
-| MAX
-
-| Query Execution Failures
-| Description TODO
-| `neo4j_db_query_execution_failure_total`
 | _Counter_
 | MAX
 |===
