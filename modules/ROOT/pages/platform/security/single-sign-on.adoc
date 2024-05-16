@@ -1,6 +1,6 @@
 [[aura-reference-security]]
 = Single Sign-On (SSO)
-:description: SSO allows users to log in to the Aura Console using their company IdP credentials.
+:description: SSO allows you to log in to the Aura Console using their company IdP credentials.
 
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
@@ -17,7 +17,7 @@ Accessing Aura with SSO requires:
 
 == Console SSO
 
-Console SSO allows users to log in to the Aura Console using their company IdP credentials and grants link:{neo4j-docs-base-uri}/cypher-manual/current/administration/access-control/built-in-roles#access-control-built-in-roles-public[Public Access privileges] to all instances in the tenant.
+Console SSO allows you to log in to the Aura Console using company IdP credentials and grants link:{neo4j-docs-base-uri}/cypher-manual/current/administration/access-control/built-in-roles#access-control-built-in-roles-public[Public Access privileges] to all instances in the tenant.
 
 The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are currently supported for Console-level Authentication:
 
