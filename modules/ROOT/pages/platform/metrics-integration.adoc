@@ -17,6 +17,7 @@ image::process.png[]
 [aura-cmi-steps]
 == Detailed steps
 
+. Log in to Aura as tenant admin.
 . Make sure there is a dedicated Aura user to use for fetching metrics.
 You can either:
  ** Create a new user:
@@ -30,7 +31,9 @@ image:invite_user.png[]
 ====
 Capabilities of users with the role "Metrics Integration Reader" are limited to fetching the metrics and getting a read-only view of the tenant.
 ====
-. In https://console.neo4j.io/#account["Account Details"^], create new Aura API credentials. Save client secret. +
+. Ensure you are logged in to Aura as the user selected in the previous step. 
+In https://console.neo4j.io/#account["Account Details"^], create new Aura API credentials. 
+Save client secret. +
 image:api_credentials.png[]
 . Configure the APM system to fetch metrics from the URL(s) or configuration templates shown in https://console.neo4j.io/#metrics-integration["Metrics Integration"^] of Neo4j Aura. Use `oauth2` type of authentication specifying the Client ID and Client Secret created in the previous step. See examples for <<_example_using_prometheus,Prometheus and Grafana>> and <<_example_using_datadog,Datadog>> below.
 . Use the APM system to create visualizations, dashboards, and alarms based on Neo4j metrics.
