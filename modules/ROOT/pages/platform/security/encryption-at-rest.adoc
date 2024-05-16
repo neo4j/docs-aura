@@ -17,8 +17,9 @@ This feature has been released as a public GA for AuraDB Enterprise and AuraDS E
 GCP’s Cloud Key Management and Azure’s Key Vault are in development.
 ====
 
-For more control over key operations than the standard Neo4j encryption, use a Customer Managed Key (CMK).
-Create and manage keys using a supported cloud key management service (KMS). Externally, Customer Managed Keys are also known as Customer Managed Encryption Keys (CMEK).
+A Customer Managed Key (CMK) gives you more control over key operations than the standard Neo4j encryption.
+These are created and managed by using a supported cloud key management service (KMS). 
+Externally, Customer Managed Keys are also known as Customer Managed Encryption Keys (CMEK).
 
 When using a Customer Managed Key, all data at rest is encrypted with the key.
 You can only encrypt _new_ Aura v5 instances using Customer Managed Keys.
