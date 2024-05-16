@@ -36,8 +36,8 @@ Neo4j cannot administer database instances when keys are disabled, deleted, or p
 
 === Deleting a key
 
-In the Aura Console, if a Customer Managed Key is being used to encrypt one or more Aura instances, it cannot be deleted.
-To delete a Customer Managed Key in the Aura Console, first delete the Aura database instances encrypted with the key, then delete the Customer Managed Key.
+If a Customer Managed Key is being used to encrypt one or more Aura instances in the console, it can't be deleted.
+If you need to delete the key, first delete the Aura database instances encrypted with the key, then delete the key.
 
 === Key rotation
 
