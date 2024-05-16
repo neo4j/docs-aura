@@ -39,7 +39,7 @@ GCP’s Cloud Key Management and Azure’s Key Vault are in development.
 ====
 
 A Customer Managed Key (CMK) gives you more control over key operations than the standard Neo4j encryption.
-These are created and managed by using a supported cloud key management service (KMS). 
+These are created and managed using a supported cloud key management service (KMS). 
 Externally, Customer Managed Keys are also known as Customer Managed Encryption Keys (CMEK).
 
 When using a Customer Managed Key, all data at rest is encrypted with the key.
