@@ -54,7 +54,7 @@ Depending on the KMS, there may be a delay between disabling a key, and when it 
 === Importing an existing database
 
 To upload a database greater than 4GB to instances encrypted with Customer Managed Keys in Neo4j 5, use `neo4j-admin database upload`.
-The `neo4j-admin push-to-cloud` command in Neo4j v4.4 and earlier is not supported for instances encrypted with Customer Managed Keys.
+Note that the `neo4j-admin push-to-cloud` command in Neo4j v4.4 and earlier is **not** supported for instances encrypted with Customer Managed Keys.
 For more information see the xref:auradb/importing/import-database.adoc#_neo4j_admin_database_upload[Neo4j Admin `database upload`] documentation.
 
 === Cloning an instance protected by CMK
