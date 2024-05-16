@@ -58,6 +58,7 @@ Note that the `neo4j-admin push-to-cloud` command in Neo4j v4.4 and earlier is *
 For more information see the xref:auradb/importing/import-database.adoc#_neo4j_admin_database_upload[Neo4j Admin `database upload`] documentation.
 
 === Cloning an instance protected by CMK
+
 To clone an instance protected by a Customer Managed Key, the key must be valid and available to Aura.
 The cloned instance, by default, uses the available Customer Managed Key for that region and product.
 
