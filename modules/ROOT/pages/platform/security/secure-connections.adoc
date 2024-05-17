@@ -198,3 +198,24 @@ To enable private endpoints using Azure Private Link:
 . Select *New network access configuration* and follow the setup instructions.
 
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
+
+== Supported TLS cipher suites
+
+For additional security, client communications are carried via TLS v1.2 and TLS v1.3.
+
+AuraDB has a restricted list of cipher suites accepted during the TLS handshake, and does not accept all of the available cipher suites.
+The following list conforms to safety recommendations from IANA, the OpenSSL, and GnuTLS library.
+
+TLS v1.3:
+
+* `TLS_CHACHA20_POLY1305_SHA256 (RFC8446)`
+* `TLS_AES_128_GCM_SHA256 (RFC8446)`
+* `TLS_AES_256_GCM_SHA384 (RFC8446)`
+
+TLS v1.2:
+
+* `TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (RFC5288)`
+* `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (RFC5289)`
+* `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5289)`
+* `TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (RFC7905)`
+* `TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5288)`
