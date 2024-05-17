@@ -108,3 +108,28 @@ You will need to log in to the Neo4j Console with the same Google account you ha
 Once logged in, you'll be asked to accept the Neo4j Aura Terms of Service, before being directed to the Neo4j Console and placed within your GCP Marketplace tenant.
 
 From here, you are ready to create a Neo4j Aura instance hosted on GCP and usage will be billed directly to your GCP billing account.
+
+=== Azure
+
+[discrete]
+==== 1. Purchase the service
+
+To get started, visit the https://azuremarketplace.microsoft.com/en-us/marketplace/apps/neo4j.neo4j_aura_professional?tab=overview[Neo4j Aura Professional Azure Marketplace page] and select *Get It Now*.
+
+[discrete]
+==== 2. Sign in to your Microsoft Azure Marketplace account
+
+[discrete]
+==== 3. Subscribe to Neo4j Aura Professional
+
+* Select the resource group that the Aura Professional subscription will apply to. Then, create a name for the SaaS subscription so you can easily identify it later.
+* Your billing term will be a 1-month subscription at $0 cost. Aura Professional has a consumption based pricing model, so you will only be charged for the amount you consume in Gigabyte hours (Gb/h)
+* Set recurring billing to *On*
+* Click *Review + subscribe*
+
+[NOTE]
+====
+* Ensure your Azure account is upgraded before continuing.
+* Enable *marketplace purchases* in Azure. See more info on the https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/enable-marketplace-purchases[Azure website]
+====
+
