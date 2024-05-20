@@ -5,19 +5,91 @@
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
 
-Aura Enterprise supports Single Sign-On (SSO) at both the Console level and for accessing Workspace, Bloom and Browser clients directly at the instance level.
+== Introduction to SSO
 
-[NOTE]
-====
+Aura Enterprise supports Single Sign-On (SSO) at the organization, project and instance level.
+
+* Grant secure access to data and keep data safe.
+* At the same time, secure access for colleagues without being hammered down by security and data access teams.
+* If you have access to specific parts of the Aura Console, you can move between different parts of the Aura console without having to re-login.
+
+This documentation demonstrates how to easily set up Aura SSO for automatic access to data with Role Based Access Control (RBAC) so you can centrally control privileges (read/write/delete/etc) as well as data access (only access the data you are permitted to access).
+
+== Requirements
+
 Accessing Aura with SSO requires:
  
-* Authorization Code Flow with PKCE.
+* Authorization Code Flow with PKCE (Proof Key for Code Exchange).
 * A publicly accessible Identity Provider (IdP) server.
-====
+
+== Configuring SSO 
+
+Authrorized users have the ability to configure SSO in the Aura Console using one of the following options: 
+
+* Email/password
+* Okta
+* Microsoft Entra ID (previously Azure Active Directory)
+
+= Information required in the Aura Console
+
+* SSO config ID - you decide a name for this
+* IdP type (e.g. Okta / Microsoft Entra ID)
+* Channel
+* Client ID 
+* Client Secret
+* Discovery URI
+* Issuer
+* Authorization Endpoint
+
+= Organization SSO
+
+Organization SSO allows log in to the Aura Console using organization IdP credentials.
+
+== Mapping an organization
+
+When you map an organization to your IdP, Aura grants users who authenticate through the IdP membership in the selected organization.
+
+You can give these users a default role in the selected organization. There can be multiple organizations.
+
+Organization mapping lets you configure a single IdP to grant users access to multiple organizations within the Neo4j Aura Console. 
+
+.Organization roles
+[cols="25m,75v"]
+|===
+| Role | Permissions
+
+| Organization Owner
+| • Full access to read/write organization
+
+• Full access to list/read/write tenants
+
+• Given to self serve users during registration instead of a tenant role
+
+• Can create/edit/delete SSO [Enterprise Only]
+
+• Can invite to any role up to owner
+
+| Organization Admin
+| • Full access to read/write org details
+
+• Full access to list/create tenants
+
+• Can create/edit/delete SSO [Enterprise Only]
+
+• Can invite to any role up to admin
+
+| Organization Member (Default when added to tenant)
+| • Full access to read organization
+
+• Full access to list tenants
+
+• Default role for users given access to a single tenant via invite/marketplace
+
+|===
 
 == Console SSO
 
-Console SSO allows you to log in to the Aura Console using company IdP credentials and grants link:{neo4j-docs-base-uri}/cypher-manual/current/administration/access-control/built-in-roles#access-control-built-in-roles-public[Public Access privileges] to all instances in the tenant.
+Console SSO allows log in to the Aura Console using company IdP credentials and grants link:{neo4j-docs-base-uri}/cypher-manual/current/administration/access-control/built-in-roles#access-control-built-in-roles-public[Public Access privileges] to all instances in the tenant.
 
 The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are currently supported for Console-level Authentication:
 
@@ -51,3 +123,18 @@ To add SSO for Workspace, Bloom, and Browser to your Aura Enterprise instances, 
 If you have to specify an application type when configuring your client, Neo4j is a Single-page application.
 For more information on configuring your client, see link:{neo4j-docs-base-uri}/operations-manual/current/tutorial/tutorial-sso-configuration/[Neo4j Single Sign-On (SSO) Configuration].
 ====
+
+= Okta OAuth
+
+. Navigate to the Okta Admin Console
+. Click Applications
+. Click Add Application
+. etc
+
+= Microsoft Entra ID
+
+. Navigate to the Microsoft Azure Portal and authenticate
+. Navigate to Azure Active Directory
+. Click on App Registrations
+. Click on New Registration
+. etc
