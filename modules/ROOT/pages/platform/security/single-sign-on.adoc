@@ -5,7 +5,7 @@
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
 
-== Introduction to SSO
+== Introduction to SSO / OAuth
 
 Aura Enterprise supports Single Sign-On (SSO) at the organization, project and instance level.
 
@@ -14,6 +14,8 @@ Aura Enterprise supports Single Sign-On (SSO) at the organization, project and i
 * If you have access to specific parts of the Aura Console, you can move between different parts of the Aura console without having to re-login.
 
 This documentation demonstrates how to easily set up Aura SSO for automatic access to data with Role Based Access Control (RBAC) so you can centrally control privileges (read/write/delete/etc) as well as data access (only access the data you are permitted to access).
+
+
 
 == Requirements
 
@@ -33,11 +35,17 @@ Customers can configure a combination of one or more of the following login meth
 
 You can add Aura as a log in from a tile in an organization's Apps Dashboard.
 
+== Home Realm Discovery 
+
+Home Realm Discovery (HRD) is when a user enters their email on the login form, an Auth0 connection that is configured with a domain that matches the email domain will redirect the user to the Auth0 connection Idp.
+
 Users that have HRD enabled are redirected to a view where they can select from a list of their IdPs, if the customer has configured more than one IdP.
+
+
 
 = Information required in the Aura Console to set up SSO 
 
-To configure SSO from the Aura side, go to the Aura Console > Settings > SSO Configuration.
+To configure SSO from the Aura side, go to the *Aura Console > Settings > SSO Configuration.*
 
 The set-up form requires the following info:
 
@@ -53,6 +61,8 @@ The set-up form requires the following info:
 = Organization SSO
 
 Organization SSO allows log in to the Aura Console using organization IdP credentials.
+
+To facilitate organization SSO login, an Auth0 organization will need to be created and all users will need to be added to the auth0 organization. Tenants/projects will need to have an organization associated with them, and users will be added to the organization when they are invited and join.
 
 == Mapping an organization
 
