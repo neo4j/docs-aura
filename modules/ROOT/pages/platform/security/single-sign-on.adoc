@@ -24,13 +24,22 @@ Accessing Aura with SSO requires:
 
 == Configuring SSO 
 
-Authrorized users have the ability to configure SSO in the Aura Console using one of the following options: 
+
+Customers can configure a combination of one or more of the following login methods:
 
 * Email/password
 * Okta
 * Microsoft Entra ID (previously Azure Active Directory)
 
-= Information required in the Aura Console
+You can add Aura as a log in from a tile in an organization's Apps Dashboard.
+
+Users that have HRD enabled are redirected to a view where they can select from a list of their IdPs, if the customer has configured more than one IdP.
+
+= Information required in the Aura Console to set up SSO 
+
+To configure SSO from the Aura side, go to the Aura Console > Settings > SSO Configuration.
+
+The set-up form requires the following info:
 
 * SSO config ID - you decide a name for this
 * IdP type (e.g. Okta / Microsoft Entra ID)
@@ -138,3 +147,6 @@ For more information on configuring your client, see link:{neo4j-docs-base-uri}/
 . Click on App Registrations
 . Click on New Registration
 . etc
+
+Microsoft Entra ID is useful for Unified identity management as you can
+manage all your identities and access to all your applications in a central location, whether they’re in the cloud or on-premises, to improve visibility and control.
