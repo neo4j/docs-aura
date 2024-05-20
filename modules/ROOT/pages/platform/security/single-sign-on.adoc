@@ -5,14 +5,14 @@
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
 
-== Introduction to SSO / OAuth
+== Introduction to SSO
 
 Aura Enterprise supports Single Sign-On (SSO) at the organization, project, and instance level.
 
+Aura Admins can configure organization and project level SSO. Aura Support configures instance level SSO. 
+
 SSO allows for both keeping data safe and providing authorized users safe access to the data.
 This section describes how to set up Aura SSO with Role-Based Access Control (RBAC) for centrally controlled privileges as well as data access.
-
-
 
 == Requirements
 
@@ -23,22 +23,19 @@ Accessing Aura with SSO requires:
 
 == Configuring SSO 
 
-
 Users can configure a combination of one or more of the following login methods:
 
 * Email/password
 * Okta
 * Microsoft Entra ID (previously Azure Active Directory)
 
-You can add Aura as a log in from a tile in an organization's Apps Dashboard.
+An organization's admin can add Aura as a log in from a tile in an organization's Apps Dashboard.
 
 == Home Realm Discovery 
 
-Home Realm Discovery (HRD) is when a user enters their email on the login form, an Auth0 connection that is configured with a domain that matches the email domain will redirect the user to the Auth0 connection Idp.
+Home Realm Discovery (HRD) is when a user enters their email on the login form, an Auth0 connection that is configured with a domain that matches the email domain will redirect the user to the Auth0 connection IdP.
 
 Users that have HRD enabled are redirected to a view where they can select from a list of their IdPs, if the customer has configured more than one IdP.
-
-
 
 == SSO setup requirements 
 
@@ -112,11 +109,6 @@ The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are curr
 * Microsoft Azure Active Directory (AAD)
 * Okta
 
-To enable Console SSO on your Aura Enterprise tenant(s), please https://support.neo4j.com/[raise a support ticket] including the following information:
-
-. The _Tenant ID_ of the tenant(s) you want to use SSO. See xref:platform/user-management.adoc#_tenants[Tenants] for more information on how to find your __Tenant ID__.
-. The name of your IdP.
-
 == Instance SSO
 
 Instance SSO allows you to directly map groups of users (as defined in your IdP) to DBMS RBAC roles when launching Workspace, Bloom and Browser clients from an Aura instance.
@@ -139,21 +131,3 @@ To add SSO for Workspace, Bloom, and Browser to your Aura Enterprise instances, 
 If you have to specify an application type when configuring your client, Neo4j is a Single-page application.
 For more information on configuring your client, see link:{neo4j-docs-base-uri}/operations-manual/current/tutorial/tutorial-sso-configuration/[Neo4j Single Sign-On (SSO) Configuration].
 ====
-
-= Okta OAuth
-
-. Navigate to the Okta Admin Console
-. Click Applications
-. Click Add Application
-. etc
-
-= Microsoft Entra ID
-
-. Navigate to the Microsoft Azure Portal and authenticate
-. Navigate to Azure Active Directory
-. Click on App Registrations
-. Click on New Registration
-. etc
-
-Microsoft Entra ID is useful for Unified identity management as you can
-manage all your identities and access to all your applications in a central location, whether they’re in the cloud or on-premises, to improve visibility and control.
