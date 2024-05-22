@@ -32,7 +32,9 @@ An organization's admin can add Aura as a log in from a tile in an organization'
 
 == Home Realm Discovery 
 
-Home Realm Discovery (HRD) is when a user enters their email on the login form, an Auth0 connection that is configured with a domain that matches the email domain will redirect the user to the Auth0 connection IdP.
+If Home Realm Discovery (HRD) is enabled, and a user’s email domain matches the configured domain, they are redirected to the Auth0 connection IdP. 
+Once authenticated, the user has access to both the company organization and their personal organization. 
+If HRD is disabled, the user logs in with their password, but only has access to their personal organization, once authenticated.
 
 Users that have HRD enabled are redirected to a view where they can select from a list of their IdPs, if the customer has configured more than one IdP.
 
