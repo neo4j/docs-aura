@@ -103,7 +103,8 @@ Organization mapping lets you configure a single IdP to grant users access to mu
 
 == Console SSO
 
-Console SSO allows log in to the Aura Console using company IdP credentials and grants link:{neo4j-docs-base-uri}/cypher-manual/current/administration/access-control/built-in-roles#access-control-built-in-roles-public[Public Access privileges] to all instances in the tenant.
+Console SSO allows log in to the Aura Console using company IdP credentials and grants Public Access privileges to all instances in the tenant.
+See link:{neo4j-docs-base-uri/operations-manual/5/authentication-authorization/built-in-roles/#access-control-built-in-roles-public[Operations Manual -> The `PUBLIC` role^] for more information.
 
 The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are currently supported for Console-level Authentication:
 
