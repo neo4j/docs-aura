@@ -30,12 +30,6 @@ Users can configure a combination of one or more of the following login methods:
 
 An organization's admin can add Aura as a login from a tile in an organization's Apps Dashboard.
 
-== Home Realm Discovery 
-
-If Home Realm Discovery (HRD) is enabled, and a user’s email domain matches the configured domain, they are redirected to the Auth0 connection IdP. 
-Once authenticated, the user has access to both the company organization and their personal organization. 
-If HRD is disabled, the user logs in with their password, but only has access to their personal organization, once authenticated.
-
 
 == SSO setup requirements 
 
@@ -100,6 +94,12 @@ Organization mapping lets you configure a single IdP to grant users access to mu
 • Default role for users given access to a single tenant via invite/marketplace
 
 |===
+
+== Home Realm Discovery 
+
+If Home Realm Discovery (HRD) is enabled, and a user’s email domain matches the configured domain, they are redirected to the Auth0 connection IdP. 
+Once authenticated, the user has access to both the company organization and their personal organization. 
+If HRD is disabled, the user logs in with their password, but only has access to their personal organization, once authenticated.
 
 == Console SSO
 
