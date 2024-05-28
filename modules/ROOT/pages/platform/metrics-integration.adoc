@@ -244,7 +244,8 @@ aura instances get --instance-id <YOUR_INSTANCE_ID> | jq '.metrics_integration_u
 | Metric name
 m| `neo4j_aura_out_of_memory_errors_total`
 | Description
-| The total number of Out of Memory errors for the instance. Consider increasing the size of the instance if any OOM errors.
+| The total number of Out of Memory errors for the instance.
+Consider increasing the size of the instance if any OOM errors.
 | Metric type
 | _Counter_
 | Default aggregation
@@ -270,8 +271,8 @@ m| MAX
 | Metric name
 m| neo4j_aura_cpu_usage
 | Description
-a|
-CPU usage (cores). CPU is used for planning and serving queries. If this metric is constantly spiking or at its limits, consider increasing the size of your instance.
+| CPU usage (cores). CPU is used for planning and serving queries.
+If this metric is constantly spiking or at its limits, consider increasing the size of your instance.
 | Metric type
 | _Gauge_
 | Default aggregation
@@ -465,7 +466,7 @@ m| neo4j_database_transaction_active_read
 m| MAX
 |===
 
-.Active Write Transactiond
+.Active Write Transactions
 [frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
 |===
 | Metric name
