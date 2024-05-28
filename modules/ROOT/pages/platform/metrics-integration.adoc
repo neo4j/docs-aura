@@ -292,7 +292,7 @@ m| neo4j_aura_memory_usage
 m| MAX
 |===
 
-.Memory total
+.Memory Total
 [frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
 |===
 | Metric name
@@ -324,20 +324,22 @@ m| MAX
 | Metric name
 m| neo4j_dbms_vm_heap_used_ratio
 | Description
-| The percentage of configured heap memory in use. The heap space is used for query execution, transaction state, management of the graph etc.
-The size needed for the heap is very dependent on the nature of the usage of Neo4j. For example, long-running queries, or very complicated queries, are likely to require a larger heap than simpler queries.
+| The percentage of configured heap memory in use.
+The heap space is used for query execution, transaction state, management of the graph etc.
+The size needed for the heap is very dependent on the nature of the usage of Neo4j.
+For example, long-running queries, or very complicated queries, are likely to require a larger heap than simpler queries.
 To improve performance, the heap should be large enough to sustain concurrent operations.
 This value should not exceed 80% for long periods, short spikes can be normal.
 In case of performance issues, you may have to tune your queries and monitor their memory usage, to determine whether the heap needs to be increased.
- If the workload of Neo4j and performance of queries indicates that more heap space is required, consider increasing the size of your instance.
- This helps avoid unwanted pauses for garbage collection.
+If the workload of Neo4j and performance of queries indicates that more heap space is required, consider increasing the size of your instance.
+This helps avoid unwanted pauses for garbage collection.
 | Metric type
 | _Gauge_
 | Default aggregation
 m| MAX
 |===
 
-.PageCache Usage Ratio
+.Page Cache Usage Ratio
 [frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
 |===
 | Metric name
@@ -346,7 +348,7 @@ m| neo4j_dbms_page_cache_usage_ratio
 | The percentage of the allocated page cache in use.
 If this is close to or at 100%, then it is likely that the hit ratio will start dropping, and you should consider increasing the size of your instance so that more memory is available for the page cache.
 | Metric type
-| _ Gauge_
+| _Gauge_
 | Default aggregation
 m| MIN
 |===
