@@ -85,11 +85,13 @@ The possible aggregations are:
 == Store size metrics 
 
 === Resources tab
-The chart on the resources tab shows the allocated store size metric for the selected database either as a percentage of the available storage assigned for the database or as absolute values. 
+
+The chart on the _Resources_ tab shows the allocated store size metric for the selected database either as a percentage of the available storage assigned for the database or as absolute values. 
 
 === Database tab
 
-The chart on the Database tab provides more detailed information with a chart that shows the store size and the portion of the allocated space that the database is actively utilizing. Both metrics are represented as percentages of the available storage assigned to the database.
+The chart on the _Database_ tab provides more detailed information with a chart that shows the store size and the portion of the allocated space that the database is actively utilizing. 
+Both metrics are represented as percentages of the available storage assigned to the database.
 
 These metrics may differ due to the way Neo4j allocates and reuses space.
 Once allocated, space is never automatically de-allocated.
