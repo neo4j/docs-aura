@@ -1,27 +1,34 @@
 = Overview of Editions
 
+Neo4j offers multiple editions to choose from, ensuring that your usage fits your organization’s specific requirements. 
+Each successive edition builds on the previous edition through the addition of edition-specific features and/or higher levels of service. 
+As your organization’s needs change and grow, changing editions is easy.
+
 == Feature / Edition Matrix
 
 The following tables provide a list of the major features and services included with each edition.
 
-:check-mark: icon:check[]
-
-.Roles
+.Instance / Database Configuration
 [opts="header",cols="4,1,1,1,1"]
 |===
-| Capability | Free | Pro | MTE | Enterprise
-| Price Gb/h | Free | 9c | N/a | 25c
-| Instance size | Node & Relationship Limit
+| Capability | Free | Professional | MTE | Enterprise
+| Instance Size | Node & Relationship Limit
  | 1GB-64GB RAM | 2GB-512GB+ RAM | 2GB-512GB+ RAM
 | Additional RAM:Storage ratios | No | No | Yes, by exception | Yes, by exception
 | Cloud Provider | GCP | GCP, AWS, Azure | GCP, AWS, Azure | GCP, AWS, Azure
 | Cloud Region | Fixed (Neo4j Assigned) | Many | Many | Many 
 | Different Regions | No | Yes (add-on beyond 2) | Yes (add-on beyond 2) | Yes (add-on beyond 2) 
+|===
+
+.Security & Compliance
+[opts="header",cols="4,1,1,1,1"]
+|===
+| Capability | Free | Professional | MTE | Enterprise
 | Single Sign-On | Limited (Google) | Yes (Okta, etc via OIDC) | Console 2 IdP & DB SSO - 4 IdP | Console 2 IdP & DB SSO - 4 IdP
 | User Access Control | n/a | RW/RO User | Granular RBAC | Granular RBAC
 | Tenant Isolation | Shared | Shared | Shared | Dedicated
 | VPC Link & IP filtering | No | No | No | Yes
-| Encryption Key Mgmt. | Neo4j managed | Neo4j managed | No | No
+| Encryption Key Management | Neo4j managed | Neo4j managed | No | No
 | View and edit billing information | {check-mark} | | add
 |===
 
