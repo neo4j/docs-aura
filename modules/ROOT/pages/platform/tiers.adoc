@@ -1,36 +1,48 @@
 = Overview of tiers
 
+*Flexible options to fit your needs:*
+Neo4j offers a range of plans to suit your organization's specific requirements.  
+Each plan builds on the previous one, providing additional features or higher levels of service.  
+If your needs change, you can easily switch plans to keep pace.
+
+The Aura tier that you choose determines the unit costs for the credits and the data storage you use. 
+
+* *Pay as you go:*
+Perfect for unpredictable usage, with on-demand pricing and no long-term contracts.
+
+* *Commit to a capacity reservation:* 
+For upfront pricing on credits and storage.
+
+For pricing details, see the link:https://neo4j.com/pricing/[pricing page] on the Neo4j website.
+
 [NOTE]
 ====
 You can request a time limited trial of any tier to experience it in full.
 ====
 
-Neo4j offers multiple tiers to choose from, ensuring that your usage fits your organization’s specific requirements. 
-Each successive edition builds on the previous edition through the addition of tier-specific features and/or higher levels of service. 
-As your organization’s needs change and grow, changing tiers is easy.
+== AuraDB Free
 
-The Aura tier that your organization chooses determines the unit costs for the credits and the data storage you use. 
+AuraDB Free is our introductory level offering, providing full, unlimited access to all of Aura’s standard features. 
+It provides a strong balance between features, level of support, and cost.
+For small development projects, learning, experimentation, and prototyping.
 
-* On Demand: Usage-based pricing with no long-term licensing requirements.
-* Capacity: Discounted pricing based on an upfront Capacity commitment.
+== AuraDB Professional
 
-For pricing details, see the link:https://neo4j.com/pricing/[pricing page] (on the Neo4j website).
+For medium-scale applications in advanced development or production environments.
 
-== Feature / Edition Matrix
-
-In June 2024, Aura introduced a new MTE tier.
-This tier will have Versions 1, 1.1 and 1.2.
-Not all Enterprise features are available in MTE 1.
-See the tables to see the differences.
+== AuraDB MTE
 
 [NOTE]
 ====
-As it is a new release as of June 2024, not all Enterprise features are available in MTE 1.0 yet.
+In June 2024, Aura will introduce a new MTE v1 tier.
+Not all Enterprise features are available in MTE 1.0 yet.
+MTE v1.1 and v.2 are scheduled for later in 2024/2025.
 ====
 
-The primary differentiating factors between MTE and Professional will be as follows. A full, suite-wide review of the features available for each tier can be found here. 🗺️ MTE - Route to 2.0
+=== MTE features at launch
 
-Note - not all of these features will be available at launch. Features unavailable at launch are indicated with an asterisk. 
+*Note:* Not all MTE features will be available at launch. 
+Features unavailable at launch are indicated with an asterisk. 
  
 * Highly available cluster split across 3 availability zones in a region
 * Advanced security features	
@@ -44,6 +56,28 @@ Note - not all of these features will be available at launch. Features unavailab
 * 3 node advanced metrics
 * 24/7 support with SLA
 * 99.9% uptime SLA
+
+*MTE overview* 
+
+* The architecture for MTE positions private low level infrastructure (Kubernetes Pods) on a shared compute resource (Kubernetes Node) to achieve multi-tenancy. 
+* The Kubernetes Pods have a private persistent volume attached to them in a 1:1 relationship. 
+* This relationship provides a layer of security as the data residing on the volume can only be accessed from a specific Kubernetes Pod. 
+
+
+== AuraDB Enterprise
+
+* Where a customer is guaranteed resource isolation. 
+* Orchestras are expensive to run, especially so in a single tenant architecture, therefore AuraDB Enterprise has premium pricing.
+
+*AuraDB Enterprise is for:*
+
+* Organisations with strict data segregation requirements that mandate physical isolation to preserve data integrity, or that require compliance with FedRAMP.  
+* Organisations that need to use highly customised features that are not suited to a multi-tenant environment, such as custom procedures.
+
+* For large-scale, mission-critical applications that require advanced security and 24x7 support.
+* Organisations that require the highest level of uptime SLA.
+
+== Feature / Edition Matrix
 
 The following tables provide a list of the major features and services included with each tier.
 
@@ -66,7 +100,7 @@ The following tables provide a list of the major features and services included 
 |===
 
 =====
-[.include-with-MTE-v2]
+[.include-with-MTE-v11]
 =====
 
 [opts="header",cols="4,1,1,1,1"]
@@ -74,7 +108,7 @@ The following tables provide a list of the major features and services included 
 | Capability | Free | Professional | MTE | Enterprise
 | Instance Size | Node & Relationship Limit
  | 1GB-64GB RAM | 2GB-512GB+ RAM | 2GB-512GB+ RAM
-| Additional RAM:Storage ratios | No | No | Yes, by exception | Yes, by exception
+| Additional RAM:Storage ratios | No | No | Yes | Yes
 | Cloud Provider | GCP | GCP, AWS, Azure | GCP, AWS, Azure | GCP, AWS, Azure
 | Cloud Region | Fixed (Neo4j Assigned) | Many | Many | Many 
 | Different Regions | No | Yes (add-on beyond 2) | Yes (add-on beyond 2) | Yes (add-on beyond 2) 
@@ -82,14 +116,14 @@ The following tables provide a list of the major features and services included 
 
 
 =====
-[.include-with-MTE-v3]
+[.include-with-MTE-v12]
 =====
 
 [opts="header",cols="4,1,1,1,1"]
 |===
 | Capability | Free | Professional | MTE | Enterprise
 | Instance Size | Node & Relationship Limit
- | 1GB-64GB RAM | 2GB-512GB+ RAM | 2GB-512GB+ RAM
+| 1GB-64GB RAM | 2GB-1TB+ RAM | 2GB-1TB+ RAM
 | Additional RAM:Storage ratios | No | No | Yes, by exception | Yes, by exception
 | Cloud Provider | GCP | GCP, AWS, Azure | GCP, AWS, Azure | GCP, AWS, Azure
 | Cloud Region | Fixed (Neo4j Assigned) | Many | Many | Many 
@@ -112,40 +146,3 @@ The following tables provide a list of the major features and services included 
 | Encryption Key Management | Neo4j managed | Neo4j managed | No | No
 | View and edit billing information | {check-mark} | | add
 |===
-
-== AuraDB Free
-
-AuraDB Free is our introductory level offering, providing full, unlimited access to all of Aura’s standard features. 
-It provides a strong balance between features, level of support, and cost.
-For small development projects, learning, experimentation, and prototyping.
-
-== AuraDB Professional
-
-For medium-scale applications in advanced development or production environments.
-
-== AuraDB MTE
-
-* The architecture for MTE positions private low level infrastructure (Kubernetes Pods) on a shared compute resource (Kubernetes Node) to achieve multi-tenancy. 
-* The Kubernetes Pods have a private persistent volume attached to them in a 1:1 relationship. 
-* This relationship provides a layer of security as the data residing on the volume can only be accessed from a specific Kubernetes Pod. 
-
-=== MTE is for:
-
-
-
-=== MTE is not for:
-
-* Organisations with strict data segregation requirements that mandate physical isolation to preserve data integrity, or that require compliance with FedRAMP.  
-* Organisations that need to use highly customised features that are not suited to a multi-tenant environment, such as custom procedures.
-
-
-== AuraDB Enterprise
-
-* Where a customer is guaranteed resource isolation. 
-* Orchestras are expensive to run, especially so in a single tenant architecture, therefore AuraDB Enterprise has premium pricing.
-
-
-=== AuraDB Enterprise is for:
-
-* For large-scale, mission-critical applications that require advanced security and 24x7 support.
-* Organisations that require the highest level of uptime SLA.
