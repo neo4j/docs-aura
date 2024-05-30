@@ -28,6 +28,23 @@ See the tables to see the differences.
 As it is a new release as of June 2024, not all Enterprise features are available in MTE 1.0 yet.
 ====
 
+The primary differentiating factors between MTE and Professional will be as follows. A full, suite-wide review of the features available for each tier can be found here. 🗺️ MTE - Route to 2.0
+
+Note - not all of these features will be available at launch. Features unavailable at launch are indicated with an asterisk. 
+ 
+* Highly available cluster split across 3 availability zones in a region
+* Advanced security features	
+* Granular RBAC
+* Private Link*
+* Customer Managed Keys*
+* Advanced configuration options
+* Log forwarding*
+* Metric forwarding*
+* Console SSO 
+* 3 node advanced metrics
+* 24/7 support with SLA
+* 99.9% uptime SLA
+
 The following tables provide a list of the major features and services included with each tier.
 
 === Instance / Database Configuration
@@ -52,13 +69,32 @@ The following tables provide a list of the major features and services included 
 [.include-with-MTE-v2]
 =====
 
-Ok
+[opts="header",cols="4,1,1,1,1"]
+|===
+| Capability | Free | Professional | MTE | Enterprise
+| Instance Size | Node & Relationship Limit
+ | 1GB-64GB RAM | 2GB-512GB+ RAM | 2GB-512GB+ RAM
+| Additional RAM:Storage ratios | No | No | Yes, by exception | Yes, by exception
+| Cloud Provider | GCP | GCP, AWS, Azure | GCP, AWS, Azure | GCP, AWS, Azure
+| Cloud Region | Fixed (Neo4j Assigned) | Many | Many | Many 
+| Different Regions | No | Yes (add-on beyond 2) | Yes (add-on beyond 2) | Yes (add-on beyond 2) 
+|===
+
 
 =====
 [.include-with-MTE-v3]
 =====
 
-okay
+[opts="header",cols="4,1,1,1,1"]
+|===
+| Capability | Free | Professional | MTE | Enterprise
+| Instance Size | Node & Relationship Limit
+ | 1GB-64GB RAM | 2GB-512GB+ RAM | 2GB-512GB+ RAM
+| Additional RAM:Storage ratios | No | No | Yes, by exception | Yes, by exception
+| Cloud Provider | GCP | GCP, AWS, Azure | GCP, AWS, Azure | GCP, AWS, Azure
+| Cloud Region | Fixed (Neo4j Assigned) | Many | Many | Many 
+| Different Regions | No | Yes (add-on beyond 2) | Yes (add-on beyond 2) | Yes (add-on beyond 2) 
+|===
 
 =====
 ====
