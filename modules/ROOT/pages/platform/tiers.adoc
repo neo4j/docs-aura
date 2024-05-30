@@ -18,6 +18,11 @@ For pricing details, see the link:https://neo4j.com/pricing/[pricing page] (on t
 
 == Feature / Edition Matrix
 
+In June 2024, Aura introduced a new MTE tier.
+This tier will have Versions 1, 1.1 and 1.2.
+Not all Enterprise features are available in MTE 1.
+See the tables to see the differences.
+
 [NOTE]
 ====
 As it is a new release as of June 2024, not all Enterprise features are available in MTE 1.0 yet.
@@ -25,7 +30,13 @@ As it is a new release as of June 2024, not all Enterprise features are availabl
 
 The following tables provide a list of the major features and services included with each tier.
 
-.Instance / Database Configuration
+=== Instance / Database Configuration
+
+[.tabbed-example]
+====
+[.include-with-MTE-v1]
+=====
+
 [opts="header",cols="4,1,1,1,1"]
 |===
 | Capability | Free | Professional | MTE | Enterprise
@@ -36,6 +47,23 @@ The following tables provide a list of the major features and services included 
 | Cloud Region | Fixed (Neo4j Assigned) | Many | Many | Many 
 | Different Regions | No | Yes (add-on beyond 2) | Yes (add-on beyond 2) | Yes (add-on beyond 2) 
 |===
+
+=====
+[.include-with-MTE-v2]
+=====
+
+Ok
+
+=====
+[.include-with-MTE-v3]
+=====
+
+okay
+
+=====
+====
+
+
 
 .Security & Compliance
 [opts="header",cols="4,1,1,1,1"]
