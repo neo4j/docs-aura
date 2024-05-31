@@ -66,15 +66,14 @@ Features unavailable at launch are indicated with an asterisk.
 
 == AuraDB Enterprise
 
-* Where a customer is guaranteed resource isolation. 
+* Guaranteed resource isolation. 
 * Orchestras are expensive to run, especially so in a single tenant architecture, therefore AuraDB Enterprise has premium pricing.
 
-*AuraDB Enterprise is for:*
-
-* Organisations with strict data segregation requirements that mandate physical isolation to preserve data integrity, or that require compliance with FedRAMP.  
-* Organisations that need to use highly customised features that are not suited to a multi-tenant environment, such as custom procedures.
+*AuraDB Enterprise*
 
 * For large-scale, mission-critical applications that require advanced security and 24x7 support.
+* Organisations with strict data segregation requirements that mandate physical isolation to preserve data integrity, or that require compliance with FedRAMP.  
+* Organisations that need to use highly customised features that are not suited to a multi-tenant environment, such as custom procedures.
 * Organisations that require the highest level of uptime SLA.
 
 == Feature / Edition Matrix
@@ -83,11 +82,6 @@ The following tables provide a list of the major features and services included 
 
 === Instance / Database Configuration
 
-[.tabbed-example]
-====
-[.include-with-MTE-v1]
-=====
-
 [opts="header",cols="4,1,1,1,1"]
 |===
 | Capability | Free | Professional | MTE | Enterprise
@@ -98,40 +92,6 @@ The following tables provide a list of the major features and services included 
 | Cloud Region | Fixed (Neo4j Assigned) | Many | Many | Many 
 | Different Regions | No | Yes (add-on beyond 2) | Yes (add-on beyond 2) | Yes (add-on beyond 2) 
 |===
-
-=====
-[.include-with-MTE-v11]
-=====
-
-[opts="header",cols="4,1,1,1,1"]
-|===
-| Capability | Free | Professional | MTE | Enterprise
-| Instance Size | Node & Relationship Limit
- | 1GB-64GB RAM | 2GB-512GB+ RAM | 2GB-512GB+ RAM
-| Additional RAM:Storage ratios | No | No | Yes | Yes
-| Cloud Provider | GCP | GCP, AWS, Azure | GCP, AWS, Azure | GCP, AWS, Azure
-| Cloud Region | Fixed (Neo4j Assigned) | Many | Many | Many 
-| Different Regions | No | Yes (add-on beyond 2) | Yes (add-on beyond 2) | Yes (add-on beyond 2) 
-|===
-
-
-=====
-[.include-with-MTE-v12]
-=====
-
-[opts="header",cols="4,1,1,1,1"]
-|===
-| Capability | Free | Professional | MTE | Enterprise
-| Instance Size | Node & Relationship Limit
-| 1GB-64GB RAM | 2GB-1TB+ RAM | 2GB-1TB+ RAM
-| Additional RAM:Storage ratios | No | No | Yes, by exception | Yes, by exception
-| Cloud Provider | GCP | GCP, AWS, Azure | GCP, AWS, Azure | GCP, AWS, Azure
-| Cloud Region | Fixed (Neo4j Assigned) | Many | Many | Many 
-| Different Regions | No | Yes (add-on beyond 2) | Yes (add-on beyond 2) | Yes (add-on beyond 2) 
-|===
-
-=====
-====
 
 
 
