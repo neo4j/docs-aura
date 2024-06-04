@@ -71,7 +71,7 @@ If there is no valid CMK for the destination region and product, the Neo4j Manag
 
 === Creating an AWS key
 
-. Create a key in the AWS KMS ensuring the region matches your Aura database instance.
+. Create a key in the AWS KMS ensuring the region matches your Aura database instance region.
 Copy the generated ARN.
 You need it in the next step.
 . Go to *security settings* in the Aura Console, create a *Customer Managed Key* and copy the JSON code that is generated in the Aura Console when you add a key.
@@ -100,3 +100,85 @@ In Aura, you can use AWS single-region keys, multi-region keys or replica keys a
 
 Aura supports automatic key rotation via the AWS KMS.
 To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbox after initially creating a key, to automatically rotate the key once a year.
+
+== Azure keys
+
+=== Creating an Azure key vault
+
+CAUTION: There's a difference between *Key vault* and *Azure Key Vault managed HSMs*. Don't get them confused. We want want the first one! The Azure Key Vault!
+
+link:https://learn.microsoft.com/en-us/azure/key-vault/general/quick-create-portal[Create a key vault using the Azure portal]
+
+* Go to the Azure portal
+* Azure Key Vault Management
+* Create
+
+==== Basics tab
+
+* Ensure the region matches your Aura database instance region. 
+* Acknowledge that you understand that you will be billed for the entirety of the retention period and this setting cannot be disabled once enabled.
+* Enable purge protection
+
+==== Administrators tab
+
+* Add principal (N/A)
+
+==== Networking
+
+* Allow access from Private endpoints
+
+==== Access configuration
+
+*Review + Create*
+
+* You should see “Deployment is in progress”.
+Deployment could take some time.
+
+*When you see “Deployment succeeded” go to *resource group* 
+
+* Copy the directory ID
+
+When the key vault is created, copy the *directory ID*
+
+* Objects > Keys > Generate / Import 
+
+=== Ensure you have the correct permissions set up
+
+So in this case, we went to 
+
+It will highlight it in grey and then just press *next*
+
+NOTE: Want to have the * Key Vault Crypto Officer * permission - that is really important!
+
+* When the key is created, record the Key Identifier
+
+* In the Properties
+
+Copy the Key Identifier
+
+//
+
+== Customer Managed Key Permissions
+
+In order for Neo4j to use the provided key, you have to grant Neo4j permissions to use the key.
+
+== Azure Key Vault Checklist
+Ensure your Azure Key Vault complies with the requirements below:
+
+* The Key Vault is in the same region as the Neo4j instance you want to encrypt
+* The Key Vault has the "Enable purge protection" option enabled.
+* In the Access configuration settings of the Key Vault, the "Permission model" is set to "Azure role-based access control".
+* In the Access configuration settings of your Key Vault, under "Resource access" the "Azure Disk Encryption for volume encryption" option is enabled
+* In the Networking settings of your Key Vault, the "Enable public access" option is enabled
+
+NOTE: You cannot delete an active key, that is being used by an instance.
+
+NOTE: 
+If you see a screen that says "Need admin approval" 
+You may need to reach out to your internal IT team to ask for admin permission to install Azure app.
+The customer owns their tenant - so Neo4j suport won't be able to do that for you. 
+
+
+
+
+
