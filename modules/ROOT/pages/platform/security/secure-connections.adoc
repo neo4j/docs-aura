@@ -32,6 +32,8 @@ Private endpoints are network interfaces inside your own VPC, which can only be 
 The cloud provider connects them over their network to Neo4j Aura. 
 By design they are not exposed to the public internet, ensuring that critical services are accessible only through private, secure networks.
 
+A single private link connection applies to all instances in a region. So if you've set one up for `us-east-1` then those network connections will apply to all instances in that region. You can setup a second private link connection to applications that are hosted in a second region i.e. `us-west-1` but still housed inside the same Aura tenant/project.
+
 === AWS private endpoints
 
 label:AuraDB-Enterprise[]
