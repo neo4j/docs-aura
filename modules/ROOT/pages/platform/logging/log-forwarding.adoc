@@ -1,0 +1,45 @@
+[[aura-query-logs]]
+= Security log forwarding
+
+label:AuraDB-Enterprise[]
+label:AuraDS-Enterprise[]
+
+With security log forwarding, you can stream security logs directly to a cloud project owned by your organization, in real time.
+
+To access *Log forwarding*:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Select *Log forwarding* from the sidebar menu.
+
+This page contains a list of currently configured log forwarding processes for the active tenant.
+
+If no log forwarding process is set up, a button to do so is displayed in the center of the page.
+
+[NOTE]
+====
+A log forwarding process is scoped to a specific product and region combination, and limited to one for each.
+====
+
+== Set up log forwarding
+
+The complete steps for setting up log forwarding depends on the chosen cloud provider.
+
+Exhaustive instructions are provided in the wizard which appears by following the steps below.
+
+. Navigate to the *Log forwarding* page as described above.
+. Click *Create new log forwarding process*.
+. Follow the instructions specific to your cloud provider.
+
+== Output destination
+
+Log forwarding can forward logs to the log service of the same cloud provider as the monitored instance is located in.
+
+Cross-region log forwarding is supported.
+
+If your instance is in:
+
+* *Google Cloud Platform* - Forward logs to Google Cloud Logging in your own GCP project.
+* *Amazon Web Services* - Forward logs to CloudWatch in your own AWS account.
+* *Azure* - Forward logs to a Log Analytics workspace in your own Azure subscription.
+
+Logs can be further forwarded into third party systems using the log routing capabilities provided by your cloud provider.
