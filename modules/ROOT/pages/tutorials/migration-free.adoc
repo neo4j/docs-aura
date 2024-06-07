@@ -1,54 +1,61 @@
 = Migrating your Neo4j AuraDB Free Instance to another AuraDB tier (Pro or Enterprise)
 :description: This section describes migrating your Neo4j AuraDB Free Instance to another AuraDB tier (Pro or Enterprise)
 
-This section outlines the migration process for AuraDB instances from Free to either Professional or Enterprise.
+Upgrading unlocks additional resources and functionalities to support production workloads and applications with demanding storage and processing needs.
 
-== Migration Options
+*Migration options*
 
-* Upgrade to Professional
-* Clone to New ()
+* Upgrade to Professional (Works for AuraDB)
+* Clone to New (Works for Aura Professional and AuraDS) 
+* Manual Process
 
-Click on an instance > Upgrade to Professional > On the upgrade to Professional page, note the warning regarding the default version is now version 5.
+== Upgrade to Professional (Works for AuraDB)
 
-== Clone
+Upgrading a Free tier instance to the Professional tier can be done directly from the console.
+
+Click the *three dots* on an instance card > *Upgrade to Professional*
+
+You will see "upgrade to professional". Note the warning regarding the default version is now version 5.
+
+== Clone (Works for Aura Professional and AuraDS)
 
 The other way is to clone your existing free tier AuraDB Instance to the Professional tier. 
 
-* Either at the main page or at the detail view (when you click the AuraDB Instance name)  click on the ... button for the Clone features.
-* Select the target desired:
-* A new AuraDB Instance
-* An existing AuraDB Instance (the content will be replaced)
-* Select the type : AuraDB (graph database) or AuraDS (graph data science).
+* Click the *three dots* on an instance 
+* Select either: *Clone to new* or *Clone to existing* (the content will be replaced)
+* Select the type: *AuraDB* or *AuraDS*
 
 == Manual process
 
 In the Free AuraDB Instance:
 
-* [OPTIONAL but recommended] Capture existing index and constraint definitions.
-* Run the cypher statement SHOW CONSTRAINTS YIELD createStatement and save result to a file, to use later in the process.
-* Run the cypher statement SHOW INDEXES YIELD createStatement and save result to a file to use later in the process.
-* [OPTIONAL but recommended] Drop the indexes and constraints.
-* Run the cypher statement SHOW CONSTRAINTS YIELD name RETURN 'DROP CONSTRAINT ' + name + ';' in order to generate the commands to drop existing constraints. 
-* Execute the generate commands to drop existing constraints.
-*Run the cypher statement SHOW INDEXES YIELD name RETURN 'DROP INDEX ' + name +';' in order to generate the commands to drop existing indexes. 
-* Then execute the generate commands to drop existing indexes.
-* For more detail regarding the capture and recreating of indexes and constrains, please refer to Indexes - Capture / Drop / Recreate existing knowledge base article.
+* (Optional but recommended) Capture existing index and constraint definitions:
+** Run the cypher statement `SHOW CONSTRAINTS YIELD createStatement` and save result to a file, to use later in the process.
+** Run the cypher statement `SHOW INDEXES YIELD createStatement` and save result to a file to use later in the process.
 
-In the console (Activities on AuraDB Free):
+* (Optional but recommended) Drop the indexes and constraints.
+** Run the cypher statement `SHOW CONSTRAINTS YIELD name RETURN 'DROP CONSTRAINT ' + name + ';'` in order to generate the commands to drop existing constraints. 
+** Execute the generate commands to drop existing constraints.
+** Run the cypher statement `SHOW INDEXES YIELD name RETURN 'DROP INDEX ' + name +';'` in order to generate the commands to drop existing indexes. 
+* Then execute the generate commands to drop existing indexes.
+* For more detail regarding the capture and recreating of indexes and constrains, please refer to the link:https://support.neo4j.com/s/article/4416090515219-Indexes-Capture-Drop-Recreate-existing[Indexes - Capture / Drop / Recreate] knowledge base article.
+
+=== In the console (Activities on AuraDB Free)
 
 * Download snapshot/Dump locally (the daily automatic snapshot)
-* In Aura Console https://console.neo4j.io/#databases select the AuraDB Instance
-* Go to Snapshots tab
-* Click the three dots, and select *Export*
+* In the Aura Console select the AuraDB Instance
+* Go to the *Snapshots* tab
+* Click the *three dots*, and select *Export*
 * Save locally the Dump file (preserve the .dump extension)
 
-In the console (Activities on AuraDB Professional or AuraDB Enterprise) :
+=== In the console (Activities on AuraDB Professional or AuraDB Enterprise)
 
 * Create a new AuraDB Instance in AuraDB Professional or AuraDB Enterprise with the right resource sizing.
 * Upload via Console drag and drop or push-to-cloud
-* From the Aura Console: Drag and drop 
-* Using the command line: neo4j-admin push-to-cloud
-* In the newly created AuraDB Professional or Enterprise Instance:
+* From the Aura Console: link:https://neo4j.com/docs/aura/auradb/importing/importing-data/#_import_database[Drag and drop]
+* Using the command line: `neo4j-admin push-to-cloud`
 
-[OPTIONAL] Once the AuraDB Instance is loaded and started, you can now recreate the indexes and constraints, using the information captured earlier in the process or refer to link:https://support.neo4j.com/s/article/4416090515219-Indexes-Capture-Drop-Recreate-existing[Indexes - Capture / Drop / Recreate] knowledge base article.
+=== In the newly created AuraDB Professional or Enterprise Instance
+
+(Optional) Once the AuraDB Instance is loaded and started, you can now recreate the indexes and constraints, using the information captured earlier in the process or refer to link:https://support.neo4j.com/s/article/4416090515219-Indexes-Capture-Drop-Recreate-existing[Indexes - Capture / Drop / Recreate] knowledge base article.
 
