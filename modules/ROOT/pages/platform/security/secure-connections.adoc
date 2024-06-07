@@ -45,6 +45,8 @@ AuraDB Enterprise supports private endpoints on AWS using https://aws.amazon.com
 
 Once activated, you can create an endpoint in your VPC that connects to Aura.
 
+For a step-by-step guide, see the link:https://neo4j.com/blog/neo4j-aws-privatelink-configuration/[How to Configure Neo4j Aura With AWS PrivateLink] blog article.
+
 image::privatelink.png[title="VPC connectivity with AWS PrivateLink"]
 
 All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet.
