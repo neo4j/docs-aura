@@ -184,10 +184,10 @@ For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent 
 [aura-cmi-api-for-metrics-integration]
 .Aura API for Metrics Integration
 
-* Aura API (_v1beta5_) now supports fetching metrics integration endpoints using:
+* Aura API supports fetching metrics integration endpoints using:
  ** endpoint `+/tenants/{tenantId}/metrics-integration+` (for tenant metrics)
  ** JSON property `metrics_integration_url` as part of `+/instances/{instanceId}+` response (for instance metrics)
-* Reference: link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1beta5#/[Aura API Specification^]
+* Reference: link:https://neo4j.com/docs/aura/platform/api/specification/[Aura API Specification^]
 
 [aura-cmi-cli-for-metrics-integration]
 .Aura CLI for Metrics Integration
