@@ -200,7 +200,7 @@ aura tenants get-metrics-integration --tenant-id <YOUR_TENANT_ID>
 
 # example output
 {
-  endpoint: "https://customer-metrics-api.neo4j.io/api/<YOUR_TENANT_ID>/metrics"
+  endpoint: "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_TENANT_ID>/metrics"
 }
 
 # extract endpoint
@@ -221,7 +221,7 @@ aura instances get --instance-id <YOUR_INSTANCE_ID>
     "tenant_id": "YOUR_TENANT_ID",
     "cloud_provider": "gcp",
     "connection_url": "YOUR_CONNECTION_URL",
-    "metrics_integration_url": "https://customer-metrics-api.neo4j.io/api/<YOUR_TENANT_ID>/<YOUR_INSTANCE_ID>/metrics",
+    "metrics_integration_url": "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_TENANT_ID>/<YOUR_INSTANCE_ID>/metrics",
     "region": "europe-west1",
     "type": "enterprise-db",
     "memory": "8GB",
