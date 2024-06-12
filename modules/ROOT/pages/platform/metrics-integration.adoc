@@ -2,6 +2,8 @@
 = Customer Metrics Integration (CMI)
 :table-caption!:
 
+label:AuraDB-Enterprise[] label:AuraDS-Enterprise[]
+
 An application performance monitoring system can be configured to fetch metrics of Neo4j Aura Enterprise instances.
 This gives users access to their Neo4j Aura instance metric data for monitoring purposes.
 Analyzing the metrics data allows users to:
@@ -184,10 +186,10 @@ For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent 
 [aura-cmi-api-for-metrics-integration]
 .Aura API for Metrics Integration
 
-* Aura API (_v1beta5_) now supports fetching metrics integration endpoints using:
+* Aura API supports fetching metrics integration endpoints using:
  ** endpoint `+/tenants/{tenantId}/metrics-integration+` (for tenant metrics)
  ** JSON property `metrics_integration_url` as part of `+/instances/{instanceId}+` response (for instance metrics)
-* Reference: link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1beta5#/[Aura API Specification^]
+* Reference: link:https://neo4j.com/docs/aura/platform/api/specification/[Aura API Specification^]
 
 [aura-cmi-cli-for-metrics-integration]
 .Aura CLI for Metrics Integration
@@ -200,7 +202,7 @@ aura tenants get-metrics-integration --tenant-id <YOUR_TENANT_ID>
 
 # example output
 {
-  endpoint: "https://customer-metrics-api.neo4j.io/api/<YOUR_TENANT_ID>/metrics"
+  endpoint: "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_TENANT_ID>/metrics"
 }
 
 # extract endpoint
@@ -221,7 +223,7 @@ aura instances get --instance-id <YOUR_INSTANCE_ID>
     "tenant_id": "YOUR_TENANT_ID",
     "cloud_provider": "gcp",
     "connection_url": "YOUR_CONNECTION_URL",
-    "metrics_integration_url": "https://customer-metrics-api.neo4j.io/api/<YOUR_TENANT_ID>/<YOUR_INSTANCE_ID>/metrics",
+    "metrics_integration_url": "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_TENANT_ID>/<YOUR_INSTANCE_ID>/metrics",
     "region": "europe-west1",
     "type": "enterprise-db",
     "memory": "8GB",
@@ -598,7 +600,7 @@ m| MAX
 | Metric name
 m| neo4j_database_store_size_database
 | Description
-| Amount of disk space used to store user database data, in bytes.
+| Amount of disk space reserved to store user database data, in bytes.
 Ideally, the database should all fit into memory (page cache) for the best performance.
 Keep an eye on this metric to make sure you have enough storage for today and for future growth.
 Check this metric with page cache usage to see if the data is too large for the memory and consider increasing the size of your instance in this case.
