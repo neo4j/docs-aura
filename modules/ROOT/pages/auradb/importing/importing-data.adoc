@@ -1,10 +1,11 @@
 [[aura-importing-data]]
 = Importing data
 :description: This page describes how to get data into a Neo4j AuraDB instance.
+include::{ga-courses-uri}/importing-fundamentals/ad.adoc[]
 
 [NOTE]
 ====
-The process of importing or loading data requires you to xref:auradb/getting-started/create-database.adoc[create an AuraDB instance] beforehand. 
+The process of importing or loading data requires you to xref:auradb/getting-started/create-database.adoc[create an AuraDB instance] beforehand.
 ====
 
 There are two ways you can import data from a *_.csv_* file into an AuraDB instance:
@@ -44,3 +45,5 @@ For more information on Neo4j Data Importer, see the link:{neo4j-docs-base-uri}/
 ====
 You must provide your AuraDB instance password before importing from the Neo4j Data Importer.
 ====
+
+include::{ga-courses-uri}/importing-fundamentals/promo.adoc[]
