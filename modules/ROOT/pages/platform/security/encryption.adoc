@@ -105,7 +105,8 @@ To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbo
 
 === Creating an Azure key vault
 
-CAUTION: It's critical to differentiate between *Azure Key Vault* and Azure Key Vault Managed HSM for your key management needs. This document focuses on using *Azure Key Vault*.
+CAUTION: It's crucial to differentiate between Azure Key Vault and Azure Key Vault Managed HSM for your key management needs. 
+This document focuses on using *Azure Key Vault*.
 
 . In the Azure portal, create a link:https://learn.microsoft.com/en-us/azure/key-vault/general/[Key Vault]
 . In the *Basics tab* ensure the region matches your Aura database instance region and enable *purge protection*.
@@ -121,13 +122,14 @@ CAUTION: It's critical to differentiate between *Azure Key Vault* and Azure Key 
 
 === Creating a key
 
-Add a Key in the Key Vault and when the key is created, record the *Key Identifier* because you need it later.
+Add a key in the Key Vault.
+When the key is created, record the *Key Identifier* because you need it later.
 
 ==== Create a Service Principal for the Neo4j CMK Application
 
 In the Azure tenant where your key is located, create a Service Principal linked to the Neo4j CMK Application with the ID displayed in the Aura Console.
 
-For example, using link:https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-examples[Azure CLI], the command is:
+For example, using link:https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-examples[Azure CLI] the command is:
 
 [source,bash]
 ----
@@ -136,7 +138,6 @@ For example, using link:https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=a
 
 ==== Add role assignment to the key
 
-. Go to *Access control (IAM).* and *Add role assignment.*
-. Select *Key Vault Crypto Officer* - this will highlight the row in grey, and then press *next*.
-. Tap *Select member* and assign access to *User, group, or service principal*, and paste the Neo4j CMK Application ID. Click it when it appears to add it to *Selected members*.
-Then tap *Review + Assign*
+. Go to *Access control (IAM)* and *Add role assignment.*
+. Select *Key Vault Crypto Officer* to highlight the row in grey, and then press *next*.
+. Tap *Select member* and assign access to *User, group, or service principal*, and paste the Neo4j CMK Application ID and add it to *Selected members*, then *Review + Assign*.
