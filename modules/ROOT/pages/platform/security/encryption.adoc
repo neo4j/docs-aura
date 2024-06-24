@@ -114,11 +114,9 @@ This document focuses on using *Azure Key Vault*.
 . In the *Networking tab* allow access from all networks.
 . Select *Review + Create* and when the deployment is complete go to *resource* and record the *directory ID*, you need it later.
 
-==== Add role assignment to the Key Vault
+=== Add role assignment to the Key Vault
 
-. Go to *Access control (IAM)* and add *role assignment*.
-. Search *Key Vault Administrator* and tap *Key Vault Administrator* - this will highlight the row in grey, and then press *next*.
-. Select members (search by name, and when you have added the relevant person, press *select*) and then *Review + Assign*.
+In the Azure portal, add role assignment by selecting relevant members as *Key Vault Administrator*.
 
 === Creating a key
 
