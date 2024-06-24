@@ -138,6 +138,5 @@ See https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-a
 
 ==== Add role assignment to the key
 
-. Go to *Access control (IAM)* and *Add role assignment.*
-. Select *Key Vault Crypto Officer* to highlight the row in grey, and then press *next*.
-. Tap *Select member* and assign access to *User, group, or service principal*, and paste the Neo4j CMK Application ID and add it to *Selected members*, then *Review + Assign*.
+In the Azure portal, add role assignment by selecting relevant members as *Key Vault Crypto Officer*.
+Use the Neo4j CMK Application ID from the Aura Console.
