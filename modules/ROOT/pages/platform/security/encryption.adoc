@@ -117,7 +117,7 @@ Create a Key Vault in the Azure portal ensuring the region matches your Aura dat
 
 In the Azure tenant where your key is located, create a service principal linked to the Neo4j CMK Application with the Neo4j CMK Application ID displayed in the Aura Console.
 
-For example, using link:https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create[Azure CLI] the command is: 
+For example, using https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create[Azure CLI] the command is: 
 
 [source,bash]
 ----
