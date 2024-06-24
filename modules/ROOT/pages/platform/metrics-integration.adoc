@@ -281,32 +281,6 @@ If this metric is constantly spiking or at its limits, consider increasing the s
 m| MAX
 |===
 
-.Memory Used
-[frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
-|===
-| Metric name
-m| neo4j_aura_memory_usage
-| Description
-| Memory used by Neo4j.
-| Metric type
-| _Gauge_
-| Default aggregation
-m| MAX
-|===
-
-.Memory Total
-[frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
-|===
-| Metric name
-m| neo4j_aura_memory_limit
-| Description
-| The total memory assigned to the instance.
-| Metric type
-| _Gauge_
-| Default aggregation
-m| MAX
-|===
-
 .Storage Total
 [frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
 |===
