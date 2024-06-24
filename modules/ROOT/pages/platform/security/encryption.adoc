@@ -35,7 +35,7 @@ The loss of a Customer Managed Key, through deletion, disabling, or expiration, 
 Neo4j cannot administer database instances when keys are disabled, deleted, or permissions revoked.
 ====
 
-=== Deleting a key
+=== Delete a key
 
 If a Customer Managed Key is being used to encrypt one or more Aura instances in the console, it can't be deleted.
 If you need to delete the key, first delete the Aura database instances encrypted with the key, then delete the key.
@@ -47,19 +47,19 @@ In your KMS platform, you can either configure automatic rotation for the Custom
 Although automatic rotation is not enforced by Aura, it is best practice to rotate keys regularly.
 Manual key rotation is **not** recommended.
 
-=== Regionality
+=== Regions
 
 There is a limit of one key for AuraDB and one key for AuraDS per region.
 Depending on the KMS, there may be a delay between disabling a key, and when it can no longer be used to encrypt and decrypt data.
 
-=== Importing an existing database
+=== Import an existing database
 
 You can upload a database to instances encrypted with Customer Managed Keys in Neo4j 5 directly from the console or by using `neo4j-admin database upload`.
 If the database is larger than 4 GB, you have to use `neo4j-admin database upload`. 
 Note that the `neo4j-admin push-to-cloud` command in Neo4j v4.4 and earlier is **not** supported for instances encrypted with Customer Managed Keys.
 For more information see the xref:auradb/importing/import-database.adoc#_neo4j_admin_database_upload[Neo4j Admin `database upload`] documentation.
 
-=== Cloning an instance protected by CMK
+=== Clone an instance protected by CMK
 
 To clone an instance protected by a Customer Managed Key, the key must be valid and available to Aura.
 The cloned instance, by default, uses the available Customer Managed Key for that region and product.
@@ -69,7 +69,7 @@ If there is no valid CMK for the destination region and product, the Neo4j Manag
 
 == AWS keys
 
-=== Creating an AWS key
+=== Create an AWS key
 
 . Create a key in the AWS KMS ensuring the region matches your Aura database instance region.
 Copy the generated ARN.
@@ -77,7 +77,7 @@ You need it in the next step.
 . Go to *security settings* in the Aura Console, create a *Customer Managed Key* and copy the JSON code that is generated in the Aura Console when you add a key.
 . In the AWS KMS, edit the key policy to include the JSON code.
 
-=== Editing the AWS key policy
+=== Edit the AWS key policy
 
 After you have initially created a key in the AWS KMS, you can edit the key policy.
 In the AWS key policy, "Statement" is an array that consists of one or more objects.
@@ -86,7 +86,7 @@ The objects in the AWS code array are comma-separated, e.g. `{[{'a'}, {'b'}, {'c
 
 Add a comma after the curly brace in the final SID, and then paste the JSON code that was generated in the Aura Console, e.g. `{[{'a'}, {'b'}, {'c'}, _add code here_ ]}`
 
-=== AWS regionality
+=== AWS regions
 
 When creating a Customer Managed Key in the AWS KMS, you can create a single-region key in a single AWS region, or create a multi-region key that you can replicate into multiple AWS regions.
 Aura only supports AWS Customer Managed Keys that reside in the same region as the instance.
@@ -103,40 +103,33 @@ To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbo
 
 == Azure keys
 
-=== Creating an Azure key vault
+=== Create an Azure key vault
 
-CAUTION: It's crucial to differentiate between Azure Key Vault and Azure Key Vault Managed HSM for your key management needs. 
-This document focuses on using *Azure Key Vault*.
+. Create a key vault in the Azure portal ensuring the region matches your Aura database instance region.
+Enable *purge protection*, *Azure role-based access control*, and *Azure Disk Encryption for volume encryption*, and allow access from all networks.
+. When the deployment is complete, go to the *resource* tab and copy the *directory ID*.
+. In the Azure portal, add role assignment by selecting relevant members as *Key Vault Administrator*.
 
-. In the Azure portal, create a link:https://learn.microsoft.com/en-us/azure/key-vault/general/[Key Vault]
-. In the *Basics tab* ensure the region matches your Aura database instance region and enable *purge protection*.
-. In the *Access configuration tab* enable *Azure role-based access control* and enable *Azure Disk Encryption for volume encryption*.
-. In the *Networking tab* allow access from all networks.
-. Select *Review + Create* and when the deployment is complete go to *resource* and record the *directory ID*, you need it later.
+=== Create a key
 
-=== Add role assignment to the Key Vault
+. Create a key in the Azure portal. Copy the *Key Identifier*, you need it in the next step.
+. Go to *security settings* in the *Aura Console* and create a Customer Managed Key.
+. Follow the instructions in the Aura Console for the next sections:
 
-In the Azure portal, add role assignment by selecting relevant members as *Key Vault Administrator*.
+=== Create a Service Principal 
 
-=== Creating a key
+In the Azure tenant where your key is located, create a Service Principal linked to the Neo4j CMK Application with the *key identifier* displayed in the Aura Console.
 
-Add a key in the Key Vault.
-When the key is created, record the *Key Identifier*, you need it later.
-
-==== Create a Service Principal for the Neo4j CMK Application
-
-In the Azure tenant where your key is located, create a Service Principal linked to the Neo4j CMK Application with the ID displayed in the Aura Console.
-
-For example, using Azure CLI the command is:
+For example, using link:https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-examples[Azure CLI] the command is:
 
 [source,bash]
 ----
-`az ad sp create --id clientID`.
+az ad sp create --id clientID 
 ----
 
-See https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-examples[Azure documentation^] for more information.
+=== Add role assignment to the key
 
-==== Add role assignment to the key
+. Go to *Access control (IAM)* and *Add role assignment*.
+. Select *Key Vault Crypto Officer* then *Select member* and assign access to *User, group, or service principal*.
+. Paste the *Neo4j CMK Application ID*, then press *Select* and *Review + Assign*.
 
-In the Azure portal, add role assignment by selecting relevant members as *Key Vault Crypto Officer*.
-Use the Neo4j CMK Application ID from the Aura Console.
