@@ -105,31 +105,32 @@ To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbo
 
 === Create an Azure key vault
 
-. Create a key vault in the Azure portal ensuring the region matches your Aura database instance region.
-Enable *purge protection*, *Azure role-based access control*, and *Azure Disk Encryption for volume encryption*, and allow access from all networks.
-. When the deployment is complete, go to the *resource* tab and copy the *directory ID*.
-. In the Azure portal, add role assignment by selecting relevant members as *Key Vault Administrator*.
+Create a Key Vault in the Azure portal ensuring the region matches your Aura database instance region. Enable purge protection, Azure role-based access control, and Azure Disk Encryption for volume encryption, and allow access from all networks.
 
 === Create a key
 
-. Create a key in the Azure portal. Copy the *Key Identifier*, you need it in the next step.
-. Go to *security settings* in the *Aura Console* and create a Customer Managed Key.
+. Create a key in the Azure Key Vault. Copy the Key Identifier, you need it in the next step.
+. Go to *security settings* in the Aura Console and add a *Customer Managed Key*.
 . Follow the instructions in the Aura Console for the next sections:
 
-=== Create a service principal 
+=== Create a service principal
 
-In the Azure tenant where your key is located, create a service principal linked to the Neo4j CMK Application with the *key identifier* displayed in the Aura Console.
+In the Azure tenant where your key is located, create a service principal linked to the Neo4j CMK Application with the Neo4j CMK Application ID displayed in the Aura Console.
 
-For example, using link:https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-examples[Azure CLI] the command is:
+For example, using Azure CLI the command is: 
 
 [source,bash]
 ----
-az ad sp create --id clientID 
+az ad sp create --id Neo4jCMKApplicationID
 ----
 
-=== Add role assignment to the key
+=== Add role assignment to the Azure key
 
-. Go to *Access control (IAM)* and *Add role assignment*.
-. Select *Key Vault Crypto Officer* then *Select member* and assign access to *User, group, or service principal*.
-. Paste the *Neo4j CMK Application ID*, then press *Select* and *Review + Assign*.
+. Go to Access control (IAM) inside the key and Add role assignment.
+. In the Role tab, select Key Vault Crypto Officer.
+. In the Member tab, select User, group, or service principal.
+. Select members and paste the Neo4j CMK Application ID, the Neo4j CMK Application should appear, select this application, then Review + Assign.
+
+
+
 
