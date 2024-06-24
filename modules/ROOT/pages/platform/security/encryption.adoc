@@ -117,7 +117,7 @@ Create a Key Vault in the Azure portal ensuring the region matches your Aura dat
 
 In the Azure tenant where your key is located, create a service principal linked to the Neo4j CMK Application with the Neo4j CMK Application ID displayed in the Aura Console.
 
-For example, using Azure CLI the command is: 
+For example, using link:https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create[Azure CLI] the command is: 
 
 [source,bash]
 ----
@@ -126,10 +126,11 @@ az ad sp create --id Neo4jCMKApplicationID
 
 === Add role assignment to the Azure key
 
-. Go to Access control (IAM) inside the key and Add role assignment.
-. In the Role tab, select Key Vault Crypto Officer.
-. In the Member tab, select User, group, or service principal.
-. Select members and paste the Neo4j CMK Application ID, the Neo4j CMK Application should appear, select this application, then Review + Assign.
+. Go to *Access control (IAM)* inside the key and add *role assignment*.
+. In the *Role* tab, select *Key Vault Crypto Officer*.
+. In the *Member* tab, select *User, group, or service principal*.
+. *Select members* and paste the *Neo4j CMK Application ID*. The *Neo4j CMK Application* should appear, select this application.
+. *Review + Assign*.
 
 
 
