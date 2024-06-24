@@ -127,12 +127,14 @@ When the key is created, record the *Key Identifier*, you need it later.
 
 In the Azure tenant where your key is located, create a Service Principal linked to the Neo4j CMK Application with the ID displayed in the Aura Console.
 
-For example, using link:https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-examples[Azure CLI] the command is:
+For example, using Azure CLI the command is:
 
 [source,bash]
 ----
-`az ad sp create --id clientID`. 
+`az ad sp create --id clientID`.
 ----
+
+See https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-examples[Azure documentation^] for more information.
 
 ==== Add role assignment to the key
 
