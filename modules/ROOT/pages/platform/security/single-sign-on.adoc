@@ -5,131 +5,45 @@
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
 
-== Introduction to SSO
+== SSO levels
 
-Single Sign-On (SSO) allows for both keeping data safe and providing authorized users safe access to the data.
-This section describes how to set up Aura SSO with Role-Based Access Control (RBAC) for centrally controlled privileges as well as data access.
+Aura admins can configure organization and tenant level SSO:
 
-Aura Enterprise supports SSO at the organization, project, and instance levels.
-Aura admins can configure organization and project level SSO while Aura Support can configure instance level SSO.
+. *Organization level SSO*: This configuration applies to all tenants and new database instances created within your organization.
 
-== Requirements
+. *Tenant level SSO*:  SSO configured at the tenant level affects all new database instances created within that tenant. It ensures users logging in with SSO have access to the authorized database instances within the tenant.
 
-Accessing Aura with SSO requires:
- 
-* Authorization Code Flow with PKCE (Proof Key for Code Exchange).
-* A publicly accessible Identity Provider (IdP) server.
+== Login methods
 
-== Configuring SSO 
-
-Users can configure a combination of one or more of the following login methods:
+Admins can configure a combination of one or more of the following login methods:
 
 * Email/password
 * Okta
-* Microsoft Entra ID (previously Azure Active Directory)
+* Microsoft Entra ID
+* Google Sign-in
 
 An organization's admin can add Aura as a login from a tile in an organization's Apps Dashboard.
 
+== Setup requirements
 
-== SSO setup requirements 
+Accessing Aura with SSO requires:
+ 
+* Authorization Code Flow
+* A publicly accessible Identity Provider (IdP) server
 
-To configure SSO from Aura, go to the *Aura Console > Settings > SSO Configuration.*
+To configure SSO, go to *Aura Console > Settings > SSO Configuration.*
 
-The set-up form requires the following info:
+To create a SSO Configuration either a Discovery URI or a combination of Issuer, Authorization Endpoint, Token Endpoint and JWKS URI is required.
 
-* SSO config ID - you decide a name for this
-* IdP type (e.g. Okta / Microsoft Entra ID)
-* Channel
-* Client ID 
-* Client Secret
-* Discovery URI
-* Issuer
-* Authorization Endpoint
+== Configurations available from Support
 
-== Organization SSO
+Support can assist with:
 
-Organization SSO allows log in to the Aura Console using organization IdP credentials.
+* Role mapping specific to a database
+* Custom groups claim besides `groups`
+* Updating SSO on already running instances
 
-To facilitate organization SSO login, you need to create an Auth0 organization and add all users to it.
-Then you need to associate tenants/projects with an organization and add the users to it when they accept invitations to join.
+If you would like support assistance, please https://support.neo4j.com/[raise a support ticket] including the following information:
 
-== Mapping an organization
-
-When you map an organization to your IdP, Aura grants membership in that organization to users who authenticate through the IdP .
-
-You can give these users a default role in the selected organization.
-
-Organization mapping lets you configure a single IdP to grant users access to multiple organizations within the Neo4j Aura Console. 
-
-.Organization roles
-[cols="25m,75v"]
-|===
-| Role | Permissions
-
-| Organization Owner
-| • Full access to read/write organization
-
-• Full access to list/read/write tenants
-
-• Given to self serve users during registration instead of a tenant role
-
-• Can create/edit/delete SSO [Enterprise Only]
-
-• Can invite to any role up to owner
-
-| Organization Admin
-| • Full access to read/write org details
-
-• Full access to list/create tenants
-
-• Can create/edit/delete SSO [Enterprise Only]
-
-• Can invite to any role up to admin
-
-| Organization Member (Default when added to tenant)
-| • Full access to read organization
-
-• Full access to list tenants
-
-• Default role for users given access to a single tenant via invite/marketplace
-
-|===
-
-== Home Realm Discovery 
-
-If Home Realm Discovery (HRD) is enabled, and a user’s email domain matches the configured domain, they are redirected to the Auth0 connection IdP. 
-Once authenticated, the user has access to both the company organization and their personal organization. 
-If HRD is disabled, the user logs in with their password, but only has access to their personal organization, once authenticated.
-
-== Console SSO
-
-Console SSO allows log in to the Aura Console using company IdP credentials and grants Public Access privileges to all instances in the tenant.
-See link:{neo4j-docs-base-uri/operations-manual/5/authentication-authorization/built-in-roles/#access-control-built-in-roles-public[Operations Manual -> The `PUBLIC` role^] for more information.
-
-The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are currently supported for Console-level Authentication:
-
-* Microsoft Azure Active Directory (AAD)
-* Okta
-
-== Instance SSO
-
-Instance SSO allows you to directly map groups of users (as defined in your IdP) to DBMS RBAC roles when launching Workspace, Bloom and Browser clients from an Aura instance.
-
-The following OIDC certified IdPs are currently supported for instance-level Authentication:
-
-* Microsoft Azure Active Directory (AAD)
-* Okta
-* Keycloak
-* Google Authentication
-
-To add SSO for Workspace, Bloom, and Browser to your Aura Enterprise instances, please https://support.neo4j.com/[raise a support ticket] including the following information:
-
-. The *Connection URI* of the instance(s) you want to use SSO.
-. Whether or not you want Workspace, Bloom, Browser, or a combination of them enabled.
+. The _Tenant ID_ of the tenant(s) you want to use SSO. See xref:platform/user-management.adoc#_tenants[Tenants] for more information on how to find your __Tenant ID__.
 . The name of your IdP.
-
-[NOTE]
-====
-If you have to specify an application type when configuring your client, Neo4j is a Single-page application.
-For more information on configuring your client, see link:{neo4j-docs-base-uri}/operations-manual/current/tutorial/tutorial-sso-configuration/[Neo4j Single Sign-On (SSO) Configuration].
-====
