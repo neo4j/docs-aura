@@ -18,6 +18,7 @@ Aura admins can configure organization and tenant level SSO:
 Admins can configure a combination of one or more of the following login methods:
 
 * Email/password
+* Microsoft Entra ID
 * Okta
 * Microsoft Entra ID
 * Google Sign-in
@@ -36,6 +37,11 @@ To configure SSO, go to *Aura Console > Settings > SSO Configuration.*
 To create a SSO Configuration either a Discovery URI or a combination of Issuer, Authorization Endpoint, Token Endpoint and JWKS URI is required.
 
 == Configurations available from Support
+
+* Microsoft Entra ID
+* Okta
+* Keycloak
+* Google Authentication
 
 Support can assist with:
 

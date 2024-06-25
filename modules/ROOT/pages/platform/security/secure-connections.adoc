@@ -32,6 +32,10 @@ Private endpoints are network interfaces inside your own VPC, which can only be 
 The cloud provider connects them over their network to Neo4j Aura. 
 By design they are not exposed to the public internet, ensuring that critical services are accessible only through private, secure networks.
 
+A single private link connection applies to all instances in a region. 
+So if you've set one up for `us-east-1` then those network connections will apply to all instances in that region. 
+You can set up a second private link connection to applications that are hosted in a second region i.e. `us-west-1` but still housed inside the same Aura tenant.
+
 === AWS private endpoints
 
 label:AuraDB-Enterprise[]
@@ -40,6 +44,8 @@ label:AuraDS-Enterprise[]
 AuraDB Enterprise supports private endpoints on AWS using https://aws.amazon.com/privatelink[AWS PrivateLink].
 
 Once activated, you can create an endpoint in your VPC that connects to Aura.
+
+For a step-by-step guide, see the link:https://neo4j.com/blog/neo4j-aws-privatelink-configuration/[How to Configure Neo4j Aura With AWS PrivateLink] blog article.
 
 image::privatelink.png[title="VPC connectivity with AWS PrivateLink"]
 
@@ -129,7 +135,7 @@ To continue accessing Browser and Bloom, you can configure a https://cloud.googl
 ====
 To access Bloom and Browser over a VPN, you must ensure that:
 
-* You have setup https://cloud.google.com/dns/docs/zones/manage-response-policies[GCP Cloud DNS], or an equivalent DNS service, inside of the VPC.
+* You have set up link:https://cloud.google.com/dns/docs/zones/manage-response-policies[GCP Response Policy Zone], or an equivalent DNS service, inside of the VPC.
 * You use the *Private URI* shown on the instance tile and in the instance details. It will be different from the *Connection URI* you used before.
 ====
 

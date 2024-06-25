@@ -28,8 +28,10 @@ See <<_public_traffic>> below for more information.
 
 `database upload` is a `neo4j-admin` command that you can run to upload the contents of a Neo4j database into an Aura instance, regardless of the database's size.
 Keep in mind that the database you want to upload may run a different version of Neo4j than your Aura instance.
+Additionally, your Neo4j Aura instance must be accessible from the machine running `neo4j-admin`.
+Otherwise, the upload will fail with SSL errors.
 
-For details of how to use the `neo4j-admin database upload` command, along with a full list of options and version compatibility, see link:{neo4j-docs-base-uri}/operations-manual/current/tools/neo4j-admin/upload-to-aura/[Upload to Neo4j Aura].
+For details on how to use the `neo4j-admin database upload` command, along with a full list of options and version compatibility, see link:{neo4j-docs-base-uri}/operations-manual/current/tools/neo4j-admin/upload-to-aura/[Upload to Neo4j Aura].
 
 [NOTE]
 ====
