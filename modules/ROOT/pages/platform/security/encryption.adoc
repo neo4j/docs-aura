@@ -109,6 +109,8 @@ Create a Key Vault in the Azure portal ensuring the region matches your Aura dat
 
 === Add role assignment
 
+You might already have permissions from your company to create keys, but this is one way to grant permissions if you have a personal Aura account:
+
 . Inside the key vault, go to *Access Control (IAM)* and *add role assignment*.
 . In the *Role* tab, select *Key Vault Administrator*.
 . In the *Member* tab, select *User, group, or service principal*.
