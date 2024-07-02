@@ -100,3 +100,49 @@ In Aura, you can use AWS single-region keys, multi-region keys or replica keys a
 
 Aura supports automatic key rotation via the AWS KMS.
 To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbox after initially creating a key, to automatically rotate the key once a year.
+
+== Azure keys
+
+=== Create an Azure key vault
+
+Create a Key Vault in the Azure portal ensuring the region matches your Aura database instance region. Move through the tabs to enable purge protection, Azure role-based access control, and Azure Disk Encryption for volume encryption, and allow access from all networks.
+
+=== Add role assignment
+
+You might already have permissions from your company to create keys, but this is one way to grant permissions if you have a personal Aura account:
+
+. Inside the key vault, go to *Access Control (IAM)* and *add role assignment*.
+. In the *Role* tab, select *Key Vault Administrator*.
+. In the *Member* tab, select *User, group, or service principal*.
+. *Select members* and select yourself or the relevant person.
+. *Review + Assign*.
+
+=== Create a key
+
+. Create a key in the Azure Key Vault. 
+. After the key is created, click into key version and copy the *Key Identifier*, you need it in the next step.
+. Go to *security settings* in the Aura Console and add a *Customer Managed Key*.
+. Follow the instructions in the Aura Console for the next sections:
+
+=== Create a service principal
+
+In the Azure tenant where your key is located, create a link:https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal#assign-a-role-to-the-application[service principal] linked to the Neo4j CMK Application with the Neo4j CMK Application ID displayed in the Aura Console.
+
+One way to do this is by navigating to click the terminal icon at the top of the Azure portal, to open the Azure Cloud Shell.
+
+image::azurecloudshell.png[title = Azure Cloud Shell icon]
+
+Then, using https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create[Azure CLI] the command is: 
+
+[source,bash]
+----
+az ad sp create --id Neo4jCMKApplicationID
+----
+
+=== Add role assignment to the Azure key
+
+. Inside the key, go to *Access control (IAM)* and add *role assignment*.
+. In the *Role* tab, select *Key Vault Crypto Officer*.
+. In the *Member* tab, select *User, group, or service principal*.
+. *Select members* and paste the *Neo4j CMK Application ID*. The *Neo4j CMK Application* should appear, select this application.
+. *Review + Assign*.
