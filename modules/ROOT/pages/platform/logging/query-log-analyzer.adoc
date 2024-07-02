@@ -53,6 +53,32 @@ To reset zoom, double-click anywhere inside the timeline.
 
 To hide or show individual data series, select the corresponding data series in the legend below the timeline.
 
+
+== Fetch logs
+
+The *Fetch logs* button will open up a dialog where you can add filters and search before fetching the logs.
+The Query timeline determines the current time selection, which can be changed by closing the dialog and modifing the timeline. 
+To fetch the logs after selection of filters and search is done, click the *Go* button.
+
+=== Filters
+
+To filter, click the filter button.
+This will load the available filters over the selected time period. 
+Filters are available for the following fields:
+
+* Status
+* User
+* Driver
+* Application
+* Initiation type
+
+=== Search
+
+To search, click the search button. 
+Search can be specified for the *Query text* and the *Error text*.
+The fields are case insensitive and allows you to find specific queries or error that are interesting.  
+
+
 == Table interactions
 
 === Sort table
