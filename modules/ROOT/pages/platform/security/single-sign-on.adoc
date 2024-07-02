@@ -5,49 +5,57 @@
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
 
-Aura Enterprise supports Single Sign-On (SSO) at both the Console level and for accessing Workspace, Bloom and Browser clients directly at the instance level.
+== SSO levels
 
-[NOTE]
-====
+Aura admins can configure organization and tenant level SSO:
+
+* *Organization level SSO:* Applies to everything related to the console within an organization. Grants console access for organization management, this includes editing organization and tenant settings, viewing the list of instances within tenants, and managing instances (such as pause/resume). However, it does not grant access to view or modify data within the database instances themselves. Currently, role mapping is not applicable to Organization level SSO.
+
+
+* *Instance level SSO:*  Affects all new database instances created within that tenant. It ensures users logging in with SSO have access to the database instances within the tenant. Instance level SSO gives access to to view or modify data within the database instances themselves. For this level, the role mapping may be used to grant users different levels of access based on a role in their IdP (it *does not* give access to edit the tenant settings e.g. edit the tenant name / network access, or edit the instance settings e.g. rename an instance / pause and resume).
+
+== Login methods
+
+Login methods are different for each SSO level.
+Admins can configure a combination of one or more of the login methods.
+
+*Organization level SSO supports:*
+
+* Email/password
+* Okta
+* Microsoft Entra ID
+* Google SSO
+
+An organization's admin can add Aura as a login from a tile in an organization's Apps Dashboard.
+
+*Instance level SSO supports:*
+
+* User/password
+* Okta
+* Microsoft Entra ID
+
+However, at the instance level you cannot disable user/password, but at the organization level you can disable email/password and Google SSO as long as you have at least one other custom SSO provider configured.
+
+== Setup requirements
+
 Accessing Aura with SSO requires:
  
-* Authorization Code Flow with PKCE.
-* A publicly accessible Identity Provider (IdP) server.
-====
+* Authorization Code Flow
+* A publicly accessible Identity Provider (IdP) server
 
-== Console SSO
+To configure SSO, go to *Aura Console > Settings > SSO Configuration.*
 
-Console SSO allows you to log in to the Aura Console using company IdP credentials and grants link:{neo4j-docs-base-uri}/cypher-manual/current/administration/access-control/built-in-roles#access-control-built-in-roles-public[Public Access privileges] to all instances in the tenant.
+To create a SSO Configuration either a Discovery URI or a combination of Issuer, Authorization Endpoint, Token Endpoint and JWKS URI is required.
 
-The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are currently supported for Console-level Authentication:
+== Individual instance level SSO configurations available from Support
 
-* Microsoft Entra ID
-* Okta
+Support can assist with:
 
-To enable Console SSO on your Aura Enterprise tenant(s), please https://support.neo4j.com/[raise a support ticket] including the following information:
+* Role mapping specific to a database instance
+* Custom groups claim besides `groups`
+* Updating SSO on already running instances
 
-. The _Tenant ID_ of the tenant(s) you want to use SSO. See xref:platform/user-management.adoc#_tenants[Tenants] for more information on how to find your __Tenant ID__.
-. The name of your IdP.
+If you would like support assistance, please https://support.neo4j.com/[raise a support ticket] including the following information:
 
-== Instance SSO
-
-Instance SSO allows you to directly map groups of users (as defined in your IdP) to DBMS RBAC roles when launching Workspace, Bloom and Browser clients from an Aura instance.
-
-The following OIDC certified IdPs are currently supported for instance-level Authentication:
-
-* Microsoft Entra ID
-* Okta
-* Keycloak
-* Google Authentication
-
-To add SSO for Workspace, Bloom, and Browser to your Aura Enterprise instances, please https://support.neo4j.com/[raise a support ticket] including the following information:
-
-. The *Connection URI* of the instance(s) you want to use SSO.
-. Whether or not you want Workspace, Bloom, Browser, or a combination of them enabled.
-. The name of your IdP.
-
-[NOTE]
-====
-If you have to specify an application type when configuring your client, Neo4j is a Single-page application.
-For more information on configuring your client, see link:{neo4j-docs-base-uri}/operations-manual/current/tutorial/tutorial-sso-configuration/[Neo4j Single Sign-On (SSO) Configuration].
-====
+. The _Tenant ID_ of the tenant(s) you want to use SSO. See xref:platform/user-management.adoc#_tenants[Tenants] for more information on how to find your __Tenant ID__
+. The name of your IdP
