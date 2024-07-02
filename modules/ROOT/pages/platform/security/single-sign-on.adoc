@@ -12,7 +12,7 @@ Aura admins can configure organization and tenant level SSO:
 * *Organization level SSO:* Applies to everything related to the console within an organization. Grants console access for organization management, this includes editing organization and tenant settings, viewing the list of instances within tenants, and managing instances (such as pause/resume). However, it does not grant access to view or modify data within the database instances themselves. Currently, role mapping is not applicable to Organization level SSO.
 
 
-* *Instance level SSO:*  Affects all new database instances created within that tenant. It ensures users logging in with SSO have access to the database instances within the tenant. Instance level SSO gives access to to view or modify data within the database instances themselves. For this level, the role mapping may be used to grant users different levels of access based on a role in their IDP (it *does not* give access to edit the tenant settings e.g. edit the tenant name / network access, or edit the instance settings e.g. rename an instance / pause and resume).
+* *Instance level SSO:*  Affects all new database instances created within that tenant. It ensures users logging in with SSO have access to the database instances within the tenant. Instance level SSO gives access to to view or modify data within the database instances themselves. For this level, the role mapping may be used to grant users different levels of access based on a role in their IdP (it *does not* give access to edit the tenant settings e.g. edit the tenant name / network access, or edit the instance settings e.g. rename an instance / pause and resume).
 
 == Login methods
 
