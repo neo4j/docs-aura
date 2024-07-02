@@ -35,7 +35,7 @@ The loss of a Customer Managed Key, through deletion, disabling, or expiration, 
 Neo4j cannot administer database instances when keys are disabled, deleted, or permissions revoked.
 ====
 
-=== Deleting a key
+=== Delete a key
 
 If a Customer Managed Key is being used to encrypt one or more Aura instances in the console, it can't be deleted.
 If you need to delete the key, first delete the Aura database instances encrypted with the key, then delete the key.
@@ -47,19 +47,19 @@ In your KMS platform, you can either configure automatic rotation for the Custom
 Although automatic rotation is not enforced by Aura, it is best practice to rotate keys regularly.
 Manual key rotation is **not** recommended.
 
-=== Regionality
+=== Regions
 
 There is a limit of one key for AuraDB and one key for AuraDS per region.
 Depending on the KMS, there may be a delay between disabling a key, and when it can no longer be used to encrypt and decrypt data.
 
-=== Importing an existing database
+=== Import an existing database
 
 You can upload a database to instances encrypted with Customer Managed Keys in Neo4j 5 directly from the console or by using `neo4j-admin database upload`.
 If the database is larger than 4 GB, you have to use `neo4j-admin database upload`. 
 Note that the `neo4j-admin push-to-cloud` command in Neo4j v4.4 and earlier is **not** supported for instances encrypted with Customer Managed Keys.
 For more information see the xref:auradb/importing/import-database.adoc#_neo4j_admin_database_upload[Neo4j Admin `database upload`] documentation.
 
-=== Cloning an instance protected by CMK
+=== Clone an instance protected by CMK
 
 To clone an instance protected by a Customer Managed Key, the key must be valid and available to Aura.
 The cloned instance, by default, uses the available Customer Managed Key for that region and product.
@@ -69,7 +69,7 @@ If there is no valid CMK for the destination region and product, the Neo4j Manag
 
 == AWS keys
 
-=== Creating an AWS key
+=== Create an AWS key
 
 . Create a key in the AWS KMS ensuring the region matches your Aura database instance.
 Copy the generated ARN.
@@ -77,7 +77,7 @@ You need it in the next step.
 . Go to *security settings* in the Aura Console, create a *Customer Managed Key* and copy the JSON code that is generated in the Aura Console when you add a key.
 . In the AWS KMS, edit the key policy to include the JSON code.
 
-=== Editing the AWS key policy
+=== Edit the AWS key policy
 
 After you have initially created a key in the AWS KMS, you can edit the key policy.
 In the AWS key policy, "Statement" is an array that consists of one or more objects.
@@ -86,7 +86,7 @@ The objects in the AWS code array are comma-separated, e.g. `{[{'a'}, {'b'}, {'c
 
 Add a comma after the curly brace in the final SID, and then paste the JSON code that was generated in the Aura Console, e.g. `{[{'a'}, {'b'}, {'c'}, _add code here_ ]}`
 
-=== AWS regionality
+=== AWS regions
 
 When creating a Customer Managed Key in the AWS KMS, you can create a single-region key in a single AWS region, or create a multi-region key that you can replicate into multiple AWS regions.
 Aura only supports AWS Customer Managed Keys that reside in the same region as the instance.
