@@ -9,20 +9,32 @@ label:AuraDS-Enterprise[]
 
 Aura admins can configure organization and tenant level SSO:
 
-. *Organization level SSO*: This configuration applies to all tenants and new database instances created within your organization.
+* *Organization level SSO:* Applies to everything related to the console within an organization. Grants console access for organization management, this includes editing organization and tenant settings, viewing the list of instances within tenants, and managing instances (such as pause/resume). However, it does not grant access to view or modify data within the database instances themselves. Currently, role mapping is not applicable to Organization level SSO.
 
-. *Tenant level SSO*:  SSO configured at the tenant level affects all new database instances created within that tenant. It ensures users logging in with SSO have access to the authorized database instances within the tenant.
+
+* *Instance level SSO:*  Affects all new database instances created within that tenant. It ensures users logging in with SSO have access to the database instances within the tenant. Instance level SSO gives access to to view or modify data within the database instances themselves. For this level, the role mapping may be used to grant users different levels of access based on a role in their IDP (it *does not* give access to edit the tenant settings e.g. edit the tenant name / network access, or edit the instance settings e.g. rename an instance / pause and resume).
 
 == Login methods
 
-Admins can configure a combination of one or more of the following login methods:
+Login methods are different for each SSO level.
+Admins can configure a combination of one or more of the login methods.
+
+*Organization level SSO supports:*
 
 * Email/password
 * Okta
 * Microsoft Entra ID
-* Google Sign-in
+* Google SSO
 
 An organization's admin can add Aura as a login from a tile in an organization's Apps Dashboard.
+
+*Instance level SSO supports:*
+
+* User/password
+* Okta
+* Microsoft Entra ID
+
+However, at the instance level you cannot disable user/password, but at the organization level you can disable email/password and Google SSO as long as you have at least one other custom SSO provider configured.
 
 == Setup requirements
 
@@ -35,7 +47,7 @@ To configure SSO, go to *Aura Console > Settings > SSO Configuration.*
 
 To create a SSO Configuration either a Discovery URI or a combination of Issuer, Authorization Endpoint, Token Endpoint and JWKS URI is required.
 
-== Instance configurations available from Support
+== Individual instance level SSO configurations available from Support
 
 Support can assist with:
 
