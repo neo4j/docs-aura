@@ -44,7 +44,7 @@ If the database you want to upload is running an earlier version of Neo4j, pleas
 The `neo4j-admin push-to-cloud` command in Neo4j 4.4 and earlier is not compatible with instances encrypted with xref:platform/security/encryption.adoc#_customer_managed_keys[Customer Managed Keys].
 Use `neo4j-admin database` upload in Neo4j 5 to upload data to instances encrypted with Customer Managed Keys.
 
-For Neo4j Version 4 Azure instances encrypted with CMK, use Neo4j Data Importer on the Import Tab of Workspace to load data, as `neo4j-admin database upload` is not supported. Please see the https://neo4j.com/docs/data-importer/current/introduction[Data Importer documentation].
+For Neo4j Version 4 Azure instances encrypted with Customer Managed Keys, use Neo4j Data Importer on the Import Tab of Workspace to load data, as `neo4j-admin database upload` is not supported. Please see the https://neo4j.com/docs/data-importer/current/introduction[Data Importer documentation].
 ====
 
 === Public traffic
