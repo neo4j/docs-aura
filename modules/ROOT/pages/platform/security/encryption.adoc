@@ -138,7 +138,7 @@ Using the Azure CLI, the command is:
 ----
 az ad sp create --id Neo4jCMKApplicationID
 ----
-
+For more information about the Azure CLI, see link:https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create[az ad sp documentation].
 === Grant key permissions
 
 . To add role assignment to the Azure key, inside the key, go to *Access control (IAM)* and add *role assignment*.
