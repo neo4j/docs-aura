@@ -22,8 +22,7 @@ These are created and managed using a supported cloud key management service (KM
 Externally, Customer Managed Keys are also known as Customer Managed Encryption Keys (CMEK).
 
 When using a Customer Managed Key, all data at rest is encrypted with the key.
-You can only encrypt _new_ Aura v5 instances using Customer Managed Keys.
-The feature is not supported for existing instances or v4.x instances.
+Customer Managed Keys are supported for v4.x and v5.x instances.
 
 When using Customer Managed Keys, you give Aura permission to encrypt and decrypt using the key, but Aura has no access to the key’s material.
 Aura has no control over the availability of your externally managed key in the KMS.
