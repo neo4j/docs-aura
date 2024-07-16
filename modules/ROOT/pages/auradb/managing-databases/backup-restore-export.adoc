@@ -16,8 +16,7 @@ To access the *Snapshots* tab:
 
 [NOTE]
 ====
-Snapshots are kept in the system for 7 days for Professional instances, and 60 days for Enterprise instances. 
-Only the latest snapshot is available for Free instances.
+Only the latest snapshot is available for Free instances. Snapshots are available for 7 days for Professional instances, 30 days for Business Critical instances, and 60 days for Enterprise instances. 
 ====
 
 == Snapshot types
@@ -26,11 +25,13 @@ Only the latest snapshot is available for Free instances.
 
 label:AuraDB-Professional[]
 label:AuraDB-Enterprise[]
+label:AuraDB-Business-Critical[]
 
 A *Scheduled* snapshot is a snapshot that is automatically triggered when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and at a cadence depending on your plan type.
 
-Scheduled snapshots are run automatically once a day for Professional instances and once an hour for Enterprise instances. 
-Only one scheduled snapshot is retained per day after 7 days for Enterprise instances.
+Scheduled snapshots are run automatically once a day for Professional instances and once an hour for Business Critical and Enterprise instances. 
+
+For AuraDB Business Critical and Aura DB Enterprise database instances running Neo4j v4.x, scheduled backups are always taken at the same cadence of once per hour, but only one per day is retained for the full 60 days, the rest expire after 7 days.
 
 [NOTE]
 ====
