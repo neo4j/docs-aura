@@ -19,7 +19,7 @@ For instructions on how to open an AuraDB instance with Browser or Cypher Shell,
 
 There are some limitations to consider when using this method to load a *_.csv_* file into an AuraDB instance:
 
-* For security reasons, you must host your *_.csv_* file on a publicly accessible HTTP or HTTPS server. Examples of such servers include GitHub, Google Drive, and Dropbox.
+* For security reasons, you must host your *_.csv_* file on a publicly accessible HTTP or HTTPS server. Examples of such servers include AWS signed URLs, GitHub, Google Drive, and Dropbox.
 
 * The `LOAD CSV` command is built to handle small to medium-sized data sets, such as anything up to 10 million nodes and relationships. You should avoid using this command for any data sets exceeding this limit.
 

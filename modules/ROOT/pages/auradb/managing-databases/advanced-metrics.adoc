@@ -1,0 +1,101 @@
+[[aura-monitoring]]
+= Advanced metrics
+
+label:AuraDB-Professional[]
+label:AuraDB-Enterprise[]
+
+Advanced metrics is a feature that enables access to a broad range of different instance and database metrics.
+
+To access *Advanced metrics*:
+
+. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
+. Select the instance you want to access.
+. Select the *Metrics* tab.
+. Select the *Advanced metrics* button.
+
+The presented metrics will be laid out across three tabs according to their category:
+
+* *Resources* - Overall system resources, such as CPU, RAM and disk usage.
+* *Instance* - Information about the Neo4j instance(s) running the database.
+* *Database* - Metrics concerning the database itself, such as usage statistics and entity counts.
+
+When viewing metrics, you can select from the following time intervals:
+
+* 30 minutes
+* 6 hours
+* 24 hours
+* 3 days
+* 7 days
+* 14 days
+* 30 days
+
+== Chart interactions
+
+[NOTE]
+====
+Memory and storage charts can be toggled between absolute and relative values using the *%* toggle.
+====
+
+=== Toggle data series
+
+label:AuraDB-Enterprise[]
+
+To hide or show individual data series, select the corresponding data series in the legend below the chart.
+
+=== Zoom
+
+To zoom in to a narrower time interval, select and drag inside any chart to select your desired time interval.
+The data will automatically update to match the increased resolution.
+
+To reset zoom, double-click anywhere inside the chart or use the option in the context menu.
+
+=== Expand
+
+Any chart can be expanded to take up all the available screen estate by clicking the *expand* button (shown as two opposing arrows).
+To exit this mode, click the *x* button on the expanded view.
+
+=== Context menu
+
+To access the chart context menu, select the *...* button on any chart.
+
+* *More info* - Selecting *More info* brings up an explanation of the particular metric.
+For some metrics it also provides hints about possible actions to take if that metric falls outside the expected range.
+
+* *Reset zoom* - If the zoom level has been altered by selecting and dragging across a chart, *Reset zoom* resets the zoom back to the selected interval.
+
+== Aggregations
+
+label:AuraDB-Enterprise[]
+
+Most metrics will have several values for a given timestamp because of the following reasons:
+
+* Multiple database replicas
+* Compressing several data points into one, depending on zoom level
+
+Aggregating functions are used to reconcile metrics having multiple data points and make the most sense of that particular metric. 
+To convey an even more detailed picture of the state of the system, several aggregations can be shown.
+
+The possible aggregations are:
+
+* *Min* - The minimum value of the metric across all cluster members.
+* *Max* - The maximum value of the metric across all cluster members.
+* *Average* - The average value of the metric across all cluster members.
+* *Sum* - The sum of the metric across all cluster members.
+
+== Store size metrics 
+
+=== Resources tab
+
+The chart on the _Resources_ tab shows the allocated store size metric for the selected database either as a percentage of the available storage assigned for the database or as absolute values. 
+
+=== Database tab
+
+The _Database_ tab provides a chart that shows the store size and the portion of the allocated space that the database is actively utilizing. 
+Both metrics are represented as percentages of the available storage assigned to the database.
+
+These metrics may differ due to the way Neo4j allocates and reuses space.
+Once allocated, space is never automatically de-allocated.
+Thus, reducing the data (nodes, relationships, properties) stored in the database does not reduce the top-line store size metric.
+However, Neo4j will reuse this 'available' space before allocating more from the system.
+The amount of allocated space that is 'available' is reported by the database, and Advanced metrics uses this metric to derive the used space by subtracting it from the allocated store size.
+This information can help you understand how close your database is to exceeding the assigned storage size.

@@ -2,9 +2,6 @@
 = Overview
 :description: This page introduces the Aura API.
 
-label:AuraDB-Enterprise[]
-label:AuraDS-Enterprise[]
-
 The Aura API allows you to programmatically perform actions on your Aura instances without the need to log in to the Console.
 
 A complete list of the available endpoints can be seen and tested in the link:{neo4j-docs-base-uri}/aura/platform/api/specification/[API Specification].
@@ -26,7 +23,7 @@ The current version of the Aura API is `link:{neo4j-docs-base-uri}/aura/platform
 
 As and when we need to introduce breaking changes to the API, we will release a new version to ensure we do not break existing integrations.
 
-In the future, as we deprecate legacy API versions, we will provide notice. 
+In the future, as we deprecate legacy API versions, we will provide notice.
 Once the expiry date for a deprecated version has passed, that version will no longer be available.
 
 === Example request
@@ -55,4 +52,4 @@ An `X-Request-Id` response header is returned with each request and can be used 
 
 The value of this header contains a unique ID that can be used to track the journey of a request.
 
-If you run into any issues with a particular request, you can https://aura.support.neo4j.com/hc/en-us/[raise a support ticket] and provide the `X-Request-Id`.
+If you run into any issues with a particular request, you can https://support.neo4j.com/[raise a support ticket] and provide the `X-Request-Id`.

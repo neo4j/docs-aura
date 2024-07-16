@@ -22,12 +22,14 @@ Once this has finished, the instance returns to its `Running` state; and the dat
 
 [CAUTION]
 ====
-This command does not currently support xref:platform/security.adoc#_vpc_isolation[private linking].
-Please https://aura.support.neo4j.com/hc/en-us/requests/new[raise a support ticket] if you have public traffic disabled and need to use this command.
+This command does not work if you have a network access configuration setup that prevents public traffic to the region your instance is hosted in.
+See <<_public_traffic>> below for more information.
 ====
 
 `database upload` is a `neo4j-admin` command that you can run to upload the contents of a Neo4j database into an Aura instance, regardless of the database's size.
 Keep in mind that the database you want to upload may run a different version of Neo4j than your Aura instance.
+Additionally, your Neo4j Aura instance must be accessible from the machine running `neo4j-admin`.
+Otherwise, the upload will fail with SSL errors.
 
 For details on how to use the `neo4j-admin database upload` command, along with a full list of options and version compatibility, see link:{neo4j-docs-base-uri}/operations-manual/current/tools/neo4j-admin/upload-to-aura/[Upload to Neo4j Aura].
 
@@ -36,3 +38,23 @@ For details on how to use the `neo4j-admin database upload` command, along with 
 The `database upload` command, introduced in Neo4j 5, replaces the `push-to-cloud` command in Neo4j 4.4 and 4.3.
 If the database you want to upload is running an earlier version of Neo4j, please see the link:{neo4j-docs-base-uri}/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[Neo4j Admin push-to-cloud documentation].
 ====
+
+[CAUTION]
+====
+The `neo4j-admin push-to-cloud` command in Neo4j 4.4 and earlier is not compatible with instances encrypted with xref:platform/security/encryption.adoc#_customer_managed_keys[Customer Managed Keys].
+Use `neo4j-admin database upload` in Neo4j 5 to upload data to instances encrypted with Customer Managed Keys.
+
+For Neo4j 4.x instances in Azure encrypted with Customer Managed Keys, use Neo4j Data Importer to load data, as `neo4j-admin database upload` is not supported. 
+See the https://neo4j.com/docs/data-importer/current/introduction[Data Importer documentation] for more information.
+====
+
+=== Public traffic
+If you have created a network access configuration from the *Network Access* page, accessed through the sidebar menu of the Console, *Public traffic* must be enabled for the region your instance is hosted in before you can use the `database upload` command on that instance.
+
+To enable *Public traffic* on a network access configuration:
+
+. Select *Configure* next to the region that has *Public traffic* disabled.
+. Select *Next* until you reach step 4 of 4 in the resulting *Edit network access configuration* modal.
+. Clear the *Disable public traffic* checkbox and select *Save*.
+
+You can now use the `database upload` command on the instances within that region. Once the command has completed, you can disable *Public traffic* again by following the same steps and re-selecting the *Disable public traffic* checkbox.

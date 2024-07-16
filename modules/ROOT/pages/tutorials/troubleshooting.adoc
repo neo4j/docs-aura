@@ -20,7 +20,7 @@ Currently using 275.1 MiB. dbms.memory.transaction.global_max_size threshold rea
 ----
 
 The `org.neo4j.memory.MemoryLimitExceededException` configuration acts as a safeguard, limiting the quantity of memory allocated to all transactions while preserving the regular operations of the Aura instance.
-Similarly, the property `dbms.memory.transaction.global_max_size` also aims to protect the Aura instance from experiencing any OOMs (OutOfMemory exceptions) and increase resiliency.
+Similarly, the property `dbms.memory.transaction.global_max_size` also aims to protect the Aura Instance from experiencing any OOMs (OutOfMemory exceptions) and increase resiliency.
 It is enabled in Aura and cannot be disabled.
 
 However, the measured heap usage of all transactions is only an estimate and may differ from the actual number.
@@ -59,7 +59,7 @@ image::planSummary.png[]
 [NOTE]
 ====
 If this error occurs while loading data from CSV files, use `apoc.periodic.iterate` to import the data and use a relatively small number for the `batch_size` parameter.
-Read more information about link:https://aura.support.neo4j.com/hc/en-us/articles/1500012376402-Using-apoc-to-conditional-loading-large-scale-data-set-from-JSON-or-CSV-files[Using apoc to conditional loading large scale data set from JSON or CSV files].
+For more information, visit the link:https://support.neo4j.com/s/article/1500012376402-Using-apoc-to-conditional-loading-large-scale-data-set-from-JSON-or-CSV-files[Customer Support Portal].
 ====
 
 See link:https://neo4j.com/docs/operations-manual/current/performance/memory-configuration/#memory-configuration-considerations[Considerations on memory configuration] for further reading on memory management.
@@ -96,7 +96,7 @@ RETURN command + " " + description
 ----
 +
 . In Neo4j Browser, select the "Enable multi statement query editor" option under the browser settings.
-. Take the list of commands from the 2nd step, copy them in one list of multiple queries into Browser and run those queries.
+. Take the list of commands from the 2nd step and copy them in one list of multiple queries into Browser and run those queries.
 . After the indexes are recreated, attempt the `database upload` command again.
 
 === `InconsistentData`
@@ -105,7 +105,7 @@ This error message will likely trigger when Neo4j Aura cannot safely load the da
 
 Solution::
 
-If you encounter this error, raise a ticket with our link:https://aura.support.neo4j.com/[Customer Support] team.
+If you encounter this error, please raise a ticket with our link:https://support.neo4j.com[Customer Support] team.
 
 === `UnsupportedStoreFormat`
 
@@ -114,7 +114,7 @@ You may get this error if the store you are uploading is in a Neo4j version that
 Solution::
 
 . link:https://neo4j.com/docs/upgrade-migration-guide/current/[Upgrade your database]. Make sure you are on Neo4j 4.4 or later.
-. If you encounter problems upgrading, please raise a ticket with our link:https://aura.support.neo4j.com/[Customer Support] team.
+. If you encounter problems upgrading, please raise a ticket with our link:https://support.neo4j.com[Customer Support] team.
 
 === `LogicalRestrictions`
 
@@ -123,7 +123,7 @@ You may get this error when the store you are uploading exceeds the logical limi
 Solution::
 
 . Delete nodes and relationships to ensure the data is within the specified limits for your instance, and try the upload again.
-. If you are confident you have not exceeded these limits, please raise a ticket with our link:https://aura.support.neo4j.com/[Customer Support] team.
+. If you are confident you have not exceeded these limits, please raise a ticket with our link:https://support.neo4j.com[Customer Support] team.
 
 === `Fallback`
 
@@ -132,7 +132,7 @@ This error can be triggered when the uploaded file is not recognized as a valid 
 Solution::
 
 . Check the file and try again.
-. If you are confident the file being uploaded is correct, please raise a ticket with our link:https://aura.support.neo4j.com/[Customer Support] team.
+. If you are confident the file being uploaded is correct, please raise a ticket with our link:https://support.neo4j.com[Customer Support] team.
 
 == Driver integration
 
