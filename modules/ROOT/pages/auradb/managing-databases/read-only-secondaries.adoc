@@ -1,6 +1,8 @@
 [[aura-read-only-secondaries]]
 = Read only secondaries
 
+serving those with a need for high Read throughput, to distribute those read queries.
+
 secondaries: part of scaling and performance initiative at neo4j
 it adds an extension of a database
 
@@ -15,6 +17,116 @@ It means that in high read projects there's no bottlenecks, and companies can do
 If a company was to do a lot of writing and reading then it could potentially slow down everything.
 
 Simple fixed routing?
+
+Scope of the EAP
+
+Up to 15 static Read-Only Secondaries can be added per AuraDB Enterprise database instance.
+Single region only. Read-Only secondaries available in same region as their Primary database.
+
+The following routing policy will apply when at least one secondary is available: Route READ to secondaries + non-leader primaries. This policy extends the READ payload to the primaries that are not currently serving in an elected leader role. It allows to further balance the READ and improve scalability
+
+Available for all clouds (AWS, Azure & GCP)
+
+During EAP each Secondary is will consume credits at ⅓ (‘a third’) of the normal running rate of an AuraDB Enterprise database. We reserve the right to adjust this once the feature is made generally available.
+
+We will not support use cases for isolated workloads (customer routing) or multi region replication at this time, but will be gathering feedback on those use cases during EAP.
+
+//
+
+The introduction of secondaries in Aura expands Neo4j's capabilities by enabling additional read-only database instances for horizontal scaling and enhanced cluster resilience. 
+
+With secondaries, users can scale the READ capacity of their clusters, paving the way for improved support for READ-intensive use cases. These secondary instances are configurable via the Aura console and API, allowing users to launch, manage, and terminate them effortlessly. Secondaries are orchestrated to maintain availability and balanced distribution across availability zones, ensuring optimal performance and cost efficiency. 
+
+== Console UI - Create Secondaries
+
+Once the secondaries EAP feature is enabled for your tenant you’ll see Secondary count set to Zero, and the ability to Edit secondaries in UI of the DB Overview and Details tile
+
+== Aura Provisioning API - simple request 
+
+Once enabled for the user’s tenant a GET instance details call will show secondary count
+
+[source]
+----
+
+GET/instances/{instanceId]{
+  "data": {
+    "cloud_provider": "azure",
+    "connection_url": "neo4j+s://xxxxxx.databases.neo4j.io",
+    "id": "xxxxxx",
+    "memory": "2GB",
+    "name": "Neo4j",
+    "region": "uk south",
+    "secondaries_count": 0,
+    "status": "running",
+    "storage": "4GB",
+    "tenant_id": "XXXXXXXXXXXXXXXXXXXX",
+    "type": "enterprise-db"
+  }
+}
+
+----
+
+PATCH/instances/{instanceId]
+{
+  "secondaries_count": 2
+}'
+
+
+[source]
+----
+
+A simple Secondaries count patch request will request update {
+  "data": {
+    "cloud_provider": "azure",
+    "connection_url": "neo4j+s://xxxxxx.databases.neo4j.io",
+    "id": "xxxxxx",
+    "memory": "2GB",
+    "name": "Neo4j",
+    "region": "uk south",
+    "secondaries_count": 2,
+    "status": "running",
+    "storage": "4GB",
+    "tenant_id": "XXXXXXXXXXXXXXXXXXXXX",
+    "type": "enterprise-db"
+  }
+}
+
+----
+
+How is this different to before?
+Until now AuraDBE customers could create a Database Instance which consists of a 3 node cluster, where the nodes are either fulfilling the role of Leader (one and only one at any point in time) or Follower (multiple).  The Leader is responsible for the WRITES but also serves READ queries. The followers only serve READ queries. Customers mark queries explicitly for READ in their code to best utilise the available resources of the Leader.
+
+The new Read-only secondaries will allow customers with a need for high Read throughput to distribute those read queries. 
+
+
+How many Secondaries can I create?
+Users can create up to 15 secondaries although as this is a billable EAP we advise caution.
+How dynamic are these Read-only secondaries?
+These are static right now, they are not elastic, though we will use these to underpin an Auto-scaling initiative in the future
+
+Will these be cross region?
+In line with AuraDB Instances which are today deployed in a single region, read-only secondaries are also single region only at this time.
+
+We will gather feedback during EAP on multi-region for reduced latency use cases as we plan out our roadmap.
+
+Can you create these at the same time a database is created?
+Not right now, they are currently appended to an existing Databases via API or Console, the ability to create these at the point of DB creation is a future roadmap item
+If I Pause/Resume my Aura Database, will my secondaries count be retained
+Yes. Example;  when an AuraDB Enterprise database with 3 Secondaries is Paused (either via the Console or API), once that Database is Resumed, it will resume with 3 Secondaries.
+What about Cloning or Resizing?
+Retaining the secondaries on Clone or Resize is out of scope right now as for use cases where customers are cloning data to dev / test, or resizing, this can be costly. Initially customers will need to re-add their secondaries again after Clone or Resize is successfully completed. We will gather feedback on this. 
+
+What is the Routing policy?
+The following routing policy should apply when at least one secondary is available: Route READ to secondaries + non-leader primaries. This policy extends the READ payload to the primaries that are not currently serving in an elected leader role. It allows to further balance the READ and improve scalability.
+
+We will gather feedback during EAP on workload isolation requiring custom routing policies as we plan out our roadmap.
+Are Secondaries included in Metrics & Logs during EAP?
+Secondaries will appear in Query Logs as usual, we have a roadmap item to include Secondaries in Advanced Metrics.
+
+Who do I contact during EAP?
+While in early access, if you have any questions or feedback, please reach out to your Customer Success Manager / Field Account Manager,  or via Support teams.
+
+
 
 
 
