@@ -1,0 +1,21 @@
+[[aura-read-only-secondaries]]
+= Read only secondaries
+
+secondaries: part of scaling and performance initiative at neo4j
+it adds an extension of a database
+
+Because they don't necessarily need to get started with secondaries, and not everyone needs them
+
+It's for read intensive projects e.g. for analytics companies that are giving people recommendations with less write actions.
+
+Makes it speedy to read from the database, b/c if someone is read & writing it can get slow if there’s lots of reads.
+
+It means that in high read projects there's no bottlenecks, and companies can do more reads batch processing.
+
+If a company was to do a lot of writing and reading then it could potentially slow down everything.
+
+Simple fixed routing?
+
+
+
+
