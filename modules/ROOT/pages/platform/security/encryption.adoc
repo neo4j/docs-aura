@@ -70,10 +70,10 @@ If there is no valid CMK for the destination region and product, the Neo4j Manag
 
 === Create an AWS key
 
-. Create a key in the AWS KMS ensuring the region matches your Aura database instance.
+. Create a key in the AWS KMS making sure the region matches your Aura database instance.
 Copy the generated ARN.
 You need it in the next step.
-. Go to *security settings* in the Aura Console, create a *Customer Managed Key* and copy the JSON code that is generated in the Aura Console when you add a key.
+. Go to *security settings* in the Aura Console, add a *Customer Managed Key* and copy the JSON code that is generated in the Aura Console when you add a key.
 . In the AWS KMS, edit the key policy to include the JSON code.
 
 === Edit the AWS key policy
@@ -152,21 +152,25 @@ For more information about the Azure CLI, see link:https://learn.microsoft.com/e
 === Create a key ring
 
 . Go to *Key Management* in the Google Cloud console.
-. Create a *key ring* ensuring the region matches your Aura database instance region. 
-. The key ring *Location* type should be set to *Region.*
+. Create a *key ring*.
+. The key ring *Location type* should be set to *Region.*
+. Make sure the region matches your Aura database instance region. 
 . Select *Create* and you will automatically be taken to the key creation page. 
 
 === Create a key
 
-. We recommend you select a key rotation period. You can use default settings for other options.
+. Create a key in the Google Console. You can use default settings for the options, but we recommend you select a key rotation period. 
 . Select *Create* and you will be brought back to the key ring, with your key listed. 
 . Click *More* (three dots) and *Copy resource name*, you need it in the next step. For more information, see link:https://cloud.google.com/kms/docs/getting-resource-ids[Google Cloud docs]
 . Go to *security settings* in the Aura Console and add a *Customer Managed Key*.
+. You will need to paste the *resource name* into the 
 . After you select *Add Key* in the Aura Console, three *service accounts* are displayed in the Aura Console. You will need these in the next steps.
+
+=== Grant key permissions
+
 . Go to the Google Cloud console, click into the key and go to *Permissions* then *Grant Access* 
 . In *Add principals* paste the three service accounts from the Aura Console.
 . In *Assign roles* assign *Cloud KMS CryptoKey Encrypter/Decrypter* and *Cloud KMS Viewer* roles.
-
 
 
 
