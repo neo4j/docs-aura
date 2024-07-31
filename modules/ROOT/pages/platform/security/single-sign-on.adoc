@@ -17,7 +17,7 @@ Access beyond login is managed via RBAC.
 * *Tenant level SSO:*  Impacts new database instances created within that tenant. 
 It ensures users logging in with SSO have access to the database instances within the tenant. 
 It depends on RBAC if the user can access and view or modify data within the database instances themselves. 
-For this level, the role mapping may be used to grant users different levels of access based on a role in their IdP (it *does not* give access to edit the tenant settings e.g. edit the tenant name / network access, or edit the instance settings e.g. rename an instance / pause and resume).
+For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider, IdP, (it *does not* give access to edit the tenant settings e.g. edit the tenant name / network access, or edit the instance settings e.g. rename an instance / pause and resume).
 
 == Log-in methods
 
