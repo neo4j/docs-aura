@@ -155,13 +155,13 @@ For more information about the Azure CLI, see link:https://learn.microsoft.com/e
 . Create a *key ring*.
 . The key ring *Location type* should be set to *Region.*
 . Make sure the region matches your Aura database instance region. 
-. Select *Create* and you will automatically be taken to the key creation page. 
+. Select *Create* and you are automatically taken to the key creation page. 
 
 === Create a key
 
 . Create a key in the Google Console. 
-You can use default settings for the options, but we recommend you select a key rotation period. 
-. Select *Create* and you will be brought back to the key ring, with your key listed. 
+You can use default settings for the options, but setting a key rotation period is recommended. 
+. Select *Create* and you are brought to the key ring, with your key listed. 
 . Click *More* (three dots) and *Copy resource name*, you need it in the next step. 
 For more information, see link:https://cloud.google.com/kms/docs/getting-resource-ids[Google Cloud docs]
 . Go to *security settings* in the Aura Console and add a *Customer Managed Key*. 
