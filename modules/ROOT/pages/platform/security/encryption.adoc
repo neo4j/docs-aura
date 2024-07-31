@@ -159,17 +159,21 @@ For more information about the Azure CLI, see link:https://learn.microsoft.com/e
 
 === Create a key
 
-. Create a key in the Google Console. You can use default settings for the options, but we recommend you select a key rotation period. 
+. Create a key in the Google Console. 
+You can use default settings for the options, but we recommend you select a key rotation period. 
 . Select *Create* and you will be brought back to the key ring, with your key listed. 
-. Click *More* (three dots) and *Copy resource name*, you need it in the next step. For more information, see link:https://cloud.google.com/kms/docs/getting-resource-ids[Google Cloud docs]
-. Go to *security settings* in the Aura Console and add a *Customer Managed Key*. Paste the *resource name* into the Encryption Key ID field.
-. After you select *Add Key* in the Aura Console, three *service accounts* are displayed in the Aura Console. You will need these in the next steps.
+. Click *More* (three dots) and *Copy resource name*, you need it in the next step. 
+For more information, see link:https://cloud.google.com/kms/docs/getting-resource-ids[Google Cloud docs]
+. Go to *security settings* in the Aura Console and add a *Customer Managed Key*. 
+Paste the *resource name* into the *Encryption Key ID* field.
+. After you select *Add Key* in the Aura Console, three *service accounts* are displayed in the Aura Console. 
+You will need these in the next steps.
 
 === Grant key permissions
 
 . Go to the Google Cloud console, click into the key and go to *Permissions* then *Grant Access* 
 . In *Add principals* paste the three service accounts from the Aura Console.
-. In *Assign roles* assign *Cloud KMS CryptoKey Encrypter/Decrypter* and *Cloud KMS Viewer* roles.
+. In *Assign roles* assign both *Cloud KMS CryptoKey Encrypter/Decrypter* and *Cloud KMS Viewer* roles to all three service accounts.
 
 
 
