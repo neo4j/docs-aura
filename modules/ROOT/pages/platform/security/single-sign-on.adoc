@@ -19,7 +19,7 @@ It ensures users logging in with SSO have access to the database instances withi
 It depends on RBAC if the user can access and view or modify data within the database instances themselves. 
 For this level, the role mapping may be used to grant users different levels of access based on a role in their IdP (it *does not* give access to edit the tenant settings e.g. edit the tenant name / network access, or edit the instance settings e.g. rename an instance / pause and resume).
 
-== Login methods
+== Log-in methods
 
 Login methods are different for each SSO level.
 Administrators can configure a combination of one or more of the login methods.
