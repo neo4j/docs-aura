@@ -4,8 +4,9 @@
 
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
+label:AuraDB-Business-Critical[]
 
-Aura Enterprise supports Single Sign-On (SSO) at both the Console level and for accessing Workspace, Bloom and Browser clients directly at the instance level.
+Aura Enterprise and Aura Business Critical supports Single Sign-On (SSO) at both the Console level and for accessing Workspace, Bloom and Browser clients directly at the instance level.
 
 [NOTE]
 ====
@@ -19,12 +20,12 @@ Accessing Aura with SSO requires:
 
 Console SSO allows you to log in to the Aura Console using company IdP credentials and grants link:{neo4j-docs-base-uri}/cypher-manual/current/administration/access-control/built-in-roles#access-control-built-in-roles-public[Public Access privileges] to all instances in the tenant.
 
-The following OpenID Connect (OIDC) certified Identity Providers (IdPs) are currently supported for Console-level Authentication:
+The following OpenID connect (OIDC) certified Identity Providers (IdPs) are currently supported for Console-level Authentication with Aura Enterprise and Aura Business Critical:
 
 * Microsoft Entra ID
 * Okta
 
-To enable Console SSO on your Aura Enterprise tenant(s), please https://support.neo4j.com/[raise a support ticket] including the following information:
+To enable Console SSO on your tenant(s), please link:https://support.neo4j.com/[raise a support ticket] including the following information:
 
 . The _Tenant ID_ of the tenant(s) you want to use SSO. See xref:platform/user-management.adoc#_tenants[Tenants] for more information on how to find your __Tenant ID__.
 . The name of your IdP.

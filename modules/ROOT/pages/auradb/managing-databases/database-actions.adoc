@@ -1,10 +1,10 @@
 [[aura-db-actions]]
 = Instance actions
-:description: This page describes how to resize, clone, pause, resume, delete and rename an AuraDB instance.
+:description: This page describes the following instance actions - rename, resest, upgrade, resize, pause, resume, clone to a new database, clone to an existing database, or delete and instance.
 
 You can perform several instance actions from an AuraDB instance card on the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] homepage.
 
-== Renaming an instance
+== Rename an instance
 
 You can change the name of an existing instance using the *Rename* action.
 
@@ -15,7 +15,7 @@ To rename an instance:
 . Enter a new name for the instance.
 . Select *Rename*.
 
-== Resetting an instance
+== Reset an instance
 
 label:AuraDB-Free[]
 label:AuraDB-Professional[]
@@ -28,9 +28,9 @@ To reset an instance:
 . Select *Reset to blank* from the resulting menu.
 . Select *Reset*.
 
-== Upgrading an instance
+== Upgrade an instance
 
-label:AuraDB-Free[]
+=== Upgrade from Free to Professional
 
 You can upgrade an AuraDB Free instance to an AuraDB Professional instance using the *Upgrade to Professional* action.
 
@@ -43,10 +43,25 @@ To upgrade a Free instance:
 . Set your desired settings for the new instance. For more information on AuraDB instance creation settings, see xref:auradb/getting-started/create-database.adoc[].
 . Tick the *I understand* checkbox and select *Upgrade Instance*.
 
-== Resizing an instance
+=== Upgrade from Professional to Business Critical
+
+You can upgrade an AuraDB Professional instance to an AuraDB Business Critical instance using the *Upgrade to Business Critical* action.
+
+Upgrading your instance clones your Professional instance data to a new Business Critical instance, leaving your existing Professional instance untouched.
+
+To upgrade a Business Critical instance:
+
+. Select the ellipsis (*...*) button on the free instance you want to upgrade.
+. Select *Upgrade to Business Critical*.
+. Set your desired settings for the new instance. 
+For more information on AuraDB instance creation settings, see xref:auradb/getting-started/create-database.adoc[].
+. Tick the *I understand* checkbox and select *Upgrade Instance*.
+
+== Resize an instance
 
 label:AuraDB-Professional[]
 label:AuraDB-Enterprise[]
+label:AuraDB-Business-Critical[]
 
 You can change the size of an existing instance using the *Resize* action.
 
@@ -59,15 +74,16 @@ To resize an instance:
 
 An instance remains available during the resize operation.
 
-== Pausing an instance
+== Pause an instance
+
+label:AuraDB-Professional[]
+label:AuraDB-Enterprise[]
+label:AuraDB-Business-Critical[]
 
 [NOTE]
 ====
 You cannot manually pause an AuraDB Free instance; they are paused automatically after 72 hours of inactivity. footnote:[Inactivity is when you perform no queries on the instance.]
 ====
-
-label:AuraDB-Professional[]
-label:AuraDB-Enterprise[]
 
 You can pause an instance when not needed and resume it at any time.
 
@@ -84,7 +100,7 @@ Paused instances run at a discounted rate compared to standard consumption, as o
 You can pause an instance for up to 30 days, after which point AuraDB automatically resumes the instance.
 ====
 
-=== Resuming a paused instance
+=== Resume a paused instance
 
 To resume an instance:
 
@@ -98,7 +114,7 @@ After confirming, the instance begins resuming, which may take a few minutes.
 AuraDB Free instances do not automatically resume after 30 days. If an AuraDB Free instance remains paused for more than 30 days, Aura deletes the instance, and all information is lost.
 ====
 
-== Cloning an instance
+== Clone an instance
 
 You can clone an existing instance to create a new instance with the same data.
 You can clone across regions, from AuraDB to AuraDS and vice versa, and from Neo4j version 4 to Neo4j version 5.
@@ -120,7 +136,7 @@ You cannot clone from a Neo4j version 5 instance to a Neo4j version 4 instance.
 === Clone to a new AuraDB instance
 
 . Select the ellipsis (*...*) button on the instance you want to clone.
-. Select *Clone To New* and then *AuraDB Professional/Enterprise* (depending on your Tenant type) from the contextual menu.
+. Select *Clone To New* and then *AuraDB Professional/Business Critical/Enterprise* from the contextual menu.
 . Set your desired settings for the new database. For more information on AuraDB database creation, see xref:auradb/getting-started/create-database.adoc[].
 . Check the *I understand* box and select *Clone Database*.
 +
@@ -190,7 +206,7 @@ In the dropdown menu, they are grayed out and have the string `(Instance is not 
 . Tick the *I understand* checkbox and select *Clone*.
 
 
-== Deleting an instance
+== Delete an instance
 
 You can delete an instance if you no longer want to be billed for it.
 
