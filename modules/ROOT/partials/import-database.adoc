@@ -1,15 +1,15 @@
 There are two ways you can import data from an existing Neo4j database into an Aura instance.
 
-You can use the _import_database process to import either a *.dump* file or a *.backup* file.
-This process, however, only works for *.dump* and *.backup* files under 4GB.
+You can use the *import database* process to import either a _.dump_ file or a _.backup_ file.
+This process, however, only works for _.dump_ and _.backup_ files under 4GB.
 
-If the size of the *_.dump_* or *_.backup_* file exported from a database is greater than 4GB, you must use the <<_neo4j_admin_database_upload>> method.
+If the size of the _.dump_ or _.backup_ file exported from a database is greater than 4GB, you must use the <<_neo4j_admin_database_upload>> method.
 
 For more information about backups, see xref:auradb/managing-databases/backup-restore-export.adoc[].
 
 == Import database
 
-To import a *_.dump_* file under 4GB:
+To import a _.dump_ file under 4GB:
 
 . Navigate to the link:https://console.neo4j.io/[Neo4j Aura Console] in your browser.
 . Select the instance you want to import the data.
