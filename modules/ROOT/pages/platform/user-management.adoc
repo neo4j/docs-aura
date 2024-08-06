@@ -1,31 +1,17 @@
 [[aura-user-management]]
-= User management
+= Users
 :description: This page describes how to manage users in Neo4j Aura.
 
-User management is a feature within Aura that allows you to invite users and set their roles within an isolated environment.
+Invite users and set their roles.
 
-== Tenants
+Each project can have multiple users with individual accounts allowing access to the same environment.
 
-Tenants are the primary mechanism for granting users access to an Aura environment.
-
-The tenant you're currently viewing is displayed in the header of the Console. 
-You can select the tenant name to open the tenant dropdown menu, allowing you to view all the tenants that you have access to and switch between them.
-
-Additionally, you can perform the following actions from the tenant dropdown menu:
-
-* Copy the _Tenant ID_ of any tenant in the list by selecting the clipboard icon that appears when you hover over the tenant.
-* Edit the name of the tenant you are currently viewing by selecting the pencil icon next to the tenant. This action requires you to be an _Admin_ of the tenant.
-
-== Users
-
-Each tenant can have multiple users with individual accounts allowing access to the same environment.
-
-The users with access to a tenant can be viewed and managed from the **User Management** page. 
-You can access the **User Management** page by selecting **User Management** from the sidebar menu of the Console.
+The users with access to a project can be viewed and managed from the **User** page. 
+You can access the **User** page from the sidebar menu of the Console.
 
 === Roles
 
-Users within a tenant can be assigned one of the following roles:
+Users within a project can be assigned one of the following roles:
 
 * _Admin_
 * _Member_
@@ -44,16 +30,16 @@ Users within a tenant can be assigned one of the following roles:
 | Clone data to new and existing instances | {check-mark} | {check-mark} |
 | Take on-demand snapshots | {check-mark} | {check-mark} |
 | Restore from snapshots | {check-mark} | {check-mark} |
-| Edit the tenant name | {check-mark} | |
-| Invite new users to the tenant | {check-mark} | |
+| Edit the project name | {check-mark} | |
+| Invite new users to the project | {check-mark} | |
 | Edit existing users' roles | {check-mark} | |
-| Delete existing users from the tenant | {check-mark} | |
+| Delete existing users from the project | {check-mark} | |
 | View and edit billing information | {check-mark} | |
 |===
 
 [NOTE]
 ====
-Each tenant must have at least one _Admin_, but it is also possible for tenants to have multiple _Admins_.
+Each project must have at least one _Admin_, but it is also possible for projects to have multiple _Admins_.
 ====
 
 === Inviting users
@@ -93,11 +79,11 @@ Select the trash can icon next to the user's name, and then select **Revoke**.
 
 === Accepting an invite
 
-When invited to a tenant, you will receive an email with a link to accept the invite. 
-This link will direct you to the Aura Console, where a **Tenant invitation** modal will appear.
-You can select the tenant(s) you have been invited to and choose to accept or decline the invite(s). 
+When invited to a project, you will receive an email with a link to accept the invite. 
+This link will direct you to the Aura Console, where a **project invitation** modal will appear.
+You can select the project(s) you have been invited to and choose to accept or decline the invite(s). 
 
-You can also close the **Tenant invitation** modal without accepting or declining the invite(s) and later manually re-open the modal by selecting the **Pending invites** envelope icon in the Console header.
+You can also close the **project invitation** modal without accepting or declining the invite(s) and later manually re-open the modal by selecting the **Pending invites** envelope icon in the Console header.
 
 [TIP]
 ====

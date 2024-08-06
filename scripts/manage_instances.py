@@ -16,8 +16,8 @@ TOKEN_URL = dotenv.get_key(AURA_API_ENV, "TOKEN_URL")
 API_BASE_URL = dotenv.get_key(AURA_API_ENV, "API_BASE_URL")
 
 INSTANCE_TYPES = ("enterprise-ds", "enterprise-db", "professional-ds", "professional-db")
-TENANT_NAMES = ("gcp", "aws", "azure")
-TENANT_REGIONS = {
+project_NAMES = ("gcp", "aws", "azure")
+project_REGIONS = {
     "gcp": "europe-west1",
     "aws": "eu-west-1",
     "azure": "northeurope",
@@ -40,17 +40,17 @@ def list_instances(oauth_session):
     print(json.dumps(res.json(), indent=2))
 
 
-def get_tenant(oauth_session, tenant_name):
-    res = oauth_session.get(f"{API_BASE_URL}/tenants")
+def get_project(oauth_session, project_name):
+    res = oauth_session.get(f"{API_BASE_URL}/projects")
     res.raise_for_status()
 
     res_json = res.json()
     if "data" in res_json:
-        for tenant in res_json["data"]:
-            if tenant["name"].endswith(f"-{tenant_name}"):
-                return tenant["id"]
+        for project in res_json["data"]:
+            if project["name"].endswith(f"-{project_name}"):
+                return project["id"]
 
-    raise ValueError(f"Tenant '{tenant_name}' not found")
+    raise ValueError(f"project '{project_name}' not found")
 
 
 def get_dotenv_filename(instance_name):
@@ -64,7 +64,7 @@ def write_dotenv_file(aura_env_file, instance_data):
     dotenv.set_key(aura_env_file, "AURA_INSTANCEID", instance_data["id"])
 
 
-def create_instance(oauth_session, instance_type, instance_name, tenant):
+def create_instance(oauth_session, instance_type, instance_name, project):
     if instance_type not in INSTANCE_TYPES:
         raise ValueError(f"Instance type {instance_type} not allowed")
 
@@ -73,8 +73,8 @@ def create_instance(oauth_session, instance_type, instance_name, tenant):
     if os.path.exists(aura_env_file):
         raise FileExistsError(f"The env file for an instance named {instance_name} already exists")
 
-    region = TENANT_REGIONS[tenant]
-    tenant_id = get_tenant(oauth_session, tenant)
+    region = project_REGIONS[project]
+    project_id = get_project(oauth_session, project)
 
     body = {
         "version": "5",
@@ -82,7 +82,7 @@ def create_instance(oauth_session, instance_type, instance_name, tenant):
         "type": instance_type,
         "region": region,
         "memory": "8GB",
-        "tenant_id": tenant_id,
+        "project_id": project_id,
     }
     res = oauth_session.post(f"{API_BASE_URL}/instances", json=body)
     res.raise_for_status()
@@ -133,13 +133,13 @@ def destroy_instance(oauth_session, instance_name):
     help="The type of instance to create",
 )
 @click.option(
-    "--tenant",
+    "--project",
     default="gcp",
-    type=click.Choice(TENANT_NAMES),
-    help="The name of the tenant to use",
+    type=click.Choice(project_NAMES),
+    help="The name of the project to use",
 )
 @click.argument("instance_name")
-def main(create, destroy, instance_type, instance_name, tenant):
+def main(create, destroy, instance_type, instance_name, project):
     """Create or destroy an instance with name INSTANCE_NAME."""
     oauth_session = None
 
@@ -147,7 +147,7 @@ def main(create, destroy, instance_type, instance_name, tenant):
         oauth_session = init_oauth_session()
 
     if create:
-        create_instance(oauth_session, instance_type, instance_name, tenant)
+        create_instance(oauth_session, instance_type, instance_name, project)
 
     if destroy:
         destroy_instance(oauth_session, instance_name)

@@ -2,22 +2,39 @@
 = Neo4j Aura overview
 :description: This page introduces the Aura platform.
 
-Neo4j Aura is a fast, scalable, always-on, fully automated graph platform offered as a cloud service.
+* Aura is a fast, scalable, always-on, fully automated graph platform offered as a cloud service.
 
-Aura includes AuraDB, the graph database as a service for developers building intelligent applications, and AuraDS, the graph data science as a service for data scientists building predictive models and analytics workflows.
+* Aura is the number one graph database for developers building intelligent applications.
 
-== Neo4j AuraDB
-Neo4j AuraDB is the fully managed graph database as a service that helps build intelligent, context-driven applications faster with lightning-fast queries, real-time insights, built-in developer tools, data visualization, and integrations supported by the largest graph developer community.
+* Neo4j AuraDB is the fully managed graph database as a service that helps build intelligent, context-driven applications faster with lightning-fast queries, real-time insights, built-in developer tools, data visualization, and integrations supported by the largest graph developer community.
 
-For more information on AuraDB, see the xref:auradb/index.adoc[Neo4j AuraDB overview].
+[[auradb]]
+= Neo4j AuraDB overview
+:description: This section describes how to use Neo4j AuraDB.
 
-== Neo4j AuraDS
-Neo4j AuraDS is the fully managed data science as a service solution for data scientists that unifies the machine learning (ML) surface and graph database into a single workspace, making it easy to uncover the connections in big data and answer business-critical questions.
+Neo4j AuraDB is a fully managed cloud graph database service.
 
-For more information on AuraDS, see the xref:aurads/index.adoc[Neo4j AuraDS overview].
+Built to leverage relationships in data, AuraDB enables lightning-fast queries for real-time analytics and insights.
+AuraDB is reliable, secure, and fully automated, enabling you to focus on building graph applications without worrying about database administration.
+
+== Plans
+
+AuraDB offers the following subscription plans: *AuraDB Free*, *AuraDB Professional*, *AuraDB Business Critical*, and *AuraDB Enterprise*.
+The full list of features available in each plan is available on the link:https://neo4j.com/pricing/[Neo4j Pricing page].
+
+== Updates and upgrades
+
+AuraDB does not have any scheduled maintenance windows.
+It is designed to be always on and available, with all corrections, fixes, and upgrades automatically applied in the background.
+
+Releases for the Neo4j database are also deployed when they become available.
+Operations are non-disruptive, and you shouldn't experience any downtime as a result.
+
+== Support
+
+For a breakdown of the support offered across plan types as well as the support holiday schedule, see the https://support.neo4j.com/s/article/360053850514-Neo4j-Aura-Customer-Support-Holiday-Schedule[Aura Support page].
+
+Additionally, you can access the https://status.neo4j.io/[Aura Status page] to check the current operational status of Aura and subscribe to updates.
 
 (C) {copyright}
 License: link:{common-license-page-uri}[Creative Commons 4.0]
-
-// Edit at: https://github.com/neo4j-graphacademy/courses/blob/main/asciidoc/courses/neo4j-fundamentals/promo.adoc
-include::https://raw.githubusercontent.com/neo4j-graphacademy/courses/main/asciidoc/courses/neo4j-fundamentals/promo.adoc[]
