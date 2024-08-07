@@ -8,3 +8,9 @@ Regardless of what language you use, you will need to provide the following info
 
 * `uri` - The *Connection URI* for your AuraDB instance. You can copy this from the instance card or details page in the Console.
 * `username` and `password` - The *Username* and *Password* for your AuraDB instance. You can copy or download these during the instance creation process.
+
+== Change data capture
+
+Change Data Capture (CDC) allows you to capture and track changes to your database in real-time, enabling you to keep your other data sources up to date with Neo4j. With CDC, you can identify and respond to changes (create, update, and delete) on nodes and relationships as they happen, and integrate these changes into other systems and applications.
+
+See link:https://neo4j.com/docs/cdc/enablecdc/aura for more information about setting up CDC, configuring it to capture the changes, and querying those changes for further processing, such as replicating to another system.
