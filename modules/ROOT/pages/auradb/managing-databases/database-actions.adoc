@@ -2,15 +2,49 @@
 = Instance actions
 :description: This page describes the following instance actions - rename, resest, upgrade, resize, pause, resume, clone to a new database, clone to an existing database, or delete and instance.
 
-You can perform multiple instance actions from an instance card.
+Perform multiple instance actions from an instance card. 
 
 == View instance details
 
-From the instance card, you can select the more actions (*...*) button then select *instance details*
+From the instance card, you can select the more actions (*...*) button then select *instance details*.
+
+[cols="1,1"]
+|===
+| Detail | Description
+
+|Region
+|Where servers are located
+
+|Version
+|The version of the Aura database
+
+|Connection URI
+|Use this to connect to an instance
+
+|Private URI
+|Applicable if you have a private link set up 
+
+|ID
+|Every instance has with an ID which is a unique identifier. It means multiple instances can have the same instance name.
+
+|Memory
+|The capacity of your instance (you can adjust it without any downtime)
+
+|CPU
+|Aura provides database as a service through public cloud providers. It runs on container technology and this allows for the AuraDB Instance to allocate dedicated CPU resources.
+
+|Storage
+|Neo4j Aura automates the backup process (you can also create your own on-demand snapshots), storing your data securely in the cloud. Backups are saved in the storage bucket of the cloud provider in the same region as your Neo4j Aura instance.
+
+|Encryption key
+|Neo4j Managed Key encrypts your data
+
+|===
 
 == Rename an instance
 
 You can change the name of an existing instance using the *Rename* action.
+Open *instance details* to rename the instance.
 
 To rename an instance:
 
