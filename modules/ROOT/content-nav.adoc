@@ -3,51 +3,51 @@ Generic Start
 ////
 * *Neo4j Aura*
 
-* xref:index.adoc[Introduction]
-
-* **Visual tour**
-** xref:visual-tour/index.adoc[]
-** xref:visual-tour/organization.adoc[]
-** xref:visual-tour/data-services.adoc[]
-** xref:visual-tour/tools.adoc[]
-** xref:visual-tour/operations.adoc[]
-** xref:visual-tour/project.adoc[]
-
 * **Quick start**
 ** xref:platform/create-account.adoc[]
-** xref:auradb/getting-started/create-database.adoc[]
 ** xref:auradb/getting-started/connect-database.adoc[]
 ** xref:auradb/getting-started/data-modeling.adoc[]
 ** xref:link-to-come[Import data]
 
+* **Introduction**
+** xref:index.adoc[Introduction]
+** xref:visual-tour/index.adoc[]
 
-* **Manage instances**
-** xref:auradb/managing-databases/database-actions.adoc[]
-** xref:auradb/managing-databases/instance-details.adoc[]
+* **Instances**
+** xref:auradb/getting-started/create-database.adoc[Create an instance]
+** xref:auradb/getting-started/connect-database.adoc[Connect to an instance]
+** xref:auradb/managing-databases/database-actions.adoc[Instance actions]
+** xref:auradb/managing-databases/instance-details.adoc[Instance details]
+** xref:auradb/managing-databases/instance-details.adoc[Snapshots]
+** xref:auradb/managing-databases/instance-details.adoc[Resources] 
+** xref:auradb/managing-databases/instance-details.adoc[Develop] 
+
+//(tapping on resources will take you to the metrics tab, and then I fully document the metrics tab further down and I link to that in my notes)
 
 * **Import data**
 ** xref:auradb/importing/importing-data.adoc[]
 //more to come here when Cloud import is a thing
 //also put data importer docs here
 
-* **Interact with data**
+* **Explore data**
 ** xref:link-to-come-about-explore[Explore]
+* **Query data**
 ** xref:auradb/getting-started/query-database.adoc[Query]
 
-* **Monitor instances**
-** xref:auradb/managing-databases/monitoring.adoc[]
-** xref:auradb/managing-databases/advanced-metrics.adoc[]
+* **Metrics**
+** xref:auradb/managing-databases/monitoring.adoc[Resources]
+** xref:auradb/managing-databases/advanced-metrics.adoc[All metrics]
 
-* **Manage Organizations and Projects**
+* **Logs**
+** xref:auradb/managing-databases/monitoring.adoc[Logs coming soon]
+
+* **Projects**
+** xref.** xref:projects.adoc[Projects]
+
+* **Users**
 ** xref:platform/user-management.adoc[]
 
-* **Set up security features**
-** xref:link-to-come-security[Secure connections]
-** xref:link-to-come-security[Single sign-on]
-** xref:link-to-come-security[Encryption]
-** xref:link-to-come-security[CMEK]
-
-* **Connecting applications**
+* **Develop**
 ** xref:auradb/connecting-applications/overview.adoc[Connecting applications]
 ////
 AuraDB End
