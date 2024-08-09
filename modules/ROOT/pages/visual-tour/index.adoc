@@ -1,32 +1,21 @@
 [[visual-overview]]
-= Get to know the console UI
+= Get to know the console
 :description: This page introduces the console UI.
 
-It is likely you will land in *projects* when you log-in.
+When you log in, you’ll likely find yourself in a project. The Aura console is designed for intuitive navigation, allowing you to explore using clickable cards, breadcrumbs, and dropdown menus.
 
-Orientation comes naturally when you use the console UI. Navigate by clicking cards, or using breadcrumbs and dropdowns.
+If you’re setting up the console, your starting point will be an organization. However, if an admin has invited you to a specific project, you’ll land directly in that project. The organization or project you’re currently viewing will always be displayed in the header of the console as breadcrumbs.
 
-*Breadcrumbs / dropdowns* If you’re setting up the Aura Console, you will land in an organization.
+To switch between different organisations or projects, click on the organization name in the breadcrumbs. This will open a dropdown menu where you can see all the organisations and projects you have access to, making it easy to move between them.
 
-If you’ve been invited by an admin to a particular project, you will land in that project. 
-
-The organization or project you’re currently viewing is displayed in the header of the Console in breadcrumbs.
-
-You can click on the organization name to open a dropdown menu, and view all the projects that you have access to and switch between them.
-
-Once you’re inside an organization in the UI, you will see the projects listed as cards. 
-
-From the project card, you’ll be able to see how many instances are within that project, and how many people are members.
-
-Click on a project card: That will open up all the instances within the project. 
-From there, you’ll be in that project, and you can view any instances that may already exist - or you can create a new instance.
+Once inside an organization, you’ll see a list of projects displayed as cards. These cards provide a snapshot of each project, including the number of instances and members associated with it. Clicking on a project card will take you inside that project, where you can view existing instances or create new ones as needed.
 
 == Comparison to the classic console
 
-* Some of the features moved to left hand side (like metrics)
-* Tenants are an evolution of projects
-* The new console's left nav gives us our tools now, which is a significant change to the classic console's concept of "opening" the instance
-* Nothing new in create an instance
+* Some features, such as metrics, have been moved to the left-hand side.
+* Tenants are an evolution of projects.
+* The new console’s left navigation now provides access to tools, marking a significant change from the classic console's concept of "opening" the instance.
+* The process for creating an instance remains unchanged.
 
 
 == Jess' ideas:
@@ -36,17 +25,17 @@ From there, you’ll be in that project, and you can view any instances that may
 ** Users
 ** Settings
 
-* Data services : Here’s how you get to your data (you land in a project > click the instance) 
+=== Data services : 
 
-If you have some data in the instance already you can explore it with *Explore*
-If you need to get some data, you can go to Explore and follow the instructions to import a dataset (Northwind)
-You’ll always need to go to explore to explore the data - that's the whole point of Aura - unless you're an admin/ops person who just needs to manage the system and doesn't necessarily need to use/explore the data.
+To get to your data, you'll need to head to a project and connect to an instance.
 
-** Instances - expand a card (You know what you can do (metrics, snapshots, pause - doesn’t require data))
+If your instance already contains data, you can start exploring it visually or querying it. If you need to import data, go to Explore and follow the instructions to bring in a dataset, such as Northwind. Exploring data is central to using Aura, so you'll always need to go to Explore for this purpose—unless you're an admin or operations person who only needs to manage the system without diving into the data itself.
 
-At this point you need some data in your instance
-You can do that - workspace guide
-You’re connect in and you can … off you go. You don’t have to import your data into a new slate - if you have an instance already with data in it.
+=== Instances 
+
+Expand an instance card to see what you can do, such as viewing metrics, taking snapshots, or pausing the instance—none of which require data.
+
+To see the power of a graph database, you'll need some data in your instance. You can follow the workspace guide to get that set up. Once you're connected, you're ready to go. If you already have an instance with data in it, there's no need to start from scratch; you can jump right in and start working with your existing data.
 
 ** Import - brief intro (import data from local files)
 
