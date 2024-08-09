@@ -2,18 +2,68 @@
 = Get to know the console UI
 :description: This page introduces the console UI.
 
+It is likely you will land in *projects* when you log-in.
+
+Orientation comes naturally when you use the console UI. Navigate by clicking cards, or using breadcrumbs and dropdowns.
+
+*Breadcrumbs / dropdowns* If you’re setting up the Aura Console, you will land in an organization.
+
+If you’ve been invited by an admin to a particular project, you will land in that project. 
+
+The organization or project you’re currently viewing is displayed in the header of the Console in breadcrumbs.
+
+You can click on the organization name to open a dropdown menu, and view all the projects that you have access to and switch between them.
+
+Once you’re inside an organization in the UI, you will see the projects listed as cards. 
+
+From the project card, you’ll be able to see how many instances are within that project, and how many people are members.
+
+Click on a project card: That will open up all the instances within the project. 
+From there, you’ll be in that project, and you can view any instances that may already exist - or you can create a new instance.
+
+== Comparison to the classic console
+
+* Some of the features moved to left hand side (like metrics)
+* Tenants are an evolution of projects
+* The new console's left nav gives us our tools now, which is a significant change to the classic console's concept of "opening" the instance
+* Nothing new in create an instance
+
+
+== Jess' ideas:
+
 * Organization
 ** Projects
 ** Users
 ** Settings
 
-* Data services
-** Instances - expand a card
-** Import - brief intro
+* Data services : Here’s how you get to your data (you land in a project > click the instance) 
+
+If you have some data in the instance already you can explore it with *Explore*
+If you need to get some data, you can go to Explore and follow the instructions to import a dataset (Northwind)
+You’ll always need to go to explore to explore the data - that's the whole point of Aura - unless you're an admin/ops person who just needs to manage the system and doesn't necessarily need to use/explore the data.
+
+** Instances - expand a card (You know what you can do (metrics, snapshots, pause - doesn’t require data))
+
+At this point you need some data in your instance
+You can do that - workspace guide
+You’re connect in and you can … off you go. You don’t have to import your data into a new slate - if you have an instance already with data in it.
+
+** Import - brief intro (import data from local files)
 
 * Tools
 ** Explore - brief intro
 ** Query - brief intro
+
+After that you can switch between the different tabs for all the graph tools. 
+
+Because you want to explore a particular data set and do some neat queries using Cypher.
+
+You will be oriented from the section titles in the side panel.
+
+Navigate via the breadcrumbs (organizations, projects, instances).
+
+The left side panel (all the tools).
+
 
 * Operations
 ** Metrics
