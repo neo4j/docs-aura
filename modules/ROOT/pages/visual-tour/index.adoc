@@ -1,6 +1,6 @@
 [[visual-overview]]
 = Get to know the console
-:description: This section covers various aspects of using the Neo4j Aura console, exploring data, managing instances, and utilizing the Explore tool for visualizing and interacting with graph data. The text provides a detailed overview of the console's structure, organization, projects, users, and data services, along with insights on instances, importing data, tools, and operations metrics. Additionally, it explains the significance of exploring data through Neo4j Explore and the importance of having data in instances for effective graph database utilization.
+:description: This section covers various aspects of using the Aura console, exploring data, managing instances, and utilizing the Explore tool for visualizing and interacting with graph data. The text provides a detailed overview of the console's structure, organization, projects, users, and data services, along with insights on instances, importing data, tools, and operations metrics. Additionally, it explains the significance of exploring data through Explore and the importance of having data in instances for effective graph database utilization.
 
 When you log in, you’ll likely find yourself in a project. The Aura console is designed for intuitive navigation, allowing you to explore using clickable cards, breadcrumbs, and dropdown menus.
 
@@ -34,7 +34,7 @@ If your instance already contains data, you can start exploring it visually or q
 
 == Instances 
 
-Think of your instance as a database that is running in the Neo4j Aura cloud. The cloud is a way to store and access data and applications over the internet instead of on your own computer or local storage. Think of it like using a remote hard drive that's always available online. You can save files, run programs, and access information from anywhere with an internet connection, and you don’t need to worry about the physical hardware or storage space on your own device.
+Think of your instance as a database that is running in the Aura cloud. The cloud is a way to store and access data and applications over the internet instead of on your own computer or local storage. Think of it like using a remote hard drive that's always available online. You can save files, run programs, and access information from anywhere with an internet connection, and you don’t need to worry about the physical hardware or storage space on your own device.
 
 Expand an instance card to see what you can do, such as viewing metrics, taking snapshots, or pausing the instance—none of which require data.
 
@@ -60,7 +60,7 @@ Explore helps you visualize and interact with your graph data. Here’s a simple
 
 * Data Insights: By interacting with the graph, you can uncover patterns, trends, and insights that are not easily visible in traditional tabular data formats like SQL.
 
-Overall, Neo4j Explore is designed to make working with graph data more intuitive and insightful by providing a visual and interactive way to analyze and manage your data.
+Overall, Explore is designed to make working with graph data more intuitive and insightful by providing a visual and interactive way to analyze and manage your data.
 
 In Explore, you can delve into specific data sets and perform interesting queries using Cypher. The section titles in the side panel will help guide you through these options.
 
@@ -71,7 +71,7 @@ Metrics refer to the various measurements and statistics that help you monitor a
 * CPU usage: CPU is used for planning and serving queries. If this metric is constantly spiking, consider increasing the size of your instance if you find this chart is at its limits.
 * Storage: As your graph grows, it will use storage space on disk. Keep an eye on this metric to make sure you have enough storage for today and for future growth. If you are approaching the limits, resize your instance to accommodate your intended growth rate.
 * Query exectutions: A query execution is the process of running a database query to retrieve, modify, or manage data. In essence, query execution is what happens when you ask the database a question or give it a command, and it works to provide the answer or make the requested changes. Here’s a simple explanation:
-** Query: A request made to the database using a specific language (like Cypher in Neo4j) to perform tasks such as fetching data, updating records, or analyzing information.
+** Query: A request made to the database using a specific language (like Cypher) to perform tasks such as fetching data, updating records, or analyzing information.
 ** Execution: The actual process of the database handling and processing this request. It involves interpreting the query, running it against the stored data, and returning the results.
 
 === Logs
@@ -80,15 +80,15 @@ Track and review system activities and events. Logs provide insights into databa
 
 == Project
 
-Represents a specific area within your Neo4j Aura environment where you can manage and organize your data and resources. Each project operates independently, allowing you to segment and focus on different tasks or datasets.
+Represents a specific area within your console where you can manage and organize your data and resources. Each project operates independently, allowing you to segment and focus on different tasks or datasets.
 
 === Users
 
-Individuals who have access to your Neo4j Aura instance. You can manage user accounts, assign permissions, and control access levels to ensure secure and appropriate use of the database.
+Individuals who have access to your project to do admin work, or to the instances to do datawork. You can manage user accounts, assign permissions, and control access levels to ensure secure and appropriate use of the database.
 
 === Roles
 
-Define the permissions and responsibilities of users within your Neo4j Aura environment. Roles help manage what actions users can perform and what data they can access, ensuring proper access control and organization.
+Define the permissions and responsibilities of users within your console. Roles help manage what actions users can perform and what data they can access, ensuring proper access control and organization.
 
 === Billing
 
@@ -96,4 +96,4 @@ Manage your subscription and payment details. This section provides information 
 
 === Settings
 
-Configuration options for customizing and optimizing your Neo4j Aura environment. This includes adjusting performance settings, configuring alerts, and managing other system preferences to suit your needs.
+Configuration options for customizing and optimizing your console. This includes adjusting performance settings, configuring alerts, and managing other system preferences to suit your needs.
