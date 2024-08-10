@@ -58,11 +58,14 @@ From the instance card, you can select the more actions (*...*) button then sele
 
 == Snapshots
 
-The data in your AuraDS instance can be backed up, exported, and restored using snapshots. 
+Snapshots are backups of your data. 
+
+The data in your instance can be backed up, exported, and restored using snapshots. 
 A snapshot is a copy of the data in an instance at a specific point in time.
 
-
-
+Neo4j regularly takes snapshots of your AuraDB instance, and you can request a snapshot to be taken on demand.
+ 
+These snapshots can be used to restore data to a different Neo4j instance.
 
 == Import instance
 
