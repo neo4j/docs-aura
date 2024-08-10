@@ -2,14 +2,22 @@
 = Connect to an instance
 :description: This page describes how to connect to an instance using Neo4j AuraDB.
 
-There are a few different methods of connecting to an instance:
+There are a few different ways to connect to an instance.
+You'll need the passwords / info you downloaded when you created the instance.
 
-You will be prompted to connect to an instance when you navigate to the Explore tab or the Query tab. 
+* You will be prompted to connect to an instance when you navigate to *Explore* or *Query*.
+
+image::connectionmodal.png[]
+
+* You can also use the connecton banner from within *Explore* or *Query*.
+
+image::connectionbanner.png[]
 
 == To open an instance from Explore or Query
 
 . Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
-. You are prompted to choose a connection method
+. Select *Explore* or *Query*.
+. You are prompted to choose a connection method.
 . Enter the *Database user* and *Password* credentials in the window that opens. 
 These are the same credentials you stored when xref:auradb/getting-started/create-database.adoc[creating the instance].
 . Select *Connect*.
@@ -36,26 +44,12 @@ These are the same credentials you stored when xref:auradb/getting-started/creat
 
 |===
 
-== Neo4j Desktop
-
-You can connect AuraDB instances to the Neo4j Desktop application, allowing the ability to have a single portal for interacting with all instances of Neo4j, whether local or located in the cloud.
-
-To connect to an instance using Neo4j Desktop:
-
-. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
-. Copy the *Connection URI* of the instance you want to connect to. The URI is below the instance status indicator.
-. In Neo4j Desktop, select the *Projects* tab and select an existing project or create a new one.
-. Select the *Add* dropdown and choose *Remote connection*.
-. Enter a name for the instance and enter the URL from the Neo4j Aura console from the second step.
-Once complete, select *Next*.
-. With *Username/Password* selected, enter your credentials and select *Next*.
-These are the same credentials you stored when xref:auradb/getting-started/create-database.adoc[creating the instance].
-. When available, activate the connection by clicking the *Connect* button.
-
 == Connect to recent instances
 
 You can also use the connection banner, which is accessible inside each tool.
 
 Click on *Status* and from there a drop down of options - you can perform actions such as connect / disconnect or connect to instances you recently connected to.
 
-image::connectionbanner.png[]
+== How to find your details
+
+image::password.png[]

@@ -2,13 +2,14 @@
 = Instance actions
 :description: This page describes the following instance actions - rename, resest, upgrade, resize, pause, resume, clone to a new database, clone to an existing database, or delete and instance.
 
-Perform multiple instance actions from an instance card. 
+Perform multiple instance actions directly from an instance card: Pause/resume, develop, view instance details, clone to new instance/clone to existing instance, edit secondaries, delete, resize, view resources/view all metrics. 
 
 image::instanceactions.png[]
 
-== View instance details
+== Instance details
 
 From the instance card, you can select the more actions (*...*) button then select *instance details*.
+From the instance details you can rename an instance, view instance details and we explain them in the instance actions docs. 
 
 image::instancedetails.png[]
 
@@ -56,6 +57,8 @@ image::instancedetails.png[]
 
 == Resize an instance
 
+Resizing an instance means changing the Memory, CPU and storage size. 
+
 // label:AuraDB-Professional[]
 // label:AuraDB-Enterprise[]
 // label:AuraDB-Business-Critical[]
@@ -72,6 +75,19 @@ To resize an instance:
 An instance remains available during the resize operation.
 
 == Pause an instance
+
+Pausing a Neo4j instance temporarily stops the database, which means:
+
+* No Access to Data: The data stored in the database becomes inaccessible. 
+Any applications or users trying to connect to the instance won't be able to run queries or retrieve data until the instance is resumed.
+
+* No Processing: The database won't process any operations or transactions while it's paused. 
+Any ongoing operations will be halted.
+
+* Data is Preserved: Your data remains safe and unchanged while the instance is paused. 
+When you resume the instance, you can pick up right where you left off.
+
+Pausing is like putting the database on hold without shutting it down completely, so you can restart it quickly when needed.
 
 // label:AuraDB-Professional[]
 // label:AuraDB-Enterprise[]
@@ -204,8 +220,6 @@ In the dropdown menu, they are grayed out and have the string `(Instance is not 
 
 
 == Delete an instance
-
-You can delete an instance if you no longer want to be billed for it.
 
 To delete an instance:
 
