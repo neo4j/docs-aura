@@ -2,11 +2,11 @@
 = Get to know the console
 :description: This section covers various aspects of using the Aura console, exploring data, managing instances, and utilizing the Explore tool for visualizing and interacting with graph data. The text provides a detailed overview of the console's structure, organization, projects, users, and data services, along with insights on instances, importing data, tools, and operations metrics. Additionally, it explains the significance of exploring data through Explore and the importance of having data in instances for effective graph database utilization.
 
+The whole point of Aura - is using the console to then interact with your data - visualising nodes and relationships - or doing queries with cypher language. Cypher language is the future of graph database languages - it kicks SQL's ass because it can do way more advanced queries. We're not saying you have to do more advanced queries - but it really does run marvellous queries! And Cypher language is pretty neat to pick up - it's really the future of databases, and what with AI and LLMs becoming so important to the future of tech - you really need to be using a graph database because that's what the future of computing is built on. 
+
 This section covers various aspects of using the Aura console, exploring data, managing instances, and utilizing the Explore tool for visualizing and interacting with graph data. The text provides a detailed overview of the console's structure, organization, projects, users, and data services, along with insights on instances, importing data, tools, and operations metrics. Additionally, it explains the significance of exploring data through Explore and the importance of having data in instances for effective graph database utilization.
 
 == Projects
-
-However, if an admin has invited you to a specific project, you’ll land directly in that project.
 
 When you log in, you’ll find yourself in a project. The Aura console is designed for intuitive navigation, allowing you to explore using clickable cards, breadcrumbs, and dropdown menus.
 
@@ -28,36 +28,52 @@ image::breadcrumbs.png[]
 
 == Organisations, projects, instances
 
-* Organization: The highest level, representing the overall entity or company.
+* Organization: The highest level, representing the overall team or company.
 * Projects: Like folders, where you can keep your instances with data.
+* Tenants: Homes for your data.
 * Users: Individuals who interact with the organization and its projects, with varying roles and permissions.
-* Settings: Configuration options that control how the organization, projects, and users operate.
 
-== Data services 
+== Data services
 
 To get to your data, you'll need to head to a project and connect to an instance.
 
-If your instance already contains data, you can start exploring it visually or querying it. If you need to import data, go to Explore and follow the instructions to bring in a dataset, such as Northwind. Exploring data is central to using Aura, so you'll always need to go to Explore for this purpose—unless you're an admin or operations person who only needs to manage the system without diving into the data itself.
+If your instance already contains data, you can start exploring it visually or querying it. 
+If you need to import data, go to Explore and follow the instructions to bring in a dataset, such as Northwind. 
+Exploring data is central to using Aura, so you'll always need to go to Explore for this purpose—unless you're an admin or operations person who only needs to manage the system without diving into the data itself.
 
 == Instances 
 
-Think of your instance as a database that is running in the Aura cloud. The cloud is a way to store and access data and applications over the internet instead of on your own computer or local storage. Think of it like using a remote hard drive that's always available online. You can save files, run programs, and access information from anywhere with an internet connection, and you don’t need to worry about the physical hardware or storage space on your own device.
+Think of your instance as a database that is running in the Aura cloud. 
+The cloud is a way to store and access data and applications over the internet instead of on your own computer or local storage. 
+Think of it like using a remote hard drive that's always available online. 
+You can save files, run programs, and access information from anywhere with an internet connection, and you don’t need to worry about the physical hardware or storage space on your own device.
 
 Expand an instance card to see what you can do, such as viewing metrics, taking snapshots, or pausing the instance—none of which require data.
 
-To see the power of a graph database, you'll need some data in your instance. You can follow the workspace guide to get that set up. Once you're connected, you're ready to go. If you already have an instance with data in it, there's no need to start from scratch; you can jump right in and start working with your existing data.
+To see the power of a graph database, you'll need some data in your instance. 
+You can follow the *workspace guide* to get that set up. 
+*Once you're connected, you're ready to go!*
+
+If you already have an instance with data in it, there's no need to start from scratch; you can jump right in and start working with your existing data.
 
 == Import
 
+You'll want to get some data into your instance, so you can *start to explore it visually and query it with Cypher.*
+
 Import data from local files. 
-We have a whole section on that.
+We have a whole section on that. link:https://neo4j.com/docs/getting-started/data-import/csv-import/[csv import]
 If you're new to Aura, we recommend following the workspace guide.
 
 == Tools
 
-The left side panel is where you access all your tools. Once you’ve connected to an instance, you can switch between Explore and Query to use the graph tools or connect to different instances.
+The left side panel is where you access all your tools. 
+Once you’ve connected to an instance, you can switch between Explore and Query to use the graph tools or connect to different instances.
 
-==== Explore
+=== Explore
+
+link:https://neo4j.com/docs/bloom-user-guide/current/bloom-quick-start/[bloom]
+
+See the patterns you intuitively know are there in your data, and reveals new patterns you may not have expected. This new data vision opens up new ways of thinking, new ways of working and new possibilities. And it’s fun.
 
 Explore helps you visualize and interact with your graph data. Here’s a simple breakdown:
 
@@ -69,9 +85,24 @@ Explore helps you visualize and interact with your graph data. Here’s a simple
 
 Overall, Explore is designed to make working with graph data more intuitive and insightful by providing a visual and interactive way to analyze and manage your data.
 
-In Explore, you can delve into specific data sets and perform interesting queries using Cypher. The section titles in the side panel will help guide you through these options.
+In Explore, you can delve into specific data sets and perform interesting queries using Cypher.
 
-=== Operations
+=== Query
+
+You will definitely want to get accustomed to Cypher language!
+link:https://neo4j.com/docs/getting-started/cypher-intro/-[Cypher]
+
+This section introduces you to the graph query language — Cypher®. It aims to help you start thinking about graphs and patterns, apply this knowledge to simple problems, and learn how to write Cypher statements.
+
+When you run queries on your data, you'll be able to see your nodes and relationships 
+
+
+***What is the difference between explore and query?***
+***How the hell do I get my data into neo4j?***
+I just want a simple dataset I can use!
+***How do I get from my instance card to actually loading data?***
+
+== Operations
 
 Metrics refer to the various measurements and statistics that help you monitor and analyze the performance and usage of your database. Here’s a breakdown of the metrics available on an instance card:
 
@@ -81,7 +112,7 @@ Metrics refer to the various measurements and statistics that help you monitor a
 ** Query: A request made to the database using a specific language (like Cypher) to perform tasks such as fetching data, updating records, or analyzing information.
 ** Execution: The actual process of the database handling and processing this request. It involves interpreting the query, running it against the stored data, and returning the results.
 
-=== Logs
+== Logs
 
 Track and review system activities and events. Logs provide insights into database operations, errors, and other critical events, helping you monitor performance and troubleshoot issues.
 
