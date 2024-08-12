@@ -51,9 +51,7 @@ You can override this to use another CMK key - but you can not use the Neo4j Man
 
 === Remove a CMK from Aura
 
-When managing a Customer Managed Key within Aura, it's important to note that if this key is currently being used to encrypt one or more Aura database instances, it cannot be removed from within Aura.
-
-If you no longer need to use this CMK to encrypt Aura databases, first delete the Aura database instances that are encrypted with this key. Once these instances are deleted, you can then proceed to remove the key from Aura. Keep in mind that this process only breaks the link between the key and Aura — it does not delete the actual key from the Cloud KMS.
+When using a Customer Managed Key within Aura to encrypt one or more Aura database instances, it cannot be removed from Aura. If you no longer need to use this Customer Managed Key to encrypt Aura databases, first delete the Aura database instances that are encrypted with the key, then you can remove the key from Aura. Keep in mind that this process only breaks the link between the key and Aura — it does not delete the actual key from the Cloud KMS.
 
 == AWS keys
 
