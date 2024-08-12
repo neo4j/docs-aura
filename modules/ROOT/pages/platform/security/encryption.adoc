@@ -18,7 +18,6 @@ Externally, Customer Managed Keys are also known as Customer Managed Encryption 
 When using a Customer Managed Key, all data at rest is encrypted with the key.
 Customer Managed Keys are supported for v4.x and v5.x instances.
 
-Customer Managed Keys are designed to stay within the cloud provider’s KMS to maintain their security.
 When using Customer Managed Keys, you give Aura permission to encrypt and decrypt using the key, but Aura has no access to the key’s material.
 Aura has no control over the availability of your externally managed key in the KMS.
 If you lose keys that are managed outside of Aura in the cloud provider's KMS, you will not be able to access the data.
