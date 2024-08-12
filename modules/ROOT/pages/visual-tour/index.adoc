@@ -2,36 +2,51 @@
 = Get to know the console
 :description: This section covers various aspects of using the Aura console, exploring data, managing instances, and utilizing the Explore tool for visualizing and interacting with graph data. The text provides a detailed overview of the console's structure, organization, projects, users, and data services, along with insights on instances, importing data, tools, and operations metrics. Additionally, it explains the significance of exploring data through Explore and the importance of having data in instances for effective graph database utilization.
 
-The whole point of Aura - is using the console to then interact with your data - visualising nodes and relationships - or doing queries with cypher language. Cypher language is the future of graph database languages - it kicks SQL's ass because it can do way more advanced queries. We're not saying you have to do more advanced queries - but it really does run marvellous queries! And Cypher language is pretty neat to pick up - it's really the future of databases, and what with AI and LLMs becoming so important to the future of tech - you really need to be using a graph database because that's what the future of computing is built on. 
+The whole point of Aura - is using the console to interact with your data - visualising nodes and relationships - or doing queries with cypher language. 
+Cypher language is the future of graph database languages - it kicks SQL's ass because it can do way more advanced queries. 
+We're not saying you _have_ to do more advanced queries - but it really does run marvellously complex queries! 
+And Cypher language is pretty easy to learn - because it's such a visual language.
 
-This section covers various aspects of using the Aura console, exploring data, managing instances, and utilizing the Explore tool for visualizing and interacting with graph data. The text provides a detailed overview of the console's structure, organization, projects, users, and data services, along with insights on instances, importing data, tools, and operations metrics. Additionally, it explains the significance of exploring data through Explore and the importance of having data in instances for effective graph database utilization.
+Graph databases are all about nodes and relationships (finding complex relationships between data is why they are so powerful).
 
-== Projects
+It's really the future of databases, and what with AI and LLMs becoming so important to the future of tech - you really need to be using a graph database because that's what the future of computing is built on. 
 
-When you log in, you’ll find yourself in a project. The Aura console is designed for intuitive navigation, allowing you to explore using clickable cards, breadcrumbs, and dropdown menus.
+This section covers various aspects of using the Aura console, exploring data, managing instances, and utilizing the Explore tool for visualizing and interacting with graph data. 
 
-image::project.png[]
+The text provides a detailed overview of the console's structure, organization, projects, users, and data services, along with insights on instances, importing data, tools, and operations metrics. 
 
-== Organizations 
+Additionally, it explains the significance of exploring data through Explore and the importance of having data in instances for effective graph database utilization.
 
+== Whare you land after log in 
+
+=== Organization
 If you’re setting up the console, you will have access to an organization.
 
 The organization or project you’re currently viewing will always be displayed in the header of the console as breadcrumbs.
 
-To switch between different organisations or projects, click on the organization name in the breadcrumbs. This will open a dropdown menu where you can see all the organisations and projects you have access to, making it easy to move between them.
+To switch between different organisations or projects, click on the organization name in the breadcrumbs. 
+This will open a dropdown menu where you can see all the organisations and projects you have access to, making it easy to move between them.
 
-Once inside an organization, you’ll see a list of projects displayed as cards. These cards provide a snapshot of each project, including the number of instances and members associated with it. Clicking on a project card will take you inside that project, where you can view existing instances or create new ones as needed.
+Once inside an organization, you’ll see a list of projects displayed as cards. 
+These cards provide a snapshot of each project, including the number of instances and members associated with it. 
+Clicking on a project card will take you inside that project, where you can view existing instances or create new ones as needed.
 
 image::breadcrumbs.png[]
+
+== Projects
+
+When you log in, you’ll probably find yourself in a project. 
+The Aura console is designed for intuitive navigation, allowing you to explore using clickable cards, breadcrumbs, and dropdown menus.
+
+image::project.png[]
 
 == Console UI
 
 == Organisations, projects, instances
 
 * Organization: The highest level, representing the overall team or company.
-* Projects: Like folders, where you can keep your instances with data.
-* Tenants: Homes for your data.
-* Users: Individuals who interact with the organization and its projects, with varying roles and permissions.
+* Projects: Like folders, that contain your instances.
+* Instances: Contain the databases with your data. 
 
 == Data services
 
@@ -122,7 +137,11 @@ Represents a specific area within your console where you can manage and organize
 
 === Users
 
-Individuals who have access to your project to do admin work, or to the instances to do datawork. You can manage user accounts, assign permissions, and control access levels to ensure secure and appropriate use of the database.
+* Users: Individuals who interact with the console, with varying roles and permissions.
+
+Invite people to become users of the console from the user's page. You can manage user accounts, assign permissions, and control access levels to ensure secure and appropriate use of the database.
+
+Individuals can have access to your project to do admin work, or to the instances to do datawork - and you can go into much more detail with these permissions. 
 
 === Roles
 
