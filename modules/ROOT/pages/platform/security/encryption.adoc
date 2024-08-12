@@ -11,12 +11,6 @@ By default, each cloud provider encrypts all backup buckets (including the objec
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
 
-[NOTE]
-====
-This feature has been released as a public GA for AuraDB Enterprise and AuraDS Enterprise for AWS managed keys.
-GCP’s Cloud Key Management and Azure’s Key Vault are in development.
-====
-
 A Customer Managed Key (CMK) gives you more control over key operations than the standard Neo4j encryption.
 These are created and managed using a supported cloud key management service (KMS). 
 Externally, Customer Managed Keys are also known as Customer Managed Encryption Keys (CMEK).
@@ -24,20 +18,16 @@ Externally, Customer Managed Keys are also known as Customer Managed Encryption 
 When using a Customer Managed Key, all data at rest is encrypted with the key.
 Customer Managed Keys are supported for v4.x and v5.x instances.
 
+Customer Managed Keys are designed to stay within the cloud provider’s KMS to maintain their security.
 When using Customer Managed Keys, you give Aura permission to encrypt and decrypt using the key, but Aura has no access to the key’s material.
 Aura has no control over the availability of your externally managed key in the KMS.
-If you lose keys that are managed outside of Aura, Aura can’t recover your data.
+If you lose keys that are managed outside of Aura in the cloud provider's KMS, you will not be able to access the data.
 
 [WARNING]
 ====
-The loss of a Customer Managed Key, through deletion, disabling, or expiration, renders all data encrypted with that key unrecoverable.
-Neo4j cannot administer database instances when keys are disabled, deleted, or permissions revoked.
+The loss of a Customer Managed Key — whether through deletion, disabling, or expiration — makes all data encrypted with that key inaccessible. 
+Neo4j is unable to manage database instances if the key is disabled, deleted, or if permissions are revoked.
 ====
-
-=== Delete a key
-
-If a Customer Managed Key is being used to encrypt one or more Aura instances in the console, it can't be deleted.
-If you need to delete the key, first delete the Aura database instances encrypted with the key, then delete the key.
 
 === Key rotation
 
@@ -45,11 +35,6 @@ In your KMS platform, you can either configure automatic rotation for the Custom
 
 Although automatic rotation is not enforced by Aura, it is best practice to rotate keys regularly.
 Manual key rotation is **not** recommended.
-
-=== Regions
-
-There is a limit of one key for AuraDB and one key for AuraDS per region.
-Depending on the KMS, there may be a delay between disabling a key, and when it can no longer be used to encrypt and decrypt data.
 
 === Import an existing database
 
@@ -63,8 +48,14 @@ For more information see the xref:auradb/importing/import-database.adoc#_neo4j_a
 To clone an instance protected by a Customer Managed Key, the key must be valid and available to Aura.
 The cloned instance, by default, uses the available Customer Managed Key for that region and product.
 
-You can override this behavior by selecting the Neo4j Managed Key when cloning the database.
-If there is no valid CMK for the destination region and product, the Neo4j Managed Key is used to encrypt the cloned instance.
+It is best practice to use the same CMK key as the instance it’s being cloned from. 
+You can override this to use another CMK key - but you can not use the Neo4j Managed Key.
+
+=== Detach a CMK from Aura
+
+When managing a Customer Managed Key (CMK) within Aura, it's important to note that if this key is currently being used to encrypt one or more Aura database instances, it cannot be detached from within Aura.
+
+If you no longer need to use this CMK to encrypt Aura databases, first delete the Aura database instances that are encrypted with this key. Once these instances are deleted, you can then proceed to detach the key from Aura. Keep in mind that this process only breaks the link between the key and Aura — it does not delete the actual key from the Cloud KMS.
 
 == AWS keys
 
@@ -87,13 +78,13 @@ Add a comma after the curly brace in the final SID, and then paste the JSON code
 
 === AWS regions
 
-When creating a Customer Managed Key in the AWS KMS, you can create a single-region key in a single AWS region, or create a multi-region key that you can replicate into multiple AWS regions.
-Aura only supports AWS Customer Managed Keys that reside in the same region as the instance.
+When creating a Customer Managed Key in the AWS KMS, you can create a single-region key, or create a multi-region key.
 
-[CAUTION]
-====
-In Aura, you can use AWS single-region keys, multi-region keys or replica keys as long as the key resides in the same region as the Aura instace.
-====
+*Single-region key*
+Single-region keys reside in only one AWS region, which must be in the same region as your Aura instance.
+
+*Multi-region key*
+Multi-region keys have a main region, however these can be replicated to other regions where your Aura instance reside. The replicas share the same key ID and different ARNs with the master key.
 
 === AWS automatic key rotation
 
