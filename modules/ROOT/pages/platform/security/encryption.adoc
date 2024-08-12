@@ -26,7 +26,7 @@ If you lose keys that are managed outside of Aura in the cloud provider's KMS, y
 [WARNING]
 ====
 The loss of a Customer Managed Key — whether through deletion, disabling, or expiration — makes all data encrypted with that key inaccessible. 
-Neo4j is unable to manage database instances if the key is disabled, deleted, or if permissions are revoked.
+Neo4j is unable to manage database instances if the key is disabled, deleted, expired, or if permissions are revoked.
 ====
 
 === Key rotation
