@@ -80,7 +80,7 @@ When creating a Customer Managed Key in the AWS KMS, you can create a single-reg
 Single-region keys reside in only one AWS region, which must be in the same region as your Aura instance.
 
 *Multi-region key*
-Multi-region keys have a main region, however these can be replicated to other regions where your Aura instance reside. The replicas share the same key ID and different ARNs with the master key.
+Multi-region keys have a main region, however these can be replicated to other regions that match the region of your Aura instance. The replicas share the same key ID and different ARNs with the main key.
 
 === AWS automatic key rotation
 
