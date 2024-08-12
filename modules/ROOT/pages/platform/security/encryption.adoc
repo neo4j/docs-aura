@@ -74,9 +74,9 @@ Add a comma after the curly brace in the final SID, and then paste the JSON code
 
 === AWS regions
 
-When creating a Customer Managed Key in the AWS KMS, you can create a single-region key, or create a multi-region key.
+Aura supports AWS Customer Managed Keys that reside in the same region as the instance. When creating a Customer Managed Key in the AWS KMS, you can create a single-region key, or create a multi-region key.
 
-Single-region keys reside in only one AWS region, which must be in the same region as your Aura instance.
+Single-region keys reside in only one AWS region, which must be the same region as your Aura instance.
 
 Multi-region keys have a primary region, however these can be replicated to other regions that match the region of your Aura instance. The replicas share the same key ID and different ARNs with the primary key.
 
