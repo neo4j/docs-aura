@@ -49,11 +49,11 @@ The cloned instance, by default, uses the available Customer Managed Key for tha
 It is best practice to use the same CMK key as the instance it’s being cloned from. 
 You can override this to use another CMK key - but you can not use the Neo4j Managed Key.
 
-=== Detach a CMK from Aura
+=== Remove a CMK from Aura
 
-When managing a Customer Managed Key (CMK) within Aura, it's important to note that if this key is currently being used to encrypt one or more Aura database instances, it cannot be detached from within Aura.
+When managing a Customer Managed Key (CMK) within Aura, it's important to note that if this key is currently being used to encrypt one or more Aura database instances, it cannot be removed from within Aura.
 
-If you no longer need to use this CMK to encrypt Aura databases, first delete the Aura database instances that are encrypted with this key. Once these instances are deleted, you can then proceed to detach the key from Aura. Keep in mind that this process only breaks the link between the key and Aura — it does not delete the actual key from the Cloud KMS.
+If you no longer need to use this CMK to encrypt Aura databases, first delete the Aura database instances that are encrypted with this key. Once these instances are deleted, you can then proceed to remove the key from Aura. Keep in mind that this process only breaks the link between the key and Aura — it does not delete the actual key from the Cloud KMS.
 
 == AWS keys
 
