@@ -59,18 +59,18 @@ From the instance card, you can select the more actions (*...*) button then sele
 == Snapshots
 
 Snapshots are backups of your data. 
-
 The data in your instance can be backed up, exported, and restored using snapshots. 
 A snapshot is a copy of the data in an instance at a specific point in time.
 
 Neo4j regularly takes snapshots of your instance, and you can request a snapshot to be taken on demand.
- 
 These snapshots can be used to restore data to a different Neo4j instance.
 
 == Import instance
 
-Coming soon!
+_Feature coming soon!_
 
 == Logs
 
-Brief overview and link to full docs 
+If something goes wrong, the logs are a good place to start. 
+The standard log is called `neo4j.log` and it contains general information about Neo4j. 
+There is one for each DBMS and it can be accessed directly from Desktop via the Developer menu. It opens in a separate window, which allows you to keep it in the background.
