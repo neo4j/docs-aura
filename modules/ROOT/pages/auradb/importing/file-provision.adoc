@@ -1,0 +1,24 @@
+[[aura-file-provision]]
+= File provision
+:description: This section describes how to provide files for import using Neo4j Data Importer.
+
+In essence, you provide a set of files that contain the data to be imported and Data Importer imports them into Neo4j.
+
+Data Importer supports flat files, i.e. files that contain data in a tabular format where each row represents a record and each column represents a field in that record.
+The most common format for such files is CSV (comma-separated values), but Data Importer also supports TSV (tab-separated values).
+
+Data Importer requires all files to have a header row and at least one row of data.
+The header row speficies how the data in the file should be interpreted and contains information for each field.
+For more information about CSV files and the header format, see link:{neo4j-docs-base-uri}/operations-manual/current/tools/neo4j-admin/neo4j-admin-import/#import-tool-header-format[Operations Manual -> CSV header format].
+Keep in mind that the column names must be unique, i.e. it is not possible to have two columns with the same name within the same file.
+
+The files are provided in the _Files_ panel of Data Importer.
+You can browse for them or drag and drop them into the panel.
+Once a file is added to the panel, you can preview the header and the first row of data in the file by expanding the file.
+
+[.shadow]
+image::files.png[]
+
+When you provide files to Data Importer, they are temporarily stored on the client side until you run the import.
+If you reload the page before running the import, the files are no longer available to the page and you need to provide them again.
+This is due to security features of your browser.

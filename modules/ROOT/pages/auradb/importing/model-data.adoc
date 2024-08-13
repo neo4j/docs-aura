@@ -1,15 +1,26 @@
-[[aura-mode-data]]
-= Model data
-:description: This page describes how to get data into a Neo4j AuraDB instance.
+[data-importer-intro]
+:description: This is an introduction to the Neo4j Data Importer Manual.
+= Introduction
 
-Sketching a modal
+Neo4j Data Importer is a tool for importing data into Neo4j and is ideal to get started quickly with testing and prototyping.
+It is UI-based and allows you to import data from flat files without using any code.
+This means that you can import data from any source that can be exported to a flat file and does thus not require DBMS filesystem access.
 
-This section describes how to model data to prepapre for import.
+Using Data Importer is only one way to import data into Neo4j and may not meet all import needs.
+See xref:import-others.adoc[] for a full list of options.
 
-image::whiteboardfriendly.png[]
+Data Importer is currently available both as part of Neo4j Workspace and as a standalone product.
+Workspace is available on Neo4j AuraDB instances, and Data Importer is accessed via the _Import_ tab.
+Additionally, Workspace offers options to both query and visually explore your data, once it's imported.
 
-Grab the modeling instructions from data importer docs.
+The standalone version of Data Importer is accessible at link:https://data-importer.neo4j.io/[] using a secure connection.
+Additionally, Data Importer standalone is also available at link:https://data-importer.graphapp.io/[] with both secure and insecure connections.
 
-https://neo4j.com/docs/data-importer/current/
+[NOTE]
+====
+In general, it is recommended to always use a secure connection.
+However, if your Neo4j instance is insecure, in some cases, due to browser constraints, an insecure connection to Data Importer is required.
+====
 
-image::dataimporterdocs.png[]
+Many things covered in this document are also offered in the Import guide.
+The guides can be accessed from the top right corner of the Data Importer UI.
