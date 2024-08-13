@@ -1,22 +1,23 @@
-[[combo]]
-= Combo
+[[all-metrics]]
+= All metrics
 :description: This page describes metrics
 
 You can get a view of instance resources from the instance card.
 
-You can also monitor the following metrics of an instance from the *Metrics* tab:
+You can also monitor the following metrics of an instance from the *Metrics* tab.
+Then from the tabs at the top, you can navigate between resources, instance and database metrics. 
 
-image::metrics.png[]
-
-You can click on the info icon to see information about a particular metric, and you can expland the graph.
-
-image::moreinfo.png[]
-
-The presented metrics will be laid out across three tabs according to their category:
+The metrics are laid out across three tabs according to their category:
 
 * *Resources* - Overall system resources, such as CPU, RAM and disk usage.
 * *Instance* - Information about the Neo4j instance(s) running the database.
 * *Database* - Metrics concerning the database itself, such as usage statistics and entity counts.
+
+image::metrics.png[]
+
+Select the info icon to see information about a particular metric, and you can expland the graph.
+
+image::moreinfo.png[]
 
 When viewing metrics, you can select from the following time intervals:
 
@@ -34,8 +35,6 @@ Memory and storage charts can be toggled between absolute and relative values us
 ====
 
 === Toggle data series
-
-label:AuraDB-Enterprise[]
 
 To hide or show individual data series, select the corresponding data series in the legend below the chart.
 
@@ -61,8 +60,6 @@ For some metrics it also provides hints about possible actions to take if that m
 * *Reset zoom* - If the zoom level has been altered by selecting and dragging across a chart, *Reset zoom* resets the zoom back to the selected interval.
 
 == Aggregations
-
-label:AuraDB-Enterprise[]
 
 Most metrics will have several values for a given timestamp because of the following reasons:
 

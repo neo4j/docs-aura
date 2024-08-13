@@ -23,7 +23,7 @@ This index cannot be modified in any way from this tab, but if you change which 
 
 You can add more indexes with the `+` and then select which property to index from the dropdown menu.
 If you know that you will regularly look at a specific property, it is good practice to add an index to that property.
-For example in the Northwind dataset, if you know you are going to be looking for orders in a specific date range, it is advisable to add an index to the `orderDate` property.
+For example in the link:https://neo4j.com/docs/getting-started/appendix/tutorials/guide-import-relational-and-etl/[Northwind] dataset, if you know you are going to be looking for orders in a specific date range, it is advisable to add an index to the `orderDate` property.
 
 Regardless of which property you add the index to, the index type is Neo4j's default index, which is `range` for Neo4j 5 and `btree` for Neo4j 4.x.
 For more information on indexes, see link:https://neo4j.com/docs/cypher-manual/current/indexes/[Cypher Manual -> Indexes].
