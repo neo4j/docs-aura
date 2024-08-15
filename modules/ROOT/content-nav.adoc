@@ -1,53 +1,64 @@
 ////
 Generic Start
 ////
-* *Neo4j Aura*
+* *New: Neo4j Aura console*
 
-* xref:index.adoc[Introduction]
+* **Introduction**
+** xref:index.adoc[About Aura]
+** xref:visual-tour/index.adoc[Visual tour]
 
-* **Visual tour**
-** xref:visual-tour/index.adoc[]
-** xref:visual-tour/organization.adoc[]
-** xref:visual-tour/data-services.adoc[]
-** xref:visual-tour/tools.adoc[]
-** xref:visual-tour/operations.adoc[]
-** xref:visual-tour/project.adoc[]
-
-* **Quick start**
+* **Get started**
 ** xref:platform/create-account.adoc[]
-** xref:auradb/getting-started/create-database.adoc[]
-** xref:auradb/getting-started/data-modeling.adoc[]
-** xref:link-to-come[Import data]
+** xref:auradb/getting-started/create-database.adoc[Create an instance]
+** xref:auradb/getting-started/connect-database.adoc[Connect to an instance]
+** xref:auradb/importing/importing-data.adoc[Import data]
 
+* **Instances**
+** xref:auradb/managing-databases/database-actions.adoc[Instance actions]
+** xref:auradb/managing-databases/instance-details.adoc[Instance details]
+** xref:auradb/managing-databases/instance-resources.adoc[Resources] 
+** xref:auradb/managing-databases/develop.adoc[Develop] 
 
-* **Manage instances**
-** xref:auradb/managing-databases/database-actions.adoc[]
+//(tapping on resources will take you to the metrics tab, and then I fully document the metrics tab further down and I link to that in my notes)
 
 * **Import data**
-** xref:auradb/importing/importing-data.adoc[]
-//more to come here when Cloud import is a thing
-//also put data importer docs here
+** xref:auradb/importing/importing-data-detailed.adoc[Overview]
+** xref:auradb/importing/file-provision.adoc[File provision]
+** xref:auradb/importing/data-modeling.adoc[Data modeling]
+** xref:auradb/importing/mapping.adoc[Mapping]
+** xref:auradb/importing/indexes-and-constraints.adoc[Indexes and constraints]
+** xref:auradb/importing/import.adoc[Import]
+** xref:auradb/importing/import-others.adoc[Other ways of importing data into Aura]
 
-* **Interact with data**
-** xref:link-to-come-about-explore[Explore]
+
+* **Explore data**
+** xref:auradb/explore/explore-overview.adoc[Explore overview]
+** xref:auradb/explore/perspectives.adoc[Perspective drawer]
+** xref:auradb/explore/settings.adoc[Settings drawer]
+** xref:auradb/explore/settings.adoc[Legend panel]
+** xref:auradb/explore/settings.adoc[Search bar]
+** xref:auradb/explore/settings.adoc[Card list]
+** xref:auradb/explore/settings.adoc[Scene interactions]
+
+
+
+
+* **Query data**
 ** xref:auradb/getting-started/query-database.adoc[Query]
+** xref:auradb/getting-started/core-concepts.adoc[Core concepts]
+** xref:auradb/getting-started/basic-queries.adoc[Basic queries]
 
-* **Monitor instances**
-** xref:auradb/managing-databases/monitoring.adoc[]
-** xref:auradb/managing-databases/advanced-metrics.adoc[]
+* **Metrics**
+** xref:auradb/managing-databases/all-metrics.adoc[All metrics]
 
-* **Manage Organizations and Projects**
+// * **Logs**
+// ** xref:auradb/managing-databases/logs.adoc[Logs coming soon]
+
+* **Users**
 ** xref:platform/user-management.adoc[]
 
-* **Set up security features**
-** xref:link-to-come-security[Secure connections]
-** xref:link-to-come-security[Single sign-on]
-** xref:link-to-come-security[Encryption]
-** xref:link-to-come-security[CMEK]
-
 * **Connecting applications**
-** xref:auradb/connecting-applications/overview.adoc[Connecting applications]
+** xref:auradb/connecting-applications/overview.adoc[Drivers and libraries]
 ////
 AuraDB End
 ////
-

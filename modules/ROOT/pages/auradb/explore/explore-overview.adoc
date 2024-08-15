@@ -1,0 +1,35 @@
+[[explore-overview]]
+= Explore overview
+:description: This section describes how to use Neo4j AuraDB.
+
+[.shadow]
+image::overview.png[width=800]
+
+== Sidebar
+The sidebar contains a set of drawers where you can set up the environment for graph exploration.
+
+* xref::/bloom-visual-tour/perspective-drawer.adoc[*Perspective drawer*] - defines the business context depicted in the scene.
+* *Help & learn drawer* - various resources to help you learn more.
+* xref::/bloom-visual-tour/settings-drawer.adoc[*Settings drawer*] - provides application settings and license information.
+
+== Scene
+
+Neo4j Bloom's main workspace is a graph scene, where you'll see the classic circles and lines of a graph visualization.
+The scene contains just the parts of the graph which you've found through search or exploration.
+
+Click directly on nodes to move them manually into place.
+Right-click on nodes, relationships, or the background to bring up context menus to perform actions.
+See xref::/bloom-visual-tour/bloom-scene-interactions.adoc[Scene interactions] for more information.
+
+To export your current scene, click the `Export visualization` icon in the upper right corner of your screen.
+You may either take a screenshot and save as a .png, export the contents as CSV or share the Scene.
+See xref::/bloom-tutorial/export-data.adoc[Scenes and Sharing data] for more information.
+
+
+== Overlays
+Overlays provide supplemental views for working with the graph scene.
+
+* *Legend panel* - shows all the business entities (categories and relationship types) available in the current Perspective.
+This panel also lets you define the style for categories and relationship types using default or rule-based styles.
+* *Search bar* - accepts a near-natural language search query input and offers suggestions on graph patterns that match the input.
+* *Card list* - shows details about the nodes and relationships in the scene.

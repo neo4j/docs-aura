@@ -1,26 +1,135 @@
 [[visual-overview]]
-= Get to know the console UI
-:description: This page introduces the console UI.
+= Get to know the console
+:description: Explains the UI
 
-* Organization
-** Projects
-** Users
-** Settings
+== Console structure
 
-* Data services
-** Instances - expand a card
-** Import - brief intro
+Here's a quick overview of the hierarchy within the console UI, consisting of organizations, projects, and instances:
 
-* Tools
-** Explore - brief intro
-** Query - brief intro
+* *Organization:* The highest level, representing the overall team or company.
+* *Projects:* Folders that organize your instances.
+* *Instances:* Contain the databases with your data.
 
-* Operations
-** Metrics
-** Logs
+The Aura console is designed for intuitive navigation, allowing you to explore using clickable cards, breadcrumbs, and dropdown menus.
 
-* Project
-** Users
-** Roles
-** Billing
-** Settings
+== Where you land after log-in 
+
+You'll be part of an organization. 
+When you log in, you’ll find yourself viewing the projects. 
+Click on a project to open it. 
+
+image::project.png[]
+
+Project cards provide a snapshot of each project, including the number of instances and members associated with it. 
+Clicking on a project card will take you inside that project, where you can view existing instances or create new ones as needed.
+
+The organization or project you’re currently viewing will always be displayed in the header of the console as breadcrumbs.
+
+To switch between different organisations or projects, click on the name in the breadcrumbs. 
+This will open a dropdown menu where you can see all the organisations and projects you have access to, making it easy to move between them.
+
+image::breadcrumbs.png[]
+
+== Data Services
+
+To access your data, navigate to a project and connect to an instance.
+
+If your instance already contains data, you can start exploring it visually or querying it. 
+If you need to import data, go to Import and follow the instructions in the console, to bring in a dataset like Northwind. Exploring data is central to using Aura, so you’ll always need to use Explore for this purpose — unless you’re managing the system without diving into the data itself.
+
+=== Instances
+
+Think of your instance as a database hosted in the Aura cloud, where you can store and access data and applications over the internet instead of relying on local storage. 
+It functions like a remote hard drive that's always accessible online, allowing you to save files, run programs, and retrieve information from anywhere with an internet connection—without worrying about physical hardware or storage limitations on your device. 
+By expanding an instance card, you can explore various options, such as viewing metrics, taking snapshots, or pausing the instance.
+
+To experience the full potential of a graph database, you'll need some data in your instance. 
+Follow the workspace guide to set it up, and once you're connected, you'll be ready to start. 
+_If your instance already contains data, you can jump right in and begin working with it immediately._
+
+=== Import
+
+To start exploring and querying data in Neo4j, you'll first need to import data into your instance. 
+You can import data from local files, with a dedicated section in the docs on link:https://neo4j.com/docs/getting-started/data-import/csv-import/[importing CSV files]. 
+If you're new to Aura, we suggest following the workspace guide and importing the Northwind dataset to get familiar with the process and see how it all works.
+
+== Tools
+
+The left-side panel is where you access all your tools. 
+Once connected to an instance, you can switch between Explore and Query to use the graph tools or connect to different instances.
+
+image::leftsidepanel.png[]
+
+=== Explore
+
+Explore helps you visualize and interact with specific datasets. 
+See the patterns you intuitively know are in your data, and discover new ones. 
+This opens up new ways of thinking, working, and new possibilities—and it’s fun.
+
+* *Visual Exploration:* See your data as a graph, with nodes and relationships between them, making it easier to understand and analyze complex data connections.
+* *Interactive Queries:* Run Cypher queries to explore and manipulate the graph. 
+The tool updates the visual graph based on your query results.
+* *Data Insights:* By interacting with the graph, uncover patterns, trends, and insights that aren’t easily visible in traditional tabular formats like SQL.
+Overall, Explore is designed to make working with graph data more intuitive and insightful by providing a visual and interactive way to analyze and manage your data.
+
+=== Query
+
+Get accustomed to the Cypher graph query language. 
+It helps you start thinking about graphs and patterns, apply this knowledge to simple problems, and learn how to write Cypher statements. 
+When you run queries on your data, you’ll see your nodes and relationships.
+
+* *Cypher Editor:* Where users write their Cypher queries.
+* *Results Pane:* Where query results are displayed.
+* *Query History:* A feature that shows previously run queries.
+* *Settings and Preferences:* Options to customize the UI.
+
+image::query.png[]
+
+== Operations
+
+=== Metrics
+
+Metrics help you monitor and analyze your database’s performance and usage. 
+Here’s a breakdown of the metrics available on an instance card:
+
+* *CPU Usage:* CPU is used for planning and serving queries. 
+If this metric constantly spikes, consider increasing the size of your instance if it’s reaching its limits.
+* *Storage:* As your graph grows, it uses storage space on disk. 
+Monitor this metric to ensure you have enough storage for today and future growth. 
+If you’re approaching the limits, resize your instance to match your growth rate.
+* *Query Executions:* Query execution involves running a database query to retrieve, modify, or manage data. 
+When you query the database, it processes the request, runs it against the stored data, and returns the results.
+
+// === Logs
+
+// Track and review system activities and events. 
+// Logs provide insights into database operations, errors, and other critical events, helping you monitor performance and troubleshoot issues.
+
+== Project
+
+A project represents a specific area within your console where you can manage and organize your data and resources. 
+Each project operates independently, allowing you to focus on different tasks or datasets.
+
+=== Users
+
+Users are people who interact with the console, each with varying roles and permissions.
+Invite users from the user’s page. From there, you can manage accounts, assign permissions, and control access levels to ensure secure and appropriate database use.
+Individuals can have access to your project for admin work, or to the instances for data work — you can also assign more specific permissions.
+
+=== Roles
+
+image::roles1.png[]
+image::roles2.png[]
+
+Roles define the permissions and responsibilities of users within your console. 
+Roles manage what actions users can perform and what data they can access, ensuring proper control and organization.
+
+=== Settings
+
+To personalize your workspace, you can easily change your project name. 
+If you need to reference or share your project, you can copy your project ID.
+
+image::projectsettings.png[]
+
+// Configure options to customize and optimize your console.
+// This includes adjusting performance settings, configuring alerts, and managing system preferences to suit your needs.

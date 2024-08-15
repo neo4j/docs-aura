@@ -1,153 +1,62 @@
 [[aura-connect-instance]]
-= Connecting to an instance
+= Connect to an instance
 :description: This page describes how to connect to an instance using Neo4j AuraDB.
 
-There are several different methods of connecting to an instance in Neo4j AuraDB:
+To start using the data within an instance, you'll need to connect to it. 
 
-* <<_neo4j_browser>> - A browser-based interface for querying and viewing data in an instance.
-* <<_neo4j_bloom>> - A graph exploration application for visually interacting with graph data.
-* <<_neo4j_workspace>> - A browser-based interface used to import, visualize, and query graph data.
-* <<_neo4j_desktop>> - An installable desktop application used to manage local and cloud instances.
-* <<_neo4j_cypher_shell>> - A command-line tool used to run Cypher queries against a Neo4j instance.
+There are a few different ways to connect to an instance.
+You'll need the passwords / info you downloaded when you created the instance.
 
-== Neo4j Browser
+== Choose connection method 
 
-You can query an instance using Neo4j Browser.
+image::connectionmodal.png[]
 
-To open an instance with Browser:
+* You will be prompted to connect to an instance when you navigate to *Explore* or *Query*.
+All you need to worry about is having the correct URI and password. It was in that file you downloaded!
 
-. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
-. Select the *Query* button on the instance you want to open.
-. Enter the *Username* and *Password* credentials in the window that opens. 
-These are the same credentials you stored when xref:auradb/getting-started/create-database.adoc[creating the instance].
-. Select *Connect*.
+== How to find your details
 
-Once you have successfully connected, there are built-in guides you can complete to familiarize yourself with Neo4j Browser.
+image::password.png[]
 
-For more information on using Neo4j Browser, please see the link:{neo4j-docs-base-uri}/browser-manual/[Browser manual].
+== Connection banner
 
-== Neo4j Bloom
+* You can also use the connection banner from within *Explore* or *Query*.
+* Click on *Status* and from there a drop down of options - you can perform actions such as connect / disconnect or connect to instances you recently connected to.
+* Select *Connect to instance*
 
-You can explore an instance using Neo4j Bloom.
+image::connectionbanner.png[]
 
-To open an instance with Bloom:
+== Connect to recent instances
 
-. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
-. Select the *Explore* button on the instance you want to open.
-. Select *Neo4j Bloom* from the dropdown menu.
-. Enter the *Username* and *Password* credentials in the window that opens. 
-These are the same credentials you stored when xref:auradb/getting-started/create-database.adoc[creating the instance].
-. Select *Connect*.
+A quick way to connect to the database because the URI etc will be filled in for you. 
 
-For more details on using Neo4j Bloom, please see the link:{neo4j-docs-base-uri}/bloom-user-guide/[Neo4j Bloom documentation].
-
-[NOTE]
-.Perspectives in AuraDB
-====
-
-Due to the nature of AuraDB's infrastructure, it is not currently possible to share Perspectives in Bloom, as the data for a given Perspective is stored in local storage in the user's web browser.
-
-An alternative is to export your Perspective as a JSON file and import it into another Bloom session.
-
-To export a Perspective:
-
-. Open the Bloom interface for your Neo4j AuraDB instance.
-. Navigate to the _Perspectives Gallery_.
-. Click on the vertical ellipsis (*...*) and select *Export*.
-. Save the file to your local disk.
-
-You can import perspectives by clicking the blue "Import Perspective" button in the Perspective gallery.
-Please note that the Perspective exposes details about your graph's schema but not the actual data within.
-
-For more information, see link:{neo4j-docs-base-uri}/bloom-user-guide/current/bloom-perspectives/[Bloom Perspectives].
-
-*Deep links*
-
-As data for a given Perspective is stored in local storage in the user's web browser, if you want to access a deep link referencing perspectives, you will first need to import the perspectives into your local instance of Bloom.
-====
-
-== Neo4j Workspace
-
-Neo4j Workspace combines the functionality of Neo4j Browser, Neo4j Bloom, and Neo4j Data Importer into a single interface.
-
-To open an instance with Workspace:
+== To open an instance from Explore or Query
 
 . Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
-. Select the *Open* button on the instance you want to open.
+. Select *Explore* or *Query*.
+. You are prompted to choose a connection method.
 . Enter the *Database user* and *Password* credentials in the window that opens. 
 These are the same credentials you stored when xref:auradb/getting-started/create-database.adoc[creating the instance].
 . Select *Connect*.
 
-For more information on using Neo4j Workspace, see the https://neo4j.com/product/workspace/[Product page].
 
-[NOTE]
-====
-Workspace is enabled by default on AuraDB Free and AuraDB Professional instances but needs to be enabled for AuraDB Enterprise instances. 
-If you do not see the *Open* button on your instance, you can enable it by selecting the *Settings* cog in the top menu bar and toggling *Enable workspace*.
-====
+[cols="1,1"]
+|===
+| Field | Description
 
-== Neo4j Desktop
+|Protocol
+|Don't worry about this and just use the default if you are a new user of Aura. Protocols are mainly for server-side routing vs client-side routing. We've seperated protocol and connection URL. The main reason for this, is being able to change these things independently. Users may want to use different protocols for the same instance URL, for example they get client-side routing with neo4j+s (better for clusters and single servers) or have a direct connection to the instance using bolt+s (not the default as it's less flexible).
 
-You can connect AuraDB instances to the Neo4j Desktop application, allowing the ability to have a single portal for interacting with all instances of Neo4j, whether local or located in the cloud.
+|Connection URL 
+|You can get this from your instance details 
 
-To connect to an instance using Neo4j Desktop:
+|Database user 
+|Neo4j by default
 
-. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
-. Copy the *Connection URI* of the instance you want to connect to. The URI is below the instance status indicator.
-. In Neo4j Desktop, select the *Projects* tab and select an existing project or create a new one.
-. Select the *Add* dropdown and choose *Remote connection*.
-. Enter a name for the instance and enter the URL from the Neo4j Aura console from the second step.
-Once complete, select *Next*.
-. With *Username/Password* selected, enter your credentials and select *Next*.
-These are the same credentials you stored when xref:auradb/getting-started/create-database.adoc[creating the instance].
-. When available, activate the connection by clicking the *Connect* button.
+|Password 
+|You are given the password when you initially create the instance
 
-[NOTE]
-====
-* Neo4j Desktop only allows 1 connection at a time to an instance (local or remote).
-* Deactivating an instance in Neo4j Desktop won't shut it down or stop a remote instance - it will only temporarily close the connection to it in Neo4j Desktop.
-====
+|Single sign-on 
+|If this is set up, you can use SSO. 
 
-As with other instances in Neo4j Desktop, you can install https://install.graphapp.io/[Graph Apps] for monitoring and other functionality.
-
-To do this, follow the same process to install the graph application you need, and open it from Neo4j Desktop or a web browser with the running and activated Neo4j AuraDB instance.
-
-== Neo4j Cypher Shell
-
-You can connect to an AuraDB instance using the Neo4j Cypher Shell command-line interface (CLI) and run Cypher commands against your instance from the command-line.
-
-To connect to an instance using Neo4j Cypher Shell:
-
-. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
-. Copy the *Connection URI* of the instance you want to connect to. The URI is below the instance status indicator.
-. Open a terminal and navigate to the folder where you have installed Cypher Shell.
-. Run the following `cypher-shell` command replacing:
-* *`<connection_uri>`* with the URI you copied in step 2.
-* *`<username>`* with the username for your instance.
-* *`<password>`* with the password for your instance.
-+
-[source, shell]
-----
-./cypher-shell -a <connection_uri> -u <username> -p <password>
-----
-
-Once connected, you can run `:help` for a list of available commands.
-
-----
-Available commands:
-  :begin    Open a transaction
-  :commit   Commit the currently open transaction
-  :exit     Exit the logger
-  :help     Show this help message
-  :history  Print a list of the last commands executed
-  :param    Set the value of a query parameter
-  :params   Print all currently set query parameters and their values
-  :rollback Rollback the currently open transaction
-  :source   Interactively executes cypher statements from a file
-  :use      Set the active instance
-
-For help on a specific command type:
-    :help command
-----
-
-For more information on Cypher Shell, including how to install it, see the link:{neo4j-docs-base-uri}/operations-manual/current/tools/cypher-shell/[Cypher Shell documentation].
+|===
