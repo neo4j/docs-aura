@@ -32,10 +32,10 @@ image::breadcrumbs.png[]
 
 == Data Services
 
-To access your data, navigate to a project and connect to an instance.
+To access your data, navigate to a project and link:http://localhost:8000/aura/auradb/getting-started/connect-database/[connect to an instance].
 
 If your instance already contains data, you can start exploring it visually or querying it. 
-If you need to import data, go to Import and follow the instructions in the console, to bring in a dataset like Northwind. Exploring data is central to using Aura, so you’ll always need to use Explore for this purpose — unless you’re managing the system without diving into the data itself.
+If you need to import data, go to Import and follow the instructions in the console, to bring in a dataset like Northwind. Exploring data is central to using Aura, so you’ll always need to use Explore for this purpose — unless you’re managing the console, without needing to interact with the data.
 
 === Instances
 
@@ -44,13 +44,13 @@ It functions like a remote hard drive that's always accessible online, allowing 
 By expanding an instance card, you can explore various options, such as viewing metrics, taking snapshots, or pausing the instance.
 
 To experience the full potential of a graph database, you'll need some data in your instance. 
-Follow the workspace guide to set it up, and once you're connected, you'll be ready to start. 
+Follow the workspace guide to set it up, and once you're connected you'll be ready to start. 
 _If your instance already contains data, you can jump right in and begin working with it immediately._
 
 === Import
 
 To start exploring and querying data in Neo4j, you'll first need to import data into your instance. 
-You can import data from local files, with a dedicated section in the docs on link:https://neo4j.com/docs/getting-started/data-import/csv-import/[importing CSV files]. 
+You can import data from local files, follow the section in the docs on link:https://neo4j.com/docs/getting-started/data-import/csv-import/[importing CSV files]. 
 If you're new to Aura, we suggest following the workspace guide and importing the Northwind dataset to get familiar with the process and see how it all works.
 
 == Tools
@@ -107,26 +107,26 @@ When you query the database, it processes the request, runs it against the store
 
 == Project
 
-A project represents a specific area within your console where you can manage and organize your data and resources. 
-Each project operates independently, allowing you to focus on different tasks or datasets.
+Organize your instances by project.
 
 === Users
 
 Users are people who interact with the console, each with varying roles and permissions.
-Invite users from the user’s page. From there, you can manage accounts, assign permissions, and control access levels to ensure secure and appropriate database use.
+Invite users from the user’s page. 
+From there, you can manage accounts, assign permissions, and control access levels to ensure secure and appropriate database use.
 Individuals can have access to your project for admin work, or to the instances for data work — you can also assign more specific permissions.
 
-=== Roles
+// === Roles
 
-image::roles1.png[]
-image::roles2.png[]
+// image::roles1.png[]
+// image::roles2.png[]
 
-Roles define the permissions and responsibilities of users within your console. 
-Roles manage what actions users can perform and what data they can access, ensuring proper control and organization.
+// Roles define the permissions and responsibilities of users within your console. 
+// Roles manage what actions users can perform and what data they can access, ensuring proper control and organization.
 
 === Settings
 
-To personalize your workspace, you can easily change your project name. 
+From settings, you can easily change your project name. 
 If you need to reference or share your project, you can copy your project ID.
 
 image::projectsettings.png[]

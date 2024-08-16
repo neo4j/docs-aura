@@ -2,21 +2,16 @@
 = Connect to an instance
 :description: This page describes how to connect to an instance using Neo4j AuraDB.
 
-To start using the data within an instance, you'll need to connect to it. 
+To start interacting with the data within an instance, you'll need to connect to it. 
 
-There are a few different ways to connect to an instance.
-You'll need the passwords / info you downloaded when you created the instance.
+There are a few different ways to connect to an instance:
+
+* You are prompted to *choose a connection method* when you navigate to *Explore* or *Query*.
+* Or, you can also use the connection banner from within *Explore* or *Query*.
 
 == Choose connection method 
 
 image::connectionmodal.png[]
-
-* You will be prompted to connect to an instance when you navigate to *Explore* or *Query*.
-All you need to worry about is having the correct URI and password. It was in that file you downloaded!
-
-== How to find your details
-
-image::password.png[]
 
 == Connection banner
 
@@ -60,3 +55,7 @@ These are the same credentials you stored when xref:auradb/getting-started/creat
 |If this is set up, you can use SSO. 
 
 |===
+
+== How to find the connection URI and password
+
+image::password.png[]
