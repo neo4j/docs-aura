@@ -7,7 +7,8 @@
 Tutorial: xref:tutorials/spark.adoc[Using the Apache Spark Connector with Aura]
 ====
 
-The Neo4j Connector for Apache Spark is intended to make integrating graphs with Spark easy. There are two ways to use the connector:
+The Neo4j Connector for Apache Spark is intended to make integrating graphs with Spark easy.
+There are two ways to use the connector:
 
 * As a link:{neo4j-docs-base-uri}/spark/current/reading/[data source^]: read any set of nodes or relationships as a `DataFrame` in Spark
 * As a link:{neo4j-docs-base-uri}/spark/current/writing/[sink^]: write any `DataFrame` to Neo4j as a collection of nodes or relationships, or use a Cypher statement to process records contained in a `DataFrame` into the graph pattern of your choice

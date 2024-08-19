@@ -93,7 +93,8 @@ You can connect AuraDB instances to the Neo4j Desktop application, allowing the 
 To connect to an instance using Neo4j Desktop:
 
 . Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
-. Copy the *Connection URI* of the instance you want to connect to. The URI is below the instance status indicator.
+. Copy the *Connection URI* of the instance you want to connect to.
+The URI is below the instance status indicator.
 . In Neo4j Desktop, select the *Projects* tab and select an existing project or create a new one.
 . Select the *Add* dropdown and choose *Remote connection*.
 . Enter a name for the instance and enter the URL from the Neo4j Aura console from the second step.
@@ -119,7 +120,8 @@ You can connect to an AuraDB instance using the Neo4j Cypher Shell command-line 
 To connect to an instance using Neo4j Cypher Shell:
 
 . Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
-. Copy the *Connection URI* of the instance you want to connect to. The URI is below the instance status indicator.
+. Copy the *Connection URI* of the instance you want to connect to.
+The URI is below the instance status indicator.
 . Open a terminal and navigate to the folder where you have installed Cypher Shell.
 . Run the following `cypher-shell` command replacing:
 * *`<connection_uri>`* with the URI you copied in step 2.

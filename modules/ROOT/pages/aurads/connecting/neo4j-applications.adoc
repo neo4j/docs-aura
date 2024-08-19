@@ -92,7 +92,8 @@ You can connect AuraDS instances to the Neo4j Desktop application, allowing the 
 To connect to an AuraDS instance using Neo4j Desktop:
 
 . Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
-. Copy the *Connection URI* of the instance you want to connect to. The URI is in the page that opens when clicking on the instance.
+. Copy the *Connection URI* of the instance you want to connect to.
+The URI is in the page that opens when clicking on the instance.
 . In Neo4j Desktop, select the *Projects* tab and select an existing project or create a new one.
 . Select the *Add* dropdown and choose *Remote connection*.
 . Enter a name for the instance and enter the URL from the Neo4j Aura console from the second step.
@@ -109,16 +110,19 @@ These are the same credentials you stored when you xref:aurads/create-instance.a
 * Deactivating an instance in Neo4j Desktop won't shut it down or stop a remote instance - it will only temporarily close the connection to it in Neo4j Desktop.
 ====
 
-As with other databases in Neo4j Desktop, you can install https://install.graphapp.io/[Graph Apps^] for monitoring and other functionality. To do this, follow the same process to install the graph application you need, and open it from Neo4j Desktop or a web browser with the running and activated Neo4j AuraDS instance.
+As with other databases in Neo4j Desktop, you can install https://install.graphapp.io/[Graph Apps^] for monitoring and other functionality.
+To do this, follow the same process to install the graph application you need, and open it from Neo4j Desktop or a web browser with the running and activated Neo4j AuraDS instance.
 
 == Neo4j Cypher Shell
 
-You can connect to an AuraDS instance using the Neo4j Cypher Shell command-line interface (CLI) and run Cypher commands against your instance from the command line. Refer to the link:{neo4j-docs-base-uri}/operations-manual/current/tools/cypher-shell/[Operations manual^] for instructions on how to install the Cypher Shell.
+You can connect to an AuraDS instance using the Neo4j Cypher Shell command-line interface (CLI) and run Cypher commands against your instance from the command line.
+Refer to the link:{neo4j-docs-base-uri}/operations-manual/current/tools/cypher-shell/[Operations manual^] for instructions on how to install the Cypher Shell.
 
 To connect to an AuraDS instance using Neo4j Cypher Shell:
 
 . Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
-. Copy the *Connection URI* of the instance you want to connect to. The URI is in the page that opens when clicking on the instance.
+. Copy the *Connection URI* of the instance you want to connect to.
+The URI is in the page that opens when clicking on the instance.
 . Open a terminal and navigate to the folder where you have installed the Cypher Shell.
 . Run the following `cypher-shell` command replacing:
 * *`<connection_uri>`* with the URI you copied in step 2

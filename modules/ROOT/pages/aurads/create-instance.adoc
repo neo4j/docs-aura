@@ -5,13 +5,17 @@
 . Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^].
 . Select *New instance* to open the *Create an instance* page.
 . Fill up the instance details:
-* *Instance Name* footnote:[In AuraDS Professional, this field becomes available after selecting the *Calculate Estimate* button.] - The name to give to the instance. A descriptive name makes it easier to find a specific instance among many.
-* *Region* - The physical location of the instance. Set this as close to your location as possible. The closer the region is to your location, the faster the response time for any network interactions with the instance.
+* *Instance Name* footnote:[In AuraDS Professional, this field becomes available after selecting the *Calculate Estimate* button.] - The name to give to the instance.
+A descriptive name makes it easier to find a specific instance among many.
+* *Region* - The physical location of the instance. Set this as close to your location as possible.
+The closer the region is to your location, the faster the response time for any network interactions with the instance.
 * *Number of nodes/relationships* - The estimated number of nodes and relationships that the instance should support.
-. Select one or more algorithm categories from the *Which algorithms are you going to use?* section (or select *I'm not sure which algorithms to use*) to help estimate the most appropriate instance size. An overview of each algorithm category can be found link:{neo4j-docs-base-uri}/graph-data-science/current/algorithms/[here^].
+. Select one or more algorithm categories from the *Which algorithms are you going to use?* section (or select *I'm not sure which algorithms to use*) to help estimate the most appropriate instance size.
+An overview of each algorithm category can be found link:{neo4j-docs-base-uri}/graph-data-science/current/algorithms/[here^].
 . Select *Calculate Estimate* to get an estimate of the resources needed to run the graph (memory, CPU, storage) along with the expected price.
 . Select *Create* to proceed.
-. Copy and store the *Username* and *Generated password* credentials to access the instance just created. Alternatively, you can download the credentials as a `.txt` file.
+. Copy and store the *Username* and *Generated password* credentials to access the instance just created.
+Alternatively, you can download the credentials as a `.txt` file.
 +
 WARNING: *Warning*: Make sure that the username and password are stored safely before continuing. Credentials cannot be recovered afterwards.
 +
@@ -22,4 +26,5 @@ WARNING: *Warning*: Make sure that the username and password are stored safely b
 Multi-database is not supported within Neo4j AuraDS.
 ====
 
-The process will take a few minutes to complete. Upon completion, you will be able to xref:aurads/connecting/index.adoc[connect to the instance].
+The process will take a few minutes to complete.
+Upon completion, you will be able to xref:aurads/connecting/index.adoc[connect to the instance].
