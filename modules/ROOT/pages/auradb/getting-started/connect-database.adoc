@@ -7,7 +7,7 @@ To start interacting with the data within an instance, you'll need to connect to
 There are a few different ways to connect to an instance:
 
 * You are prompted to *choose a connection method* when you navigate to *Explore* or *Query*.
-* Or, you can also use the connection banner from within *Explore* or *Query*.
+* Use the connection banner from within *Explore* or *Query*.
 
 == Choose connection method 
 
@@ -26,28 +26,30 @@ image::connectionbanner.png[]
 . Select *Explore* or *Query*.
 . You are prompted to choose a connection method.
 . Enter the *Database user* and *Password* credentials in the window that opens. 
-These are the same credentials you stored when xref:auradb/getting-started/create-database.adoc[creating the instance].
+These are the same credentials provided when you xref:auradb/getting-started/create-database.adoc[create an instance].
 . Select *Connect*.
-
 
 [cols="20%,80%"]
 |===
 | Field | Description
 
 |Protocol
-|Don't worry about this and just use the default if you are a new user of Aura. Protocols are mainly for server-side routing vs client-side routing. We've seperated protocol and connection URL. The main reason for this, is being able to change these things independently. Users may want to use different protocols for the same instance URL, for example they get client-side routing with neo4j+s (better for clusters and single servers) or have a direct connection to the instance using bolt+s (not the default as it's less flexible).
+|_Don't worry about this and just use the default if you are a new user of Aura._ 
+Protocols are mainly for server-side routing vs client-side routing. 
+We've seperated protocol and connection URL, the main reason for this, is being able to change these things independently. Users may want to use different protocols for the same instance URL, for example they get client-side routing with `neo4j+s` (better for clusters and single servers) or have a direct connection to the instance using `bolt+s` (not the default as it's less flexible).
 
 |Connection URL 
-|You can get this from your instance details 
+|Get this from the instance details provided when the instance is created. URL specific the location of the resource on the internet.
 
 |Database user 
-|Neo4j by default
+|Neo4j by default.
+_Don't worry about this and just use the default if you are a new user of Aura._ 
 
 |Password 
-|You are given the password when you initially create the instance
+|Get this from the instance details provided when the instance is created.
 
 |Single sign-on 
-|If this is set up, you can use SSO. 
+|If SSO you have set up SSO, you can use SSO. 
 
 |===
 
