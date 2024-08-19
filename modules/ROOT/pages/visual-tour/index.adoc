@@ -18,10 +18,11 @@ You'll be part of an organization.
 When you log in, you’ll find yourself viewing the projects. 
 Click on a project to open it. 
 
-image::project.png[]
+Clicking on a project card will take you inside that project, where you can view existing instances or create new instances.
 
-Project cards provide a snapshot of each project, including the number of instances and members associated with it. 
-Clicking on a project card will take you inside that project, where you can view existing instances or create new ones as needed.
+image::projects.png[]
+
+== Breadcrumb navigation
 
 The organization or project you’re currently viewing will always be displayed in the header of the console as breadcrumbs.
 
@@ -40,12 +41,10 @@ If you need to import data, go to Import and follow the instructions in the cons
 === Instances
 
 Think of your instance as a database hosted in the Aura cloud, where you can store and access data and applications over the internet instead of relying on local storage. 
-It functions like a remote hard drive that's always accessible online, allowing you to save files, run programs, and retrieve information from anywhere with an internet connection—without worrying about physical hardware or storage limitations on your device. 
-By expanding an instance card, you can explore various options, such as viewing metrics, taking snapshots, or pausing the instance.
+It's always accessible online, allowing you to save files, and retrieve information from anywhere with an internet connection — without worrying about physical hardware or storage limitations on your device.
 
 To experience the full potential of a graph database, you'll need some data in your instance. 
-Follow the workspace guide to set it up, and once you're connected you'll be ready to start. 
-_If your instance already contains data, you can jump right in and begin working with it immediately._
+Follow the in-product guidance to import data. _If your instance already contains data, once you are connected, you can begin working with it immediately._
 
 === Import
 
@@ -58,13 +57,11 @@ If you're new to Aura, we suggest following the workspace guide and importing th
 The left-side panel is where you access all your tools. 
 Once connected to an instance, you can switch between Explore and Query to use the graph tools or connect to different instances.
 
-image::leftsidepanel.png[]
-
 === Explore
 
 Explore helps you visualize and interact with specific datasets. 
-See the patterns you intuitively know are in your data, and discover new ones. 
-This opens up new ways of thinking, working, and new possibilities—and it’s fun.
+See the patterns you know are in your data, and discover new ones. 
+This opens up new ways of thinking, working, and new possibilities — and it’s fun.
 
 * *Visual Exploration:* See your data as a graph, with nodes and relationships between them, making it easier to understand and analyze complex data connections.
 * *Interactive Queries:* Run Cypher queries to explore and manipulate the graph. 
