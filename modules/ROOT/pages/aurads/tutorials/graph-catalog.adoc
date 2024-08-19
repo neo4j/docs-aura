@@ -1,6 +1,6 @@
 [[graph-catalog]]
-= Projecting graphs and using the Graph Catalog
-:description: This page describes how to use project graphs and use the Graph Catalog.
+= Projecting graphs and using the graph catalog
+:description: This page describes how to use project graphs and use the graph catalog.
 :notebook-name: Projecting_graphs_and_using_the_Graph_Catalog_(GDS_client).ipynb
 
 include::partial$aurads/colab.adoc[]
@@ -8,7 +8,7 @@ include::partial$aurads/colab.adoc[]
 This example shows how to:
 
 * load Neo4j on-disk data into in-memory projected graphs;
-* use the link:{neo4j-docs-base-uri}/graph-data-science/current/management-ops/[Graph Catalog^] to manage projected graphs.
+* use the link:{neo4j-docs-base-uri}/graph-data-science/current/management-ops/[graph catalog^] to manage projected graphs.
 
 include::partial$aurads/setup.adoc[]
 
@@ -265,9 +265,9 @@ with driver.session() as session:
 =====
 ====
 
-== Use the Graph Catalog
+== Use the graph catalog
 
-The Graph Catalog can be used to retrieve information on and manage the projected graphs. 
+The graph catalog can be used to retrieve information on and manage the projected graphs. 
 
 === List all the graphs
 
