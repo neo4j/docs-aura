@@ -17,7 +17,7 @@ Access beyond log-in is managed via RBAC.
 * *Tenant level SSO:*  Impacts new database instances created within that tenant. 
 It ensures users logging in with SSO have access to the database instances within the tenant. 
 It depends on RBAC if the user can access and view or modify data within the database instances themselves. 
-For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider, IdP, (it *does not* give access to edit the tenant settings e.g. edit the tenant name / network access, or edit the instance settings e.g. rename an instance / pause and resume).
+For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider (IdP). It *does not* give access to edit the tenant settings, for example to edit the tenant name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
 
 == Log-in methods
 
@@ -47,7 +47,7 @@ but at the org level you can disable email/password and Google SSO as long as yo
 Accessing Aura with SSO requires:
  
 * Authorization Code Flow
-* A publicly accessible Identity Provider (IdP) server
+* A publicly accessible IdP server
 
 To configure SSO, go to *Aura Console > Settings > SSO Configuration.*
 
