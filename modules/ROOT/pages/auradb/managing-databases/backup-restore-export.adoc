@@ -16,8 +16,8 @@ To access the *Snapshots* tab:
 
 [NOTE]
 ====
-Snapshots are kept in the system for 7 days for Professional instances, and 60 days for Enterprise instances. 
-Only the latest snapshot is available for Free instances.
+Only the latest snapshot is available for Free instances. 
+Snapshots are available for 7 days for Professional instances, 30 days for Business Critical instances, and 60 days for Enterprise instances. 
 ====
 
 == Snapshot types
@@ -29,8 +29,7 @@ label:AuraDB-Enterprise[]
 
 A *Scheduled* snapshot is a snapshot that is automatically triggered when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and at a cadence depending on your plan type.
 
-Scheduled snapshots are run automatically once a day for Professional instances and once an hour for Enterprise instances. 
-Only one scheduled snapshot is retained per day after 7 days for Enterprise instances.
+Scheduled snapshots are run automatically once a day for Professional instances and once an hour for Business Critical and Enterprise instances. 
 
 [NOTE]
 ====

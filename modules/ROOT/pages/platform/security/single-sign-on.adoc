@@ -4,6 +4,7 @@
 
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
+label:AuraDB-Business-Critical[]
 
 == SSO levels
 
@@ -12,7 +13,6 @@ SSO is a log-in method and access, roles, and permissions are dictated by role-b
 
 * *Org SSO:* Allows org admins to restrict how users log in when they are trying to access the org. 
 Access beyond login is managed via RBAC.
-
 
 * *Tenant level SSO:*  Impacts new database instances created within that tenant. 
 It ensures users logging in with SSO have access to the database instances within the tenant. 
@@ -39,7 +39,8 @@ An organization's administrator can add Aura as a login from a tile in an organi
 * Okta
 * Microsoft Entra ID
 
-However, at the tenant level you cannot disable user/password, but at the org level you can disable email/password and Google SSO as long as you have at least one other custom SSO provider configured.
+However, at the tenant level you cannot disable user/password, 
+but at the org level you can disable email/password and Google SSO as long as you have at least one other custom SSO provider configured.
 
 == Setup requirements
 
@@ -50,7 +51,7 @@ Accessing Aura with SSO requires:
 
 To configure SSO, go to *Aura Console > Settings > SSO Configuration.*
 
-To create a SSO Configuration either a Discovery URI or a combination of Issuer, Authorization Endpoint, Token Endpoint and JWKS URI is required.
+To create an SSO Configuration either a Discovery URI or a combination of Issuer, Authorization Endpoint, Token Endpoint and JWKS URI is required.
 
 == Individual instance level SSO configurations available from Support
 

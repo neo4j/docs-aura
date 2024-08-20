@@ -11,34 +11,21 @@ By default, each cloud provider encrypts all backup buckets (including the objec
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
 
-[NOTE]
-====
-This feature has been released as a public GA for AuraDB Enterprise and AuraDS Enterprise for AWS managed keys.
-GCP’s Cloud Key Management and Azure’s Key Vault are in development.
-====
-
 A Customer Managed Key (CMK) gives you more control over key operations than the standard Neo4j encryption.
 These are created and managed using a supported cloud key management service (KMS). 
 Externally, Customer Managed Keys are also known as Customer Managed Encryption Keys (CMEK).
 
 When using a Customer Managed Key, all data at rest is encrypted with the key.
-You can only encrypt _new_ Aura v5 instances using Customer Managed Keys.
-The feature is not supported for existing instances or v4.x instances.
+Customer Managed Keys are supported for v4.x and v5.x instances.
 
 When using Customer Managed Keys, you give Aura permission to encrypt and decrypt using the key, but Aura has no access to the key’s material.
 Aura has no control over the availability of your externally managed key in the KMS.
-If you lose keys that are managed outside of Aura, Aura can’t recover your data.
 
 [WARNING]
 ====
-The loss of a Customer Managed Key, through deletion, disabling, or expiration, renders all data encrypted with that key unrecoverable.
-Neo4j cannot administer database instances when keys are disabled, deleted, or permissions revoked.
+The loss of a Customer Managed Key — through deletion, disabling, or expiration — makes all data encrypted with that key inaccessible. 
+Neo4j is unable to manage database instances if the key is disabled, deleted, expired, or if permissions are revoked.
 ====
-
-=== Deleting a key
-
-If a Customer Managed Key is being used to encrypt one or more Aura instances in the console, it can't be deleted.
-If you need to delete the key, first delete the Aura database instances encrypted with the key, then delete the key.
 
 === Key rotation
 
@@ -47,37 +34,36 @@ In your KMS platform, you can either configure automatic rotation for the Custom
 Although automatic rotation is not enforced by Aura, it is best practice to rotate keys regularly.
 Manual key rotation is **not** recommended.
 
-=== Regionality
-
-There is a limit of one key for AuraDB and one key for AuraDS per region.
-Depending on the KMS, there may be a delay between disabling a key, and when it can no longer be used to encrypt and decrypt data.
-
-=== Importing an existing database
+=== Import an existing database
 
 You can upload a database to instances encrypted with Customer Managed Keys in Neo4j 5 directly from the console or by using `neo4j-admin database upload`.
 If the database is larger than 4 GB, you have to use `neo4j-admin database upload`. 
 Note that the `neo4j-admin push-to-cloud` command in Neo4j v4.4 and earlier is **not** supported for instances encrypted with Customer Managed Keys.
 For more information see the xref:auradb/importing/import-database.adoc#_neo4j_admin_database_upload[Neo4j Admin `database upload`] documentation.
 
-=== Cloning an instance protected by CMK
+=== Clone an instance protected by CMK
 
 To clone an instance protected by a Customer Managed Key, the key must be valid and available to Aura.
 The cloned instance, by default, uses the available Customer Managed Key for that region and product.
 
-You can override this behavior by selecting the Neo4j Managed Key when cloning the database.
-If there is no valid CMK for the destination region and product, the Neo4j Managed Key is used to encrypt the cloned instance.
+It is best practice to use the same CMK key as the instance it’s being cloned from. 
+You can override this to use another CMK key - but you can not use the Neo4j Managed Key.
+
+=== Remove a CMK from Aura
+
+When using a Customer Managed Key within Aura to encrypt one or more Aura database instances, it cannot be removed from Aura. If you no longer need to use this Customer Managed Key to encrypt Aura databases, first delete the Aura database instances that are encrypted with the key, then you can remove the key from Aura. Keep in mind that this process only breaks the link between the key and Aura — it does not delete the actual key from the Cloud KMS.
 
 == AWS keys
 
-=== Creating an AWS key
+=== Create an AWS key
 
-. Create a key in the AWS KMS ensuring the region matches your Aura database instance.
+. Create a key in the AWS KMS making sure the region matches your Aura database instance.
 Copy the generated ARN.
 You need it in the next step.
-. Go to *security settings* in the Aura Console, create a *Customer Managed Key* and copy the JSON code that is generated in the Aura Console when you add a key.
+. Go to *security settings* in the Aura Console, add a *Customer Managed Key* and copy the JSON code that is generated in the Aura Console when you add a key.
 . In the AWS KMS, edit the key policy to include the JSON code.
 
-=== Editing the AWS key policy
+=== Edit the AWS key policy
 
 After you have initially created a key in the AWS KMS, you can edit the key policy.
 In the AWS key policy, "Statement" is an array that consists of one or more objects.
@@ -86,17 +72,95 @@ The objects in the AWS code array are comma-separated, e.g. `{[{'a'}, {'b'}, {'c
 
 Add a comma after the curly brace in the final SID, and then paste the JSON code that was generated in the Aura Console, e.g. `{[{'a'}, {'b'}, {'c'}, _add code here_ ]}`
 
-=== AWS regionality
+=== AWS regions
 
-When creating a Customer Managed Key in the AWS KMS, you can create a single-region key in a single AWS region, or create a multi-region key that you can replicate into multiple AWS regions.
-Aura only supports AWS Customer Managed Keys that reside in the same region as the instance.
+Aura supports AWS Customer Managed Keys that reside in the same region as the instance. When creating a Customer Managed Key in the AWS KMS, you can create a single-region key, or create a multi-region key.
 
-[CAUTION]
-====
-In Aura, you can use AWS single-region keys, multi-region keys or replica keys as long as the key resides in the same region as the Aura instace.
-====
+Single-region keys reside in only one AWS region, which must be the same region as your Aura instance.
+
+Multi-region keys have a primary region, however these can be replicated to other regions that match the region of your Aura instance. The replicas share the same key ID and different ARNs with the primary key.
 
 === AWS automatic key rotation
 
 Aura supports automatic key rotation via the AWS KMS.
 To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbox after initially creating a key, to automatically rotate the key once a year.
+
+== Azure keys
+
+=== Create an Azure key vault
+
+Create a Key Vault in the Azure portal ensuring the region matches your Aura database instance region. 
+Move through the tabs to enable to following:
+
+* Purge protection
+* Azure role-based access control
+* Azure Disk Encryption for volume encryption
+* Allow access from all networks
+
+=== Create a key
+
+. When preparing to create a key, if needed grant a role assigment:
+.. Inside the key vault, go to *Access Control (IAM)* and *add role assignment*.
+.. In the *Role* tab, select *Key Vault Administrator*.
+.. In the *Member* tab, select *User, group, or service principal*.
+.. *Select members* and select yourself or the relevant person, then *Review + Assign*.
+
+. Create a key in the Azure Key Vault. 
+. After the key is created, click into key version and copy the *Key Identifier*, you need it in the next step.
+. Go to *security settings* in the Aura Console and add a *Customer Managed Key*.
+. Follow the instructions in the Aura Console for the next sections.
+
+=== Create a service principal
+
+In the Azure Entra ID tenant where your key is located, create a service principal linked to the Neo4j CMK Application with the *Neo4j CMK Application ID* displayed in the Aura Console.
+
+One way to do this is by clicking the terminal icon at the top of the Azure portal, to open the Azure Cloud Shell.
+
+Using Azure CLI, the command is: 
+
+[source,bash]
+----
+az ad sp create --id Neo4jCMKApplicationID
+----
+For more information about the Azure CLI, see link:https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create[az ad sp documentation].
+
+=== Grant key permissions
+
+. To add role assignment to the Azure key, inside the key, go to *Access control (IAM)* and add *role assignment*.
+. In the *Role* tab, select *Key Vault Crypto Officer*.
+. In the *Member* tab, select *User, group, or service principal*.
+. *Select members* and paste the *Neo4j CMK Application name* that is displayed in the Aura Console. 
+. The *Neo4j CMK Application* should appear, select this application then *Review + Assign*.
+
+== GCP keys
+
+=== Create a key ring
+
+. Go to *Key Management* in the Google Cloud console.
+. Create a *key ring*.
+. The key ring *Location type* should be set to *Region.*
+. Make sure the region matches your Aura database instance region. 
+. Select *Create* and you are automatically taken to the key creation page. 
+
+=== Create a key
+
+. Create a key in the Google Console. 
+You can use default settings for the options, but setting a key rotation period is recommended. 
+. Select *Create* and you are brought to the key ring, with your key listed. 
+. Click *More* (three dots) and *Copy resource name*, you need it in the next step. 
+For more information, see link:https://cloud.google.com/kms/docs/getting-resource-ids[Google Cloud docs]
+. Go to *security settings* in the Aura Console and add a *Customer Managed Key*. 
+Paste the *resource name* into the *Encryption Key Resource Name* field.
+. After you select *Add Key* in the Aura Console, three *service accounts* are displayed in the Aura Console. 
+You will need these in the next steps.
+
+=== Grant key permissions
+
+. Go to the Google Cloud console, click into the key and go to *Permissions* then *Grant Access*. 
+. In *Add principals* paste the three service accounts from the Aura Console.
+. In *Assign roles* assign both *Cloud KMS CryptoKey Encrypter/Decrypter* and *Cloud KMS Viewer* roles to all three service accounts.
+
+
+
+
+

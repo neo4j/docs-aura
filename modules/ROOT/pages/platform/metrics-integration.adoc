@@ -599,3 +599,69 @@ Consider increasing the size of your instance to improve performance if this met
 m| MAX
 |===
 
+.Successful Query Executions
+[frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
+|===
+| Metric name
+m| neo4j_db_query_execution_success_total
+| Description
+| The total number of successful queries executed on this database.
+| Metric type
+| _Counter_
+| Default aggregation
+m| SUM
+|===
+
+.Query Execution Failures
+[frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
+|===
+| Metric name
+m| neo4j_db_query_execution_failure_total
+| Description
+| The total number of failed queries executed on this database.
+| Metric type
+| _Counter_
+| Default aggregation
+m| SUM
+|===
+
+.Query Latency 99th Percentile
+[frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
+|===
+| Metric name
+m| neo4j_db_query_execution_internal_latency_q99
+| Description
+| The query execution time in milliseconds where 99% of queries executed faster than the reported time.
+| Metric type
+| _Gauge_
+| Default aggregation
+m| MAX
+|===
+
+.Query Latency 75th Percentile
+[frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
+|===
+| Metric name
+m| neo4j_db_query_execution_internal_latency_q75
+| Description
+| The query execution time in milliseconds where 75% of queries executed faster than the reported time.
+| Metric type
+| _Gauge_
+| Default aggregation
+m| MAX
+|===
+
+.Query Latency 50th Percentile
+[frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
+|===
+| Metric name
+m| neo4j_db_query_execution_internal_latency_q50
+| Description
+| The query execution time in milliseconds where 50% of queries executed faster than the reported time.
+This also corresponds to the median of the query execution time.
+| Metric type
+| _Gauge_
+| Default aggregation
+m| MAX
+|===
+
