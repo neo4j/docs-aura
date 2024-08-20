@@ -7,7 +7,7 @@
 The process of importing or loading data requires you to xref:auradb/getting-started/create-database.adoc[create an AuraDB instance] beforehand. 
 ====
 
-There are two ways you can import data from a *_.csv_* file into an AuraDB instance:
+There are two ways you can import data from a CSV file into an AuraDB instance:
 
 * <<_load_csv>> - A Cypher statement that you run from Neo4j Browser or Neo4j Cypher Shell.
 * <<_neo4j_data_importer>> - A visual application that you launch from the Console.
@@ -17,9 +17,9 @@ There are two ways you can import data from a *_.csv_* file into an AuraDB insta
 The link:{neo4j-docs-base-uri}/cypher-manual/current/clauses/load-csv/[`LOAD CSV`] Cypher statement can be used from within Neo4j Browser and Cypher Shell.
 For instructions on how to open an AuraDB instance with Browser or Cypher Shell, see xref:auradb/getting-started/connect-database.adoc[].
 
-There are some limitations to consider when using this method to load a *_.csv_* file into an AuraDB instance:
+There are some limitations to consider when using this method to load a CSV file into an AuraDB instance:
 
-* For security reasons, you must host your *_.csv_* file on a publicly accessible HTTP or HTTPS server. Examples of such servers include AWS signed URLs, GitHub, Google Drive, and Dropbox.
+* For security reasons, you must host your CSV file on a publicly accessible HTTP or HTTPS server. Examples of such servers include AWS signed URLs, GitHub, Google Drive, and Dropbox.
 
 * The `LOAD CSV` command is built to handle small to medium-sized data sets, such as anything up to 10 million nodes and relationships. You should avoid using this command for any data sets exceeding this limit.
 
