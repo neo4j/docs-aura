@@ -1,0 +1,27 @@
+:description: This section describes database scans in Explore.
+
+[[database-scans]]
+= Database scans
+
+A database scan is performed each time a perspective is created or refreshed, in order to determine what property keys are present for each label and relationship type.
+This information is used in various places in Explore, such as the categories, Search phrase editor and styling rules.
+
+When the database contains > 10,000,000 nodes and relationships combined, Explore provides two scan options, _complete_ scan or _quick_ scan.
+The complete scan will scan all the nodes and relationships in the database, whereas the quick one only scans a random sample.
+The quick scan is faster than the complete, but it may not find all property keys if they are only present on a few nodes or relationships.
+A complete scan can take a long time if the database is large and may result in a Explore timeout.
+If you opt for a complete scan of a large database and you experience a Explore timeout, select the quick scan and try again.
+For smaller graphs, Explore always performs a complete scan of the database without giving these options.
+
+[.shadow]
+image::datascan-generate.png[width=400]
+[.shadow]
+image::datascan-refresh.png[width=400]
+
+If you know that you have a consistent schema for your database and/or if your database is large, a quick scan is recommended.
+On the other hand, if you have an inconsistent schema and/or if you can't find some of your properties after a quick scan, a full scan is advisable.
+
+[NOTE]
+====
+The database scan/refresh is triggered by the creation of a new Perspective or by the refresh of an existing Perspective and cannot be done manually.
+====
