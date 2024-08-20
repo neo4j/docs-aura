@@ -12,7 +12,7 @@ Organization admins can configure organization level SSO (org SSO) and tenant le
 SSO is a log-in method and access, roles, and permissions are dictated by role-based access control (RBAC).
 
 * *Org SSO:* Allows org admins to restrict how users log in when they are trying to access the org. 
-Access beyond login is managed via RBAC.
+Access beyond log-in is managed via RBAC.
 
 * *Tenant level SSO:*  Impacts new database instances created within that tenant. 
 It ensures users logging in with SSO have access to the database instances within the tenant. 
@@ -31,7 +31,7 @@ Administrators can configure a combination of one or more of the log-in methods.
 * Microsoft Entra ID
 * Google SSO (not Google Workspace SSO)
 
-An organization's administrator can add Aura as a login from a tile in an organization's Apps Dashboard.
+An organization's administrator can add Aura as a log-in from a tile in an organization's Apps Dashboard.
 
 *Tenant SSO supports:*
 
