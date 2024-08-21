@@ -1,0 +1,94 @@
+:description: This section describes the Legend panel in Explore.
+
+[[legend-panel]]
+= Legend panel
+
+[.shadow]
+image::legend-panel-intro.png[width=400]
+
+The legend panel shows a list of all categories and relationship types available in the current Perspective, along with the style used to render their nodes and relationships respectively.
+When the list contains many elements, you can use a filter to limit the legend to show only elements present in the scene, or find those not present in the scene, or search for an element of interest.
+Click on a category or relationship type in the legend to select all nodes or relationships of that type.
+A count shows the number of items of a type that are currently visible somewhere in the scene.
+Styles applied to nodes and relationships can also be changed from this legend panel.
+You have the flexibility to define the style for an entire category or relationship type, or use data-driven rules to apply styles to specific nodes or relationships.
+By using the arrow-button you can quickly collapse or expand the legend panel.
+
+== Default styling
+
+Using the default style, you can change the color and size of nodes or relationships that belong to a category or relationship type.
+Additionally, it is possible to change the property (or add more) selected by default to caption the selected category of nodes or types of relationships.
+You can also customize the caption's font size, make it bold, italic, or underlined, and change its placement on the node.
+The same options are available for relationship captions, except for bold, italic, and underline.
+
+[.shadow]
+image::captions.png[width=400]
+
+For node categories, you can assign an icon to further differentiate the category.
+
+In cases where a node has multiple labels mapped to different categories, the styling is determined by the category defined first in the Perspective.
+See xref:Explore-perspectives/perspective-creation.adoc#Explore-perspective-categories[Categories] for more information.
+
+
+== Rule-based styling
+
+Explore allows you to set up rule-based styling based on the properties present in your graph.
+Rule availability and application varies by the type of a graph element and its available properties.
+Rule-based styling is supported for string, numeric and boolean properties.
+Temporal properties are also supported, `Date`, `Time`, `LocalTime`, `DateTime`, and `LocalDateTime`.
+See xref::/Explore-tutorial/search-phrases-advanced.adoc#parameter-data-types[Parameter data types] for more information on temporal properties.
+
+There are three different modes for rule-based styling: _single_, _range_, and _unique values_.
+
+[discrete]
+=== Single
+
+[.shadow]
+image::rule-based-styling-single.png[width=800]
+
+This allows you to set up a rule that applies one single color, size and/or caption based on a condition.
+For properties with numeric values, a histogram provides an overview of the values present in the current Scene.
+The slider lets you select a value and apply rule-based styling based on this.
+
+For example, as shown above, a rule defined on a `discontinued` property of a `Product` category only applies to `Product` nodes that have a `discontinued` value set to `true`.
+In this case, all affected nodes are presented in blue and have their `discontinued` value as their caption.
+
+If the property is a temporal type using timezones (`Time` and `DateTime`), you can base your styling on a selected timezone and translate all time values to that zone by checking the box _Translate timezones to_ and select a timezone.
+(Note that _Z_ indicates _Zulu timezone_, ie. GMT, time offset +00:00.)
+If you leave the box unchecked, timezones are ignored.
+
+[.shadow]
+image::rule-based-time.png[width=300]
+
+[NOTE]
+====
+Histograms are only available for the single mode of rule-based styling and for properties with numerical values of either `integer`, `float`, or temporal types.
+If the selected property does not have a numerical value, the histogram is not available.
+====
+
+[discrete]
+=== Range
+
+[.shadow]
+image::rule-based-styling-range.png[width=800]
+
+For numeric properties, you can set up a rule that applies a range of colors or sizes to a range of values.
+In the image above, a _Range_-rule has been used to style nodes with the `unitPrice` integer property with a spectrum of colors from green to red, as well as size nodes from small to big.
+
+For temporal properties using timezones (`Time` and `DateTime`), you have the same option to normalize to one timezone or to ignore timezones altogether as above with rules on a single value instead of a range of values.
+
+[discrete]
+=== Unique values
+
+[.shadow]
+image::rule-based-styling-unique-values.png[width=800]
+
+Activate this when you want to assign a unique color to each property value of a given property key.
+
+
+[TIP]
+====
+Rules override the default style setting such that if no rule is satisfied, the default style is applied.
+If multiple rules affecting the same attribute (e.g. node color) are specified, the rule that appears first in the list is applied to that attribute.
+Subsequent rules may still be applied if they affect other attributes (e.g. node size).
+====

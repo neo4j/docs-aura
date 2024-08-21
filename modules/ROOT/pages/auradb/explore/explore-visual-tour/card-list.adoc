@@ -1,0 +1,29 @@
+:description: This section describes the card list in Explore.
+
+[[card-list]]
+= Card list
+
+The card list, when expanded, shows details about the currently shown nodes on the canvas.
+You can choose between viewing all or only the selected nodes (if any).
+Each node appears as a little card which shows a few of the available properties on the node.
+The search bar in the card list lets you filter the card list further by typing a search and returning only the matching cards.
+The list can be even further refined by selecting _Nodes_ or _Relationships_ to return only those.
+
+[.shadow]
+image::card-list.png[width=700]
+
+Cards in the list can be used to interact with nodes on the canvas.
+Select one or more cards in the list to select them on canvas or vice versa.
+Interact with the selected cards using shortcut actions like Expand or Dismiss that appear on the bottom of the list, or use the right-click context menu.
+
+Double-click on a card to see the Inspector, which shows its properties in detail.
+Note that hovering a property shows you what type of property it is, i.e. string, integer, float etc.
+Properties can be edited, if you have write access to the graph, see xref::/explore-tutorial/edit-graph-data.adoc[Edit graph data] for more information.
+
+[.shadow]
+image::node-inspector.png[width=300]
+
+The Inspector also shows a node’s relationships and neighbors as cards, which in turn, can be used to navigate to, interact with, or see detail about these relationships and neighbors.
+
+[.shadow]
+image::relationships-of-a-node.png[width=300]
