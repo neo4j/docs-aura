@@ -1,0 +1,29 @@
+:description: This section describes full-text search in Explore.
+
+[[bloom-fulltext-search]]
+= Full-text search
+
+Explore allows users to always run a full-text search query against the database for their search input.
+This is useful when suggestions provided by Explore do not satisfy the user’s need.
+Full-text search using the input is the last suggestion provided to the user in the suggestions list.
+
+[.shadow]
+image::full-text-search.jpg[width=400]
+
+Explore can take advantage of native full text indexes in the database.
+Additionally, for small graphs with low cardinality in data values (e.g. the Movies graph), Explore is able to search in property values without requiring an explicit index.
+The full text string entered by the user is searched as one unit for these cases.
+
+[NOTE]
+====
+Full-text searching can be a time-consuming operation.
+Depending on the database, the state of indexes, and the search input requested, you may have a noticeable lag in response time because the queries may take a long time to return.
+That's why full-text search is kept as the last option in the suggestions list, to avoid unintentional use.
+====
+
+[WARNING]
+====
+When there is a delay in getting the search suggestions to return, the full-text search is the only option available to the user in the suggestions list.
+It is recommended not to use the full-text search suggestion inadvertently.
+The user may have to wait for a long time before results are returned and the full-text search can put a slightly larger workload on the database server.
+====

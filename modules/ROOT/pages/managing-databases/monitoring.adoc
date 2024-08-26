@@ -1,0 +1,34 @@
+[[aura-monitoring]]
+= All metrics
+
+label:AuraDB-Professional[]
+label:AuraDB-Enterprise[]
+label:AuraDB-Business-Critical[]
+
+You can monitor the following metrics of an instance from the *Metrics* tab:
+
+* *CPU Usage (%)* - The amount of CPU used by the instance as a percentage.
+* *Storage Used (%)* - The amount of disk storage space used by the instance as a percentage.
+* label:AuraDB-Enterprise[] *Heap Usage (%)* - The amount of Java Virtual Machine (JVM) memory used by the instance as a percentage.
+* *Out of Memory Errors* - The number of Out of Memory (OOM) errors encountered by the instance.
+* *Garbage Collection Time (%)* - The amount of time the instance spends reclaiming heap space as a percentage.
+* *Page Cache Evictions* - The number of times the instance has replaced data in memory.
+
+[NOTE]
+====
+More information on each metric, as well as suggestions for managing them, can be found within the *Metrics* tab itself.
+====
+
+When viewing metrics, you can select from the following time intervals:
+
+* 6 hours
+* 24 hours
+* 3 days
+* 7 days
+* 30 days
+
+To access the *Metrics* tab:
+
+. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
+. Select the instance you want to access.
+. Select the *Metrics* tab.

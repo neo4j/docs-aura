@@ -1,0 +1,29 @@
+[[indexes-and-constraints]]
+:description: This section describes how to use indexes and constraints in Import.
+= Indexes and constraints
+
+Import supports adding indexes to improve read performance of queries and creates constraints to ensure the accuracy of data.
+They are found in the details panel and the tab is visible when a single node is selected in the data model panel.
+
+image::constraints-tab.png[]
+
+Once a node is mapped to a file and a property is selected to serve as its ID, both a constraint and an index are created automatically.
+
+== Constraints
+
+A uniqueness constraint is created on the node property selected as node ID.
+This ensures that no other node with the same ID is created and to achieve that, a corresponding index is also created to support that constraint.
+It is not possible to modify the uniqueness constraint nor to add any additional constraints.
+For more information on constraints see link:https://neo4j.com/docs/cypher-manual/current/constraints/#unique-node-property[Cypher Manual -> Constraints].
+
+== Indexes
+
+As mentioned previously, an index is created automatically on the assigned ID property for a node to support the uniqueness constraint.
+This index cannot be modified in any way from this tab, but if you change which property to use as ID, both the constraint and corresponding index change accordingly.
+
+You can add more indexes with the `+` and then select which property to index from the dropdown menu.
+If you know that you will regularly look at a specific property, it is good practice to add an index to that property.
+For example in the link:https://neo4j.com/docs/getting-started/appendix/tutorials/guide-import-relational-and-etl/[Northwind] dataset, if you know you are going to be looking for orders in a specific date range, it is advisable to add an index to the `orderDate` property.
+
+Regardless of which property you add the index to, the index type is Neo4j's default index, which is `range` for Neo4j 5 and `btree` for Neo4j 4.x.
+For more information on indexes, see link:https://neo4j.com/docs/cypher-manual/current/indexes/[Cypher Manual -> Indexes].

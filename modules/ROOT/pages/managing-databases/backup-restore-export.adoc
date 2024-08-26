@@ -1,0 +1,72 @@
+[[aura-backup-restore-export]]
+= Backup, export and restore
+:description: This page describes how to backup, export and restore your data from a snapshot.
+
+The data in your AuraDB instance can be backed up, exported, and restored using snapshots.
+
+A snapshot is a copy of the data in an instance at a specific point in time.
+
+The *Snapshots* tab within an AuraDB instance shows a list of available snapshots.
+
+To access the *Snapshots* tab:
+
+. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
+. Select the instance you want to access.
+. Select the *Snapshots* tab.
+
+[NOTE]
+====
+Only the latest snapshot is available for Free instances. 
+Snapshots are available for 7 days for Professional instances, 30 days for Business Critical instances, and 60 days for Enterprise instances. 
+====
+
+== Snapshot types
+
+=== Scheduled
+
+label:AuraDB-Professional[]
+label:AuraDB-Enterprise[]
+
+A *Scheduled* snapshot is a snapshot that is automatically triggered when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and at a cadence depending on your plan type.
+
+Scheduled snapshots are run automatically once a day for Professional instances and once an hour for Business Critical and Enterprise instances. 
+
+[NOTE]
+====
+For AuraDB Enterprise database instances running Neo4j v4.x, from day 0 to 7 scheduled snapshots run automatically once every 6 hours. 
+From day 8 to 60, snapshots run once a day.
+====
+
+=== On Demand
+
+An *On Demand* snapshot is a snapshot that you manually trigger by selecting *Take snapshot* from the *Snapshots* tab of an instance.
+
+== Snapshot actions
+
+=== Restore
+
+[CAUTION]
+====
+Restoring a snapshot overwrites the data in your instance, replacing it with the data contained in the snapshot.
+====
+
+You can restore data in your instance to a previous snapshot by selecting *Restore* next to the snapshot you want to restore.
+
+Restoring a snapshot requires you to confirm the action by typing RESTORE and selecting *Restore*.
+
+=== Export/Create
+
+By selecting the ellipses (*...*) button next to an existing snapshot, you can:
+
+* *Export* - Download the instance as *_.dump_* file, allowing you to store a local copy and work on your data offline.
+* *Create instance from snapshot* - Create a new AuraDB instance using the data from the snapshot.
+
+[NOTE]
+====
+The ability to Export or Create an instance from a Scheduled Enterprise snapshot is limited to 14 days.
+
+Additionally, for Enterprise instances running Neo4j version 5, the ability to export or create an instance from a Scheduled snapshot is limited to the first full snapshot, taken once per day.
+====
+
+
+
