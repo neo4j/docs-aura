@@ -2,55 +2,54 @@
 = Connect to an instance
 :description: This page describes how to connect to an instance using Neo4j AuraDB.
 
-To start interacting with the data within an instance, you'll need to connect to it. 
+To interact with a database within an instance, you need to connect to it.
 
-There are a few different ways to connect to an instance:
+There are different ways to connect to an instance from the tools, Explore or Query.
+Either you connect to the running instance or you select a remote connection.
 
-* You are prompted to *choose a connection method* when you navigate to *Explore* or *Query*.
-* Or, you can also use the connection banner from within *Explore* or *Query*.
-
-== Choose connection method 
+== Remote connection
 
 image::connectionmodal.png[]
 
 == Connection banner
 
-* You can also use the connection banner from within *Explore* or *Query*.
-* Select *Status* to connect, disconnect, or connect to instances you recently accessed.
+If you are not connected to an instance when you open the Explore tool, you will be prompted to select an instance to connect to.
+From the pop-up, you can also select _Remnote connection_, if you want to connect to a different instance than the one currently running.
+
+Select *Status* to connect, disconnect, or connect to instances you recently accessed.
 
 image::connectionbanner.png[]
 
-== To open an instance from Explore or Query
+== To open a remote instance from Explore or Query
 
-. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Select *Explore* or *Query*.
-. You are prompted to choose a connection method.
-. Enter the *Database user* and *Password* credentials in the window that opens. 
-These are the same credentials you stored when xref:auradb/getting-started/create-database.adoc[creating the instance].
+. When prompted to choose a connection method, select _Renmote_
+. Enter the *Database user* and *Password* credentials.
+These are the same credentials you stored when xref:getting-started/create-database.adoc[creating the instance].
 . Select *Connect*.
 
 
-[cols="20%,80%"]
-|===
-| Field | Description
+// [cols="20%,80%"]
+// |===
+// | Field | Description
 
-|Protocol
-|Don't worry about this and just use the default if you are a new user of Aura. Protocols are mainly for server-side routing vs client-side routing. We've seperated protocol and connection URL. The main reason for this, is being able to change these things independently. Users may want to use different protocols for the same instance URL, for example they get client-side routing with neo4j+s (better for clusters and single servers) or have a direct connection to the instance using bolt+s (not the default as it's less flexible).
+// |Protocol
+// |Don't worry about this and just use the default if you are a new user of Aura. Protocols are mainly for server-side routing vs client-side routing. We've seperated protocol and connection URL. The main reason for this, is being able to change these things independently. Users may want to use different protocols for the same instance URL, for example they get client-side routing with neo4j+s (better for clusters and single servers) or have a direct connection to the instance using bolt+s (not the default as it's less flexible).
 
-|Connection URL 
-|You can get this from your instance details 
+// |Connection URL
+// |You can get this from your instance details
 
-|Database user 
-|Neo4j by default
+// |Database user
+// |Neo4j by default
 
-|Password 
-|You are given the password when you initially create the instance
+// |Password
+// |You are given the password when you initially create the instance
 
-|Single sign-on 
-|If this is set up, you can use SSO. 
+// |Single sign-on
+// |If this is set up, you can use SSO.
 
-|===
+// |===
 
-== How to find the connection URI and password
+// == How to find the connection URI and password
 
-image::password.png[]
+// image::password.png[]

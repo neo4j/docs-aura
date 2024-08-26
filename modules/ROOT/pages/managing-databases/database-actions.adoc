@@ -1,15 +1,15 @@
-[[aura-db-actions]]
+[[instance-actions]]
 = Instance actions
 :description: This page describes the following instance actions - rename, resest, upgrade, resize, pause, resume, clone to a new database, clone to an existing database, or delete and instance.
 
-Perform multiple instance actions directly from an instance card: Pause/resume, develop, view instance details, clone to new instance/clone to existing instance, edit secondaries, delete, resize, view resources/view all metrics. 
+Perform multiple instance actions directly from an instance card: Pause/resume, develop, view instance details, clone to new instance/clone to existing instance, edit secondaries, delete, resize, view resources/view all metrics.
 
 image::instanceactions.png[]
 
 == Instance details
 
-From the instance card, you can select the more actions (*...*) button then select *instance details*.
-From the instance details you can rename an instance, view instance details and we explain them in the instance actions docs. 
+From the instance card, select the more menu (*...*) button then select *instance details*.
+From the instance details you can rename an instance, view instance details and we explain them in the instance actions docs.
 
 image::instancedetails.png[]
 
@@ -51,13 +51,13 @@ image::instancedetails.png[]
 
 // . Select the ellipsis (*...*) button on the free instance you want to upgrade.
 // . Select *Upgrade to Business Critical*.
-// . Set your desired settings for the new instance. 
+// . Set your desired settings for the new instance.
 // For more information on AuraDB instance creation settings, see xref:auradb/getting-started/create-database.adoc[].
 // . Tick the *I understand* checkbox and select *Upgrade Instance*.
 
 == Resize an instance
 
-Resizing an instance means changing the Memory, CPU and storage size. 
+Resizing an instance means changing the memory, CPU and storage size.
 
 // label:AuraDB-Professional[]
 // label:AuraDB-Enterprise[]
@@ -78,16 +78,16 @@ An instance remains available during the resize operation.
 
 Pausing a Neo4j instance temporarily stops the database, which means:
 
-* No Access to Data: The data stored in the database becomes inaccessible. 
+* No Access to Data: The data stored in the database becomes inaccessible.
 Any applications or users trying to connect to the instance won't be able to run queries or retrieve data until the instance is resumed.
 
-* No Processing: The database won't process any operations or transactions while it's paused. 
-Any ongoing operations will be halted.
+* No Processing: The database won't process any operations or transactions while it is paused.
+Any ongoing operations are halted.
 
-* Data is Preserved: Your data remains safe and unchanged while the instance is paused. 
+* Data is Preserved: Your data remains safe and unchanged while the instance is paused.
 When you resume the instance, you can pick up right where you left off.
 
-Pausing is like putting the database on hold without shutting it down completely, so you can restart it quickly when needed.
+Pausing is putting the database on hold without shutting it down completely, so you can restart it quickly when needed.
 
 // label:AuraDB-Professional[]
 // label:AuraDB-Enterprise[]
@@ -99,32 +99,26 @@ You cannot manually pause an AuraDB Free instance; they are paused automatically
 ====
 
 You can pause an instance when not needed and resume it at any time.
-
-To pause an instance:
-
-. Select the pause button on the instance you want to pause.
-. Tick the *I understand* checkbox and select *Pause* to confirm.
+Do so by using the *Pause* button on the instance card.
 
 After confirming, the instance begins pausing, and a play button replaces the pause button.
 
 [NOTE]
 ====
 Paused instances run at a discounted rate compared to standard consumption, as outlined in the confirmation window.
-You can pause an instance for up to 30 days, after which point AuraDB automatically resumes the instance.
+You can pause an instance for up to 30 days, after which point Aura automatically resumes the instance.
 ====
 
 === Resume a paused instance
 
-To resume an instance:
-
-. Select the play button on the instance you want to pause.
-. Tick the *I understand* checkbox and select *Resume* to confirm.
+Resume a paused instance with the *Play* button on the instance card.
 
 After confirming, the instance begins resuming, which may take a few minutes.
 
 [WARNING]
 ====
-AuraDB Free instances do not automatically resume after 30 days. If an AuraDB Free instance remains paused for more than 30 days, Aura deletes the instance, and all information is lost.
+Aura Free instances do not automatically resume after 30 days.
+If an Aura Free instance remains paused for more than 30 days, Aura deletes the instance, and all information is lost.
 ====
 
 == Clone an instance
@@ -137,7 +131,7 @@ There are two options to clone an instance:
 * Clone to a new instance
 * Clone to an existing instance
 
-You can access all the cloning options from the ellipsis (*...*) button on the instance.
+You can access all the cloning options from the more (*...*) menu on the instance.
 
 [NOTE]
 ====
@@ -146,9 +140,9 @@ You cannot clone from a Neo4j version 5 instance to a Neo4j version 4 instance.
 
 === Clone to a new instance
 
-. Select the ellipsis (*...*) button on the instance you want to clone.
-. Select *Clone To New* from the contextual menu.
-. Set your desired settings for the new database. For more information on AuraDB database creation, see xref:auradb/getting-started/create-database.adoc[].
+. From the more (*...*) menu on the instance you want to clone, select *Clone To New* from the contextual.
+. Set your desired settings for the new database.
+For more information on AuraDB database creation, see xref:getting-started/create-database.adoc[].
 . Check the *I understand* box and select *Clone Database*.
 +
 [WARNING]
@@ -167,8 +161,7 @@ Cloning into an existing instance will replace all existing data.
 If you want to keep the current data, take a snapshot and export it.
 ====
 
-. Select the ellipsis (*...*) button on the instance you want to clone.
-. Select *Clone To Existing* and then *AuraDB* from the contextual menu.
+. From the more (*...*) menu on the instance you want to clone, select *Clone To Existing* and then *AuraDB* from the contextual menu.
 . If necessary, change the database name.
 . Select the existing AuraDB database to clone to from the dropdown menu.
 +
@@ -192,10 +185,9 @@ In the dropdown menu, they are grayed out and have the string `(Instance is not 
 
 == Delete an instance
 
-To delete an instance:
+Delete an instance using the trashcan symbol on the instance card.
 
-. Select the red trashcan icon on the instance you want to delete.
-. Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
+Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
 
 [WARNING]
 ====

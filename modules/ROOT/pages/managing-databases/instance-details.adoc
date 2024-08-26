@@ -11,8 +11,7 @@ Open *instance details* to rename the instance.
 
 To rename an instance:
 
-. Select the more actions (*...*) button on the instance you want to rename.
-. Select *Instance details* from the resulting menu.
+. From the more (*...*) menu on the instance you want to rename, select *Instance details*.
 This opens the *Instance details* panel on the right side of the screen.
 . Select the pen icon next to the instance name.
 . Rename your instance.
@@ -20,7 +19,7 @@ This opens the *Instance details* panel on the right side of the screen.
 
 == Instance details
 
-From the instance card, you can select the more actions (*...*) button then select *instance details*.
+As mentioned previously, the instance details can be accessed via the more (*...*) menu on the instance card.
 
 [cols="1,1"]
 |===
@@ -36,19 +35,21 @@ From the instance card, you can select the more actions (*...*) button then sele
 |Use this to connect to an instance
 
 |Private URI
-|Applicable if you have a private link set up 
+|Applicable if you have a private link set up
 
 |ID
-|Every instance has with an ID which is a unique identifier. It means multiple instances can have the same instance name, because they are distinguishable by their unique ID. 
+|Every instance has with an ID which is a unique identifier. It means multiple instances can have the same instance name, because they are distinguishable by their unique ID.
 
 |Memory
-|The capacity of your instance (you can adjust it without any downtime)
+|The capacity of your instance.
 
 |CPU
-|Aura provides database as a service through public cloud providers. It runs on container technology and this allows for the AuraDB Instance to allocate dedicated CPU resources.
+|Aura provides database as a service through public cloud providers.
+It runs on container technology and this allows for the AuraDB Instance to allocate dedicated CPU resources.
 
 |Storage
-|Neo4j Aura automates the backup process (you can also create your own on-demand snapshots), storing your data securely in the cloud. Backups are saved in the storage bucket of the cloud provider in the same region as your Neo4j Aura instance.
+|Neo4j Aura automates the backup process (you can also create your own on-demand snapshots), storing your data securely in the cloud.
+Backups are saved in the storage bucket of the cloud provider in the same region as your Neo4j Aura instance.
 
 |Encryption key
 |Neo4j Managed Key encrypts your data
@@ -58,19 +59,19 @@ From the instance card, you can select the more actions (*...*) button then sele
 
 == Snapshots
 
-Snapshots are backups of your data. 
-The data in your instance can be backed up, exported, and restored using snapshots. 
+Snapshots are backups of your data.
+The data in your instance can be backed up, exported, and restored using snapshots.
 A snapshot is a copy of the data in an instance at a specific point in time.
 
 Neo4j regularly takes snapshots of your instance, and you can request a snapshot to be taken on demand.
 These snapshots can be used to restore data to a different Neo4j instance.
 
-== Import instance
+// == Import instance
 
-_Feature coming soon!_
+// _Feature coming soon!_
 
-== Logs
+// == Logs
 
-If something goes wrong, the logs are a good place to start. 
-The standard log is called `neo4j.log` and it contains general information about Neo4j. 
-There is one for each DBMS and it can be accessed directly from Desktop via the Developer menu. It opens in a separate window, which allows you to keep it in the background.
+// If something goes wrong, the logs are a good place to start.
+// The standard log is called `neo4j.log` and it contains general information about Neo4j.
+// There is one for each DBMS and it can be accessed directly from Desktop via the Developer menu. It opens in a separate window, which allows you to keep it in the background.
