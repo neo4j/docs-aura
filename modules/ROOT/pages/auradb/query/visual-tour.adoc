@@ -1,0 +1,130 @@
+[[query-overview]]
+= Query overview
+:description: This section describes how to use the Query tool.
+
+[.shadow]
+image::upx-query.png[width=800]
+
+== Connection dropdown
+
+If you are **not** connected to an instance, the dropdown lets you either select from recent instances or to specify a new instance.
+Once you have entered your credentials, if needed, the status shows **Connected** and you are ready to start querying.
+This dropdown is also where you can switch database, instance, or disconnect.
+
+[.shadow]
+image::query-connection-dropdown.png[width=400]
+
+[.shadow]
+image::query-connected-dropdown.png[width=300]
+
+
+== Sidebar
+
+The sidebar contains a set of drawers; database information, saved Cypher, and Query history.
+
+=== Database information
+
+This drawer contains information about the database you are connected to.
+It gives you an overview of the node labels and relationship types, as well as what property keys exist in the database.
+If you click one, you will see a sample of the selected element as a graph or table.
+
+[.shadow]
+image::database-drawer.png[width=400]
+
+Additionally, the drawer contains node and relationship counts, displayed in parantheses.
+
+=== Saved Cypher
+
+The Saved Cypher drawer is where you keep your bookmarked queries and commands.
+
+[.shadow]
+image::saved-cypher-drawer.png[width=400]
+
+From here, you can organize your saved Cypher, download or upload these, or delete them if needed.
+To run a saved query, click on it to populate it to the Cypher editor and use the play button to execute.
+
+To save a query, use the bookmark icon in the Cypher editor.
+
+[.shadow]
+image::save-cypher.png[width=800]
+
+
+=== Query history
+
+This drawer contains a list of your previously run queries, for your reference.
+Queries are kept here until you delete them and are not limited to the current instance.
+
+== Cypher editor
+
+The Cypher editor is the primary interface for entering and running Cypher queries and commands.
+The editor can be instantiated several times, which allows you to edit the query inside the result frame and rerun it.
+It can hold multiple lines for long queries or commands.
+
+=== Syntax highlighting
+
+* A smart highlight of matching pairs around the current position of the cursor, for example, matching brackets, braces, and parenthesis.
+* Matching pairs are auto-closed.
+* A smart highlight of identical words on a word click.
+* Words, such as attributes, anon name, and values, are highlighted in different colors.
+* Any punctuation, such as parenthesis and comma, has a slightly different color than text.
+* Warnings are displayed with a red squiggly line that displays the error if you hover.
+
+.Useful shortcuts
+[cols="3,2,2",options="header"]
+|===
+| Description
+| Keyboard shortcut (Mac OS)
+| Keyboard shortcut (Windows and Linux)
+
+| Select highlighted identical words one by one.
+| *command + D*
+| *Ctrl + D*
+
+| Select all highlighted identical words.
+| *command + shift + L*
+| *Ctrl + shift + L*
+
+| Move a query line up and down.
+| *ALT + arrow*
+| *ALT + arrow*
+
+| Delete a query line.
+| *command + shift + K*
+| *Ctrl + shift + K*
+
+| Add multiple cursors, if you want to add several lines at the same time.
+| *command + ALT + arrow*
+| *Ctrl + ALT + arrow*
+
+| Search and replace.
+| *command + F*
+| *Ctrl + F*
+
+| Run a query.
+| *command + enter*
+| *Ctrl + Enter*
+|===
+
+== Reusable result frames
+
+The reusable result frames in Query allow you to edit the query of an existing result directly in the result fram and rerun it to update the result in situ.
+You can also use _Cmd/Ctrl + click_ to send it back to the main editor and re-run it from there.
+
+Query supports different result frame views:
+
+* Graph -- Display the result as nodes and relationships and allow xref:operations/browser-styling.adoc[styling] to be configured.
+* Table -- Display the result as JSON formatted rows.
+* RAW -- Display the submitted request, the Neo4j Server version and address, and the response.
+
+== Stream
+
+A stream is a scrolling series of result frames.
+
+image:stream.png[]
+
+A reusable result frame is created for each command execution, added to the top of the stream to create a scrollable collection in reverse chronological order.
+You can expand and collapse the result frames using the *Collapse* icon.
+To remove all the frames from the stream, use the `:clear` command.
+Clearing the stream does **not** clear the history, that is done from the **Query history** drawer, as mentioned previously.
+
+
