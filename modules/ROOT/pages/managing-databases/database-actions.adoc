@@ -8,7 +8,7 @@ image::instanceactions.png[]
 
 == Instance details
 
-From the instance card, select the more menu (*...*) button then select *instance details*.
+From the instance card, select the more menu (*...*) then select *instance details*.
 From the instance details you can rename an instance, view instance details and we explain them in the instance actions docs.
 
 image::instancedetails.png[]
@@ -131,7 +131,7 @@ There are two options to clone an instance:
 * Clone to a new instance
 * Clone to an existing instance
 
-You can access all the cloning options from the more (*...*) menu on the instance.
+You can access all the cloning options from the more menu (*...*) on the instance.
 
 [NOTE]
 ====
@@ -140,7 +140,7 @@ You cannot clone from a Neo4j version 5 instance to a Neo4j version 4 instance.
 
 === Clone to a new instance
 
-. From the more (*...*) menu on the instance you want to clone, select *Clone To New* from the contextual.
+. From the more menu (*...*) on the instance you want to clone, select *Clone To New* from the contextual.
 . Set your desired settings for the new database.
 For more information on AuraDB database creation, see xref:getting-started/create-database.adoc[].
 . Check the *I understand* box and select *Clone Database*.
@@ -161,7 +161,7 @@ Cloning into an existing instance will replace all existing data.
 If you want to keep the current data, take a snapshot and export it.
 ====
 
-. From the more (*...*) menu on the instance you want to clone, select *Clone To Existing* and then *AuraDB* from the contextual menu.
+. From the more menu (*...*) on the instance you want to clone, select *Clone To Existing* and then *AuraDB* from the contextual menu.
 . If necessary, change the database name.
 . Select the existing AuraDB database to clone to from the dropdown menu.
 +
@@ -185,11 +185,11 @@ In the dropdown menu, they are grayed out and have the string `(Instance is not 
 
 == Delete an instance
 
-Delete an instance using the trashcan symbol on the instance card.
+Delete an instance using the trashcan icon on the instance card.
 
 Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
 
 [WARNING]
 ====
-There is no way to recover data from a deleted AuraDB instance.
+There is no way to recover data from a deleted Aura instance.
 ====
