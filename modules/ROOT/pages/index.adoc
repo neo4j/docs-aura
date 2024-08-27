@@ -1,37 +1,28 @@
 [[aura]]
-= About Aura
+= About Neo4j Aura Console
 :description: Introduce the new Aura console experience.
 
-To get started with Neo4j Aura, log in at https://console-preview.neo4j.io/account/profile, or click "Get Started Free" at the top of the page.
+The Neo4j Aura Console is a fully automated graph platform offered as a cloud service.
+It brings together the capabilties of several tools, services, and operations from the Neo4j catalog.
+To get started with Neo4j Aura, log in at link:https://console-preview.neo4j.io/account/profile[], or click "Get Started Free" at the top of the page.
 
-= Intro for people that have used Aura before
+The Neo4j Aura Console, or **Console** for short, is the new UI experience for Neo4j Aura users.
+Use the Aura Console to import and interact with your data — from visualizing nodes and relationships to executing queries with the Cypher query language.
+You can monitor your instances and databases via metrics and logs to get insight into various aspects, such as performance, resource usage, and overall system health.
 
-If you’ve used Aura before, you’ll find that the new Aura console experience is familiar yet enhanced. 
-The vision of the new console is to integrate many Neo4j tools into a single interface. 
-Should you need to, you can temporarily roll back to the previous version of the Aura console.
+The Aura environment starts with an organization which can contain multiple projects with multiple users associated.
+Projects, users, and billing can all be managed directly from the same console.
+
+If you have used Aura before, you will find the Console familiar but with a host of new features.
+The classic Aura console is still available as the default experience, and will remain available until all available features have been integrated into the new Console.
 
 *Comparison to the classic console*
 
 * Some features, such as metrics, have been moved to the panel on the left.
-* Tenants are an evolution of projects.
-* The new console’s left navigation now provides access to tools, marking a significant change from the classic console's concept of "opening" the instance.
+* **Projects** are an evolution of **Tenants**.
+* The new console's left navigation now provides access to tools, marking a significant change from the classic console's concept of "opening" the instance.
 * The process for creating an instance remains unchanged.
 
-= Intro for people new to Aura
-
-Use the Aura console to interact with your data — from visualizing nodes and relationships to executing queries with the Cypher language. 
-Cypher is the future of graph database languages, outperforming SQL with its ability to handle far more advanced queries. 
-While you don’t _have_ to delve into complex queries, Cypher truly shines in executing them, and its visual nature makes it surprisingly easy to learn.
-
-This set of documentation will give you enough info to get comfortable with the console and get started.
-If you need any additional information you can visit the link:https://neo4j.com/docs/[docs homepage].
-
-Let's delve into various aspects of using the Aura console, including data exploration, instance management, and utilizing the Explore tool for visualizing and interacting with graph data. 
-It includes an overview of the console’s structure, projects, users, instances, importing data, tools, metrics, and more. 
-
-Graph databases excel at uncovering complex relationships within data, focusing on nodes and connections. 
-This capability makes them incredibly powerful and crucial for the future of databases. 
-As AI and large language models (LLMs) become increasingly central to the tech industry, using a graph database like Neo4j Aura is essential, as it forms the foundation of future computing.
 
 (C) {copyright}
 License: link:{common-license-page-uri}[Creative Commons 4.0]

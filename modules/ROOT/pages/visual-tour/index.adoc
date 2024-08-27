@@ -1,104 +1,89 @@
 [[visual-overview]]
-= Get to know the console
+= Visual tour of the Console
 :description: This section introduces the console UI.
 
 == Console structure
 
-Here's a quick overview of the hierarchy within the console UI, consisting of organizations, projects, and instances:
+The hierarchy of the Console consists of organizations, projects, and instances:
 
 * *Organization:* The highest level, representing the overall team or company.
 * *Projects:* Folders that organize your instances.
-* *Instances:* Contain the databases with your data.
+* *Instances:* Contain the databases.
 
-The Aura console is designed for intuitive navigation, allowing you to explore using clickable cards, breadcrumbs, and dropdown menus.
 
-== Where you land after log-in
-
-You'll be part of an organization.
-When you log in, you’ll find yourself viewing the projects.
-Click on a project to open it.
+When you first log in to the Console, you are part of an organization.
+An organization can contain one or more projects.
+Double-click a project to open it.
 
 image::project.png[]
 
 Project cards provide a snapshot of each project, including the number of instances and members associated with it.
-Clicking on a project card will take you inside that project, where you can view existing instances or create new ones as needed.
+Opening a project card takes you inside that project, where you can view existing instances and create new ones as needed.
 
-The organization or project you’re currently viewing will always be displayed in the header of the console as breadcrumbs.
+The organization or project you're currently viewing is always displayed in the header of the console.
 
-To switch between different organisations or projects, click on the name in the breadcrumbs.
-This will open a dropdown menu where you can see all the organisations and projects you have access to, making it easy to move between them.
+To switch between different organisations or projects, click on its name.
+This opens a dropdown menu where you can see all the organisations and projects you have access to and select the one you want to switch to.
 
 image::breadcrumbs.png[]
 
 == Data Services
 
-To access your data, navigate to a project and link:http://localhost:8000/aura/auradb/getting-started/connect-database/[connect to an instance].
-
-If your instance already contains data, you can start exploring it visually or querying it.
-If you need to import data, go to Import and follow the instructions in the console, to bring in a dataset like Northwind. Exploring data is central to using Aura, so you’ll always need to use Explore for this purpose — unless you’re managing the console, without needing to interact with the data.
+This section contains your instances and the Import service.
+To access your data, navigate to a project and xref:getting-started/connect-database.adoc[connect to an instance].
 
 === Instances
 
-Think of your instance as a database hosted in the Aura cloud, where you can store and access data and applications over the internet instead of relying on local storage.
-It functions like a remote hard drive that's always accessible online, allowing you to save files, run programs, and retrieve information from anywhere with an internet connection—without worrying about physical hardware or storage limitations on your device.
-By expanding an instance card, you can explore various options, such as viewing metrics, taking snapshots, or pausing the instance.
+An instance in Aura is an environment of the Neo4j database, managed and run in the cloud.
+As mentioned previously, a project can contain one or more instances.
+In the instance section, you can view and select which instance you want to connect to.
 
-To experience the full potential of a graph database, you'll need some data in your instance.
-Follow the workspace guide to set it up, and once you're connected you'll be ready to start.
-_If your instance already contains data, you can jump right in and begin working with it immediately._
+By expanding an instance card, you can explore various options, such as viewing metrics, taking snapshots, or pausing the instance.
+Additionally, you can also connect the instance to an application.
 
 === Import
 
-To start exploring and querying data in Neo4j, you'll first need to import data into your instance.
-You can import data from local files, follow the section in the docs on link:https://neo4j.com/docs/getting-started/data-import/csv-import/[importing CSV files].
-If you're new to Aura, we suggest following the workspace guide and importing the Northwind dataset to get familiar with the process and see how it all works.
+If your instance doesn't contain any data already, the Import service allows you to import CSV files to your database.
+This service lets you create your data model and map it to your files.
+See the xref:import/introduction.adoc[What is Import?] for more information about this service.
 
 == Tools
 
-The left-side panel is where you access all your tools.
-Once connected to an instance, you can switch between Explore and Query to use the graph tools or connect to different instances.
+The tools allow you to interact with your data and thus require an active connection.
+Once connected to an instance, you can use both the Explore and the Query tools.
 
 image::leftsidepanel.png[]
 
 === Explore
 
-Explore helps you visualize and interact with specific datasets.
-See the patterns you intuitively know are in your data, and discover new ones.
-This opens up new ways of thinking, working, and new possibilities—and it’s fun.
+Explore helps you visualize and interact with datasets without using any code.
 
 * *Visual Exploration:* See your data as a graph, with nodes and relationships between them, making it easier to understand and analyze complex data connections.
-* *Interactive Queries:* Run Cypher queries to explore and manipulate the graph.
-The tool updates the visual graph based on your query results.
-* *Data Insights:* By interacting with the graph, uncover patterns, trends, and insights that aren’t easily visible in traditional tabular formats like SQL.
-Overall, Explore is designed to make working with graph data more intuitive and insightful by providing a visual and interactive way to analyze and manage your data.
+
+* *Data Insights:* By interacting with the graph, uncover patterns, trends, and insights that aren't easily visible in traditional tabular formats.
+Explore is designed to make working with graph data more intuitive and insightful by providing a visual and interactive way to analyze and manage your data.
+
+See xref:explore/introduction.adoc[What is Explore?] for more information.
 
 === Query
 
-Get accustomed to the Cypher graph query language.
-It helps you start thinking about graphs and patterns, apply this knowledge to simple problems, and learn how to write Cypher statements.
-When you run queries on your data, you’ll see your nodes and relationships.
+Query is a helpful tool to interact with your data using Cypher, the graph query language.
 
-* *Cypher Editor:* Where users write their Cypher queries.
-* *Results Pane:* Where query results are displayed.
+* *Cypher Editor:* Where you write Cypher queries and get instant feedback on syntax errors and other helpful advice.
+* *Result frames:* Where query results are displayed as a graph, table, or RAW.
 * *Query History:* A feature that shows previously run queries.
-* *Settings and Preferences:* Options to customize the UI.
 
-image::query.png[]
+See xref:query/introduction.adoc[What is Query?] for more information.
+
 
 == Operations
 
 === Metrics
 
-Metrics help you monitor and analyze your database’s performance and usage.
-Here’s a breakdown of the metrics available on an instance card:
+Metrics help you monitor and analyze your database's performance and usage.
+You can find some metrics around resources directly on the instance card, but all metrics are available in **Metrics**.
 
-* *CPU Usage:* CPU is used for planning and serving queries.
-If this metric constantly spikes, consider increasing the size of your instance if it’s reaching its limits.
-* *Storage:* As your graph grows, it uses storage space on disk.
-Monitor this metric to ensure you have enough storage for today and future growth.
-If you’re approaching the limits, resize your instance to match your growth rate.
-* *Query Executions:* Query execution involves running a database query to retrieve, modify, or manage data.
-When you query the database, it processes the request, runs it against the stored data, and returns the results.
+See xref:all-metrics.adoc[Metrics] for more information.
 
 // === Logs
 
@@ -107,14 +92,17 @@ When you query the database, it processes the request, runs it against the store
 
 == Project
 
-Organize your instances by project.
+A project is an organizational grouping for one or more instances.
+Access, permissions, and billing is managed at the project level.
+
 
 === Users
 
-Users are people who interact with the console, each with varying roles and permissions.
-Invite users from the user’s page.
-From there, you can manage accounts, assign permissions, and control access levels to ensure secure and appropriate database use.
-Individuals can have access to your project for admin work, or to the instances for data work — you can also assign more specific permissions.
+Users are associated with a project and can have various roles and permissions.
+New users can be invited from the users' page.
+From there, you can manage accounts, permissions, and control access levels to ensure secure and appropriate instance use.
+Individuals can have access to a project for administrative work, or to the instances for data work — you can also assign more specific permissions.
+See xref:user-management.adoc[User management] for more information.
 
 // === Roles
 
@@ -126,7 +114,7 @@ Individuals can have access to your project for admin work, or to the instances 
 
 === Settings
 
-From settings, you can easily change your project name.
+The project settings allow you to change your project name.
 If you need to reference or share your project, you can copy your project ID.
 
 image::projectsettings.png[]
