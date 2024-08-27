@@ -81,15 +81,9 @@ See xref:query/introduction.adoc[What is Query?] for more information.
 === Metrics
 
 Metrics help you monitor and analyze your database's performance and usage.
-These are the metrics available on an instance card:
+You can find some metrics around resources directly on the instance card, but all metrics are available in **Metrics**.
 
-* *CPU Usage:* CPU is used for planning and serving queries.
-
-* *Storage:* As your graph grows, it uses storage space on disk.
-Monitor this metric to ensure you have enough storage for today and future growth.
-
-* *Query Executions:* Query execution involves running a database query to retrieve, modify, or manage data.
-When you query the database, it processes the request, runs it against the stored data, and returns the results.
+See xref:all-metrics.adoc[Metrics] for more information.
 
 // === Logs
 

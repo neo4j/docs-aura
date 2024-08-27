@@ -5,7 +5,7 @@
 To interact with a database within an instance, you need to connect to it.
 
 There are different ways to connect to an instance from the tools, Explore or Query.
-Either you connect to the running instance or you select a remote connection.
+Either you connect to a running instance or you select a remote connection.
 
 == Remote connection
 
@@ -17,6 +17,7 @@ If you are not connected to an instance when you open the Explore tool, you will
 From the pop-up, you can also select _Remote connection_, if you want to connect to a different instance than the one currently running.
 
 Select *Status* to connect, disconnect, or connect to instances you recently accessed.
+This is available from both tools as well from the Import service.
 
 image::connectionbanner.png[]
 
@@ -29,26 +30,28 @@ These are the same credentials you stored when xref:getting-started/create-datab
 . Select *Connect*.
 
 
-// [cols="20%,80%"]
-// |===
-// | Field | Description
+[cols="20%,80%"]
+|===
+| Field | Description
 
-// |Protocol
-// |Don't worry about this and just use the default if you are a new user of Aura. Protocols are mainly for server-side routing vs client-side routing. We've seperated protocol and connection URL. The main reason for this, is being able to change these things independently. Users may want to use different protocols for the same instance URL, for example they get client-side routing with neo4j+s (better for clusters and single servers) or have a direct connection to the instance using bolt+s (not the default as it's less flexible).
+|Protocol
+|The protocol is used for the communication between the Neo4j database server and the client application or tool.
+If you are a new user, you can use the default the default `neo4j+s//`.
+For more information about connection schemes, see link:https://neo4j.com/docs/operations-manual/current/configuration/connectors/[Operations Manual -> Configure network connectors] and link:https://neo4j.com/docs/bolt/current/bolt/[Bolt Protocol].
 
-// |Connection URL
-// |You can get this from your instance details
+|Connection URL
+|You can get this from your instance details
 
-// |Database user
-// |Neo4j by default
+|Database user
+|Neo4j by default
 
-// |Password
-// |You are given the password when you initially create the instance
+|Password
+|You are given the password when you initially create the instance
 
-// |Single sign-on
-// |If this is set up, you can use SSO.
+|Single sign-on
+|If this is set up, you can use SSO.
 
-// |===
+|===
 
 // == How to find the connection URI and password
 
