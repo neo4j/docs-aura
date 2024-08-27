@@ -6,7 +6,7 @@ site:
 content:
   sources:
   - url: ./
-    branches: HEAD
+    branches: ['HEAD', 'main']
     edit_url: '{web_url}/tree/{refname}/{path}'
     exclude:
     - '!**/_includes/*'
