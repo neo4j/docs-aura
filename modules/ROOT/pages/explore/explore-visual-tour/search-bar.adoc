@@ -27,7 +27,7 @@ You can press <TAB> or click on a suggestion in the list to select it, or scroll
 
 == Sample Search phrase
 
-When Explore autogenerates a Perspective (see xref::/explore-perspectives/perspective-creation.adoc[Creating a Perspective] for more information) or when you create your own (non-empty) Perspective, Explore provides a sample Search phrase to help you see the data in your graph.
+When Explore autogenerates a Perspective (see xref:explore/explore-perspectives/perspective-creation.adoc[Creating a Perspective] for more information) or when you create your own (non-empty) Perspective, Explore provides a sample Search phrase to help you see the data in your graph.
 The Search phrase is called _Show me a graph_ and is available in the search bar.
 It returns a sample of your data.
 
@@ -36,22 +36,22 @@ image::show-me-a-graph.png[width=500]
 
 == Graph pattern
 
-Graph patterns are a relaxed, near-natural language grammar based on a vocabulary drawn from node labels, relationship types and property keys and indexed property values, enriched by categories or other configuration as defined in the applied Perspective (see xref::/explore-perspectives/perspectives.adoc[Perspectives] for more detail).
+Graph patterns are a relaxed, near-natural language grammar based on a vocabulary drawn from node labels, relationship types and property keys and indexed property values, enriched by categories or other configuration as defined in the applied Perspective (see xref:explore/explore-perspectives/perspectives.adoc[Perspectives] for more detail).
 Terms that Explore detects are used to create potential pattern matches, are added to the suggestions list, from which you can pick the one you wish to query.
-See xref::/explore-tutorial/graph-pattern-search.adoc[Graph pattern search] for tips on graph pattern searching.
+See xref:explore/explore-features/graph-pattern-search.adoc[Graph pattern search] for tips on graph pattern searching.
 
 [[search-phrase]]
 == Search phrase
 
 A Search phrase is essentially an alias for a pre-defined graph query, which is saved within a Perspective.
-Search phrases allow for user-friendly access to queries that need to be run frequently, or can’t be conveniently expressed as a search pattern.
+Search phrases allow for user-friendly access to queries that need to be run frequently, or can't be conveniently expressed as a search pattern.
 Search phrases also allow for highly customized domain-specific questions to be asked, and can:
 
 * be paired with a parameterized Cypher query.
 * call algorithms, or anything else that can be called using procedures.
 * modify the graph (requires write access).
 
-See xref::/explore-tutorial/search-phrases-advanced.adoc[Search phrases for advanced queries] tutorial topic for tips on using Search phrases.
+See xref:explore/explore-features/search-phrases-advanced.adoc[Search phrases for advanced queries] tutorial topic for tips on using Search phrases.
 
 
 == Full-text search
@@ -61,7 +61,7 @@ Explore uses the native full-text indexes in the database for this feature.
 You will need to set up a full-text index to enable full-text search in Explore.
 Without any full-text index configured, Explore will fall back to searching in all available indexed string properties.
 
-See xref::/explore-tutorial/full-text-search.adoc[Full-text search] tutorial topic for tips on using the full-text search option.
+See xref:explore/explore-features//full-text-search.adoc[Full-text search] tutorial topic for tips on using the full-text search option.
 
 == Actions
 
@@ -78,7 +78,7 @@ This lists some of the available Actions:
 * Redo - repeat the latest action.
 * Undo - undo the latest action.
 
-See xref::/explore-appendix/explore-appendix.adoc#default-actions.adoc[Default actions and shortcuts] for the complete list and associated keyboard shortcuts.
+See xref:explore/explore-default-actions.adoc[Default actions and shortcuts] for the complete list and associated keyboard shortcuts.
 
 
 

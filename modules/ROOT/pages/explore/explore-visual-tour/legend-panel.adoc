@@ -27,7 +27,7 @@ image::captions.png[width=400]
 For node categories, you can assign an icon to further differentiate the category.
 
 In cases where a node has multiple labels mapped to different categories, the styling is determined by the category defined first in the Perspective.
-See xref:Explore-perspectives/perspective-creation.adoc#Explore-perspective-categories[Categories] for more information.
+See xref:explore/explore-perspectives/perspective-creation.adoc#perspective-categories[Categories] for more information.
 
 
 == Rule-based styling
@@ -36,7 +36,7 @@ Explore allows you to set up rule-based styling based on the properties present 
 Rule availability and application varies by the type of a graph element and its available properties.
 Rule-based styling is supported for string, numeric and boolean properties.
 Temporal properties are also supported, `Date`, `Time`, `LocalTime`, `DateTime`, and `LocalDateTime`.
-See xref::/Explore-tutorial/search-phrases-advanced.adoc#parameter-data-types[Parameter data types] for more information on temporal properties.
+See xref:explore/explore-features/search-phrases-advanced.adoc#parameter-data-types[Parameter data types] for more information on temporal properties.
 
 There are three different modes for rule-based styling: _single_, _range_, and _unique values_.
 

@@ -20,7 +20,7 @@ image::model-panel.png[]
 
 The most efficient way to create your model is to complete the mapping of each element, ie. select source file, IDs, and properties, before moving on to the next element.
 Being familiar with your files is essential to creating a good model.
-See the section on xref:mapping.adoc[Mapping] for more information.
+See the section on xref:import/mapping.adoc[Mapping] for more information.
 
 == Create a node
 
@@ -32,7 +32,7 @@ The conventional way of labeling is to use CamelCase, see link:https://neo4j.com
 
 In addition to a label, the node needs to be mapped to a file, which is done in the field _File_, below the lable field, in the details panel.
 The mapping is not necessary to create the node, nor is adding properties, but both need to be done before the import can be run.
-See xref:mapping.adoc[Mapping] for more information on mapping.
+See xref:import/mapping.adoc[Mapping] for more information on mapping.
 
 == Create a relationship
 
@@ -50,7 +50,7 @@ This can be done in the details panel as well.
 The casing convention for relationship types is upper-case SNAKE_CASE, see link:https://neo4j.com/docs/cypher-manual/current/syntax/naming/#_recommendations[Cypher Manual -> Recommendations] for more information.
 
 The relationship needs to be mapped to a file and have at least one property, but again, this is not necessary to create the relationship.
-The section on xref:mapping.adoc[Mapping] covers this.
+The section on xref:import/mapping.adoc[Mapping] covers this.
 
 A relationship always has a direction, and if needed, you can reverse the direction in your model with a button, as shown below.
 
