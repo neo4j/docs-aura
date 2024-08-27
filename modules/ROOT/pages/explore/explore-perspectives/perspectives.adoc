@@ -38,7 +38,7 @@ Explore categorizes the nodes into entities, select useful captions and assign c
 
 Keep in mind though, that when Explore auto-generates a Perspective, a complete scan of the database is performed.
 If your database is large, i.e. > 10,000,000 nodes and relationships combined, this will take a long time and you can opt for a quick scan instead.
-See xref::/explore-perspectives/database-scans.adoc[Database scans] for more information.
+See xref:explore/explore-perspectives/database-scans.adoc[Database scans] for more information.
 The Northwind example data set is _not_ large and Explore can quickly auto-generate a Perspective.
 
 By contrast, when Explore creates an Auto-perspective the first time you open it with a new database, it samples a node from each category it finds and use the properties in the sampled node.

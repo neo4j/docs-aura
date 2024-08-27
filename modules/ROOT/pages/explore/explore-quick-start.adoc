@@ -6,12 +6,12 @@ Explore is designed to be simple and intuitive enough for a business person or k
 Follow these quick start tips if you would like to play with the interface on your own before returning to this guide to learn about the more advanced and nuanced features.
 
 You need an active connection to an instance that contains data, one of the link:https://neo4j.com/developer/example-data[example data sets] works.
-Additionally, Explore needs a xref::/explore/explore-perspectives.adoc[Perspective] as a business view of the graph to which it connects.
+Additionally, Explore needs a xref:explore/explore-perspectives/perspectives.adoc[Perspective] as a business view of the graph to which it connects.
 The first time that Explore connects to a graph, it shows a selection of already defined Perspectives or, if you have the access rights, offer to auto-generate a new one.
 Auto-generation is a good place to jump quickly into graph exploration.
 Keep in mind that a complete scan of the database will be performed when you auto-generate a Perspective and if your database is large, this can take a long time.
 In that case, you may opt for a quick scan instead.
-See xref::/bloom-perspectives/database-scans.adoc[Database scans] for more information.
+See xref:explore/explore-perspectives/database-scans.adoc[Database scans] for more information.
 
 Graph exploration begins by searching for interesting parts of the graph.
 
@@ -21,7 +21,7 @@ image::explore-overview.png[width=800]
 == Start by searching
 
 By loading the _Northwind_ https://neo4j.com/developer/example-data[example data set], you can start interacting with the graph right away.
-If you need help loading the dataset, the process is described in detail xref:link-to-how-to-import-data.adoc[here].
+If you need help loading the dataset, the process is described in detail xref:import/introduction.adoc[here].
 
 Once loaded, try searching for:
 

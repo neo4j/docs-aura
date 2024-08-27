@@ -18,7 +18,7 @@ Once created, the Perspective definition can be edited and reconfigured differen
 When Explore connects to a database for the first time, auto generating the Perspective might be the best option in most cases.
 +
 As mentioned above, if the database contains more than 10,000,000 nodes and relationships combined, a complete scan takes a long time and you can elect to run a quick scan instead.
-See xref::/explore-perspectives/database-scans.adoc[Database scans] for more details.
+See xref:explore/explore-perspectives/database-scans.adoc[Database scans] for more details.
 
 
 . *Blank Perspective* - With this option, you can build a Perspective from scratch by defining each category and configuring properties and styling for it.
@@ -64,7 +64,7 @@ Typically, a single graph label maps to a particular category, but multiple labe
 
 When you create a category, Explore analyzes the graph to find the related properties and other labels that occur on nodes that have the category-defining label.
 If desired, you can select which properties to exclude from the visualization.
-Explore assigns a default color for the category, but you can change the default color and node sizes from the xref::/bloom-visual-tour/legend-panel.adoc[Legend panel].
+Explore assigns a default color for the category, but you can change the default color and node sizes from the xref:explore/explore-visual-tour/legend-panel.adoc[Legend panel].
 You can also give the category an icon from an extensive library of searchable icons.
 Rule-based styling can also be applied at any stage.
 
@@ -86,19 +86,19 @@ However, when searching for all `Person` nodes, _Tom Hanks_ will still be return
 [discrete]
 === Relationships
 
-Based on the Perspective’s purpose, it may be useful to limit the relationship types that are available for user exploration.
+Based on the Perspective's purpose, it may be useful to limit the relationship types that are available for user exploration.
 The Perspective designer lets you choose one or more relationship types from the list of available types in the graph, and hide them.
 By default, all relationship types are visible.
 
-Similar to category styling, relationship type styling options for color, thickness, and rule-based styles are available in the xref::/bloom-visual-tour/legend-panel.adoc[Legend panel].
+Similar to category styling, relationship type styling options for color, thickness, and rule-based styles are available in the xref:explore/explore-visual-tour/legend-panel.adoc[Legend panel].
 
 [discrete]
 === Saved Cypher
 
 In the *Saved Cypher* tab of the Perspective designer, you can define _Search phrases_ and _Scene actions_.
-xref::/bloom-visual-tour/search-bar.adoc#search-phrase[Search phrase]s are defined and scoped for a particular Perspective, as they usually apply to a specific business view of the graph.
+xref:explore/explore-visual-tour/search-bar.adoc#search-phrase[Search phrase]s are defined and scoped for a particular Perspective, as they usually apply to a specific business view of the graph.
 They are stored with the rest of the Perspective definition and run from the Search bar.
-See xref::/bloom-tutorial/search-phrases-advanced.adoc[Search phrases for advanced queries] for how to define Search phrases.
+See xref:explore/explore-features/search-phrases-advanced.adoc[Search phrases for advanced queries] for how to define Search phrases.
 
 _Scene actions_ are Cypher queries you can run on the elements available in your current scene.
-They are run from the context menu when at least one element is selected, see xref:/bloom-tutorial/scene-actions.adoc[Scene actions] for more information.
+They are run from the context menu when at least one element is selected, see xref:explore/explore-features/scene-actions.adoc[Scene actions] for more information.
