@@ -8,7 +8,7 @@ Query log analyzer is a feature that provides a UI to review the queries execute
 
 To access *Query log analyzer*:
 
-. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
+. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura console] in your browser.
 . Select the instance you want to access.
 . Select the *Logs* tab.
 . Select the *Query log analyzer* button.
@@ -17,10 +17,10 @@ Query log analyzer is split up in three parts:
 
 * *Query timeline* - Timeline showing metrics for number of queries, failed queries and query latency.
 * *Summary table* - An aggregated view of query logs, giving a high level overview over the selected time period.
-* *Details table* - A detailed view showing individual query executions in the selected time period. 
+* *Details table* - A detailed view showing individual query executions in the selected time period.
 
-To fetch logs, first choose a time range in the Query timeline. 
-With a time selection done, press the *Fetch logs* button. 
+To fetch logs, first choose a time range in the Query timeline.
+With a time selection done, press the *Fetch logs* button.
 You may optionally choose any filters or search text if required, then press *Go*.
 
 A summary of query executions is returned, showing aggregations per query.
@@ -39,7 +39,7 @@ When viewing the query timeline, you can select from the following time interval
 * Last 3 days
 * Last week
 
-The query timeline can be collapsed by clicking on the header. 
+The query timeline can be collapsed by clicking on the header.
 
 === Zoom
 
@@ -57,13 +57,13 @@ To hide or show individual data series, select the corresponding data series in 
 == Fetch logs
 
 The *Fetch logs* button will open up a dialog where you can add filters and search before fetching the logs.
-The Query timeline determines the current time selection, which can be changed by closing the dialog and modifing the timeline. 
+The Query timeline determines the current time selection, which can be changed by closing the dialog and modifing the timeline.
 To fetch the logs after selection of filters and search is done, click the *Go* button.
 
 === Filters
 
 To filter, click the filter button.
-This will load the available filters over the selected time period. 
+This will load the available filters over the selected time period.
 Filters are available for the following fields:
 
 * Status
@@ -74,9 +74,9 @@ Filters are available for the following fields:
 
 === Search
 
-To search, click the search button. 
+To search, click the search button.
 Search can be specified for the *Query text* and the *Error text*.
-The fields are case insensitive and allows you to find specific queries or error that are interesting.  
+The fields are case insensitive and allows you to find specific queries or error that are interesting.
 
 
 == Table interactions
@@ -93,11 +93,11 @@ Columns can be enabled or disabled, or the order changed using the grid icon at 
 
 === Expand query
 
-In the table three rows of query text will be shown. 
+In the table three rows of query text will be shown.
 To see the whole query if the query is longer, press the *View more* button under the query text.
 
 == Limitations
 
 * Query logs are available for a period of 7 days, and each request can be for up to 24 hours of data.
-* The query timeline may show activity from internal meta queries, which are filtered in the table.  
+* The query timeline may show activity from internal meta queries, which are filtered in the table.
 

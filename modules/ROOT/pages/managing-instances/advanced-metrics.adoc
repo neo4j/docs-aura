@@ -8,7 +8,7 @@ Advanced metrics is a feature that enables access to a broad range of different 
 
 To access *Advanced metrics*:
 
-. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
+. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura console] in your browser.
 . Select the instance you want to access.
 . Select the *Metrics* tab.
 . Select the *Advanced metrics* button.
@@ -72,7 +72,7 @@ Most metrics will have several values for a given timestamp because of the follo
 * Multiple database replicas
 * Compressing several data points into one, depending on zoom level
 
-Aggregating functions are used to reconcile metrics having multiple data points and make the most sense of that particular metric. 
+Aggregating functions are used to reconcile metrics having multiple data points and make the most sense of that particular metric.
 To convey an even more detailed picture of the state of the system, several aggregations can be shown.
 
 The possible aggregations are:
@@ -82,15 +82,15 @@ The possible aggregations are:
 * *Average* - The average value of the metric across all cluster members.
 * *Sum* - The sum of the metric across all cluster members.
 
-== Store size metrics 
+== Store size metrics
 
 === Resources tab
 
-The chart on the _Resources_ tab shows the allocated store size metric for the selected database either as a percentage of the available storage assigned for the database or as absolute values. 
+The chart on the _Resources_ tab shows the allocated store size metric for the selected database either as a percentage of the available storage assigned for the database or as absolute values.
 
 === Database tab
 
-The _Database_ tab provides a chart that shows the store size and the portion of the allocated space that the database is actively utilizing. 
+The _Database_ tab provides a chart that shows the store size and the portion of the allocated space that the database is actively utilizing.
 Both metrics are represented as percentages of the available storage assigned to the database.
 
 These metrics may differ due to the way Neo4j allocates and reuses space.

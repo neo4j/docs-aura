@@ -9,7 +9,7 @@ If the size of the *_.dump_* file exported from a database is greater than 4GB, 
 
 To import a *_.dump_* file under 4GB:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura Console] in your browser.
+. Navigate to the https://console.neo4j.io/[Neo4j Aura console] in your browser.
 . Select the instance you want to import the data.
 . Select the *Import Database* tab.
 . Drag and drop your *_.dump_* file into the provided window or select *Select a .dump file* and select your file.
@@ -44,12 +44,12 @@ If the database you want to upload is running an earlier version of Neo4j, pleas
 The `neo4j-admin push-to-cloud` command in Neo4j 4.4 and earlier is not compatible with instances encrypted with xref:platform/security/encryption.adoc#_customer_managed_keys[Customer Managed Keys].
 Use `neo4j-admin database upload` in Neo4j 5 to upload data to instances encrypted with Customer Managed Keys.
 
-For Neo4j 4.x instances in Azure encrypted with Customer Managed Keys, use Neo4j Data Importer to load data, as `neo4j-admin database upload` is not supported. 
+For Neo4j 4.x instances in Azure encrypted with Customer Managed Keys, use Neo4j Data Importer to load data, as `neo4j-admin database upload` is not supported.
 See the https://neo4j.com/docs/data-importer/current/introduction[Data Importer documentation] for more information.
 ====
 
 === Public traffic
-If you have created a network access configuration from the *Network Access* page, accessed through the sidebar menu of the Console, *Public traffic* must be enabled for the region your instance is hosted in before you can use the `database upload` command on that instance.
+If you have created a network access configuration from the *Network Access* page, accessed through the sidebar menu of the console, *Public traffic* must be enabled for the region your instance is hosted in before you can use the `database upload` command on that instance.
 
 To enable *Public traffic* on a network access configuration:
 
