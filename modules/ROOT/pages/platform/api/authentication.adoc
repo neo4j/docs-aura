@@ -12,7 +12,7 @@ Enterprise users have unrestricted access to creating API credentials.
 However, users with Free and Professional instances must have entered billing information or be a member of a marketplace tenant before they can create API credentials.
 ====
 
-. Navigate to the https://console.neo4j.io/#account[Neo4j Aura Console Account Details page] in your browser.
+. Navigate to the https://console.neo4j.io/#account[Neo4j Aura console Account Details page] in your browser.
 . Select the *Create* button in the *Aura API Credentials* section.
 . Enter a *Client name*, and select *Create*.
 . Securely save the *Client ID* and *Client Secret* you are given in the resulting modal; you will need these for the next step.
@@ -74,7 +74,7 @@ Both the request and response contain sensitive information and must be kept sec
 You are responsible for keeping the client credentials and access tokens confidential, whether in transit (by specifying HTTPS), if stored at rest, in log files, etc.
 ====
 
-==== Request examples 
+==== Request examples
 
 [.tabbed-example]
 ====
@@ -112,7 +112,7 @@ response = requests.request(
 print(response.json())
 ----
 
-<1> `client_id` and `client_secret` must be set to the values obtained from the Aura Console.
+<1> `client_id` and `client_secret` must be set to the values obtained from the Aura console.
 =====
 ====
 

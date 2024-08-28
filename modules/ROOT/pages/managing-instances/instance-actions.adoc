@@ -58,20 +58,13 @@ image::instancedetails.png[]
 == Resize an instance
 
 Resizing an instance means changing the memory, CPU and storage size.
+Note that this option is not available for Free instances.
 
 // label:AuraDB-Professional[]
 // label:AuraDB-Enterprise[]
 // label:AuraDB-Business-Critical[]
 
-You can change the size of an existing instance using the *Resize* action.
-
-To resize an instance:
-
-. Select the *resize* button on the instance you want to resize.
-. Select *Resize* from the resulting menu.
-. Select the new size you want your instance to be.
-. Tick the *I accept* checkbox and select *Resize*.
-
+You can change the size of an existing instance using the *Resize* button on the instance you want to resize.
 An instance remains available during the resize operation.
 
 == Pause an instance
@@ -95,7 +88,7 @@ Pausing is putting the database on hold without shutting it down completely, so 
 
 [NOTE]
 ====
-You cannot manually pause an AuraDB Free instance; they are paused automatically after 72 hours of inactivity. footnote:[Inactivity is when you perform no queries on the instance.]
+You cannot manually pause an AuraDB Free instance; they are paused automatically after 72 hours of inactivity.
 ====
 
 You can pause an instance when not needed and resume it at any time.
