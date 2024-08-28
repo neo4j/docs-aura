@@ -4,16 +4,16 @@
 
 == Console structure
 
-The hierarchy of the Console consists of organizations, projects, and instances:
+The hierarchy of the console consists of organizations, projects, and instances:
 
 * *Organization:* The highest level, representing the overall team or company.
 * *Projects:* Folders that organize your instances.
 * *Instances:* Contain the databases.
 
 
-When you first log in to the Console, you are part of an organization.
+When you first log in to the console, you are part of an organization.
 An organization can contain one or more projects.
-Double-click a project to open it.
+Click a project to open it.
 
 image::project.png[]
 
@@ -35,7 +35,7 @@ To access your data, navigate to a project and xref:getting-started/connect-data
 === Instances
 
 An instance in Aura is an environment of the Neo4j database, managed and run in the cloud.
-As mentioned previously, a project can contain one or more instances.
+A project can contain one or more instances.
 In the instance section, you can view and select which instance you want to connect to.
 
 By expanding an instance card, you can explore various options, such as viewing metrics, taking snapshots, or pausing the instance.
@@ -43,13 +43,13 @@ Additionally, you can also connect the instance to an application.
 
 === Import
 
-If your instance doesn't contain any data already, the Import service allows you to import CSV files to your database.
+If your instance doesn't contain any data, the Import service allows you to import CSV files to your database.
 This service lets you create your data model and map it to your files.
 See the xref:import/introduction.adoc[What is Import?] for more information about this service.
 
 == Tools
 
-The tools allow you to interact with your data and thus require an active connection.
+The tools allow you to interact with your data and therefore require an active connection to an instance.
 Once connected to an instance, you can use both the Explore and the Query tools.
 
 image::leftsidepanel.png[]
@@ -81,7 +81,7 @@ See xref:query/introduction.adoc[What is Query?] for more information.
 === Metrics
 
 Metrics help you monitor and analyze your database's performance and usage.
-You can find some metrics around resources directly on the instance card, but all metrics are available in **Metrics**.
+Some metrics are available directly on the instance card, and you can find the full range in **Metrics**.
 
 See xref:all-metrics.adoc[Metrics] for more information.
 
@@ -93,7 +93,7 @@ See xref:all-metrics.adoc[Metrics] for more information.
 == Project
 
 A project is an organizational grouping for one or more instances.
-Access, permissions, and billing is managed at the project level.
+Access, permissions, and billing are managed at the project level.
 
 
 === Users
