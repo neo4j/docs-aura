@@ -17,6 +17,9 @@ Query log analyzer is split up in three parts:
 * *Summary table* - An aggregated view of query logs, giving a high level overview over the selected time period.
 * *Details table* - A detailed view showing individual query executions in the selected time period.
 
+[.shadow]
+image::logs2.png[width=100%]
+
 To fetch logs, first select a time range in the Query timeline.
 With a time selection done, press the *Fetch logs* button.
 You may optionally select any filters or search text if required, then press *Fetch*.
@@ -25,7 +28,7 @@ A summary of query executions is returned, showing aggregations per query.
 To see the individual query executions, click the right arrow at the end of the line to show details for that query.
 The details pane shows individual executions.
 
-== Timeline interactions
+== Query timeline
 
 When viewing the query timeline, you can select from the following time intervals:
 
@@ -39,10 +42,15 @@ When viewing the query timeline, you can select from the following time interval
 
 The query timeline can be collapsed by clicking on the header.
 
+[NOTE]
+====
+The query timeline may show activity from internal meta queries, which are filtered in the table.
+====
+
 === Zoom
 
 To zoom in to a narrower time interval, select and drag inside the timeline to select your desired time interval.
-The data in the timeline will automatically update to match the increased resolution.
+The data in the timeline automatically updates to match the increased resolution.
 To update the table, click the *Fetch logs* button.
 
 To reset zoom, double-click anywhere inside the timeline.
@@ -54,14 +62,18 @@ To hide or show individual data series, select the corresponding data series in 
 
 == Fetch logs
 
-The *Fetch logs* button will open up a dialog where you can add filters and search before fetching the logs.
+The *Fetch logs* button opens up a dialog where you can add filters and search before fetching the logs.
 The Query timeline determines the current time selection, which can be changed by closing the dialog and modifing the timeline.
 To fetch the logs after selection of filters and search is done, click the *Go* button.
 
+[NOTE]
+====
+Query logs are available for a period of 7 days, and each request can be for up to 24 hours of data.
+====
+
 === Filters
 
-To filter, click the filter button.
-This will load the available filters over the selected time period.
+Use the filter button to load the available filters over the selected time period.
 Filters are available for the following fields:
 
 * Status
@@ -72,16 +84,15 @@ Filters are available for the following fields:
 
 === Search
 
-To search, click the search button.
+Use the search button to search for specific queries or errors.
 Search can be specified for the *Query text* and the *Error text*.
-The fields are case insensitive and allows you to find specific queries or error that are interesting.
-
+The fields are case insensitive.
 
 == Table interactions
 
 === Sort table
 
-By default the table will be sorted on *Count* for *Summary* and *Status* for *Details*.
+By default, the table is sorted on *Count* for *Summary* and *Status* for *Details*.
 To sort by a column (such as Max Time ms) click on the column heading.
 
 === Modify columns
@@ -94,8 +105,4 @@ Columns can be enabled or disabled, or the order changed using the grid icon at 
 In the table three rows of query text will be shown.
 To see the whole query if the query is longer, press the *View more* button under the query text.
 
-== Limitations
-
-* Query logs are available for a period of 7 days, and each request can be for up to 24 hours of data.
-* The query timeline may show activity from internal meta queries, which are filtered in the table.
 
