@@ -1,0 +1,181 @@
+[[aura-query-logs]]
+= Request and download logs
+
+Aura allows you to request and download security and query logs.
+
+You can access logs from an Aura instance via the *Logs* tab.
+
+To access the *Logs* tab:
+
+. Navigate to the https://console.neo4j.io/[Neo4j Aura console] in your browser.
+. Select the instance you want to export the logs from.
+. Select the *Logs* tab.
+
+== Query logs
+
+A query log provides a log of queries executed on an instance within a specified time range.
+
+[NOTE]
+====
+Queries that complete successfully within 50ms are not logged.
+====
+
+=== Requesting query logs
+
+To request a query log from the *Logs* tab:
+
+. Click *Request log*.
+. Select the *Query Log* option under *Type*.
+. Select a *Range* option.
+. Click *Request*.
+
+[NOTE]
+====
+Requested logs will appear for up to 7 days, at which point they will expire and be removed.
+====
+
+You can select from the following time ranges when requesting a query log:
+
+* Last 15 minutes
+* Last hour
+* Custom range - Any range up to one hour from the previous 30 days
+
+[TIP]
+====
+We recommend shorter time ranges for busy, read/write heavy instances to reduce request time.
+====
+
+Aura will generate a query log for your selected time range, available to download once the *Status* shows *Completed*.
+
+=== Downloading query logs
+
+You can download query logs by selecting the download icon on the right-hand side of the log entry.
+
+Downloaded query logs take the form of a zipped JSON file that, when extracted, contains the following information:
+
+.Query log entries
+[cols="25m,75v"]
+|===
+| Name | Description
+
+| allocatedBytes
+| The number of bytes allocated by the query.
+
+| annotationData
+| The metadata attached to the transaction.
+
+| authenticatedUser
+| The name of the user who executed the query (whose credentials were used to log in).
+
+| database
+| The name of the database the query was executed on.
+
+| dbid
+| The ID of the instance the query was executed on.
+
+| elapsedTimeMs
+| The time the query took to complete in milliseconds.
+
+| event
+| The query event:
+
+`start` - The query was successfully parsed, awaiting execution.
+
+`fail` - The query failed to either parse or execute.
+
+`success` - The query executed successfully or was canceled.
+
+| executingUser
+| The name of the user who executed the query either through authentication (`authenticatedUser`) or through link:{neo4j-docs-base-uri}/cypher-manual/current/access-control/dbms-administration/#access-control-dbms-administration-impersonation[impersonation].
+
+| id
+| The ID of the query.
+
+| message
+| The log message: a truncated version of `query`.
+
+| pageFaults
+| The number of page faults resulting from the query.
+
+| pageHits
+| The number of page hits resulting from the query.
+
+| query
+| The full query text.
+
+| runtime
+| The link:{neo4j-docs-base-uri}/cypher-manual/current/query-tuning/#cypher-runtime[Cypher runtime] used to execute the query.
+
+| type
+| The type of log message.
+
+| time
+| The timestamp of the log message.
+
+|===
+
+== Security logs
+
+label:AuraDB-Enterprise[]
+label:AuraDS-Enterprise[]
+
+A security log provides a log of all the security events that have occurred on an instance within a specified time range.
+
+Security events include:
+
+* Login attempts: both successful and unsuccessful.
+* Authorization failures from role-based access control.
+* link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/access-control/#auth-access-control-security[Administration commands] run against the `system` database.
+
+=== Requesting security logs
+
+To request a security log from the *Logs* tab:
+
+. Click *Request log*.
+. Select the *Security Log* option under *Type*.
+. Select a *Range* option.
+. Click *Request*.
+
+[NOTE]
+====
+Requested logs will appear for up to 7 days, at which point they will expire and be removed.
+====
+
+You can select from the following time ranges when requesting a security log:
+
+* Last 6 hours
+* Last 12 hours
+* Custom range - Any range up to 12 hours from the previous 30 days
+
+Aura will generate a security log for your selected time range, available to download once the *Status* shows *Completed*.
+
+=== Downloading security logs
+
+You can download security logs by selecting the download icon on the right-hand side of the log entry.
+
+Downloaded security logs take the form of a zipped JSON file that, when extracted, contains the following information:
+
+.Security log entries
+[cols="25m,75v"]
+|===
+| Name | Description
+
+| authenticatedUser
+| The name of the user who executed the security event (whose credentials were used to log in).
+
+| dbid
+| The ID of the instance the security event occurred on.
+
+| executingUser
+| The name of the user who executed the security event either through authentication (`authenticatedUser`) or through link:{neo4j-docs-base-uri}/cypher-manual/current/access-control/dbms-administration/#access-control-dbms-administration-impersonation[impersonation].
+
+| message
+| The log message.
+
+| type
+| The type of log message.
+
+| time
+| The timestamp of the log message.
+
+|===
