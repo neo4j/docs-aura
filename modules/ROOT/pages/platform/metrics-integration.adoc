@@ -241,7 +241,8 @@ aura instances get --instance-id <YOUR_INSTANCE_ID> | jq '.metrics_integration_u
 
 Metrics returned by integration endpoint have the basic granularity reflective of the labels exposed, namely `aggregation`, `instance_id`, `database`.
 
-An Aura instance is typically underpinned by more than one nodes to achieve availability and workload scalability which typically get deployed into more than one, user selected, Cloud Provider availability zones in Primary or Secondary modes based on the workload requirements.
+An Aura instance typically runs on multiple nodes to achieve availability and workload scalability. 
+These nodes are deployed across different Cloud Provider availability zones in the user selected region. 
 
 Metrics Integration supports a more granular view of the Aura instance metrics with additional data points for availability zone & instance mode combinations. This view can be enabled on demand.
 
