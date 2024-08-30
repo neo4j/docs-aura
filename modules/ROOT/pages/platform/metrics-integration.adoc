@@ -257,29 +257,23 @@ Please contact link:https://support.neo4j.com/[Customer Support] to enable more 
 neo4j_aura_cpu_usage{aggregation="MAX",instance_id="a59d71ae",availability_zone="eu-west-1a",instance_mode="PRIMARY"} 0.025457 1724245310000
 neo4j_aura_cpu_usage{aggregation="MAX",instance_id="a59d71ae",availability_zone="eu-west-1b",instance_mode="PRIMARY"} 0.047088 1724245310000
 neo4j_aura_cpu_usage{aggregation="MAX",instance_id="a59d71ae",availability_zone="eu-west-1c",instance_mode="PRIMARY"} 0.021874 1724245310000
-neo4j_aura_cpu_usage{aggregation="MAX",instance_id="a59d71ae",availability_zone="eu-west-1a",instance_mode="SECONDARY"} 0.043957 1724245304000
 ----
 
 .Additional Metric labels
 * `availability_zone` - User selected Cloud provider zone.
-* `instance_mode` - `PRIMARY` or `SECONDARY` based on user selected workload requirement. (Minimum 3 primaries per instance)
+* `instance_mode` - `PRIMARY` based on user selected workload requirement of reads and writes. (Minimum 3 primaries per instance)
 
 .Usage
 Here is an example of gaining more insights into your Aura instance CPU usage for capacity planning:
 
-.Example PromQL queries to plot
+.Example PromQL query to plot
 [source, promql]
 ----
 max by(availability_zone) (neo4j_aura_cpu_usage{instance_mode="PRIMARY"}) / sum by(availability_zone) (neo4j_aura_cpu_limit{instance_mode="PRIMARY"})
-
-max by(availability_zone) (neo4j_aura_cpu_usage{instance_mode="SECONDARY"}) / sum by(availability_zone) (neo4j_aura_cpu_limit{instance_mode="SECONDARY"})
 ----
 
 .Chart shows CPU usage of primaries by availability zone
 image::primaries_az_plot.png[]
-
-.Chart shows CPU usage of secondaries by availability zone
-image::secondaries_az_plot.png[]
 
 [aura-cmi-metric_definitions]
 == Metric Definitions
