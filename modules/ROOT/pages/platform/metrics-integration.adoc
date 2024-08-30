@@ -236,6 +236,46 @@ aura instances get --instance-id <YOUR_INSTANCE_ID> | jq '.metrics_integration_u
 
 * Reference: link:https://neo4j.com/labs/aura-cli/1.0/cheatsheet/[Aura CLI cheetsheet^]
 
+[aura-cmi-metrics-granularity]
+== Metrics Granularity
+
+The metrics returned by the integration endpoint are grouped based on the labels provided: `aggregation`, `instance_id`, and `database`.
+
+An Aura instance typically runs on multiple servers to achieve availability and workload scalability. 
+These servers are deployed across different Cloud Provider availability zones in the user-selected region. 
+
+Metrics Integration supports a more granular view of the Aura instance metrics with additional data points for availability zone & instance mode combinations. 
+This view can be enabled on demand.
+
+[NOTE]
+====
+Contact link:https://support.neo4j.com/[Customer Support] to enable more granular metrics of instances for your tenant.
+====
+
+.Example metric datapoints
+[source]
+----
+neo4j_aura_cpu_usage{aggregation="MAX",instance_id="a59d71ae",availability_zone="eu-west-1a",instance_mode="PRIMARY"} 0.025457 1724245310000
+neo4j_aura_cpu_usage{aggregation="MAX",instance_id="a59d71ae",availability_zone="eu-west-1b",instance_mode="PRIMARY"} 0.047088 1724245310000
+neo4j_aura_cpu_usage{aggregation="MAX",instance_id="a59d71ae",availability_zone="eu-west-1c",instance_mode="PRIMARY"} 0.021874 1724245310000
+----
+
+.Additional Metric labels
+* `availability_zone` - User selected Cloud provider zone.
+* `instance_mode` - `PRIMARY` based on user selected workload requirement of reads and writes. (Minimum 3 primaries per instance)
+
+.Usage
+The following is an example of gaining more insights into your Aura instance CPU usage for capacity planning:
+
+.Example PromQL query to plot
+[source, promql]
+----
+max by(availability_zone) (neo4j_aura_cpu_usage{instance_mode="PRIMARY"}) / sum by(availability_zone) (neo4j_aura_cpu_limit{instance_mode="PRIMARY"})
+----
+
+.Chart shows CPU usage of primaries by availability zone
+image::primaries_az_plot.png[]
+
 [aura-cmi-metric_definitions]
 == Metric Definitions
 
