@@ -2,28 +2,29 @@
 = Connect to an instance
 :description: This page describes how to connect to an instance using Neo4j AuraDB.
 
-To interact with a database within an instance, you need to connect to it.
+To interact with a database within an instance, you need to connect to it. Use the tools Explore or Query to establish this connection. Depending on your needs, you can either connect to an instance within your project, or choose a remote connection.
 
-There are different ways to connect to an instance from the tools, Explore or Query.
-Either you connect to a running instance or you select a remote connection.
+== Connect to an instance from Explore
 
-== Remote connection
+1. Click on *Explore*.
+2. You will see the message that says, "Please select a new connection to proceed". 
+3. Click on *Connect*.
+4. Connect to an instance within your project.
+5. Enter the *Password* credentials.
+These are the same credentials you stored when xref:getting-started/create-database.adoc[creating the instance].
 
 image::connectionmodal.png[]
 
 == Connection banner
 
-If you are not connected to an instance when you open the Explore tool, you will be prompted to select an instance to connect to.
-From the pop-up, you can also select _Remote connection_, if you want to connect to a different instance than the one currently running.
-
-Select *Status* to connect, disconnect, or connect to instances you recently accessed.
-This is available from both tools as well from the Import service.
+You can also connect to an instance using the connection banner within Import, Explore and Query.
+Select *Status* to connect, disconnect, or access recently connected instances.
 
 image::connectionbanner.png[]
 
-== To open a remote instance from Explore or Query
+== To connect to a remote instance from Import, Explore or Query
 
-. Select *Explore* or *Query*.
+. Select *Import*, *Explore*, or *Query*.
 . When prompted to choose a connection method, select _Remote_.
 . Enter the *Database user* and *Password* credentials.
 These are the same credentials you stored when xref:getting-started/create-database.adoc[creating the instance].
