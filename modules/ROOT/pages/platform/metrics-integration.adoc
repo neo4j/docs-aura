@@ -239,16 +239,17 @@ aura instances get --instance-id <YOUR_INSTANCE_ID> | jq '.metrics_integration_u
 [aura-cmi-metrics-granularity]
 == Metrics Granularity
 
-Metrics returned by integration endpoint have the basic granularity reflective of the labels exposed, namely `aggregation`, `instance_id`, `database`.
+The metrics returned by the integration endpoint are grouped based on the labels provided: `aggregation`, `instance_id`, and `database`.
 
-An Aura instance typically runs on multiple nodes to achieve availability and workload scalability. 
-These nodes are deployed across different Cloud Provider availability zones in the user selected region. 
+An Aura instance typically runs on multiple servers to achieve availability and workload scalability. 
+These servers are deployed across different Cloud Provider availability zones in the user-selected region. 
 
-Metrics Integration supports a more granular view of the Aura instance metrics with additional data points for availability zone & instance mode combinations. This view can be enabled on demand.
+Metrics Integration supports a more granular view of the Aura instance metrics with additional data points for availability zone & instance mode combinations. 
+This view can be enabled on demand.
 
 [NOTE]
 ====
-Please contact link:https://support.neo4j.com/[Customer Support] to enable more granular metrics of instances for your tenant.
+Contact link:https://support.neo4j.com/[Customer Support] to enable more granular metrics of instances for your tenant.
 ====
 
 .Example metric datapoints
@@ -264,7 +265,7 @@ neo4j_aura_cpu_usage{aggregation="MAX",instance_id="a59d71ae",availability_zone=
 * `instance_mode` - `PRIMARY` based on user selected workload requirement of reads and writes. (Minimum 3 primaries per instance)
 
 .Usage
-Here is an example of gaining more insights into your Aura instance CPU usage for capacity planning:
+The following is an example of gaining more insights into your Aura instance CPU usage for capacity planning:
 
 .Example PromQL query to plot
 [source, promql]
