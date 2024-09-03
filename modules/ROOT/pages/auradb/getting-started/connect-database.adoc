@@ -1,6 +1,7 @@
 [[aura-connect-instance]]
 = Connecting to an instance
 :description: This page describes how to connect to an instance using Neo4j AuraDB.
+:page-aliases: getting-started/connection-instance.adoc
 
 There are several different methods of connecting to an instance in Neo4j AuraDB:
 
@@ -18,7 +19,7 @@ To open an instance with Browser:
 
 . Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Select the *Query* button on the instance you want to open.
-. Enter the *Username* and *Password* credentials in the window that opens. 
+. Enter the *Username* and *Password* credentials in the window that opens.
 These are the same credentials you stored when xref:auradb/getting-started/create-database.adoc[creating the instance].
 . Select *Connect*.
 
@@ -35,7 +36,7 @@ To open an instance with Bloom:
 . Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Select the *Explore* button on the instance you want to open.
 . Select *Neo4j Bloom* from the dropdown menu.
-. Enter the *Username* and *Password* credentials in the window that opens. 
+. Enter the *Username* and *Password* credentials in the window that opens.
 These are the same credentials you stored when xref:auradb/getting-started/create-database.adoc[creating the instance].
 . Select *Connect*.
 
@@ -74,7 +75,7 @@ To open an instance with Workspace:
 
 . Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Select the *Open* button on the instance you want to open.
-. Enter the *Database user* and *Password* credentials in the window that opens. 
+. Enter the *Database user* and *Password* credentials in the window that opens.
 These are the same credentials you stored when xref:auradb/getting-started/create-database.adoc[creating the instance].
 . Select *Connect*.
 
@@ -82,7 +83,7 @@ For more information on using Neo4j Workspace, see the https://neo4j.com/product
 
 [NOTE]
 ====
-Workspace is enabled by default on AuraDB Free and AuraDB Professional instances but needs to be enabled for AuraDB Enterprise instances. 
+Workspace is enabled by default on AuraDB Free and AuraDB Professional instances but needs to be enabled for AuraDB Enterprise instances.
 If you do not see the *Open* button on your instance, you can enable it by selecting the *Settings* cog in the top menu bar and toggling *Enable workspace*.
 ====
 
