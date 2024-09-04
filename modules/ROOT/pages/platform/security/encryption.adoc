@@ -82,7 +82,7 @@ When creating a Customer Managed Key in the AWS KMS, you can create a single-reg
 Single-region keys reside in only one AWS region, which must be the same region as your Aura instance.
 
 Multi-region keys have a primary region, however these can be replicated to other regions that match the region of your Aura instance.
-The replicas share the same key ID and different ARNs with the primary key.
+The replicas share the same key ID and different Amazon Resource Names (ARNs) with the primary key.
 
 === AWS automatic key rotation
 
@@ -103,7 +103,7 @@ Move through the tabs to enable to following:
 
 === Create a key
 
-. When preparing to create a key, if needed grant a role assigment:
+. When preparing to create a key, if needed grant a role assignment:
 .. Inside the key vault, go to *Access Control (IAM)* and *add role assignment*.
 .. In the *Role* tab, select *Key Vault Administrator*.
 .. In the *Member* tab, select *User, group, or service principal*.
@@ -126,7 +126,7 @@ Using Azure CLI, the command is:
 ----
 az ad sp create --id Neo4jCMKApplicationID
 ----
-For more information about the Azure CLI, see link:https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create[az ad sp documentation].
+For more information about the Azure CLI, see link:https://learn.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create[`az ad sp` documentation].
 
 === Grant key permissions
 
