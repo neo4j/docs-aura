@@ -2,9 +2,10 @@
 = Customer Metrics Integration (CMI)
 :table-caption!:
 
-label:AuraDB-Enterprise[] label:AuraDS-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDS-Enterprise[]
 
-An application performance monitoring system can be configured to fetch metrics of Neo4j Aura Enterprise instances.
+An application performance monitoring system can be configured to fetch metrics of AuraDB Virtual Dedicated Cloud instances and AuraDS Enterprise instances.
 This gives users access to their Neo4j Aura instance metric data for monitoring purposes.
 Analyzing the metrics data allows users to:
 
@@ -50,6 +51,12 @@ Metrics for a Neo4j Aura instance are only returned if all the following are tru
 * The token was issued for an Aura user with "Metrics Integration Reader" role.
 * Tenant is of type `enterprise`.
 * The specified instance belongs to the specified tenant.
+
+[CAUTION]
+====
+The legacy term `enterprise` is still used within the codebase and API. 
+However, in the Aura console and documentation, the AuraDB Enterprise tenant type is now known as AuraDB Virtual Dedicated Cloud.
+====
 
 [aura-cmi-revoke-access-to-metrics]
 .Revoke access to metrics

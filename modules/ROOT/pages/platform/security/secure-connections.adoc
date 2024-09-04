@@ -4,10 +4,10 @@
 
 == VPC isolation
 
-label:AuraDB-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 
-AuraDB Enterprise and AuraDS Enterprise run in a dedicated cloud Account (AWS), Subscription (Azure) or Project (GCP) to achieve complete isolation for your deployment.
+AuraDB Virtual Dedicated Cloud and AuraDS Enterprise run in a dedicated cloud Account (AWS), Subscription (Azure) or Project (GCP) to achieve complete isolation for your deployment.
 
 Additional VPC boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
 
@@ -38,10 +38,10 @@ You can set up a second private link connection to applications that are hosted 
 
 === AWS private endpoints
 
-label:AuraDB-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 
-AuraDB Enterprise supports private endpoints on AWS using https://aws.amazon.com/privatelink[AWS PrivateLink].
+AuraDB Virtual Dedicated Cloud and AuraDS Enterprise support private endpoints on AWS using https://aws.amazon.com/privatelink[AWS PrivateLink].
 
 Once activated, you can create an endpoint in your VPC that connects to Aura.
 
@@ -97,10 +97,10 @@ Please see the https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.
 
 === GCP private endpoints
 
-label:AuraDB-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 
-Aura Enterprise supports private endpoints on GCP using https://cloud.google.com/vpc/docs/private-service-connect[GCP Private Service Connect].
+AuraDB Virtual Dedicated Cloud and AuraDS Enterprise support private endpoints on GCP using https://cloud.google.com/vpc/docs/private-service-connect[GCP Private Service Connect].
 
 Once activated, you can create an endpoint in your VPC that connects to Aura.
 
@@ -152,10 +152,10 @@ Please see the https://cloud.google.com/vpc/docs/configure-private-service-conne
 
 === Azure private endpoints
 
-label:AuraDB-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 
-Aura Enterprise supports private endpoints on Azure using https://azure.microsoft.com/en-us/products/private-link/#overview[Azure Private Link].
+AuraDB Virtual Dedicated Cloud and AuraDS Enterprise support private endpoints on Azure using https://azure.microsoft.com/en-us/products/private-link/#overview[Azure Private Link].
 
 Once activated, you can create an endpoint in your Virtual Network (VNet) that connects to Aura.
 
