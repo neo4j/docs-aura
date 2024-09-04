@@ -1,6 +1,7 @@
 [[aura-db-actions]]
 = Instance actions
 :description: This page describes the following instance actions - rename, resest, upgrade, resize, pause, resume, clone to a new database, clone to an existing database, or delete and instance.
+:page-aliases: managing-instances/instance-actions.adoc
 
 You can perform several instance actions from an AuraDB instance card on the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] homepage.
 
@@ -54,14 +55,14 @@ To upgrade a Business Critical instance:
 
 . Select the ellipsis (*...*) button on the free instance you want to upgrade.
 . Select *Upgrade to Business Critical*.
-. Set your desired settings for the new instance. 
+. Set your desired settings for the new instance.
 For more information on AuraDB instance creation settings, see xref:auradb/getting-started/create-database.adoc[].
 . Tick the *I understand* checkbox and select *Upgrade Instance*.
 
 == Resize an instance
 
 label:AuraDB-Professional[]
-label:AuraDB-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDB-Business-Critical[]
 
 You can change the size of an existing instance using the *Resize* action.
@@ -78,7 +79,7 @@ An instance remains available during the resize operation.
 == Pause an instance
 
 label:AuraDB-Professional[]
-label:AuraDB-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDB-Business-Critical[]
 
 [NOTE]
@@ -137,9 +138,8 @@ You cannot clone from a Neo4j version 5 instance to a Neo4j version 4 instance.
 === Clone to a new AuraDB instance
 
 . Select the ellipsis (*...*) button on the instance you want to clone.
-. Select *Clone To New* and then *AuraDB Professional/Business Critical/Enterprise* from the contextual menu.
-. Set your desired settings for the new database.
-For more information on AuraDB database creation, see xref:auradb/getting-started/create-database.adoc[].
+. Select *Clone To New* and then *AuraDB Professional/Business Critical/Virtual Dedicated Cloud* from the contextual menu.
+. Set your desired settings for the new database. For more information on AuraDB database creation, see xref:auradb/getting-started/create-database.adoc[].
 . Check the *I understand* box and select *Clone Database*.
 +
 [WARNING]
