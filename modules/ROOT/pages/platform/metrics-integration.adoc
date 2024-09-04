@@ -2,9 +2,10 @@
 = Customer Metrics Integration (CMI)
 :table-caption!:
 
-label:AuraDB-Enterprise[] label:AuraDS-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDS-Enterprise[]
 
-An application performance monitoring system can be configured to fetch metrics of Neo4j Aura Enterprise instances.
+An application performance monitoring system can be configured to fetch metrics of AuraDB Virtual Dedicated Cloud instances and AuraDS Enterprise instances.
 This gives users access to their Neo4j Aura instance metric data for monitoring purposes.
 Analyzing the metrics data allows users to:
 
@@ -37,8 +38,10 @@ Capabilities of users with the role "Metrics Integration Reader" are limited to 
 . Ensure you are logged in to Aura as the user selected in the previous step.
 In https://console.neo4j.io/#account["Account Details"^], create new Aura API credentials.
 Save client secret. +
-image:api_credentials.png[]
-. Configure the APM system to fetch metrics from the URL(s) or configuration templates shown in https://console.neo4j.io/#metrics-integration["Metrics Integration"^] of Neo4j Aura. Use `oauth2` type of authentication specifying the Client ID and Client Secret created in the previous step. See examples for <<_example_using_prometheus,Prometheus and Grafana>> and <<_example_using_datadog,Datadog>> below.
+image:api_credentials.png["API credentials"]
+. Configure the APM system to fetch metrics from the URL(s) or configuration templates shown in https://console.neo4j.io/#metrics-integration["Metrics Integration"^] of Neo4j Aura.
+Use `oauth2` type of authentication specifying the Client ID and Client Secret created in the previous step.
+See examples for <<_example_using_prometheus,Prometheus and Grafana>> and <<_example_using_datadog,Datadog>> below.
 . Use the APM system to create visualizations, dashboards, and alarms based on Neo4j metrics.
 
 [aura-cmi-security]
@@ -50,6 +53,12 @@ Metrics for a Neo4j Aura instance are only returned if all the following are tru
 * The token was issued for an Aura user with "Metrics Integration Reader" role.
 * Tenant is of type `enterprise`.
 * The specified instance belongs to the specified tenant.
+
+[CAUTION]
+====
+The legacy term `enterprise` is still used within the codebase and API. 
+However, in the Aura console and documentation, the AuraDB Enterprise tenant type is now known as AuraDB Virtual Dedicated Cloud.
+====
 
 [aura-cmi-revoke-access-to-metrics]
 .Revoke access to metrics
@@ -95,7 +104,8 @@ image::advanced_metrics.png[]
 [aura-cmi-metric-scrape-interval]
 == Metric scrape interval
 
-Recommended scrape interval for metrics is in the range of 30 seconds up to 2 minutes, depending on requirements. The metrics endpoint caches metrics for 30 seconds.
+Recommended scrape interval for metrics is in the range of 30 seconds up to 2 minutes, depending on requirements.
+The metrics endpoint caches metrics for 30 seconds.
 
 [aura-cmi-example-using-prometheus]
 == Example using Prometheus
@@ -151,8 +161,7 @@ Edit `/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml` as follows:
 Replace the placeholders `<ENDPOINT_URL>`, `<AURA_CLIENT_ID>` and `<AURA_CLIENT_SECRET>` with corresponding values from the previous steps.
 ====
 
-./etc/datadog-agent/conf.d/openmetrics.d/conf.yaml
-
+.`/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml`
 [source, yaml]
 ----
 init_config:
@@ -177,7 +186,7 @@ For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent 
 .Test that metrics are fetched
 
 * `sudo systemctl restart datadog-agent`
-* Watch `/var/log/datadog/*` to see if fetching metrics happens or if there are warnings regarding parsing the config.
+* Watch `/var/log/datadog/*` to see if fetching metrics happens or if there are warnings regarding parsing the configuration.
 * Check in Datadog metric explorer to see if metrics appear (after a couple of minutes).
 
 [aura-cmi-programmatic-support]
@@ -234,7 +243,47 @@ aura instances get --instance-id <YOUR_INSTANCE_ID>
 aura instances get --instance-id <YOUR_INSTANCE_ID> | jq '.metrics_integration_url'
 ----
 
-* Reference: link:https://neo4j.com/labs/aura-cli/1.0/cheatsheet/[Aura CLI cheetsheet^]
+* Reference: link:https://neo4j.com/labs/aura-cli/1.0/cheatsheet/[Aura CLI cheatsheet^]
+
+[aura-cmi-metrics-granularity]
+== Metrics Granularity
+
+The metrics returned by the integration endpoint are grouped based on the labels provided: `aggregation`, `instance_id`, and `database`.
+
+An Aura instance typically runs on multiple servers to achieve availability and workload scalability. 
+These servers are deployed across different Cloud Provider availability zones in the user-selected region. 
+
+Metrics Integration supports a more granular view of the Aura instance metrics with additional data points for availability zone & instance mode combinations. 
+This view can be enabled on demand.
+
+[NOTE]
+====
+Contact link:https://support.neo4j.com/[Customer Support] to enable more granular metrics of instances for your tenant.
+====
+
+.Example metric datapoints
+[source]
+----
+neo4j_aura_cpu_usage{aggregation="MAX",instance_id="a59d71ae",availability_zone="eu-west-1a",instance_mode="PRIMARY"} 0.025457 1724245310000
+neo4j_aura_cpu_usage{aggregation="MAX",instance_id="a59d71ae",availability_zone="eu-west-1b",instance_mode="PRIMARY"} 0.047088 1724245310000
+neo4j_aura_cpu_usage{aggregation="MAX",instance_id="a59d71ae",availability_zone="eu-west-1c",instance_mode="PRIMARY"} 0.021874 1724245310000
+----
+
+.Additional Metric labels
+* `availability_zone` - User selected Cloud provider zone.
+* `instance_mode` - `PRIMARY` based on user selected workload requirement of reads and writes. (Minimum 3 primaries per instance)
+
+.Usage
+The following is an example of gaining more insights into your Aura instance CPU usage for capacity planning:
+
+.Example PromQL query to plot
+[source, promql]
+----
+max by(availability_zone) (neo4j_aura_cpu_usage{instance_mode="PRIMARY"}) / sum by(availability_zone) (neo4j_aura_cpu_limit{instance_mode="PRIMARY"})
+----
+
+.Chart shows CPU usage of primaries by availability zone
+image::primaries_az_plot.png[]
 
 [aura-cmi-metric_definitions]
 == Metric definitions

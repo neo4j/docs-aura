@@ -8,7 +8,7 @@ The Aura API uses OAuth 2.0 for API authentication.
 
 [NOTE]
 ====
-Enterprise users have unrestricted access to creating API credentials.
+AuraDB Virtual Dedicated Cloud users, and AuraDS Enterprise users have unrestricted access to creating API credentials. 
 However, users with Free and Professional instances must have entered billing information or be a member of a marketplace tenant before they can create API credentials.
 ====
 
@@ -63,7 +63,7 @@ Authentication to the token endpoint uses HTTP Basic Authentication, where the c
 |===
 |Parameter |Value
 
-|grant_type
+|`grant_type`
 |`client_credentials`
 |===
 

@@ -21,9 +21,11 @@ NOTE: The graph is fairly large, so the generation procedure will take a few min
 
 The estimation of the memory requirements of an algorithm on an in-memory graph can be useful to determine whether the current AuraDS instance has enough resources to run the algorithm to completion.
 
-The Graph Data Science has guard rails built in: if an algorithm is estimated to use more RAM than is available, an exception is raised. In this case, the AuraDS instance can be resized before running the algorithm again.
+The Graph Data Science has guard rails built in: if an algorithm is estimated to use more RAM than is available, an exception is raised.
+In this case, the AuraDS instance can be resized before running the algorithm again.
 
-In the following example we get a memory estimation for the Label Propagation algorithm to run on the generated graph. The estimated memory is between 381 MiB and 4477 MiB, which is higher than an 8 GB instance has available (4004 MiB).
+In the following example we get a memory estimation for the Label Propagation algorithm to run on the generated graph.
+The estimated memory is between 381 MiB and 4477 MiB, which is higher than an 8 GB instance has available (4004 MiB).
 
 [.tabbed-example]
 ====
@@ -161,11 +163,14 @@ with driver.session() as session:
 
 == Resize the AuraDS instance
 
-You will need to resize the instance to the next available size (16 GB) in order to continue. An AuraDS instance can be resized from the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] homepage. For more information, check the xref:aurads/managing-instances/instance-actions#_resizing_an_instance[Instance actions] section.
+You will need to resize the instance to the next available size (16 GB) in order to continue.
+An AuraDS instance can be resized from the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] homepage.
+For more information, check the xref:aurads/managing-instances/instance-actions#_resizing_an_instance[Instance actions] section.
 
 NOTE: Resizing an AuraDS instance incurs a short amount of downtime.
 
-After resizing, wait a few seconds until the projected graph is reloaded, then run the `mutate` step again. This time no exception is thrown and the step completes successfully.
+After resizing, wait a few seconds until the projected graph is reloaded, then run the `mutate` step again.
+This time no exception is thrown and the step completes successfully.
 
 == Cleanup
 
