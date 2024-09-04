@@ -6,7 +6,8 @@
 
 include::partial$aurads/colab.adoc[]
 
-Running algorithms on large graphs can be computationally expensive. This example shows how to use the link:{neo4j-docs-base-uri}/graph-data-science/current/common-usage/logging/#logging-progress-logging[`gds.beta.listProgress`^] procedure to monitor the progress of an algorithm, both to get an idea of the processing speed and to determine when the computation is completed.
+Running algorithms on large graphs can be computationally expensive.
+This example shows how to use the link:{neo4j-docs-base-uri}/graph-data-science/current/common-usage/logging/#logging-progress-logging[`gds.beta.listProgress`^] procedure to monitor the progress of an algorithm, both to get an idea of the processing speed and to determine when the computation is completed.
 
 include::partial$aurads/setup.adoc[]
 
@@ -14,7 +15,8 @@ include::partial$aurads/generated-graph.adoc[]
 
 == Run an algorithm and check the progress
 
-We need to run an algorithm that takes some time to converge. In this example we use the Label Propagation algorithm, which we start in a separate thread so that we can check its progress in the same Python process.
+We need to run an algorithm that takes some time to converge.
+In this example we use the Label Propagation algorithm, which we start in a separate thread so that we can check its progress in the same Python process.
 
 [.tabbed-example]
 ====

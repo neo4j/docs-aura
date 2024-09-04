@@ -6,7 +6,9 @@
 
 include::partial$aurads/colab.adoc[]
 
-A CSV file can be loaded into an AuraDS instance using the link:{neo4j-docs-base-uri}/cypher-manual/current/clauses/load-csv/[`LOAD CSV`^] Cypher clause. For security reasons it is not possible to load local CSV files, which must be instead publicly accessible on HTTP or HTTPS servers such as GitHub, Google Drive, and Dropbox. Another way to make CSV files available is to upload them to a cloud bucket storage (such as Google Cloud Storage or Amazon S3) and configure the bucket as a static website.
+A CSV file can be loaded into an AuraDS instance using the link:{neo4j-docs-base-uri}/cypher-manual/current/clauses/load-csv/[`LOAD CSV`^] Cypher clause.
+For security reasons it is not possible to load local CSV files, which must be instead publicly accessible on HTTP or HTTPS servers such as GitHub, Google Drive, and Dropbox.
+Another way to make CSV files available is to upload them to a cloud bucket storage (such as Google Cloud Storage or Amazon S3) and configure the bucket as a static website.
 
 In this example we will load three CSV files:
 
@@ -20,7 +22,8 @@ include::partial$aurads/setup.adoc[]
 
 == Create constraints
 
-Adding constraints before loading any data usually improves data loading performance. In fact, besides adding an integrity check, a unique constraint adds an index on a property at the same time, so that `MATCH` and `MERGE` operations during loading are faster.
+Adding constraints before loading any data usually improves data loading performance.
+In fact, besides adding an integrity check, a unique constraint adds an index on a property at the same time, so that `MATCH` and `MERGE` operations during loading are faster.
 
 [WARNING]
 ====
@@ -81,13 +84,16 @@ with driver.session() as session:
 
 == Add nodes from CSV files
 
-We are now ready to load the CSV files from their URIs and create nodes from the data they contain. In the following examples, `LOAD CSV` is used with `WITH HEADERS` to access `row` fields by their corresponding column name. Furthermore:
+We are now ready to load the CSV files from their URIs and create nodes from the data they contain.
+In the following examples, `LOAD CSV` is used with `WITH HEADERS` to access `row` fields by their corresponding column name.
+Furthermore:
 
 * `MERGE` is used with the indexed properties to take advantage of the constraints created in the <<_create_constraints>> section.
 * `ON CREATE SET` is used to set the value of a node property when a new one is created.
 * `RETURN count({star})` is used to show the number of processed rows.
 
-Note that the CSV files in this example are curated, so some assumptions are made for simplicity. In a real-world scenario, for example, a CSV file could contain multiple rows that would attempt to assign different property values to the same node; in this case, an link:{neo4j-docs-base-uri}/cypher-manual/current/clauses/merge/#merge-merge-with-on-match[`ON MATCH SET`^] clause must be added to ensure this case is dealt with appropriately.
+Note that the CSV files in this example are curated, so some assumptions are made for simplicity.
+In a real-world scenario, for example, a CSV file could contain multiple rows that would attempt to assign different property values to the same node; in this case, an link:{neo4j-docs-base-uri}/cypher-manual/current/clauses/merge/#merge-merge-with-on-match[`ON MATCH SET`^] clause must be added to ensure this case is dealt with appropriately.
 
 [.tabbed-example]
 ====
@@ -244,7 +250,8 @@ with driver.session() as session:
 
 == Run a Cypher query
 
-Once all the nodes and relationships have been created, we can run a query to check that the data have been inserted correctly. The following query looks for movies with `Keanu Reeves`, orders them by release date and groups their titles.
+Once all the nodes and relationships have been created, we can run a query to check that the data have been inserted correctly.
+The following query looks for movies with `Keanu Reeves`, orders them by release date and groups their titles.
 
 [.tabbed-example]
 ====

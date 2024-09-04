@@ -34,7 +34,7 @@ By design they are not exposed to the public internet, ensuring that critical se
 
 A single private link connection applies to all instances in a region. 
 So if you've set one up for `us-east-1` then those network connections will apply to all instances in that region. 
-You can set up a second private link connection to applications that are hosted in a second region i.e. `us-west-1` but still housed inside the same Aura tenant.
+You can set up a second private link connection to applications that are hosted in a second region (for example `us-west-1`) but still housed inside the same Aura tenant.
 
 === AWS private endpoints
 
@@ -57,13 +57,15 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 * PrivateLink applies to all instances in the region.
 * When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using PrivateLink in the Aura Console.
 * If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
-* Connections using private endpoints are one-way. Aura VPCs can't initiate connections back to your VPCs.
+* Connections using private endpoints are one-way.
+Aura VPCs can't initiate connections back to your VPCs.
 * In AWS region us-east-1, we do not support the Availability Zone with ID use1-az3 for private endpoints.
 ====
 
 ==== Browser and Bloom access over private endpoints
 
-To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
+To connect to your instance via Browser or Bloom, you must use a dedicated VPN.
+This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
@@ -80,7 +82,8 @@ To continue accessing Browser and Bloom, you can configure a VPN (Virtual Privat
 To access Bloom and Browser over a VPN, you must ensure that:
 
 * The VPN server uses the https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#AmazonDNS[VPC's DNS servers].
-* You use the *Private URI* shown on the instance tile and in the instance details. It will be different from the *Connection URI* you used before.
+* You use the *Private URI* shown on the instance tile and in the instance details.
+It will be different from the *Connection URI* you used before.
 ====
 
 image::privatelink_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
@@ -114,12 +117,14 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 * Private Service Connect applies to all instances in the region.
 * When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using Private Service Connect in the Aura Console.
 * If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
-* Connections using private endpoints are one-way. Aura VPCs can't initiate connections back to your VPCs.
+* Connections using private endpoints are one-way.
+Aura VPCs can't initiate connections back to your VPCs.
 ====
 
 ==== Browser and Bloom access over private endpoints
 
-To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
+To connect to your instance via Browser or Bloom, you must use a dedicated VPN.
+This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
@@ -136,7 +141,8 @@ To continue accessing Browser and Bloom, you can configure a https://cloud.googl
 To access Bloom and Browser over a VPN, you must ensure that:
 
 * You have set up link:https://cloud.google.com/dns/docs/zones/manage-response-policies[GCP Response Policy Zone], or an equivalent DNS service, inside of the VPC.
-* You use the *Private URI* shown on the instance tile and in the instance details. It will be different from the *Connection URI* you used before.
+* You use the *Private URI* shown on the instance tile and in the instance details.
+It will be different from the *Connection URI* you used before.
 ====
 
 image::privateserviceconnect_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
@@ -169,12 +175,14 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 * Private Link applies to all instances in the region.
 * When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using Private Link in the Aura Console.
 * If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
-* Connections using private endpoints are one-way. Aura VNets can't initiate connections back to your VNets.
+* Connections using private endpoints are one-way.
+Aura VNets can't initiate connections back to your VNets.
 ====
 
 ==== Browser and Bloom access over private endpoints
 
-To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
+To connect to your instance via Browser or Bloom, you must use a dedicated VPN.
+This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
@@ -191,7 +199,8 @@ To continue accessing Browser and Bloom, you can configure a VPN (Virtual Privat
 To access Bloom and Browser over a VPN, you must ensure that:
 
 * You have setup https://learn.microsoft.com/en-us/azure/dns/private-dns-overview[Azure Private DNS], or an equivalent DNS service, inside of the VNet.
-* You use the *Private URI* shown on the instance tile and in the instance details. It will be different from the *Connection URI* you used before.
+* You use the *Private URI* shown on the instance tile and in the instance details.
+It will be different from the *Connection URI* you used before.
 ====
 
 image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
