@@ -38,7 +38,7 @@ Capabilities of users with the role "Metrics Integration Reader" are limited to 
 . Ensure you are logged in to Aura as the user selected in the previous step.
 In https://console.neo4j.io/#account["Account Details"^], create new Aura API credentials.
 Save client secret. +
-image:api_credentials.png[]
+image:api_credentials.png["API credentials"]
 . Configure the APM system to fetch metrics from the URL(s) or configuration templates shown in https://console.neo4j.io/#metrics-integration["Metrics Integration"^] of Neo4j Aura. Use `oauth2` type of authentication specifying the Client ID and Client Secret created in the previous step. See examples for <<_example_using_prometheus,Prometheus and Grafana>> and <<_example_using_datadog,Datadog>> below.
 . Use the APM system to create visualizations, dashboards, and alarms based on Neo4j metrics.
 
@@ -158,8 +158,7 @@ Edit `/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml` as follows:
 Replace the placeholders `<ENDPOINT_URL>`, `<AURA_CLIENT_ID>` and `<AURA_CLIENT_SECRET>` with corresponding values from the previous steps.
 ====
 
-./etc/datadog-agent/conf.d/openmetrics.d/conf.yaml
-
+.`/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml`
 [source, yaml]
 ----
 init_config:
@@ -184,7 +183,7 @@ For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent 
 .Test that metrics are fetched
 
 * `sudo systemctl restart datadog-agent`
-* Watch `/var/log/datadog/*` to see if fetching metrics happens or if there are warnings regarding parsing the config.
+* Watch `/var/log/datadog/*` to see if fetching metrics happens or if there are warnings regarding parsing the configuration.
 * Check in Datadog metric explorer to see if metrics appear (after a couple of minutes).
 
 [aura-cmi-programmatic-support]
@@ -241,7 +240,7 @@ aura instances get --instance-id <YOUR_INSTANCE_ID>
 aura instances get --instance-id <YOUR_INSTANCE_ID> | jq '.metrics_integration_url'
 ----
 
-* Reference: link:https://neo4j.com/labs/aura-cli/1.0/cheatsheet/[Aura CLI cheetsheet^]
+* Reference: link:https://neo4j.com/labs/aura-cli/1.0/cheatsheet/[Aura CLI cheatsheet^]
 
 [aura-cmi-metrics-granularity]
 == Metrics Granularity
