@@ -6,7 +6,7 @@ All data stored in Neo4j Aura is encrypted using intra-cluster encryption betwee
 
 By default, each cloud provider encrypts all backup buckets (including the objects stored inside) using either link:https://cloud.google.com/storage/docs/encryption/default-keys[Google-managed encryption], link:https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html[AWS SSE-S3 encryption], or link:https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption[Azure Storage encryption].
 
-== Customer managed keys
+== Customer Managed Keys
 
 label:AuraDB-Enterprise[]
 label:AuraDS-Enterprise[]
