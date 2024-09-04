@@ -2,13 +2,13 @@
 = Instance details
 :description: This page describes the instance details.
 
-From the instance card, select the more menu *(…​)* then select *instance details*. 
-From the instance details you can rename an instance, or view instance details.
+From the instance card, select the more menu *(…​)* then select *instance details*.
+Apart from viewing the instance details, you can also rename your instance using the pen icon next to the instance name.
 
 image::instancedetailsexpanded.png[]
 
-== Explanation of the instance details
 
+.Instance details
 [cols="1,1"]
 |===
 | Detail | Description
@@ -46,22 +46,8 @@ Backups are saved in the storage bucket of the cloud provider in the same region
 |===
 
 
-== Rename an instance
-
-You can change the name of an existing instance using the *Rename* action.
-Open *instance details* to rename the instance.
-
-To rename an instance:
-
-. From the more menu (*...*) on the instance you want to rename, select *Instance details*.
-This opens the *Instance details* panel on the right side of the screen.
-. Select the pen icon next to the instance name.
-. Rename your instance.
-. Select the tick button.
-
 == Snapshots
 
-Snapshots are backups of your data.
 The data in your instance can be backed up, exported, and restored using snapshots.
 A snapshot is a copy of the data in an instance at a specific point in time.
 
