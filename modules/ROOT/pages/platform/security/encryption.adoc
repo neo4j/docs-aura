@@ -3,6 +3,7 @@
 :description: Aura is encrypted using intra-cluster encryption, and is CMK compatible.
 
 All data stored in Neo4j Aura is encrypted using intra-cluster encryption between the various nodes comprising your instance and encrypted at rest using the underlying cloud provider's encryption mechanism.
+You can click on it.
 
 By default, each cloud provider encrypts all backup buckets (including the objects stored inside) using either link:https://cloud.google.com/storage/docs/encryption/default-keys[Google-managed encryption], link:https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html[AWS SSE-S3 encryption], or link:https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption[Azure Storage encryption].
 
@@ -23,7 +24,7 @@ Aura has no control over the availability of your externally managed key in the 
 
 [WARNING]
 ====
-The loss of a Customer Managed Key — through deletion, disabling, or expiration — makes all data encrypted with that key inaccessible. 
+The loss of a Customer Managed Key —- through deletion, disabling, or expiration —- makes all data encrypted with that key inaccessible. 
 Neo4j is unable to manage database instances if the key is disabled, deleted, expired, or if permissions are revoked.
 ====
 
@@ -53,7 +54,7 @@ You can override this to use another CMK key - but you can not use the Neo4j Man
 
 When using a Customer Managed Key within Aura to encrypt one or more Aura database instances, it cannot be removed from Aura. 
 If you no longer need to use this Customer Managed Key to encrypt Aura databases, first delete the Aura database instances that are encrypted with the key, then you can remove the key from Aura.
-Keep in mind that this process only breaks the link between the key and Aura — it does not delete the actual key from the Cloud KMS.
+Keep in mind that this process only breaks the link between the key and Aura —- it does not delete the actual key from the Cloud KMS.
 
 == AWS keys
 
