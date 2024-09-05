@@ -93,7 +93,7 @@ Furthermore:
 * `RETURN count({star})` is used to show the number of processed rows.
 
 Note that the CSV files in this example are curated, so some assumptions are made for simplicity.
-In a real-world scenario, for example, a CSV file could contain multiple rows that would attempt to assign different property values to the same node; in this case, an link:{neo4j-docs-base-uri}/cypher-manual/current/clauses/merge/#merge-merge-with-on-match[`ON MATCH SET`^] clause must be added to ensure this case is dealt with appropriately.
+In a real-world scenario, for example, a CSV file could contain multiple rows that would try to assign different property values to the same node; in this case, an link:{neo4j-docs-base-uri}/cypher-manual/current/clauses/merge/#merge-merge-with-on-match[`ON MATCH SET`^] clause must be added to ensure this case is dealt with appropriately.
 
 [.tabbed-example]
 ====
