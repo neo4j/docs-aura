@@ -11,7 +11,7 @@ In this way, you can scale out beyond the capacity constraints of a single insta
 Secondaries are distributed across availability zones to ensure high availability, performance, and cost efficiency. 
 For workloads with heavy read operations, these secondaries prevent bottlenecks and allow batch processing.
 
-Up to 15 static read-only secondaries can be added per database instance, significantly increasing read capacity to handle read-heavy workloads. 
+Up to 15 static secondaries can be added per database instance, significantly increasing read capacity to handle read-heavy workloads. 
 These secondaries can be added, managed, and removed through the Aura Console or the Aura API.
 
 == Read-only secondaries info:
