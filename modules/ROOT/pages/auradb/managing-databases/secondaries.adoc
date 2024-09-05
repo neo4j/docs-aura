@@ -14,10 +14,10 @@ For workloads with heavy read operations, these secondaries prevent bottlenecks 
 Up to 15 static secondaries can be added per database instance, significantly increasing read capacity to handle read-heavy workloads. 
 These secondaries can be added, managed, and removed through the Aura Console or the Aura API.
 
-	•	*Availability zones:* Distributed across availability zones to maintain high availability and performance.
-	•	*Static configuration:* Currently, secondaries are static and do not support elastic or auto-scaling behavior.
-	•	*Region constraints:* Available only within the same region as their primary database instance (single region).
-	•	*Pause/Resume:* When an AuraDB Virtual Dedicated Cloud database is paused and resumed, the count of secondaries is retained. 
+* *Availability zones:* Distributed across availability zones to maintain high availability and performance.
+* *Static configuration:* Currently, secondaries are static and do not support elastic or auto-scaling behavior.
+*	*Region constraints:* Available only within the same region as their primary database instance (single region).
+*	*Pause/Resume:* When an AuraDB Virtual Dedicated Cloud database is paused and resumed, the count of secondaries is retained. 
 	For example, if a database with 3 secondaries is paused, it will resume with the same number of secondaries.
 
 [CAUTION]
@@ -32,7 +32,7 @@ Edit the number of secondaries directly through the Aura console.
 
 == Edit secondaries using the Aura API
 
-To edit the secondary instance count for your database, you can use the following API that link:https://neo4j.com/docs/aura/platform/api/specification/#/instances/patch-instance-id[edits the instance configuration]
+To edit the secondary instance count for your database, you can use the following API that link:https://neo4j.com/docs/aura/platform/api/specification/#/instances/patch-instance-id[edits the instance configuration].
 
 == Routing policy
 
