@@ -4,7 +4,9 @@
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-Using read-only secondaries makes database reading much faster. A read-only secondary instance is a read-only copy of an instance that reduces the load on your primary instance by routing queries from your applications to the read-only secondary. In this way, you can scale out beyond the capacity constraints of a single instance for read-heavy workloads.
+Using secondary instances makes database reading faster. 
+A secondary instance is a read-only copy of an instance that reduces the load on your primary instance by routing queries from your applications to the secondary. 
+In this way, you can scale out beyond the capacity constraints of a single instance for read-heavy workloads.
 
 Read-only secondaries are distributed across availability zones to ensure high availability, performance, and cost efficiency. 
 For workloads with heavy read operations, these secondaries prevent bottlenecks and allow batch processing.
