@@ -1,42 +1,45 @@
 [[aura-read-only-secondaries]]
-= Read-only secondaries
+= Read-only secondary instances
+:description: The main responsibility of Read-only secondaries is to scale out read workloads.
 
-label:EAP[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 
-Available for all clouds (AWS, Azure & GCP)
+Using read-only secondaries makes database reading much faster. A read-only secondary instance is a read-only copy of an instance that reduces the load on your primary instance by routing queries from your applications to the read-only secondary. In this way, you can scale out beyond the capacity constraints of a single instance for read-heavy workloads.
 
-Read-only secondaries serve those with a need for high READ queries (e.g. for analytics companies making recommendations that are giving people recommendations, and using less WRITE actions than READ actions).
+Read-only secondaries are distributed across availability zones to ensure high availability, performance, and cost efficiency. 
+For workloads with heavy read operations, these secondaries prevent bottlenecks and allow batch processing.
 
-Read-only secondaries make it speedy to read from the database, if a system is using READ & WRITE, if there’s lots of READ queries, using read-only secondaries means that in high read projects there's no bottlenecks, and companies can do more reads batch processing.
+Up to 15 static read-only secondaries can be added per database instance, significantly increasing read capacity to handle read-heavy workloads. 
+These secondaries can be added, managed, and removed through the Aura Console or the Aura API.
 
-The introduction of secondaries in Aura expands Neo4j's capabilities by enabling additional read-only database instances for horizontal scaling (adding additional machines to an infrastructure, to adapt to increased demand) and enhanced cluster resilience. 
+== Read-only secondaries info:
 
-With secondaries, users can scale the READ capacity of their clusters, paving the way for improved support for READ-intensive use cases. 
-These secondary instances configurable via the Aura console and API, where they can be launched, managed, or terminated.
+	•	*Availability zones:* Distributed across availability zones to maintain high availability and performance.
+	•	*Static configuration:* Currently, read-only secondaries are static and do not support elastic or auto-scaling behavior.
+	•	*Region constraints:* Available only within the same region as their primary database instance (single region).
+	•	*Pause/Resume:* When an AuraDB Enterprise database is paused and resumed, the count of read-only secondaries is retained. For example, if a database with 3 secondaries is paused, it will resume with the same number of secondaries.
 
-* Up to 15 static Read-Only Secondaries can be added per AuraDB Enterprise database instance.
-* Single region only. 
-* Read-only secondaries available in same region as their Primary database.
+[CAUTION]
+====
+*Note:* Secondaries are currently not included in consumption reports.
+====
+
+== Add secondaries using Aura console
+
+Once the secondaries feature is enabled for your tenant, you will see the secondary count set to zero in the UI of the *Database Overview and Details* tile. 
+Edit the number of secondaries directly through the Aura console.
 
 == Routing policy
 
-The following routing policy will apply when at least one secondary is available: 
-
-Route READ to secondaries + non-leader primaries. This policy extends the READ payload to the primaries that are not currently serving in an elected leader role. It allows to further balance the READ and improve scalability
-
-We will not support use cases for isolated workloads (customer routing) or multi region replication.
-
-//
-
-Secondaries are orchestrated to maintain availability and balanced distribution across availability zones, ensuring optimal performance and cost efficiency. 
-
-== Console UI - Create Secondaries
-
-Once this feature is enabled for your tenant you will see Secondary count set to Zero, and the ability to Edit secondaries in UI of the DB Overview and Details tile. * change grammar tense *
+The following routing policy should apply when at least one secondary is available: *Route READ to secondaries + non-leader primaries.* 
+This policy extends the READ payload to the primaries that are not currently serving in an elected leader role. 
+It allows to further balance the READ and improve scalability.
 
 == Aura Provisioning API - simple request 
 
-Once enabled for the user’s tenant a GET instance details call will show secondary count
+Using the Aura API, secondaries can be launched, managed, or terminated.
+
+Once enabled for the user’s tenant a GET instance details call will show secondary count.
 
 [source]
 ----
