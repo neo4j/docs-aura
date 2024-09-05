@@ -19,7 +19,8 @@ These secondaries can be added, managed, and removed through the Aura Console or
 	•	*Availability zones:* Distributed across availability zones to maintain high availability and performance.
 	•	*Static configuration:* Currently, read-only secondaries are static and do not support elastic or auto-scaling behavior.
 	•	*Region constraints:* Available only within the same region as their primary database instance (single region).
-	•	*Pause/Resume:* When an AuraDB Enterprise database is paused and resumed, the count of read-only secondaries is retained. For example, if a database with 3 secondaries is paused, it will resume with the same number of secondaries.
+	•	*Pause/Resume:* When an AuraDB Virtual Dedicated Cloud database is paused and resumed, the count of secondaries is retained. 
+	For example, if a database with 3 secondaries is paused, it will resume with the same number of secondaries.
 
 [CAUTION]
 ====
