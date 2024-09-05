@@ -159,5 +159,5 @@ print(response.json())
 
 === Token expiration
 
-If you attempt to send a request to the Aura API, authenticated using an expired access token, you will receive a 403 Forbidden response.
+If you send a request to the Aura API while authenticated with an expired access token, you will receive a 403 Forbidden response.
 You will need to obtain a new token to continue using the API.

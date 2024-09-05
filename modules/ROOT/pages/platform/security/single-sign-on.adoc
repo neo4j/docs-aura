@@ -17,7 +17,8 @@ Access beyond log-in is managed via RBAC.
 * *Tenant level SSO:*  Impacts new database instances created within that tenant. 
 It ensures users logging in with SSO have access to the database instances within the tenant. 
 It depends on RBAC if the user can access and view or modify data within the database instances themselves. 
-For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider (IdP). It *does not* give access to edit the tenant settings, for example to edit the tenant name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
+For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider (IdP).
+It *does not* give access to edit the tenant settings, for example to edit the tenant name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
 
 == Log-in methods
 
@@ -63,6 +64,6 @@ Support can assist with:
 
 If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
 
-. The _Tenant ID_ of the tenant(s) you want to use SSO for. 
+. The _Tenant ID_ of the tenants you want to use SSO for. 
 See xref:platform/user-management.adoc#_tenants[Tenants] for more information on how to find your __Tenant ID__.
 . The name of your IdP
