@@ -25,68 +25,17 @@ These secondaries can be added, managed, and removed through the Aura Console or
 Secondaries are currently not included in consumption reports.
 ====
 
-== Add secondaries using Aura console
+== Edit secondaries using Aura console
 
 Once the secondaries feature is enabled for your tenant, you will see the secondary count set to zero in the UI of the *Database Overview and Details* tile. 
 Edit the number of secondaries directly through the Aura console.
+
+== Edit secondaries using the Aura API
+
+To edit the secondary instance count for your database, you can use the following API that link:https://neo4j.com/docs/aura/platform/api/specification/#/instances/patch-instance-id[edits the instance configuration]
 
 == Routing policy
 
 The following routing policy should apply when at least one secondary is available: *Route READ to secondaries + non-leader primaries.* 
 This policy extends the READ payload to the primaries that are not currently serving in an elected leader role. 
 It allows to further balance the READ and improve scalability.
-
-== Aura Provisioning API - simple request 
-
-Using the Aura API, secondaries can be launched, managed, or terminated.
-
-Once enabled for the user’s tenant a GET instance details call will show secondary count.
-
-[source]
-----
-
-GET/instances/{instanceId]{
-  "data": {
-    "cloud_provider": "azure",
-    "connection_url": "neo4j+s://xxxxxx.databases.neo4j.io",
-    "id": "xxxxxx",
-    "memory": "2GB",
-    "name": "Neo4j",
-    "region": "uk south",
-    "secondaries_count": 0,
-    "status": "running",
-    "storage": "4GB",
-    "tenant_id": "XXXXXXXXXXXXXXXXXXXX",
-    "type": "enterprise-db"
-  }
-}
-
-----
-
-PATCH/instances/{instanceId]
-{
-  "secondaries_count": 2
-}'
-
-
-[source]
-----
-
-A simple Secondaries count patch request will request update {
-  "data": {
-    "cloud_provider": "azure",
-    "connection_url": "neo4j+s://xxxxxx.databases.neo4j.io",
-    "id": "xxxxxx",
-    "memory": "2GB",
-    "name": "Neo4j",
-    "region": "uk south",
-    "secondaries_count": 2,
-    "status": "running",
-    "storage": "4GB",
-    "tenant_id": "XXXXXXXXXXXXXXXXXXXXX",
-    "type": "enterprise-db"
-  }
-}
-
-
-
