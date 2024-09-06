@@ -16,13 +16,16 @@ These secondaries can be added, managed, and removed through the Aura Console or
 
 * *Availability zones:* Distributed across availability zones to maintain high availability and performance.
 * *Static configuration:* Currently, secondaries are static and do not support elastic or auto-scaling behavior.
-*	*Region constraints:* Available only within the same region as their primary database instance (single region).
-*	*Pause/Resume:* When an AuraDB Virtual Dedicated Cloud database is paused and resumed, the count of secondaries is retained. 
-	For example, if a database with 3 secondaries is paused, it will resume with the same number of secondaries.
+* *Region constraints:* Available only within the same region as their primary database instance (single region).
+* *Pause/Resume:* When an AuraDB Virtual Dedicated Cloud database is paused and resumed, the count of secondaries is retained. 
+For example, if a database with 3 secondaries is paused, it will resume with the same number of secondaries.
+* *The following routing policy applies when at least one secondary is available:* Route READ to secondaries + non-leader primaries.
+This policy extends the READ payload to the primaries that are not currently serving in an elected leader role. 
+It allows to further balance the READ and improve scalability.
 
 [CAUTION]
 ====
-Secondaries are currently not included in consumption reports.
+Secondaries will be included in manual consumption reports that a customer gets from their CSM, and their invoices, but they won't be included in the Billing screens in the Console yet.
 ====
 
 == Edit secondaries using Aura console
@@ -33,9 +36,3 @@ Edit the number of secondaries directly through the Aura console.
 == Edit secondaries using the Aura API
 
 You can edit the secondary instance count for your database with the link:https://neo4j.com/docs/aura/platform/api/specification/#/instances/patch-instance-id[`/instances/{instanceId}`] endpoint.
-
-== Routing policy
-
-The following routing policy applies when at least one secondary is available: *Route READ to secondaries + non-leader primaries.* 
-This policy extends the READ payload to the primaries that are not currently serving in an elected leader role. 
-It allows to further balance the READ and improve scalability.
