@@ -47,6 +47,7 @@ Once activated, you can create an endpoint in your VPC that connects to Aura.
 
 For a step-by-step guide, see the link:https://neo4j.com/blog/neo4j-aws-privatelink-configuration/[How to Configure Neo4j Aura With AWS PrivateLink] blog article.
 
+[.shadow]
 image::privatelink.png[title="VPC connectivity with AWS PrivateLink"]
 
 All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet.
@@ -67,10 +68,12 @@ To connect to your instance via Browser or Bloom, you must use a dedicated VPN. 
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
+[.shadow]
 image::privatelink_01_before_enabling.png[title="Architecture overview before enabling private endpoints"]
 
 When you have enabled private endpoints **and** disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet:
 
+[.shadow]
 image::privatelink_02_enabled_private_traffic_only.png[title="Architecture overview with private endpoints enabled and public traffic disabled"]
 
 To continue accessing Browser and Bloom, you can configure a VPN (Virtual Private Network) in your VPC and connect to Browser and Bloom over the VPN.
@@ -83,6 +86,7 @@ To access Bloom and Browser over a VPN, you must ensure that:
 * You use the *Private URI* shown on the instance tile and in the instance details. It will be different from the *Connection URI* you used before.
 ====
 
+[.shadow]
 image::privatelink_03_browser_bloom_over_vpn.png[title="Accessing Browser and Bloom over a VPN"]
 
 ==== Enabling private endpoints
@@ -104,6 +108,7 @@ Aura Enterprise supports private endpoints on GCP using https://cloud.google.com
 
 Once activated, you can create an endpoint in your VPC that connects to Aura.
 
+[.shadow]
 image::privateserviceconnect.png[title="VPC connectivity with GCP Private Service Connect"]
 
 All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet.
@@ -123,10 +128,12 @@ To connect to your instance via Browser or Bloom, you must use a dedicated VPN. 
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
+[.shadow]
 image::privateserviceconnect_01_before_enabling.png[title="Architecture overview before enabling private endpoints"]
 
 When you have enabled private endpoints and disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet:
 
+[.shadow]
 image::privateserviceconnect_02_enabled_private_traffic_only.png[title="Architecture overview with private endpoints enabled and public traffic disabled"]
 
 To continue accessing Browser and Bloom, you can configure a https://cloud.google.com/network-connectivity/docs/vpn/concepts/overview[GCP Cloud VPN] (Virtual Private Network) in your VPC and connect to Browser and Bloom over the VPN.
@@ -139,6 +146,7 @@ To access Bloom and Browser over a VPN, you must ensure that:
 * You use the *Private URI* shown on the instance tile and in the instance details. It will be different from the *Connection URI* you used before.
 ====
 
+[.shadow]
 image::privateserviceconnect_03_browser_bloom_over_vpn.png[title="Accessing Browser and Bloom over a VPN"]
 
 ==== Enabling private endpoints
@@ -159,6 +167,7 @@ Aura Enterprise supports private endpoints on Azure using https://azure.microsof
 
 Once activated, you can create an endpoint in your Virtual Network (VNet) that connects to Aura.
 
+[.shadow]
 image::azure_privatelink.png[title="VNet connectivity with Azure Private Link"]
 
 All applications running Neo4j workloads inside the VNet are routed directly to your isolated environment in Aura without traversing the public internet.
@@ -178,10 +187,12 @@ To connect to your instance via Browser or Bloom, you must use a dedicated VPN. 
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
+[.shadow]
 image::azure_privatelink_01_before_enabling.png[title="Architecture overview before enabling private endpoints"]
 
 When you have enabled private endpoints and disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet:
 
+[.shadow]
 image::azure_privatelink_02_enabled_private_traffic_only.png[title="Architecture overview with private endpoints enabled and public traffic disabled"]
 
 To continue accessing Browser and Bloom, you can configure a VPN (Virtual Private Network) in your VNet and connect to Browser and Bloom over the VPN.
@@ -194,6 +205,7 @@ To access Bloom and Browser over a VPN, you must ensure that:
 * You use the *Private URI* shown on the instance tile and in the instance details. It will be different from the *Connection URI* you used before.
 ====
 
+[.shadow]
 image::azure_privatelink_03_browser_bloom_over_vpn.png[title="Accessing Browser and Bloom over a VPN"]
 
 ==== Enabling private endpoints
