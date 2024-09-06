@@ -23,11 +23,6 @@ For example, if a database with 3 secondaries is paused, it will resume with the
 This policy extends the READ payload to the primaries that are not currently serving in an elected leader role. 
 It allows to further balance the READ and improve scalability.
 
-[CAUTION]
-====
-Secondaries will be included in manual consumption reports that a customer gets from their CSM, and their invoices, but they won't be included in the Billing screens in the Console yet.
-====
-
 == Edit secondaries using Aura console
 
 Once the secondaries feature is enabled for your tenant, you will see the secondary count set to zero in the UI of the *Database Overview and Details* tile. 
