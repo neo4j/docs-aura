@@ -32,7 +32,7 @@ Edit the number of secondaries directly through the Aura console.
 
 == Edit secondaries using the Aura API
 
-To edit the secondary instance count for your database, you can use the following API that link:https://neo4j.com/docs/aura/platform/api/specification/#/instances/patch-instance-id[edits the instance configuration].
+You can edit the secondary instance count for your database with the link:https://neo4j.com/docs/aura/platform/api/specification/#/instances/patch-instance-id[`/instances/{instanceId}`] endpoint.
 
 == Routing policy
 
