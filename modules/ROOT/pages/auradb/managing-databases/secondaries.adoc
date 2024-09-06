@@ -36,6 +36,6 @@ You can edit the secondary instance count for your database with the link:https:
 
 == Routing policy
 
-The following routing policy should apply when at least one secondary is available: *Route READ to secondaries + non-leader primaries.* 
+The following routing policy applies when at least one secondary is available: *Route READ to secondaries + non-leader primaries.* 
 This policy extends the READ payload to the primaries that are not currently serving in an elected leader role. 
 It allows to further balance the READ and improve scalability.
