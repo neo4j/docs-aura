@@ -716,3 +716,8 @@ This also corresponds to the median of the query execution time.
 m| MAX
 |===
 
+[NOTE]
+====
+There may be a delay in more granular metrics being available when a new Aura instance is created. 
+This is because of the way 'availability zone' data is collected.
+====
