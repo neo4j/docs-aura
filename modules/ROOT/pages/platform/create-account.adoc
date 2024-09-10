@@ -1,8 +1,6 @@
 [[aura-create-account]]
-= Create an account
+= Create an account (free)
 :description: This page describes how to create a Neo4j Aura account.
-
-To access Neo4j Aura, you need to have an Aura account.
 
 To create an Aura account:
 
@@ -12,3 +10,34 @@ If entering an email address and password, follow these additional steps:
 .. Verify your email address.
 .. Select *Go to the dashboard* from the Aura console.
 . Select *I agree* once you have read the Terms of Service and Privacy Policy.
+
+[NOTE]
+====
+One of the great things about Aura is that it's 100% free to try out!
+You can create a fully functioning graph without needing to pay a thing. 
+After you've created your graph, you can decide if you want to upgrade to make use of Aura's paid for features.
+You can compare the pricing plans here link:https://neo4j.com/pricing/[pricing]
+Once you're signed up, you can start creating! 
+You do that by creating an instance, an instance is like a home for your graph.
+====
+
+== To create a new instance:
+
+image::createafreeinstance.png[]
+
+. Select *New Instance*.
+. Select your plan.
+. Copy and store the instance's *password* or download the credentials as a `.txt` file.
+Once you've noted or downloaded your credentials, the creation of your instance starts.
+
+[NOTE]
+======
+You can create one Free instance per account.
+======
+
+NOTE: You can only set up one free instance
+=== If you want to create more instances, just tap the "New instance" button 
+
+image::newinstance.png[]
+
+
