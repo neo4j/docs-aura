@@ -47,7 +47,7 @@ To clone an instance protected by a Customer Managed Key, the key must be valid 
 The cloned instance, by default, uses the available Customer Managed Key for that region and product.
 
 It is best practice to use the same CMK key as the instance it’s being cloned from. 
-You can override this to use another CMK key - but you can not use the Neo4j Managed Key.
+You can override this to use another CMK key--but you can not use the Neo4j Managed Key.
 
 === Remove a CMK from Aura
 
@@ -70,7 +70,7 @@ You need it in the next step.
 After you have initially created a key in the AWS KMS, you can edit the key policy.
 In the AWS key policy, "Statement" is an array that consists of one or more objects.
 Each object in the array describes a security identifier (SID).
-The objects in the AWS code array are comma-separated, e.g. `{[{'a'}, {'b'}, {'c'}]}`
+The objects in the AWS code array are comma-separated, for example `{[{'a'}, {'b'}, {'c'}]}`.
 
 Add a comma after the curly brace in the final SID, and then paste the JSON code that was generated in the Aura Console (for example `{[{'a'}, {'b'}, {'c'}, _add code here_ ]}`).
 
@@ -107,7 +107,7 @@ Move through the tabs to enable to following:
 .. Inside the key vault, go to *Access Control (IAM)* and *add role assignment*.
 .. In the *Role* tab, select *Key Vault Administrator*.
 .. In the *Member* tab, select *User, group, or service principal*.
-.. *Select members* and select yourself or the relevant person, then *Review + Assign*.
+.. Select *Select members* and select yourself or the relevant person, then *Review + Assign*.
 
 . Create a key in the Azure Key Vault. 
 . After the key is created, click into key version and copy the *Key Identifier*, you need it in the next step.
@@ -133,7 +133,7 @@ For more information about the Azure CLI, see link:https://learn.microsoft.com/e
 . To add role assignment to the Azure key, inside the key, go to *Access control (IAM)* and add *role assignment*.
 . In the *Role* tab, select *Key Vault Crypto Officer*.
 . In the *Member* tab, select *User, group, or service principal*.
-. *Select members* and paste the *Neo4j CMK Application name* that is displayed in the Aura Console. 
+. Select *Select members* and paste the *Neo4j CMK Application name* that is displayed in the Aura Console. 
 . The *Neo4j CMK Application* should appear, select this application then *Review + Assign*.
 
 == GCP keys
