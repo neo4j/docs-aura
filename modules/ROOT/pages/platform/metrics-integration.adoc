@@ -4,9 +4,16 @@
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
+label:AuraDB-Business-Critical[]
 
-An application performance monitoring system can be configured to fetch metrics of AuraDB Virtual Dedicated Cloud instances and AuraDS Enterprise instances.
+An application performance monitoring system can be configured to fetch metrics of AuraDB instances of types:
+
+* AuraDB Virtual Dedicated Cloud
+* AuraDS Enterprise
+* AuraDB Business Critical
+
 This gives users access to their Neo4j Aura instance metric data for monitoring purposes.
+
 Analyzing the metrics data allows users to:
 
 * Optimize their Neo4j load
@@ -51,12 +58,12 @@ Metrics for a Neo4j Aura instance are only returned if all the following are tru
 
 * `Authorization` header of the metrics request contains a valid token.
 * The token was issued for an Aura user with "Metrics Integration Reader" role.
-* Tenant is of type `enterprise`.
+* Tenant has instances of types `Enterprise (Virtual Dedicated Cloud)` or `Business Critical`.
 * The specified instance belongs to the specified tenant.
 
 [CAUTION]
 ====
-The legacy term `enterprise` is still used within the codebase and API. 
+The legacy term `Enterprise` is still used within the codebase and API. 
 However, in the Aura console and documentation, the AuraDB Enterprise tenant type is now known as AuraDB Virtual Dedicated Cloud.
 ====
 
