@@ -20,10 +20,18 @@ To create an *AuraDB Free* instance in Neo4j AuraDB:
 . Copy and store the instance's *Username* and *Generated password* or download the credentials as a `.txt` file.
 . Tick the confirmation checkbox, and select *Continue*.
 
-[NOTE]
-======
-You can only create one AuraDB Free instance per account.
-======
+
+You can only create **one** AuraDB Free instance per account.
+
+A Free instance is limited to 200,000 nodes and 400,000 relationships.
+
+If you don't perform any write queries for three days, your instance will be **paused**.
+You can resume your paused instance from the console.
+
+A paused instance is **cancelled after 30 days** and after that, you **cannot restore it or recover your data**.
+
+Additionally, Free instances are **not automatically backed up**.
+Snapshots are taken on-demand and only the latest snapshot is available for download.
 
 =====
 [.include-with-AuraDB-Professional]
@@ -60,7 +68,7 @@ Aura retains some of your provisioned resources for managing your instance.
 
 [NOTE]
 ======
-Pay-as-you-go (PAYG) is available on all instance sizes up to 128 GB. Prepaid is available from 16 GB+. 
+Pay-as-you-go (PAYG) is available on all instance sizes up to 128 GB. Prepaid is available from 16 GB+.
 ======
 
 To create an *AuraDB Business Critical* instance in Neo4j AuraDB:
@@ -91,7 +99,7 @@ To create an *AuraDB Virtual Dedicated Cloud* instance in Neo4j AuraDB:
 
 . Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Select *New Instance* to open the *Create an instance* page.
-. Set your *Instance size*, the memory, CPU, and storage allocated to the instance. 
+. Set your *Instance size*, the memory, CPU, and storage allocated to the instance.
 Please refer to your contract for pricing.
 . Set your *Instance details*:
 * *Instance Name* - The name to give the instance.
