@@ -68,5 +68,12 @@ The ability to Export or Create an instance from a Scheduled Virtual Dedicated C
 Additionally, for Virtual Dedicated Cloud instances running Neo4j version 5, the ability to export or create an instance from a Scheduled snapshot is limited to the first full snapshot, taken once per day.
 ====
 
+=== Security of backups and exported data 
+
+Neo4j Aura Enterprise automatically creates backups of each database at regular intervals. Aura stores the data securely in encrypted and dedicated cloud storage buckets. Users access backups through the Aura Console web application. In the web application, the user can:
+
+* See a list of previous backups
+* Choose to restore a backup
+* Download a backup (which serves as the export mechanism)
 
 
