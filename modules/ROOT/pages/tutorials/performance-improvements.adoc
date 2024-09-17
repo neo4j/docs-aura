@@ -51,7 +51,8 @@ Once in the cache, the subsequent execution time will improve.
 Furthermore, always use parameters instead of literal values to benefit from the cache.
 ====
 
-Read more about link:{neo4j-docs-base-uri}/cypher-manual/current/execution-plans/[execution plans].
+Read more about link:{neo4j-docs-base-uri}/cypher-manual/current/execution-plans/[execution plans] and see a detailed guide for the steps on link:https://support.neo4j.com/s/article/4404022359443-Performance-tuning-with-Neo4j-AuraDB[how to capture the execution plans].
+
 
 To best interpret the output of your execution plan, it is recommended that you get familiar with the terms used on it.
 See link:{neo4j-docs-base-uri}/cypher-manual/current/execution-plans/operator-summary/[this summary of execution plan operators] for more information.
@@ -61,7 +62,7 @@ See link:{neo4j-docs-base-uri}/cypher-manual/current/execution-plans/operator-su
 As your data volume grows, it is important to define constraints and indexes in order to achieve the best performance for your queries.
 For that, the runtime engine will need to evaluate the cost associated with a query and, to get the best estimations, it will rely on already existing indexes.
 This will likely show whether an index is missing from the execution plan and which one is it.
-Though in some circunstances it might look like an index is not available or possible, it may also make sense to reconsider the model and create an intermediate node or another relationship type just to leverage it.
+Though in some circumstances it might look like an index is not available or possible, it may also make sense to reconsider the model and create an intermediate node or another relationship type just to leverage it.
 
 Read more about link:{neo4j-docs-base-uri}/cypher-manual/current/query-tuning/indexes/[the use of indexes] for a more comprehensive explanation.
 
@@ -95,14 +96,14 @@ To review what is running at any given time (this makes particular sense if you 
 == Runtime engine and Cypher version
 
 The execution plan should show you the runtime that is selected for the execution of your query.
-Usually, the planner makes the right decision, but it may be worth checking at times if the other runtimes do not perform better.
+Usually, the planner makes the right decision, but it may be worth checking at times if any other runtime performs better.
 Read more about link:{neo4j-docs-base-uri}/cypher-manual/current/query-tuning/#cypher-runtime[query tuning] on Cypher runtime.
 
 To invoke the use of a given runtime forcibly, prepend your Cypher statement with:
 
-* `CYPHER runtime=pipelined` for pipelined runtime
-* `CYPHER runtime=slotted` for slotted runtime
-* `CYPHER runtime=interpreted` for interpreted runtime
+* `CYPHER runtime=pipelined` for `pipelined` runtime
+* `CYPHER runtime=slotted` for `slotted` runtime
+* `CYPHER runtime=interpreted` for `interpreted` runtime
 
 If you have a Cypher pattern that is not performing without error, it could as well be running on a prior Cypher version.
 You can control the version used to interpret your queries by using these link:{neo4j-docs-base-uri}/cypher-manual/current/query-tuning/#cypher-version[Cypher query options].

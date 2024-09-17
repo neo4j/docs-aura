@@ -1,6 +1,7 @@
 [[aura-create-instance]]
 = Creating an instance
 :description: This page describes how to create a Neo4j AuraDB instance.
+:page-aliases: getting-started/create-instance.adoc
 
 The process of creating an instance differs depending on the type.
 
@@ -13,16 +14,25 @@ You can select from the options below to display the relevant process.
 
 To create an *AuraDB Free* instance in Neo4j AuraDB:
 
-. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
+. Navigate to the link:https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Select *New Instance*.
 . Select *Create Free instance*.
 . Copy and store the instance's *Username* and *Generated password* or download the credentials as a `.txt` file.
 . Tick the confirmation checkbox, and select *Continue*.
 
-[NOTE]
-======
-You can only create one AuraDB Free instance per account.
-======
+
+You can only create **one** AuraDB Free instance per account.
+
+A Free instance is limited to 200,000 nodes and 400,000 relationships.
+
+If you don't perform any write queries for three days, your instance is **paused**.
+You can resume your paused instance from the console.
+
+A paused instance is **deleted after 30 days** and after that, you **cannot restore it or recover your data**.
+
+Additionally, Free instances are **not automatically backed up**.
+Snapshots are taken on-demand and only the latest snapshot is available for download.
+For more information about snapshots, see xref:auradb/managing-databases/backup-restore-export.adoc[] for more information.
 
 =====
 [.include-with-AuraDB-Professional]
@@ -30,12 +40,18 @@ You can only create one AuraDB Free instance per account.
 
 To create an *AuraDB Professional* instance in Neo4j AuraDB:
 
-. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
-. Select *New Instance* to open the *Create an instance* page. (Additionally, you will need to select *Select Professional instance* if you have yet to create an AuraDB Free instance.)
-. Select your preferred *Cloud provider* and *Region*. The region is the physical location of the instance. Set this as close to your location as possible. The closer the region is to your location, the faster the response time for any network interactions with the instance.
-. Set your *Instance size*, the memory, CPU, and storage allocated to the instance. The larger the instance size, the more it costs to run. Once selected, you can see the running cost at the bottom of the page.
+. Navigate to the link:https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
+. Select *New Instance* to open the *Create an instance* page.
+(Additionally, you will need to select *Select Professional instance* if you have yet to create an AuraDB Free instance.)
+. Select your preferred *Cloud provider* and *Region*.
+The region is the physical location of the instance; set this as close to your location as possible.
+The closer the region is to your location, the faster the response time for any network interactions with the instance.
+. Set your *Instance size*, the memory, CPU, and storage allocated to the instance.
+The larger the instance size, the more it costs to run.
+Once selected, you can see the running cost at the bottom of the page.
 . Set your *Instance details*:
-* *Instance Name* - The name to give the instance. This name can be whatever you like.
+* *Instance Name* - The name to give the instance.
+This name can be whatever you like.
 * *Neo4j Version* - The version of the Neo4j instance.
 . Tick the *I understand* checkbox next to the running cost confirmation.
 . Select *Create* when happy with your instance details and size.
@@ -53,22 +69,22 @@ Aura retains some of your provisioned resources for managing your instance.
 
 [NOTE]
 ======
-Pay-as-you-go (PAYG) is available on all instance sizes up to 128GB. Prepaid is available from 16GB+. 
+Pay-as-you-go (PAYG) is available on all instance sizes up to 128 GB. Prepaid is available from 16 GB+.
 ======
 
 To create an *AuraDB Business Critical* instance in Neo4j AuraDB:
 
 . Navigate to the link:https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
-. Select *New Instance* to open the *Create an instance* page. 
+. Select *New Instance* to open the *Create an instance* page.
 (Additionally, you need to select *Select Business Critical instance* if you have yet to create an AuraDB Professional instance.)
-. Select your preferred *Cloud provider* and *Region*. 
-The region is the physical location of the instance. 
-Set this as close to your location as possible. 
+. Select your preferred *Cloud provider* and *Region*.
+The region is the physical location of the instance.
+Set this as close to your location as possible.
 The closer the region is to your location, the faster the response time for any network interactions with the instance.
-. Set your *Instance size*, the memory, CPU, and storage allocated to the instance. 
+. Set your *Instance size*, the memory, CPU, and storage allocated to the instance.
 Once selected, you can see the running cost at the bottom of the page.
 . Set your *Instance details*:
-* *Instance Name* - The name of the instance. 
+* *Instance Name* - The name of the instance.
 This name can be whatever you like.
 * *Neo4j Version* - The version of the Neo4j instance.
 . Tick the *I understand* checkbox next to the running cost confirmation.
@@ -77,18 +93,22 @@ This name can be whatever you like.
 . Tick the confirmation checkbox, and select *Continue*.
 
 =====
-[.include-with-AuraDB-Enterprise]
+[.include-with-AuraDB-Virtual-Dedicated-Cloud]
 =====
 
-To create an *AuraDB Enterprise* instance in Neo4j AuraDB:
+To create an *AuraDB Virtual Dedicated Cloud* instance in Neo4j AuraDB:
 
 . Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura Console] in your browser.
 . Select *New Instance* to open the *Create an instance* page.
-. Set your *Instance size*, the memory, CPU, and storage allocated to the instance. The larger the instance size, the more it costs to run. Please refer to your enterprise contract for pricing.
+. Set your *Instance size*, the memory, CPU, and storage allocated to the instance.
+Please refer to your contract for pricing.
 . Set your *Instance details*:
-* *Instance Name* - The name to give the instance. This name can be whatever you like.
+* *Instance Name* - The name to give the instance.
+This name can be whatever you like.
 * *Neo4j Version* - The version of the Neo4j instance.
-* *Region* - The physical location of the instance. Set this as close to your location as possible. The closer the region to your location, the faster the response time for any network interactions with the instance.
+* *Region* - The physical location of the instance.
+Set this as close to your location as possible.
+The closer the region to your location, the faster the response time for any network interactions with the instance.
 . Tick the *I understand* checkbox.
 . Select *Create Instance* when happy with your instance details and size.
 . Copy and store the instance's *Username* and *Generated password* or download the credentials as a `.txt` file.

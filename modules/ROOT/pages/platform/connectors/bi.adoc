@@ -8,9 +8,11 @@
 Tutorial: xref:tutorials/bi.adoc[Using the BI Connector with Aura]
 ====
 
-The Neo4j Connector for Business Intelligence (BI) delivers access to Neo4j graph data from BI tools such as Tableau, Power BI, Looker, TIBCO, Spotfire Server, Microstrategy, and more. It can be used to run SQL queries on a Neo4j graph and retrieve data in tabular format.
+The Neo4j Connector for Business Intelligence (BI) delivers access to Neo4j graph data from BI tools such as Tableau, Power BI, Looker, TIBCO, Spotfire Server, MicroStrategy, and more.
+It can be used to run SQL queries on a Neo4j graph and retrieve data in tabular format.
 
-The connection to Aura requires the usage of the `SSL` parameter in the connection string. For example, if the connection URI of the Aura instance is `neo4j+s://xxxxxxxx.databases.neo4j.io`, the following connection strings must be used:
+The connection to Aura requires the usage of the `SSL` parameter in the connection string.
+For example, if the connection URI of the Aura instance is `neo4j+s://xxxxxxxx.databases.neo4j.io`, the following connection strings must be used:
 
 - **With JDBC**: `jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true` (note the usage of the `neo4j` protocol instead of `neo4j+s`)
 - **With ODBC**: `Host=xxxxxxxx.databases.neo4j.io;SSL=1`

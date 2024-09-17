@@ -1,8 +1,11 @@
 [[aura-monitoring]]
 = Advanced metrics
+:description: This section describes advanced metrics.
+:page-aliases: all-metrics.adoc
 
 label:AuraDB-Professional[]
-label:AuraDB-Enterprise[]
+label:AuraDB-Business-Critical[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 
 Advanced metrics is a feature that enables access to a broad range of different instance and database metrics.
 
@@ -16,7 +19,7 @@ To access *Advanced metrics*:
 The presented metrics will be laid out across three tabs according to their category:
 
 * *Resources* - Overall system resources, such as CPU, RAM and disk usage.
-* *Instance* - Information about the Neo4j instance(s) running the database.
+* *Instance* - Information about the Neo4j instances running the database.
 * *Database* - Metrics concerning the database itself, such as usage statistics and entity counts.
 
 When viewing metrics, you can select from the following time intervals:
@@ -38,7 +41,8 @@ Memory and storage charts can be toggled between absolute and relative values us
 
 === Toggle data series
 
-label:AuraDB-Enterprise[]
+label:AuraDB-Business-Critical[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 
 To hide or show individual data series, select the corresponding data series in the legend below the chart.
 
@@ -65,14 +69,15 @@ For some metrics it also provides hints about possible actions to take if that m
 
 == Aggregations
 
-label:AuraDB-Enterprise[]
+label:AuraDB-Business-Critical[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 
 Most metrics will have several values for a given timestamp because of the following reasons:
 
 * Multiple database replicas
 * Compressing several data points into one, depending on zoom level
 
-Aggregating functions are used to reconcile metrics having multiple data points and make the most sense of that particular metric. 
+Aggregating functions are used to reconcile metrics having multiple data points and make the most sense of that particular metric.
 To convey an even more detailed picture of the state of the system, several aggregations can be shown.
 
 The possible aggregations are:
@@ -82,15 +87,15 @@ The possible aggregations are:
 * *Average* - The average value of the metric across all cluster members.
 * *Sum* - The sum of the metric across all cluster members.
 
-== Store size metrics 
+== Store size metrics
 
 === Resources tab
 
-The chart on the _Resources_ tab shows the allocated store size metric for the selected database either as a percentage of the available storage assigned for the database or as absolute values. 
+The chart on the _Resources_ tab shows the allocated store size metric for the selected database either as a percentage of the available storage assigned for the database or as absolute values.
 
 === Database tab
 
-The _Database_ tab provides a chart that shows the store size and the portion of the allocated space that the database is actively utilizing. 
+The _Database_ tab provides a chart that shows the store size and the portion of the allocated space that the database is actively utilizing.
 Both metrics are represented as percentages of the available storage assigned to the database.
 
 These metrics may differ due to the way Neo4j allocates and reuses space.
