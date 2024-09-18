@@ -17,25 +17,25 @@ Aura has no control over the availability of your externally managed key in the 
 
 [WARNING]
 ====
-The loss of a Customer Managed Key —- through deletion, disabling, or expiration —- makes all data encrypted with that key inaccessible. 
+The loss of a Customer Managed Key makes all data encrypted with that key inaccessible. 
 Neo4j is unable to manage database instances if the key is disabled, deleted, expired, or if permissions are revoked.
 ====
 
-=== Key rotation
+== Key rotation
 
 In your KMS platform, you can either configure automatic rotation for the Customer Managed Key, or you can perform a manual rotation.
 
 Although automatic rotation is not enforced by Aura, it is best practice to rotate keys regularly.
 Manual key rotation is **not** recommended.
 
-=== Import an existing database
+== Import an existing database
 
 You can upload a database to instances encrypted with Customer Managed Keys in Neo4j 5 directly from the console or by using `neo4j-admin database upload`.
 If the database is larger than 4 GB, you have to use `neo4j-admin database upload`. 
 Note that the `neo4j-admin push-to-cloud` command in Neo4j v4.4 and earlier is **not** supported for instances encrypted with Customer Managed Keys.
 For more information see the xref:auradb/importing/import-database.adoc#_neo4j_admin_database_upload[Neo4j Admin `database upload`] documentation.
 
-=== Clone an instance protected by CMK
+== Clone an instance protected by CMK
 
 To clone an instance protected by a Customer Managed Key, the key must be valid and available to Aura.
 The cloned instance, by default, uses the available Customer Managed Key for that region and product.
@@ -43,11 +43,11 @@ The cloned instance, by default, uses the available Customer Managed Key for tha
 It is best practice to use the same CMK key as the instance it’s being cloned from. 
 You can override this to use another CMK key - but you can not use the Neo4j Managed Key.
 
-=== Remove a CMK from Aura
+== Remove a CMK from Aura
 
 When using a Customer Managed Key within Aura to encrypt one or more Aura database instances, it cannot be removed from Aura. 
 If you no longer need to use this Customer Managed Key to encrypt Aura databases, first delete the Aura database instances that are encrypted with the key, then you can remove the key from Aura.
-Keep in mind that this process only breaks the link between the key and Aura —- it does not delete the actual key from the Cloud KMS.
+Keep in mind that this process only breaks the link between the key and Aura, it does not delete the actual key from the Cloud KMS.
 
 == AWS keys
 
