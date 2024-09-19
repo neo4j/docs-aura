@@ -73,13 +73,15 @@ These snapshots can be used to restore data to a different Neo4j instance.
 .The current Neo4J AuraDB Snapshot retention periods by tier
 [cols="1,1,1,1,1"]
 |===
-|Tier |Aura version |Scheduled Snapshot retention: Days 0 to 7 |Scheduled Snapshot retention: Days 8 to 60 |On Demand Snapshot retention
+|Tier |Aura version |Scheduled Snapshots per day |Scheduled Snapshot restorable days
+(exportable days) |On-Demand Snapshot restorable days
+(exportable days)
 
-| AuraDB Free | 5 | Not applicable | Not applicable | 30 days
+| AuraDB Free | 4, 5 | Not applicable | Not applicable | 30 days (30)
 
-.2+| AuraDB Professional | 4 | 7 days | Not applicable | 7 days once a day
+.2+| AuraDB Professional | 4, 5 | 7 days | Not applicable | 7 days once a day
 
-| 5 | 7 days | Not applicable | 7 days once a day
+| 4, 5 | 7 days | Not applicable | 7 days once a day
 
 .2+| AuraDB Virtual Dedicated Cloud | 4 | 24 full per day | 1 full per day | 60 days
 
