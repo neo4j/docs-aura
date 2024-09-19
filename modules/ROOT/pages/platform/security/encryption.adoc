@@ -49,6 +49,45 @@ The cloned instance, by default, uses the available Customer Managed Key for tha
 It is best practice to use the same CMK key as the instance it’s being cloned from. 
 You can override this to use another CMK key - but you can not use the Neo4j Managed Key.
 
+When cloning an instance that is encrypted with a Customer Managed Key (CMK), specific restrictions apply, particularly when using the API. 
+Below are the details and error messages that users may encounter depending on the cloning method and key configurations.
+
+1. Cloning Using the API:
+
+*Unblocking CMK-Encrypted instance overwriting:*
+Cloning an instance using the API is allowed only if the `source_instance_id` and the destination instance are encrypted using the same Customer Managed Key. 
+This can be verified by ensuring that the Key ID / Key ARN / Key Identifier used to encrypt both instances is identical.
+
+*Blocking API Cloning with Different Keys:*
+If the source and destination instances use different Customer Managed Keys, cloning will be blocked. 
+Users will receive the following error message: `“Cannot clone this instance using the API because the source instance is encrypted with a different Customer Managed Key. 
+Please use the console if you want to proceed with this action.”`
+
+*Cloning from a CMK-Encrypted instance to a Neo4j Managed Key instance:*
+Cloning from a CMK-encrypted instance to an instance encrypted with a Neo4j Managed Key is not allowed using the API. 
+Users will receive the following error message: `“Cannot clone to a Neo4j Managed Key encrypted instance because the source instance is encrypted with a Customer Managed Key.”`
+
+2. Cloning Using the Console:
+
+*Cloning between CMK-Encrypted instances:*
+When cloning an instance using the console, if the source and destination instances are encrypted with the same Customer Managed Key (Key ID / Key ARN / Key Identifier), the cloning operation will proceed without any warnings.
+
+*Cloning with Different Keys:*
+If the source and destination instances are encrypted with different keys or if one instance uses a Neo4j Managed Key, the user will still be able to proceed with cloning using the console, although the API will block the operation in these cases.
+
+.Summary of Cloning Restrictions
+|===
+| Cloning Method   | Source & Destination Key            | Result
+
+| **API**          | Same CMK                            | Cloning allowed.
+| **API**          | Different CMK                       | Cloning blocked. Error message shown.
+| **API**          | CMK to Neo4j Managed Key            | Cloning blocked. Error message shown.
+| **Console**      | Same CMK                            | Cloning allowed without warnings.
+| **Console**      | Different CMK or Neo4j Managed Key  | Cloning allowed. API restrictions do not apply when using the console.
+|===
+
+This ensures that the appropriate restrictions and messages are in place for cloning CMK-encrypted instances, particularly when using the API.
+
 === Remove a CMK from Aura
 
 When using a Customer Managed Key within Aura to encrypt one or more Aura database instances, it cannot be removed from Aura. 
