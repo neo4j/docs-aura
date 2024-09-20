@@ -99,7 +99,7 @@ Use the toggle **Show exportable only** on top of the list of snapshots to filte
 
 | Business Critical
 | 5
-| Full: 1, Diff: 23 footnote:diff[Differential backups only contain the new data since the last backup, and are therfore not exportable, but they are restorable for the full duration.]
+| Full: 1, Differential: 23 footnote:differential[Differential backups only contain the new data since the last backup, and are therfore not exportable, but they are restorable for the full duration.]
 | 30 days (7 days)
 | 30 days (30 days)
 
@@ -111,8 +111,8 @@ Short retention: 3 footnote:shortretention[Short retentions backups are the same
 | 90 days (90 days)
 
 | 5
-| Full: 1, Diff: 23 footnote:diff[]
-| Full: 60 (14), Diff: 60 (N/A)
+| Full: 1, Diferential: 23 footnote:differential[]
+| Full: 60 (14), Differential: 60 (N/A)
 | 90 days (90 days)
 
 .2+| AuraDS Virtual Dedicated Cloud
