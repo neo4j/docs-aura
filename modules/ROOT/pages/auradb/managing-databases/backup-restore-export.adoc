@@ -70,5 +70,60 @@ Additionally, for Virtual Dedicated Cloud instances running Neo4j version 5, the
 Use the toggle **Show exportable only** on top of the list of snapshots to filter by whether a snapshot is exportable or not.
 ====
 
+== Retention periods
 
+.The current Neo4j Aura Snapshot retention periods by tier
+[cols="1,1,1,1,1", options="header"]
+|===
+|Tier |Aura version |Scheduled Snapshots per day |Scheduled Snapshot restorable days
+(exportable days) |On-Demand Snapshot restorable days
+(exportable days)
+
+| AuraDB Free
+| 4, 5
+| N/A
+| N/A
+| 30 days (30 days)
+
+| AuraDB Professional
+| 4, 5
+| Full retention: 1
+| 30 days (7 days)
+| 30 days (30 days)
+
+| AuraDS Professional
+| 4, 5
+| Full retention: 1
+| 9 days (7 days)
+| 180 days (180 days)
+
+| Business Critical
+| 5
+| Full: 1, Differential: 23 footnote:differential[Differential backups only contain the new data since the last backup, and are therfore not exportable, but they are restorable for the full duration.]
+| 30 days (7 days)
+| 30 days (30 days)
+
+.2+| AuraDB Virtual Dedicated Cloud
+| 4
+| Full retention: 1,
+Short retention: 3 footnote:shortretention[Short retentions backups are the same as full backups, only with a shorter lifespan.]
+| Full retention: 60 (14), Short retention: 7 (7) footnote:shortretention[]
+| 90 days (90 days)
+
+| 5
+| Full: 1, Diferential: 23 footnote:differential[]
+| Full: 60 (14), Differential: 60 (N/A)
+| 90 days (90 days)
+
+.2+| AuraDS Virtual Dedicated Cloud
+| 4
+| Full retention: 1
+| Full retention: 16 days (7 day)
+| 180 days (180 days)
+
+| 5
+| Full: 1
+| Full: 16 days (7 days)
+| 180 days (180 days)
+|===
 
