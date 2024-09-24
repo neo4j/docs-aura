@@ -196,6 +196,11 @@ If everything is correct, the Prometheus job configuration will be merged with t
 
 To build visualizations, navigate to the Azure Monitor workspace and select the "Monitoring / Metrics" navigation item. You should be able to define queries and build visualizations based on the Neo4j metrics as well as to save them to dashboards.
 
+[NOTE]
+====
+Disable ad-blockers in the browser to ensure that the Azure Monitor workspace works correctly.
+====
+
 image::metrics_integration_azure_monitor_workspace.png[]
 
 To define alerts, select the "Alerts" navigation item and select "Prometheus rule groups" on the right. Create a new rule group and specify a Prometheus query to define the alert condition.
