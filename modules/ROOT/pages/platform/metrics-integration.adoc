@@ -165,7 +165,7 @@ image::metrics_integration_azure_cluster.png[]
 
 Use link:https://console.neo4j.io/#metrics-integration[Metrics Integration^] in Neo4j Aura Console to create a Prometheus job configuration for the instance or the tenant to be monitored as shown in <<_example_using_prometheus,Example using Prometheus>>.
 
-To access metrics from Azure Monitor, follow these steps  to deploy the Prometheus job configuration in the Kubernetes Cluster. For details, see link:https://learn.microsoft.com/en-us/azure/azure-monitor/containers/prometheus-metrics-scrape-validate[Create and validate custom configuration file for Prometheus metrics in Azure Monitor^].
+To access metrics from Azure Monitor, follow the steps described below to deploy the Prometheus job configuration in the Kubernetes Cluster. For details, see link:https://learn.microsoft.com/en-us/azure/azure-monitor/containers/prometheus-metrics-scrape-validate[Create and validate custom configuration file for Prometheus metrics in Azure Monitor^].
 
 Connect a shell to the Azure Kubernetes service:
 
