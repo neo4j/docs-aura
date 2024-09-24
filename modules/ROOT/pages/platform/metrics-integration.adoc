@@ -152,6 +152,56 @@ Open http://localhost:9090 and enter a metric name or expression in the search f
 Install and configure Grafana, adding the endpoint of the Prometheus instance configured in the previous step as a data source.
 You can create visualizations, dashboards, and alarms based on Neo4j metrics.
 
+[aura-cmi-example-using-azure-monitor]
+== Example using Azure Monitor workspace
+
+Pre-requisites:
+
+* Azure subscription
+* Azure Kubernetes service with managed Prometheus enabled
+
+image::metrics_integration_azure_cluster.png[]
+
+
+Use link:https://console.neo4j.io/#metrics-integration[Metrics Integration^] in Neo4j Aura Console to create a Prometheus job configuration for the instance or the tenant to be monitored as shown in <<_example_using_prometheus,Example using Prometheus>>.
+
+To access metrics from Azure Monitor, follow these steps  to deploy the Prometheus job configuration in the Kubernetes Cluster. For details, see link:https://learn.microsoft.com/en-us/azure/azure-monitor/containers/prometheus-metrics-scrape-validate[Create and validate custom configuration file for Prometheus metrics in Azure Monitor^].
+
+Connect a shell to the Azure Kubernetes service:
+
+[source,shell]
+----
+az aks get-credentials --resource-group <RESOURCE_GROUP> --name <CLUSTER_NAME>
+----
+
+Save the Prometheus job configuration in a file named `prometheus-config`.
+
+Optional: validate the Prometheus job configuration:
+
+[source,shell]
+----
+for podname in $(kubectl get pods -l rsName=ama-metrics -n=kube-system -o json | jq -r '.items[].metadata.name'); do kubectl cp -n=kube-system "${podname}":/opt/promconfigvalidator ./promconfigvalidator;  kubectl cp -n=kube-system "${podname}":/opt/microsoft/otelcollector/collector-config-template.yml ./collector-config-template.yml; chmod 500 promconfigvalidator; done
+
+./promconfigvalidator --config "prometheus-config" --otelTemplate "./collector-config-template.yml"
+----
+
+Deploy the Prometheus job configuration as a ConfigMap:
+
+[source,shell]
+----
+kubectl create configmap ama-metrics-prometheus-config-node --from-file=prometheus-config -n kube-system
+----
+
+If everything is correct, the Prometheus job configuration will be merged with the default configuration and the `ama-metrics-node` linux daemonset will be restarted. After a few minutes, the metrics will be available in Azure Monitor.
+
+To build visualizations, navigate to the Azure Monitor workspace and select the "Monitoring / Metrics" navigation item. You should be able to define queries and build visualizations based on the Neo4j metrics as well as to save them to dashboards.
+
+image::metrics_integration_azure_monitor_workspace.png[]
+
+To define alerts, select the "Alerts" navigation item and select "Prometheus rule groups" on the right. Create a new rule group and specify a Prometheus query to define the alert condition.
+
+image::metrics_integration_azure_monitor_workspace.png[]
+
 [aura-cmi-example-using-datadog]
 == Example using Datadog
 
