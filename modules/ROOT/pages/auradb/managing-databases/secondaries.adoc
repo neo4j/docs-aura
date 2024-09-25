@@ -1,4 +1,4 @@
-[[aura-read-only-secondaries]]
+[[aura-read-only-secondary-instances]]
 = Secondary instances
 :description: This section describes the use of secondary instances for scaling out read workloads.
 
@@ -8,26 +8,26 @@ Using secondary instances makes database reading faster.
 A secondary instance is a read-only copy of an instance that reduces the load on your primary instance by routing queries from your applications to the secondary. 
 In this way, you can scale out beyond the capacity constraints of a single instance for read-heavy workloads.
 
-Secondaries are distributed across availability zones to ensure high availability, performance, and cost efficiency. 
-For workloads with heavy read operations, these secondaries prevent bottlenecks and allow batch processing.
+Secondary instances are distributed across availability zones to ensure high availability, performance, and cost efficiency. 
+For workloads with heavy read operations, secondary instances prevent bottlenecks and allow batch processing.
 
-Up to 15 static secondaries can be added per database instance, significantly increasing read capacity to handle read-heavy workloads. 
-These secondaries can be added, managed, and removed through the Aura Console or the Aura API.
+Up to 15 static secondary instances can be added per database instance, significantly increasing read capacity to handle read-heavy workloads. 
+Secondary instances can be added, managed, and removed through the Aura Console or the Aura API.
 
 * *Availability zones:* Distributed across availability zones to maintain high availability and performance.
-* *Static configuration:* Currently, secondaries are static and do not support elastic or auto-scaling behavior.
+* *Static configuration:* Currently, secondary instances are static and do not support elastic or auto-scaling behavior.
 * *Region constraints:* Available only within the same region as their primary database instance (single region).
-* *Pause/Resume:* When an AuraDB Virtual Dedicated Cloud database is paused and resumed, the count of secondaries is retained. 
-For example, if a database with 3 secondaries is paused, it will resume with the same number of secondaries.
-* *The following routing policy applies when at least one secondary is available:* Route READ to secondaries + non-leader primaries.
-This policy extends the READ payload to the primaries that are not currently serving in an elected leader role. 
+* *Pause/Resume:* When an AuraDB Virtual Dedicated Cloud database is paused and resumed, the count of secondary instances is retained. 
+For example, if a database with 3 secondary instances is paused, it will resume with the same number of secondary instances.
+* *The following routing policy applies when at least one secondary instance is available:* Route READ to secondary instances + non-leader primaries.
+This policy extends the READ payload to the primary instances that are not currently serving in an elected leader role. 
 It allows to further balance the READ and improve scalability.
 
-== Edit secondaries using Aura console
+== Edit secondary instances using Aura console
 
-Once the secondaries feature is enabled for your tenant, you will see the secondary count set to zero in the UI of the *Database Overview and Details* tile. 
+Once the feature is enabled for your tenant, you will see the secondary count set to zero in the UI of the *Database Overview and Details* tile. 
 Edit the number of secondaries directly through the Aura console.
 
-== Edit secondaries using the Aura API
+== Edit secondary instances using the Aura API
 
 You can edit the secondary instance count for your database with the link:https://neo4j.com/docs/aura/platform/api/specification/#/instances/patch-instance-id[`/instances/\{instanceId}`] endpoint.
