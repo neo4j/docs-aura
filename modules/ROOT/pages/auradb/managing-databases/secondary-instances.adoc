@@ -1,11 +1,11 @@
-[[aura-read-only-secondary-instances]]
+[[aura-secondary-instances]]
 = Secondary instances
 :description: This section describes the use of secondary instances for scaling out read workloads.
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
 Using secondary instances makes database reading faster. 
-A secondary instance is a read-only copy of an instance that reduces the load on your primary instance by routing queries from your applications to the secondary. 
+A secondary is a read-only copy of an instance that reduces the load on your primary instance by routing queries from your applications to the secondary. 
 In this way, you can scale out beyond the capacity constraints of a single instance for read-heavy workloads.
 
 Secondary instances are distributed across availability zones to ensure high availability, performance, and cost efficiency. 
@@ -18,16 +18,16 @@ Secondary instances can be added, managed, and removed through the Aura Console 
 * *Static configuration:* Currently, secondary instances are static and do not support elastic or auto-scaling behavior.
 * *Region constraints:* Available only within the same region as their primary database instance (single region).
 * *Pause/Resume:* When an AuraDB Virtual Dedicated Cloud database is paused and resumed, the count of secondary instances is retained. 
-For example, if a database with 3 secondary instances is paused, it will resume with the same number of secondary instances.
-* *The following routing policy applies when at least one secondary instance is available:* Route READ to secondary instances + non-leader primaries.
+For example, if a database with 3 secondary instances is paused, it will resume with 3 secondary instances.
+* *The following routing policy applies when at least one secondary is available:* Route READ to secondary instances + non-leader primary instances.
 This policy extends the READ payload to the primary instances that are not currently serving in an elected leader role. 
 It allows to further balance the READ and improve scalability.
 
 == Edit secondary instances using Aura console
 
-Once the feature is enabled for your tenant, you will see the secondary count set to zero in the UI of the *Database Overview and Details* tile. 
-Edit the number of secondaries directly through the Aura console.
+Once the feature is enabled for your tenant, you will see the secondary instances count set to zero on an instance card. 
+To edit the number of secondary instances via the Aura console, click the three dots on an instance card.
 
 == Edit secondary instances using the Aura API
 
-You can edit the secondary instance count for your database with the link:https://neo4j.com/docs/aura/platform/api/specification/#/instances/patch-instance-id[`/instances/\{instanceId}`] endpoint.
+You can edit the secondary count for your database with the link:https://neo4j.com/docs/aura/platform/api/specification/#/instances/patch-instance-id[`/instances/\{instanceId}`] endpoint.
