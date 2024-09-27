@@ -163,7 +163,7 @@ Pre-requisites:
 image::metrics_integration_azure_cluster.png[]
 
 
-Use link:https://console.neo4j.io/#metrics-integration[Metrics Integration^] in Neo4j Aura Console to create a Prometheus job configuration for the instance or the tenant to be monitored as shown in <<_example_using_prometheus,Example using Prometheus>>.
+For the instance or tenant you want to monitor, use the link:https://console.neo4j.io/#metrics-integration[Metrics Integration^] in Neo4j Aura Console to create a Prometheus job configuration, as shown in <<_example_using_prometheus, Example using Prometheus>>.
 
 To access metrics from Azure Monitor, follow the steps described below to deploy the Prometheus job configuration in the Kubernetes Cluster. For details, see link:https://learn.microsoft.com/en-us/azure/azure-monitor/containers/prometheus-metrics-scrape-validate[Create and validate custom configuration file for Prometheus metrics in Azure Monitor^].
 
@@ -194,13 +194,14 @@ kubectl create configmap ama-metrics-prometheus-config-node --from-file=promethe
 
 If everything is correct, the Prometheus job configuration will be merged with the default configuration and the `ama-metrics-node` linux daemonset will be restarted. After a few minutes, the metrics will be available in Azure Monitor.
 
-To build visualizations, navigate to the Azure Monitor workspace and select the "Monitoring / Metrics" navigation item. You should be able to define queries and build visualizations based on the Neo4j metrics as well as to save them to dashboards.
+To build visualizations, navigate to the Azure Monitor workspace and select the "Monitoring / Metrics" navigation item. 
+You should be able to define queries and build visualizations based on the Neo4j metrics as well as save them to dashboards.
 
 [NOTE]
 ====
 Disable ad-blockers in the browser to ensure that the Azure Monitor workspace works correctly.
 
-Be sure to use the function "Add metric with editor" above the top-left corner of the chart, like shown in the screenshot below.
+Make sure you use the function "Add metric with editor" in the top-left corner above the chart, as shown in the screenshot below.
 The function "Add metric with builder" doesn't show Neo4j metrics in the dropdown.
 ====
 
