@@ -25,12 +25,12 @@ It is possible to make the Scene action available for only some categories, you 
 [.shadow]
 image::action-availability.png[width=300]
 
-If a relationship is selected instead of nodes, the _Discontinued products_ Scene action is not available, which is a result of the `WHERE id(n) in $nodes` on the second line of the Cypher query.
+If a relationship is selected instead of nodes, the _Discontinued products_ Scene action is not available, which is a result of the `WHERE elementId(n) in $nodes` on the second line of the Cypher query.
 
 [.shadow]
 image::scene-action-relationship.png[width=400]
 
-If you write a Scene action where your query targets relationships rather than nodes, they are defined in a similar fashion, `WHERE id(r) in $relationships`.
+If you write a Scene action where your query targets relationships rather than nodes, they are defined in a similar fashion, `WHERE elementId(r) in $relationships`.
 However, Explore reminds you if you forget.
 
 [NOTE]
