@@ -1,0 +1,40 @@
+[[aura-consumption-report]]
+= Consumption report
+:description: Consumption reporting allows Virtual Dedicated Cloud customers to closely monitor their consumption.
+
+label:AuraDB-Virtual-Dedicated-Cloud[]
+
+Virtual Dedicated Cloud services are offered through prepaid consumption plans. 
+Billing is based on usage, with credits deducted from the available balance each month.
+
+The consumption report, accessible in the Aura console’s Billing section, provides real-time insights into resource usage for the current tenant, including both running and paused states. 
+It displays RAM usage in GB-hours and the equivalent cost in prepaid credits.
+
+Available to Admins, the report helps you track usage patterns over time and make informed resource allocation decisions. 
+Note that it includes primary database usage but **not** secondary database usage.
+
+== Monitor consumption in real-time
+
+=== Billing category
+
+The consumption report shows the billing status, which can be `running` meaning customers are charged the full price, or `paused` meaning customers are charged 20% of the hourly rate.
+
+=== Billing status
+
+Billing status can be `ongoing` or `ended`. 
+
+=== Usage (GB-hours)
+
+Charges are based on the time databases run and the memory consumed, measured in GB-hours. GB-hours usage is calculated by multiplying the number of hours a database is running (whether actively used or not) by the memory size in gigabytes (GB).
+
+The total usage for the selected period is displayed in GB-hours, along with the equivalent credit.
+
+== Filters
+
+* Filter the usage data by predefined and custom date intervals.
+* Look back for a period of up to 3 months. 
+* Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days` or a `Custom range`.
+
+.Consumption report visual
+[.shadow]
+image::consumptionreport.png[]

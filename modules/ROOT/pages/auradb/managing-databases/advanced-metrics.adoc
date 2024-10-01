@@ -87,6 +87,25 @@ The possible aggregations are:
 * *Average* - The average value of the metric across all cluster members.
 * *Sum* - The sum of the metric across all cluster members.
 
+== Detail view
+
+label:AuraDB-Business-Critical[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
+
+An Aura instance can run on multiple servers to achieve availability and workload scalability. 
+These servers are deployed across different Cloud Provider availability zones in the user-selected region. 
+
+Detail view shows distinct data series for availability zone & instance mode combinations. 
+This is presented as an alternative to the aggregations described above. 
+
+Detail view can be enabled with the toggle under the time interval selector.
+
+
+[NOTE]
+====
+Metrics in the Detail view for a new Aura instance may take time to appear because of the way 'availability zone' data is collected.
+====
+
 == Store size metrics
 
 === Resources tab
