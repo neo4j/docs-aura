@@ -70,6 +70,17 @@ Additionally, for Virtual Dedicated Cloud instances running Neo4j version 5, the
 Use the toggle **Show exportable only** on top of the list of snapshots to filter by whether a snapshot is exportable or not.
 ====
 
+=== Security of backups and exported data 
+
+Neo4j Aura Enterprise automatically creates backups of each database at regular intervals. 
+Aura stores the data securely in encrypted and dedicated cloud storage buckets. 
+Users access backups through the Aura console.
+In the console, it's possible to:
+
+* See a list of previous backups
+* Choose to restore a backup
+* Download a backup (which serves as the export mechanism)
+
 == Retention periods
 
 .The current Neo4j Aura Snapshot retention periods by tier
