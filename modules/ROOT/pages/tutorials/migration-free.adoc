@@ -1,15 +1,15 @@
-= Migrating your Neo4j AuraDB Free Instance to another AuraDB plan (Pro or Enterprise)
-:description: This section describes migrating your Neo4j AuraDB Free Instance to another AuraDB plan (Pro or Enterprise)
+= Migrating your Neo4j AuraDB Free instance to another AuraDB plan (AuraDB Professional or AuraDB Virtual Dedicated Cloud)
+:description: This section describes migrating your Neo4j AuraDB Free Instance to another AuraDB plan (AuraDB Professional or AuraDB Virtual Dedicated Cloud)
 
-Upgrading your plan to Professional or Enterprise gives you access to additional resources and functionalities to support production workloads and applications with demanding storage and processing needs.
+Upgrading your plan to AuraDB Professional or AuraDB Virtual Dedicated Cloud gives you access to additional resources and functionalities to support production workloads and applications with demanding storage and processing needs.
 
 *Migration options*
 
-* Upgrade to Professional (Works for AuraDB)
-* Clone to New (Works for Aura Professional and AuraDS) 
+* Upgrade to AuraDB Professional 
+* Clone to new (Works for AuraDB Professional and AuraDS Professional) 
 * Manual process
 
-== Upgrade to Professional (Works for AuraDB)
+== Upgrade to AuraDB Professional
 
 You can upgrade an instance to the Professional plan directly from the console.
 
@@ -72,19 +72,19 @@ For more information about indexes and constrains, see link:{neo4j-docs-base-uri
 . In the console of your existing instance (AuraDB Free), do the following:
 
 .. Download snapshot/Dump locally (the daily automatic snapshot)
-.. In the Aura Console select the AuraDB Instance
+.. In the Aura Console select the AuraDB instance
 .. Go to the *Snapshots* tab
 .. Click the *three dots*, and select *Export*
 .. Save the dump file locally (preserve the .dump extension)
 +
-. Then create a new AuraDB Instance in AuraDB Professional or AuraDB Enterprise with the right resource sizing.
+. Then create a new AuraDB instance in AuraDB Professional or AuraDB Virtual Dedicated Cloud with the right resource sizing.
 From your new instance, do the following:
 
 .. Upload via Console drag and drop **or** push-to-cloud
 ... From the Aura Console: drag and drop the .dump file
 ... Using the command line: `neo4j-admin push-to-cloud`
 +
-. In the newly created AuraDB Professional or Enterprise Instance
+. In the newly created AuraDB Professional or AuraDB Virtual Dedicated Cloud instance
 +
-(Optional) Once the AuraDB Instance is loaded and started, you can recreate the indexes and constraints, using the information captured earlier in the process.
+(Optional) Once the AuraDB instance is loaded and started, you can recreate the indexes and constraints, using the information captured earlier in the process.
 
