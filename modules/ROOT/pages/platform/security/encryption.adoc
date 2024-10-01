@@ -4,7 +4,18 @@
 
 All data stored in Neo4j Aura is encrypted using intra-cluster encryption between the various nodes comprising your instance and encrypted at rest using the underlying cloud provider's encryption mechanism.
 
+Aura always requires encrypted connections and ensures that clients validate server certificates when establishing a connection. 
+This means that network traffic flowing to and from Neo4j Aura is always encrypted.
+
 By default, each cloud provider encrypts all backup buckets (including the objects stored inside) using either link:https://cloud.google.com/storage/docs/encryption/default-keys[Google-managed encryption], link:https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingServerSideEncryption.html[AWS SSE-S3 encryption], or link:https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption[Azure Storage encryption].
+
+To protect data at rest, Aura uses encrypted data storage capabilities offered by the cloud providers. 
+Whether customers choose to host in AWS, Azure, or GCP, each object store provides server-side encrypted buckets for data at rest encryption. 
+By default, AWS, Azure, and GCP encrypt all backup buckets (including the objects stored inside) with AWS SSE-S3 encryption, Azure Storage Encryption (SSE), or Google-managed encryption. 
+This ensures all your data stored in any one of these cloud providers uses 256-bit Advanced Encryption Standard (AES).
+
+In addition to Aura’s default encryption for data at rest, Customer Managed Keys enable security-conscious enterprises to manage encryption keys through their Cloud Service Provider's Key Management Services (KMS) on Aura, granting control over data protection and access management, including the ability to revoke access from Neo4j. 
+This allows adherence to strict security policies alongside Aura's default enterprise-grade security measures.
 
 == Customer Managed Keys
 
