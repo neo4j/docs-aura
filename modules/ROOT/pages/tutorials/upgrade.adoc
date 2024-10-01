@@ -102,7 +102,7 @@ CREATE DATABASE `databaseName.withDot` ...
 ----
 |===
 
-==== Error/Warning/Info handling in Cypher
+==== Error handling in Cypher
 
 Many semantic errors that Cypher finds are reported as `Neo.ClientError.Statement.SyntaxError` even though they are semantic and not syntax errors.
 In Neo4j 5, the metadata returned by Cypher queries is improved.
@@ -168,6 +168,6 @@ If you have an existing Neo4j 5 instance, you can use the *Clone To Existing* in
 
 If you do not have an existing Neo4j 5 instance, you can use the *Clone To New* instance action on your Neo4j 4 xref:auradb/managing-databases/database-actions.adoc#_clone_to_a_new_auradb_instance[AuraDB] or xref:aurads/managing-instances/instance-actions#_clone_to_a_new_aurads_instance[AuraDS] instance. 
 
-=== Export and Import
+=== Export and import
 
 Alternatively, you can *Export* a snapshot dump file from your Neo4j 4 xref:auradb/managing-databases/backup-restore-export#_backup_and_export[AuraDB] or xref:aurads/managing-instances/backup-restore-export#_backup_and_export[AuraDS] instance, create a new Neo4j 5 instance manually, and then import the dump file into your new Neo4j 5 xref:auradb/importing/import-database#_import_database[AuraDB] or xref:aurads/importing-data/import-db#_import_database[AuraDS] instance.

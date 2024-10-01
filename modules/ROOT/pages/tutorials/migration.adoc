@@ -40,7 +40,7 @@ The following admin commands must be invoked with the same user as your self-man
 This guarantees that Neo4j has full rights to start and work with the database files you use.
 
 . Stop your self-managed Neo4j database.
-If you are running an Enterprise Edition, you can stop only the database you want to dump using the command `STOP DATABASE {database}` in Cypher Shell or Browser.
+If you are running AuraDB Virtual Dedicated Cloud or AuraDS Enterprise, you can stop only the database you want to dump using the command `STOP DATABASE {database}` in Cypher Shell or Browser.
 
 . Ensure the target directory to store the database dumps (for instance `{dump-folder}`) exists.
 

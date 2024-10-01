@@ -5,7 +5,8 @@
 
 include::partial$aurads/colab.adoc[]
 
-This tutorial shows how to interact with AuraDS using the link:{neo4j-docs-base-uri}/graph-data-science/current/python-client/[Graph Data Science (GDS) client^] or the link:{neo4j-docs-base-uri}/python-manual/current/[Python Driver^]. In the following sections you can switch between client and driver code clicking on the appropriate tab.
+This tutorial shows how to interact with AuraDS using the link:{neo4j-docs-base-uri}/graph-data-science/current/python-client/[Graph Data Science (GDS) client^] or the link:{neo4j-docs-base-uri}/python-manual/current/[Python Driver^].
+In the following sections you can switch between client and driver code clicking on the appropriate tab.
 
 A running AuraDS instance must be available along with access credentials (generated in the xref:aurads/create-instance.adoc[] section) and its connection URI (found in the instance detail page, starting with `neo4j+s://`).
 
@@ -100,7 +101,8 @@ driver = GraphDatabase.driver(
 
 == Running a query
 
-Once created, the client (or the driver) can be used to run Cypher queries and call Cypher procedures. In this example the `gds.version` procedure can be used to retrieve the version of GDS running on the instance.
+Once created, the client (or the driver) can be used to run Cypher queries and call Cypher procedures.
+In this example the `gds.version` procedure can be used to retrieve the version of GDS running on the instance.
 
 [.tabbed-example]
 ====
@@ -186,7 +188,8 @@ with driver.session() as session:
 
 === Serializing Neo4j `DateTime` in JSON dumps
 
-In some cases the result of a procedure call may contain Neo4j `DateTime` objects. In order to serialize such objects into JSON, a default handler must be provided.
+In some cases the result of a procedure call may contain Neo4j `DateTime` objects.
+In order to serialize such objects into JSON, a default handler must be provided.
 
 [.tabbed-example]
 ====

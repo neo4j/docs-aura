@@ -4,7 +4,7 @@
 
 This page provides possible solutions to several common issues you may encounter when using Neo4j Aura.
 
-Regardless of the issue, viewing the link:/docs/aura/platform/logging/[Aura query log] is always recommended to monitor processes and verify any problems.
+Regardless of the issue, viewing the xref:platform/logging/download-logs.adoc[Aura query log] is always recommended to monitor processes and verify any problems.
 
 == Query performance
 
@@ -20,11 +20,11 @@ Currently using 275.1 MiB. dbms.memory.transaction.global_max_size threshold rea
 ----
 
 The `org.neo4j.memory.MemoryLimitExceededException` configuration acts as a safeguard, limiting the quantity of memory allocated to all transactions while preserving the regular operations of the Aura instance.
-Similarly, the property `dbms.memory.transaction.global_max_size` also aims to protect the Aura Instance from experiencing any OOMs (OutOfMemory exceptions) and increase resiliency.
+Similarly, the property `dbms.memory.transaction.global_max_size` also aims to protect the Aura Instance from experiencing any OOM (Out of memory) exceptions and increase resiliency.
 It is enabled in Aura and cannot be disabled.
 
 However, the measured heap usage of all transactions is only an estimate and may differ from the actual number.
-The estimation algorithm relies on a conservative approach, which can lead to overestimations of memory usage.
+The estimation algorithm relies on a conservative approach, which can lead to overestimation of memory usage.
 In such cases, all contributing objects' identities are unknown and cannot be assumed to be shared.
 
 Solution::
@@ -34,7 +34,7 @@ Solution::
 We recommend handling this error in your application code, as it may be intermittent.
 ====
 
-Overestimations are most likely to happen when using `UNWIND` on long lists or when expanding a variable length or shortest path pattern.
+Overestimation is most likely to happen when using `UNWIND` on long lists or when expanding a variable length or shortest path pattern.
 The many relationships shared between the computed result paths could be the cause of a lack of precision in the estimation algorithm.
 
 To avoid this scenario, try running the same query without using a sorting operation like `ORDER BY` or `DISTINCT`.
@@ -47,11 +47,11 @@ Keep in mind that the query can succeed regardless.
 +
 * Rework the relevant query to optimize it. 
 ** Use `EXPLAIN` or `PROFILE` to review the plans (see more about link:https://neo4j.com/docs/cypher-manual/current/query-tuning/[query tuning]).
-** Use `PROFILE` in cypher-shell to check the overall memory footprint of a query.
+** Use `PROFILE` in the Cypher Shell to check the overall memory footprint of a query.
 The output will include memory consumption information, the query's result, if any, and the execution plan.
 In the following example, the memory consumed is 11,080 Bytes:
 +
-image::planSummary.png[]
+image::planSummary.png["Plan summary"]
 
 * Increase the instance size of your Aura deployment to get more resources.
 * Reduce the concurrency of queries heavy on resources to get a better chance of success.
@@ -66,7 +66,8 @@ See link:https://neo4j.com/docs/operations-manual/current/performance/memory-con
 
 == Neo4j Admin database upload errors
 
-The `database upload` command was introduced in Neo4j Admin version 5, replacing the `push-to-cloud` command that was present in Neo4j Admin version 4.4 and earlier. The following solutions are relevant to both commands.
+The `database upload` command was introduced in Neo4j Admin version 5, replacing the `push-to-cloud` command that was present in Neo4j Admin version 4.4 and earlier.
+The following solutions are relevant to both commands.
 
 === `LegacyIndexes`
 
@@ -83,7 +84,8 @@ Solution::
 
 To resolve the issue, follow these steps:
 
-. Make sure you are at least on Neo4j version 4.4 or later. See more information about link:https://neo4j.com/docs/upgrade-migration-guide/current/[upgrade and migration].
+. Make sure you are at least on Neo4j version 4.4 or later.
+See more information about link:https://neo4j.com/docs/upgrade-migration-guide/current/[upgrade and migration].
 . In your local graph, use the following commands to get a list of the indexes and their types.
 This will also provide the sequential list of commands to drop and then recreate the indexes:
 +
@@ -97,7 +99,7 @@ RETURN command + " " + description
 +
 . In Neo4j Browser, select the "Enable multi statement query editor" option under the browser settings.
 . Take the list of commands from the 2nd step and copy them in one list of multiple queries into Browser and run those queries.
-. After the indexes are recreated, attempt the `database upload` command again.
+. After the indexes are recreated, try the `database upload` command again.
 
 === `InconsistentData`
 
@@ -113,7 +115,8 @@ You may get this error if the store you are uploading is in a Neo4j version that
 
 Solution::
 
-. link:https://neo4j.com/docs/upgrade-migration-guide/current/[Upgrade your database]. Make sure you are on Neo4j 4.4 or later.
+. link:https://neo4j.com/docs/upgrade-migration-guide/current/[Upgrade your database].
+Make sure you are on Neo4j 4.4 or later.
 . If you encounter problems upgrading, please raise a ticket with our link:https://support.neo4j.com[Customer Support] team.
 
 === `LogicalRestrictions`
