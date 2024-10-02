@@ -5,7 +5,7 @@
 You can get a view of instance resources from the instance card.
 
 You can also monitor the following metrics of an instance from the *Metrics* tab.
-Then from the tabs at the top, you can navigate between resources, instance and database metrics. 
+Then from the tabs at the top, you can navigate between resources, instance and database metrics.
 
 The metrics are laid out across three tabs according to their category:
 
@@ -66,7 +66,7 @@ Most metrics will have several values for a given timestamp because of the follo
 * Multiple database replicas
 * Compressing several data points into one, depending on zoom level
 
-Aggregating functions are used to reconcile metrics having multiple data points and make the most sense of that particular metric. 
+Aggregating functions are used to reconcile metrics having multiple data points and make the most sense of that particular metric.
 To convey an even more detailed picture of the state of the system, several aggregations can be shown.
 
 The possible aggregations are:
@@ -76,15 +76,33 @@ The possible aggregations are:
 * *Average* - The average value of the metric across all cluster members.
 * *Sum* - The sum of the metric across all cluster members.
 
-== Store size metrics 
+== Detail view
+
+label:AuraDB-Business-Critical[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
+
+An Aura instance can run on multiple servers to achieve availability and workload scalability.
+These servers are deployed across different Cloud Provider availability zones in the user-selected region.
+
+Detail view shows distinct data series for availability zone & instance mode combinations.
+This is presented as an alternative to the aggregations described above.
+
+Detail view can be enabled with the toggle under the time interval selector.
+
+[NOTE]
+====
+Metrics in the Detail view for a new Aura instance may take time to appear because of the way 'availability zone' data is collected.
+====
+
+== Store size metrics
 
 === Resources tab
 
-The chart on the _Resources_ tab shows the allocated store size metric for the selected database either as a percentage of the available storage assigned for the database or as absolute values. 
+The chart on the _Resources_ tab shows the allocated store size metric for the selected database either as a percentage of the available storage assigned for the database or as absolute values.
 
 === Database tab
 
-The _Database_ tab provides a chart that shows the store size and the portion of the allocated space that the database is actively utilizing. 
+The _Database_ tab provides a chart that shows the store size and the portion of the allocated space that the database is actively utilizing.
 Both metrics are represented as percentages of the available storage assigned to the database.
 
 These metrics may differ due to the way Neo4j allocates and reuses space.
