@@ -14,7 +14,7 @@ SSO is a log-in method and access, roles, and permissions are dictated by role-b
 * *Org SSO:* Allows org admins to restrict how users log in when they are trying to access the org.
 Access beyond log-in is managed via RBAC.
 
-* *Poject-level SSO:*  Impacts new database instances created within that project.
+* *Project-level SSO:*  Impacts new database instances created within that project.
 It ensures users logging in with SSO have access to the database instances within the project.
 It depends on RBAC if the user can access and view or modify data within the database instances themselves.
 For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider (IdP).
@@ -98,30 +98,30 @@ The following roles are available at the org level and these are assigned via in
 | {check-mark}
 |
 
-| List members of a Project
+| List members of a project
 | {check-mark}
-| {check-mark}
+| {check-mark} footnote:[An admin can only list members of projects the admin is also a member of.]
 |
 
-| Add customer information for a trial within org
-| {check-mark}
-| {check-mark}
-|
+// | Add customer information for a trial within org
+// | {check-mark}
+// | {check-mark}
+// |
 
-| List customer information for a trial within org
-| {check-mark}
-| {check-mark}
-|
+// | List customer information for a trial within org
+// | {check-mark}
+// | {check-mark}
+// |
 
-| List seamless login for org
-| {check-mark}
-| {check-mark}
-|
+// | List seamless login for org
+// | {check-mark}
+// | {check-mark}
+// |
 
-| Update seamless login for org
-| {check-mark}
-| {check-mark}
-|
+// | Update seamless login for org
+// | {check-mark}
+// | {check-mark}
+// |
 
 | Invite owners to org
 | {check-mark}
@@ -143,8 +143,8 @@ The following roles are available at the org level and these are assigned via in
 |
 |
 
-| Transfer instances within projects
-| {check-mark}
+| Transfer projects to and from the org
+| {check-mark} footnote:[An owner needs to permission for both the source and destination orgs.]
 |
 |
 |===
