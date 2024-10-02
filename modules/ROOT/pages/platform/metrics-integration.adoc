@@ -728,3 +728,16 @@ This also corresponds to the median of the query execution time.
 | Default aggregation
 m| MAX
 |===
+
+.Last Committed Transaction ID
+[frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
+|===
+| Metric name
+m| neo4j_database_transaction_last_committed_tx_id_total
+| Description
+| The ID of the last committed transaction. Track this for primary & secondary members of your Aura instance. It might break into separate charts. It should show one line, ever-increasing, and if one of the lines levels off or falls behind, it is clear that this instance is no longer replicating data, and action is needed to rectify the situation. 
+| Metric type
+| _Counter_
+| Default aggregation
+m| MAX
+|===
