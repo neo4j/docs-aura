@@ -9,6 +9,7 @@ label:AuraDB-Business-Critical[]
 == SSO levels
 
 Organization admins can configure organization level SSO (org SSO) and project level SSO (project SSO).
+
 SSO is a log-in method and access, roles, and permissions are dictated by role-based access control (RBAC).
 
 * *Org SSO:* Allows org admins to restrict how users log in when they are trying to access the org.
@@ -19,6 +20,132 @@ It ensures users logging in with SSO have access to the database instances withi
 It depends on RBAC if the user can access and view or modify data within the database instances themselves.
 For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider (IdP).
 It *does not* give access to edit the project settings, for example to edit the project name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
+
+
+=== SSO Org level roles
+
+The following roles are available at the org level and these are assigned via invitation:
+
+* Owner
+* Admin
+* Member
+
+:check-mark: icon:check[]
+
+.Roles
+[opts="header",cols="3,1,1,1"]
+|===
+| Capability
+| Owner
+| Admin
+| Member
+
+| List org
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| List org projects
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Update org
+| {check-mark}
+| {check-mark}
+|
+
+| Add projects
+| {check-mark}
+| {check-mark}
+|
+
+| List existing SSO configs
+| {check-mark}
+| {check-mark}
+|
+
+| Add SSO configs
+| {check-mark}
+| {check-mark}
+|
+
+| List SSO configs on project-level
+| {check-mark}
+| {check-mark}
+|
+
+| Update SSO configs on project-level
+| {check-mark}
+| {check-mark}
+|
+
+| Delete SSO configs on project-level
+| {check-mark}
+| {check-mark}
+|
+
+| Invite non-owner users to org
+| {check-mark}
+| {check-mark}
+|
+
+| List users
+| {check-mark}
+| {check-mark}
+|
+
+| List roles
+| {check-mark}
+| {check-mark}
+|
+
+| List members of a project
+| {check-mark}
+| {check-mark} footnote:[An admin can only list members of projects the admin is also a member of.]
+|
+
+// | Add customer information for a trial within org
+// | {check-mark}
+// | {check-mark}
+// |
+
+// | List customer information for a trial within org
+// | {check-mark}
+// | {check-mark}
+// |
+
+// | List seamless login for org
+// | {check-mark}
+// | {check-mark}
+// |
+
+// | Update seamless login for org
+// | {check-mark}
+// | {check-mark}
+// |
+
+| Invite owners to org
+| {check-mark}
+|
+|
+
+| Add owner
+| {check-mark}
+|
+|
+
+| Delete owners
+| {check-mark}
+|
+|
+
+| Transfer projects to and from the org
+| {check-mark} footnote:[An owner needs to permission for both the source and destination orgs.]
+|
+|
+|===
+
 
 == Log-in methods
 
@@ -40,8 +167,8 @@ An organization's administrator can add Aura as a log-in from a tile in an organ
 * Okta
 * Microsoft Entra ID
 
-However, at the project level you cannot disable user/password,
-but at the org level you can disable email/password and Google SSO as long as you have at least one other custom SSO provider configured.
+
+However, at the project level you cannot disable user/password, but at the org level you can disable email/password and Google SSO as long as you have at least one other custom SSO provider configured.
 
 == Setup requirements
 
@@ -64,6 +191,8 @@ Support can assist with:
 
 If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
 
+
 . The _Project ID_ of the projects you want to use SSO for.
 See xref:platform/user-management.adoc#_projects[Projects] for more information on how to find your __Project ID__.
+
 . The name of your IdP

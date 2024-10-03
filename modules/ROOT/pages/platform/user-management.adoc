@@ -38,19 +38,70 @@ Users within a project can be assigned one of the following roles:
 .Roles
 [opts="header",cols="3,1,1,1"]
 |===
-| Capability | Admin | Member | Viewer
-| View users and their roles | {check-mark} | {check-mark} | {check-mark}
-| View and open instances | {check-mark} | {check-mark} | {check-mark}
-| Access the Neo4j Customer Support Portal | {check-mark} | {check-mark} | {check-mark}
-| Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instances.] | {check-mark} | {check-mark} |
-| Clone data to new and existing instances | {check-mark} | {check-mark} |
-| Take on-demand snapshots | {check-mark} | {check-mark} |
-| Restore from snapshots | {check-mark} | {check-mark} |
-| Edit the project name | {check-mark} | |
-| Invite new users to the project | {check-mark} | |
-| Edit existing users' roles | {check-mark} | |
-| Delete existing users from the project | {check-mark} | |
-| View and edit billing information | {check-mark} | |
+| Capability
+| Admin
+| Member
+| Viewer
+
+| View users and their roles
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| View and open instances
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Access the Neo4j Customer Support Portal
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instances.]
+| {check-mark}
+| {check-mark}
+|
+
+| Clone data to new and existing instances
+| {check-mark}
+| {check-mark}
+|
+
+| Take on-demand snapshots
+| {check-mark}
+| {check-mark}
+|
+
+| Restore from snapshots
+| {check-mark}
+| {check-mark}
+|
+
+| Edit the tenant name
+| {check-mark}
+|
+|
+
+| Invite new users to the tenant
+| {check-mark}
+|
+|
+
+| Edit existing users' roles
+| {check-mark}
+|
+|
+
+| Delete existing users from the tenant
+| {check-mark}
+|
+|
+
+| View and edit billing information
+| {check-mark}
+|
+|
 |===
 
 [NOTE]
@@ -94,6 +145,7 @@ Select the trash can icon next to the user's name, and then select **Revoke**.
 ====
 
 === Accepting an invite
+
 
 When invited to a project, you receive an email with a link to accept the invite.
 This link directs you to the Aura Console, where a **Project invitation** modal will appear.
