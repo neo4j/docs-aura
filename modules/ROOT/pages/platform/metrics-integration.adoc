@@ -28,19 +28,19 @@ image::process.png[]
 [aura-cmi-steps]
 == Detailed steps
 
-. Log in to Aura as tenant admin.
+. Log in to Aura as project admin.
 . Make sure there is a dedicated Aura user to use for fetching metrics.
 You can either:
  ** Create a new user:
   ... In https://console.neo4j.io/#user-management["User Management"^] of Neo4j Aura, invite a new user, selecting "Metrics Integration Reader" as a role.
 image:invite_user.png[]
   ... Follow the invitation link and log in to Neo4j Aura.
-  ... Confirm the tenant membership.
+  ... Confirm the project membership.
  ** Or you can find an existing user in https://console.neo4j.io/#user-management["User Management"^] and change its role to "Metrics Integration Reader" +
 +
 [NOTE]
 ====
-Capabilities of users with the role "Metrics Integration Reader" are limited to fetching the metrics and getting a read-only view of the tenant.
+Capabilities of users with the role "Metrics Integration Reader" are limited to fetching the metrics and getting a read-only view of the project.
 ====
 . Ensure you are logged in to Aura as the user selected in the previous step.
 In https://console.neo4j.io/#account["Account Details"^], create new Aura API credentials.
@@ -58,12 +58,12 @@ Metrics for a Neo4j Aura instance are only returned if all the following are tru
 
 * `Authorization` header of the metrics request contains a valid token.
 * The token was issued for an Aura user with "Metrics Integration Reader" role.
-* Tenant has instances of types `Enterprise (Virtual Dedicated Cloud)` or `Business Critical`.
+* Project has instances of types `Enterprise (Virtual Dedicated Cloud)` or `Business Critical`.
 * The specified instance belongs to the specified tenant.
 
 [CAUTION]
 ====
-The legacy term `Enterprise` is still used within the codebase and API. 
+The legacy term `Enterprise` is still used within the codebase and API.
 However, in the Aura console and documentation, the AuraDB Enterprise tenant type is now known as AuraDB Virtual Dedicated Cloud.
 ====
 
@@ -257,10 +257,10 @@ aura instances get --instance-id <YOUR_INSTANCE_ID> | jq '.metrics_integration_u
 
 The metrics returned by the integration endpoint are grouped based on the labels provided: `aggregation`, `instance_id`, and `database`.
 
-An Aura instance typically runs on multiple servers to achieve availability and workload scalability. 
-These servers are deployed across different Cloud Provider availability zones in the user-selected region. 
+An Aura instance typically runs on multiple servers to achieve availability and workload scalability.
+These servers are deployed across different Cloud Provider availability zones in the user-selected region.
 
-Metrics Integration supports a more granular view of the Aura instance metrics with additional data points for availability zone & instance mode combinations. 
+Metrics Integration supports a more granular view of the Aura instance metrics with additional data points for availability zone & instance mode combinations.
 This view can be enabled on demand.
 
 [NOTE]
@@ -270,7 +270,7 @@ Contact link:https://support.neo4j.com/[Customer Support] to enable more granula
 
 [NOTE]
 ====
-There may be a delay in more granular metrics being available when a new Aura instance is created. 
+There may be a delay in more granular metrics being available when a new Aura instance is created.
 This is because of the way 'availability zone' data is collected.
 ====
 
