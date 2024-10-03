@@ -736,9 +736,9 @@ m| MAX
 m| neo4j_database_transaction_last_committed_tx_id_total
 | Description
 | The id of the last committed transaction. 
-Track this for primary and secondary instances of your Aura instance. 
+Track this for primary and secondary cluster members of your Aura instance. 
 It might break into separate charts. 
-It shows one ever-increasing line and if one of the lines levels off or falls behind, it is clear that this instance is no longer replicating data, and action is needed to rectify the situation. 
+It shows one ever-increasing line and if one of the lines levels off or falls behind, it is clear that this cluster member is no longer replicating data, and action is needed to rectify the situation. 
 | Metric type
 | _Counter_
 | Default aggregation
