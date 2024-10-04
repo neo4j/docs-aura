@@ -214,15 +214,15 @@ For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent 
 +
 [source]
 ----
-aura projects get-metrics-integration --project-id <YOUR_PROJECT_ID>
+aura projects get-metrics-integration --tenant-id <YOUR_TENANT_ID>
 
 # example output
 {
-  endpoint: "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_PROJECT_ID>/metrics"
+  endpoint: "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_TENANT_ID>/metrics"
 }
 
 # extract endpoint
-aura projects get-metrics-integration --project-id <YOUR_PROJECT_ID> | jq '.endpoint'
+aura projects get-metrics-integration --project-id <YOUR_TENANT_ID> | jq '.endpoint'
 ----
 
 * For instance metrics endpoint, Aura CLI `instances get` command JSON output includes a new property `metrics_integration_url`:
@@ -236,10 +236,10 @@ aura instances get --instance-id <YOUR_INSTANCE_ID>
     "id": "id",
     "name": "Production",
     "status": "running",
-    "project_id": "YOUR_PROJECT_ID",
+    "tenant_id": "YOUR_TENANT_ID",
     "cloud_provider": "gcp",
     "connection_url": "YOUR_CONNECTION_URL",
-    "metrics_integration_url": "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_PROJECT_ID>/<YOUR_INSTANCE_ID>/metrics",
+    "metrics_integration_url": "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_TENANT_ID>/<YOUR_INSTANCE_ID>/metrics",
     "region": "europe-west1",
     "type": "enterprise-db",
     "memory": "8GB",
