@@ -64,7 +64,13 @@ This returns something similar to:
 ----
 
 In the example response above, two projects are returned.
-If you’re a member of multiple projects, select the one you wish to use.
+If you're a member of multiple projects, select the one you wish to use.
+
+[NOTE]
+====
+_Project_ replaces _Tenant_ in the console UI and documentation.
+However, in the API, `tenant` remains the nomenclature.
+====
 
 == Configure an AuraDB instance
 
@@ -72,14 +78,14 @@ If you’re a member of multiple projects, select the one you wish to use.
 
 Use the bearer token and Project ID to create the Aura instance.
 Replace `YOUR_BEARER_TOKEN` with your token.
-Replace `YOUR_TENANT_ID` with your project ID.
+Replace `YOUR_PROJECT_ID` with your project ID.
 
-The following values are customizable `version`, `region`, `memory`, `name`, `type`, `projectid`, and `cloud provider`.
+The following values are customizable `version`, `region`, `memory`, `name`, `type`, `tenant_id`, and `cloud_provider`.
 
 
 [source, cURL]
 ----
-curl --location 'https://api.neo4j.io/v1/instances' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer YOUR_BEARER_TOKEN' --data ' { "version": "5", "region": "europe-west1", "memory": "8GB", "name": "instance01", "type": "enterprise-db", "tenant_id": "YOUR_TENANT_ID", "cloud_provider": "gcp" }'
+curl --location 'https://api.neo4j.io/v1/instances' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer YOUR_BEARER_TOKEN' --data ' { "version": "5", "region": "europe-west1", "memory": "8GB", "name": "instance01", "type": "enterprise-db", "tenant_id": "YOUR_PROJECT_ID", "cloud_provider": "gcp" }'
 ----
 See xref:platform/api/overview.adoc[Aura API documentation] for more details.
 
