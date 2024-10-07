@@ -48,7 +48,7 @@ Metrics for a Neo4j Aura instance are only returned if all the following are tru
 
 * `Authorization` header of the metrics request contains a valid token.
 * The token was issued for an Aura user with "Metrics Integration Reader" role.
-* Tenant is of type `enterprise`.
+* Project is of type `enterprise`.
 * The specified instance belongs to the specified project.
 
 [aura-cmi-revoke-access-to-metrics]
@@ -195,7 +195,7 @@ For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent 
 .Aura CLI for Metrics Integration
 
 * Aura CLI has a subcommand for `projects` command to fetch project metrics endpoint:
-+
++change tenants to projects'
 [source]
 ----
 aura tenants get-metrics-integration --tenant-id <YOUR_PROJECT_ID>
@@ -223,7 +223,7 @@ aura instances get --instance-id <YOUR_INSTANCE_ID>
     "tenant_id": "YOUR_PROJECT_ID",
     "cloud_provider": "gcp",
     "connection_url": "YOUR_CONNECTION_URL",
-    "metrics_integration_url": "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_TENANT_ID>/<YOUR_INSTANCE_ID>/metrics",
+    "metrics_integration_url": "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_PROJECT_ID>/<YOUR_INSTANCE_ID>/metrics",
     "region": "europe-west1",
     "type": "enterprise-db",
     "memory": "8GB",
