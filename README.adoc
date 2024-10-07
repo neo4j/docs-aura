@@ -30,7 +30,7 @@ NOTE: The script requires Python 3.
 1. Activate the virtual environment (if not already active): `source venv/bin/activate` (`venv\Scripts\activate` on Windows).
 2. Run `python scripts/manage_instances.py --create INSTANCE_NAME` to create an Aura instance with name _INSTANCE_NAME_, or `python scripts/manage_instances.py --destroy INSTANCE_NAME` to destroy it.
   - You can use the optional parameter `--instance-type` together with `--create` to select the instance type to create (the default is `enterprise-ds`).
-  - You can use different tenants using the optional parameter `--tenant` together with `--create` (the default is `gcp`). Every tenant is used with a default region.
+  - You can use different projects using the optional parameter `--tenant` together with `--create` (the default is `gcp`). Every project is used with a default region.
   - Run `python scripts/manage_instances.py --help` for more details on the usage.
 
 The script creates an _INSTANCE_NAME_.env file containing the Aura instance credentials.
@@ -39,7 +39,7 @@ The script creates an _INSTANCE_NAME_.env file containing the Aura instance cred
 
 This script can be used to extract runnable code (Python or Cypher statements) from a doc HTML page. This means that the docset has to be built first, for example by running `npm run build`.
 
-NOTE: The script requires Python 3. 
+NOTE: The script requires Python 3.
 
 NOTE: AuraDS credentials must be available in an `aura.env` file.
 
@@ -58,7 +58,7 @@ NOTE: AuraDS credentials must be available in an `aura.env` file.
 
 == Replace partials in an AsciiDoc file
 
-Some applications cannot use Asciidoc files that use partials. The `replace_partials.py` script can be used to preprocess an Asciidoc file and replace the `include::partial` lines with the actual content of the referenced partials. 
+Some applications cannot use Asciidoc files that use partials. The `replace_partials.py` script can be used to preprocess an Asciidoc file and replace the `include::partial` lines with the actual content of the referenced partials.
 
 NOTE: The script requires Python 3.
 

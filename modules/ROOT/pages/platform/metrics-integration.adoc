@@ -20,19 +20,19 @@ image::process.png[]
 [aura-cmi-steps]
 == Detailed steps
 
-. Log in to Aura as tenant admin.
+. Log in to Aura as project admin.
 . Make sure there is a dedicated Aura user to use for fetching metrics.
 You can either:
  ** Create a new user:
   ... In https://console.neo4j.io/#user-management["User Management"^] of Neo4j Aura, invite a new user, selecting "Metrics Integration Reader" as a role.
 image:invite_user.png[]
   ... Follow the invitation link and log in to Neo4j Aura.
-  ... Confirm the tenant membership.
+  ... Confirm the project membership.
  ** Or you can find an existing user in https://console.neo4j.io/#user-management["User Management"^] and change its role to "Metrics Integration Reader" +
 +
 [NOTE]
 ====
-Capabilities of users with the role "Metrics Integration Reader" are limited to fetching the metrics and getting a read-only view of the tenant.
+Capabilities of users with the role "Metrics Integration Reader" are limited to fetching the metrics and getting a read-only view of the project.
 ====
 . Ensure you are logged in to Aura as the user selected in the previous step.
 In https://console.neo4j.io/#account["Account Details"^], create new Aura API credentials.
@@ -48,14 +48,14 @@ Metrics for a Neo4j Aura instance are only returned if all the following are tru
 
 * `Authorization` header of the metrics request contains a valid token.
 * The token was issued for an Aura user with "Metrics Integration Reader" role.
-* Tenant is of type `enterprise`.
-* The specified instance belongs to the specified tenant.
+* Project is of type `enterprise`.
+* The specified instance belongs to the specified project.
 
 [aura-cmi-revoke-access-to-metrics]
 .Revoke access to metrics
 
-To revoke a user's access to metrics of a specific tenant, remove the user from that tenant in https://console.neo4j.io/#user-management["User Management"^].
-After that, the user still exists but its connection to the tenant is removed.
+To revoke a user's access to metrics of a specific project, remove the user from that project in https://console.neo4j.io/#user-management["User Management"^].
+After that, the user still exists but its connection to the project is removed.
 
 [NOTE]
 ====
@@ -187,18 +187,18 @@ For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent 
 .Aura API for Metrics Integration
 
 * Aura API supports fetching metrics integration endpoints using:
- ** endpoint `+/tenants/{tenantId}/metrics-integration+` (for tenant metrics)
+ ** endpoint `+/tenants/{tenantId}/metrics-integration+` (for project metrics)
  ** JSON property `metrics_integration_url` as part of `+/instances/{instanceId}+` response (for instance metrics)
 * Reference: link:https://neo4j.com/docs/aura/platform/api/specification/[Aura API Specification^]
 
 [aura-cmi-cli-for-metrics-integration]
 .Aura CLI for Metrics Integration
 
-* Aura CLI has a subcommand for `tenants` command to fetch tenant metrics endpoint:
-+
+* Aura CLI has a subcommand for `projects` command to fetch project metrics endpoint:
++change tenants to projects'
 [source]
 ----
-aura tenants get-metrics-integration --tenant-id <YOUR_TENANT_ID>
+aura tenants get-metrics-integration --tenant-id <YOUR_PROJECT_ID>
 
 # example output
 {
@@ -206,7 +206,7 @@ aura tenants get-metrics-integration --tenant-id <YOUR_TENANT_ID>
 }
 
 # extract endpoint
-aura tenants get-metrics-integration --tenant-id <YOUR_TENANT_ID> | jq '.endpoint'
+aura tenants get-metrics-integration --tenant-id <YOUR_PROJECT_ID> | jq '.endpoint'
 ----
 
 * For instance metrics endpoint, Aura CLI `instances get` command JSON output includes a new property `metrics_integration_url`:
@@ -220,10 +220,10 @@ aura instances get --instance-id <YOUR_INSTANCE_ID>
     "id": "id",
     "name": "Production",
     "status": "running",
-    "tenant_id": "YOUR_TENANT_ID",
+    "tenant_id": "YOUR_PROJECT_ID",
     "cloud_provider": "gcp",
     "connection_url": "YOUR_CONNECTION_URL",
-    "metrics_integration_url": "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_TENANT_ID>/<YOUR_INSTANCE_ID>/metrics",
+    "metrics_integration_url": "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_PROJECT_ID>/<YOUR_INSTANCE_ID>/metrics",
     "region": "europe-west1",
     "type": "enterprise-db",
     "memory": "8GB",
