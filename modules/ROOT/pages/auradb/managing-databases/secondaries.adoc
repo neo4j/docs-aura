@@ -9,9 +9,9 @@ Secondaries help you scale the read query workload your database is able to serv
 This increases the maximum read query throughput of a database while preventing bottlenecks.
 
 To ensure high availability, secondaries are distributed across availability zones.
-They are however, only available within same cloud region as the primary Aura instance.
+They are however, only available within the same cloud region as the primary Aura instance.
 
-Up to 15 secondaries can be added per Aura instance, which increases the read capacity to handle read-heavy workloads significantly.
+Up to 15 secondaries can be added per AuraDB instance, which increases the read capacity to handle read-heavy workloads significantly.
 Secondaries can be added, managed, and removed through the Aura console or the Aura API.
 Currently, they are static and do not support elastic or auto-scaling behavior.
 
