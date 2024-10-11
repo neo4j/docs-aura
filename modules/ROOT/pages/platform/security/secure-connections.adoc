@@ -1,11 +1,11 @@
 [[aura-reference-security]]
-= Security architecture
+= Secure connections
 :description: Secure, isolated infrastructure with fine-grained access control, encryption, compliance, and key security features like SSO and Customer Managed Encryption keys.
 
 label:AuraDB-Virtual-Dedicated-Cloud[] 
 label:AuraDS-Enterprise[]
 
-== Introdction
+== Introduction to the security architecture
 
 100% of AuraDB Virtual Dedicated Cloud customers operate within a Virtual Private Cloud (VPC) isolated architecture with a dedicated infrastructure.
 
@@ -30,7 +30,8 @@ label:AuraDS-Enterprise[]
 VPC boundaries enable you to operate within an isolated section of the service.
 AuraDB Virtual Dedicated Cloud and AuraDS Enterprise run in a dedicated cloud Account (AWS), Subscription (Azure) or Project (GCP) to achieve complete isolation for your deployment.
 
-Additional VPC boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected. The Aura console runs in a separate VPC, separate from the rest of Aura.
+Additional VPC boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected. 
+The Aura console runs in a separate VPC, separate from the rest of Aura.
 
 == Network access
 
