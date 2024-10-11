@@ -5,6 +5,9 @@
 Let’s walk through the cloud architecture for AuraDB Virtual Dedicated Cloud.
 (This example covers an AuraDB Virtual Dedicated Cloud instance on AWS, but the same applies for GCP and Azure.)
 
+.Cloud Architecture
+image::cloud-architecture.png[Cloud architecture]
+
 In AuraDB Virtual Dedicated Cloud, you select the cloud provider and region of your choice, and we provision a Virtual Private Cloud (VPC) for you. 
 This VPC is dedicated exclusively to your instance—no one else has access. 
 Once the VPC is set up, you can designate one or two administrators who will receive access invitations as soon as the deal is finalized.
