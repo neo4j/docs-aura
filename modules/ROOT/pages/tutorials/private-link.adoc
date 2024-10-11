@@ -1,74 +1,96 @@
 [[aura-private-link-tutorial]]
 = Private link tutorial
 
-image::aura-private-link-architecture.png[Fig.1 Aura PrivateLink/Private Service Connect Architecture]
+In this tutorial, we’ll walk through the process of setting up a private link connection to securely connect your application to an AuraDB Virtual Dedicated Cloud environment. 
+A private link provides secure network connectivity between your application and AuraDB without exposing traffic to the public internet.
+Refer to Figure 1 for a visual representation of the network package traffic flow.
 
-When the customer creates a private service on the aura console, this private ingress is reachable by all the tenants in this cloud provider.
-For example, all the customers using AWS can find out this private ingress, it has a unique name.
-The next step is that the customer should create a private endpoint inside their own VPC and then they will request to create a private link - so that’s basically the steps of it. 
-So first thing is create a private ingress service in Aura VPC and then they should create a cloud endpoint and try to connect to this service we have provided and then this private link will be accepted.
-It’s all done on the aura console and the customer can do it by themselves.
-And then there’s a tricky one, this is the most important thing - the private DNS.
-The customer should configure this private DNS.
-If they are using AWS, then AWS will create this private DNS for them but for other providers, like Google or Azure, they have to manually create this private DNS … which means they add this line here [in orange]Wildcard DNS entry which is … *.production, orchestra to point to this cloud IP endpoint.
+.This diagram illustrates the network package traffic flow when an application connects to an Aura instance.
+image::aura-private-link-architecture.png[Fig.1 Aura Private Link/Private Service Connect Architecture]
 
-[Fig. 1 - Security overview]
+== Steps
 
-== What is a cloud endpoint?
+[NOTE]
+======
+We will use dbid: abcd1234 and orch-id: 0000 in this article. 
+(It will be different with your own AuraDB Virtual Dedicated Cloud environment.)
+======
 
-Basically, it’s just a network forwarding rule. 
-It’s just one rule.
-It will receive all the packages. 
-It won’t open it, it will just forward it to the other side of the tunnel, which is the other side of the private link of the private link - it’s our Neo4j side, it’s our private ingress.
-But, the private ingress will only accept the package from this FQDN private
-For example, http://abcd1234-core-1.protuction-orch-0000.neo4j.io/
-It will arrive when the package reaches out to this private ingress, our ingress will find out the DBid here in Apicurio and then send the package to the related Aura instance. 
+. The application initializes a driver connection to neo4j+s://abcd1234.production-orch-0000.neo4j.io.
+. The network layer then queries the DNS server to resolve the fully qualified domain name (FQDN) (in this case, abcd1234.production-orch-0000.neo4j.io) to its corresponding IP address.
+. The Cloud Virtual Network private DNS is queried, and it resolves the FQDN to 10.10.10.10, based on the wildcard DNS A record created: *.production-orch-0000.neo4j.io -> 10.10.10.10
+. The application's connection is directed to 10.10.10.10, which is the private link endpoint. 
+From there, the private link endpoint forwards the network connection to the private ingress through the private link.
+. he private ingress extracts the dbid from the FQDN and directs the connection to the appropriate Aura instance (dbid: abcd1234).
+. The Aura instance responds by sending the Neo4j cluster routing table back to the application, which contains information about the available nodes and their roles (see Table 1 below).
+. The application then selects an appropriate node to execute a read or write transaction. In the case of a write transaction, the application sends the transaction to abcd1234-core-1.production-orch-0000.neo4j.io.
+. Similar to before, the Cloud Virtual Network private DNS is queried and resolves the FQDN to 10.10.10.10. The application's connection is sent to the private link endpoint (10.10.10.10), which forwards the network connection to the private ingress through the private link. The private ingress then directs the connection to the Aura instance with dbid: abcd1234.
+. Finally, the write transaction is received and executed within the Aura instance with dbid: abcd1234.
 
-[Fig. 2 - Security overview]
+.Available nodes and their roles
+[cols="1,1"]
+|===
+|abcd1234-core-1.production-orch-0000.neo4j.io
+|role: write
 
-[Fig. 3 - Security overview]
+|abcd1234-core-2.production-orch-0000.neo4j.io
+|role: read
 
-There might be some other instances running the same in the same customer’s Aura environment. We will have to use this APQDN to figure out which aura instance is this aura instance trying to reach. 
-Important: We will not accept the IP address. Only the FQDN will be accepted.
+|abcd1234-core-3.production-orch-0000.neo4j.io
+|role: read
+|=== 
 
-[Fig. 4 - Security overview]
+== Summary
 
-[Fig. 5 - Security overview]
+When you create a private service using the Aura console, the private ingress becomes accessible to all tenants within the cloud provider’s VPC. 
+For example, if you’re using AWS, you can identify this private ingress by its unique name in your AWS environment.
+
+First, create a private ingress service in Aura VPC, then create a cloud endpoint and try to connect to the service we have provided, then this private link will be accepted.
+It’s all done on the Aura console and you can do it by yourself.
+
+And then there’s a trickier step, but it's the most important thing. 
+*The private DNS.*
+You should configure this private DNS.
+If you are using AWS, then AWS will create this private DNS for you. 
+For Google or Azure, you have to manually create this private DNS.
+Add the Wildcard DNS entry *.production-orch-0000.neo4j.io and point it to the cloud IP endpoint.
+
+
+== Cloud endpoints
+
+A cloud endpoint is essentially a network forwarding rule. 
+It receives network packets, but doesn't open them and forwards them to the Neo4j private ingress via the private link. 
+However, the private ingress only accepts packets from a recognized FQDN.
+
+For example, http://abcd1234-core-1.production-orch-0000.neo4j.io/
+
+It will arrive when the package reaches out to this private ingress, our ingress will find out the DBid in Apicurio and then send the package to the related Aura instance. 
+
+There might be some other instances running the same in the same customer’s Aura environment. 
+We use this APQDN to figure out which Aura instance it is trying to reach.
+*Important: We will not accept the IP address. Only the FQDN will be accepted.*
 
 == Private DNS
 
-So now, after we create this private ingress, private link, and private endpoint - also with this private DNS entry then the application will try to reach out to this IP address.
-
-[Fig. 6 - Security overview]
+Once the private ingress, private link, and private endpoint with the DNS entry are configured, the application will attempt to reach the IP address.
 
 And then it will try to go and check the private link, like “hey, what is the private DNS address for this AFQDN?”
+Then the private DNS will tell the application, “you should go to 10.10.10 here. 
+This is the IP address of the endpoint."
+Then this endpoint will just forward everything to Aura. 
 
-Then the private DNS will tell the application, “you should go to 10.10.10 here.” This is the IP address of the endpoint. 
+*Important: The private DNS only works for this single cloud VPC.*
+Outside of this VPC that private DNS entry does not work, _that’s the reason why it’s called private DNS._
 
-[Fig. 7 - Security overview]
-
-Then the package will go … then this endpoint will just forward everything to Aura. 
-*The customer doesn’t understand - 
-Important: The private DNS only works for this cloud VPC - for this single VPC.
-
-[Fig. 8 - Security overview]
-
-Outside of this VPC that private DNS entry does not work, that’s the reason why it’s called private DNS.
-
-So if the customer’s application is running on another VPC - will that reach out to this endpoint? NO, because there is no resolution here. 
+So if the customer’s application is running on another VPC - will that reach out to this endpoint? 
+*NO!*
+Because there is no resolution here. 
 That’s pretty much the easy part - the customer can do it and always succeed in it. 
-If they want they have to create the DNS here, that’s the tricky part.
+If you want to DNS here, that’s the tricky part.
 
-They want their application running on their own on-prem data centers - they still can use 
+If you want your application running on your own on-prem data centers - you still can use 
 private link.
-They don’t want to go to the internet and then back to their own Aura instance, which is unsafe and the latency might be too long. 
+But you don’t want to go to the internet and then back to your own Aura instance - it's unsafe (data leakage, unauthorized access, etc.) and the latency might be too long. 
 So they still want applications running on their on-prem data center can reach out through this private link.
 
-.The first thing they need to do is Create a cloud VPN or any kind of connection between their on prem data center to the VPC has this endpoint running it in. 
-[Fig. 9 - Security overview]
-.They should configure their own… DNS server - which means all their traffic that goes to this name can be forwarded to IP address of this endpoint.
-[Fig. 10 - Security overview]
-
-
-
-
+To enable communication from on-prem data centers, the first step is to create a cloud VPN or another type of secure connection between your on-prem network and the VPC that has the private link endpoint running in it. You also need to configure your DNS server so that traffic directed to the FQDN is forwarded to the endpoint’s IP address.
