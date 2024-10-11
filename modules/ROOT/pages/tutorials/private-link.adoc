@@ -1,0 +1,74 @@
+[[aura-private-link-tutorial]]
+= Private link tutorial
+
+image::aura-private-link-architecture.png[Fig.1 Aura PrivateLink/Private Service Connect Architecture]
+
+When the customer creates a private service on the aura console, this private ingress is reachable by all the tenants in this cloud provider.
+For example, all the customers using AWS can find out this private ingress, it has a unique name.
+The next step is that the customer should create a private endpoint inside their own VPC and then they will request to create a private link - so that’s basically the steps of it. 
+So first thing is create a private ingress service in Aura VPC and then they should create a cloud endpoint and try to connect to this service we have provided and then this private link will be accepted.
+It’s all done on the aura console and the customer can do it by themselves.
+And then there’s a tricky one, this is the most important thing - the private DNS.
+The customer should configure this private DNS.
+If they are using AWS, then AWS will create this private DNS for them but for other providers, like Google or Azure, they have to manually create this private DNS … which means they add this line here [in orange]Wildcard DNS entry which is … *.production, orchestra to point to this cloud IP endpoint.
+
+[Fig. 1 - Security overview]
+
+== What is a cloud endpoint?
+
+Basically, it’s just a network forwarding rule. 
+It’s just one rule.
+It will receive all the packages. 
+It won’t open it, it will just forward it to the other side of the tunnel, which is the other side of the private link of the private link - it’s our Neo4j side, it’s our private ingress.
+But, the private ingress will only accept the package from this FQDN private
+For example, http://abcd1234-core-1.protuction-orch-0000.neo4j.io/
+It will arrive when the package reaches out to this private ingress, our ingress will find out the DBid here in Apicurio and then send the package to the related Aura instance. 
+
+[Fig. 2 - Security overview]
+
+[Fig. 3 - Security overview]
+
+There might be some other instances running the same in the same customer’s Aura environment. We will have to use this APQDN to figure out which aura instance is this aura instance trying to reach. 
+Important: We will not accept the IP address. Only the FQDN will be accepted.
+
+[Fig. 4 - Security overview]
+
+[Fig. 5 - Security overview]
+
+== Private DNS
+
+So now, after we create this private ingress, private link, and private endpoint - also with this private DNS entry then the application will try to reach out to this IP address.
+
+[Fig. 6 - Security overview]
+
+And then it will try to go and check the private link, like “hey, what is the private DNS address for this AFQDN?”
+
+Then the private DNS will tell the application, “you should go to 10.10.10 here.” This is the IP address of the endpoint. 
+
+[Fig. 7 - Security overview]
+
+Then the package will go … then this endpoint will just forward everything to Aura. 
+*The customer doesn’t understand - 
+Important: The private DNS only works for this cloud VPC - for this single VPC.
+
+[Fig. 8 - Security overview]
+
+Outside of this VPC that private DNS entry does not work, that’s the reason why it’s called private DNS.
+
+So if the customer’s application is running on another VPC - will that reach out to this endpoint? NO, because there is no resolution here. 
+That’s pretty much the easy part - the customer can do it and always succeed in it. 
+If they want they have to create the DNS here, that’s the tricky part.
+
+They want their application running on their own on-prem data centers - they still can use 
+private link.
+They don’t want to go to the internet and then back to their own Aura instance, which is unsafe and the latency might be too long. 
+So they still want applications running on their on-prem data center can reach out through this private link.
+
+.The first thing they need to do is Create a cloud VPN or any kind of connection between their on prem data center to the VPC has this endpoint running it in. 
+[Fig. 9 - Security overview]
+.They should configure their own… DNS server - which means all their traffic that goes to this name can be forwarded to IP address of this endpoint.
+[Fig. 10 - Security overview]
+
+
+
+
