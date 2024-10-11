@@ -1,0 +1,31 @@
+[[auradb-vdc-cloud-architecture]]
+= AuraDB Virtual Dedicated Cloud architecture
+:description: What the cloud architecture looks like for AuraDB Virtual Dedicated Cloud.
+
+I want to take you through what the cloud architecture looks like for Aura VDC.
+(This is an example of an Aura AWS AuraDB Virtual Dedicated Cloud instance - the same stands for GCP and Azure.)
+
+In Aura VDC the customer identifies the cloud and region of their choice, and we will provision the VPC for them, no one else has access to this particular VPC - as we provision the VPC for the customer.
+The customer then identifies one or two admins who have access to the VPC and those invites are sent out once the customer sends out a customer deal.
+
+When we provision the instance for the customer, it is empty. 
+It is not running any Aura instances. 
+It is an empty VPC. 
+Aura instances are created by the customer.
+
+When a customer signs onto the Aura platform they get access to the Aura console - and log in with password once a password is sent to the customer via the support portal and they will be able to access the Aura console, which initially will be empty with no instances and the customer will be able to create Aura instances using the console, or the Aura APIs as well.
+
+Every instance that the customer creates is a 3 node cluster, across availability zones.
+VDC architecture is only deployable in regions that have a minimum of 3 availability zones, so you have one leader and 2 followers and each of them are running in each of their own zones, this is how we provide/keep SLAs of 3.5 and provide the customer self-healing architecture during upgrades, when they want to size up an instance etc. 
+
+The traffic that goes from a customer’s application to a customer’s VPC - the upward left box onto the upward right box is encrypted at rest. 
+You can have a secure connection when it comes to the customer’s VPC and the Neo4j VPC. 
+And they have an option of turning private access off between the VPCs. 
+
+What customers have been requesting is setting up a private link, where you have a secure connection when it comes to traffic when it comes to the customers VPC. 
+And the Neo4j VPC and they have an option of turning public access off which gives them a private tunnel between the two VPCs. 
+All the communications that happen between the customer’s VPC and the customer’s VPC - use TLS latest of all the protocols - security is paramount of how we move forward.
+
+* Communications are secure
+* Traffic is encrypted at rest
+* Customers have an option of creating private links and turning off public access for an end to end private connection between their VPC and the VPC we provision for them.
