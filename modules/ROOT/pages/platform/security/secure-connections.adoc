@@ -1,17 +1,36 @@
 [[aura-reference-security]]
-= Secure connections
-:description: VPC boundaries enable you to operate within an isolated section of the service.
+= Security architecture
+:description: Secure, isolated infrastructure with fine-grained access control, encryption, compliance, and key security features like SSO and Customer Managed Encryption keys.
+
+label:AuraDB-Virtual-Dedicated-Cloud[] 
+label:AuraDS-Enterprise[]
+
+== Introdction
+
+100% of AuraDB Virtual Dedicated Cloud customers operate within a Virtual Private Cloud (VPC) isolated architecture with a dedicated infrastructure.
+
+AuraDB offers fine-grained access control to the database with built-in Role-Based Access Control (RBAC) at the database level, similar to what can be configured in a self-managed Neo4j environment. 
+All traffic passing through the Aura console, your VPC, and the VPC provisioned by Neo4j is encrypted both at rest.
+By operating within your own VPC, you are protected from external traffic.
+
+All the traffic that passes through the Aura console, the VPC, and the VPC that we provision for the customer is encrypted at rest, it is isolated. Given you are in your own VPC there is security right there - you don’t get affected by any other traffic.
+
+Features such as Single Sign-On (SSO) via OpenID Connect (OIDC) and Customer Managed Encryption (CMK) keys address the security and compliance needs of many of our customers. 
+SSO has been one of the most requested features, and CMK was introduced in 2024 which has been validated by large, trusted enterprises.
+
+Security log forwarding, now generally available, has been validated by security auditors and meets the requirements of customer security audits. 
+Our ongoing compliance efforts are a priority, starting with ISO 27001 certification, and extending to SOC 1 and SOC 2 compliance. 
+HIPAA compliance has also been recently achieved.
 
 == VPC isolation
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 
+VPC boundaries enable you to operate within an isolated section of the service.
 AuraDB Virtual Dedicated Cloud and AuraDS Enterprise run in a dedicated cloud Account (AWS), Subscription (Azure) or Project (GCP) to achieve complete isolation for your deployment.
 
-Additional VPC boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
-
-The Aura Console runs in a separate VPC, separate from the rest of Aura.
+Additional VPC boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected. The Aura console runs in a separate VPC, separate from the rest of Aura.
 
 == Network access
 
