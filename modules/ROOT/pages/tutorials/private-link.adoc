@@ -82,7 +82,7 @@ Then this endpoint will just forward everything to Aura.
 *Important: The private DNS only works for this single cloud VPC.*
 Outside of this VPC that private DNS entry does not work, _that’s the reason why it’s called private DNS._
 
-If the customer’s application is running in a different VPC, it will not be able to reach the endpoint. 
+If the your application is running in a different VPC, it will not be able to reach the endpoint. 
 This is because there is no DNS resolution across VPCs. 
 Setting up the private link within the same VPC is straightforward and typically succeeds without issues. However, configuring DNS for access across different VPCs or environments is more complex and requires careful setup.
 
