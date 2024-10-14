@@ -1,6 +1,8 @@
 [[aura-private-link-tutorial]]
 = Private link tutorial
 
+label:AuraDB-Virtual-Dedicated-Cloud[]
+
 In this tutorial, we’ll walk through the process of setting up a private link connection to securely connect your application to an AuraDB Virtual Dedicated Cloud environment. 
 A private link provides secure network connectivity between your application and AuraDB without exposing traffic to the public internet.
 Refer to Figure 1 for a visual representation of the network package traffic flow.
@@ -12,8 +14,8 @@ image::aura-private-link-architecture.png[Fig.1 Aura Private Link/Private Servic
 
 [NOTE]
 ======
-We will use dbid: abcd1234 and orch-id: 0000 in this article. 
-(It will be different with your own AuraDB Virtual Dedicated Cloud environment.)
+We will use dbid: abcd1234 and orch-id: 0000 in this tutorial. 
+These will be different in your own AuraDB Virtual Dedicated Cloud environment.
 ======
 
 . The application initializes a driver connection to neo4j+s://abcd1234.production-orch-0000.neo4j.io.
@@ -24,7 +26,8 @@ From there, the private link endpoint forwards the network connection to the pri
 . he private ingress extracts the dbid from the FQDN and directs the connection to the appropriate Aura instance (dbid: abcd1234).
 . The Aura instance responds by sending the Neo4j cluster routing table back to the application, which contains information about the available nodes and their roles (see Table 1 below).
 . The application then selects an appropriate node to execute a read or write transaction. In the case of a write transaction, the application sends the transaction to abcd1234-core-1.production-orch-0000.neo4j.io.
-. Similar to before, the Cloud Virtual Network private DNS is queried and resolves the FQDN to 10.10.10.10. The application's connection is sent to the private link endpoint (10.10.10.10), which forwards the network connection to the private ingress through the private link. The private ingress then directs the connection to the Aura instance with dbid: abcd1234.
+. Similar to before, the Cloud Virtual Network private DNS is queried and resolves the FQDN to 10.10.10.10. The application's connection is sent to the private link endpoint (10.10.10.10), which forwards the network connection to the private ingress through the private link. 
+The private ingress then directs the connection to the Aura instance with dbid: abcd1234.
 . Finally, the write transaction is received and executed within the Aura instance with dbid: abcd1234.
 
 .Available nodes and their roles
@@ -66,9 +69,10 @@ For example, http://abcd1234-core-1.production-orch-0000.neo4j.io/
 
 It will arrive when the package reaches out to this private ingress, our ingress will find out the DBid in Apicurio and then send the package to the related Aura instance. 
 
-There might be some other instances running the same in the same customer’s Aura environment. 
+There might be some other instances running the same in the same customer Aura environment. 
 We use this APQDN to figure out which Aura instance it is trying to reach.
-*Important: We will not accept the IP address. Only the FQDN will be accepted.*
+*Important: We will not accept the IP address. 
+Only the FQDN will be accepted.*
 
 == Private DNS
 
@@ -86,9 +90,10 @@ If the your application is running in a different VPC, it will not be able to re
 This is because there is no DNS resolution across VPCs. 
 Setting up the private link within the same VPC is straightforward and typically succeeds without issues. However, configuring DNS for access across different VPCs or environments is more complex and requires careful setup.
 
-If you want your application running on your own on-prem data centers - you still can use 
+If you want your application running on your own on-prem data centers you still can use 
 private link.
-But you don’t want to go to the internet and then back to your own Aura instance - it's unsafe (data leakage, unauthorized access, etc.) and the latency might be too long. 
-So they still want applications running on their on-prem data center can reach out through this private link.
+But you don’t want to go to the internet and then back to your own Aura instance because it's unsafe (data leakage, unauthorized access, etc.) and the latency might be too long. 
+If you still want applications running on your on-prem data center can reach out through this private link.
 
-To enable communication from on-prem data centers, the first step is to create a cloud VPN or another type of secure connection between your on-prem network and the VPC that has the private link endpoint running in it. You also need to configure your DNS server so that traffic directed to the FQDN is forwarded to the endpoint’s IP address.
+To enable communication from on-prem data centers, the first step is to create a cloud VPN or another type of secure connection between your on-prem network and the VPC that has the private link endpoint running in it. 
+You also need to configure your DNS server so that traffic directed to the FQDN is forwarded to the endpoint’s IP address.
