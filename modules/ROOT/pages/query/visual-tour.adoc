@@ -3,7 +3,7 @@
 :description: This section describes how to use the Query tool.
 
 [.shadow]
-image::upx-query.png[width=800]
+image::query-upx.png[width=800]
 
 == Connection banner
 
@@ -26,7 +26,7 @@ The sidebar contains a set of drawers; database information, saved Cypher, and Q
 
 This drawer contains information about the database you are connected to.
 It gives you an overview of the node labels and relationship types, as well as what property keys exist in the database.
-If you click one, you will see a sample of the selected element as a graph or table.
+If you select one, you see a sample of the selected element as a graph or table.
 
 [.shadow]
 image::database-drawer.png[width=400]
@@ -53,6 +53,21 @@ image::save-cypher.png[width=800]
 
 This drawer contains a list of your previously run queries, for your reference.
 Queries are kept here until you delete them and are not limited to the current instance.
+
+=== Cypher Reference
+
+The Cypher reference is an embedded version of the link:https://neo4j.com/docs/cypher-cheat-sheet/5/aura-dbe/auradb-free[Cypher Cheat Sheet].
+It allows you to search for Cypher-related terms such as queries, patterns, and clauses, directly in Query.
+It is divided into sections and subsections for easy navigation and each subsection can be expanded and collapsed.
+
+[.shadow]
+image::cypher-reference.png[width=300]
+
+You can select an example to run it in the editor or copy it to the clipboard.
+Note that some examples require data you may not have in your database and may not be runnable nor yield desired results, but are used to illustrate syntax and functionality of Cypher.
+
+Every subsection is also a link to the link:https://neo4j.com/docs/cypher-manual/current/[Cypher Manual] for more details.
+
 
 == Cypher editor
 
