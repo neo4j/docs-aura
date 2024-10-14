@@ -69,7 +69,7 @@ For example, http://abcd1234-core-1.production-orch-0000.neo4j.io/
 
 It will arrive when the package reaches out to this private ingress, our ingress will find out the DBid in Apicurio and then send the package to the related Aura instance. 
 
-There might be some other instances running the same in the same customer Aura environment. 
+There might be some other instances running in the same customer Aura environment. 
 We use this APQDN to figure out which Aura instance it is trying to reach.
 *Important: We will not accept the IP address. 
 Only the FQDN will be accepted.*
