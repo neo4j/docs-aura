@@ -34,7 +34,7 @@ Aura has no control over the availability of your externally managed key in the 
 
 [WARNING]
 ====
-The loss of a Customer Managed Key —- through deletion, disabling, or expiration —- makes all data encrypted with that key inaccessible. 
+The loss of a Customer Managed Key makes all data encrypted with that key inaccessible. 
 Neo4j is unable to manage database instances if the key is disabled, deleted, expired, or if permissions are revoked.
 ====
 
