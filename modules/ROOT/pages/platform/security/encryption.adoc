@@ -133,7 +133,7 @@ For more information about the Azure CLI, see link:https://learn.microsoft.com/e
 . To add role assignment to the Azure key, inside the key, go to *Access control (IAM)* and add *role assignment*.
 . In the *Role* tab, select *Key Vault Crypto Officer*.
 . In the *Member* tab, select *User, group, or service principal*.
-. Select *Select members* and paste the *Neo4j CMK Application name* that is displayed in the Aura Console. 
+. In *Select members*, paste the *Neo4j CMK Application name* that is displayed in the Aura Console. 
 . The *Neo4j CMK Application* should appear, select this application then *Review + Assign*.
 
 == GCP keys
