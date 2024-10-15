@@ -1,0 +1,38 @@
+[[auradb-vdc-cloud-architecture]]
+= AuraDB Virtual Dedicated Cloud architecture
+:description: What the cloud architecture looks like for AuraDB Virtual Dedicated Cloud.
+
+Let’s walk through the cloud architecture for AuraDB Virtual Dedicated Cloud.
+(This example covers an AuraDB Virtual Dedicated Cloud instance on AWS, but the same applies for GCP and Azure.)
+
+.Cloud Architecture
+image::cloud-architecture.png[Cloud architecture]
+
+In AuraDB Virtual Dedicated Cloud, you select the cloud provider and region of your choice, and we provision a Virtual Private Cloud (VPC) for you. 
+This VPC is dedicated exclusively to your instance—no one else has access. 
+Once the VPC is set up, you can designate one or two administrators who will receive access invitations as soon as the deal is finalized.
+
+The VPC is initially empty when provisioned. 
+It doesn’t run any Aura instances by default—you create and manage those.
+
+After signing into the Aura platform, you gain access to the Aura console. 
+A login password will be provided through the support portal. 
+Upon logging in, you’ll see an empty console with no instances yet. 
+From there, you can create Aura instances either via the console or through the Aura APIs.
+
+Every Aura instance you create is automatically deployed as a 3-node cluster across different availability zones (AZs). 
+AuraDB Virtual Dedicated Cloud architecture is only available in regions with a minimum of three availability zones. 
+Each cluster includes one leader and two followers, each running in its own zone. 
+This design ensures high availability, supporting an SLA of 3.5 and enabling self-healing during upgrades or scaling operations.
+
+All traffic between your application and your VPC—represented by the left-hand box—is encrypted at rest. 
+A secure connection is established between your VPC and the Neo4j VPC, with the option to disable public access entirely. 
+This setup allows you to create a private link for secure traffic between your VPC and the Neo4j VPC, ensuring a private, encrypted tunnel.
+
+By default, all communications between your VPC and Neo4j VPCs use the latest version of TLS, ensuring top-tier security.
+
+Key features:
+
+* All communications are secure.
+* Traffic is encrypted at rest.
+* You have the option to create private links and disable public access for an end-to-end private connection between your VPC and the VPC we provision for you.
