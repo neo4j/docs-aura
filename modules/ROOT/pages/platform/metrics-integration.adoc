@@ -61,11 +61,13 @@ Metrics for a Neo4j Aura instance are only returned if all the following are tru
 * Project has instances of types `Enterprise (Virtual Dedicated Cloud)` or `Business Critical`.
 * The specified instance belongs to the specified project.
 
+pass:[<!-- vale Neo4j.ProductDeprecations = NO -->]
 [CAUTION]
 ====
 The legacy term `Enterprise` is still used within the codebase and API.
 However, in the Aura console and documentation, the AuraDB Enterprise project type is now known as AuraDB Virtual Dedicated Cloud.
 ====
+pass:[<!-- vale Neo4j.ProductDeprecations = YES -->]
 
 [aura-cmi-revoke-access-to-metrics]
 .Revoke access to metrics
@@ -303,7 +305,7 @@ max by(availability_zone) (neo4j_aura_cpu_usage{instance_mode="PRIMARY"}) / sum 
 ----
 
 .Chart shows CPU usage of primaries by availability zone
-image::primaries_az_plot.png[]
+image::primaries_az_plot.png["Primaries by availability zone"]
 
 [aura-cmi-metric_definitions]
 == Metric definitions
