@@ -3,6 +3,13 @@
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
+This tutorial is cloud agnostic:
+
+* Private Service Connect = Google Cloud platform
+* PrivateLink = AWS
+* Private Link = Azure
+
+
 In this tutorial, we’ll walk through the process of setting up a private link connection to securely connect your application to an AuraDB Virtual Dedicated Cloud environment. 
 A private link provides secure network connectivity between your application and AuraDB without exposing traffic to the public internet.
 Refer to Figure 1 for a visual representation of the network package traffic flow.
@@ -26,6 +33,10 @@ From there, the private link endpoint forwards the network connection to the pri
 . The private ingress extracts the dbid from the FQDN and directs the connection to the appropriate Aura instance (dbid: abcd1234).
 . The Aura instance responds by sending the Neo4j cluster routing table back to the application, which contains information about the available nodes and their roles (see Table 1 below).
 . The application then selects an appropriate node to execute a read or write transaction. In the case of a write transaction, the application sends the transaction to abcd1234-core-1.production-orch-0000.neo4j.io.
+
+Based on the type of transaction (Read or Write) the driver selects an appropriate node to execute a read or write transaction. 
+The code has the ability to direct the Tx to the appropriate nodes this way.
+
 . Similar to before, the Cloud Virtual Network private DNS is queried and resolves the FQDN to 10.10.10.10. The application's connection is sent to the private link endpoint (10.10.10.10), which forwards the network connection to the private ingress through the private link. 
 The private ingress then directs the connection to the Aura instance with dbid: abcd1234.
 . Finally, the write transaction is received and executed within the Aura instance with dbid: abcd1234.
@@ -45,7 +56,11 @@ The private ingress then directs the connection to the Aura instance with dbid: 
 
 == Summary
 
-When you create a private service using the Aura console, the private ingress becomes accessible to all tenants within the cloud provider’s VPC. 
+When you create a private service using the Aura console, the private ingress becomes accessible to all projects within the cloud provider’s VPC. 
+
+*The private link maps to an Orchestra not a tenant. 
+We could have multiple orchestras (usually multiple regions)*
+
 For example, if you’re using AWS, you can identify this private ingress by its unique name in your AWS environment.
 
 First, create a private ingress service in Aura VPC, then create a cloud endpoint and try to connect to the service we have provided, then this private link will be accepted.
@@ -67,10 +82,8 @@ However, the private ingress only accepts packets from a recognized FQDN.
 
 For example, http://abcd1234-core-1.production-orch-0000.neo4j.io/
 
-It will arrive when the package reaches out to this private ingress, our ingress will find out the DBid in Apicurio and then send the package to the related Aura instance. 
-
 There might be some other instances running in the same customer Aura environment. 
-We use this APQDN to figure out which Aura instance it is trying to reach.
+We use this Access Point QDN (Qualified Domain Name) to figure out which Aura instance it is trying to reach.
 *Important: We will not accept the IP address. 
 Only the FQDN will be accepted.*
 
@@ -97,3 +110,10 @@ If you still want applications running on your on-prem data center can reach out
 
 To enable communication from on-prem data centers, the first step is to create a cloud VPN or another type of secure connection between your on-prem network and the VPC that has the private link endpoint running in it. 
 You also need to configure your DNS server so that traffic directed to the FQDN is forwarded to the endpoint’s IP address.
+
+== Other info
+
+* Database upload is not possible whilst the public traffic is disabled.
+* Bloom - We display it clearly outside the VPC, and we should explain that to access it the VPN needs to be established in "split-mode"
+* [BONUS] LOAD CSV - Can we show / display the path used ? this will help customers understand how and where to place their data
+* [BONUS] SSO - I'd love us to show what route is necessary to reach the IdP
