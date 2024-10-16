@@ -757,7 +757,8 @@ m| MAX
 | neo4j_cluster_raft_is_leader
 | Description
 | Is this server the leader? Track this for each rafted member in the cluster. 
-It reports 0 if it is not the leader and 1 if it is the leader. The sum of all of these should always be 1. 
+It reports 0 if it is not the leader and 1 if it is the leader. 
+The sum of all of these should always be 1. 
 However, there are transient periods in which the sum can be more than 1 because more than one member thinks it is the leader. 
 Action may be needed if the metric shows 0 for more than 30 seconds.
 | Metric type
