@@ -15,26 +15,26 @@ The Aura Console runs in a separate VPC, separate from the rest of Aura.
 
 == Network access
 
-An Aura instance can be publicly available, completely private, or both. 
+An Aura instance can be publicly available, completely private, or both.
 To configure this, you need to be authorized to access the part of the infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC.
 This includes the ability to connect over the cloud provider's private link and private endpoint.
 
-If your Aura instances are public, traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password. 
+If your Aura instances are public, traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password.
 
 For your instance to be completely private, turn public traffic off, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
-The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create. 
+The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create.
 
 To select network access settings go to *Aura Console* > *Security* > *Network Access*.
 
 == Private endpoints
 
-Private endpoints are network interfaces inside your own VPC, which can only be accessed within your private network. 
-The cloud provider connects them over their network to Neo4j Aura. 
+Private endpoints are network interfaces inside your own VPC, which can only be accessed within your private network.
+The cloud provider connects them over their network to Neo4j Aura.
 By design they are not exposed to the public internet, ensuring that critical services are accessible only through private, secure networks.
 
-A single private link connection applies to all instances in a region. 
-So if you've set one up for `us-east-1` then those network connections will apply to all instances in that region. 
-You can set up a second private link connection to applications that are hosted in a second region (for example `us-west-1`) but still housed inside the same Aura tenant.
+A single private link connection applies to all instances in a region.
+So if you've set one up for `us-east-1` then those network connections will apply to all instances in that region.
+You can set up a second private link connection to applications that are hosted in a second region (for example `us-west-1`) but still housed inside the same Aura project.
 
 === AWS private endpoints
 

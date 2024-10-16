@@ -23,24 +23,24 @@ Analyzing the metrics data allows users to:
 [aura-cmi-process-overview]
 == Process overview
 
-image::process.png[]
+image::process.svg[]
 
 [aura-cmi-steps]
 == Detailed steps
 
-. Log in to Aura as tenant admin.
+. Log in to Aura as project admin.
 . Make sure there is a dedicated Aura user to use for fetching metrics.
 You can either:
  ** Create a new user:
   ... In https://console.neo4j.io/#user-management["User Management"^] of Neo4j Aura, invite a new user, selecting "Metrics Integration Reader" as a role.
 image:invite_user.png[]
   ... Follow the invitation link and log in to Neo4j Aura.
-  ... Confirm the tenant membership.
+  ... Confirm the project membership.
  ** Or you can find an existing user in https://console.neo4j.io/#user-management["User Management"^] and change its role to "Metrics Integration Reader" +
 +
 [NOTE]
 ====
-Capabilities of users with the role "Metrics Integration Reader" are limited to fetching the metrics and getting a read-only view of the tenant.
+Capabilities of users with the role "Metrics Integration Reader" are limited to fetching the metrics and getting a read-only view of the project.
 ====
 . Ensure you are logged in to Aura as the user selected in the previous step.
 In https://console.neo4j.io/#account["Account Details"^], create new Aura API credentials.
@@ -58,20 +58,22 @@ Metrics for a Neo4j Aura instance are only returned if all the following are tru
 
 * `Authorization` header of the metrics request contains a valid token.
 * The token was issued for an Aura user with "Metrics Integration Reader" role.
-* Tenant has instances of types `Enterprise (Virtual Dedicated Cloud)` or `Business Critical`.
-* The specified instance belongs to the specified tenant.
+* Project has instances of types `Enterprise (Virtual Dedicated Cloud)` or `Business Critical`.
+* The specified instance belongs to the specified project.
 
+pass:[<!-- vale Neo4j.ProductDeprecations = NO -->]
 [CAUTION]
 ====
-The legacy term `Enterprise` is still used within the codebase and API. 
-However, in the Aura console and documentation, the AuraDB Enterprise tenant type is now known as AuraDB Virtual Dedicated Cloud.
+The legacy term `Enterprise` is still used within the codebase and API.
+However, in the Aura console and documentation, the AuraDB Enterprise project type is now known as AuraDB Virtual Dedicated Cloud.
 ====
+pass:[<!-- vale Neo4j.ProductDeprecations = YES -->]
 
 [aura-cmi-revoke-access-to-metrics]
 .Revoke access to metrics
 
-To revoke a user's access to metrics of a specific tenant, remove the user from that tenant in https://console.neo4j.io/#user-management["User Management"^].
-After that, the user still exists but its connection to the tenant is removed.
+To revoke a user's access to metrics of a specific project, remove the user from that project in https://console.neo4j.io/#user-management["User Management"^].
+After that, the user still exists but its connection to the project is removed.
 
 [NOTE]
 ====
@@ -203,26 +205,32 @@ For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent 
 .Aura API for Metrics Integration
 
 * Aura API supports fetching metrics integration endpoints using:
- ** endpoint `+/tenants/{tenantId}/metrics-integration+` (for tenant metrics)
+ ** endpoint `+/tenants/{tenantId}/metrics-integration+` (for project metrics)
  ** JSON property `metrics_integration_url` as part of `+/instances/{instanceId}+` response (for instance metrics)
 * Reference: link:https://neo4j.com/docs/aura/platform/api/specification/[Aura API Specification^]
+
+[NOTE]
+====
+_Project_ replaces _Tenant_ in the console UI and documentation.
+However, in the API, `tenant` remains the nomenclature.
+====
 
 [aura-cmi-cli-for-metrics-integration]
 .Aura CLI for Metrics Integration
 
-* Aura CLI has a subcommand for `tenants` command to fetch tenant metrics endpoint:
+* Aura CLI has a subcommand for `tenants` command to fetch project metrics endpoint:
 +
 [source]
 ----
-aura tenants get-metrics-integration --tenant-id <YOUR_TENANT_ID>
+aura projects get-metrics-integration --tenant-id <YOUR_PROJECT_ID>
 
 # example output
 {
-  endpoint: "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_TENANT_ID>/metrics"
+  endpoint: "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_PROJECT_ID>/metrics"
 }
 
 # extract endpoint
-aura tenants get-metrics-integration --tenant-id <YOUR_TENANT_ID> | jq '.endpoint'
+aura projects get-metrics-integration --project-id <YOUR_PROJECT_ID> | jq '.endpoint'
 ----
 
 * For instance metrics endpoint, Aura CLI `instances get` command JSON output includes a new property `metrics_integration_url`:
@@ -236,10 +244,10 @@ aura instances get --instance-id <YOUR_INSTANCE_ID>
     "id": "id",
     "name": "Production",
     "status": "running",
-    "tenant_id": "YOUR_TENANT_ID",
+    "tenant_id": "YOUR_PROJECT_ID",
     "cloud_provider": "gcp",
     "connection_url": "YOUR_CONNECTION_URL",
-    "metrics_integration_url": "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_TENANT_ID>/<YOUR_INSTANCE_ID>/metrics",
+    "metrics_integration_url": "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_PROJECT_ID>/<YOUR_INSTANCE_ID>/metrics",
     "region": "europe-west1",
     "type": "enterprise-db",
     "memory": "8GB",
@@ -257,15 +265,21 @@ aura instances get --instance-id <YOUR_INSTANCE_ID> | jq '.metrics_integration_u
 
 The metrics returned by the integration endpoint are grouped based on the labels provided: `aggregation`, `instance_id`, and `database`.
 
-An Aura instance typically runs on multiple servers to achieve availability and workload scalability. 
-These servers are deployed across different Cloud Provider availability zones in the user-selected region. 
+An Aura instance typically runs on multiple servers to achieve availability and workload scalability.
+These servers are deployed across different Cloud Provider availability zones in the user-selected region.
 
-Metrics Integration supports a more granular view of the Aura instance metrics with additional data points for availability zone & instance mode combinations. 
+Metrics Integration supports a more granular view of the Aura instance metrics with additional data points for availability zone & instance mode combinations.
 This view can be enabled on demand.
 
 [NOTE]
 ====
-Contact link:https://support.neo4j.com/[Customer Support] to enable more granular metrics of instances for your tenant.
+Contact link:https://support.neo4j.com/[Customer Support] to enable more granular metrics of instances for your project.
+====
+
+[NOTE]
+====
+There may be a delay in more granular metrics being available when a new Aura instance is created.
+This is because of the way 'availability zone' data is collected.
 ====
 
 .Example metric data points
@@ -291,7 +305,7 @@ max by(availability_zone) (neo4j_aura_cpu_usage{instance_mode="PRIMARY"}) / sum 
 ----
 
 .Chart shows CPU usage of primaries by availability zone
-image::primaries_az_plot.png[]
+image::primaries_az_plot.png["Primaries by availability zone"]
 
 [aura-cmi-metric_definitions]
 == Metric definitions
@@ -723,3 +737,17 @@ This also corresponds to the median of the query execution time.
 m| MAX
 |===
 
+.Last Committed Transaction ID
+[frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
+|===
+| Metric name
+m| neo4j_database_transaction_last_committed_tx_id_total
+| Description
+| The id of the last committed transaction. 
+Track this for primary cluster members of your Aura instance. 
+It should show overlapping, ever-increasing lines and if one of the lines levels off or falls behind, it is clear that this cluster member is no longer replicating data, and action is needed to rectify the situation.
+| Metric type
+| _Counter_
+| Default aggregation
+m| MAX
+|===
