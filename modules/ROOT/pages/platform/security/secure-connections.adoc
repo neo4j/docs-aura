@@ -13,7 +13,6 @@ AuraDB offers fine-grained access control to the database with built-in Role-Bas
 All traffic passing through the Aura console, your VPC, and the VPC provisioned by Neo4j is encrypted both at rest.
 By operating within your own VPC, you are protected from external traffic.
 
-All the traffic that passes through the Aura console, the VPC, and the VPC that we provision for the customer is encrypted at rest, it is isolated. Given you are in your own VPC there is security right there - you don’t get affected by any other traffic.
 
 Features such as Single Sign-On (SSO) via OpenID Connect (OIDC) and Customer Managed Encryption (CMK) keys address the security and compliance needs of many of our customers. 
 SSO has been one of the most requested features, and CMK was introduced in 2024 which has been validated by large, trusted enterprises.
