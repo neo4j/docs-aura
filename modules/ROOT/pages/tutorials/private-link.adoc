@@ -85,8 +85,10 @@ For example, http://abcd1234-core-1.production-orch-0000.neo4j.io/
 
 There might be some other instances running in the same customer Aura environment. 
 We use this Access Point QDN (Qualified Domain Name) to figure out which Aura instance it is trying to reach.
-*Important: We will not accept the IP address. 
-Only the FQDN will be accepted.*
+[IMPORTANT]
+====
+Only FQDN is accepted and **not** the IP address.
+====
 
 == Private DNS
 
