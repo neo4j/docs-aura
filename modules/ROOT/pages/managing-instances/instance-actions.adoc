@@ -191,11 +191,12 @@ There is no way to recover data from a deleted Aura instance.
 == Mark an instance as production
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDB-Business-Critical[]
 
-Add a `production` label to a mission critical database instance in Aura Virtual Dedicated Cloud. 
+Admins can mark a database instance as `production` in AuraDB Virtual Dedicated Cloud and AuraDB Business Critical.
 
-* Additional monitoring care for a mission critical production database instance from our team of SRE experts
-* Frictionless engagement with Customer Support in case of issues during weekend, bank holidays and more general 'out of hours' periods
-* Updates are rolled out last to these database instances, so that any impact from updates can be first observed across less critical databases
+When Neo4j updates Aura Database Versions, instances marked as `production` are last to have the Aura Database Version updated. Because updates are applied to these database instances after other database instances recieve updates, you can monitor any potential impact on less critical databases first.
 
-image::productionlabel.png[]
+After marking the instance as `production` the label is applied immediately, and all instance actions (such as pause or clone) will be temporarily unavailable while the instance is set to `production` on the Neo4j side. This should only take a few moments.
+
+To mark an instance as `production` click the more actions (three dots) on the instance card, then "Mark as production".
