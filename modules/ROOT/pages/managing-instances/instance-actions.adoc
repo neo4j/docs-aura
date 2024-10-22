@@ -198,6 +198,6 @@ Admins can mark a database instance as `production` in AuraDB Virtual Dedicated 
 When Neo4j updates Aura Database versions, instances marked as `production` are last to have the Aura Database version updated. 
 Because updates are applied to these database instances after other database instances receive updates, you can monitor any potential impact on less critical instances first.
 
-After marking the instance as `production`, the label is applied immediately, and all instance actions (such as pause or clone) are temporarily unavailable while the instance is set to `production` on the Neo4j side. 
+After marking the instance as `production` the label is applied immediately, and all instance actions (such as pause or clone) are temporarily unavailable while the instance is set to `production` in the Neo4j backend. 
 
 Use the more menu (three dots) on the instance card to mark it as `production`.
