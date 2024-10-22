@@ -55,10 +55,23 @@ For more information see the xref:auradb/importing/import-database.adoc#_neo4j_a
 === Clone an instance protected by CMK
 
 To clone an instance protected by a Customer Managed Key, the key must be valid and available to Aura.
-The cloned instance, by default, uses the available Customer Managed Key for that region and product.
+If the same CMK does not exist in the destination region and product, the cloned instance must be encrypted with an available CMK for that region and product.
 
-It is best practice to use the same CMK key as the instance it’s being cloned from. 
-You can override this to use another CMK key--but you can not use the Neo4j Managed Key.
+It is best practice to use the same Customer Managed Key as the instance it’s being cloned from. 
+You can override this to use another Customer Managed Key - but you can not use the Neo4j Managed Key.
+
+When cloning an instance that is encrypted with a Customer Managed Key, specific restrictions apply when using the API.
+Below are the details and possible errors that you may encounter depending on the cloning method and key configurations.
+
+.Summary of cloning restrictions
+|===
+| Cloning method   | Destination key            | Result
+
+| **Console & API**          | Same CMK as source instance                            | Cloning allowed.
+| **Console**         | Different CMK than source instance                       | Cloning allowed. Warning message shown.
+| **Console**         | Neo4j Managed Key                        | Cloning blocked. Error message shown.
+| **API**         | Different CMK than source instance, or Neo4j Managed Key                        | Cloning blocked. Error message shown.
+|===
 
 === Remove a CMK from Aura
 
