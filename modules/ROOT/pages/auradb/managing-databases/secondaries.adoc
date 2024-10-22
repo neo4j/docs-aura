@@ -22,7 +22,7 @@ For example, if your database has three secondaries and you pause it, it will re
 ====
 Secondaries can take some time to become operational after they are created, and there may be delays when the system is busy.
 Causal consistency is maintained among your secondaries with the use of bookmarks and these also ensure that returned data is correct and up-to-date.
-However, if the database is under heavy load, queries using bookmarks may also experience delays in adding Secondaries.
+However, if the database is under heavy load, queries using bookmarks may also experience delays in adding secondaries.
 See link:https://neo4j.com/docs/operations-manual/current/clustering/introduction/#causal-consistency-explained[Operations Manual -> Causal consistency] for more information.
 ====
 
