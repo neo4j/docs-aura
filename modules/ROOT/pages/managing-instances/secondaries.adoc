@@ -1,0 +1,38 @@
+[[auradb-secondaries]]
+= Secondaries
+:description: This section introduces secondaries for scaling out read workloads.
+
+label:AuraDB-Virtual-Dedicated-Cloud[]
+
+A secondary is a read-only copy of your Aura database.
+Secondaries help you scale the read query workload your AuraDB instance is able to serve, by spreading the load evenly across multiple copies of the data.
+This increases the maximum read query throughput of a database while preventing bottlenecks.
+
+To ensure high availability, secondaries are distributed across availability zones.
+They are however, only available within the same cloud region as the primary Aura instance.
+
+Up to 15 secondaries can be added per AuraDB instance, which increases the read capacity to handle read-heavy workloads significantly.
+Secondaries can be added, managed, and removed through the Aura console or the Aura API.
+Currently, they are static and do not support elastic or auto-scaling behavior.
+
+The secondary count is retained when the database is paused and resumed.
+For example, if your database has three secondaries and you pause it, it will resume with three secondaries.
+
+[NOTE]
+====
+Secondaries can take some time to become operational after they are created, and there may be delays when the system is busy.
+Causal consistency is maintained among your secondaries with the use of bookmarks and these also ensure that returned data is correct and up-to-date.
+However, if the database is under heavy load, queries using bookmarks may also experience delays in adding Secondaries.
+See link:https://neo4j.com/docs/operations-manual/current/clustering/introduction/#causal-consistency-explained[Operations Manual -> Causal consistency] for more information.
+====
+
+== Edit secondary count using the console
+
+Once the feature is enabled for your project, you can see the secondary count set to zero on an instance card.
+To edit the number of secondaries, use the *More* menu (three dots) on the card.
+
+image::secondary-count-console.png[width=400]
+
+== Edit secondary count using the Aura API
+
+Use the `/instances/\{instanceId}` endpoint to edit the number of secondaries.
