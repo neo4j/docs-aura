@@ -18,6 +18,15 @@ Currently, they are static and do not support elastic or auto-scaling behavior.
 The secondary count is retained when the database is paused and resumed.
 For example, if your database has three secondaries and you pause it, it will resume with three secondaries.
 
+[IMPORTANT]
+====
+Secondaries may take some time to become operational after they are created.
+This can lead to a delay in adding secondaries to your instance, and the delay can be longer in a busy system.
+Causal consistency is maintained in your cluster with the use of bookmarks and these also ensure that returned data is correct and up-to-date.
+However, if the cluster is under heavy load, queries using bookmarks may also experience delays.
+See link:https://neo4j.com/docs/operations-manual/current/clustering/introduction/#causal-consistency-explained[Operations Manual -> Causal consistency] for more information.
+====
+
 == Edit secondary count using the console
 
 Once the feature is enabled for your project, you can see the secondary count set to zero on an instance card.
