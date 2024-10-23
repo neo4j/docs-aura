@@ -387,6 +387,22 @@ This helps avoid unwanted pauses for garbage collection.
 m| MAX
 |===
 
+.Page Cache Hit Ratio (per minute)
+[frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
+|===
+| Metric name
+m| neo4j_dbms_page_cache_hit_ratio_per_minute
+| Description
+| The percentage of times data required during query execution was found in memory vs needing to be read from disk.
+Ideally the whole graph should fit into memory, and this should consistently be between 98% and 100%.
+If this value is consistently or significantly under 100%, check the page cache usage ratio to see if the graph is too large to fit into memory.
+A high amount of insert or update activity on a graph can also cause this value to change.
+| Metric type
+| _Gauge_
+| Default aggregation
+m| AVG
+|===
+
 .Page Cache Usage Ratio
 [frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
 |===
