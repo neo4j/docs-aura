@@ -1,0 +1,75 @@
+[[aura-monitoring]]
+= Migration Readiness Report
+:description: This section describes migration readiness report for upgrading from aura 4 to latest.
+:page-aliases: migration-readiness.adoc
+
+[NOTE]
+====
+The Migration Readiness Report is only available for Instances on Neo4j version
+4.
+
+You can access the report for any version 4 instance via the link through the "Migration recommended" label on the Instance and Console pages.
+====
+
+== Overview
+This tool advises how to prepare an AuraDB v4 instance to be ready to migrate to AuraDB v5. It reports current application queries, drivers, and database objects that would stop or hinder you from migrating to AuraDB v5 by providing information based on your recent usage history.
+In addition, you can also see https://neo4j.com/docs/aura/tutorials/upgrade/[this page] for details on each identified issue and how to address it.
+
+The main categories of issues that the Migration Readiness Report deals with are
+
+. Cypher deprecations
+. Deprecated driver usage
+. Deprecated index types
+
+The report page has a section for each of these categories and a chart at the top titled "Deprecations and query timeline." This document will explain each section, but the first section is vital to controlling the others and will be detailed in the following section.
+
+=== Control over the time window
+image::mrr-deprecation-query-timeline.png[]
+In the "Deprecations and query timeline" section, you will see a chart displaying the usage of deprecated Cypher features and constructs and a general measure of query load on that system (query rate). You can disable and enable the data series by clicking on the legend. This can be helpful if you want to focus on something specific temporarily. The time frame can be controlled in one of two ways:
+
+* Zoom in by clicking on the chart area (start time) and drag while holding the mouse button down until the end time you want to select.  The chart will then zoom into the desired time frame.
+* Use the time selector in the top right corner of the chart. The chart will update with the desired time frame. The maximum time frame is 7 days of history.
+
+To get back to the time range that was previously selected, double-click the chart area.
+Please be aware that while the chart can display up to 7 days, the details for Cypher deprecations and deprecated driver usage can be retrieved for a maximum time range of  24 hours.
+
+== Cypher deprecations
+image::mrr-fetch-logs.png[width=250]
+After selecting a time frame of at most 24 hours, you can click the "Fetch deprecation logs" button in this section. Setting filters in the following popup window is optional but helpful if you want to see only specific entries. You can filter on:
+
+* Name of the deprecation
+* The user that executed the query
+* Driver that was used to execute the query
+* The application name that executed the query (if set)
+* The initiation type of the query
+* The query text or parts of it
+
+Clicking on the "Fetch" button in the popup will populate the report's table with the applicable data.
+
+image::mrr-deprecation-table.png[]
+
+Each row in the table represents a query in the selected timeframe that must be changed to seamlessly migrate to the latest Aura version. All executions of the same query are aggregated into one row (see also the "Count" column). At the start of each row, clicking on the magnifying glass gives you a popup with more information about the query and suggestions on dealing with each issue. It also provides relevant links to the documentation for each deprecation.
+
+image::mrr-resolution-guide.png[width=600]
+
+The last column in the table of Cypher deprecations links to a view of this specific query in the Aura Query Log Analyzer tool, which can provide information on each execution of the selected query. The tool can only view queries on non-system databases.
+
+image::mrr-show-query-log-button.png[width=400]
+
+== Deprecated driver usage
+image::mrr-fetch-driver-stats.png[width=400]
+After selecting a time frame of at most 24 hours, you can click the "Fetch driver statistics" button in this section. By default, the filters in the popup are set to show only driver usage with potential issues in any database, including the system database. You can change those freely to see all driver usage, e.g.
+
+Clicking on the "Fetch" button in the popup will populate the report's table with the applicable data. Depending on the type of client accessing the Neo4j database, links are provided in the column “Latest version” to help with the upgrade.
+
+image::mrr-driver-table.png[]
+
+Like the Cypher deprecations table, the last column links to a view of this specific driver's executed queries in the Aura Query Log tool. The tool can provide information on each query execution in which the selected driver was used. The tool can only view queries on non-system databases.
+
+=== Deprecated index types
+This section provides information on how to deal with deprecated indexes that may be used in version 4 but need to be handled before or while moving to version 5.
+
+This part involves manually running a provided Cypher query on your database to identify the deprecated indexes and then deciding how to best deal with them. Further enhancements to this feature will be provided in the future.
+
+=== Next steps
+After implementing all the recommended fixes from the report, you can now test the migration. To do that, please follow the steps outlined in the docs after pressing the "Test migration" button at the bottom of the page.
