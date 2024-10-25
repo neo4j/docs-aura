@@ -59,7 +59,7 @@ The private ingress then directs the connection to the Aura instance with dbid: 
 
 When you create a private link using the Aura console, the private ingress becomes accessible to all projects within the cloud provider’s VPC. 
 
-*The private link maps to an Orchestra not a tenant. 
+*The private link maps to an Orchestra, not a project. 
 We could have multiple orchestras (usually multiple regions)*
 
 For example, if you’re using AWS, you can identify this private ingress by its unique name in your AWS environment.
