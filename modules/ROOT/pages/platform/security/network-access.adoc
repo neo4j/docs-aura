@@ -1,0 +1,77 @@
+[[aura-reference-network-access]]
+= Network access
+:description: VPC boundaries enable you to operate within an isolated section of the service.
+
+== VPC isolation
+
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDS-Enterprise[]
+
+AuraDB Virtual Dedicated Cloud and AuraDS Enterprise run in a dedicated cloud Account (AWS), Subscription (Azure) or Project (GCP) to achieve complete isolation for your deployment.
+
+The Aura Console runs in a separate VPC, separate from the rest of Aura.
+Additional VPC boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected. 
+
+== Network access
+
+An Aura instance can be publicly available, completely private, or both.
+To configure this, you need to be authorized to access the part of the infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC.
+This includes the ability to connect over the cloud provider's private link and private endpoint.
+
+If your Aura instances are public, traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password.
+
+For your instance to be completely private, turn public traffic off, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
+The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create.
+
+To select network access settings go to *Aura Console* > *Security* > *Network Access*.
+
+== VPCs on AuraDB Virtual Dedicated Cloud
+
+In AuraDB Virtual Dedicated Cloud, you select the cloud provider and region of your choice, and we provision a Virtual Private Cloud (VPC) for you. 
+This VPC is dedicated exclusively to your instance — no one else has access. 
+Once the VPC is set up, you can designate one or two administrators who will receive access invitations as soon as the deal is finalized.
+
+The VPC is initially empty when provisioned. 
+It doesn’t run any Aura instances by default — you create and manage those.
+
+After signing into the Aura platform, you gain access to the Aura console. 
+A login password will be provided through the support portal. Upon logging in, you’ll see an empty console with no instances yet. 
+From there, you can create Aura instances either via the console or through the Aura API.
+
+Every Aura instance you create is automatically deployed as a 3-node cluster across different availability zones (AZs). 
+AuraDB Virtual Dedicated Cloud architecture is only available in regions with a minimum of three availability zones. Each cluster includes one leader and two followers, each running in its own zone. 
+This design ensures high availability, supporting an SLA of 3.5 and enabling self-healing during upgrades or scaling operations.
+
+image::cloudarchitecture.png["Cloud Architecture", title="Cloud Architecture"]
+
+All traffic between your application and your VPC (represented by the left-hand box in Fig.1) is encrypted at rest. A secure connection is established between your VPC and the Neo4j VPC, with the option to disable public access entirely. 
+This setup allows you to create a private link for secure traffic between your VPC and the Neo4j VPC, ensuring a private, encrypted tunnel.
+
+By default, all communications between your VPC and Neo4j VPCs use the latest version of xref:platform/security/secure-connections/#_supported_tls_cipher_suites[TLS].
+
+=== Key features
+
+* All communications are secure.
+* Traffic is encrypted at rest.
+* You have the option to create private links and disable public access for an end-to-end private connection between your VPC and the VPC we provision for you.
+
+== Supported TLS cipher suites
+
+For additional security, client communications are carried via TLS v1.2 and TLS v1.3.
+
+AuraDB has a restricted list of cipher suites accepted during the TLS handshake, and does not accept all of the available cipher suites.
+The following list conforms to safety recommendations from IANA, the OpenSSL, and GnuTLS library.
+
+TLS v1.3:
+
+* `TLS_CHACHA20_POLY1305_SHA256 (RFC8446)`
+* `TLS_AES_128_GCM_SHA256 (RFC8446)`
+* `TLS_AES_256_GCM_SHA384 (RFC8446)`
+
+TLS v1.2:
+
+* `TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (RFC5288)`
+* `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (RFC5289)`
+* `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5289)`
+* `TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (RFC7905)`
+* `TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5288)`

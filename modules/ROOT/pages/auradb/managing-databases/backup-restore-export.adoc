@@ -85,6 +85,10 @@ In the console, it's possible to:
 
 == Retention periods
 
+Add intro paragraph here!
+
+Combine the Scheduled Snapshot columns?
+
 .The current Neo4j Aura Snapshot retention periods by tier
 [cols="1,1,1,1,1", options="header"]
 |===
@@ -104,22 +108,16 @@ In the console, it's possible to:
 | 30 days (7 days)
 | 30 days (30 days)
 
-| AuraDS Professional
-| 4, 5
-| Full retention: 1
-| 9 days (7 days)
-| 180 days (180 days)
-
 | AuraDB Business Critical
 | 5
-| Full: 1, Differential: 23 footnote:differential[Differential backups only contain the new data since the last backup, and are therfore not exportable, but they are restorable for the full duration.]
+| Full: 1, Differential: 23 footnote:differential[Differential backups contain new data since the last backup. They are not exportable, but they are restorable for the full duration.]
 | 30 days (7 days)
 | 30 days (30 days)
 
 .2+| AuraDB Virtual Dedicated Cloud
 | 4
 | Full retention: 1,
-Short retention: 3 footnote:shortretention[Short retentions backups are the same as full backups, only with a shorter lifespan.]
+Short retention: 3 footnote:shortretention[Short retentions backups are the same as full backups, only with a shorter lifespan. (only 1 of the six-hourly snapshot for VDC v4 DBs are available for 60 days (exportable for 14 days), the rest are only available and exportable for 7 days.)] 
 | Full retention: 60 (14), Short retention: 7 (7) footnote:shortretention[]
 | 90 days (90 days)
 
@@ -128,15 +126,62 @@ Short retention: 3 footnote:shortretention[Short retentions backups are the same
 | Full: 60 (14), Differential: 60 (N/A)
 | 90 days (90 days)
 
-.2+| AuraDS Enterprise
-| 4
-| Full retention: 1
-| Full retention: 16 days (7 day)
-| 180 days (180 days)
-
 | 5
 | Full: 1
 | Full: 16 days (7 days)
 | 180 days (180 days)
 |===
 
+== Retention periods
+
+The following table outlines the snapshot retention periods for different tiers of Neo4j Aura. Snapshots are automated backups that can be used to restore databases to a specific point in time, offering a safety net against data loss. Depending on the AuraDB tier and version, the frequency of snapshots and the duration for which they are retained and exportable vary. This guide provides details on how long snapshots remain restorable and exportable, helping you choose the best plan for your data recovery needs.
+
+
+.The current Neo4j Aura Snapshot retention periods by tier
+[cols="1,1,1,1", options="header"]
+|===
+| Tier | Aura version | Snapshot frequency | Restorable days (Exportable days)
+
+| AuraDB Free
+| 4, 5
+| N/A
+| 30 days (30 days)
+
+| AuraDB Professional
+| 4, 5
+| Daily: 1
+| 30 days (7 days)
+
+| AuraDB Business Critical
+| 5
+| Daily: 1, Differential: 23 footnote:differential[Differential backups contain new data since the last backup. They are not exportable, but they are restorable for the full duration.]
+| 30 days (7 days)
+
+.2+| AuraDB Virtual Dedicated Cloud
+| 4
+| Daily: 1, Six-hourly: 3 footnote:sixhourly[Only 1 of the six-hourly snapshots is available for 60 days (exportable for 14 days), while the remaining snapshots are available and exportable for 7 days.]
+| 60 days (14 days), 7 days (7 days)
+
+| 5
+| Daily: 1, Differential: 23 footnote:differential[]
+| 60 days (14 days), Differential: 60 days (N/A)
+
+| 5
+| Daily: 1
+| 16 days (7 days)
+| 180 days (180 days)
+|===
+
+
+
+
+= Push to cloud
+
+The `neo4j-admin push-to-cloud` command uploads a database or a dump into a Neo4j Aura instance. +
+
+[NOTE]
+====
+To upload a 4.3 database in Aura, first upgrade it to 4.4 and then use the `neo4j-admin push-to-cloud command`.
+====
+
+The following table shows the compatibility between the dump version that you want to upload and the version of the Neo4j Aura instance.

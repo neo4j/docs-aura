@@ -1,30 +1,6 @@
-[[aura-reference-security]]
-= Secure connections
-:description: VPC boundaries enable you to operate within an isolated section of the service.
-
-== VPC isolation
-
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Enterprise[]
-
-AuraDB Virtual Dedicated Cloud and AuraDS Enterprise run in a dedicated cloud Account (AWS), Subscription (Azure) or Project (GCP) to achieve complete isolation for your deployment.
-
-Additional VPC boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
-
-The Aura Console runs in a separate VPC, separate from the rest of Aura.
-
-== Network access
-
-An Aura instance can be publicly available, completely private, or both.
-To configure this, you need to be authorized to access the part of the infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC.
-This includes the ability to connect over the cloud provider's private link and private endpoint.
-
-If your Aura instances are public, traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password.
-
-For your instance to be completely private, turn public traffic off, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
-The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create.
-
-To select network access settings go to *Aura Console* > *Security* > *Network Access*.
+[[aura-reference-private-endpoints]]
+= Private endpoints
+:description: Describes how to set up AWS, GCP and Azure private endpoints
 
 == Private endpoints
 
@@ -213,24 +189,3 @@ To enable private endpoints using Azure Private Link:
 . Select *New network access configuration* and follow the setup instructions.
 
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
-
-== Supported TLS cipher suites
-
-For additional security, client communications are carried via TLS v1.2 and TLS v1.3.
-
-AuraDB has a restricted list of cipher suites accepted during the TLS handshake, and does not accept all of the available cipher suites.
-The following list conforms to safety recommendations from IANA, the OpenSSL, and GnuTLS library.
-
-TLS v1.3:
-
-* `TLS_CHACHA20_POLY1305_SHA256 (RFC8446)`
-* `TLS_AES_128_GCM_SHA256 (RFC8446)`
-* `TLS_AES_256_GCM_SHA384 (RFC8446)`
-
-TLS v1.2:
-
-* `TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (RFC5288)`
-* `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (RFC5289)`
-* `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5289)`
-* `TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (RFC7905)`
-* `TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5288)`
