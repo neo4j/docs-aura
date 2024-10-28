@@ -214,6 +214,50 @@ To enable private endpoints using Azure Private Link:
 
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
 
+== Private links
+
+This private link section is cloud-agnostic and therefore applicable to all clouds. 
+A private link provides secure network connectivity between your application and AuraDB without exposing traffic to the public internet.
+
+The term “private link” refers to:
+
+* Private Service Connect = Google Cloud platform
+* PrivateLink = AWS
+* Private Link = Azure
+
+The following steps explain the process of establishing a private link connection to securely connect your application to an AuraDB Virtual Dedicated Cloud environment. 
+
+[NOTE]
+======
+The dbid: abcd1234 and orch-id: 0000 are used in this example. 
+These are different in your AuraDB Virtual Dedicated Cloud environment.
+======
+
+. The application initializes a driver connection to neo4j+s://abcd1234.production-orch-0000.neo4j.io.
+. The network layer then queries the DNS server to resolve the fully qualified domain name (FQDN) (in this case, abcd1234.production-orch-0000.neo4j.io) to its corresponding IP address.
+. The Cloud Virtual Network private DNS is queried, and it resolves the FQDN to 10.10.10.10, based on the wildcard DNS A record created: *.production-orch-0000.neo4j.io -> 10.10.10.10
+. The application's connection is directed to 10.10.10.10, which is the private link endpoint. 
+From there, the private link endpoint forwards the network connection to the private ingress through the private link.
+. The private ingress extracts the dbid from the FQDN and directs the connection to the appropriate Aura instance (dbid: abcd1234).
+. The Aura instance responds by sending the Neo4j cluster routing table back to the application, which contains information about the instances and their roles.
+. Based on the type of transaction (read or write) the driver selects an appropriate instance to execute a read or write transaction. The code has the ability to direct the transaction to the appropriate instances this way.
+. Similar to before, the Cloud Virtual Network private DNS is queried and resolves the FQDN to 10.10.10.10. The application's connection is sent to the private link endpoint (10.10.10.10), which forwards the network connection to the private ingress through the private link. 
+The private ingress then directs the connection to the Aura instance with dbid: abcd1234.
+. Finally, the write transaction is received and executed within the Aura instance with dbid: abcd1234.
+
+.Available instances and their roles
+[cols="1,1"]
+|===
+|abcd1234.production-orch-0000.neo4j.io
+|role: write
+
+|abcd1234.production-orch-0000.neo4j.io
+|role: read
+
+|abcd1234.production-orch-0000.neo4j.io
+|role: read
+|=== 
+
 == Supported TLS cipher suites
 
 For additional security, client communications are carried via TLS v1.2 and TLS v1.3.
