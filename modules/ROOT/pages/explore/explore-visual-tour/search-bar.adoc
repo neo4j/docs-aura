@@ -12,6 +12,9 @@ When you enter a term or phrase in the search bar, Explore provides a list of su
 * Full-text search
 * Actions
 
+Additionally, you can use the co-pilot to help you write search patterns.
+See further down for more information on the co-pilot.
+
 [.shadow]
 image::search-bar-5.png[width=500]
 [.shadow]
@@ -63,6 +66,7 @@ Without any full-text index configured, Explore will fall back to searching in a
 
 See xref:explore/explore-features//full-text-search.adoc[Full-text search] tutorial topic for tips on using the full-text search option.
 
+
 == Actions
 
 Actions are phrases that trigger user-interface commands when typed in the search bar, e.g. `Clear Scene` will empty the canvas of the currently shown nodes and relationships.
@@ -79,6 +83,28 @@ This lists some of the available Actions:
 * Undo - undo the latest action.
 
 See xref:explore/explore-default-actions.adoc[Default actions and shortcuts] for the complete list and associated keyboard shortcuts.
+
+== Explore co-pilot
+
+The co-pilot is a feature to help you write search patterns.
+The search bar already offers near-natural search, but the co-pilot is even closer to natural language.
+It makes it easier to mimic Cypher queries without having to know the Cypher syntax.
+The co-pilot is available in the search bar once you have enabled it in the Org settings.
+See xref:visual-tour/index.adoc#org-settings[Organization settings] for more information.
+You enter your query in a separate bar and the co-pilot will suggest a pattern in the search bar, based on the input.
+
+[.shadow]
+image::explore-copilot.png[width=800]
+
+The co-pilot is an experimental feature and does not yet provide guaranteed accuracy.
+To get the best results, it is important to be familiar with the data model, especially the labels and relationships in the graph.
+The more detailed you are when using the co-pilot, the more accurate the results will be.
+
+For example, if you are looking for the shipper who ships the product _Ikura_, you could type "Who ships Ikura" in the co-pilot.
+That doesn't yield any results so you need to be more specific.
+You know that _Ikura_ is a **product** and that the **shipper** is the one shipping it, so a better suggestion is "Which Shipper ships the Product Ikura".
+The main difference between the two questions for the co-pilot is that the latter includes category names, which are the labels in the graph.
+If you use the data model as a basis for your questions, you will get better results from the co-pilot.
 
 
 
