@@ -51,3 +51,30 @@ By selecting the ellipses (...) button next to a snapshot, you can:
 The compressed archive contains a *_.dump_* file that can be imported directly or pushed to the cloud.
 * *Create instance from snapshot* - Create a new AuraDS instance using the data from the snapshot.
 This opens a window where you can assign a name to the instance that will be created.
+
+== AuraDS retention periods
+
+.The current Neo4j AuraDS Snapshot retention periods by tier
+[cols="1,1,1,1,1", options="header"]
+|===
+|Tier |Aura version |Scheduled Snapshots per day |Scheduled Snapshot restorable days
+(exportable days) |On-Demand Snapshot restorable days
+(exportable days)
+
+| AuraDS Professional
+| 4, 5
+| Full retention: 1
+| 9 days (7 days)
+| 180 days (180 days)
+
+.2+| AuraDS Enterprise
+| 4
+| Full retention: 1
+| Full retention: 16 days (7 day)
+| 180 days (180 days)
+
+| 5
+| Full retention: 1
+| Full retention: 16 days (7 days)
+| 180 days (180 days)
+|===
