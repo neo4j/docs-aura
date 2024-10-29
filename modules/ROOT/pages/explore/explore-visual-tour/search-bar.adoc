@@ -91,7 +91,7 @@ The search bar already offers near-natural search, but the co-pilot is even clos
 It makes it easier to mimic Cypher queries without having to know the Cypher syntax.
 The co-pilot is available in the search bar once you have enabled it in the Org settings.
 See xref:visual-tour/index.adoc#org-settings[Organization settings] for more information.
-You enter your query in a separate bar and the co-pilot will suggest a pattern in the search bar, based on the input.
+You enter your query in a separate bar and the co-pilot suggests a pattern in the search bar, based on the input.
 
 [.shadow]
 image::explore-copilot.png[width=800]
@@ -100,8 +100,8 @@ The co-pilot is an experimental feature and does not yet provide guaranteed accu
 To get the best results, it is important to be familiar with the data model, especially the labels and relationships in the graph.
 The more detailed you are when using the co-pilot, the more accurate the results will be.
 
-For example, if you are looking for the shipper who ships the product _Ikura_, you could type "Who ships Ikura" in the co-pilot.
-That doesn't yield any results so you need to be more specific.
+For example, if you are looking for the shipper who ships the product _Ikura_, you could ask "Who ships Ikura".
+But that doesn't yield any results so you need to be more specific.
 You know that _Ikura_ is a **product** and that the **shipper** is the one shipping it, so a better suggestion is "Which Shipper ships the Product Ikura".
 The main difference between the two questions for the co-pilot is that the latter includes category names, which are the labels in the graph.
 If you use the data model as a basis for your questions, you will get better results from the co-pilot.
