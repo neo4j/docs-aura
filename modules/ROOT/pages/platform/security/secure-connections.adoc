@@ -212,6 +212,42 @@ To enable private endpoints using Azure Private Link:
 . Select *Network Access* from the sidebar menu of the Console.
 . Select *New network access configuration* and follow the setup instructions.
 
+*Configure Network Access*
+
+. Choose your product from the available options.
+. Select the appropriate region for your deployment.
+. Enter the "Target Azure Subscription ID" where you want to enable PrivateLink.
+. Enable PrivateLink by toggling the respective option.
+
+*Obtain PrivateLink Service Name*
+
+. After enabling PrivateLink, you will receive a PrivateLink service name.
+. Copy this service name and save it for later use.
+
+*Create PrivateLink Endpoint in Azure ( On your Azure Portal)*
+
+. Log in to your Azure portal.
+. Navigate to your cloud VPC and create a new PrivateLink endpoint.
+. Use the PrivateLink service name obtained in the previous step for the configuration.
+
+*Accept Endpoint in Aura Console*
+
+. Return to the Aura Virtual Dedicated Cloud Console.
+. Check for the newly created PrivateLink endpoint.
+. Accept the endpoint to complete the connection process.
+
+*Disable Public Traffic*
+
+. Before disabling public traffic, test all your application connectivity with PrivateLink to ensure everything is functioning correctly.
+. Once verified, you can disable public traffic by toggling off the public access option.
+. Note: You can always disable public traffic later if needed.
+
+*Monitor PrivateLink Status*
+
+. You can monitor the status of your PrivateLink configuration on the Aura Virtual Dedicated Cloud Console.
+Ensure that all services are running as expected and troubleshoot any issues if necessary.
+
+
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
 
 == Private links
