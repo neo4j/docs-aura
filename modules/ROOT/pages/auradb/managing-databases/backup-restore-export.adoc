@@ -76,7 +76,9 @@ Use the toggle **Show exportable only** on top of the list of snapshots to filte
 
 Neo4j Aura Enterprise automatically creates backups of each database at regular intervals.
 Aura stores the data securely in encrypted and dedicated cloud storage buckets.
+Backups are stored in the same Cloud Service Provider and region, as the instance they are associated with.
 Users access backups through the Aura console.
+
 In the console, it's possible to:
 
 * See a list of previous backups
