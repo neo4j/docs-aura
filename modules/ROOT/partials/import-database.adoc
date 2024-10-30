@@ -5,7 +5,7 @@ This process, however, only works for _.backup_ and _.dump_ files under 4GB.
 
 If the size of the _.backup_ or _.dump_ file exported from a database is greater than 4GB, you must use the <<_neo4j_admin_database_upload>> method.
 
-When importing a dump, it is highly recommended the dump is version 4.4 or higher.
+When importing a _.dump_, it is highly recommended the dump is version 4.4 or higher.
 
 For more information about backups, see xref:auradb/managing-databases/backup-restore-export.adoc[].
 
