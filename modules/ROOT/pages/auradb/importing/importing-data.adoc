@@ -47,3 +47,12 @@ For more information on Neo4j Data Importer, see the link:{neo4j-docs-base-uri}/
 ====
 You must provide your AuraDB instance password before importing from the Neo4j Data Importer.
 ====
+
+== RDFlib 
+
+RDFLib is a link:https://neo4j.com/labs/[Neo4j Labs] project which allows the import of RDF data (which can include JSON-LD) to Aura via a Python library.
+(Please note: This project is likely not supported by Neo4j engineering, and could become out of date without the docs team being notified.)
+
+The library is available at link:https://github.com/neo4j-labs/rdflib-neo4j[GitHub - neo4j-labs/rdflib-neo4j: RDFLib Store backed by neo4j + n10s]
+
+Read more about it in the blog post: link:https://medium.com/neo4j/rdflib-neo4j-a-new-era-in-rdf-integration-for-neo4j-dac9fbf93cee[Rdflib-Neo4j: A New Era in RDF Integration for Neo4j]
