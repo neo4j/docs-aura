@@ -142,4 +142,36 @@ You can expand and collapse the result frames using the *Collapse* icon.
 To remove all the frames from the stream, use the `:clear` command.
 Clearing the stream does **not** clear the history, that is done from the **Query history** drawer, as mentioned previously.
 
+== Query co-pilot
+
+The co-pilot is a feature that helps you write Cypher queries.
+It allows you to use natural language to ask the database a question, to *query* the database in other words.
+You enter your question and the co-pilot suggests a Cypher query based on your input.
+You can edit the query and run it or rephrase your question to generate a new query.
+
+When you write a question, it is automatically augmented with the current database schema, which provides the LLM with the right context.
+Being familiar with the database schema helps you write questions that are more likely to generate accurate Cypher queries.
+
+[TIP]
+====
+If you need a reminder what your datamodel looks like, you can use the procedure `CALL db.schema.visualization()` for a visual representation of your database.
+====
+
+The co-pilot is available from the Cypher editor once you have enabled it in the Org settings.
+See xref:visual-tour/index.adoc#org-settings[Organization settings] for more information.
+
+[.shadow]
+image::query-copilot.png[width=800]
+
+The co-pilot is an experimental feature and is not guaranteed to always generate accurate Cypher queries.
+It is recommended to review the generated query before running it, especially if the query is meant to write to the database.
+
+Some known limitations include:
+
+* Incorrect relationship direction.
+* Using deprecated Cypher syntax.
+* Tendency to not return relationships.
+
+
+
 
