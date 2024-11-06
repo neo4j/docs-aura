@@ -12,30 +12,15 @@ It is available for AuraDB instances with more than 4GB of memory.
 Enable vector optimization using a toggle during instance setup. 
 This configuration may increase memory use, which could impact performance for other queries.
 
-== Enabling vector optimization
+You can enable vector optimization during instance creation for instances of 4GB RAM or higher and only for Neo4j 5.
+Vector optimization is available across all supported providers and regions.
 
-Enable vector optimization during *instance creation* under the following conditions:
+The toggle to enable vector optimization is available under *Additional settings*.
+You can view the current vector configuration status in *Instance Details*.
 
-- *Minimum instance size*: 4GB RAM or higher
-- *Supported version*: Neo4j 5 only
-- *Cloud provider and region*: Available across all supported providers and regions
+If you lower the instance size below 4GB, vector optimization is disabled automatically.
 
-=== Steps to enable vector optimization
+If you clone your instance to a new instance, the new instance inherits the vector optimization settings of the original instance.
+But if you clone to an existing instance, it *does not* inherit the original instance's vector optimization settings.
 
-. *Start instance creation*: Choose your AuraDB tier and instance size. (Only instances *4GB and above* support vector optimization.)
-. *Additional settings*: After selecting the instance details, expand *Additional Settings* to discover the *Vector-optimized configuration* toggle.
-
-==== Configuration status in instance details
-
-You can view the vector configuration status in *Instance Details*, where it will display as either “Yes” or “No.”
-
-==== Instance Resizing 
-
-Lowering the instance size below 4GB will automatically disable vector optimization.
-
-==== Cloning and Vector Optimization
-
-Neo4j Aura offers two cloning options, with different behaviors for configuration inheritance:
-
-* *Clone to New:* Cloned instances inherit the vector optimization settings of the original instance.
-* *Clone to Existing:* Cloned instances *do not* inherit the original instance's vector optimization settings.
+To learn more about how to use vector indexes, see link:https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes]
