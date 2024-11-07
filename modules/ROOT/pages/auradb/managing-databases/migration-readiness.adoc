@@ -10,11 +10,6 @@ The Migration Readiness Report is only available for Instances on Neo4j version 
 You can access the report for any version 4 instance via the link through the "Migration recommended" label on the Instance and Console pages.
 ====
 
-[NOTE]
-====
-In the Migration Readiness Report we only highlight issues that need to be changed to make your code and queries compatible with AuraDB v5.
-While you are working on this, we would also encourage you to extend this work to take advantage of the new v5 features.
-====
 
 == Overview
 
@@ -30,7 +25,8 @@ The main categories of issues that the Migration Readiness Report deals with are
 
 The report page has a section for each category and a chart at the top titled "Deprecations and query timeline." 
 This document explains each section, but the first is vital to controlling the others and is detailed in the following section.
-
+Note that the report only highlights issues that need to be addressed to make your code and queries compatible with AuraDB v5.
+Working on these issues presents a good opportunity to learn more about the advantages of the new features in version 5.
 === Control over the time window
 
 image::mrr-deprecation-query-timeline.png[]
