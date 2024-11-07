@@ -70,8 +70,9 @@ For more information about connection schemes, see link:https://neo4j.com/docs/o
 
 == Migrate metadata from Workspace
 
-If you have an existing Aura instance, you can migrate the metadata from Workspace to the new console.
-The metadata includes the datamodel, saved Cypher queries, Perspectives and Scenes.
+If you have an existing Aura instance, you can migrate the metadata from Workspace to the new console and continue working with your data in the new experience.
+The metadata includes the datamodel and saved Cypher queries.
+//Add Perspectives and Scenes when they are available.
 
 === Data model
 
@@ -103,20 +104,20 @@ Use the *Import* button and select the _.csv_ file you downloaded from Workspace
 [.shadow]
 image::import-saved-cypher.png[width=400]
 
-=== Perspectives
+// === Perspectives
 
-Perspectives, except for the default Perspective (which is automatically re-created in the new console), can be exported from the Perspective drawer in Workspace.
-Use the *Export* option on the Perspective you want to save.
-It is exported as a _.json_ file.
+// Perspectives, except for the default Perspective (which is automatically re-created in the new console), can be exported from the Perspective drawer in Workspace.
+// Use the *Export* option on the Perspective you want to save.
+// It is exported as a _.json_ file.
 
-[.shadow]
-image::export-perspective.png[width=300]
+// [.shadow]
+// image::export-perspective.png[width=300]
 
-In the new console, navigate to the *Explore* tab and open the *Perspective* drawer.
-Use the *Import* option and select the _.json_ file you downloaded from Workspace.
+// In the new console, navigate to the *Explore* tab and open the *Perspective* drawer.
+// Use the *Import* option and select the _.json_ file you downloaded from Workspace.
 
-[.shadow]
-image::import-perspective.png[width=600]
+// [.shadow]
+// image::import-perspective.png[width=600]
 
 
 
