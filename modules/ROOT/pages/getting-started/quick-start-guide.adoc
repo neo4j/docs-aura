@@ -71,24 +71,24 @@ For more information about connection schemes, see link:https://neo4j.com/docs/o
 == Migrate metadata from Workspace
 
 If you have an existing Aura instance, you can migrate the metadata from Workspace to the new console and continue working with your data in the new experience.
-The metadata includes the datamodel and saved Cypher queries.
+The metadata includes the data model and saved Cypher queries.
 //Add Perspectives and Scenes when they are available.
 
 === Data model
 
-From the *Import* tab in Workspace, open the [...] menu and download the model, with or without data.
+From the *Import* tab in Workspace, open the more menu (*...*) and download the model, with or without data.
 
 [.shadow]
 image::export-model.png[width=300]
 
 Then navigate to the new console and select *Import* -> *Graph models*.
-Once you select *New graph model*, you access the [...] menu, similar to Workspace, and select *Open model* with or without data.
+Once you select *New graph model*, you access the more menu (*...*), similar to Workspace, and select *Open model* with or without data.
 
 [.shadow]
 image::import-model.png[width=600]
 
 Note that if you have downloaded your data with the model, you can also go a different route via *Import* -> *Data sources* and select *New data source* and then import locally from files.
-This leads you to the same *Import* frame as the first route and you can use the [...] menu to open the model *with* your data.
+This leads you to the same *Import* frame as the first route and you can use the more menu (*...*) to open the model *with* your data.
 
 === Saved Cypher
 
