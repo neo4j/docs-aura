@@ -67,3 +67,62 @@ For more information about connection schemes, see link:https://neo4j.com/docs/o
 |If this is set up, you can use SSO.
 
 |===
+
+== Migrate metadata from Workspace
+
+If you have an existing Aura instance, you can migrate the metadata from Workspace to the new console and continue working with your data in the new experience.
+The metadata includes the data model and saved Cypher queries.
+//Add Perspectives and Scenes when they are available.
+
+=== Data model
+
+From the *Import* tab in Workspace, open the more menu (*...*) and download the model, with or without data.
+
+[.shadow]
+image::export-model.png[width=300]
+
+Then navigate to the new console and select *Import* -> *Graph models*.
+Once you select *New graph model*, you access the more menu (*...*), similar to Workspace, and select *Open model* with or without data.
+
+[.shadow]
+image::import-model.png[width=600]
+
+Note that if you have downloaded your data with the model, you can also go a different route via *Import* -> *Data sources* and select *New data source* and then import locally from files.
+This leads you to the same *Import* frame as the first route and you can use the more menu (*...*) to open the model *with* your data.
+
+=== Saved Cypher
+
+Any saved Cypher snippets can be downloaded from the *Query* tab in Workspace.
+From the Saved Cypher drawer, use the *Export* button to download selected queries as a _.csv_ file.
+
+[.shadow]
+image::export-saved-cypher.png[width=300]
+
+In the new console, navigate to the *Query* tab and open the  *Saved Cypher* drawer.
+Use the *Import* button and select the _.csv_ file you downloaded from Workspace.
+
+[.shadow]
+image::import-saved-cypher.png[width=400]
+
+// === Perspectives
+
+// Perspectives, except for the default Perspective (which is automatically re-created in the new console), can be exported from the Perspective drawer in Workspace.
+// Use the *Export* option on the Perspective you want to save.
+// It is exported as a _.json_ file.
+
+// [.shadow]
+// image::export-perspective.png[width=300]
+
+// In the new console, navigate to the *Explore* tab and open the *Perspective* drawer.
+// Use the *Import* option and select the _.json_ file you downloaded from Workspace.
+
+// [.shadow]
+// image::import-perspective.png[width=600]
+
+
+
+
+
+
+
+
