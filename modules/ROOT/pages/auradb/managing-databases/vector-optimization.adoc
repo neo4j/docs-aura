@@ -1,0 +1,61 @@
+= Vector optimization
+
+label:AuraDB-Professional[]
+label:AuraDB-Business-Critical[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
+
+== Overview
+
+Vector optimized configuration is a feature that reserves memory for vector indexes, enhancing performance for vector-based operations. This configuration is designed for applications requiring optimized support for vector data and is available on select AuraDB tiers and instance configurations.
+
+== Availability
+
+Vector optimized configuration is accessible under the following conditions:
+
+- *Minimum Instance Size*: 4GB RAM or above
+- *Supported Neo4j Version*: Neo4j Version 5 only
+- *Cluster Configurations*: Single-member or three-member clusters
+- *Cloud Provider and Region*: Available on all supported cloud providers and regions
+- *Applicable Usage*: UPX only (Unified Property Index)
+
+== Enabling Vector Optimized Configuration
+
+The Vector Optimized Configuration option can be enabled during the *instance creation* process. By default:
+
+- The instance size is set to *4GB* for all customers.
+- The vector optimized configuration toggle is *off* by default but can be switched on if the selected instance size is 4GB or higher.
+
+=== Steps to Enable Vector Optimized Configuration
+
+1. *Begin Instance Creation*:
+   - Select your desired AuraDB tier and instance size. Note that the vector optimized configuration is available only for instances *4GB and above*.
+  
+2. *Locate the “Additional Settings” Section*:
+   - After selecting instance details, expand the *Additional Settings* section where the *Vector optimized configuration* option appears.
+
+3. *Toggle Vector Optimized Configuration*:
+   - If the instance is 4GB or larger, the toggle can be switched on to enable vector indexing.
+   - *Tooltip Guidance*: Hovering over the toggle will display the message: “4GB memory is required for the vector index configuration.”
+   - *Note*: Instances below 4GB do not support vector optimization, and the toggle will remain inactive.
+
+4. *Configuration Status in Instance Details*:
+   - Post-creation, users can view the vector configuration status within *Instance Details*.
+   - The configuration status will display as either “Yes” or “No” under *Vector Optimized Configuration*.
+   - *Instance Resizing*: Reducing the instance size below 4GB will automatically disable the vector optimization and Graph Data Science (GDS) capabilities.
+
+== Cloning and Vector Optimized Configuration
+
+Neo4j Aura offers two cloning options with different behaviors regarding configuration inheritance:
+
+=== Clone to New
+
+- *Configuration Settings*: Cloned instances will retain the same vector and GDS configuration settings as the original instance.
+- *Vector Optimization*: The vector optimized configuration status will match the original instance unless manually changed during the cloning process.
+
+=== Clone to Existing
+
+- *Configuration Settings*: Cloning into an existing instance does not carry over the vector and GDS configurations of the original instance.
+- *Warning Message*: If the original instance has vector or GDS configurations applied, a warning message will inform the user:
+- *Warning Text*: “Configurations are not applied to existing instances.”
+
+

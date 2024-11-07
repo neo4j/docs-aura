@@ -54,6 +54,28 @@ A snapshot is a copy of the data in an instance at a specific point in time.
 Neo4j regularly takes snapshots of your instance, and you can request a snapshot to be taken on demand.
 These snapshots can be used to restore data to a different Neo4j instance.
 
+== Vector optimization
+
+label:AuraDB-Professional[]
+label:AuraDB-Business-Critical[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
+
+Vector optimization reserves memory for vector indexes, enhancing performance for vector-based operations.
+It is available for AuraDB instances with more than 4GB of memory across all supported cloud providers and regions.
+
+This configuration may impact memory use and therefore might affect performance for other queries.
+
+You can enable vector optimization with a toggle under *Additional settings* in the instance details.
+This can be done both during instance creation and for existing instances.
+You can view the current vector configuration status in *instance details*.
+
+If you lower the instance size below 4GB, vector optimization is disabled automatically.
+
+If you clone your instance to a new instance, the new instance inherits the vector optimization settings of the original instance.
+But if you clone to an existing instance, the existing instance *does not* inherit the original instance's vector optimization settings.
+
+To learn more about how to use vector indexes, see link:https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes]
+
 // == Import instance
 
 // _Feature coming soon!_
