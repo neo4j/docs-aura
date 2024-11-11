@@ -87,12 +87,11 @@ In the console, it's possible to:
 
 == Retention periods
 
-UPDATE: 17:22 november 7 - it works
 [cols="^,^,^,^,^,^"]
 |===
 | Tier | Aura version | Frequency of snapshots 2+| Scheduled snapshots| On-demand snapshot restorable and exportable days
 
-| X | X | X | Restorable days | Exportable days | X
+| | | | *Restorable days* | *Exportable days* | 
 
 | AuraDB Free
 | 4, 5
@@ -110,24 +109,28 @@ UPDATE: 17:22 november 7 - it works
 
 | AuraDB Business Critical
 | 5
-| Hourly snapshots with one daily full snapshot *Note 1
+| Hourly snapshots with one daily full snapshot footnote:1[Aura takes one full snapshot per day and 23 differential snapshots per day. The full snapshot captures the entire database, while differential snapshots record changes since the last full snapshot.].
 | 30
-| 7 (Daily snapshot only) *Note 3
+| 7 (Daily snapshot only) footnote:2[The differential snapshot is not exportable.]
 | 30
 
-| AuraDB Virtual Dedicated Cloud
+.2+| AuraDB Virtual Dedicated Cloud
 | 4
-| Every six hours
+| Every 6 hours
 | 60 (Once per day; long retention)
 | 14 (Once per day; long retention)
 | 90
 
-| | | | 7 (Other snapshots; short retention) *Note 2 | 7 (Other snapshots; short retention) *Note 2 | 
+| 
+| 
+|7 (Other snapshots; short retention) footnote:3[One snapshot per day has a long retention period: 60 restorable days and 14 exportable days. Three other snapshots per day have a short retention period: 7 days for both restoration and export.]
+|7 (Other snapshots; short retention) footnote:3[]
+|N/A
 
-| BLLLL
+| 
 | 5
-| Hourly snapshots with one daily full snapshot *Note 1
+| Hourly snapshots with one daily full snapshot footnote:1[]
 | 60
-| 14 (Daily snapshot only) *Note 3
+| 14 (Daily snapshot only) footnote:3[]
 | 90
 |===
