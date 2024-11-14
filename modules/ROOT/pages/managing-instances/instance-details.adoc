@@ -74,7 +74,7 @@ You can view the current vector configuration status from the *instance details*
 If you lower the instance size below 4GB, vector optimization is disabled automatically.
 
 If you clone your instance to a new instance, the new instance inherits the vector optimization settings of the original instance.
-But if you clone to an existing instance, it's configuration isn't changed.
+But if you clone to an existing instance, its vector optimization setting isn't changed.
 
 To learn more about how to use vector indexes, see link:https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
 
