@@ -89,6 +89,12 @@ curl --location 'https://api.neo4j.io/v1/instances' --header 'Content-Type: appl
 ----
 See xref:platform/api/overview.adoc[Aura API documentation] for more details.
 
+[CAUTION]
+====
+The legacy term `Enterprise` is still used within the codebase and API.
+However, in the Aura console and documentation, the AuraDB Enterprise project type is now known as AuraDB Virtual Dedicated Cloud.
+====
+
 At this point, an Aura instance is provisioned in the Aura Console.
 Optionally, use this code in the terminal to check the status:
 
