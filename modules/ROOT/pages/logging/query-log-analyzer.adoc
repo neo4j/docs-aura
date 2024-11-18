@@ -323,7 +323,9 @@ The table includes the following information for each download:
 | _Download log_ icon button (Arrow Down Tray Icon) and _Delete log_ icon button (Trash Icon) for the log file.
 |===
 
-You can download log files by selecting the download icon in the Actions column once the status shows _Ready_. Downloaded query logs are provided as a zipped file in your chosen format (JSON or CSV), containing the same fields shown in the Field Name columns of the Summary and Details tables above. The file name follows this pattern: `<db_id>-<timestamp>-query-logs-<log_type>.<format>.gz`, for example: `dd9ba752-1731586207476-query-logs-details.json.gz`
+You can download log files by selecting the download icon in the Actions column once the status shows _Ready_. 
+Downloaded query logs are provided as a zipped file in your chosen format (JSON or CSV), containing the same fields shown in the Field Name columns of the Summary and Details tables above. 
+The file name follows this pattern: `<db_id>-<timestamp>-query-logs-<log_type>.<format>.gz`, for example: `dd9ba752-1731586207476-query-logs-details.json.gz`
 
 To delete a log file, select the delete icon in the Actions column.
 
