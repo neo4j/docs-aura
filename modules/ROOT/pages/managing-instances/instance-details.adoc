@@ -54,6 +54,20 @@ A snapshot is a copy of the data in an instance at a specific point in time.
 Neo4j regularly takes snapshots of your instance, and you can request a snapshot to be taken on demand.
 These snapshots can be used to restore data to a different Neo4j instance.
 
+	•	Experiment with algorithms on existing applications.
+	•	Billed through the instance to customers.
+	•	Provides scalable storage when compute and storage are decoupled.
+
+== Graph Data Science plugin 
+
+label:AuraDB-Professional[]
+
+Test algorithms using data within AuraDB via the Graph Data Science plugin, and experiment with existing applications.
+Graph Data Science is an analytics and machine learning solution that analyzes relationships in data to improve predictions and discover insights. 
+It is available for AuraDB Professional instances running version 5, with more than 4GB of memory and across all supported cloud providers and regions.
+
+There's scalable storage when compute and storage are decoupled. Graph Data Science supports single member clusters, as a result running algorithms cannot be transferred between clusters. Billed through the instance, the Graph Data Science requires approximately 300mb of memory when running or paused, therefore you can enable or disable the plugin when necessary.
+
 // == Import instance
 
 // _Feature coming soon!_
