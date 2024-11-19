@@ -51,7 +51,7 @@ Backups are saved in the storage bucket of the cloud provider in the same region
 The data in your instance can be backed up, exported, and restored using snapshots.
 A snapshot is a copy of the data in an instance at a specific point in time.
 
-Neo4j regularly takes snapshots of your instance, and you can request a snapshot to be taken on demand.
+Neo4j regularly takes snapshots of your instance, and you can also take a snapshot on demand.
 These snapshots can be used to restore data to a different Neo4j instance.
 
 == Vector optimization
@@ -66,7 +66,7 @@ It is available for AuraDB instances with more than 4GB of memory and across all
 This configuration re-allocates memory to the vector index at the expense of non-vector query performance. 
 If this has a negative impact on your application, consider resizing your Aura instance.
 
-You can enable vector optimization during instance creation by selecting *Instance details* then *Additional settings*. 
+To enable vector optimization during instance creation, select *Instance details* then *Additional settings*. 
 
 To enable vector optimization on existing instances, from the instance card, use the more menu *(…​)* to *Inspect*  the instance details.
 You can view the current vector configuration status from the *instance details*.
