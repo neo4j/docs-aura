@@ -63,8 +63,8 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 Vector optimization reserves memory for vector indexes, enhancing performance for vector-based operations.
 It is available for AuraDB instances with more than 4GB of memory and across all supported cloud providers and regions.
 
-This configuration re-allocates memory to the vector index at the expense of non-vector query performance. 
-If this has a negative impact on your application, consider resizing your Aura instance.
+This configuration re-allocates memory to the vector index, trading off non-vector query performance. 
+If this has an impact on your application, consider resizing to a larger Aura instance.
 
 To enable vector optimization during instance creation, select *Instance details* then *Additional settings*. 
 
