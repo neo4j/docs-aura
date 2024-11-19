@@ -63,7 +63,7 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 
 ==== Browser and Bloom access over private endpoints
 
-To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
+To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you xref: [disable public access] to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
@@ -119,7 +119,7 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 
 ==== Browser and Bloom access over private endpoints
 
-To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
+To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you xref[disable public access] to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
@@ -174,7 +174,7 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 
 ==== Browser and Bloom access over private endpoints
 
-To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
+To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you xref[disable public access] to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
@@ -204,6 +204,18 @@ To enable private endpoints using Azure Private Link:
 . Select *New network access configuration* and follow the setup instructions.
 
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
+
+==== Disabling public access
+
+Disable Public Access, this can be achieved via Aura Console > Security > Network Access.
+
+And after clicking the checkbox for Disable Public Traffic on page 4 of 4 of the Wizard there is no detail 
+* if this change requires a restart of the database instance?  
+* if this enablement is immediate ( i.e. upon closing of the wizard / dialogue )?
+* or if a cluster role etc is required. (Btw the answer is certainly not immediate ( i.e. completion of the wizard/dialogue).
+
+But this is such a small component of the wizard and to which there is no doc for such at neo4j.com/docs/aura.   
+So requesting a full doc of such
 
 == Supported TLS cipher suites
 
