@@ -236,6 +236,9 @@ To enable private endpoints using Azure Private Link:
 . Check for the newly created PrivateLink endpoint.
 . Accept the endpoint to complete the connection process.
 
+IMPORTANT!! Make sure they are using the private link!!
+https://support.neo4j.com/s/article/13174783967507-How-To-Test-Connectivity-Through-The-Private-Endpoint[test endpoint]
+
 *Disable Public Traffic*
 
 . Before disabling public traffic, test all your application connectivity with PrivateLink to ensure everything is functioning correctly.
