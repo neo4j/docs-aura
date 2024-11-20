@@ -7,36 +7,51 @@
 label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 
-AuraDB Virtual Dedicated Cloud and AuraDS Enterprise run in a dedicated cloud Account (AWS), Subscription (Azure) or Project (GCP) to achieve complete isolation for your deployment.
-
-Additional VPC boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
-
-The Aura Console runs in a separate VPC, separate from the rest of Aura.
+AuraDB Virtual Dedicated Cloud and AuraDS Enterprise run in a dedicated AWS cloud account, Azure subscription or GCP project to achieve complete isolation for your deployment.
+Additional Virtual Private Cloud (VPC) boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected. 
+The Aura console resides in a separate VPC, isolated from the rest of the Aura services.
 
 == Network access
 
 An Aura instance can be publicly available, completely private, or configured to allow both public and private access.
-To configure network access, you need to be authorized to access the part of [your system's?] infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC.
-This includes the ability to connect over the cloud provider's private link and private endpoint.
-
-* *Public access:* If your Aura instances are public, traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password.
-
-* *Private access:* For your instance to be completely private, disable public traffic, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
-The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create.
+To configure network access, you need to be authorized to access the part of [your system's?] infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC. This includes the ability to connect over the cloud provider's private link and private endpoint.
 
 === Configure network access
 
-To configure settings for network access to your instance go to *Aura Console* > *Security* > *Network Access*.
-
+To configure settings for network access to your instance go to *Aura Console* > *Security* > *Network Access*. 
 From there, you can either set up a new network access configuration, or edit current configuration settings.
-There is a step-by-step configuration guide within the Aura Console including:
 
-. Choose your Aura instance info
-. Create endpoint
-. Endpoint connection requests
-. You can disable public traffic in this step at any time. 
-To continue accessing Browser and Bloom, you can configure a VPN (Virtual Privare Network) in your VPC and connect to these services over the VPN. 
+The Aura console provides a step-by-step configuration guide:
+
+. Choose your Aura instance details
+. Create an endpoint
+. Endpoint connection requests and enabling private DNS
+. Disable public traffic (optional)
+
+You can return to Step 4 at any time to disable public traffic, even if you’ve already completed the network access configuration and initially allowed public traffic. 
+To do this, click through the steps in the network access configuration guide until you reach Step 4, where you’ll find the option to disable public traffic.
+
+Note: after disabling public traffic - it does not happen immediately, you will see the status in the x change in the console.
+
+.Network access visual
+[.shadow]
+image::network_access.png[]
+
+To continue accessing Browser and Bloom, you can configure a VPN in your VPC and connect to these services over the VPN. 
 There’s more information available > https://support.neo4j.com/s/article/13174783967507-How-To-Test-Connectivity-Through-The-Private-Endpoint
+
+network_access
+
+=== Public access
+
+If your Aura instances are public, traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password.
+
+=== Private access
+
+To make your instance private:
+
+For your instance to be completely private, disable public traffic, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
+The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create.
 
 == Private endpoints
 
