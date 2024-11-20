@@ -21,7 +21,7 @@ This includes the ability to connect over the cloud provider's private link and 
 
 * *Public access:* If your Aura instances are public, traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password.
 
-* *Private access:* For your instance to be completely private, turn public traffic off, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
+* *Private access:* For your instance to be completely private, disable public traffic, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
 The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create.
 
 === Configure network access
@@ -34,9 +34,9 @@ There is a step-by-step configuration guide within the Aura Console including:
 . Choose your Aura instance info
 . Create endpoint
 . Endpoint connection requests
-. You can disable public traffic in this step
-
-To disable public traffic at any time, go to step 4 of the step-by-step guide. 
+. You can disable public traffic in this step at any time. 
+To continue accessing Browser and Bloom, you can configure a VPN (Virtual Privare Network) in your VPC and connect to these services over the VPN. 
+There’s more information available > https://support.neo4j.com/s/article/13174783967507-How-To-Test-Connectivity-Through-The-Private-Endpoint
 
 == Private endpoints
 
