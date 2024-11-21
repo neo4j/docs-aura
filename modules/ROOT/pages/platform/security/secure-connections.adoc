@@ -88,7 +88,7 @@ It will be different from the *Connection URI* you used before.
 
 image::privatelink_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
 
-==== Enabling private endpoints
+==== Enable private endpoints
 
 To enable private endpoints using AWS PrivateLink:
 
@@ -147,7 +147,7 @@ It will be different from the *Connection URI* you used before.
 
 image::privateserviceconnect_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
 
-==== Enabling private endpoints
+==== Enable private endpoints
 
 To enable private endpoints using GCP Private Service Connect:
 
@@ -205,12 +205,41 @@ It will be different from the *Connection URI* you used before.
 
 image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
 
-==== Enabling private endpoints
+==== Enable Azure Private Endpoints for Aura
 
-To enable private endpoints using Azure Private Link:
+. To enable private endpoints using Azure Private Link:
+.. From the sidebar menu in the Aura console, select *Security > Network Access > Network Access*
+.. Select *New network access configuration* and follow the setup instructions.
 
-. Select *Network Access* from the sidebar menu of the Console.
-. Select *New network access configuration* and follow the setup instructions.
+. Configure Network Access in the Aura console
+.. Select your product from the available options.
+.. Select the appropriate region for your deployment. (Azure Private Link applies to all instances in the region.)
+.. Enter the *Target Azure Subscription IDs*.
+.. Select *Enable Private Link*. 
+
+. Obtain a Private Link service name
+.. After enabling Private Link, you receive a Private Link service name in the Aura console.
+.. Copy this service name, you need it in the next step.
+
+. Create Private Link endpoint in the Azure portal
+.. Log in to your Azure portal.
+.. Navigate to your cloud VPC and create a new Private Link endpoint.
+.. Use the Private Link service name obtained in step three for the configuration.
+
+. Accept Endpoint in Aura console
+.. Return to the Aura Console.
+.. Check for the newly created Private Link endpoint.
+.. Accept the endpoint to complete the connection process.
+.. *At this point, it is highly recommended to test connectivity through the private endpoint.*
+
+. Disable public traffic
+.. Before disabling public traffic, test all your application connectivity with Private Link to ensure everything is functioning correctly.
+.. Once verified, you can disable public traffic by toggling off the public access option.
+.. Note: If needed, you can postpone disabling public traffic.
+
+. Monitor Private Link status
+.. You can monitor the status of your Private Link configuration in the Aura Console.
+.. Ensure that all services are running as expected and troubleshoot any issues if necessary.
 
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
 
