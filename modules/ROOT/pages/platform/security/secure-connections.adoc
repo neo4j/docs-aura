@@ -205,52 +205,41 @@ It will be different from the *Connection URI* you used before.
 
 image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
 
-==== Enable Azure private endpoints
+==== How to enable Azure private endpoints for Aura 
 
-To enable private endpoints using Azure Private Link:
+. To enable private endpoints using Azure Private Link:
+.. Go to the sidebar menu in the Aura console, then select *Security > Network Access > Network Access*
+.. Select *New network access configuration* and follow the setup instructions.
 
-. Go to the sidebar menu in the Aura console, then select *Security > Network Access > Network Access*
-. Select *New network access configuration* and follow the setup instructions.
+. Configure Network Access in the Aura console
+.. Select your product from the available options.
+.. Select the appropriate region for your deployment. (Azure Private Link will apply to all instances in the region.)
+.. Enter the *Target Azure Subscription IDs*.
+.. Select *Enable Private Link*. 
 
-*Configure Network Access in the Aura console*
+. Obtain a Private Link service name
+.. After enabling Private Link, you receive a Private Link service name in the Aura console.
+.. Copy this service name, you need it in the next step.
 
-. Select your product from the available options.
-. Select the appropriate region for your deployment. (Azure Private Link will apply to all instances in the region.)
-. Enter the *Target Azure Subscription IDs*.
-. Select *Enable Private Link*. 
+. Create Private Link endpoint in the Azure portal
+.. Log in to your Azure portal.
+.. Navigate to your cloud VPC and create a new Private Link endpoint.
+.. Use the Private Link service name obtained in the step 3 for the configuration.
 
-*Obtain Private Link Service Name*
+. Accept Endpoint in Aura console
+.. Return to the Aura Console.
+.. Check for the newly created Private Link endpoint.
+.. Accept the endpoint to complete the connection process.
+.. *At this point, it is highly recommended to test connectivity through the private endpoint.*
 
-. After enabling Private Link, you receive a Private Link service name in the Aura console.
-. Copy this service name, you need it in the next step.
+. Disable public traffic
+.. Before disabling public traffic, test all your application connectivity with Private Link to ensure everything is functioning correctly.
+.. Once verified, you can disable public traffic by toggling off the public access option.
+.. Note: If needed, you can postpone disabling public traffic.
 
-*Create Private Link Endpoint in the Azure portal*
-
-. Log in to your Azure portal.
-. Navigate to your cloud VPC and create a new Private Link endpoint.
-. Use the Private Link service name obtained in the previous step for the configuration.
-
-*Accept Endpoint in Aura Console*
-
-. Return to the Aura Console.
-. Check for the newly created Private Link endpoint.
-. Accept the endpoint to complete the connection process.
-
-[WARNING]
-======
-At this point, it is highly recommended to test connectivity through the private endpoint.
-======
-
-*Disable Public Traffic*
-
-. Before disabling public traffic, test all your application connectivity with Private Link to ensure everything is functioning correctly.
-. Once verified, you can disable public traffic by toggling off the public access option.
-. Note: If needed, you can postpone disabling public traffic.
-
-*Monitor Private Link Status*
-
-. You can monitor the status of your Private Link configuration in the Aura Console.
-. Ensure that all services are running as expected and troubleshoot any issues if necessary.
+. Monitor Private Link status
+.. You can monitor the status of your Private Link configuration in the Aura Console.
+.. Ensure that all services are running as expected and troubleshoot any issues if necessary.
 
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
 
