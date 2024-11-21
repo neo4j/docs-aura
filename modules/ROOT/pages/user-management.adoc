@@ -199,10 +199,36 @@ Additionally, predefined roles are assigned certain privileges on the instance l
 | Member
 | Data viewer
 
+| Access to database
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Traverse, read, and write to the database.
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Load data
+| {check-mark}
+| {check-mark}
+|
+
+| Create/drop/show indexes and constraints along with any other future schema constructs.
+| {check-mark}
+| {check-mark}
+| Can only show indexes, not create or drop.
+
+| Show database
+|
+| {check-mark}
+| {check-mark}
+
+| Create new
 |
 |
 |
-|
+|===
 
 === Inviting users
 
