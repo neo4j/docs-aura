@@ -54,6 +54,18 @@ A snapshot is a copy of the data in an instance at a specific point in time.
 Neo4j regularly takes snapshots of your instance, and you can request a snapshot to be taken on demand.
 These snapshots can be used to restore data to a different Neo4j instance.
 
+== Graph Data Science plugin 
+
+label:AuraDB-Professional[]
+
+The Graph Data Science plugin allows you to access the GDS library in your Aura instance.
+It is available for AuraDB Professional instances running version 5, with more than 4GB of memory, and across all supported cloud providers and regions. 
+The plugin requires approximately 300MB of memory when running or paused.
+You can enable or disable it when necessary. 
+
+For more information about the GDS library, see the link:https://neo4j.com/docs/graph-data-science/current/introduction/[The Graph Data Science documentation].
+
+
 // == Import instance
 
 // _Feature coming soon!_
