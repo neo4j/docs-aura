@@ -215,25 +215,25 @@ To enable private endpoints using Azure Private Link:
 *Configure Network Access in the Aura console*
 
 . Select your product from the available options.
-. Select the appropriate region for your deployment. (Azure PrivateLink will apply to all instances in the region.)
+. Select the appropriate region for your deployment. (Azure Private Link will apply to all instances in the region.)
 . Enter the *Target Azure Subscription IDs*.
-. Select *Enable PrivateLink*. 
+. Select *Enable Private Link*. 
 
-*Obtain PrivateLink Service Name*
+*Obtain Private Link Service Name*
 
-. After enabling PrivateLink, you receive a PrivateLink service name in the Aura console.
+. After enabling Private Link, you receive a PrivateLink service name in the Aura console.
 . Copy this service name, you need it in the next step.
 
-*Create PrivateLink Endpoint in the Azure portal*
+*Create Private Link Endpoint in the Azure portal*
 
 . Log in to your Azure portal.
-. Navigate to your cloud VPC and create a new PrivateLink endpoint.
-. Use the PrivateLink service name obtained in the previous step for the configuration.
+. Navigate to your cloud VPC and create a new Private Link endpoint.
+. Use the Private Link service name obtained in the previous step for the configuration.
 
 *Accept Endpoint in Aura Console*
 
 . Return to the Aura Console.
-. Check for the newly created PrivateLink endpoint.
+. Check for the newly created Private Link endpoint.
 . Accept the endpoint to complete the connection process.
 
 [WARNING]
@@ -243,13 +243,13 @@ At this point, it is highly recommended to test connectivity through the private
 
 *Disable Public Traffic*
 
-. Before disabling public traffic, test all your application connectivity with PrivateLink to ensure everything is functioning correctly.
+. Before disabling public traffic, test all your application connectivity with Private Link to ensure everything is functioning correctly.
 . Once verified, you can disable public traffic by toggling off the public access option.
 . Note: If needed, you can postpone disabling public traffic.
 
-*Monitor PrivateLink Status*
+*Monitor Private Link Status*
 
-. You can monitor the status of your PrivateLink configuration in the Aura Console.
+. You can monitor the status of your Private Link configuration in the Aura Console.
 . Ensure that all services are running as expected and troubleshoot any issues if necessary.
 
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
