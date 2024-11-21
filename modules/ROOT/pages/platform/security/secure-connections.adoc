@@ -209,7 +209,7 @@ image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing Browser and Bl
 
 To enable private endpoints using Azure Private Link:
 
-. Go to the sidebar menu in the Aura console, then select Settings > Security > Network Access > Network Access
+. Go to the sidebar menu in the Aura console, then select *Security > Network Access > Network Access*
 . Select *New network access configuration* and follow the setup instructions.
 
 *Configure Network Access in the Aura console*
@@ -236,8 +236,10 @@ To enable private endpoints using Azure Private Link:
 . Check for the newly created PrivateLink endpoint.
 . Accept the endpoint to complete the connection process.
 
-IMPORTANT!! Make sure they are using the private link!!
-https://support.neo4j.com/s/article/13174783967507-How-To-Test-Connectivity-Through-The-Private-Endpoint[test endpoint]
+[WARNING]
+======
+At this point, it is highly recommended to test connectivity through the private endpoint.
+======
 
 *Disable Public Traffic*
 
