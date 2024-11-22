@@ -32,9 +32,9 @@ If you disable public traffic it is highly recommended to link:https://support.n
 ==== Disabling public traffic
 
 You can return to Step 4 at any time to disable public traffic, even if you’ve already completed the network access configuration and initially allowed public traffic. 
-To do this, click through the steps in the network access configuration guide until you reach Step 4, where you’ll find the option to disable public traffic.
+To do this, click through the steps in the network access configuration guide until you reach Step 4, where there is the option to disable public traffic.
 
-Note: after disabling public traffic - the disabling does not happen immediately, you will see the status change in the console when it is complete [see Fig.1].
+Note: Disabling public traffic does not take effect immediately. You can monitor the status change in the console to confirm when the process is complete. [see Fig.1].
 
 .Network access visual
 [.shadow]
@@ -287,24 +287,6 @@ The private ingress then directs the connection to the Aura instance with dbid: 
 |abcd1234.production-orch-0000.neo4j.io
 |role: read
 |=== 
-
-=== Disable public access / disable public traffic
-
-To Disable Public Acces in the Aura console, go to Security > Network Access.
-
-After clicking the checkbox for Disable Public Traffic on page 4 of 4.
-
-The change is not immediate after closing the modal.
-
-
-
-
-
-
-
-
-
-
 
 == Supported TLS cipher suites
 
