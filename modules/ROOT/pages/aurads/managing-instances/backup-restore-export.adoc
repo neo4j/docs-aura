@@ -51,3 +51,40 @@ By selecting the ellipses (...) button next to a snapshot, you can:
 The compressed archive contains a *_.dump_* file that can be imported directly or pushed to the cloud.
 * *Create instance from snapshot* - Create a new AuraDS instance using the data from the snapshot.
 This opens a window where you can assign a name to the instance that will be created.
+
+== AuraDS retention periods
+
+[cols="^,^,^,^,^,^,^",options="header"]
+|===
+| Tier
+| Aura version
+2+| Frequency of snapshots
+2+| Scheduled snapshots
+| On-demand snapshot footnote:1[On-demand snapshots are restorable and exportable for the same period.]
+
+|
+|
+| *Full snapshot* footnote:2[The full snapshot captures the entire database, while differential snapshots record changes since the last full snapshot.]
+| *Differential snapshot*
+| *Restorable days*
+| *Exportable days*
+| *Restorable and exportable days*
+
+| AuraDS Professional
+| 4, 5
+| Daily
+| 7 (see slack chat)
+| 7
+| 180
+| 180
+
+| AuraDS Professional
+| 4, 5
+| Daily
+| 14
+| 7
+| 180
+| 180
+|===
+
+
