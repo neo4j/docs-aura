@@ -18,10 +18,10 @@ To configure network access, you need to be authorized to access the part of [yo
 
 === Configure network access
 
-To configure settings for network access to your instance go to *Aura Console* > *Security* > *Network Access*. 
+To configure settings for network access to your instance go to *Aura console* > *Security* > *Network access* > *New network access configuration*
 From there, you can either set up a new network access configuration, or edit current configuration settings.
 
-The Aura console provides a step-by-step configuration guide:
+The Aura console provides a step-by-step configuration guide to:
 
 . Choose your Aura instance details
 . Create a VPC endpoint
@@ -34,15 +34,14 @@ If you disable public traffic it is highly recommended to link:https://support.n
 You can return to Step 4 at any time to disable public traffic, even if you’ve already completed the network access configuration and initially allowed public traffic. 
 To do this, click through the steps in the network access configuration guide until you reach Step 4, where you’ll find the option to disable public traffic.
 
-Note: after disabling public traffic - it does not happen immediately, you will see the status in the x change in the console.
+Note: after disabling public traffic - the disabling does not happen immediately, you will see the status change in the console when it is complete [see Fig.1].
 
 .Network access visual
 [.shadow]
 image::network_access.png[]
 
 To continue accessing Browser and Bloom, you can configure a VPN in your VPC and connect to these services over the VPN. 
-There’s more information available > https://support.neo4j.com/s/article/13174783967507-How-To-Test-Connectivity-Through-The-Private-Endpoint
-
+There’s more information available in the KB https://support.neo4j.com/s/article/13174783967507-How-To-Test-Connectivity-Through-The-Private-Endpoint[How to test connectivity through the private endpoint].
 
 === Public traffic
 
