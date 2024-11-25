@@ -50,9 +50,7 @@ If private traffic is enabled, your Aura instances are public and traffic to the
 
 === Private traffic
 
-To make your instance private:
-
-For your instance to be completely private, disable public traffic, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
+To make your instance completely private, disable public traffic, use the cloud provider's network and create a private endpoint inside your VPC, which gives you a private connection to Aura.
 The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create.
 
 == Private endpoints
