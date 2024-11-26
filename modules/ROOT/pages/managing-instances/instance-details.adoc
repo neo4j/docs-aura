@@ -67,9 +67,9 @@ It is available for AuraDB instances with more than 4GB of memory and across all
 This configuration re-allocates memory from the graph database to the vector index.
 If this has an impact on your application, consider resizing to a larger Aura instance.
 
-To enable vector optimization during instance creation, select *Instance details* then *Additional settings*. 
+To enable vector optimization during instance creation, select *Instance details* > *Additional settings* > *Vector-optimized configuration*.
 
-To enable vector optimization on existing instances, from the instance card, use the more menu *(…​)* to *Inspect*  the instance details.
+To enable vector optimization on existing instances, from the instance card, use the more menu *(…​)* to *Inspect* the instance details.
 You can view the current vector configuration status from the *instance details*.
 
 If you lower the instance size below 4GB, vector optimization is disabled automatically.
