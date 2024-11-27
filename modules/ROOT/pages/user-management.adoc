@@ -43,7 +43,7 @@ The roles are immutable and every new user needs to be assigned one.
 :check-mark: icon:check[]
 
 .Roles and console capabilities
-[opts="header",cols="3,1,1,1"]
+[opts="header",cols="3,^,^,^"]
 |===
 | Capability | Viewer | Member | Admin
 | View users and their roles | {check-mark} | {check-mark} | {check-mark}
@@ -68,14 +68,19 @@ Each project must have at least one Project Admin, but it is also possible for p
 Additionally, predefined roles are assigned certain privileges on the instance level as well.
 
 .Roles and database privileges
-[options="header", cols="3,1,1,1,1,1"]
+[options="header", cols="3,^,^,^,^,^"]
 |===
 | Privilege
 | Viewer
 | Member
-| Admin Free
-| Admin Pro
-| Admin BC
+3+| Admin
+
+|
+|
+|
+| Free
+| Professional
+| Business Critical
 
 | Access to database
 | {check-mark}
@@ -155,7 +160,7 @@ Additionally, predefined roles are assigned certain privileges on the instance l
 | {check-mark}
 | {check-mark}
 
-| List and end transactions for specified users on the database
+| List and end transactions for specified users on the database.
 |
 |
 | {check-mark}
@@ -202,6 +207,13 @@ Additionally, predefined roles are assigned certain privileges on the instance l
 |
 |
 | {check-mark}
+| {check-mark}
+
+| Privilege management footnote:[This includes to list, grant, and revoke privileges.]
+|
+|
+|
+|
 | {check-mark}
 |===
 
