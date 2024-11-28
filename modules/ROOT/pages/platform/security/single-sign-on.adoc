@@ -17,7 +17,16 @@ Instance SSO is managed in 2 different ways:
 
 * Support engineer can configure SSO via support. [Contact support to help you]
 * You can configure SSO in the Aura Enterprise Console UI Organization settings page. 
-Organization administrators have the ability to edit SSO settings from the Organization that is delegating SSO settings. 
+The roles `Organization owners` and `Organization administrators` have the ability to edit SSO settings from the Organization that is delegating SSO settings. 
+
+*Project control*
+Authorised users then determine which projects (tenants) the SSO config will apply to, and for what purpose i.e. login method for Org, and/or login method for instances.
+
+*Organizations*
+Console SSO prioritises user experience by introducing Organizations to Aura, which are the highest level entity in the hierarchy. 
+SSO configs can be established at the Org level then applied quickly to multiple projects, saving users time when rolling out changes.
+
+
 SSO can be managed via the Organization Settings page. *User identity and authentication.*
 
 == SSO levels
@@ -47,7 +56,7 @@ If you are configuring SSO without help from support then use the redirect URI h
 
 === Organization SSO level roles
 
-At the organization level, the following roles are available / These are assigned via invitation.
+At the organization level, the following roles are available / These are assigned via email invitation.
 
 * Owner
 * Admin
