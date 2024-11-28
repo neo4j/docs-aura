@@ -1,30 +1,53 @@
 [[aura-reference-security]]
 = Single Sign-On (SSO)
-:description: SSO allows you to log in to the Aura Console using their company IdP credentials.
+:description: SSO allows you to log in to the Aura Console using their company IdP credentials. Authentication is verifying the user's identity (SSO)
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 label:AuraDB-Business-Critical[]
 
+* AuraDB Virtual Dedicated Cloud supports Organization SSO and Project SSO.
+* AuraDB Business Critical supports Instance SSO.
+
+SSO provides secure logins to the Aura console.
+SSO is an authentication method that verifies the user. 
+Aura allows users to authenticate with single sign-on (SSO).
+
+Instance SSO is managed in 2 different ways:
+
+* Support engineer can configure SSO via support. [Contact support to help you]
+* You can configure SSO in the Aura Enterprise Console UI Organization settings page. 
+Organization administrators have the ability to edit SSO settings from the Organization that is delegating SSO settings. 
+SSO can be managed via the Organization Settings page. *User identity and authentication.*
+
 == SSO levels
 
-Organization admins can configure organization level SSO (org SSO) and project level SSO (project SSO).
-
-SSO is a log-in method and access, roles, and permissions are dictated by role-based access control (RBAC).
-
-* *Org SSO:* Allows org admins to restrict how users log in when they are trying to access the org.
-Access beyond log-in is managed via RBAC.
+* *Organization SSO:* Enables users to access the organizational level of the console, meaning they can access all the projects within that. 
+Organization SSO is created on the organization level and then applied as an organization login method, after which it will be available as a form of authentication to console and the organization.
+SSO allows organization admins to restrict how users log in when they are trying to access the organization.
 
 * *Project-level SSO:*  Impacts new database instances created within that project.
 It ensures users logging in with SSO have access to the database instances within the project.
-It depends on RBAC if the user can access and view or modify data within the database instances themselves.
-For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider (IdP).
-It *does not* give access to edit the project settings, for example to edit the project name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
 
+*Redirect URI:*
+We'll return the authentication response to this URI after successfully authenticating the user.
+Providing this URI is optional and can be changed later but a value is required for most authentication scenarios. 
+http//:login.neo4j.com
+If you are configuring SSO without help from support then use the redirect URI https://login.neo4j.com/login/callback
 
-=== SSO Org level roles
+//Authorization vs. Authentication: 
 
-The following roles are available at the org level and these are assigned via invitation:
+// Access privilidges beyond log-in is managed via xref:http//:login.neo4j.com[roles.]
+// Authentication: SSO is an _authentication_ method log-in method and access, roles, and permissions are dictated by role-based access control (RBAC).
+// To determind the user's access rights, you should use RBAC which is an _authorization_ method. 
+// Roles and permissions are managed by Role-Based Access Control (RBAC). 
+// It depends on RBAC if the user can access and view or modify data within the database instances themselves.
+// For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider (IdP).
+// SSO *does not* directly give access to edit the project settings, for example to edit the project name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
+
+=== Organization SSO level roles
+
+At the organization level, the following roles are available / These are assigned via invitation.
 
 * Owner
 * Admin
@@ -149,17 +172,32 @@ The following roles are available at the org level and these are assigned via in
 
 == Log-in methods
 
-Log-in methods are different for each SSO level.
-Administrators can configure a combination of one or more of the log-in methods.
+// The choice of a variety of cloud-based or customer-managed identity providers (IdPs).
 
-*Org SSO supports:*
+Log-in methods are different for each SSO level.
+Admins can configure a combination of one or more of the log-in methods.
+
+If at least one of an Organizations SSO configs are applied as organization login methods, then email/pw and google authentication can be disabled as login methods for the org, essentially forcing users to sign in via the SSO IdP.
+
+Note: You may notice the distinct difference between creating and applying SSO configs. This is because SSO configs are always created on an organization, but until they are applied they don’t actually do anything. SSO configs can be applied to an organization to be used for logging into the console, or they can be applied to a tenant to be used as Instance SSO on newly created instances. Or they can be applied to be used for both scenarios.
+
+*Only applies to newly created instances:*
+Instance SSO that is applied to a tenant will only affect instances created after the SSO config was applied to the tenant. 
+It will not update SSO of already created instances during the time of applying the SSO config. 
+In this way you can think of applying an SSO config to the tenant as setting the tenants default SSO config for new instances. Additionally, the setting for Native authentication in the Console will not cascade either.
+
+Note: and if customers want those changes reflected on those previously created instances then it has to be done manually via support.
+
+
+
+*Organization SSO supports:*
 
 * Email/password
 * Okta
 * Microsoft Entra ID
 * Google SSO (not Google Workspace SSO)
 
-An organization's administrator can add Aura as a log-in from a tile in an organization's Apps Dashboard.
+An organization's admin can add Aura as a log-in from a tile in an organization's Apps Dashboard.
 
 *Project SSO supports:*
 
@@ -196,3 +234,60 @@ If you require support assistance, visit link:https://support.neo4j.com/[Custome
 See xref:platform/user-management.adoc#_projects[Projects] for more information on how to find your __Project ID__.
 
 . The name of your IdP
+
+
+Log in to a cluster's DB Console with SSO
+
+=== *How do users login to an organization with SSO configured?*
+
+From the user's perspective, once the cluster is properly configured to an identity provider, the sign-in flow is as follows:
+
+. A user opens the cluster's DB Console, and clicks on the Log in with your OIDC provider button that renders on the page.
+. The user is redirected to an external identity provider.
+. The user authenticates successfully with the provider, which completes the OAuth flow.
+. The user is redirected to the Aura console (organization or project)
+
+//
+
+.We provide a Organization Login Link in the Organization Summary page in Console and in Console Admin UI that takes users directly to the auth0 org login page. 
+Users can bookmark this page for easy access.
+.Users can navigate to the main auth0 login page (http://login.neo4j.com ) and select "Continue with Organization SSO". 
+They can then enter their Organization SSO ID and be redirected to the org login page.
+.If a user logs in with an email/pw or google login method, but shares the email with an org that has SSO configured, when they try to switch to a tenant on that org they will be redirected to the org login page.
+.If Home Realm Discovery (HRD) is configured for a specific email domain, users who enter their email during email/pw login will be redirected to one of the org login methods. 
+Note: This only works if there is only one SSO config that is configured for the email domain.
+
+=== Home Realm Discovery (HRD)
+Home Realm Discovery allows users to simply enter their email into the email field at login.neo4j.com and be immediately redirected to their SSO IdP to login. 
+
+Caveats
+
+=== HRD can only be configured by support
+
+HRD should only be configured on one SSO config for a specific email domain. 
+IE adding neo4j.com to as an email domain on two SSO configs will not give users the option to pick which IdP they want to sign in with. 
+They will only be auto redirected to one of the IdP’s.
+
+HRD blocks all users of that email domain from signing in with email/pw
+
+NOTE
+----
+HRD is powerful and if someone enters gmail.com as an email domain, all users trying to login to console with a gmail.com email will be redirected. 
+Use it carefully!
+----
+
+==== How to configure
+
+Verify the customer owns the domain they want to have configured for HRD
+
+In the Console Admin UI, on the SSO config details page you can edit the SSO config and add an Email Domain.
+
+
+
+==== FAQ
+
+Do I need to disable Email/Password and Google Social Login when configuring console SSO?
+
+No, you can leave these enabled if you want users to continue to have access to the console using email/pw and google logins. If you want to restrict access to the console/org to only the configured SSO provider, then disable email/pw and google login methods
+
+
