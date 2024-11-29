@@ -2,8 +2,15 @@
 = Import
 
 The import service contains a tool for importing data into your instance and is ideal to get started quickly with testing and prototyping.
-It allows you to import data from flat files without using any code.
-This means that you can import data from any source that can be exported to a flat file and does thus not require DBMS filesystem access.
+It allows you to import data without using any code from:
+
+* PostgreSQL
+* MySQL
+* SQL Server
+* .CSV
+
+
+This means that you can connect to various data sources as well as import data from any source that can be exported to a flat file and does thus not require DBMS filesystem access.
 
 This service is also available as a standalone tool and is accessible at link:https://data-importer.neo4j.io/[] using a secure connection.
 Additionally, Data Importer standalone is also available at link:https://data-importer.graphapp.io/[] with both secure and insecure connections.

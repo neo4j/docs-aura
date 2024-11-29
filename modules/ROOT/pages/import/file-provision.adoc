@@ -2,10 +2,12 @@
 = File provision
 :description: This section describes how to provide files for import.
 
+You start by connecting your data source, which can be a SQL database or local flat files.
+
 In essence, you provide a set of files that contain the data to be imported and Import imports them into your instance.
 
-Import supports flat files, i.e. files that contain data in a tabular format where each row represents a record and each column represents a field in that record.
-The most common format for such files is CSV (comma-separated values), but Import also supports TSV (tab-separated values).
+Import supports PostgreSQL and flat files, i.e. files that contain data in a tabular format where each row represents a record and each column represents a field in that record.
+The most common format for flat files is CSV (comma-separated values), but Import also supports TSV (tab-separated values).
 
 Import requires all files to have a header row and at least one row of data.
 The header row speficies how the data in the file should be interpreted and contains information for each field.
