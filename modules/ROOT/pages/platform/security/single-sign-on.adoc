@@ -8,31 +8,31 @@ label:AuraDB-Business-Critical[]
 
 == SSO options
 
-* *Use as a login method for the organization:* 
-* *Use as a log-in method for instances within Projects in this organization:* Note that access is only automatically granted for new database instances created within that project since the setting was enabled. 
+*1. Use as a login method for the organization* 
+
+*2. Use as a log-in method for instances within Projects in this organization:* Note that access is only automatically granted for new database instances created within that project since the setting was enabled. 
 
 
 == Log-in methods
 
-Administrators can configure a combination of one or more of the log-in methods.
+Organization owners and organization admins can configure a combination of one or more of the log-in methods.
 
-=== "Use as a login method for the organization" supports:
+*1. Use as a login method for the organization*
 
 * Email/password
 * Okta
 * Microsoft Entra ID
-* Google SSO (not Google Workspace SSO)
+* Google SSO (not Google Workspace SSO) 
 
-Admins can disable email/password and Google SSO as long as one other custom SSO provider is configured.
-An organization's administrator can add Aura as a log-in from a tile in an organization's Apps Dashboard.
+For *Use as a login method for the organization*, organization admins can disable email/password and Google SSO if at least one other custom SSO provider is configured.
 
-=== "Use as a log-in method for instances within Projects in this organization" supports:
+*2. Use as a log-in method for instances within Projects in this organization*
 
 * User/password
 * Okta
 * Microsoft Entra ID
 
-With this enabled, you cannot disable user/password.
+Enabling *Use as a log-in method for instances within Projects in this organization* locks the user/password method and prevents it from being disabled.
 
 == Setup requirements
 
@@ -79,21 +79,19 @@ See xref:platform/user-management.adoc#_projects[Projects] for more information 
 
 == Authorization vs. Authentication
 
-Authorization
-Authorization determines who is allowed in. (SSO)
-Authentication
- 	Determines what someone can do when they are in. (RBAC)
+*Authentication* determines who is allowed in. 
+Authentication is handled by Single Sign-On (SSO), which serves as a method for logging in. 
 
-RBAC Access privileges beyond log-in are managed via xref:http//:login.neo4j.com[roles.]
-Authentication: SSO is an authentication method / log-in method and access, roles, and permissions are dictated by role-based access control (RBAC).
-SSO does not directly give access to edit the project settings, for example to edit the project name, network access, or to edit the instance settings such as to rename an instance, or pause and resume - instead to determine the user's access rights, you should use RBAC which is an authorization method.
+*Authorization* determines what someone can do when they have logged-in.
+Access privileges beyond login are managed through roles using Role-Based Access Control (RBAC) an authorization method. 
 
-Roles and permissions are managed by Role-Based Access Control (RBAC). 
-It depends on RBAC if the user can access and view or modify data within the database instances themselves. 
-For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider (IdP). 
+SSO does not directly grant access to edit project settings—such as changing the project name, managing network access, or modifying instance settings like renaming, pausing, or resuming an instance. 
+To determine a user’s access rights to these features, you should use RBAC.
 
+Roles and permissions are managed by RBAC, which decides whether a user can access, view, or modify data within the database instances themselves. 
+At this level, role mapping can be utilized to grant users different levels of access based on their roles in their Identity Provider (IdP).
 
-=== RBAC SSO roles
+=== RBAC determined roles related to SSO
 
 //I don't quite follow this? where are these roles assigned? They are not assigned at SSO config level?//
 
@@ -218,3 +216,5 @@ The following roles can be assigned via invitation:
 |
 |
 |===
+
+Suggestion: An organization's administrator can add Aura as a log-in from a tile in an organization's Apps Dashboard.
