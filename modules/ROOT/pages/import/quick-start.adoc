@@ -5,15 +5,21 @@
 The Import service consists of three tabs; *Data sources*, *Graph models*, and *Import jobs*.
 If you haven't previously imported any data, all three are empty, otherwise sources, models, and import jobs are listed here.
 
+[.shadow]
 image::data-source.png[width=800]
+
+== Provide the data
 
 To get started you need to connect to a data source.
 Import supports PostgreSQL, MySQL, SQL Server, as well as locally hosted flat files.
 
+[.shadow]
 image::sources.png[width=400]
 
 For SQL-files, you need to configure the data source, add user credentials for the SQL-database, and give the data source a name.
 If you want to stream local files, you can drag and drop them into the files panel or browse for them.
+
+== Model the data
 
 When you have connected a data source, you are offered to have a model generated based on the data and constraints available in the connected database.
 The quickest way is to accept to have a model generated, but you can draw your own later, see xref:import/modeling.adoc[] for more information.
@@ -26,11 +32,18 @@ If any element is unmapped, the import will fail and you will be prompted to add
 For more information on this, see xref:import/mapping.adoc[].
 When all elements in the model are mapped, as indicated with the green checkmark, you can run the import.
 
+[.shadow]
 image::import-ready.png[width=400]
+
+== Run the import
+
+When you have connected a SQL data source, you need to provide credentials to the source and the destination (your Aura instance) in order to run the import.
+However, if you are streaming local files, you just need to make sure that they are available in the files panel and re-provide them if they are not.
 
 If you have selected to go forward with a data source and change your mind, click on *Graph models* to find the three tabs again.
 From here, you can go back to *Data sources* to select a different source, if you want.
 
+[.shadow]
 image::go-back.png[width=300]
 
 Connected data sources, models, and past import jobs are then listed under the respective tabs.
