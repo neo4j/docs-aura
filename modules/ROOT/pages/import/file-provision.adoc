@@ -2,14 +2,14 @@
 = File provision
 :description: This section describes how to provide files for import.
 
-You start by connecting your data source, which can be a SQL database or local flat files.
+You start by connecting your data source, which can be a relational database or local flat files.
 
-In essence, you provide a set of files that contain the data to be imported and Import imports them into your instance.
+In essence, you provide the data in some format to be imported and Import imports this into your instance.
 
-Import supports SQL and flat files, i.e. files that contain data in a tabular format where each row represents a record and each column represents a field in that record.
+Import supports relational databases and flat files, i.e. files that contain data in a tabular format where each row represents a record and each column represents a field in that record.
 The most common format for flat files is CSV (comma-separated values), but Import also supports TSV (tab-separated values).
 
-When connecting to a remote data source, the files are provided for you from that database.
+When connecting to a remote data source, the tables are provided for you from that database.
 
 But when you stream your local CSV files, the process can be more iterative and manual.
 
@@ -25,6 +25,7 @@ Once a file is added to the panel, you can preview the header and the first row 
 [.shadow]
 image::files.png[]
 
-When you provide CSV files to Import, they are temporarily stored on the client side until you run the import.
-If you reload the page before running the import, the files are no longer available to the page and you need to provide them again.
+When you provide CSV files to Import, only a reference to your local files is kept.
+This is used to send the necessary commands to stream the data to your target database when you run the import.
+Your local files themselves are *not* uploaded anywhere and therefore, if you reload the page before running the import, the files are no longer available to the page and you need to provide them again.
 This is due to security features of your browser.

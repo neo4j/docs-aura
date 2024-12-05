@@ -21,13 +21,14 @@ If you want to stream local files, you can drag and drop them into the files pan
 
 == Model the data
 
-When you have connected a data source, you are offered to have a model generated based on the data and constraints available in the connected database.
+When you have connected a data source, you have the option to have a model generated based on primary and foreign key constraints in the source database.
 The quickest way is to accept to have a model generated, but you can draw your own later, see xref:import/modeling.adoc[] for more information.
 
 If you use local files, you can upload a _.json_ file containing your model, if available, or draw your own.
 
-If you generate a model from your SQL data or upload a model locally, the model is already mapped to your files.
+If you generate a model from your relational data the model is already mapped to your tables.
 This is indicated by a green checkmark in the model.
+If you upload a local model, this may or may not be mapped already (it depends on whether it was mapped when first exported or not).
 If any element is unmapped, the import will fail and you will be prompted to add the missing mapping information.
 For more information on this, see xref:import/mapping.adoc[].
 When all elements in the model are mapped, as indicated with the green checkmark, you can run the import.
@@ -40,7 +41,7 @@ image::import-ready.png[width=400]
 When you have connected a SQL data source, you need to provide credentials to the source and the destination (your Aura instance) in order to run the import.
 However, if you are streaming local files, you just need to make sure that they are available in the files panel and re-provide them if they are not.
 
-If you have selected to go forward with a data source and change your mind, click on *Graph models* to find the three tabs again.
+If you have selected to go forward with a data source or an existing model and change your mind, click on *Graph models* to find the three tabs again.
 From here, you can go back to *Data sources* to select a different source, if you want.
 
 [.shadow]

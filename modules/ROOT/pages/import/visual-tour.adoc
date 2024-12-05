@@ -3,17 +3,17 @@
 = Visual tour
 
 Once you have connected to a data source, Importer's interface is the same regardless of your data source.
-It is divided into three parts, the files panel where you provide the files, the data model panel where you draw your model, and the details panel where you map your model to your files.
+It is divided into three parts, the data source panel where you provide the files, the data model panel where you draw your model, and the details panel where you map your model to your tables.
 
 [.shadow]
 image::upx-import.png[]
 
-== Files panel
+== Data source panel
 
-The source files for the import are placed here, either you drag and drop or browse for them.
-Each file can be expanded using the dropdown option, to display the header and the first row of the file.
-The `...` menu allows you to delete the file.
-See xref:import/file-provision.adoc[] for more information about files.
+The source tables for the import are placed here, either you drag and drop or browse for them.
+Each table can be expanded using the dropdown option, to display the header and the first row of the table.
+The `...` menu allows you to delete the table.
+See xref:import/file-provision.adoc[] for more information about files and tables.
 
 == Data model panel
 
@@ -38,7 +38,7 @@ For more information on the settings, see xref:import/mapping.adoc#exclude-list[
 == Details panel
 
 The details panel contains two tabs, _Definition_ and _Constraints & Indexes_.
-The _Defintion_ tab is where you give labels to nodes and relationships, map them to files from the files panel, and specify their properties.
+The _Defintion_ tab is where you give labels to nodes and relationships, map them to files from the data source panel, and specify their properties.
 See xref:import/mapping.adoc[] for more information.
 The _Constraints & Indexes_ tab allows you to see details about constraints and indexes and lets you add or modify the latter.
 See xref:import/indexes-and-constraints.adoc[] for more information.
