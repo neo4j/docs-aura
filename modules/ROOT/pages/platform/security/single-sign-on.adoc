@@ -6,25 +6,100 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 label:AuraDB-Business-Critical[]
 
-== SSO levels
+== SSO options
 
-Organization admins can configure organization level SSO (org SSO) and project level SSO (project SSO).
+*1. Use as a login method for the organization* 
 
-SSO is a log-in method and access, roles, and permissions are dictated by role-based access control (RBAC).
-
-* *Org SSO:* Allows org admins to restrict how users log in when they are trying to access the org.
-Access beyond log-in is managed via RBAC.
-
-* *Project-level SSO:*  Impacts new database instances created within that project.
-It ensures users logging in with SSO have access to the database instances within the project.
-It depends on RBAC if the user can access and view or modify data within the database instances themselves.
-For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider (IdP).
-It *does not* give access to edit the project settings, for example to edit the project name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
+*2. Use as a log-in method for instances within Projects in this organization:* Note that access is only automatically granted for new database instances created within that project since the setting was enabled. 
 
 
-=== SSO Org level roles
+== Log-in methods
 
-The following roles are available at the org level and these are assigned via invitation:
+Organization owners and organization admins can configure a combination of one or more of the log-in methods.
+
+*1. Use as a login method for the organization*
+
+* Email/password
+* Okta
+* Microsoft Entra ID
+* Google SSO (not Google Workspace SSO) 
+
+For *Use as a login method for the organization*, organization admins can disable email/password and Google SSO if at least one other custom SSO provider is configured.
+
+*2. Use as a log-in method for instances within Projects in this organization*
+
+* User/password
+* Okta
+* Microsoft Entra ID
+
+Enabling *Use as a log-in method for instances within Projects in this organization* locks the user/password method and prevents it from being disabled.
+
+== Setup requirements
+
+Accessing Aura with SSO requires:
+
+* Authorization Code Flow
+* A publicly accessible IdP server
+
+To create an SSO Configuration either a Discovery URI or a combination of Issuer, Authorization Endpoint, Token Endpoint and JWKS URI is required.
+
+== Create a new SSO configuration
+
+From the *Organization settings*, go to *Single Sign-On* and use the *SSO Configuration* button to set up a new SSO configuration.
+
+.Organization settings
+[.shadow]
+image::organizationsettings.png[A screenshot of how to navigate to organization settings in the UI]
+
+The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on Organization level, only on Project level, or both.
+
+The required basic SSO configuration information can be retrieved from the IdP.
+Entering the Discovery URI pre-fills the fields below. 
+If this is not known these fields can be completed manually.
+
+.SSO configuration
+[.shadow]
+image::sso.png[A screenshot of the SSO configuration dialogue,640,480]
+
+.SSO toggles
+[.shadow]
+image::ssotoggles.png[A screenshot of the SSO toggles (for password/user and Google social log in) after SSO configuration dialogue,640,480]
+
+== Individual instance level SSO configurations available from Support
+
+Support can assist with:
+
+* Role mapping specific to a database instance
+* Custom groups claim besides `groups`
+* Updating SSO on already running instances
+
+If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
+
+
+. The _Project ID_ of the projects you want to use SSO for.
+See xref:platform/user-management.adoc#_projects[Projects] for more information on how to find your __Project ID__.
+
+. The name of your IdP
+
+== Authorization vs. Authentication
+
+*Authentication* determines who is allowed in. 
+Authentication is handled by Single Sign-On (SSO), which serves as a method for logging in. 
+
+*Authorization* determines what someone can do when they have logged-in.
+Access privileges beyond login are managed through roles using Role-Based Access Control (RBAC) an authorization method. 
+
+SSO does not directly grant access to edit project settings—such as changing the project name, managing network access, or modifying instance settings like renaming, pausing, or resuming an instance. 
+To determine a user’s access rights to these features, you should use RBAC.
+
+Roles and permissions are managed by RBAC, which decides whether a user can access, view, or modify data within the database instances themselves. 
+At this level, role mapping can be utilized to grant users different levels of access based on their roles in their Identity Provider (IdP).
+
+=== RBAC determined roles related to SSO
+
+//I don't quite follow this? where are these roles assigned? They are not assigned at SSO config level?//
+
+The following roles can be assigned via invitation:
 
 * Owner
 * Admin
@@ -146,70 +221,4 @@ The following roles are available at the org level and these are assigned via in
 |
 |===
 
-
-== Log-in methods
-
-Log-in methods are different for each SSO level.
-Administrators can configure a combination of one or more of the log-in methods.
-
-*Org SSO supports:*
-
-* Email/password
-* Okta
-* Microsoft Entra ID
-* Google SSO (not Google Workspace SSO)
-
-An organization's administrator can add Aura as a log-in from a tile in an organization's Apps Dashboard.
-
-*Project SSO supports:*
-
-* User/password
-* Okta
-* Microsoft Entra ID
-
-
-However, at the project level you cannot disable user/password, but at the org level you can disable email/password and Google SSO as long as you have at least one other custom SSO provider configured.
-
-== Setup requirements
-
-Accessing Aura with SSO requires:
-
-* Authorization Code Flow
-* A publicly accessible IdP server
-
-To create an SSO Configuration either a Discovery URI or a combination of Issuer, Authorization Endpoint, Token Endpoint and JWKS URI is required.
-
-== Create a new SSO configuration
-
-From the *Organization settings*, go to *Single Sign-On* and use the *SSO Configuration* button to set up a new SSO configuration.
-
-.Organization settings
-[.shadow]
-image::organizationsettings.png[A screenshot of how to navigate to organization settings in the UI]
-
-The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on Organization level, only on Project level, or both.
-
-The required basic SSO configuration information can be retrieved from the IdP.
-Entering the Discovery URI pre-fills the fields below. 
-If this is not known these fields can be completed manually.
-
-.SSO configuration
-[.shadow]
-image::sso.png[A screenshot of the SSO configuration dialogue,640,480]
-
-== Individual instance level SSO configurations available from Support
-
-Support can assist with:
-
-* Role mapping specific to a database instance
-* Custom groups claim besides `groups`
-* Updating SSO on already running instances
-
-If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
-
-
-. The _Project ID_ of the projects you want to use SSO for.
-See xref:platform/user-management.adoc#_projects[Projects] for more information on how to find your __Project ID__.
-
-. The name of your IdP
-
+Suggestion: An organization's administrator can add Aura as a log-in from a tile in an organization's Apps Dashboard.
