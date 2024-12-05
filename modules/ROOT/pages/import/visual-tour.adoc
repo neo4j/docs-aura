@@ -3,14 +3,15 @@
 = Visual tour
 
 Once you have connected to a data source, Importer's interface is the same regardless of your data source.
-It is divided into three parts, the data source panel where you provide the files, the data model panel where you draw your model, and the details panel where you map your model to your tables.
+It is divided into three parts, the data source panel where you provide the tables/files, the data model panel where you draw your model, and the details panel where you map your model to your tables.
 
 [.shadow]
-image::upx-import.png[]
+image::upx-import2.png[]
 
 == Data source panel
 
-The source tables for the import are placed here, either you drag and drop or browse for them.
+The source tables for the import are placed here.
+If you are using local CSV files, either you drag and drop them here or browse for them.
 Each table can be expanded using the dropdown option, to display the header and the first row of the table.
 The `...` menu allows you to delete the table.
 See xref:import/file-provision.adoc[] for more information about files and tables.

@@ -17,7 +17,7 @@ Import supports PostgreSQL, MySQL, SQL Server, as well as locally hosted flat fi
 image::sources.png[width=400]
 
 For SQL-files, you need to configure the data source, add user credentials for the SQL-database, and give the data source a name.
-If you want to stream local files, you can drag and drop them into the files panel or browse for them.
+If you want to stream local files, you can drag and drop them into the data source panel or browse for them.
 
 == Model the data
 
@@ -39,7 +39,7 @@ image::import-ready.png[width=400]
 == Run the import
 
 When you have connected a SQL data source, you need to provide credentials to the source and the destination (your Aura instance) in order to run the import.
-However, if you are streaming local files, you just need to make sure that they are available in the files panel and re-provide them if they are not.
+However, if you are streaming local files, you just need to make sure that they are available in the data source panel and re-provide them if they are not.
 
 If you have selected to go forward with a data source or an existing model and change your mind, click on *Graph models* to find the three tabs again.
 From here, you can go back to *Data sources* to select a different source, if you want.
