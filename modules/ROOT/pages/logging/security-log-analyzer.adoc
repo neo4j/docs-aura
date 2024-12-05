@@ -11,14 +11,14 @@ Security log analyzer is a feature that provides a UI to review the security eve
 
 You can access security logs from *Logs* in the left-hand navigation and selecting *Security* in the tabs at the top.
 
-To toggle between instances, use the dropdown menu on the top left.
+To switch between instances, use the dropdown menu on the top left.
 
 Security log analyzer is split up in two parts:
 
 * *Summary table* - An aggregated view of security logs, giving a high level overview over the selected time period.
 * *Details table* - A detailed view showing individual security events in the selected time period.
 
-To fetch logs, press the *Fetch logs* button. 
+To fetch logs, press the *Fetch logs* button and select a time range for the request.
 You may optionally select any filters or search text if required, then press *Fetch*.
 
 A summary of security events is returned, showing aggregations per event.
@@ -37,7 +37,6 @@ The *Fetch logs* button opens up a dialog where you select the time range for th
 * Last 24 hours
 * Custom time range (start date and end date)
 
-You can also add filters and search before fetching the logs.
 To fetch the logs after selection of filters and search is done, click the *Fetch* button.
 
 [NOTE]
@@ -59,7 +58,7 @@ Filters are available for the following fields:
 [[search]]
 === Search
 
-Use the search button to search for specific security events or messages.
+Use the search field to search for specific security events or messages.
 Search can be specified for the *Message text*.
 The field is case insensitive.
 
