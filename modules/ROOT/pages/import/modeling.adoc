@@ -2,13 +2,15 @@
 = Data modeling
 
 The data model is the is the blueprint for the database.
-It defines how the data is organized and is the key to create a graph from your flat files.
-The data model is what you map your flat files to.
+It defines how the data is organized and is the key to create a graph from your files.
+The data model is what you map your files to.
 It consists of nodes and relationships.
 Nodes need to have a _label_ and one or more _properties_.
 Relationships need to have a _type_ and one or more _properties_.
 
-//Add pointer to Graph Academy course on Data Modeling?
+When you connect a remote data source, you are offered to have the model generated and mapped for you.
+You can also upload a model, with or without data, in a _.json_ format.
+But if you want full control of how your data is modeled, you can create the model manually.
 
 The data model panel is located in the center of the screen.
 It has buttons for collapsing the files panel, adding a node, discarding elements, previewing, running an import, and a more options button.

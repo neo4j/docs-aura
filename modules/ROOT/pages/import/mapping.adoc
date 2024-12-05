@@ -15,9 +15,9 @@ Affected elements already imported are updated and **not** duplicated.
 
 == Nodes
 
-To map a node to a file, the node needs to have a label, which you can type directly on the node or in the mapping details panel.
-After naming the label, you can select the file to map to the node.
-Adding the file can be done at any time before running the import, but it is convenient to do it at this stage.
+To map a node to a file/table, the node needs to have a label, which you can type directly on the node or in the mapping details panel.
+After naming the label, you can select the file/table to map to the node.
+If you are streaming local files, you can add the file at any time before running the import, but it is convenient to do it at this stage.
 
 [.shadow]
 image::node-mapping.png[width=400]
@@ -91,7 +91,7 @@ By default, Import excludes any rows where the value of the node ID column is em
 
 The node exclude list is available from the more menu (`...`) in the data model panel, under _Settings_.
 
-image::node-exclude.png[width=300]
+image::node-exclude.png[width=400]
 
 
 == Complete the mapping

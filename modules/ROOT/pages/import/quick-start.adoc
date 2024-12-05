@@ -1,0 +1,52 @@
+[[quick-start]]
+:description: This section gives an overview of the Import service.
+= Quick start
+
+The Import service consists of three tabs; *Data sources*, *Graph models*, and *Import jobs*.
+If you haven't previously imported any data, all three are empty, otherwise sources, models, and import jobs are listed here.
+
+[.shadow]
+image::data-source.png[width=800]
+
+== Provide the data
+
+To get started you need to connect to a data source.
+Import supports PostgreSQL, MySQL, SQL Server, as well as locally hosted flat files.
+
+[.shadow]
+image::sources.png[width=400]
+
+For SQL-files, you need to configure the data source, add user credentials for the SQL-database, and give the data source a name.
+If you want to stream local files, you can drag and drop them into the data source panel or browse for them.
+
+== Model the data
+
+When you have connected a data source, you have the option to have a model generated based on primary and foreign key constraints in the source database.
+The quickest way is to accept to have a model generated, but you can draw your own later, see xref:import/modeling.adoc[] for more information.
+
+If you use local files, you can upload a _.json_ file containing your model, if available, or draw your own.
+
+If you generate a model from your relational data the model is already mapped to your tables.
+This is indicated by a green checkmark in the model.
+If you upload a local model, this may or may not be mapped already (it depends on whether it was mapped when first exported or not).
+If any element is unmapped, the import will fail and you will be prompted to add the missing mapping information.
+For more information on this, see xref:import/mapping.adoc[].
+When all elements in the model are mapped, as indicated with the green checkmark, you can run the import.
+
+[.shadow]
+image::import-ready.png[width=400]
+
+== Run the import
+
+When you have connected a SQL data source, you need to provide credentials to the source and the destination (your Aura instance) in order to run the import.
+However, if you are streaming local files, you just need to make sure that they are available in the data source panel and re-provide them if they are not.
+
+If you have selected to go forward with a data source or an existing model and change your mind, click on *Graph models* to find the three tabs again.
+From here, you can go back to *Data sources* to select a different source, if you want.
+
+[.shadow]
+image::go-back.png[width=300]
+
+Connected data sources, models, and past import jobs are then listed under the respective tabs.
+
+For more detailed information on xref:import/file-provision.adoc[file provision], xref:import/modeling[data models], and xref:import/import.adoc[import], see the respective pages.
