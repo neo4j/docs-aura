@@ -16,11 +16,12 @@ Once a custom endpoint has been assigned to an instance, it will be listed along
 They can be managed both from this menu as well as from the instance card.
 
 [.shadow]
-image::classic-instance-endpoints.png[width=600]
+image::classic-instance-endpoint.png[width=600]
 
 A custom endpoint can be configured to a different instance or deleted.
 
 [NOTE]
 ====
-Once a custom endpoint is created or re-assigned to an instance, you have to wait three hours before you can make any further changes to it.
+Once a custom endpoint is created (and thus assigned) or re-assigned to an instance, you have to wait three hours before you can make any further changes to it.
+If you re-assign an endpoint, you have the option to undo the re-assignment at any time without waiting.
 ====
