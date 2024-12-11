@@ -218,3 +218,11 @@ The following roles can be assigned via invitation:
 |===
 
 Suggestion: An organization's administrator can add Aura as a log-in from a tile in an organization's Apps Dashboard.
+
+== Log in flow for users when Organization SSO is enabled
+
+. A user opens the Aura console and selects Continue with {SSO name}
+. The user is redirected to the external IdP
+. The user authenticates successfully with the IdP
+. The user is redirected to the Aura console, to the relevant project
+
