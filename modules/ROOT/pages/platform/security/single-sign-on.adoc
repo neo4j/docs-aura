@@ -6,33 +6,29 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 label:AuraDB-Business-Critical[]
 
-== SSO options
+Organization owners and organization admins can configure one or more login methods.
 
-*1. Use as a login method for the organization* 
-
-*2. Use as a login method for instances within Projects in this organization:* Note that access is only automatically granted for new database instances created within that project since the setting was enabled. 
-
+Single sign-on (SSO) enables you to use an IdP to authenticate users to access an organization, or an instance within the Aura console.
 
 == Login methods
 
-Organization owners and organization admins can configure a combination of one or more of the log-in methods.
+*1. Organization SSO*
 
-*1. Organization login*
-
-* Email/password
 * Okta
 * Microsoft Entra ID
+* Email/password
 * Google SSO (not Google Workspace SSO) 
 
-For *organization login*, organization admins can disable email/password and Google SSO if at least one other custom SSO provider is configured.
+You can disable email/password and Google SSO if Okta, Microsoft Entra ID, or both are configured.
 
-*2. Use as a log-in method for instances within Projects in this organization*
+*2. Instance SSO*
 
-* User/password
 * Okta
 * Microsoft Entra ID
 
-Enabling *Use as a log-in method for instances within Projects in this organization* locks the user/password method and prevents it from being disabled.
+Instance SSO prevents the user/password from being disabled.
+
+Instance SSO does not apply to instances created before SSO was enabled. 
 
 == Setup requirements
 
