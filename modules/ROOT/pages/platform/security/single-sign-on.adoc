@@ -6,9 +6,9 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 label:AuraDB-Business-Critical[]
 
-Organization owners and organization admins can configure one or more login methods.
+Organization owners and admins can configure one or more login methods.
 
-Single sign-on (SSO) enables you to use an IdP to authenticate users to access an organization, or an instance within the Aura console.
+Single sign-on (SSO) allows you to use an IdP to authenticate users for accessing an organization or an instance within the Aura console.
 
 == Login methods
 
@@ -19,14 +19,20 @@ Single sign-on (SSO) enables you to use an IdP to authenticate users to access a
 * Email/password
 * Google SSO (not Google Workspace SSO) 
 
-You can disable email/password and Google SSO if Okta, Microsoft Entra ID, or both are configured.
+You can disable email/password and Google SSO if Okta or Microsoft Entra ID are configured.
+
+When you have set up organization SSO, the organization SSO link is available in the Organization Settings > Summary section of the Aura console. 
+For easy access, you could add Aura as a login option from a tile in the organization’s Apps Dashboard.
 
 *2. Instance SSO*
 
 * Okta
 * Microsoft Entra ID
 
-Instance SSO prevents the user/password from being disabled.
+// Setting up Okta or Microsoft Entra ID prevents user/password from being disabled (you wouldn't be able to disable it anyway right?)
+// The user/password is downloaded when you create the instance. 
+// It's different to the email/password.
+// TEST THIS!
 
 Instance SSO does not apply to instances created before SSO was enabled. 
 
@@ -216,8 +222,6 @@ The following roles can be assigned via invitation:
 |
 |
 |===
-
-Suggestion: An organization's administrator can add Aura as a log-in from a tile in an organization's Apps Dashboard.
 
 == Log in flow for users when Organization SSO is enabled
 
