@@ -18,7 +18,7 @@ Security log analyzer is split up in two parts:
 * *Summary table* - An aggregated view of security logs, giving a high level overview over the selected time period.
 * *Details table* - A detailed view showing individual security events in the selected time period.
 
-To fetch logs, press the *Fetch logs* button and select a time range for the request.
+Use the *Fetch logs* button to fetch logs and select a time range for the request.
 You may optionally select any filters or search text if required, then press *Fetch*.
 
 A summary of security events is returned, showing aggregations per event.
@@ -28,7 +28,7 @@ The details pane shows individual events.
 [[fetch-logs]]
 == Fetch logs
 
-The *Fetch logs* button opens up a dialog where you select the time range for the security logs. You can choose from the following intervals:
+You can select the time range for the security logs from the following intervals:
 
 * Last 30 minutes
 * Last hour
@@ -37,7 +37,6 @@ The *Fetch logs* button opens up a dialog where you select the time range for th
 * Last 24 hours
 * Custom time range (start date and end date)
 
-To fetch the logs after selection of filters and search is done, click the *Fetch* button.
 
 [NOTE]
 ====
@@ -58,7 +57,7 @@ Filters are available for the following fields:
 [[search]]
 === Search
 
-Use the search field to search for specific security events or messages.
+You can search for specific security events or messages using the search fiels.
 Search can be specified for the *Message text*.
 The field is case insensitive.
 
@@ -155,7 +154,7 @@ This granular view is useful for investigating specific incidents or understandi
 === Sort table
 
 By default, the table is sorted on *Count* for *Summary* and *Status* for *Details*.
-To sort by a column (such as Executing User) click on the column heading.
+Use the column heading to sort by a column (such as Executing User).
 
 === Modify columns
 

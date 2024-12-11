@@ -10,7 +10,7 @@
 label:AuraDB-Professional[]
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-Both *Query log analyzer* and *Security log analyzer* allows you to download the fetched logs. 
+Both *Query log analyzer* and *Security log analyzer* allow you to download the fetched logs. 
 The downloaded logs account for any filters and search that have been applied. 
 Downloading logs consists of two steps: **initiate the download** and **download the file**.
 
@@ -21,8 +21,8 @@ Downloading logs requires a project role of either _{role-project-admin}_ or _{r
 
 === Initiate download
 
-To initiate a download, after fetching the logs, click the _Initiate log download_ icon button (Arrow Down Tray Icon) in the top right corner of either the Summary or Details table. 
-In the dialog that opens, select the following options:
+To initiate a download, after fetching the logs, use the _Initiate log download_ icon button (Arrow Down Tray Icon) in the top right corner of either the Summary or Details table. 
+Select the following options in the dialog:
 
 * *Log type* - Select one or both:
 ** *Summary* - Aggregated log statistics
@@ -33,7 +33,7 @@ In the dialog that opens, select the following options:
 *** Include CSV headers (default: enabled)
 *** CSV field delimiter (default: comma)
 
-Click *Confirm* to start the download. 
+*Confirm* starts the download. 
 Once the download has been initiated, the modal closes, and the _Downloads archive_ side drawer opens automatically.
 
 [NOTE]
@@ -44,7 +44,7 @@ Each download request is limited to {max-request-hours} hours of data and a maxi
 === Download the file
 
 Use the _Open downloads archive_ icon button (Document Text Icon) in the top right corner of the page, to view your downloads. 
-The _Downloads archive_ side drawer opens, displaying a table with all downloads for the currently selected instance. 
+The _Downloads archive_ side drawer displays a table with all downloads for the currently selected instance. 
 The table includes the following information for each download:
 
 .Downloads archive table columns
