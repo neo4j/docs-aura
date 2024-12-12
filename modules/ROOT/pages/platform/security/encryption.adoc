@@ -123,7 +123,10 @@ Move through the tabs to enable to following:
 * Purge protection
 * Azure role-based access control
 * Azure Disk Encryption for volume encryption
-* Allow access from all networks
+* You can choose:
+** Allow public access from all networks (no need to check “Allow trusted Microsoft services to bypass this firewall”)
+** Allow public access from specific virtual networks and IP addresses (need to check “Allow trusted Microsoft services to bypass this firewall”)
+** Disable public access (need to check “Allow trusted Microsoft services to bypass this firewall”)
 
 === Create a key
 
