@@ -1,9 +1,5 @@
-:role-project-admin: Project Admin
-:role-project-member: Project Member
 :log-retention-days: 30
 :max-request-hours: 24
-:max-download-rows: 5 million
-:log-download-retention-days: 30
 
 [[aura-monitoring]]
 = Query log analyzer
@@ -16,7 +12,7 @@ Query log analyzer is a feature that provides a UI to review the queries execute
 You can access query logs from *Logs* in the left-hand navigation or from query-related metrics in the *Database* tab in *Metrics*.
 Use the more menu (*...*) on the metric to navigate to *Explore query logs*.
 
-To toggle between instances, use the dropdown menu on the top left.
+To switch between instances, use the dropdown menu on the top left.
 
 Query log analyzer is split up in three parts:
 
@@ -90,6 +86,7 @@ Filters are available for the following fields:
 * Driver
 * Application
 * Initiation type
+* Minimum duration (ms)
 
 [[search]]
 === Search
@@ -253,83 +250,3 @@ Columns can be enabled or disabled, or the order changed using the grid icon at 
 In the table three rows of query text will be shown.
 To see the whole query if the query is longer, press the *View more* button under the query text.
 
-
-== Download logs
-
-Query logs analyzer allows you to download the <<fetch-logs, fetched logs>>. 
-The downloaded logs account for any <<filters, filters>> and <<search, search>> that have been applied. 
-Downloading logs consists of two steps: **initiate the download** and **download the file**.
-
-[NOTE]
-====
-Downloading logs requires a project role of either _{role-project-admin}_ or _{role-project-member}_.
-====
-
-=== Initiate download
-
-To initiate a download, after fetching the logs, click the _Initiate log download_ icon button (Arrow Down Tray Icon) in the top right corner of either the Summary or Details table. 
-In the dialog that opens, select the following options:
-
-* *Log type* - Select one or both:
-** *Summary* - Aggregated query statistics
-** *Details* - Individual query executions
-* *Format* - Choose your preferred format:
-** *JSON*
-** *CSV* with optional settings:
-*** Include CSV headers (default: enabled)
-*** CSV field delimiter (default: comma)
-
-Click *Confirm* to start the download. 
-Once the download has been initiated, the modal closes, and the _Downloads archive_ side drawer opens automatically.
-
-[NOTE]
-====
-Each download request is limited to {max-request-hours} hours of data and a maximum of {max-download-rows} rows.
-====
-
-=== Download the file
-
-Use the _Open downloads archive_ icon button (Document Text Icon) in the top right corner of the page, to view your downloads. 
-The _Downloads archive_ side drawer opens, displaying a table with all downloads for the currently selected instance. 
-The table includes the following information for each download:
-
-.Downloads archive table columns
-[cols="25,75v"]
-|===
-| Display Name | Description
-
-| Requested
-| When the download was requested and by which user.
-
-| Status
-| Current status of the download (e.g., Running, Completed, Failed).
-
-| Type
-| The type of query logs being downloaded (Summary or Details).
-
-| Time Period
-| The time range covered by the downloaded logs.
-
-| Rows
-| Number of log entries exported.
-
-| Format
-| File format of the download (JSON or CSV with additional CSV settings).
-
-| Filters
-| Applied filters for the log download.
-
-| Actions
-| _Download log_ icon button (Arrow Down Tray Icon) and _Delete log_ icon button (Trash Icon) for the log file.
-|===
-
-You can download log files by selecting the download icon in the Actions column once the status shows _Ready_. 
-Downloaded query logs are provided as a zipped file in your chosen format (JSON or CSV), containing the same fields shown in the Field Name columns of the Summary and Details tables above. 
-The file name follows this pattern: `<db_id>-<timestamp>-query-logs-<log_type>.<format>.gz`, for example: `dd9ba752-1731586207476-query-logs-details.json.gz`
-
-To delete a log file, select the delete icon in the Actions column.
-
-[NOTE]
-====
-Log files are automatically deleted from the downloads archive after {log-download-retention-days} days.
-====
