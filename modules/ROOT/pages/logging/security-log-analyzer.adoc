@@ -1,0 +1,168 @@
+:log-retention-days: 30
+:max-request-hours: 24
+
+[[aura-monitoring]]
+= Security log analyzer
+
+label:AuraDB-Professional[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
+
+Security log analyzer is a feature that provides a UI to review the security events on an Aura instance.
+
+You can access security logs from *Logs* in the left-hand navigation and selecting *Security* in the tabs at the top.
+
+To switch between instances, use the dropdown menu on the top left.
+
+Security log analyzer is split up in two parts:
+
+* *Summary table* - An aggregated view of security logs, giving a high level overview over the selected time period.
+* *Details table* - A detailed view showing individual security events in the selected time period.
+
+Use the *Fetch logs* button to fetch logs and select a time range for the request.
+You may optionally select any filters or search text if required, then press *Fetch*.
+
+A summary of security events is returned, showing aggregations per event.
+To see the individual security events, click the right arrow at the end of the line to show details for that event.
+The details pane shows individual events.
+
+[[fetch-logs]]
+== Fetch logs
+
+You can select the time range for the security logs from the following intervals:
+
+* Last 30 minutes
+* Last hour
+* Last 2 hours
+* Last 6 hours
+* Last 24 hours
+* Custom time range (start date and end date)
+
+
+[NOTE]
+====
+Security logs are available for a period of {log-retention-days} days, and each request can be for up to {max-request-hours} hours of data.
+====
+
+[[filters]]
+=== Filters
+
+Use the filter button to load the available filters over the selected time period.
+Filters are available for the following fields:
+
+* Status
+* Executing User
+* Authenticated User
+* Driver
+
+[[search]]
+=== Search
+
+You can search for specific security events or messages using the search fiels.
+Search can be specified for the *Message text*.
+The field is case insensitive.
+
+== Log tables
+
+The log tables provide two different views of your security data:
+
+* The *Summary table* aggregates similar security events, showing statistics like total count and time range. 
+The table will be grouped by status and executing user.
+This view helps identify patterns and potential security issues across multiple events.
+
+* The *Details table* shows individual security events with their specific timestamps, users, and other details. 
+This granular view is useful for investigating specific incidents or understanding the context of individual security events.
+
+=== Summary
+
+.Summary table columns
+[cols="25,25m,50v"]
+|===
+| Display Name | Field Name | Description
+
+| Status
+| severity
+| The status of the security event.
+
+| Message
+| message
+| The log message.
+
+| Count
+| executionCount
+| The number of times this security event was found.
+
+| From
+| fromTime
+| The start timestamp of the first security event.
+
+| To
+| toTime
+| The end timestamp of the last security event.
+
+| Executing User
+| executingUser
+| The user who executed the security event.
+
+| Authenticated User
+| authenticatedUser
+| The user whose credentials were used to authenticate.
+
+| Actions
+| -
+| Contains an icon button (Arrow Right Circle) to view detailed executions of this specific security message in the Details table. Use this button to filter the Details table to show only executions of the selected security message.
+|===
+
+=== Details
+
+.Details table columns
+[cols="25,25m,50v"]
+|===
+| Display Name | Field Name | Description
+
+| Status
+| severity
+| The status of the security event.
+
+| Message
+| message
+| The log message.
+
+| Time
+| time
+| The timestamp when the log was created, including milliseconds.
+
+| Executing User
+| executingUser
+| The user who executed the security event.
+
+| Authenticated User
+| authenticatedUser
+| The user whose credentials were used to authenticate.
+
+| Database
+| database
+| The database for the security event (if applicable).
+
+| Driver
+| driver
+| The database driver used during the security event.
+
+|===
+
+== Table interactions
+
+=== Sort table
+
+By default, the table is sorted on *Count* for *Summary* and *Status* for *Details*.
+Use the column heading to sort by a column (such as Executing User).
+
+=== Modify columns
+
+The columns in the table can be modified by clicking the button to the right of the column row.
+Columns can be enabled or disabled, or the order changed using the grid icon at the top right of the table.
+
+=== Expand query
+
+In the table three rows of message text will be shown.
+To see the whole message if the message is longer, press the *View more* button under the message text.
+
