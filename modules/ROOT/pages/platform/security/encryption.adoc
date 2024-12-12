@@ -124,11 +124,10 @@ Move through the tabs to enable to following:
 * Azure role-based access control
 * Azure Disk Encryption for volume encryption
 * When setting up the key vault, in Networking you can choose:
-** Allow public access from all networks (no need to check “Allow trusted Microsoft services to bypass this firewall” )
-** Allow public access from specific virtual networks and IP addresses (need to check “Allow trusted Microsoft services to bypass this firewall”)
-** Disable public access (need to check “Allow trusted Microsoft services to bypass this firewall”)
-
-* If you need to edit the public access setting after setting up the key vault, you will find public access options in Networking > Firewalls and Virtual Networks and below it is the Exeption section where you will find the checkbox “Allow trusted Microsoft services to bypass this firewall”.
+** *Allow public access from all networks*
+** *Allow public access from specific virtual networks and IP addresses* (need to check *Allow trusted Microsoft services to bypass this firewall*)
+** *Disable public access* (need to check *Allow trusted Microsoft services to bypass this firewall*)
+** If you need to edit the public access setting after setting up the key vault, you will find public access options in Networking > Firewalls and Virtual Networks and below it is the Exception section the checkbox to Allow trusted Microsoft services to bypass this firewall.
 
 === Create a key
 
