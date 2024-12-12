@@ -10,8 +10,8 @@
 label:AuraDB-Professional[]
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-Both *Query log analyzer* and *Security log analyzer* allow you to download the fetched logs. 
-The downloaded logs account for any filters and search that have been applied. 
+Both *Query log analyzer* and *Security log analyzer* allow you to download the fetched logs.
+The downloaded logs account for any filters and search that have been applied.
 Downloading logs consists of two steps: **initiate the download** and **download the file**.
 
 [NOTE]
@@ -21,7 +21,7 @@ Downloading logs requires a project role of either _{role-project-admin}_ or _{r
 
 === Initiate download
 
-To initiate a download, after fetching the logs, use the _Initiate log download_ icon button (Arrow Down Tray Icon) in the top right corner of either the Summary or Details table. 
+To initiate a download, after fetching the logs, use the _Initiate log download_ icon button (Arrow Down Tray Icon) in the top right corner of either the Summary or Details table.
 Select the following options in the dialog:
 
 * *Log type* - Select one or both:
@@ -33,17 +33,17 @@ Select the following options in the dialog:
 *** Include CSV headers (default: enabled)
 *** CSV field delimiter (default: comma)
 
-*Confirm* starts the download. 
+*Confirm* starts the download.
 
 [NOTE]
 ====
 Each download request is limited to {max-request-hours} hours of data and a maximum of {max-download-rows} rows.
 ====
 
-=== Download the file
+== Download the file
 
-Use the _Open downloads archive_ icon button (Document Text Icon) in the top right corner of the page, to view your downloads. 
-The _Downloads archive_ side drawer displays a table with all downloads for the currently selected instance. 
+Use the _Open downloads archive_ icon button (Document Text Icon) in the top right corner of the page, to view your downloads.
+The _Downloads archive_ side drawer displays a table with all downloads for the currently selected instance.
 The table includes the following information for each download:
 
 .Downloads archive table columns
@@ -76,8 +76,8 @@ The table includes the following information for each download:
 | _Download log_ icon button (Arrow Down Tray Icon) and _Delete log_ icon button (Trash Icon) for the log file.
 |===
 
-You can download log files by selecting the download icon in the Actions column once the status shows _Ready_. 
-Downloaded logs are provided as a zipped file in your chosen format (JSON or CSV), containing the same fields shown in the Field Name columns of the Summary and Details tables above. 
+You can download log files by selecting the download icon in the Actions column once the status shows _Ready_.
+Downloaded logs are provided as a zipped file in your chosen format (JSON or CSV), containing the same fields shown in the Field Name columns of the Summary and Details tables above.
 The file name follows this pattern: `<db_id>-<timestamp>-<log_type>-logs-<log_sub_type>.<format>.gz`, for example: `dd9ba752-1731586207476-query-logs-details.json.gz`
 
 To delete a log file, select the delete icon in the Actions column.
