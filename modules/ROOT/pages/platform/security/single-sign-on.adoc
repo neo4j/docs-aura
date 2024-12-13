@@ -10,6 +10,8 @@ Organization owners and admins can configure one or more login methods.
 
 Single sign-on (SSO) allows you to use an IdP to authenticate users for accessing an organization or an instance within the Aura console.
 
+You can configure Organization SSO or Instance SSO - role mapping applies to Instance SSO.
+
 == Login methods
 
 *1. Organization SSO*
@@ -81,7 +83,6 @@ Support can assist with:
 
 If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
 
-
 . The _Project ID_ of the projects you want to use SSO for.
 See xref:platform/user-management.adoc#_projects[Projects] for more information on how to find your __Project ID__.
 
@@ -101,9 +102,19 @@ To determine a user’s access rights to these features, you should use RBAC.
 Roles and permissions are managed by RBAC, which decides whether a user can access, view, or modify data within the database instances themselves. 
 At this level, role mapping can be utilized to grant users different levels of access based on their roles in their Identity Provider (IdP).
 
-=== RBAC determined roles related to SSO
+=== RBAC roles related to SSO
 
 //I don't quite follow this? where are these roles assigned? They are not assigned at SSO config level?//
+
+Role mapping only applies for Instance SSO. 
+Also, please note there are currently no roles in UPX, so your configuration will not carry over to the new console. 
+
+AuraDB Virtual Dedicated Cloud users can create new roles.
+RBAC is limited in AuraDB Professional and Free.
+
+You can create RBAC roles and assign them to different teams in your organisation. For example, a developer team could have the `Admin Role` and another team could have a `reader role`. 
+
+Please note that the configs in https://neo4j.com/docs/operations-manual/current/tutorial/tutorial-sso-configuration/
 
 The following roles can be assigned via invitation:
 
@@ -233,4 +244,74 @@ The following roles can be assigned via invitation:
 . The user is redirected to the external IdP
 . The user authenticates successfully with the IdP
 . The user is redirected to the Aura console, to the relevant project
+
+// == We do use ID token login, but they do run out every so often and the user has to re-authenticate, and that is how the Aura Console team decided to build SSO in Aura. 
+
+== Okta SSO configuration step-by-step
+
+. Navigate to your Okta admin portal
+. Under Applications click Create App Integration
+. For Sign-in method, select OIDC - OpenID Connect
+. For Application type, select Web Application
+. Enter a name for your application
+. Ensure that Authorization Code is selected for Grant type
+. Under Sign-in redirect URI’s add https://login.neo4j.com/login/callback as the redirect URI.
+. Create an Okta SSO config via console. 
+You can do this via the org settings for your org.
+. (Optional) if using the non admin UI, select if you want the SSO config to be applied to org logins, to specific tenants within the org, or both
+. Enter a Display Name
+. For IdP Type select Okta
+. (Optional) if using admin UI ensure you have Back channel selected for the Channel
+. For Client ID enter the Client ID field from the Okta app details page
+. For Client Secret enter the client secret from the Okta app details page
+. For Discovery URI take the domain from your Okta portal. 
+Should be something like https://dev-29540076-admin.okta.com/ and add .well-known/openid-configuration. 
+Your final url should look something like https://dev-29540076-admin.okta.com/.well-known/openid-configuration 
+. Configure the rest of the SSO config as you’d like
+. (Optional) if using the admin UI, check the box to make the SSO config a login for the organization if you want to use the SSO config to login to console. 
+For tenant/instance SSO you’ll have to link the SSO config to the tenant via the tenants SSO configs tab once you’ve created the SSO config.
+. Click Create
+. To test Instance SSO, create an instance now in a tenant that has the just created SSO config linked.
+
+== Configure groups claim in Okta
+
+You can configure a groups claim in Okta so that your Okta groups are added to your tokens when logging in via SSO. 
+This enables the management of Instance roles via a Role Mapping that is configured on the SSO config.
+For more info see the link:https://developer.okta.com/docs/guides/customize-tokens-groups-claim/main/#add-a-groups-claim-for-the-org-authorization-server[Okta docs]
+
+. In your app details page in Okta, go to the Sign On tab and then edit the OpenID Connect ID Token.
+. Choose Filter as the Groups claim type
+. Choose Matches regex under the Groups claim filter and use .* as the regex
+. Save
+. You can now update your SSO config in console to include a role mapping. 
+For Okta, the role mapping should look something like "Neo4j SSO"=admin; where “Neo4j SSO” is the name of your Okta group. 
+Okta uses the group name in the groups claim, not the group ID like Azure.
+.  To see these changes you’ll either need to create a new instance, or update the group_to_role_mapping field on the SSO config of the instance in the SRE portal.
+
+== Azure SSO configuration step-by-step
+
+Azure 
+
+. Navigate to Azure at portal.azure.com
+. Go to Microsoft Entra ID 
+. Go to App Registrations and then New Registration
+. Add a name for the new app registration and click Register. Skip redirect URI’s for now.
+. On the app overview page, take note of the Application (client) ID.
+. Click the Client Credentials link to navigate to the client credentials page
+. Create a new secret and take note of the Value field, you won’t be able to see it again after leaving this page
+. Go back to the app overview page and open the app endpoints and take note of the Open ID Connection metadata document uri
+. Under Authentication on the left side nav, setup redirect urls by adding a new Web platform and adding https://login.neo4j.com/login/callback as the redirect URI.
+
+Aura Console
+
+. Create an Azure SSO config via console. You can do this via the org settings
+(Optional) if using the non admin UI, select if you want the SSO config to be applied to org logins, to specific tenants within the org, or both
+. For IdP Type select Azure Active Directory
+. (Optional) if using admin UI ensure you have Back channel selected for the Channel
+. For Client ID enter the Application (client) ID from the azure app
+. For Client Secret enter the client secret value (not secret id) from the secret you created in the azure app
+. For Discovery URI enter the OpenID Connect metadata document uri
+. Configure the rest of the SSO config as you’d like
+. (Optional) if using the admin ui, check the box to make the SSO config a login for the organization if you want to use the SSO config to login to console. For tenant/instance SSO you’ll have to link the SSO config to the tenant via the tenants SSO configs tab once you’ve created the SSO config.
+. Click Create
 
