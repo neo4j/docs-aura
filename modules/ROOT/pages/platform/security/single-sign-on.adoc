@@ -88,7 +88,7 @@ To determine a user’s access rights to these features, you should use RBAC.
 Roles and permissions are managed by RBAC, which decides whether a user can access, view, or modify data within the database instances themselves. 
 At this level, role mapping can be utilized to grant users different levels of access based on their roles in their Identity Provider (IdP).
 
-=== RBAC roles related to SSO
+=== RBAC role mapping
 
 //I don't quite follow this? where are these roles assigned? They are not assigned at SSO config level?//
 
@@ -98,7 +98,8 @@ Also, please note there are currently no roles in UPX, so your configuration wil
 AuraDB Virtual Dedicated Cloud users can create new roles.
 RBAC is limited in AuraDB Professional and Free.
 
-You can create RBAC roles and assign them to different teams in your organisation. For example, a developer team could have the `Admin Role` and another team could have a `reader role`. 
+You can create RBAC roles and assign them to different teams in your organisation. 
+For example, a developer team could have an `Admin` role and another team could have a `Reader` role`. 
 
 Please note that the configs in https://neo4j.com/docs/operations-manual/current/tutorial/tutorial-sso-configuration/
 
@@ -256,7 +257,7 @@ Your final url should look something like https://dev-29540076-admin.okta.com/.w
 . Click Create
 . To test Instance SSO, create an instance now in a tenant that has the just created SSO config linked.
 
-== Configure groups claim in Okta
+=== Configure groups claim in Okta
 
 You can configure a groups claim in Okta so that your Okta groups are added to your tokens when logging in via SSO. 
 This enables the management of Instance roles via a Role Mapping that is configured on the SSO config.
@@ -269,11 +270,11 @@ For more info see the link:https://developer.okta.com/docs/guides/customize-toke
 . You can now update your SSO config in console to include a role mapping. 
 For Okta, the role mapping should look something like "Neo4j SSO"=admin; where “Neo4j SSO” is the name of your Okta group. 
 Okta uses the group name in the groups claim, not the group ID like Azure.
-.  To see these changes you’ll either need to create a new instance, or update the group_to_role_mapping field on the SSO config of the instance in the SRE portal.
+// .  To see these changes you’ll either need to create a new instance, or update the group_to_role_mapping field on the SSO config of the instance in the SRE portal.
 
 == Azure SSO configuration step-by-step
 
-Azure 
+=== Create an Azure registration
 
 . Navigate to Azure at portal.azure.com
 . Go to Microsoft Entra ID 
@@ -286,7 +287,7 @@ Skip redirect URI’s for now.
 . Go back to the app overview page and open the app endpoints and take note of the Open ID Connection metadata document uri
 . Under Authentication on the left side nav, setup redirect urls by adding a new Web platform and adding https://login.neo4j.com/login/callback as the redirect URI.
 
-Aura Console
+=== Create an Azure SSO config in the Aura console
 
 . Create an Azure SSO config via console. 
 You can do this via the org settings
