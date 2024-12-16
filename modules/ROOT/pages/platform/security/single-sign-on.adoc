@@ -28,7 +28,7 @@ When you have set up organization SSO, the organization SSO link is available in
 For quick access, consider adding Organization SSO as a login option available through a tile in an Apps Dashboard. This integration simplifies access to work-related applications while enhancing security with single sign-on.
 ====
 
-*2. Instance SSO*
+*2. Instances in a project SSO*
 
 * Okta
 * Microsoft Entra ID
@@ -57,7 +57,7 @@ From the *Organization settings*, go to *Single Sign-On* and use the *SSO Config
 [.shadow]
 image::organizationsettings.png[A screenshot of how to navigate to organization settings in the UI]
 
-The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on Organization level, only on Project level, or both.
+The checkboxes *Use as a log in for the Organization* and *Use as login method for instances within projects in this Org* define whether SSO should be only on Organization level, only on Project level, or both.
 
 The required basic SSO configuration information can be retrieved from the IdP.
 Entering the Discovery URI pre-fills the fields below. 
