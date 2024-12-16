@@ -4,13 +4,12 @@
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-Organization owners and admins can configure one or more SSO login methods.
+Organization owners and admins have the flexibility to configure one or more Single Sign-On (SSO) login methods for user authentication. 
+SSO enables users to authenticate through an Identity Provider (IdP) for seamless access to an organization or instances within a project.
 
-Single sign-on (SSO) allows you to use an IdP to authenticate users for accessing an organization or an instance within the Aura console.
+There are two configuration options: Organization SSO and Instance SSO, each serving distinct purposes. 
 
-You can configure Organization SSO or Instance SSO. 
-
-Role mapping only applies to Instance SSO.
+Note that role mapping is a feature exclusive to Instance SSO.
 
 == Login methods
 
@@ -30,7 +29,7 @@ When you have set up organization SSO, the organization SSO link is available in
 For quick access, consider adding Organization SSO as a login option available through a tile in an Apps Dashboard. This integration simplifies access to work-related applications while enhancing security with single sign-on.
 ====
 
-*2. Instances in a project SSO*
+*2. Instances within a project SSO*
 
 * Okta
 * Microsoft Entra ID
@@ -41,6 +40,8 @@ For quick access, consider adding Organization SSO as a login option available t
 // TEST THIS!
 
 Instance SSO does not apply to instances created before SSO was enabled. 
+
+Instance SSO is applied at the project level, and the SSO login is displayed when a tries to access an instance from within a project. 
 
 == Setup requirements
 
