@@ -71,23 +71,6 @@ image::sso.png[A screenshot of the SSO configuration dialogue,640,480]
 [.shadow]
 image::ssotoggles.png[A screenshot of the SSO toggles (for password/user and Google social log in) after SSO configuration dialogue,640,480]
 
-== Individual instance level SSO configurations available from Support
-
-label:AuraDB-Business-Critical[]
-
-Support can assist with:
-
-* Role mapping specific to a database instance
-* Custom groups claim besides `groups`
-* Updating SSO on already running instances
-
-If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
-
-. The _Project ID_ of the projects you want to use SSO for.
-See xref:platform/user-management.adoc#_projects[Projects] for more information on how to find your __Project ID__.
-
-. The name of your IdP
-
 == Authorization vs. Authentication
 
 *Authentication* determines who is allowed in. 
@@ -315,3 +298,19 @@ Aura Console
 . (Optional) if using the admin ui, check the box to make the SSO config a login for the organization if you want to use the SSO config to login to console. For tenant/instance SSO you’ll have to link the SSO config to the tenant via the tenants SSO configs tab once you’ve created the SSO config.
 . Click Create
 
+== Individual instance level SSO configurations available from Support
+
+label:AuraDB-Business-Critical[]
+
+Support can assist with:
+
+* Role mapping specific to a database instance
+* Custom groups claim besides `groups`
+* Updating SSO on already running instances
+
+If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
+
+. The _Project ID_ of the projects you want to use SSO for.
+See xref:platform/user-management.adoc#_projects[Projects] for more information on how to find your __Project ID__.
+
+. The name of your IdP
