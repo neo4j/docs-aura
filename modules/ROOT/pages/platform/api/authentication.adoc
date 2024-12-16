@@ -162,7 +162,7 @@ print(response.json())
 If you send a request to the Aura API while authenticated with an expired access token, you will receive a 403 Forbidden response.
 You will need to obtain a new token to continue using the API.
 
-=== Aura API rate limiting update
+=== Rate limiting update
 
 We currently set a global rate limit of 125 requests per minute per client ID for all Aura API endpoints.
 Starting 27 Jan 2025, we will adjust the rate limiting for the `/oauth/token` endpoint, which is used to obtain authorization tokens. 
