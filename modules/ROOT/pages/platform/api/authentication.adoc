@@ -165,18 +165,11 @@ You will need to obtain a new token to continue using the API.
 === Aura API rate limiting update
 
 We currently set a global rate limit of 125 requests per minute per client ID for all Aura API endpoints.
-
-Starting 27 Jan 2025, we will adjust the rate limiting for the Aura API /oauth/token endpoint, which is used to obtain authorization tokens. 
-The new limit will be set to 15 requests per hour. 
+Starting 27 Jan 2025, we will adjust the rate limiting for the `/oauth/token` endpoint, which is used to obtain authorization tokens. 
+The new limit will be set to 15 requests per hour.
 
 Since each authorization token remains valid for one hour, we recommend optimizing your API usage in advance by following these steps:
 
-* Retrieve the token once per hour: As tokens remain valid for an hour, reduce the frequency of token requests and reuse the same token for multiple API calls.
+* *Retrieve the token once per hour:* As tokens remain valid for an hour, reduce the frequency of token requests and reuse the same token for multiple API calls.
 
-* Implement token caching: Store the token securely within your system to reuse it for subsequent requests during its validity period, minimizing unnecessary calls to the endpoint.
-
-If you need additional guidance or help, please reach out to Neo4j Aura Support. 
-Our priority is to ensure fair and equitable access to our APIs for all customers.
-
-We will provide confirmation of this update in January, along with a link to the relevant documentation.
-Rate limiting for other endpoints will remain unchanged at this time. 
+* *Implement token caching:* Store the token securely within your system to reuse it for subsequent requests during its validity period, minimizing unnecessary calls to the endpoint.
