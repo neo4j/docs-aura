@@ -241,18 +241,15 @@ The following roles can be assigned via invitation:
 . Under Sign-in redirect URI’s add https://login.neo4j.com/login/callback as the redirect URI.
 . Create an Okta SSO config via console. 
 You can do this via the org settings for your org.
-. (Optional) if using the non admin UI, select if you want the SSO config to be applied to org logins, to specific tenants within the org, or both
+. (Optional) Select if you want the SSO config to be applied to org logins, to specific tenants within the org, or both
 . Enter a Display Name
 . For IdP Type select Okta
-. (Optional) if using admin UI ensure you have Back channel selected for the Channel
 . For Client ID enter the Client ID field from the Okta app details page
 . For Client Secret enter the client secret from the Okta app details page
 . For Discovery URI take the domain from your Okta portal. 
 Should be something like https://dev-29540076-admin.okta.com/ and add .well-known/openid-configuration. 
 Your final url should look something like https://dev-29540076-admin.okta.com/.well-known/openid-configuration 
 . Configure the rest of the SSO config as you’d like
-. (Optional) if using the admin UI, check the box to make the SSO config a login for the organization if you want to use the SSO config to login to console. 
-For tenant/instance SSO you’ll have to link the SSO config to the tenant via the tenants SSO configs tab once you’ve created the SSO config.
 . Click Create
 . To test Instance SSO, create an instance now in a tenant that has the just created SSO config linked.
 
@@ -278,7 +275,8 @@ Azure
 . Navigate to Azure at portal.azure.com
 . Go to Microsoft Entra ID 
 . Go to App Registrations and then New Registration
-. Add a name for the new app registration and click Register. Skip redirect URI’s for now.
+. Add a name for the new app registration and click Register. 
+Skip redirect URI’s for now.
 . On the app overview page, take note of the Application (client) ID.
 . Click the Client Credentials link to navigate to the client credentials page
 . Create a new secret and take note of the Value field, you won’t be able to see it again after leaving this page
@@ -287,15 +285,14 @@ Azure
 
 Aura Console
 
-. Create an Azure SSO config via console. You can do this via the org settings
-(Optional) if using the non admin UI, select if you want the SSO config to be applied to org logins, to specific tenants within the org, or both
+. Create an Azure SSO config via console. 
+You can do this via the org settings
+. (Optional) Select if you want the SSO config to be applied to org logins, to specific tenants within the org, or both
 . For IdP Type select Azure Active Directory
-. (Optional) if using admin UI ensure you have Back channel selected for the Channel
 . For Client ID enter the Application (client) ID from the azure app
 . For Client Secret enter the client secret value (not secret id) from the secret you created in the azure app
 . For Discovery URI enter the OpenID Connect metadata document uri
 . Configure the rest of the SSO config as you’d like
-. (Optional) if using the admin ui, check the box to make the SSO config a login for the organization if you want to use the SSO config to login to console. For tenant/instance SSO you’ll have to link the SSO config to the tenant via the tenants SSO configs tab once you’ve created the SSO config.
 . Click Create
 
 == Individual instance level SSO configurations available from Support
