@@ -82,7 +82,9 @@ Authentication is handled by Single Sign-On (SSO), which serves as a method for 
 *Authorization* determines what someone can do when they have logged-in.
 Access privileges beyond login are managed through roles using Role-Based Access Control (RBAC) an authorization method. 
 
-SSO does not directly grant access to edit project settings—such as changing the project name, managing network access, or modifying instance settings like renaming, pausing, or resuming an instance. 
+SSO only grants login access to a project.
+Access beyond that is managed via RBAC and includes editing project settings, such as changing the project name, managing network access, or modifying instance settings, such as renaming, pausing, or resuming an instance. 
+
 To determine a user’s access rights to these features, you should use RBAC.
 
 Roles and permissions are managed by RBAC, which decides whether a user can access, view, or modify data within the database instances themselves. 
