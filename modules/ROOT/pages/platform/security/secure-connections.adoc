@@ -13,8 +13,15 @@ The Aura console resides in a separate VPC, isolated from the rest of the Aura s
 
 == Network access
 
-An Aura instance can be publicly available, completely private, or configured to allow both public and private access.
-To configure network access, you need to be authorized to access the part of [your system's?] infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC. This includes the ability to connect over the cloud provider's private link and private endpoint.
+An Aura instance can be publicly available, completely private, or allow both public and private access.
+
+If private traffic is enabled, your Aura instances are public and traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password.
+
+To make your instance completely private, disable public traffic, use the cloud provider's network and create a private endpoint inside your VPC, which gives you a private connection to Aura.
+The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create.
+
+To configure network access, you need to be authorized to access the part of the infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC. 
+This includes the ability to connect over the cloud provider's private link and private endpoint.
 
 To configure settings for network access to your instance go to *Aura console* > *Security* > *Network access* > *New network access configuration*
 
@@ -26,26 +33,14 @@ The Aura console provides a step-by-step configuration guide to:
 . Create an endpoint
 . Accept endpoint connection requests and enable private DNS in the cloud provider's console
 . Disable public traffic (optional)
-If you disable public traffic it is highly recommended to link:https://support.neo4j.com/s/article/13174783967507-How-To-Test-Connectivity-Through-The-Private-Endpoint[Test Connectivity Through The Private Endpoint]
-
-==== Disabling public traffic
+If you disable public traffic it is highly recommended to test connectivity through the private endpoint before disabling public traffic.
 
 You can return to Step 4 at any time to disable public traffic, even if you’ve already completed the network access configuration and initially allowed public traffic. 
 To do this, click through the steps in the network access configuration guide until you reach Step 4, where there is the option to disable public traffic.
+Disabling public traffic does not take effect immediately. 
+You can monitor the status change in the console to confirm when the process is complete.
 
-Note: Disabling public traffic does not take effect immediately. You can monitor the status change in the console to confirm when the process is complete.
-
-To continue accessing Browser and Bloom, you can configure a VPN in your VPC and connect to these services over the VPN. 
-There’s more information available in the KB https://support.neo4j.com/s/article/13174783967507-How-To-Test-Connectivity-Through-The-Private-Endpoint[How to test connectivity through the private endpoint].
-
-=== Public traffic
-
-If private traffic is enabled, your Aura instances are public and traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password.
-
-=== Private traffic
-
-To make your instance completely private, disable public traffic, use the cloud provider's network and create a private endpoint inside your VPC, which gives you a private connection to Aura.
-The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create.
+To continue accessing Browser and Bloom, you can configure a VPN in your VPC and connect to these services over the VPN.
 
 == Private endpoints
 
