@@ -51,11 +51,13 @@ For other `4xx` client error responses, you should not resend such requests with
 
 [NOTE]
 ====
-We currently set a global rate limit of 125 requests per minute per client ID for all Aura API endpoints.
-Starting 27 Jan 2025, we will adjust the rate limiting for the `/oauth/token` endpoint, which is used to obtain authorization tokens. 
+Currently the global rate limit is set to 125 requests per minute per client ID for all Aura API endpoints.
+The rate limiting for the `/OAuth/token` endpoint, used to obtain authorization tokens, will be adjusted soon. 
 The new limit will be set to 15 requests per hour.
 
-Since each authorization token remains valid for one hour, we recommend optimizing your API usage in advance by following these steps:
+Excessive token requests may cause inefficiencies or rate-limiting.
+
+You can optimize your API usage in advance by following these steps:
 
 * *Retrieve the token once per hour:* As tokens remain valid for an hour, reduce the frequency of token requests and reuse the same token for multiple API calls.
 
