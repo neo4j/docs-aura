@@ -85,7 +85,6 @@ Access privileges beyond login are managed through roles using Role-Based Access
 SSO only grants login access to a project.
 Access beyond that is managed via RBAC and includes editing project settings, such as changing the project name, managing network access, or modifying instance settings, such as renaming, pausing, or resuming an instance. 
 
-To determine a user’s access rights to these features, you should use RBAC.
 
 Roles and permissions are managed by RBAC, which decides whether a user can access, view, or modify data within the database instances themselves. 
 At this level, role mapping can be utilized to grant users different levels of access based on their roles in their Identity Provider (IdP).
