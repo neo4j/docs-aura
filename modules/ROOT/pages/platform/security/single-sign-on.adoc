@@ -264,8 +264,8 @@ This enables the management of Instance roles via a Role Mapping that is configu
 For more info see the link:https://developer.okta.com/docs/guides/customize-tokens-groups-claim/main/#add-a-groups-claim-for-the-org-authorization-server[Okta documentation]
 
 . In your app details page in Okta, go to the Sign On tab and then edit the OpenID Connect ID Token.
-. Choose Filter as the Groups claim type
-. Choose Matches regex under the Groups claim filter and use .* as the regex
+. Select Filter as the Groups claim type
+. Select Matches regex under the Groups claim filter and use .* as the expression.
 . Save
 . You can now update your SSO config in console to include a role mapping. 
 For Okta, the role mapping should look something like "Neo4j SSO"=admin; where “Neo4j SSO” is the name of your Okta group. 
