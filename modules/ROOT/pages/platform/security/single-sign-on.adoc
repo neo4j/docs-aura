@@ -138,33 +138,28 @@ The following roles are available at the organization level and these are assign
 |
 |===
 
+== Login methods
 
-== Log-in methods
+*1. Organization SSO*
 
-Log-in methods are different for each SSO level.
-Administrators can configure a combination of one or more of the log-in methods.
-
-*Org SSO supports:*
-
-* Email/password
 * Okta
 * Microsoft Entra ID
-* Google SSO (not Google Workspace SSO)
+* Google SSO (not Google Workspace SSO) 
 
-An organization's administrator can add Aura as a log-in from a tile in an organization's Apps Dashboard.
+You can disable email/password and Google SSO if Okta or Microsoft Entra ID are configured.
 
-*Project SSO supports:*
+When Organization SSO is set up, the *Organization SSO login* link is available in the *Organization Settings > Summary* section of the Aura console. 
 
-* User/password
+*2. Instances within a project SSO*
+
 * Okta
 * Microsoft Entra ID
 
-
-However, at the project level you cannot disable user/password, but at the org level you can disable email/password and Google SSO as long as you have at least one other custom SSO provider configured.
+You cannot disable user/password.
 
 == Setup requirements
 
-Accessing Aura with SSO requires:
+Setting up SSO requires:
 
 * Authorization Code Flow
 * A publicly accessible IdP server
