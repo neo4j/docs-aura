@@ -299,6 +299,8 @@ Use nc commands on one of your VM instances or container located in the related 
 nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 443
 nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 7687
 nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 7474
+# if you are using AuraDS
+nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 8491
 ----
 
 On Windows, you can get https://nmap.org/download.html[Netcat] or use PowerShell
