@@ -278,7 +278,7 @@ The private ingress then directs the connection to the Aura instance with dbid: 
 
 == Test connectivity through the private endpoint
 
-Utilize the `nslookup` command to confirm whether the Fully Qualified Domain Names (FQDNs) of your Aura instances are directed to the IP address of the PrivateLink endpoint (usually represented by an internal IP address, such as 10.0.0.0).
+Use the `nslookup` command to confirm whether the Fully Qualified Domain Names (FQDNs) of your Aura instances are directed to the IP address of the PrivateLink endpoint (usually represented by an internal IP address, such as 10.0.0.0).
 
 [source,bash]
 ----
