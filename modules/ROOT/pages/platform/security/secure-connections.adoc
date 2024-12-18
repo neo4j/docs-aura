@@ -285,14 +285,14 @@ Use the `nslookup` command to confirm whether the Fully Qualified Domain Names (
 nslookup <dbid>.production-orch-<orchestra>.neo4j.io
 ----
 
-. Use cURL from a VM instance or a container located in the related VPC network. 
+Use cURL from a VM instance or a container located in the related VPC network. 
 
 [source,bash]
 ----
 curl  https://<dbid>.production-orch-<orchestra>.neo4j.io
 ----
 
-. Use nc commands on one of your VM instances or container located in the related GCP Project VPC network, and make sure you get a successful response for all commands
+Use nc commands on one of your VM instances or container located in the related GCP Project VPC network, and make sure you get a successful response for all commands
 
 [source,bash]
 ----
@@ -301,7 +301,7 @@ nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 7687
 nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 7474
 ----
 
-. On Windows, you can get https://nmap.org/download.html[Netcat] or use PowerShell
+On Windows, you can get https://nmap.org/download.html[Netcat] or use PowerShell
 
 [source,bash]
 ----
