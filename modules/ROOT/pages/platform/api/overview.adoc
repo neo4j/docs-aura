@@ -37,8 +37,8 @@ The following example shows how to use the base URL and versioning to make a req
 In the event of `5xx` server error responses, you may consider retrying the request after a delay if it is safe to do so.
 The response may include a `Retry-After` header with a suggestion of a suitable minimum delay before attempting to retry.
 
-The rate limit for the `/oauth/token` endpoint will be adjusted from 125 requests per hour to 15 requests per hour soon.
-The rate limit for all other requests is set to 125 requests per minute.
+The global rate limit for all requests is 125 requests per minute.
+The rate limit for the `/oauth/token` endpoint will soon be adjusted to 15 requests per hour.
 
 You should consider your use of the rate limit before attempting to retry, and we recommend using an exponential backoff delay with a limited number of retries before giving up.
 
