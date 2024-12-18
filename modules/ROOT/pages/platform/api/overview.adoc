@@ -57,7 +57,7 @@ The new limit will be set to 15 requests per hour.
 
 Excessive token requests may cause inefficiencies or rate-limiting.
 
-You can optimize your API usage in advance by following these steps:
+You can optimize your API usage by following these steps:
 
 * *Retrieve the token once per hour:* As tokens remain valid for an hour, reduce the frequency of token requests and reuse the same token for multiple API calls.
 
