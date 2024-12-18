@@ -8,23 +8,15 @@ label:AuraDB-Business-Critical[]
 
 == SSO levels
 
-Organization admins can configure organization level SSO (org SSO) and project level SSO (project SSO).
+Organization owners and admins can configure one or more Single Sign-On (SSO) login methods for user authentication. 
+SSO enables users to authenticate through an Identity Provider (IdP) for access to an organization or instances within a project.
 
-SSO is a log-in method and access, roles, and permissions are dictated by role-based access control (RBAC).
-
-* *Org SSO:* Allows org admins to restrict how users log in when they are trying to access the org.
-Access beyond log-in is managed via RBAC.
-
-* *Project-level SSO:*  Impacts new database instances created within that project.
-It ensures users logging in with SSO have access to the database instances within the project.
-It depends on RBAC if the user can access and view or modify data within the database instances themselves.
-For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider (IdP).
-It *does not* give access to edit the project settings, for example to edit the project name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
-
+There are two configuration options: *Organization SSO* and *Instance SSO*. 
+Note that role mapping is a feature exclusive to Instance SSO.
 
 === SSO Org level roles
 
-The following roles are available at the org level and these are assigned via invitation:
+The following roles are available at the organization level and these are assigned via invitation:
 
 * Owner
 * Admin
