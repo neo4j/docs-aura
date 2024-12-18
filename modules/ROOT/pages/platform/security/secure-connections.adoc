@@ -310,6 +310,8 @@ On Windows, you can get https://nmap.org/download.html[Netcat] or use PowerShell
 Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 7687
 Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 7474
 Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 443
+# if you are using AuraDS
+Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 8491
 ----
 
 == Supported TLS cipher suites
