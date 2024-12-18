@@ -17,7 +17,7 @@ An Aura instance can be publicly available, completely private, or allow both pu
 
 If private traffic is enabled, your Aura instances are public and traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password.
 
-To make your instance completely private, disable public traffic, use the cloud provider's network and create a private endpoint inside your VPC, which gives you a private connection to Aura.
+To make your instance completely private, you need to disable public traffic, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
 The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create.
 
 To configure network access, you need to be authorized to access the part of the infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC. 
