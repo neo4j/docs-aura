@@ -2,17 +2,25 @@
 = Single Sign-On (SSO)
 :description: SSO allows you to log in to the Aura Console using their company IdP credentials.
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Enterprise[]
-label:AuraDB-Business-Critical[]
+* *AuraDB Virtual Dedicated Cloud and AuraDS Enterprise* Supports both Organization SSO and Instance SSO which are configurable in the Aura console. 
+Organization owners and organization admins can configure one or more Single Sign-On (SSO) login methods for user authentication.
+* *AuraDB Business Critical* Individual instance level SSO is available by request through support.
 
-== SSO levels
+SSO allows users to authenticate through an Identity Provider (IdP) to access an organization or instances within a project.
+ 
+== Organization SSO 
 
-Organization owners and admins can configure one or more Single Sign-On (SSO) login methods for user authentication. 
-SSO enables users to authenticate through an Identity Provider (IdP) for access to an organization or instances within a project.
+_Use as a login method for the organization_ 
 
-There are two configuration options: *Organization SSO* and *Instance SSO*. 
-Note that role mapping is a feature exclusive to Instance SSO.
+=== Organization SSO login methods
+
+* Okta
+* Microsoft Entra ID
+* Google SSO (not Google Workspace SSO) 
+
+You can disable email/password and Google SSO if Okta or Microsoft Entra ID are configured.
+
+When Organization SSO is set up, the *Organization SSO login* link is available in the *Organization Settings > Summary* section of the Aura console. 
 
 === SSO Org level roles
 
@@ -138,24 +146,23 @@ The following roles are available at the organization level and these are assign
 |
 |===
 
-== Login methods
+== Instance SSO 
 
-*1. Organization SSO*
+_Use as a login method for instances within Projects in this Org._
 
-* Okta
-* Microsoft Entra ID
-* Google SSO (not Google Workspace SSO) 
+You can choose which projects are included during set up.
+Applies to authentication at the instance level meaning that the SSO login method is shown when a user tries to access an instance.
+Role mapping is a feature exclusive to Instance SSO.
 
-You can disable email/password and Google SSO if Okta or Microsoft Entra ID are configured.
-
-When Organization SSO is set up, the *Organization SSO login* link is available in the *Organization Settings > Summary* section of the Aura console. 
-
-*2. Instances within a project SSO*
+=== Instance SSO login methods
 
 * Okta
 * Microsoft Entra ID
 
 You cannot disable user/password.
+Professional and Free instances within your selected projects will not have SSO configured.
+
+=== Individual instance level SSO can be set up by support.
 
 == Setup requirements
 
@@ -185,6 +192,8 @@ If this is not known these fields can be completed manually.
 image::sso.png[A screenshot of the SSO configuration dialogue,640,480]
 
 == Individual instance level SSO configurations available from Support
+
+label:AuraDB-Business-Critical[]
 
 Support can assist with:
 
