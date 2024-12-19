@@ -2,165 +2,47 @@
 = Single Sign-On (SSO)
 :description: SSO allows you to log in to the Aura Console using their company IdP credentials.
 
-* *AuraDB Virtual Dedicated Cloud and AuraDS Enterprise* Supports both Organization SSO and Instance SSO which are configurable in the Aura console. 
 Organization owners and organization admins can configure one or more SSO login methods for user authentication.
-* *AuraDB Business Critical* Individual instance level SSO is available by request through support.
-
 SSO allows users to authenticate through an Identity Provider (IdP) to access an organization or instances within a project.
+
+Using the Aura console, you can select one _or both_ of the following configurations:
+
+* Use as a login method for the organization (Organization SSO)
+* Use as a login method for instances within Projects in this Org (Instance SSO)
  
-== Organization SSO 
+== Use as a login method for the organization (Organization SSO)
 
-_Use as a login method for the organization_ 
-
-=== Organization SSO login methods
+Login methods:
 
 * Okta
 * Microsoft Entra ID
 * Google SSO (not Google Workspace SSO) 
 
+Leave email/password and Google login enabled if you want users to continue to have access to the console using email/pw and Google logins. 
+If you want to restrict access to the console/org to only the configured SSO provider, then disable email/pw and google login methods.
+
 You can disable email/password and Google SSO if Okta or Microsoft Entra ID are configured.
 
 When Organization SSO is set up, the *Organization SSO login* link is available in the *Organization Settings > Summary* section of the Aura console. 
 
-=== SSO Org level roles
+Users who log in via Organization SSO do not automatically get access to the organization that SSO is configured on.
+Users must still be invited to a project within the organization in order to get access to that organization.
 
-The following roles are available at the organization level and these are assigned via invitation:
+== Use as a login method for instances within Projects in this Org (Instance SSO)
 
-* Owner
-* Admin
-* Member
-
-:check-mark: icon:check[]
-
-.Roles
-[opts="header",cols="3,1,1,1"]
-|===
-| Capability
-| Owner
-| Admin
-| Member
-
-| List org
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| List org projects
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| Update org
-| {check-mark}
-| {check-mark}
-|
-
-| Add projects
-| {check-mark}
-| {check-mark}
-|
-
-| List existing SSO configs
-| {check-mark}
-| {check-mark}
-|
-
-| Add SSO configs
-| {check-mark}
-| {check-mark}
-|
-
-| List SSO configs on project-level
-| {check-mark}
-| {check-mark}
-|
-
-| Update SSO configs on project-level
-| {check-mark}
-| {check-mark}
-|
-
-| Delete SSO configs on project-level
-| {check-mark}
-| {check-mark}
-|
-
-| Invite non-owner users to org
-| {check-mark}
-| {check-mark}
-|
-
-| List users
-| {check-mark}
-| {check-mark}
-|
-
-| List roles
-| {check-mark}
-| {check-mark}
-|
-
-| List members of a project
-| {check-mark}
-| {check-mark} footnote:[An admin can only list members of projects the admin is also a member of.]
-|
-
-// | Add customer information for a trial within org
-// | {check-mark}
-// | {check-mark}
-// |
-
-// | List customer information for a trial within org
-// | {check-mark}
-// | {check-mark}
-// |
-
-// | List seamless login for org
-// | {check-mark}
-// | {check-mark}
-// |
-
-// | Update seamless login for org
-// | {check-mark}
-// | {check-mark}
-// |
-
-| Invite owners to org
-| {check-mark}
-|
-|
-
-| Add owner
-| {check-mark}
-|
-|
-
-| Delete owners
-| {check-mark}
-|
-|
-
-| Transfer projects to and from the org
-| {check-mark} footnote:[An owner needs to permission for both the source and destination orgs.]
-|
-|
-|===
-
-== Instance SSO 
-
-_Use as a login method for instances within Projects in this Org._
-
-You can select which projects are included during setup.
+During the SSO configuration (see Figure 2) you can select which projects are included during setup.
 Applies to authentication at the instance level meaning that the SSO login method is shown when a user tries to access an instance.
-Role mapping is a feature exclusive to Instance SSO.
+Role-mapping via SSO is only available for this option.
 
-=== Instance SSO login methods
+Login methods:
 
 * Okta
 * Microsoft Entra ID
 
 You cannot disable user/password.
 Professional and Free instances within your selected projects will not have SSO configured.
+
+This only applies to instances in the project that are created after Instance SSO was configured. 
 
 == Setup requirements
 
