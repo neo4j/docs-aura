@@ -3,7 +3,10 @@
 :description: SSO allows you to log in to the Aura Console using their company IdP credentials.
 
 Organization owners and organization admins can configure one or more SSO login methods for user authentication.
-SSO allows users to authenticate through an Identity Provider (IdP) to access an organization or instances within a project.
+SSO allows users to authenticate through an Identity Provider (IdP), such as Okta or Microsoft Entra ID, to access an organization or instances within a project.
+
+Glossary: IdP (e.g. Okta or Microsoft Entra ID)
+
 
 Using the Aura console, you can select one _or both_ of the following configurations:
 
@@ -24,9 +27,15 @@ Leave email/password and Google login enabled if you want users to continue to h
 You can disable email/password and Google SSO if Okta or Microsoft Entra ID are configured.
 
 When Organization SSO is set up, the *Organization SSO login* link is available in the *Organization Settings > Summary* section of the Aura console. 
+That link takes users directly to the auth0 org login page.
 
 Users who log in via Organization SSO do not automatically get access to the organization that SSO is configured on.
 Users must still be invited to a project within the organization in order to get access to that organization.
+(Users can bookmark this page for easy access, or you could add it to an apps dashboard.)
+
+Users can navigate to the main auth0 login page (http://login.neo4j.com ) and select "Continue with Organization SSO". They can then enter their Organization SSO ID and be redirected to the org login page.
+
+If a user logs in with an email/pw or google login method, but shares the email with an org that has SSO configured, when they try to switch to a tenant on that org they will be redirected to the org login page.
 
 == Use as a login method for instances within Projects in this Org (Instance SSO)
 
