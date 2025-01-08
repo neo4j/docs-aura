@@ -48,6 +48,7 @@ Restoring a snapshot overwrites the data in your instance, replacing it with the
 By selecting the ellipses (...) button next to a snapshot, you can:
 
 * *Export* - Download the database as a compressed file, allowing you to store a local copy and work on your data offline.
-The compressed archive contains a *_.dump_* file that can be imported directly or pushed to the cloud.
+The compressed archive contains a *_.dump_* file that can be imported directly or pushed to the cloud. 
+(AuraDS has a _.tar_ file extension as it contains the backup and additional metadata for Graph Data Science)
 * *Create instance from snapshot* - Create a new AuraDS instance using the data from the snapshot.
 This opens a window where you can assign a name to the instance that will be created.
