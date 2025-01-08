@@ -1,0 +1,45 @@
+[aura-customer-metrics-process]
+= Metrics integration process
+:table-caption!:
+
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDS-Enterprise[]
+label:AuraDB-Business-Critical[]
+
+Metrics integration is a two step process:
+
+- Aura CMI setup
+- Customer APM integration 
+
+[aura-cmi-setup]
+== Aura CMI setup
+
+. Log in to Aura as project admin.
+. Make sure there is a dedicated Aura user to use for fetching metrics.
+You can either:
+ ** Create a new user:
+  ... Invite a new user, selecting "Metrics Integration Reader" as a role in `Project > Users`.
+  ... Follow the invitation link and log in to Neo4j Aura.
+  ... Confirm the project membership.
+ ** Or you can find an existing user in `Project > Users` and change its role to "Metrics Integration Reader"
+. Ensure you are logged in to Aura as the user selected in the previous step.
+In `Account > API Keys`, create new Aura API credentials.
+Save client secret.
+
+[NOTE]
+====
+Capabilities of users with the role "Metrics Integration Reader" are limited to fetching the metrics and getting a read-only view of the project.
+====
+
+[aura-cmi-apm-integration]
+== Customer APM integration
+
+. Configure interested endpoints as decribed in xref:./config.adoc[Metrics endpoint scrape configuration] before setting up the APM system.
+image:cmi_initial_status.png[]
++
+. To configure an APM system to fetch Aura metrics, click on the `...` in the table view and copy either the endpoint or Prometheus job configuration template(if configuring Prometheus). +
+image:cmi_apm_config_input.png[]
++
+. Use oauth2 type of authentication specifying the Client ID and Client Secret created in the previous step. See examples for **__Prometheus__** and **__Datadog__** xref:./examples.adoc[here].
+. Once metrics start flowing to APM system, statuses of used endpoints can be viewed in the Metrics integration table. +
+image:cmi_error_status.png[]
