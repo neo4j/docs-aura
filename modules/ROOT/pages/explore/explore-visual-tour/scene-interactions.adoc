@@ -9,11 +9,14 @@ Some of the commonly expected ones are:
 * Zoom in and out using your mouse or touchpad scroll functions, or use the buttons at the bottom right of the canvas.
 The size of the text on nodes is dynamic in relation to the size of the node.
 * Hover over a node or a relationship to see its label and selected properties.
-For nodes, but _not_ relationships, you can control what properties to display from the Perspective drawer.
-Click on a label from the list of Categories and check/uncheck Captions from the available properties to select what to display in the tooltip.
+For nodes, but _not_ relationships, you can control what properties to display.
+This is done in two steps, first you select which properties should be available for display from the Perspective designer.
+Click on a label from the list of Categories and check/uncheck Exclude from the available properties.
+Next, in the Legend panel, select the colored circle to open the styling menu and then find the *Text* option under *Default*.
+Then you select which property/properties to show on hover.
 +
 [.shadow]
-image::tooltip-node-2.png[width=500]
+image::hover.png[width=500]
 +
 * Left-click on a single node or relationship to select or deselect it. Multiple objects can be selected by holding the appropriate keyboard modifier key (Cmd or Ctrl key) before selecting.
 * Double-click on a node or relationship to open the Inspector to inspect the element’s details.
