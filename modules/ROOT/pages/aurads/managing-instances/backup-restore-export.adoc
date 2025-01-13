@@ -19,12 +19,6 @@ There are two different types of snapshot:
 * *Scheduled* - Runs when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and automatically once a day.
 * *On-demand* - Runs when you select *Take snapshot* from the *Snapshots* tab of an instance.
 
-[NOTE]
-====
-Scheduled daily snapshots are kept for 7 days for Professional instances and 14 days for Enterprise instances.
-On-demand snapshots are kept in the system for 180 days for all instances.
-====
-
 == Snapshot actions
 
 === Take a snapshot
@@ -54,28 +48,25 @@ This opens a window where you can assign a name to the instance that will be cre
 
 == AuraDS retention periods
 
-[cols="^,^,^,^,^",options="header"]
+[cols="^,^,^,^",options="header"]
 |===
 | Tier
 | Frequency of snapshots
-2+| Scheduled snapshots
-| On-demand snapshot footnote:1[On-demand snapshots are restorable and exportable for the same period.]
+| Scheduled snapshots
+| On-demand snapshot footnote:1[Snapshots are restorable and exportable for the same period.]
 
 |
-| *Full snapshot* footnote:2[The full snapshot captures the entire database, while differential snapshots record changes since the last full snapshot.]
-| *Restorable days*
-| *Exportable days*
-| *Restorable and exportable days*
+| *Full snapshot* footnote:2[The full snapshot captures the entire database.]
+| 
+| 
 
 | AuraDS Professional
 | Daily
 | 7
-| 180
-| 180
+| 30
 
 | AuraDS Enterprise
 | Daily
 | 14
-| 180
-| 180
+| 90
 |===
