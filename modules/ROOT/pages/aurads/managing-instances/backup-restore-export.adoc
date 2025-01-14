@@ -19,12 +19,6 @@ There are two different types of snapshot:
 * *Scheduled* - Runs when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and automatically once a day.
 * *On-demand* - Runs when you select *Take snapshot* from the *Snapshots* tab of an instance.
 
-[NOTE]
-====
-Scheduled daily snapshots are kept for 7 days for Professional instances and 14 days for Enterprise instances.
-On-demand snapshots are kept in the system for 180 days for all instances.
-====
-
 == Snapshot actions
 
 === Take a snapshot
@@ -52,3 +46,28 @@ The compressed archive contains a *_.dump_* file that can be imported directly o
 (AuraDS has a _.tar_ file extension as it contains the backup and additional metadata for Graph Data Science)
 * *Create instance from snapshot* - Create a new AuraDS instance using the data from the snapshot.
 This opens a window where you can assign a name to the instance that will be created.
+
+== AuraDS retention periods
+
+[cols="^,^,^,^",options="header"]
+|===
+| Tier
+| Frequency of snapshots
+| Scheduled snapshots
+| On-demand snapshot footnote:1[Snapshots are restorable and exportable for the same period.]
+
+|
+| *Full snapshot* footnote:2[The full snapshot captures the entire database.]
+| 
+| 
+
+| AuraDS Professional
+| Daily
+| 7
+| 30
+
+| AuraDS Enterprise
+| Daily
+| 14
+| 90
+|===
