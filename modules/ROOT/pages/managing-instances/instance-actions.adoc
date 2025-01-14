@@ -189,3 +189,11 @@ Because updates are applied to these database instances after other database ins
 After marking the instance as `production` the label is applied immediately, and all instance actions (such as pause or clone) are temporarily unavailable while the instance is set to `production` in the Neo4j backend. 
 
 Use the more menu (*...*) on the instance card to mark it as `production`.
+
+[.shadow]
+.Mark an instance as production
+image::mark-as-production.png[]
+
+[.shadow]
+.Instance marked as production
+image::marked-as-production.png[]
