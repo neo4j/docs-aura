@@ -3,7 +3,7 @@
 :description: This page describes the instance details.
 
 From the instance card, select the more menu *(…​)* then select *Inspect*.
-From here you can see an Overview of the instance details, Snapshots, Restore from backup, or see the logs.
+From here you can see an Overview of the instance details, Snapshots, Restore from backup file, or see the logs.
 
 == Overview
 
@@ -131,7 +131,7 @@ Neo4j regularly takes snapshots of your instance, and you can also take a snapsh
 These snapshots can be used to restore data to a different Neo4j instance.
 
 
-== Restore from backup
+== Restore from backup file
 
 You can restore a database to your instance by dragging and dropping it to this tab.
 It needs to be either a *.dump*, *.backup*, or *.tar* file.
