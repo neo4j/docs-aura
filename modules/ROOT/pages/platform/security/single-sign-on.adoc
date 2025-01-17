@@ -7,21 +7,20 @@ label:AuraDS-Enterprise[]
 
 == SSO levels
 
-Organization admins can configure organization level SSO (org SSO) and project level SSO (project SSO).
+Organization admins can configure SSO on organization level and project level.
 
 SSO is a log-in method and access, roles, and permissions are dictated by role-based access control (RBAC).
 
-* *Org SSO:* Allows org admins to restrict how users log in when they are trying to access the org.
+* *Organization-level:* Allows org admins to control how users log in when they are trying to access the org.
 Access beyond log-in is managed via RBAC.
 
-* *Project-level SSO:*  Impacts new database instances created within that project.
+* *Project-level:*  Impacts new database instances created within that project.
 It ensures users logging in with SSO have access to the database instances within the project.
 It depends on RBAC if the user can access and view or modify data within the database instances themselves.
 For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider (IdP).
 It *does not* give access to edit the project settings, for example to edit the project name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
 
-
-=== SSO Org level roles
+=== Organization-level roles
 
 The following roles are available at the org level and these are assigned via invitation:
 
@@ -151,23 +150,20 @@ The following roles are available at the org level and these are assigned via in
 Log-in methods are different for each SSO level.
 Administrators can configure a combination of one or more of the log-in methods.
 
-*Org SSO supports:*
+*Organization-level supports:*
 
 * Email/password
 * Okta
 * Microsoft Entra ID
 * Google SSO (not Google Workspace SSO)
 
-An organization's administrator can add Aura as a log-in from a tile in an organization's Apps Dashboard.
-
-*Project SSO supports:*
+*Project-level supports:*
 
 * User/password
 * Okta
 * Microsoft Entra ID
 
-
-However, at the project level you cannot disable user/password, but at the org level you can disable email/password and Google SSO as long as you have at least one other custom SSO provider configured.
+At the project level you cannot disable user/password, but at the org level you can disable email/password and Google SSO as long as you have at least one other custom SSO provider configured.
 
 == Setup requirements
 
@@ -196,9 +192,10 @@ If this is not known these fields can be completed manually.
 [.shadow]
 image::sso.png[A screenshot of the SSO configuration dialogue,640,480]
 
-== Individual instance level SSO configurations available from Support
+== Individual instance-level
+label:AuraDB-Business-Critical[]
 
-Support can assist with:
+Support can assist with SSO configurations at instance-level including:
 
 * Role mapping specific to a database instance
 * Custom groups claim besides `groups`
