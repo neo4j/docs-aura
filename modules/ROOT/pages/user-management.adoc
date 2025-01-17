@@ -4,9 +4,132 @@
 
 User management is a feature within Aura that allows you to invite users and set their roles within an isolated environment.
 
-image::inviteusers.png[]
+== Organization-level roles
 
-== Projects
+The following roles are available at the org level and these are assigned via invitation:
+
+* Owner
+* Admin
+* Member
+
+:check-mark: icon:check[]
+.Roles
+[opts="header",cols="3,1,1,1"]
+|===
+| Capability
+| Owner
+| Admin
+| Member
+
+| List org
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| List org projects
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Update org
+| {check-mark}
+| {check-mark}
+|
+
+| Add projects
+| {check-mark}
+| {check-mark}
+|
+
+| List existing SSO configs
+| {check-mark}
+| {check-mark}
+|
+
+| Add SSO configs
+| {check-mark}
+| {check-mark}
+|
+
+| List SSO configs on project-level
+| {check-mark}
+| {check-mark}
+|
+
+| Update SSO configs on project-level
+| {check-mark}
+| {check-mark}
+|
+
+| Delete SSO configs on project-level
+| {check-mark}
+| {check-mark}
+|
+
+| Invite non-owner users to org
+| {check-mark}
+| {check-mark}
+|
+
+| List users
+| {check-mark}
+| {check-mark}
+|
+
+| List roles
+| {check-mark}
+| {check-mark}
+|
+
+| List members of a project
+| {check-mark}
+| {check-mark} footnote:[An admin can only list members of projects the admin is also a member of.]
+|
+
+// | Add customer information for a trial within org
+// | {check-mark}
+// | {check-mark}
+// |
+
+// | List customer information for a trial within org
+// | {check-mark}
+// | {check-mark}
+// |
+
+// | List seamless login for org
+// | {check-mark}
+// | {check-mark}
+// |
+
+// | Update seamless login for org
+// | {check-mark}
+// | {check-mark}
+// |
+
+| Invite owners to org
+| {check-mark}
+|
+|
+
+| Add owner
+| {check-mark}
+|
+|
+
+| Delete owners
+| {check-mark}
+|
+|
+
+| Transfer projects to and from the org
+| {check-mark} footnote:[An owner needs to permission for both the source and destination orgs.]
+|
+|
+|===
+
+== Project-level roles
+
+image::inviteusers.png[]
 
 Grant users access to a project.
 
