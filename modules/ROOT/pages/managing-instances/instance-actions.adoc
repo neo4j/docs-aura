@@ -11,7 +11,7 @@ From the instance details you can rename an instance and view instance details.
 See xref:managing-instances/instance-details.adoc[Instance details] for more information.
 
 [.shadow]
-.Three dots reveal the more menu
+.The more [...] menu
 image::instanceactions.png[]
 
 // == Reset an instance
@@ -118,7 +118,7 @@ If an Aura Free instance remains paused for more than 30 days, Aura deletes the 
 == Clone an instance
 
 You can clone an existing instance to create a new instance with the same data.
-You can clone across regions.
+You can clone across regions, and from Neo4j version 4 to Neo4j latest version.
 
 There are two options to clone an instance:
 
@@ -127,6 +127,10 @@ There are two options to clone an instance:
 
 You can access all the cloning options from the more menu (*...*) on the instance.
 
+[NOTE]
+====
+You cannot clone from a Neo4j latest version instance to a Neo4j version 4 instance.
+====
 === Clone to a new instance
 
 . From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *New instance* from the contextual menu.
