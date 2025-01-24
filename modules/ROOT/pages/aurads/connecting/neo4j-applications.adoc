@@ -21,11 +21,11 @@ To open an AuraDS instance with Neo4j Browser:
 
 . Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
 . Select the *Query* button on the instance you want to open.
-. Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens. 
+. Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens.
 These are the same credentials you stored when you xref:aurads/create-instance.adoc[created the instance].
 . Select *Connect*.
 
-Once you have successfully connected, there are built-in guides you can complete to familiarize yourself with Neo4j Browser. 
+Once you have successfully connected, there are built-in guides you can complete to familiarize yourself with Neo4j Browser.
 See the link:{neo4j-docs-base-uri}/browser-manual/[Browser manual^] for more information.
 
 == Neo4j Bloom
@@ -34,7 +34,7 @@ To open an AuraDS instance with Neo4j Bloom:
 
 . Navigate to the link:https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
 . Select the *Explore* button on the instance you want to open.
-. Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens. 
+. Enter the *Username* and *Password* credentials in the Neo4j Browser window that opens.
 These are the same credentials you stored when you xref:aurads/create-instance.adoc[created the instance].
 . Select *Connect*.
 
@@ -74,7 +74,7 @@ To open an instance with Workspace:
 
 . Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console] in your browser.
 . Select the *Open* button on the instance you want to open.
-. Enter the *Database user* and *Password* credentials in the window that opens. 
+. Enter the *Database user* and *Password* credentials in the window that opens.
 These are the same credentials you stored when you xref:aurads/create-instance.adoc[created the instance].
 . Select *Connect*.
 
@@ -82,7 +82,7 @@ For more information on using Neo4j Workspace, see the https://neo4j.com/product
 
 [NOTE]
 ====
-Workspace is enabled by default on AuraDB Free and AuraDB Professional instances but needs to be enabled for AuraDB Virtual Dedicated Cloud instances. 
+Workspace is enabled by default on AuraDB Free and AuraDB Professional instances but needs to be enabled for AuraDB Virtual Dedicated Cloud instances.
 If you do not see the *Open* button on your instance, you can enable it by selecting the *Settings* cog in the top menu bar and toggling *Enable workspace*.
 ====
 
@@ -94,7 +94,7 @@ To connect to an AuraDS instance using Neo4j Desktop:
 
 . Navigate to the https://console.neo4j.io/?product=aura-ds[Neo4j Aura Console^] in your browser.
 . Copy the *Connection URI* of the instance you want to connect to.
-The URI is in the page that opens when clicking on the instance.
+From the [...] menu on the instance card, use *Inspect* to find the connection URI.
 . In Neo4j Desktop, select the *Projects* tab and select an existing project or create a new one.
 . Select the *Add* dropdown and choose *Remote connection*.
 . Enter a name for the instance and enter the URL from the Neo4j Aura console from the second step.
