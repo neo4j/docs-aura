@@ -40,6 +40,10 @@ You can use the following `/oauth/token` endpoint to obtain a Bearer Token for a
 
 Authentication to the token endpoint uses HTTP Basic Authentication, where the client ID and client secret are provided as the username and password, respectively.
 
+==== Rate limiting
+
+The `/oauth/token` endpoint is rate limited to 15 requests per hour.
+
 ==== Request parameters
 
 * Method: `POST`
