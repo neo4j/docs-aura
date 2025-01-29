@@ -35,14 +35,12 @@ Capabilities of users with the role "Metrics Integration Reader" are limited to 
 == Customer APM integration
 
 . Optionally configure interested endpoints as decribed in <<cmi-endpoint-config, Metrics endpoint configuration>> before setting up the APM system.
-image:cmi_initial_status.png[]
-+
 . To setup an APM system to fetch Aura metrics, click on the `...` in the table view and copy either the endpoint or Prometheus job configuration template(if configuring Prometheus). +
 image:cmi_apm_config_input.png[]
 +
 . Use oauth2 type of authentication specifying the Client ID and Client Secret created in the previous step. See examples for **__Prometheus__** and **__Datadog__** xref:./examples.adoc[here].
 . Once metrics start flowing to APM system, statuses of used endpoints can be viewed in the Metrics integration table. +
-image:cmi_error_status.png[]
+image:cmi_status_table.png[]
 
 [[cmi-endpoint-config]]
 == Metrics endpoint configuration
@@ -52,7 +50,7 @@ Aura Metrics Integration setup offers two types of metrics endpoints to endpoint
 - **Project metrics endpoint** - A single endpoint with Project level endpoint configuration that allows selecting which instance metrics to include.
 - **Instance metrics endpoint** - Individual endpoint for each of the instances in the Project with corresponding endpoint configuration.
 
-image:cmi_initial_status.png[]
+image:cmi_status_table.png[]
 
 Use the __Settings__ button for an endpoint in the table to configure that endpoint.
 
