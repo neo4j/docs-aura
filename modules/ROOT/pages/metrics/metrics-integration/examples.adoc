@@ -1,0 +1,113 @@
+[aura-cmi-intergation-examples]
+= Integration examples
+:table-caption!:
+
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDS-Enterprise[]
+label:AuraDB-Business-Critical[]
+
+Aura metrics integration examples for various APM platforms.
+
+.Example using Prometheus
+[aura-cmi-example-using-prometheus%collapsible]
+====
+
+.Install Prometheus
+
+- One way is to get a tarball from link:https://prometheus.io/docs/prometheus/latest/installation/[^]
+
+.Configure Prometheus
+
+- To monitor one or more instances, add a section to the Prometheus configuration file `prometheus.yml`.
+
+- Copy the job configuration template provided for the project endpoint or the instance endpoint, as shown.
+
+image:cmi_prometheus_job_config.png[]
+
+- Replace the placeholders `<AURA_CLIENT_ID>` and `<AURA_CLIENT_SECRET>` with corresponding values created  in the API credentials section.
+
+- For details, see link:https://prometheus.io/docs/prometheus/latest/configuration/configuration/[Prometheus configuration reference^].
+
+.Start Prometheus
+
+- Use the config updated with credentials to start the Prometheus server.
+
+[source, shell]
+----
+./prometheus --config.file=prometheus.yml
+----
+
+.Test that metrics are fetched
+
+- Check if the metrics endpoints are being successfully connected as targets in Prometheus' UI:
+
+image:cmi_prometheus_targets.png[]
+
+- Check if any of the Aura metrics are showing up by querying using PromQL and plot the basic graphs:
+
+image:cmi_prometheus_jobs_example.png[]
+
+.Use Grafana
+
+- Install and configure Grafana, adding the endpoint of the Prometheus instance configured in the previous step as a data source.
+You can create visualizations, dashboards, and alarms based on Neo4j metrics.
+
+.Usage
+The following is an example of gaining more insights into your Aura instance CPU usage for capacity planning:
+
+- Example PromQL query to plot
+[source, promql]
+----
+max by(availability_zone) (neo4j_aura_cpu_usage{instance_mode="PRIMARY"}) / sum by(availability_zone) (neo4j_aura_cpu_limit{instance_mode="PRIMARY"})
+----
+
+.Chart shows CPU usage of primaries by availability zone
+image::cmi_primaries_az_plot.png["Primaries by availability zone"]
+====
+
+.Example using Datadog
+[aura-cmi-example-using-datadog%collapsible]
+====
+
+.Get a Datadog account, link:https://www.datadoghq.com/[^]
+
+.Install a Datadog agent as described in Datadog documentation
+
+.Configure an endpoint with token authentication
+
+- Edit `/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml` as follows:
+
+[NOTE]
+----
+Replace the placeholders `<ENDPOINT_URL>`, `<AURA_CLIENT_ID>` and `<AURA_CLIENT_SECRET>` with corresponding values from the previous steps.
+----
+
+.`/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml`
+[source, yaml]
+----
+init_config:
+instances:
+  - openmetrics_endpoint: <ENDPOINT_URL>
+    metrics:
+      - neo4j_.*
+    auth_token:
+      reader:
+        type: oauth
+        url: https://api.neo4j.io/oauth/token
+        client_id: <AURA_CLIENT_ID>
+        client_secret: <AURA_CLIENT_SECRET>
+      writer:
+        type: header
+        name: Authorization
+        value: "Bearer <TOKEN>"
+----
+
+For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent documentation^] and link:https://github.com/DataDog/datadog-agent/blob/main/pkg/config/config_template.yaml[configuration reference^].
+
+.Test that metrics are fetched
+
+* `sudo systemctl restart datadog-agent`
+* Watch `/var/log/datadog/*` to see if fetching metrics happens or if there are warnings regarding parsing the configuration.
+* Check in Datadog metric explorer to see if metrics appear (after a couple of minutes).
+
+====

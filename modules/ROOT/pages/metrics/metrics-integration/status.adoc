@@ -1,0 +1,28 @@
+= Metrics endpoint status
+:table-caption!:
+
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDS-Enterprise[]
+label:AuraDB-Business-Critical[]
+
+Once the endpoints are configured and APM integration is setup, APM starts scraping the metrics. 
+The Metrics integration service records some usage statistics for scraped endpoints. 
+These statistics are presented in the Metrics integration status table :
+
+image:cmi_status_table.png[]
+
+== Status details
+
+. `Type` - the type of endpoint scraped (Project or Instance).
+. `Endpoint target` - name of the entity (Project or Instance) being scraped.
+. `Status` - indicates the endpoint usage and behaviour. An endpoint status could be one of the following :
+    * `Not in use` - indicates the endpoint is not used.
+    * `Error` - indicates there has been an error while scraping the endpoint.
+    image:cmi_error_status.png[]
+    **__Hovering over the__ `Error` __status shows 
+    the type of error encountered during the scrape.__**
+    * `In use` - indicates that the endpoint is most recently scraped wihout any issues.
+. `Last active` - timestamp of when the endpoint was last scraped.
+. `Metrics count` - number of metrics scraped in the interval of last 24 hours.
+. `Data volume` - amount of metrics data in bytes scraped in the interval of last 24 hours.
+. `Request rate` - rate of requests to the metrics endpoint per hour.
