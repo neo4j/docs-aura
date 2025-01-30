@@ -9,7 +9,7 @@ Once the endpoints are configured and APM integration is setup, APM starts scrap
 The Metrics integration service records some usage statistics for scraped endpoints. 
 These statistics are presented in the Metrics integration status table :
 
-image:cmi_status_table.png[]
+image::cmi_status_table.png[]
 
 == Status details
 
@@ -18,7 +18,7 @@ image:cmi_status_table.png[]
 . `Status` - indicates the endpoint usage and behaviour. An endpoint status could be one of the following :
     * `Not in use` - indicates the endpoint is not used.
     * `Error` - indicates there has been an error while scraping the endpoint.
-    image:cmi_error_status.png[]
+    image::cmi_error_status.png[]
     **__Hovering over the__ `Error` __status shows 
     the type of error encountered during the scrape.__**
     * `In use` - indicates that the endpoint is most recently scraped wihout any issues.
