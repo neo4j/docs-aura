@@ -48,6 +48,41 @@ Backups are saved in the storage bucket of the cloud provider in the same region
 
 |===
 
+[[aura-gds-plugin]]
+=== Graph Data Science plugin
+
+label:AuraDB-Professional[]
+
+The Graph Data Science plugin allows you to access the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library] in any AuraDB instance with the following requirements:
+
+* Neo4j version 5
+* 4 GB of memory or more
+* Any supported cloud providers and regions
+
+You can enable or disable the plugin when necessary.
+
+[WARNING]
+====
+You can no longer use the plugin if you resize your instance to less than 4 GB of memory.
+====
+
+==== Comparison with AuraDS
+
+Although you can use the GDS plugin as an alternative to an AuraDS instance, there are important operational differences between the two deployment modes.
+
+[opts="header", cols="1,1"]
+|===
+|AuraDB + GDS plugin
+|AuraDS
+
+|Rolling updates clear all projections.
+|Rolling updates save projections to disk and restore them upon restart.
+
+|Backup files do not include projections.
+|Backup files include all projections.
+
+|===
+
 [[aura-vector-optimization]]
 === Vector optimization
 
