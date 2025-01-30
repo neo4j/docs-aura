@@ -22,7 +22,7 @@ Aura metrics integration examples for various APM platforms.
 
 - Copy the job configuration template provided for the project endpoint or the instance endpoint, as shown.
 
-image:cmi_prometheus_job_config.png[]
+image::cmi_prometheus_job_config.png[]
 
 - Replace the placeholders `<AURA_CLIENT_ID>` and `<AURA_CLIENT_SECRET>` with corresponding values created  in the API credentials section.
 
@@ -41,11 +41,11 @@ image:cmi_prometheus_job_config.png[]
 
 - Check if the metrics endpoints are being successfully connected as targets in Prometheus' UI:
 
-image:cmi_prometheus_targets.png[]
+image::cmi_prometheus_targets.png[]
 
 - Check if any of the Aura metrics are showing up by querying using PromQL and plot the basic graphs:
 
-image:cmi_prometheus_jobs_example.png[]
+image::cmi_prometheus_jobs_example.png[]
 
 .Use Grafana
 
