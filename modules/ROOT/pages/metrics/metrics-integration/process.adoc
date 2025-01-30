@@ -35,12 +35,12 @@ Capabilities of users with the role "Metrics Integration Reader" are limited to 
 == Customer APM integration
 
 . Optionally configure interested endpoints as decribed in <<cmi-endpoint-config, Metrics endpoint configuration>> before setting up the APM system.
-. To setup an APM system to fetch Aura metrics, click on the `...` in the table view and copy either the endpoint or Prometheus job configuration template(if configuring Prometheus). +
-image:cmi_apm_config_input.png[]
+. To setup an APM system to fetch Aura metrics, click on the `...` in the table view and copy either the endpoint URL or Prometheus job configuration template (if configuring Prometheus).
++
+image::cmi_apm_config_input.png[]
 +
 . Use oauth2 type of authentication specifying the Client ID and Client Secret created in the previous step. See examples for **__Prometheus__** and **__Datadog__** xref:./examples.adoc[here].
-. Once metrics start flowing to APM system, statuses of used endpoints can be viewed in the Metrics integration table. +
-image:cmi_status_table.png[]
+. Once metrics start flowing to APM system, statuses of used endpoints can be viewed in the Metrics integration table. __(See the section about Metrics endpoint configuration below for an example of the status table)__
 
 [[cmi-endpoint-config]]
 == Metrics endpoint configuration
@@ -50,7 +50,7 @@ Aura Metrics Integration setup offers two types of metrics endpoints to endpoint
 - **Project metrics endpoint** - A single endpoint with Project level endpoint configuration that allows selecting which instance metrics to include.
 - **Instance metrics endpoint** - Individual endpoint for each of the instances in the Project with corresponding endpoint configuration.
 
-image:cmi_status_table.png[]
+image::cmi_status_table.png[]
 
 Use the __Settings__ button for an endpoint in the table to configure that endpoint.
 
@@ -67,7 +67,7 @@ If your goal is to monitor a subset of instances in the Project and you don't wa
 
 * Project endpoint configuration:
 +
-image:cmi_project_config.png[]
+image::cmi_project_config.png[]
 +
 . `Selecting instances to include in project endpoint` - This is a project endpoint specific setting which allows users to select instances to endpoint metrics for.
 . `Include new instances` - This setting enables scraping for newly created instance without manually updating the Project endpoint configuration.
@@ -76,12 +76,12 @@ It is an on-demand setting only available for Virtual Dedicated Cloud projects a
 
 * Instance endpoint configuration :
 +
-image:cmi_instance_config.png[]
+image::cmi_instance_config.png[]
 +
 . `Metrics granularity` - This setting allows scraping more granular metrics(`Comprehensive`) for each of the instances enabled. 
 It is an on-demand setting only available for Virtual Dedicated Cloud project instances and it needs to be requested through link:https://support.neo4j.com/[Customer Support].
 +
-image:cmi_enable_comprehensive.png[]
+image::cmi_enable_comprehensive.png[]
 
 [IMPORTANT]
 ====
