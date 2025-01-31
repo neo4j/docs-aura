@@ -33,7 +33,7 @@ Detailed Aura CMI setup steps & APM integration examples are described in next c
 Metrics for a Neo4j Aura instance are only returned if all the following are true:
 
 * `Authorization` header of the metrics request contains a valid token.
-* The token was issued for an Aura user with "Metrics Integration Reader" role.
+* The token was issued for an Aura user with "METRICS_READER" role.
 * Project has instances of types `Enterprise (Virtual Dedicated Cloud)` or `Business Critical`.
 * The specified instance belongs to the specified project.
 
