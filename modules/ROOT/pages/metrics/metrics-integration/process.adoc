@@ -18,17 +18,17 @@ Metrics integration is a two step process:
 . Make sure there is a dedicated Aura user to use for fetching metrics.
 You can either:
  ** Create a new user:
-  ... Invite a new user, selecting "METRICS_READER" as a role in `Project > Users`.
+  ... Invite a new user, selecting _Metrics Reader_ as a role in `Project > Users`.
   ... Follow the invitation link and log in to Neo4j Aura.
   ... Confirm the project membership.
- ** Or you can find an existing user in `Project > Users` and change its role to "METRICS_READER"
+ ** Or you can find an existing user in `Project > Users` and change its role to _Metrics Reader_
 . Ensure you are logged in to Aura as the user selected in the previous step.
 In `Account > API Keys`, create new Aura API credentials.
 Save client secret.
 
 [NOTE]
 ====
-Capabilities of users with the role "METRICS_READER" are limited to fetching the metrics and getting a read-only view of the project.
+Capabilities of users with the role _Metrics Reader_ are limited to fetching the metrics and getting a read-only view of the project.
 ====
 
 [aura-cmi-apm-integration]
@@ -47,7 +47,7 @@ image::cmi_apm_config_input.png[]
 
 [NOTE]
 ====
-To change the metrics endpoint configuration, you need to have the `PROJECT_ADMIN` role in the project.
+To change the metrics endpoint configuration, you need to have the _Project Admin_ role in the project.
 ====
 
 Aura Metrics Integration setup offers two types of metrics endpoints to endpoint Aura instance metrics:
