@@ -1,23 +1,19 @@
 [[aura-backup-restore-export]]
-= Backup, export and restore
+= Backup, export, and restore
 :description: This page describes how to backup, export and restore your data from a snapshot.
 
-The data in your AuraDB instance can be backed up, exported, and restored using snapshots.
+The data in your Aura instance can be backed up, exported, and restored using snapshots.
 
 A snapshot is a copy of the data in an instance at a specific point in time.
 
-The *Snapshots* tab within an AuraDB instance shows a list of available snapshots.
+The *Snapshots* tab within an Aura instance shows a list of available snapshots.
 
-To access the *Snapshots* tab:
-
-. Navigate to the https://console.neo4j.io/?product=aura-db[Neo4j Aura console] in your browser.
-. Select the instance you want to access.
-. Select the *Snapshots* tab.
+You can find the *Snapshots* tab via *Inspect* in the more menu [*...*] on the instance card.
 
 [NOTE]
 ====
 Only the latest snapshot is available for Free instances.
-Snapshots are available for 7 days for Professional instances, 30 days for Business Critical instances, and 60 days for Enterprise instances.
+Snapshots are available for 7 days for Professional instances, 30 days for Business Critical instances, and 60 days for Enterprise instances.
 ====
 
 == Snapshot types
@@ -56,7 +52,7 @@ Restoring a snapshot requires you to confirm the action by typing RESTORE and se
 
 === Export/Create
 
-By selecting the ellipses (*...*) button next to an existing snapshot, you can:
+By selecting the more [*...*] button next to an existing snapshot, you can:
 
 * *Export* - Download the instance as *_.dump_* file, allowing you to store a local copy and work on your data offline.
 * *Create instance from snapshot* - Create a new AuraDB instance using the data from the snapshot.
