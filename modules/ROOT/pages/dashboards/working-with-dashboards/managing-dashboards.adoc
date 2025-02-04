@@ -1,4 +1,55 @@
 = Manage dashboards
-:description: Lorem ipsum.
+:description: Create, save or delete Neo4j Aura dashboards.
+
+In Neo4j Aura, click *Dashboards* under *Tools* in the left-side navigation to access the *Dashboards* page.
+
+== Creating a dashboard
+
+In the *Dashboards* page, click *New Dashboard* at the top right.
+A new dashboard tile appears.
+
+== Editing a dashboard
+
+In the *Dashboards* page, click any dashboard tile.
+// the tile of the dashboard you want to edit.
+The *Dashboards app* page displays dashboards as tabs below *All dashboards*.
+Click the tab of the dashboard you want to edit.
+In the configuration menu below the dashboard tabs, you can edit the dashboard title, set a role the dashboard is shared with and add pages.
+
+=== Dashboard pages
+
+Add a dashboard page by adding a title to the *Add page* input in the dashboard configuration menu.
+The *Dashboards app* page displays the pages of a dashboard below the configuration menu.
+Click a tab to display the content of that page.
+Click *Delete [page name]* to delete the page.
+
+=== Dashboard cards
+
+A dashboard page consists of cards.
+Each card can hold a xref::/dashboards/visualizations/index.adoc[visualization], also referred to as the *Chart type*.
+To add a card, click *Add card* at the bottom right.
+Click the three dots at the top right of a card to edit the card.
+Click the six dots at the top left of a card to drag and drop it withing a page.
+
+
+////
+== Loading a dashboard
 
 Lorem ipsum.
+
+
+== Dashboard settings
+
+Lorem ipsum.
+
+////
+
+
+== Saving a dashboard
+
+When you are happy with the changes you have made to a dashboard and its pages and cards, click the cloud icon next to the dashboard title in the dashboard's configuration menu.
+
+
+== Deleting a dashboard
+
+To delete a dashboard, click the bin icon next to the dashboard title in the dashboard's configuration menu and confirm.

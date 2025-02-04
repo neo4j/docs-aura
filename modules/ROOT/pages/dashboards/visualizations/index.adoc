@@ -1,0 +1,48 @@
+= Visualizations
+:description: The different visualization options in Neo4j Aura dashboards.
+
+A visualization is embedded in a dashboard card.
+Visualizations have different types, each of which expect different types of data.
+
+
+== Writing queries
+
+Each visualization uses the Cypher query specified in the dashboard card to retrieve data from your Neo4j database and display it.
+Edit the query associated with a dashboard card by clicking the three dots icon at the top right of a card and then *Edit card*.
+
+
+Any Cypher syntax is supported, including link:https://neo4j.com/developer/neo4j-apoc/[APOC], link:https://neo4j.com/docs/graph-data-science/current/[GDS], and link:https://neo4j.com/docs/operations-manual/current/fabric/queries/[Fabric].
+// the above needs verification
+
+Keep the following best practices in mind when writing your Cypher queries: 
+
+. Use a `LIMIT` in your query to keep the result size manageable. 
+. Ensure that you return the correct data types for the correct visualization type.
+
+////
+  For example, a graph report expects nodes and relationships, whereas a line chart expects numbers.
+
+
+== Row limiting
+
+NeoDash has a built-in post-query row limiter.
+This means that results are truncated to a maximum number of rows, depending on the report type.
+The row limiter ensures that visualizations do not become too complex for the browser to display.
+
+Note that even though the row limiter is enabled by default, rows are only limited after the query is executed.
+Therefore, it is recommended to use the `LIMIT` clause in your query at all times.
+
+== Parameters
+
+Parameters can be set in a dashboard by using a xref::/user-guide/reports/parameter-select.adoc[] report.
+Set parameters are then available in any Cypher query across the dashboard.
+
+In addition, session parameters are available based on the currently active database connection.
+
+|===
+|Parameter | Description
+| $session_uri | The URI of the current active database connection.
+| $session_database | The Neo4j database that was connected to when the user logged in.
+| $session_username | The username used to authenticate to Neo4j.
+|===
+ ////

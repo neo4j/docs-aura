@@ -1,4 +1,32 @@
 = Getting started with dashboards
-:description: Lorem ipsum.
+:description: Follow these steps for a working example of Neo4j Aura dashboards.
 
-Lorem ipsum.
+Set up a working example of Neo4j Aura dashboards.
+
+== Prerequisites
+
+You need:
+
+. A Neo4j Aura account
+. A Neo4j Aura database instance
+
+See the Aura xref::/getting-started/quick-start-guide.adoc[Quick start guide] for details.
+
+== Add a sample data set
+
+Download the Neo4j link:https://github.com/neo4j-graph-examples/recommendations/raw/refs/heads/main/data/recommendations-50.dump[movie recommendations sample data set dump file].
+See link:https://neo4j.com/docs/getting-started/appendix/example-data/#_available_datasets[Available datasets] for alternative datasets.
+However, the rest of this page refers to the movie recommendations dataset.
+
+To add the sample data set in Aura:
+. Click *Instances* under *Data services* in the left-side navigation.
+. Locate the instance where you want to upload the sample data set and click the three dots icon at the top right, then click *Inspect*.
+. In the dialog, select the *Restore from backup file* tab.
+. Drag and drop or browse for the file you downloaded.
+. Confirm the *Upload*.
+
+== Create a dashboard
+
+=== Create a dashboard page
+
+=== Create dashboard cards
