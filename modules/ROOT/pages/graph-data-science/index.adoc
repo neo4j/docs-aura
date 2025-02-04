@@ -1,0 +1,62 @@
+[[graph-data-science-aura]]
+= Graph Data Science on Aura
+:description: This page describes how to use the Graph Data Science library with Aura.
+
+There are two ways to use the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library] with Aura:
+
+* Create an <<aura-ds, AuraDS instance>>.
+* Create an AuraDB Professional instance with the <<aura-gds-plugin>>.
+
+[[aura-ds]]
+== AuraDS
+
+label:AuraDS-Professional[] label:AuraDS-Enterprise[]
+
+AuraDS is the fully managed version of Neo4j Graph Data Science.
+
+AuraDS instances have the following features:
+
+* Upgrades and patches are automatically applied.
+* Can be seamlessly scaled up or down.
+* Can be paused to reduce costs.
+
+=== Plans
+AuraDS offers the AuraDS Professional and AuraDS Enterprise subscription plans.
+The full list of features for each plan is available on the link:https://neo4j.com/pricing/#graph-data-science[Neo4j Pricing page].
+
+=== Updates and upgrades
+AuraDS updates and upgrades are handled by the platform, and as such do not require user intervention.
+Security patches and new versions of GDS and Neo4j are installed within short time windows during which the affected instances are unavailable.
+
+The operations are non-destructive, so graph projections, models, and data present on an instance are not affected.
+No operation is applied until all the running GDS algorithms have completed.
+
+[[aura-gds-plugin]]
+== Graph Data Science plugin
+
+label:AuraDB-Professional[]
+
+The Graph Data Science plugin allows you to access the Graph Data Science library in any AuraDB Professional instance with the following requirements:
+
+* Neo4j version 5
+* 4 GB of memory or more
+* Any supported cloud providers and regions
+
+You can enable or disable the plugin when necessary.
+
+== Comparison
+
+There are important operational differences between the GDS plugin on AuraDB Professional and AuraDS.
+
+[opts="header", cols="1,1"]
+|===
+|AuraDB + GDS plugin
+|AuraDS
+
+|Rolling updates clear all projections.
+|Rolling updates save projections to disk and restore them upon restart.
+
+|Backup files do not include projections.
+|Backup files include all projections.
+
+|===

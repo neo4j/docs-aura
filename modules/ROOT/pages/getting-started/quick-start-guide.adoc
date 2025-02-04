@@ -16,15 +16,15 @@ You can toggle between the different versions, via the account dropdown in the t
 
 There are two types of Aura instances:
 
-* **AuraDB**, the fully managed cloud graph database service
-* **AuraDS**, the fully managed version of Neo4j Graph Data Science
+* **AuraDB** (the default Aura instance type)
+* **AuraDS** (the xref:graph-data-science/index.adoc[fully managed version] of Neo4j Graph Data Science)
 
 Select the type of instance using the switch on the top right, then choose the plan that best suits your needs.
 You can upgrade your plan later if your needs change.
 
 You can optionally enable additional features:
 
-* xref:managing-instances/instance-details.adoc#aura-gds-plugin[Graph Data Science plugin] to add the Graph Data Science library (**AuraDB only**)
+* xref:graph-data-science/index.adoc#aura-gds-plugin[Graph Data Science plugin] to add the Graph Data Science library (**AuraDB Professional only**)
 * xref:managing-instances/instance-details.adoc#aura-vector-optimization[Vector optimization] to enhance performance for vector-based operations
 
 After selecting **Next**, your instance is created.
