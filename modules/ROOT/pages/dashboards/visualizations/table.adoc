@@ -1,4 +1,126 @@
 = Table
-:description: Lorem ipsum.
+:description: The Neo4j Aura dashboard table.
+
+
+// Needs verification:
+Neo4j Aura dashboard tables can render all data returned by a Cypher query.
+This includes simple data like numbers or text, but also Neo4j native data like nodes, relationships, and paths.
+
+////
+Tables support the following additional features: 
+
+- Automatic pagination of results. 
+- Sorting/filtering by clicking on the table headers. 
+- Prefixing a column header with `__` (double underscore) will make the column hidden.
+- Downloading your data as a CSV file.
+////
+
+When you hover over a table cell, a copy icon appears towards the end of the cell.
+Click it to copy the content of the table cell to the clipboard.
+
+== Examples
+
+=== Basic table
+
+[source,cypher]
+----
+MATCH (n:Movie)<-[:ACTED_IN]-(p:Person)
+RETURN n.title AS Title, n.released AS Released, count(p) as Actors LIMIT 20
+----
+
+// Screenshot
+
+
+////
+=== Table with nodes and collections
+
+[source,cypher]
+----
+MATCH (n:Movie)<-[:ACTED_IN]-(p:Person)
+RETURN n, collect(p.name) as actors LIMIT 20
+----
+
+image::table2.png[Table with nodes / collections]
+////
+
+
+== Advanced settings
 
 Lorem ipsum.
+
+////
+[width="100%",cols="12%s,6%,26%,56%",options="header",]
+|===
+|Name |Type |Default value |Description
+
+|Transpose rows and columns |on/off |off |If set, transposes the rows and columns of the table. This means that each of the returned rows from Neo4j is shown as a column instead of a row.
+
+|Compact table |on/off |off |If set, makes the rows half their normal height and increases the number of rows per page accordingly.
+
+|Relative column sizes |List of numbers |[1, 1, 1, …] |The relative width between each of the columns in the table. For example, if the first column should be twice the width of the 2nd and 3rd, set this to ``[2, 1, 1]''.
+
+|Enable CSV download |on/off |off |If set, displays a button on the bottom right of the table footer. This button lets a user download the complete set of table results (all pages) as a CSV file.
+
+|Override no data message |Text |'Query returned no data.' |Override the message displayed to the user when their query returns no data.
+
+|Auto-run query |on/off |on |If set, automatically runs the query when the report is displayed.
+Otherwise, the query is displayed and must be executed manually.
+
+|Report Description |Markdown text | | If set, adds a button to the report header that opens a pop-up.
+The pop-up contains the rendered Markdown from this setting.
+|===
+////
+
+== Rule-based styling
+
+Lorem ipsum.
+
+////
+Using the xref::/user-guide/extensions/rule-based-styling.adoc[] menu, the following style rules can be applied to the table: 
+
+- The background color of an entire row in a table. 
+- The text color of an entire row in a table. 
+- The background color of a single cell in the table. 
+- The text color of a single cell in the table.
+
+If a column is hidden (header prefixed with `__` double underscore), it can still be used as an entry point for a styling rule.
+////
+
+
+== Report actions
+
+Lorem ipsum.
+
+////
+With the xref:/user-guide/extensions/report-actions.adoc[] extension, tables can be turned into interactive components that set parameters.
+Two flavours of report actions for tables exist, see the following sections.
+////
+
+=== Select a value from a row
+
+Lorem ipsum.
+
+////
+Adding a "cell clicked" action to a table column turns the values in that row into clickable buttons.
+When the user clicks on the button, a predefined parameter is set to one of the columns in that row.
+
+image::select-single-table.png[Select a value from a table to be used as a parameter]
+////
+
+
+=== Select multiple from a row
+
+Lorem ipsum.
+
+////
+Adding a "row clicked" action to a table prepends each row with a checkbox.
+The user can then check one or more boxes to update a dashboard parameter.
+
+[NOTE]
+====
+Keep in mind that regardless of whether one or more values are selected, the type of the dashboard parameter is a list of values.
+The queries using the parameter must ensure that the list type is handled correctly.
+====
+
+image::select-multiple-table.png[Select multiple values to be used as a parameter]
+////

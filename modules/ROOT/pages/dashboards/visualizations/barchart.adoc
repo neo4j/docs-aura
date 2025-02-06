@@ -1,4 +1,124 @@
 = Bar chart
-:description: Lorem ipsum.
+:description: The Neo4j Aura dashboard bar chart.
+
+A bar chart displays different categories and values in a bar layout.
+Choose the following:
+
+* *Category*: a text field. Categories are the bar labels.
+* *Value*: a numeric field. This determines the height of the bars.
+
+//* *Group*: A second optional text field. When grouping is enabled in the advanced settings, the group can be used to draw a stacked bar chart, with several groups per category.
+
+
+== Examples
+
+
+=== Simple bar chart
+
+A Cypher query for a bar chart which displays the number of people who acted in, directed or rated movies by title:
+
+[source,cypher]
+----
+MATCH (p:Person)-[e]->(m:Movie)
+RETURN m.title as Title, COUNT(p) as People ORDER BY People DESC LIMIT 20
+----
+
+// Screenshot
+
+////
+=== Stacked Bar Chart
+
+[source,cypher]
+----
+Match (p:Person)-[e]->(m:Movie)
+RETURN m.title AS Title, COUNT(p) as People, type(e) as Role ORDER BY Title, Role LIMIT 20
+----
+
+image::barstacked.png[Basic Table]
+////
+
+
+== Advanced settings
 
 Lorem ipsum.
+
+////
+[width="100%",cols="19%s,17%,26%,38%",options="header",]
+|===
+|Name |Type |Default value |Description
+
+|Show Legend |on/off |off |Enables a legend at the top right of the visualization.
+
+|Custom Dimensions |on/off |off |If set, the chart no longer auto-fits to the size of the report card.
+If its width extends beyond the report card, a horizontal scroll bar is added.
+
+|Value Scale |List |Linear |If set to "symlog", the chart uses a symmetric logarithmic scale instead of the default linear scale.
+
+|Min Value |Number |Auto |If not set to "auto", this value is minimum value for the bar chart.
+
+|Max Value |Number |Auto |If not set to "auto", this value is the maximum value for the bar chart.
+
+|Group Mode |List |Stacked |This setting determines how different groups are visualized when grouping is enabled.
+If set to stacked, different groups of the same category are stacked on top of each other.
+If set to grouped, they are placed alongside each other.
+
+|Layout |List |Vertical |Whether to use a vertical or horizontal bar
+chart layout.
+
+|Color Scheme |List | |The color scheme to use for the category groups.
+Colors are assigned automatically (consecutively) to the different groups returned by the Cypher query.
+
+|Show values on Bars |on/off |off |If set, shows the category value inside the respective bar.
+
+|Skip label on width (px) |Mumber |0 |Skip the label if the bar width is lower than the provided value. Ignored if 0.
+
+|Skip label on height (px) |Number |0 |Skip the label if the bar height is lower than the provided value. Ignored if 0.
+
+|Custom label position |off/top/bottom |off | Allow user to place label out of the bar.
+This overrides any other label configuration.
+
+|Label Rotation (degrees) |Number |45 |The angle at which the bar labels
+are rotated.
+
+|Margin Left (px) |Number |50 |The margin in pixels on the left side of the visualization.
+
+|Margin Right (px) |Number |24 |The margin in pixels on the right side of the visualization.
+
+|Margin Top (px) |Number |24 |The margin in pixels on the top side of the visualization.
+
+|Margin Bottom (px) |Number |40 |The margin in pixels on the bottom side of the visualization.
+
+|Legend Width (px) |Number |128 |The width in pixels of each legend label on top of the visualization (if enabled).
+
+|Hide Selections |on/off |off |If set, hides the property selector (footer of the visualization).
+
+|Auto-run query |on/off |on |If set, automatically runs the query when the report is displayed.
+Otherwise, the query is displayed and must be executed manually.
+
+|Report Description |Markdown text | | If specified, adds a button the report header that opens a pop-up.
+The pop-up contains the rendered Markdown from this setting. 
+
+|Bar Width |Number |10 | Only active when "custom dimensions" is "on".
+The width of each bar.
+Increasing the bar width increases the width of the chart.
+This setting has the largest influence on the width of the chart.
+
+|Expand Height For Legend |on/off |off |Useful when the legend has many labels.
+If set, the chart height adjusts to the number of rows returned by the query to prevent legend labels from being cut off.
+
+|Inner Padding |Number |0 |If set, adds padding between grouped elements.
+
+|Legend Position |Vertical/horizontal |Vertical |Dictates whether the lagend is displayed vertically on the right hand side of the chart or horizontally on the bottom of the chart.
+|===
+////
+
+
+== Rule-based styling
+
+Lorem ipsum.
+
+////
+Using the xref::/user-guide/extensions/rule-based-styling.adoc[] menu, the following style rules can be applied to the bar chart: 
+
+- The color of the bar.
+////

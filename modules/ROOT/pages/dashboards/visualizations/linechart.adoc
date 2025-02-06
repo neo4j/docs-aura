@@ -1,4 +1,129 @@
 = Line chart
-:description: Lorem ipsum.
+:description: The Neo4j Aura dashboard line chart.
+
+You can use a line chart to draw one or more lines in a two-dimensional plane.
+It has two numeric fields:
+
+* *Value*: The values used on the x-axis.
+* *Dimension*: The values used as the y-axis.
+
+// Needs confirmation:
+// The line chart supports plotting both simple numbers and time values on the x-axis.
+// If you select a Neo4j datetime property on the x-axis, the chart is automatically drawn as a time series.
+
+
+== Examples
+
+
+=== Basic line chart
+
+Cypher query for a line chart which displays the number of movies released for each year:
+
+[source,cypher]
+----
+MATCH (a:Actor)
+RETURN  ((a.born).year / 10) * 10 as Decade, count(a) as Actors
+ORDER BY Decade ASC
+----
+
+// Screenshot
+
+
+=== Multi-line chart
+
+Cypher query for a line chart which displays the number of actors born and number of movies released by decade:
+
+[source,cypher]
+----
+MATCH (a:Actor)
+WITH (date(a.born).year / 10) * 10 AS Decade, count(a) AS Actors ORDER BY Decade ASC
+MATCH (m:Movie) 
+WHERE (date(m.released).year / 10) * 10 = Decade 
+RETURN Decade, Actors, count(DISTINCT m) AS Movies
+----
+
+// Screenshot
+
+
+== Advanced settings
 
 Lorem ipsum.
+
+////
+
+[width="100%",cols="13%s,2%,6%,79%",options="header",]
+|===
+|Name |Type |Default value |Description
+
+|Plot Type |List |line | Whether to use a line plot (with connections) or a scatter plot of disjointed points.
+
+|Show Legend |on/off |off |If set, shows a legend at the top right of the visualization.
+
+|Color Scheme |List |neodash |The color scheme to use for the lines.
+Colors are assigned automatically to the different fields selected in the report footer.
+
+|X Scale |List |Linear |How to scale the values on the x-axis.
+Can be either linear, logarithmic or point. Use point for categorical data.
+
+|Y Scale |List |Linear |How to scale the values on the y-axis. Can be
+either linear or logarithmic.
+
+|Min x Value |Number |Auto |If not set to "auto", this variable is the minimum value on the x-axis.
+
+|Max x Value |Number |Auto |If not set to "auto", this variable is the maximum value on the x-axis.
+
+|Min y Value |Number |Auto |If not set to "auto", this variable is the minimum value on the y-axis.
+
+|Max y Value |Number |Auto |If not set to "auto", this variable is the maximum value on the y-axis.
+
+|X-axis Tick Count |Number |Auto |If not set to "auto", the number of ticks to be made on the x-axis. This is an approximate number that the visualization tries to adhere to (numeric X-axis only).
+
+|X-axis Format (Time chart) |Text |%Y-%m-%dT%H:%M:%SZ |When using a time chart, this setting lets you override how time values are rendered on the x-axis. This uses the ISO 8601 time notations.
+
+|X-axis Tick Size (Time chart) |Text |every 1 year |When using a time chart, this setting helps you set the frequency of ticks. The text format should look like this:
+`"every [number] ['years', 'months', 'weeks', 'days', 'hours', 'seconds', 'milliseconds']"`.
+
+|Line Smoothing |List |Linear |Determines how the lines in the chart are smoothened.
+One of linear (no smoothing), basis (interpolating), cardinal (through each point) and step (step-based interpolation).
+
+|X-axis Tick Rotation (Degrees) |Number |0 | The angle at which the tick labels on the x-axis are rotated.
+
+|Y-axis Tick Rotation (Degrees) |Number |0 | The angle at which the tick labels on the y-axis are rotated.
+
+|Show Grid |on/off |on |If enabled, shows a grid in the line chart that
+intersects at the axis ticks.
+
+|Point Radius (px) |Number |10 |The size of a point on each line.
+
+|Line Width (px) |Number |2 |The width (in pixels) of each line in the chart.
+
+|Margin Left (px) |Number |50 |The margin in pixels on the left side of
+the visualization.
+
+|Margin Right (px) |Number |24 |The margin in pixels on the right side of the visualization.
+
+|Margin Top (px) |Number |24 |The margin in pixels on the top side of the visualization.
+
+|Margin Bottom (px) |Number |40 |The margin in pixels on the bottom side of the visualization.
+
+|Legend Width (px) |Number |128 |The width in pixels of each legend label on top of the visualization (if enabled).
+
+|Hide Property Selection |on/off |off |If set, hides the property selector (footer of the visualization).
+
+|Auto-run query |on/off |on |If set, automatically runs the query when the report is displayed.
+Otherwise, the query is displayed and must be executed manually.
+
+|Report Description |Markdown text | | If set, adds a button to the report header that opens a pop-up.
+The pop-up contains the rendered Markdown from this setting.
+|===
+////
+
+== Rule-based styling
+
+Lorem ipsum.
+
+////
+Using the xref::/user-guide/extensions/rule-based-styling.adoc[] menu, the following style rules can be applied to the line chart: 
+
+- The color of the line.
+////

@@ -19,10 +19,12 @@ Keep the following best practices in mind when writing your Cypher queries:
 . Use a `LIMIT` in your query to keep the result size manageable. 
 . Ensure that you return the correct data types for the correct visualization type.
 
+//
+//  For example, a graph report expects nodes and relationships, whereas a line chart expects numbers.
+//
+//
+
 ////
-  For example, a graph report expects nodes and relationships, whereas a line chart expects numbers.
-
-
 == Row limiting
 
 NeoDash has a built-in post-query row limiter.
@@ -45,4 +47,4 @@ In addition, session parameters are available based on the currently active data
 | $session_database | The Neo4j database that was connected to when the user logged in.
 | $session_username | The username used to authenticate to Neo4j.
 |===
- ////
+////
