@@ -12,7 +12,7 @@ Organization admins can configure SSO on organization level and project level.
 
 SSO is a log-in method and access, roles, and permissions are dictated by role-based access control (RBAC).
 
-* *Organization-level:* Allows org admins to control how users log in when they are trying to access the org.
+* *Organization-level:* Allows org admins to control how users log in when they are trying to access the organization.
 Access beyond log-in is managed via RBAC.
 It is essentially a log-in method for the Aura console.
 
@@ -58,7 +58,7 @@ From the *Organization settings*, go to *Single Sign-On* to set up a new SSO con
 The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on Organization level, only on Project level, or both.
 
 The required basic SSO configuration information can be retrieved from the IdP.
-Entering the Discovery URI pre-fills the fields below. 
+Entering the Discovery URI pre-fills the fields below.
 If this is not known these fields can be completed manually.
 
 .SSO configuration
