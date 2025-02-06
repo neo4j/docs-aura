@@ -10,8 +10,8 @@ You can access the report for any version 4 instance via the link through the "M
 
 == Overview
 
-This tool advises how to prepare an AuraDB v4 instance for migration to AuraDB v5.
-It reports current application queries, drivers, and database objects that would prevent you from migrating to AuraDB v5 by providing information based on your recent usage history.
+This tool advises how to prepare an AuraDB v4 instance for migration to AuraDB latest.
+It reports current application queries, drivers, and database objects that would prevent you from migrating to AuraDB latest by providing information based on your recent usage history.
 In addition, you can also see link:https://neo4j.com/docs/aura/tutorials/upgrade/[Upgrade to Neo4j 5 within Aura] for details on each identified issue and how to address it.
 
 The main categories of issues that the Migration Readiness Report deals with are:
@@ -23,8 +23,17 @@ The main categories of issues that the Migration Readiness Report deals with are
 The report page has a section for each category and a chart at the top titled "Deprecations and query timeline."
 This document explains each section, but the first is vital to controlling the others and is detailed in the following section.
 
-Note that the report only highlights issues that need to be addressed to make your code and queries compatible with AuraDB v5.
-Working on these issues presents a good opportunity to learn more about the advantages of the new features in version 5.
+Note that the report only highlights issues that need to be addressed to make your code and queries compatible with AuraDB latest.
+Working on these issues presents a good opportunity to learn more about the advantages of the new features in the latest version.
+
+
+[NOTE]
+====
+From January 2025 Neo4j Server adopted calendar versioning (CalVer).
+Earlier versions, such as Neo4j 4 and 5 used semantic versioning (SemVer).
+Neo4j Aura uses only the latest version.
+====
+
 
 === Control over the time window
 
@@ -64,7 +73,7 @@ Use the button in the popup to fetch applicable data to populate the report's ta
 image::mrr-deprecation-table.png[]
 
 Each row in the table represents a query in the selected timeframe that must be changed to seamlessly migrate to the latest Aura version.
-You have to rewrite those queries to only use v5 supported Cypher.
+You have to rewrite those queries to only use Cypher supported by the latest version.
 
 All executions of the same query are aggregated into one row (see also the "Count" column).
 Use the magnifying glass at the start of each row to access a popup with more information about the query and suggestions on dealing with each issue.

@@ -22,7 +22,7 @@ These are created and managed using a supported cloud key management service (KM
 Externally, Customer Managed Keys are also known as Customer Managed Encryption Keys (CMEK).
 
 When using a Customer Managed Key, all data at rest is encrypted with the key.
-Customer Managed Keys are supported for v4.x and v5.x instances.
+Customer Managed Keys are supported for v4.x and latest version instances.
 
 When using Customer Managed Keys, you give Aura permission to encrypt and decrypt using the key, but Aura has no access to the key’s material.
 Aura has no control over the availability of your externally managed key in the KMS.
@@ -53,7 +53,7 @@ Depending on the KMS, there may be a delay between disabling a key, and when it 
 
 === Import an existing database
 
-You can upload a database to instances encrypted with Customer Managed Keys in Neo4j 5 directly from the console or by using `neo4j-admin database upload`.
+You can upload a database to instances encrypted with Customer Managed Keys in Neo4j latest directly from the console or by using `neo4j-admin database upload`.
 If the database is larger than 4 GB, you have to use `neo4j-admin database upload`.
 Note that the `neo4j-admin push-to-cloud` command in Neo4j v4.4 and earlier is **not** supported for instances encrypted with Customer Managed Keys.
 //For more information see the xref:auradb/importing/import-database.adoc#_neo4j_admin_database_upload[Neo4j Admin `database upload`] documentation.
