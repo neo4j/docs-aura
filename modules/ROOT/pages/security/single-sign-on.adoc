@@ -3,6 +3,7 @@
 :description: SSO allows you to log in to the Aura Console using their company IdP credentials.
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDB-Business-Critical[]
 label:AuraDS-Enterprise[]
 
 == SSO levels
@@ -52,11 +53,7 @@ To create an SSO Configuration either a Discovery URI or a combination of Issuer
 
 == Create a new SSO configuration
 
-From the *Organization settings*, go to *Single Sign-On* and use the *SSO Configuration* button to set up a new SSO configuration.
-
-.Organization settings
-[.shadow]
-image::organizationsettings.png[A screenshot of how to navigate to organization settings in the UI]
+From the *Organization settings*, go to *Single Sign-On* to set up a new SSO configuration.
 
 The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on Organization level, only on Project level, or both.
 
@@ -69,7 +66,6 @@ If this is not known these fields can be completed manually.
 image::sso.png[A screenshot of the SSO configuration dialogue,640,480]
 
 == Individual instance-level
-label:AuraDB-Business-Critical[]
 
 Support can assist with SSO configurations at instance-level including:
 
