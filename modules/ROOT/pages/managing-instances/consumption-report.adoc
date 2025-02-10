@@ -12,17 +12,17 @@ It displays RAM usage in GB-hours and the equivalent cost in prepaid credits.
 You can also Export a CSV containing usage in a selected period.
 
 Available to Admins, the report helps you track usage patterns over time and make informed resource allocation decisions.
-Note that it includes primary database usage but **not** secondary database usage.
 
 == Monitor consumption in real-time
 
-=== Billing category
+=== Product name 
 
-The consumption report shows the billing status, which can be `running` meaning customers are charged the full price, or `paused` meaning customers are charged 20% of the hourly rate.
+The consumption report shows the product name. 
+If it is `paused` customers are charged 20% of the hourly rate.
 
 === Billing status
 
-Billing status can be `ongoing` or `ended`.
+Billing status can be either `ended` or `ongoing` (differentiating between historical `ended` and currently billed `ongoing`).
 
 === Usage (GB-hours)
 
