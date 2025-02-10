@@ -9,12 +9,10 @@ label:AuraDS-Enterprise[]
 == SSO levels
 
 Organization admins can configure SSO on organization level and project level.
+SSO is a log-in method. 
+Access, roles, and permissions are dictated by role-based access control (RBAC).
 
-SSO is a log-in method and access, roles, and permissions are dictated by role-based access control (RBAC).
-
-* *Organization-level:* Allows org admins to control how users log in when they are trying to access the organization.
-Access beyond log-in is managed via RBAC.
-It is essentially a log-in method for the Aura console.
+* *Organization-level:* Allows org admins to control how users log in when they are trying to access the organization. It is a log-in method for the Aura console.
 
 * *Project-level:*  Impacts new database instances created within that project.
 It ensures users logging in with SSO have access to the database instances within the project.
@@ -63,7 +61,12 @@ If this is not known these fields can be completed manually.
 
 .SSO configuration
 [.shadow]
-image::sso.png[A screenshot of the SSO configuration dialogue,640,480]
+image::sso.png[A screenshot of the SSO configuration,640,480]
+
+== Role mapping
+
+Role mapping applies to all new instances in the selected project.
+To configure role mapping for an individual instance, contact support.
 
 == Individual instance-level
 
