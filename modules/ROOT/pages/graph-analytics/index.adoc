@@ -4,8 +4,21 @@
 
 There are two ways to run graph analytics on Aura:
 
-* Create an <<aura-ds, AuraDS instance>>.
 * Create an AuraDB Professional instance with the <<aura-gds-plugin>>.
+* Create an <<aura-ds, AuraDS instance>>.
+
+[[aura-gds-plugin]]
+== Graph Analytics plugin
+
+label:AuraDB-Professional[]
+
+The Graph Analytics plugin allows you to use the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library] in any AuraDB Professional instance with the following requirements:
+
+* Neo4j version 5 or later
+* 4 GB of memory or more
+* Any supported cloud providers and regions
+
+You can enable or disable the plugin when necessary.
 
 [[aura-ds]]
 == AuraDS
@@ -32,19 +45,6 @@ Security patches and new versions of GDS and Neo4j are installed within short ti
 
 The operations are non-destructive, so graph projections, models, and data present on an instance are not affected.
 No operation is applied until all the running GDS algorithms have completed.
-
-[[aura-gds-plugin]]
-== Graph Analytics plugin
-
-label:AuraDB-Professional[]
-
-The Graph Analytics plugin allows you to use the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library] in any AuraDB Professional instance with the following requirements:
-
-* Neo4j version 5 or later
-* 4 GB of memory or more
-* Any supported cloud providers and regions
-
-You can enable or disable the plugin when necessary.
 
 == Comparison
 
