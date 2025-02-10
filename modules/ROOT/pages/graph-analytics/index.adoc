@@ -1,8 +1,8 @@
-[[graph-data-science-aura]]
-= Graph Data Science on Aura
-:description: This page describes how to use the Graph Data Science library with Aura.
+[[graph-analytics-aura]]
+= Graph analytics on Aura
+:description: This page describes how to run graph analytics on Aura.
 
-There are two ways to use the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library] with Aura:
+There are two ways to run graph analytics on Aura:
 
 * Create an <<aura-ds, AuraDS instance>>.
 * Create an AuraDB Professional instance with the <<aura-gds-plugin>>.
@@ -12,7 +12,7 @@ There are two ways to use the link:https://neo4j.com/docs/graph-data-science/cur
 
 label:AuraDS-Professional[] label:AuraDS-Enterprise[]
 
-AuraDS is the fully managed version of Neo4j Graph Data Science.
+AuraDS is the fully managed version of the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library].
 
 AuraDS instances have the following features:
 
@@ -33,13 +33,13 @@ The operations are non-destructive, so graph projections, models, and data prese
 No operation is applied until all the running GDS algorithms have completed.
 
 [[aura-gds-plugin]]
-== Graph Data Science plugin
+== Graph Analytics plugin
 
 label:AuraDB-Professional[]
 
-The Graph Data Science plugin allows you to access the Graph Data Science library in any AuraDB Professional instance with the following requirements:
+The Graph Analytics plugin allows you to use the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library] in any AuraDB Professional instance with the following requirements:
 
-* Neo4j version 5 or higher
+* Neo4j version 5 or later
 * 4 GB of memory or more
 * Any supported cloud providers and regions
 
@@ -47,11 +47,11 @@ You can enable or disable the plugin when necessary.
 
 == Comparison
 
-There are important operational differences between the GDS plugin on AuraDB Professional and AuraDS.
+There are important operational differences between the Graph Analytics plugin on AuraDB Professional and AuraDS.
 
 [opts="header", cols="1,1"]
 |===
-|AuraDB + GDS plugin
+|AuraDB Pro + Graph Analytics plugin
 |AuraDS
 
 |Rolling updates clear all projections.
