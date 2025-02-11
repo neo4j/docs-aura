@@ -11,34 +11,22 @@ The consumption report, accessible in the Aura console’s Billing section, prov
 It displays RAM usage in GB-hours and the equivalent cost in prepaid credits.
 You can also Export a CSV containing usage in a selected period.
 
-Available to Admins, the report helps you track usage patterns over time and make informed resource allocation decisions.
+Available to Admins, the report helps track usage patterns over time to make informed resource allocation decisions.
 
 == Consumption report
 
-Monitor consumption in real-time in the Aura console's Billing section. 
+Monitor consumption in real-time in the Aura console’s Billing section.
+The report includes the following fields:
 
-=== Product name 
-
-See https://console-preview.neo4j.io/pricing[the Pricing Document] the for the products and their charges.
-
-The consumption report shows the product name. 
-
-If it is `paused` customers are charged 20% of the hourly rate.
-
-=== Billing status
-
-Billing status can be either `ended` or `ongoing` (differentiating between historical `ended` and currently billed `ongoing`).
-
-=== Usage (GB-hours)
-
-Charges are based on the time databases run and the memory consumed, measured in GB-hours. 
-GB-hours usage is calculated by multiplying the number of hours a database is running (whether actively used or not) by the memory size in gigabytes (GB).
-
-The total usage for the selected period is displayed in GB-hours, along with the equivalent credit.
-
-=== Units of measure 
-
-Some products are not metered in GB-hours.
+* *Instance*
+* *Instance ID*
+* *Product name and pricing:* For more information, refer to https://console-preview.neo4j.io/pricing[Aura Pricing] for the specific product names and their prices. If a database is paused, its charge is reduced to 20% of the standard hourly rate.
+* *Billing status:* Can be `ongoing` (currently being billed) or `ended` (historical usage).
+* *Usage:* based on the time databases run and the memory consumed.
+* *Units of measure:* For many products, GB-hours usage is calculated by multiplying the number of hours a database is running (whether actively used or not) by the memory size in gigabytes (GB). 
+The total usage for the selected period is displayed in GB-hours along with the equivalent cost in credits.
+Note that some products are not measured in GB-hours.
+* *Credits consumed:* Used credits.
 
 == Filters
 
