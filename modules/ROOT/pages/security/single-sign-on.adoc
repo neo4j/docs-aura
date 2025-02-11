@@ -8,7 +8,7 @@ label:AuraDS-Enterprise[]
 
 == SSO levels
 
-Organization admins can configure SSO on organization level and project level.
+Organization admins can configure SSO at the organization-level and project-level.
 SSO is a log-in method. 
 Access, roles, and permissions are dictated by role-based access control (RBAC).
 
@@ -38,7 +38,7 @@ Administrators can configure a combination of one or more of the log-in methods.
 * Okta
 * Microsoft Entra ID
 
-At the project level you cannot disable user/password, but at the org level you can disable email/password and Google SSO as long as you have at least one other custom SSO provider configured.
+At the project-level admins cannot disable user/password, but at the organization-level admins can disable email/password and Google SSO as long as there is at least one other custom SSO provider configured.
 
 == Setup requirements
 
