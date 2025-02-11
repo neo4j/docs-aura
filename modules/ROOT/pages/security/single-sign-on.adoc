@@ -1,0 +1,84 @@
+[[aura-reference-security]]
+= Single Sign-On (SSO)
+:description: SSO allows you to log in to the Aura Console using their company IdP credentials.
+
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDB-Business-Critical[]
+label:AuraDS-Enterprise[]
+
+== SSO levels
+
+Organization admins can configure SSO at the organization-level and project-level.
+SSO is a log-in method. 
+Access, roles, and permissions are dictated by role-based access control (RBAC).
+
+* *Organization-level:* Allows org admins to control how users log in when they are trying to access the organization. It is a log-in method for the Aura console.
+
+* *Project-level:*  Impacts new database instances created within that project.
+It ensures users logging in with SSO have access to the database instances within the project.
+It depends on RBAC if the user can access and view or modify data within the instances themselves.
+For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider (IdP).
+It *does not* give access to edit the project settings, for example to edit the project name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
+
+== Log-in methods
+
+Log-in methods are different for each SSO level.
+Administrators can configure a combination of one or more of the log-in methods.
+
+*Organization-level supports:*
+
+* Email/password
+* Okta
+* Microsoft Entra ID
+* Google SSO (not Google Workspace SSO)
+
+*Project-level supports:*
+
+* User/password
+* Okta
+* Microsoft Entra ID
+
+At the project-level admins cannot disable user/password, but at the organization-level admins can disable email/password and Google SSO as long as there is at least one other custom SSO provider configured.
+
+== Setup requirements
+
+Accessing Aura with SSO requires:
+
+* Authorization Code Flow
+* A publicly accessible IdP server
+
+To create an SSO Configuration, either a Discovery URI or a combination of Issuer, Authorization Endpoint, Token Endpoint, and JWKS URI is required.
+
+== Create a new SSO configuration
+
+From the *Organization settings*, go to *Single Sign-On* to set up a new SSO configuration.
+
+The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on Organization level, only on Project level, or both.
+
+The required basic SSO configuration information can be retrieved from the IdP.
+Entering the Discovery URI pre-fills the fields below.
+If this is not known these fields can be completed manually.
+
+.SSO configuration
+[.shadow]
+image::sso.png[A screenshot of the SSO configuration,640,480]
+
+== Role mapping
+
+Role mapping applies to all new instances in the selected project.
+To configure role mapping for an individual instance, contact support.
+
+== Individual instance-level
+
+Support can assist with SSO configurations at instance-level including:
+
+* Role mapping specific to a database instance
+* Custom groups claim besides `groups`
+* Updating SSO on already running instances
+
+If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
+
+
+. The _Project ID_ of the projects you want to use SSO for. Click on the project settings to copy the ID.
+
+. The name of your IdP

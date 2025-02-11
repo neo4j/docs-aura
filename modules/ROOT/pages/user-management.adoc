@@ -2,13 +2,137 @@
 = User management
 :description: This page describes how to manage users in Neo4j Aura.
 
-User management is a feature within Aura that allows you to invite users and set their roles within an isolated environment.
+User management is a feature within Aura that allows admins to invite users and set their roles within an isolated environment.
 
-image::inviteusers.png[]
+== Organization-level roles
 
-== Projects
+The following roles are available at the org level and these are assigned via invitation:
 
-Grant users access to a project.
+* Owner
+* Admin
+* Member
+
+:check-mark: icon:check[]
+.Roles
+[opts="header",cols="3,1,1,1"]
+|===
+| Capability
+| Owner
+| Admin
+| Member
+
+| List org
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| List org projects
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Update org
+| {check-mark}
+| {check-mark}
+|
+
+| Add projects
+| {check-mark}
+| {check-mark}
+|
+
+| List existing SSO configs
+| {check-mark}
+| {check-mark}
+|
+
+| Add SSO configs
+| {check-mark}
+| {check-mark}
+|
+
+| List SSO configs on project-level
+| {check-mark}
+| {check-mark}
+|
+
+| Update SSO configs on project-level
+| {check-mark}
+| {check-mark}
+|
+
+| Delete SSO configs on project-level
+| {check-mark}
+| {check-mark}
+|
+
+| Invite non-owner users to org
+| {check-mark}
+| {check-mark}
+|
+
+| List users
+| {check-mark}
+| {check-mark}
+|
+
+| List roles
+| {check-mark}
+| {check-mark}
+|
+
+| List members of a project
+| {check-mark}
+| {check-mark} footnote:[An admin can only list members of projects the admin is also a member of.]
+|
+
+// | Add customer information for a trial within org
+// | {check-mark}
+// | {check-mark}
+// |
+
+// | List customer information for a trial within org
+// | {check-mark}
+// | {check-mark}
+// |
+
+// | List seamless login for org
+// | {check-mark}
+// | {check-mark}
+// |
+
+// | Update seamless login for org
+// | {check-mark}
+// | {check-mark}
+// |
+
+| Invite owners to org
+| {check-mark}
+|
+|
+
+| Add owner
+| {check-mark}
+|
+|
+
+| Delete owners
+| {check-mark}
+|
+|
+
+| Transfer projects to and from the org
+| {check-mark} footnote:[An owner needs to permission for both the source and destination orgs.]
+|
+|
+|===
+
+== Project-level roles
+
+Each project can have multiple users with individual accounts allowing access to the same environment.
+
+The users with access to a project can be viewed and managed from the *Users* page. 
+Access the Users page by selecting Users from the sidebar menu of the console.
 
 The project you're currently viewing is displayed in the header of the console. 
 You can select the project name to open the project dropdown menu, allowing you to view all the projects that you have access to and switch between them.
@@ -73,6 +197,9 @@ As an _Admin_, to invite a new user:
 The new user will appear within the list of users on the **User** page with the _Pending invite_ **Status** until they accept the invite.
 
 An email will be sent to the user with a link to accept the invite.
+
+.Grant users access to a project
+image::inviteusers.png[]
 
 === Editing users
 
