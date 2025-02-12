@@ -16,17 +16,19 @@ Available to Admins, the report helps track usage patterns over time to make inf
 == Consumption report
 
 Monitor consumption in real-time in the Aura console’s Billing section.
-The report includes the following fields:
 
-* *Instance*
-* *Instance ID*
-* *Product name and pricing:* For more information, refer to https://console-preview.neo4j.io/pricing[Aura Pricing] for the specific product names and their prices. If a database is paused, its charge is reduced to 20% of the standard hourly rate.
-* *Billing status:* Can be `ongoing` (currently being billed) or `ended` (historical usage).
-* *Usage:* Based on the time databases run and the memory consumed.
-* *Units of measure:* For many products, GB-hours usage is calculated by multiplying the number of hours a database is running (whether actively used or not) by the memory size in gigabytes (GB). 
-The total usage for the selected period is displayed in GB-hours along with the equivalent cost in credits.
-Note that some products are not measured in GB-hours.
-* *Credits consumed:* Used credits.
+=== Product name and pricing
+
+For more information, refer to https://console-preview.neo4j.io/pricing[Aura Pricing] for the specific product names and their prices. If a database is paused, its charge is reduced to 20% of the standard hourly rate.
+
+=== Billing status
+
+Can be `ongoing` (currently being billed) or `ended` (historical usage).
+
+=== Units of measure
+
+Units of measure are displayed in the specified unit of measure, often GB-hours.
+GB-hours usage is calculated by multiplying the number of hours a database is running (whether actively used or not) by the memory size in gigabytes (GB).
 
 == Filters
 
