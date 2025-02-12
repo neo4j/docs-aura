@@ -36,10 +36,12 @@ An *On Demand* snapshot is a snapshot that you manually trigger with the *Take s
 
 == Snapshot actions
 
+image::snapshot-actions.png[width=400]
+
 [[export-create]]
 === Export/Create
 
-By selecting the more (*...*) button next to an existing snapshot, you can:
+From the more (*...*) menu next to an existing snapshot, you can:
 
 * *Export* - Download the instance as *_.backup_* file, allowing you to store a local copy and work on your data offline.
 * *Create instance from snapshot* - Create a new AuraDB instance using the data from the snapshot.
@@ -53,8 +55,8 @@ Additionally, for Virtual Dedicated Cloud instances running Neo4j latest version
 Use the toggle **Show exportable only** on top of the list of snapshots to filter by whether a snapshot is exportable or not.
 ====
 
-[[restore]]
-== Restore
+[[restore-snapshot]]
+=== Restore
 
 [CAUTION]
 ====
@@ -62,9 +64,9 @@ Restoring from a snapshot overwrites the data in your instance, replacing it wit
 ====
 
 You can restore data in your instance to a previous snapshot.
-From the *Restore from backup file* tab, next to the *Snapshots* tab on the instance card, drag and drop your _.backup_, _.dump_, or _.tar_ file or browse for it.
-This action overwrites the data currently in your instance.
-If this is not desired, you can create a new instance from the snapshot instead, as described in <<export-create>>.
+Use the arrow next to the (*...*) menu on the Snapshot you want to restore from.
+This action overwrites the data currently in your instance and you will be asked to confirm that this is indeed desired.
+If not, you can create a new instance from the snapshot instead, as described in <<export-create>>.
 
 
 [[snapshot-details]]
@@ -125,3 +127,10 @@ If this is not desired, you can create a new instance from the snapshot instead,
 | 14 full footnote:3[]
 | 90
 |===
+
+[[restore-backup]]
+== Restore from backup file
+
+From the *Restore from backup file* tab, next to the *Snapshots* tab on the instance card, drag and drop your _.backup_, _.dump_, or _.tar_ file or browse for it.
+This action also overwrites the data currently in your instance.
+If this is not desired, you can create a new instance from the snapshot instead, as described in <<export-create>>.
