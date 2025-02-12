@@ -18,7 +18,7 @@ image::inspectdetails.png[]
 | Detail | Description
 
 |ID
-|Every instance has with an ID which is a unique identifier.
+|Every instance has an ID which is a unique identifier.
 It means multiple instances can have the same instance name, because they are distinguishable by their unique ID.
 
 |Connection URI
@@ -71,11 +71,11 @@ For more information, see xref:managing-instances/backup-restore-export.adoc[Bac
 == Restore from backup file
 
 You can restore a database to your instance by dragging and dropping it to this tab.
-It needs to be either a _.dump_, _.backup_, or _tar_ file.
+It needs to be either a _.dump_, _.backup_, or _.tar_ file.
 When you restore a database, all existing data is overwritten by your selected file.
 
 See xref:managing-instances/backup-restore-export.adoc#restore[Restore] for more information.
 
-== Logs
+// == Logs
 
-From the _Logs_ tab, you can request Query logs for a specified time frame.
+// From the _Logs_ tab, you can request Query logs for a specified time frame.
