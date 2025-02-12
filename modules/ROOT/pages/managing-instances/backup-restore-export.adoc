@@ -28,13 +28,14 @@ label:AuraDB-Enterprise[]
 A *Scheduled* snapshot is a snapshot that is automatically triggered when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and at a cadence depending on your plan type.
 
 For Professional instances, scheduled snapshots are run automatically once a day and for Business Critical and Virtual Dedicated Cloud instances, they run once an hour.
-See <<retention>> further on for information about frequency and retention of scheduled snapshots.
+See <<snapshot-details>> further on for information about frequency, restorability, and exportability of scheduled snapshots.
 
 === On Demand
 
 An *On Demand* snapshot is a snapshot that you manually trigger with the *Take snapshot* button.
 
 == Snapshot actions
+
 [[export-create]]
 === Export/Create
 
@@ -66,7 +67,7 @@ This action overwrites the data currently in your instance.
 If this is not desired, you can create a new instance from the snapshot instead, as described in <<export-create>>.
 
 
-[[retention]]
+[[snapshot-details]]
 == Snapshot details
 
 [cols="^,^,^,^,^,^,^",options="header"]
