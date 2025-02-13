@@ -4,27 +4,43 @@
 
 == VPC isolation
 
-label:AuraDB-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 
-AuraDB Enterprise and AuraDS Enterprise run in a dedicated cloud Account (AWS), Subscription (Azure) or Project (GCP) to achieve complete isolation for your deployment.
-
-Additional VPC boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
-
-The Aura console runs in a separate VPC, separate from the rest of Aura.
+AuraDB Virtual Dedicated Cloud and AuraDS Enterprise run in a dedicated AWS cloud account, Azure subscription, or GCP project to achieve complete isolation for your deployment.
+Additional Virtual Private Cloud (VPC) boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected. 
+The Aura console resides in a separate VPC, isolated from the rest of the Aura services.
 
 == Network access
 
-An Aura instance can be publicly available, completely private, or both.
-To configure this, you need to be authorized to access the part of the infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC.
-This includes the ability to connect over the cloud provider's private link and private endpoint.
+An Aura instance can be publicly available, completely private, or allow both public and private access.
 
-If your Aura instances are public, traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password.
+If public traffic is enabled, your Aura instances are public and traffic to them is allowed to traverse the public internet and they are accessible with the correct username and password.
 
-For your instance to be completely private, turn public traffic off, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
+To make your instance completely private, you need to disable public traffic, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
 The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create.
 
-To select network access settings go to *Aura console* > *Security* > *Network Access*.
+To configure network access, you need to be authorized to access the part of the infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC. 
+This includes the ability to connect over the cloud provider's private link and private endpoint.
+
+To configure settings for network access to your instance, go to *Aura console* > Project settings > *Security & Networking* > *Private endpoints* > *New network access configuration*.
+
+From there, you can either set up a new network access configuration, or edit current configuration settings.
+
+The Aura console provides a step-by-step configuration guide to:
+
+. Choose your Aura instance details
+. Create an endpoint
+. Accept endpoint connection requests and enable private DNS in the cloud provider's console
+. *Disable public traffic (optional)*
+If you disable public traffic it is highly recommended to test connectivity through the private endpoint before disabling public traffic.
+
+You can return to Step 4 at any time to disable public traffic, even if you’ve already completed the network access configuration and initially allowed public traffic. 
+To do this, click through the steps in the network access configuration guide until you reach Step 4, where there is the option to disable public traffic.
+Disabling public traffic does not take effect immediately. 
+You can monitor the status change in the console to confirm when the process is complete.
+
+To continue accessing Browser and Bloom, you can configure a VPN in your VPC and connect to these services over the VPN.
 
 == Private endpoints
 
@@ -34,20 +50,20 @@ By design they are not exposed to the public internet, ensuring that critical se
 
 A single private link connection applies to all instances in a region.
 So if you've set one up for `us-east-1` then those network connections will apply to all instances in that region.
-You can set up a second private link connection to applications that are hosted in a second region i.e. `us-west-1` but still housed inside the same Aura project.
+You can set up a second private link connection to applications that are hosted in a second region (for example `us-west-1`) but still housed inside the same Aura project.
 
 === AWS private endpoints
 
-label:AuraDB-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 
-AuraDB Enterprise supports private endpoints on AWS using https://aws.amazon.com/privatelink[AWS PrivateLink].
+AuraDB Virtual Dedicated Cloud and AuraDS Enterprise support private endpoints on AWS using https://aws.amazon.com/privatelink[AWS PrivateLink].
 
 Once activated, you can create an endpoint in your VPC that connects to Aura.
 
 For a step-by-step guide, see the link:https://neo4j.com/blog/neo4j-aws-privatelink-configuration/[How to Configure Neo4j Aura With AWS PrivateLink] blog article.
 
-image::privatelink.png[title="VPC connectivity with AWS PrivateLink"]
+image::privatelink.png["VPC connectivity with AWS PrivateLink", title="VPC connectivity with AWS PrivateLink"]
 
 All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet.
 You can then disable public traffic, ensuring all traffic to the instance remains private to your VPC.
@@ -55,23 +71,25 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 [NOTE]
 ====
 * PrivateLink applies to all instances in the region.
-* When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using PrivateLink in the Aura console.
+* When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using PrivateLink in the Aura Console.
 * If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
-* Connections using private endpoints are one-way. Aura VPCs can't initiate connections back to your VPCs.
+* Connections using private endpoints are one-way.
+Aura VPCs can't initiate connections back to your VPCs.
 * In AWS region us-east-1, we do not support the Availability Zone with ID use1-az3 for private endpoints.
 ====
 
 ==== Browser and Bloom access over private endpoints
 
-To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
+To connect to your instance via Browser or Bloom, you must use a dedicated VPN.
+This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
-image::privatelink_01_before_enabling.png[title="Architecture overview before enabling private endpoints"]
+image::privatelink_01_before_enabling.png["Architecture overview before enabling private endpoints", title="Architecture overview before enabling private endpoints"]
 
 When you have enabled private endpoints **and** disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet:
 
-image::privatelink_02_enabled_private_traffic_only.png[title="Architecture overview with private endpoints enabled and public traffic disabled"]
+image::privatelink_02_enabled_private_traffic_only.png["Architecture overview with private endpoints enabled and public traffic disabled", title="Architecture overview with private endpoints enabled and public traffic disabled"]
 
 To continue accessing Browser and Bloom, you can configure a VPN (Virtual Private Network) in your VPC and connect to Browser and Bloom over the VPN.
 
@@ -80,16 +98,17 @@ To continue accessing Browser and Bloom, you can configure a VPN (Virtual Privat
 To access Bloom and Browser over a VPN, you must ensure that:
 
 * The VPN server uses the https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#AmazonDNS[VPC's DNS servers].
-* You use the *Private URI* shown on the instance tile and in the instance details. It will be different from the *Connection URI* you used before.
+* You use the *Private URI* shown on the instance tile and in the instance details.
+It will be different from the *Connection URI* you used before.
 ====
 
-image::privatelink_03_browser_bloom_over_vpn.png[title="Accessing Browser and Bloom over a VPN"]
+image::privatelink_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
 
-==== Enabling private endpoints
+==== Enable private endpoints
 
 To enable private endpoints using AWS PrivateLink:
 
-. Select *Network Access* from the sidebar menu of the console.
+. Select *Network Access* from the sidebar menu of the Console.
 . Select *New network access configuration* and follow the setup instructions.
 
 You will need an AWS account with permissions to create, modify, describe and delete endpoints.
@@ -97,14 +116,14 @@ Please see the https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints.
 
 === GCP private endpoints
 
-label:AuraDB-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 
-Aura Enterprise supports private endpoints on GCP using https://cloud.google.com/vpc/docs/private-service-connect[GCP Private Service Connect].
+AuraDB Virtual Dedicated Cloud and AuraDS Enterprise support private endpoints on GCP using https://cloud.google.com/vpc/docs/private-service-connect[GCP Private Service Connect].
 
 Once activated, you can create an endpoint in your VPC that connects to Aura.
 
-image::privateserviceconnect.png[title="VPC connectivity with GCP Private Service Connect"]
+image::privateserviceconnect.png["VPC connectivity with GCP Private Service Connect", title="VPC connectivity with GCP Private Service Connect"]
 
 All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet.
 You can then disable public traffic, ensuring all traffic to the instance remains private to your VPC.
@@ -112,22 +131,24 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 [NOTE]
 ====
 * Private Service Connect applies to all instances in the region.
-* When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using Private Service Connect in the Aura console.
+* When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using Private Service Connect in the Aura Console.
 * If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
-* Connections using private endpoints are one-way. Aura VPCs can't initiate connections back to your VPCs.
+* Connections using private endpoints are one-way.
+Aura VPCs can't initiate connections back to your VPCs.
 ====
 
 ==== Browser and Bloom access over private endpoints
 
-To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
+To connect to your instance via Browser or Bloom, you must use a dedicated VPN.
+This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
-image::privateserviceconnect_01_before_enabling.png[title="Architecture overview before enabling private endpoints"]
+image::privateserviceconnect_01_before_enabling.png["Architecture overview before enabling private endpoints", title="Architecture overview before enabling private endpoints"]
 
 When you have enabled private endpoints and disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet:
 
-image::privateserviceconnect_02_enabled_private_traffic_only.png[title="Architecture overview with private endpoints enabled and public traffic disabled"]
+image::privateserviceconnect_02_enabled_private_traffic_only.png["Architecture overview with private endpoints enabled and public traffic disabled", title="Architecture overview with private endpoints enabled and public traffic disabled"]
 
 To continue accessing Browser and Bloom, you can configure a https://cloud.google.com/network-connectivity/docs/vpn/concepts/overview[GCP Cloud VPN] (Virtual Private Network) in your VPC and connect to Browser and Bloom over the VPN.
 
@@ -136,30 +157,31 @@ To continue accessing Browser and Bloom, you can configure a https://cloud.googl
 To access Bloom and Browser over a VPN, you must ensure that:
 
 * You have set up link:https://cloud.google.com/dns/docs/zones/manage-response-policies[GCP Response Policy Zone], or an equivalent DNS service, inside of the VPC.
-* You use the *Private URI* shown on the instance tile and in the instance details. It will be different from the *Connection URI* you used before.
+* You use the *Private URI* shown on the instance tile and in the instance details.
+It will be different from the *Connection URI* you used before.
 ====
 
-image::privateserviceconnect_03_browser_bloom_over_vpn.png[title="Accessing Browser and Bloom over a VPN"]
+image::privateserviceconnect_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
 
-==== Enabling private endpoints
+==== Enable private endpoints
 
 To enable private endpoints using GCP Private Service Connect:
 
-. Select *Network Access* from the sidebar menu of the console.
+. Select *Network Access* from the sidebar menu of the Console.
 . Select *New network access configuration* and follow the setup instructions.
 
 Please see the https://cloud.google.com/vpc/docs/configure-private-service-connect-services[GCP Documentation] for required roles and permissions.
 
 === Azure private endpoints
 
-label:AuraDB-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 
-Aura Enterprise supports private endpoints on Azure using https://azure.microsoft.com/en-us/products/private-link/#overview[Azure Private Link].
+AuraDB Virtual Dedicated Cloud and AuraDS Enterprise support private endpoints on Azure using https://azure.microsoft.com/en-us/products/private-link/#overview[Azure Private Link].
 
 Once activated, you can create an endpoint in your Virtual Network (VNet) that connects to Aura.
 
-image::azure_privatelink.png[title="VNet connectivity with Azure Private Link"]
+image::azure_privatelink.png["VNet connectivity with Azure Private Link", title="VNet connectivity with Azure Private Link"]
 
 All applications running Neo4j workloads inside the VNet are routed directly to your isolated environment in Aura without traversing the public internet.
 You can then disable public traffic, ensuring all traffic to the instance remains private to your VNet.
@@ -167,22 +189,24 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 [NOTE]
 ====
 * Private Link applies to all instances in the region.
-* When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using Private Link in the Aura console.
+* When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using Private Link in the Aura Console.
 * If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
-* Connections using private endpoints are one-way. Aura VNets can't initiate connections back to your VNets.
+* Connections using private endpoints are one-way.
+Aura VNets can't initiate connections back to your VNets.
 ====
 
 ==== Browser and Bloom access over private endpoints
 
-To connect to your instance via Browser or Bloom, you must use a dedicated VPN. This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
+To connect to your instance via Browser or Bloom, you must use a dedicated VPN.
+This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
 
 Without private endpoints, you access Browser and Bloom over the internet:
 
-image::azure_privatelink_01_before_enabling.png[title="Architecture overview before enabling private endpoints"]
+image::azure_privatelink_01_before_enabling.png["Architecture overview before enabling private endpoints", title="Architecture overview before enabling private endpoints"]
 
 When you have enabled private endpoints and disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet:
 
-image::azure_privatelink_02_enabled_private_traffic_only.png[title="Architecture overview with private endpoints enabled and public traffic disabled"]
+image::azure_privatelink_02_enabled_private_traffic_only.png["Architecture overview with private endpoints enabled and public traffic disabled", title="Architecture overview with private endpoints enabled and public traffic disabled"]
 
 To continue accessing Browser and Bloom, you can configure a VPN (Virtual Private Network) in your VNet and connect to Browser and Bloom over the VPN.
 
@@ -191,19 +215,133 @@ To continue accessing Browser and Bloom, you can configure a VPN (Virtual Privat
 To access Bloom and Browser over a VPN, you must ensure that:
 
 * You have setup https://learn.microsoft.com/en-us/azure/dns/private-dns-overview[Azure Private DNS], or an equivalent DNS service, inside of the VNet.
-* You use the *Private URI* shown on the instance tile and in the instance details. It will be different from the *Connection URI* you used before.
+* You use the *Private URI* shown on the instance tile and in the instance details.
+It will be different from the *Connection URI* you used before.
 ====
 
-image::azure_privatelink_03_browser_bloom_over_vpn.png[title="Accessing Browser and Bloom over a VPN"]
+image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
 
-==== Enabling private endpoints
+==== Enable Azure Private Endpoints for Aura
 
-To enable private endpoints using Azure Private Link:
+. To enable private endpoints using Azure Private Link:
+.. From the sidebar menu in the Aura console, select *Security > Network Access > Network Access*
+.. Select *New network access configuration* and follow the setup instructions.
 
-. Select *Network Access* from the sidebar menu of the console.
-. Select *New network access configuration* and follow the setup instructions.
+. Configure Network Access in the Aura console
+.. Select your product from the available options.
+.. Select the appropriate region for your deployment. (Azure Private Link applies to all instances in the region.)
+.. Enter the *Target Azure Subscription IDs*.
+.. Select *Enable Private Link*. 
+
+. Obtain a Private Link service name
+.. After enabling Private Link, you receive a Private Link service name in the Aura console.
+.. Copy this service name, you need it in the next step.
+
+. Create Private Link endpoint in the Azure portal
+.. Log in to your Azure portal.
+.. Navigate to your cloud VPC and create a new Private Link endpoint.
+.. Use the Private Link service name obtained in step three for the configuration.
+
+. Accept Endpoint in Aura console
+.. Return to the Aura Console.
+.. Check for the newly created Private Link endpoint.
+.. Accept the endpoint to complete the connection process.
+.. *At this point, it is highly recommended to test connectivity through the private endpoint.*
+
+. Disable public traffic
+.. Before disabling public traffic, test all your application connectivity with Private Link to ensure everything is functioning correctly.
+.. Once verified, you can disable public traffic by toggling off the public access option.
+.. Note: If needed, you can postpone disabling public traffic.
+
+. Monitor Private Link status
+.. You can monitor the status of your Private Link configuration in the Aura Console.
+.. Ensure that all services are running as expected and troubleshoot any issues if necessary.
 
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
+
+== Private links
+
+label:AuraDB-Virtual-Dedicated-Cloud[]
+
+This private link section is cloud-agnostic and therefore applicable to all clouds. 
+A private link provides secure network connectivity between your application and AuraDB without exposing traffic to the public internet.
+
+The term “private link” refers to:
+
+* Private Service Connect = Google Cloud platform
+* PrivateLink = AWS
+* Private Link = Azure
+
+The following steps explain the process of establishing a private link connection to securely connect your application to an AuraDB Virtual Dedicated Cloud environment. 
+
+[NOTE]
+======
+The dbid: abcd1234 and orch-id: 0000 are used in this example. 
+These are different in your AuraDB Virtual Dedicated Cloud environment.
+======
+
+. The application initializes a driver connection to neo4j+s://abcd1234.production-orch-0000.neo4j.io.
+. The network layer then queries the DNS server to resolve the fully qualified domain name (FQDN) (in this case, abcd1234.production-orch-0000.neo4j.io) to its corresponding IP address.
+. The Cloud Virtual Network private DNS is queried, and it resolves the FQDN to 10.10.10.10, based on the wildcard DNS A record created: *.production-orch-0000.neo4j.io -> 10.10.10.10
+. The application's connection is directed to 10.10.10.10, which is the private link endpoint. 
+From there, the private link endpoint forwards the network connection to the private ingress through the private link.
+. The private ingress extracts the dbid from the FQDN and directs the connection to the appropriate Aura instance (dbid: abcd1234).
+. The Aura instance responds by sending the Neo4j cluster routing table back to the application, which contains information about the instances and their roles.
+. Based on the type of transaction (read or write) the driver selects an appropriate instance to execute a read or write transaction. The code has the ability to direct the transaction to the appropriate instances this way.
+. Similar to before, the Cloud Virtual Network private DNS is queried and resolves the FQDN to 10.10.10.10. The application's connection is sent to the private link endpoint (10.10.10.10), which forwards the network connection to the private ingress through the private link. 
+The private ingress then directs the connection to the Aura instance with dbid: abcd1234.
+. Finally, the write transaction is received and executed within the Aura instance with dbid: abcd1234.
+
+.Available instances and their roles
+[cols="1,1"]
+|===
+|abcd1234.production-orch-0000.neo4j.io
+|role: write
+
+|abcd1234.production-orch-0000.neo4j.io
+|role: read
+
+|abcd1234.production-orch-0000.neo4j.io
+|role: read
+|=== 
+
+== Test connectivity through the private endpoint
+
+Use the `nslookup` command to confirm whether the Fully Qualified Domain Names (FQDNs) of your Aura instances are directed to the IP address of the PrivateLink endpoint (usually represented by an internal IP address, such as 10.0.0.0).
+
+[source,bash]
+----
+nslookup <dbid>.production-orch-<orchestra>.neo4j.io
+----
+
+Use cURL from a VM instance or a container located in the related VPC network. 
+
+[source,bash]
+----
+curl  https://<dbid>.production-orch-<orchestra>.neo4j.io
+----
+
+Use nc commands on one of your VM instances or container located in the related GCP Project VPC network, and make sure you get a successful response for all commands
+
+[source,bash]
+----
+nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 443
+nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 7687
+nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 7474
+# if you are using AuraDS
+nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 8491
+----
+
+On Windows, you can get https://nmap.org/download.html[Netcat] or use PowerShell
+
+[source,bash]
+----
+Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 7687
+Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 7474
+Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 443
+# if you are using AuraDS
+Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 8491
+----
 
 == Supported TLS cipher suites
 
