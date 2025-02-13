@@ -25,11 +25,14 @@ Backups are stored in the same Cloud Service Provider and region as the instance
 === Scheduled
 
 label:AuraDB-Professional[]
-label:AuraDB-Enterprise[]
+label:AuraDB-Business-Critical[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDS-Professional[]
+label:AuraDS-Enterprise[]
 
-A *Scheduled* snapshot is a snapshot that is automatically triggered when you first create an instance, when changes to the underlying system occur (for example, a new patch release), and at a cadence depending on your plan type.
+A *Scheduled* snapshot is a snapshot that is automatically triggered at a cadence depending on your plan type.
 
-For Professional instances, scheduled snapshots are run automatically once a day and for Business Critical and Virtual Dedicated Cloud instances, they run once an hour.
+For Professional instances, scheduled snapshots are run automatically once a day, same for AuraDS instances, and for Business Critical and Virtual Dedicated Cloud instances, they run once an hour.
 See <<snapshot-details>> further on for information about frequency, restorability, and exportability of scheduled snapshots.
 
 === On Demand
@@ -103,7 +106,7 @@ If not, you can create a new instance from the snapshot instead, as described in
 | Daily
 | N/A
 | 30
-| 7
+| 30
 | 30
 
 | AuraDB Business Critical
@@ -111,7 +114,7 @@ If not, you can create a new instance from the snapshot instead, as described in
 | Daily
 | Hourly
 | 30
-| 7 full footnote:3[The differential snapshot is not exportable.]
+| 30 full footnote:3[The differential snapshot is not exportable.]
 | 30
 
 .2+| AuraDB Virtual Dedicated Cloud
@@ -126,7 +129,23 @@ If not, you can create a new instance from the snapshot instead, as described in
 | Daily
 | Hourly
 | 60
-| 14 full footnote:3[]
+| 60 full footnote:3[]
+| 90
+
+| AuraDS Professional
+| 4, latest
+| Daily
+| N/A
+| 7
+| 7
+| 30
+
+| AuraDS Enterprise
+| 4, latest
+| Daily
+| N/A
+| 16
+| 7
 | 90
 |===
 
