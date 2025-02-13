@@ -133,9 +133,9 @@ Returns the average of the numbers in the `LIST<INTEGER | FLOAT>`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.combinations[apoc.coll.combinations icon:book[] ^] +
 Returns a collection of all combinations of `LIST<ANY>` elements between the selection size `minSelect` and `maxSelect` (default: `minSelect`).
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.contains[apoc.coll.contains icon:book[] ^] +
-Returns whether or not the given value exists in the given collection (using a HashSet).
+Returns whether or not the given value exists in the given collection.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.containsAll[apoc.coll.containsAll icon:book[] ^] +
-Returns whether or not all of the given values exist in the given collection (using a HashSet).
+Returns whether or not all of the given values exist in the given collection.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.containsAllSorted[apoc.coll.containsAllSorted icon:book[] ^] +
 Returns whether or not all of the given values in the second `LIST<ANY>` exist in an already sorted collection (using a binary search).
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.containsDuplicates[apoc.coll.containsDuplicates icon:book[] ^] +
@@ -171,7 +171,7 @@ Inserts all of the values into the `LIST<ANY>`, starting at the specified index.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.intersection[apoc.coll.intersection icon:book[] ^] +
 Returns the distinct intersection of two `LIST<ANY>` values.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.isEqualCollection[apoc.coll.isEqualCollection icon:book[] ^] +
-Returns true if the two collections contain the same elements with the same cardinality in any order (using a HashMap).
+Returns true if the two collections contain the same elements with the same cardinality in any order.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.max[apoc.coll.max icon:book[] ^] +
 Returns the maximum of all values in the given `LIST<ANY>`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.coll/apoc.coll.min[apoc.coll.min icon:book[] ^] +
@@ -272,7 +272,7 @@ Converts the given value into a set represented in Cypher as a `LIST<ANY>`.
 Converts a serialized JSON object from the property of a given `NODE` into a Cypher `MAP`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.convert/apoc.convert.toTree[apoc.convert.toTree icon:book[] ^] +
 Returns a stream of `MAP` values, representing the given `PATH` values as a tree with at least one root.
-¦ label:procedure[]
+¦ label:procedure[] label:deprecated[]
 |===
 
 
@@ -623,7 +623,7 @@ Removes the given key from the `MAP` (recursively if recursive is true).
 Removes the given keys from the `MAP` (recursively if recursive is true).
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.setEntry[apoc.map.setEntry icon:book[] ^] +
 Adds or updates the given entry in the `MAP`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.setKey[apoc.map.setKey icon:book[] ^] +
+¦ label:function[] label:deprecated[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.setKey[apoc.map.setKey icon:book[] ^] +
 Adds or updates the given entry in the `MAP`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.map/apoc.map.setLists[apoc.map.setLists icon:book[] ^] +
 Adds or updates the given keys/value pairs provided in `LIST<ANY>` format (e.g. [key1, key2],[value1, value2]) in a `MAP`.
@@ -859,6 +859,17 @@ Returns spanning tree `PATH` values expanded from the start `NODE` following the
 Returns the sub-graph reachable from the start `NODE` following the given `RELATIONSHIP` types to max-depth.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.path/apoc.path.subgraphNodes[apoc.path.subgraphNodes icon:book[] ^] +
 Returns the `NODE` values in the sub-graph reachable from the start `NODE` following the given `RELATIONSHIP` types to max-depth.
+¦ label:procedure[]
+|===
+
+
+== apoc.paths
+
+[.procedures, opts=header, cols='5a,1a', separator=¦]
+|===
+¦ Qualified Name ¦ Type
+¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.paths/apoc.paths.toJsonTree[apoc.paths.toJsonTree icon:book[] ^] +
+Creates a stream of nested documents representing the graph as a tree by traversing outgoing relationships.
 ¦ label:procedure[]
 |===
 
@@ -1121,7 +1132,7 @@ Compares the two given `STRING` values using the Jaro-Winkler distance algorithm
 Joins the given `STRING` values using the given delimiter.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.levenshteinDistance[apoc.text.levenshteinDistance icon:book[] ^] +
 Compares the given `STRING` values using the Levenshtein distance algorithm.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.levenshteinSimilarity[apoc.text.levenshteinSimilarity icon:book[] ^] +
+¦ label:function[] label:deprecated[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.levenshteinSimilarity[apoc.text.levenshteinSimilarity icon:book[] ^] +
 Returns the similarity (a value within 0 and 1) between the two given `STRING` values based on the Levenshtein distance algorithm.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.lpad[apoc.text.lpad icon:book[] ^] +
 Left pads the given `STRING` by the given width.
@@ -1136,7 +1147,7 @@ Unsuitable for cryptographic use-cases.
 Returns all groups matching the given regular expression in the given text.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.regreplace[apoc.text.regreplace icon:book[] ^] +
 Finds and replaces all matches found by the given regular expression with the given replacement.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.repeat[apoc.text.repeat icon:book[] ^] +
+¦ label:function[] label:deprecated[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.repeat[apoc.text.repeat icon:book[] ^] +
 Returns the result of the given item multiplied by the given count.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/5/overview/apoc.text/apoc.text.replace[apoc.text.replace icon:book[] ^] +
 Finds and replaces all matches found by the given regular expression with the given replacement.
