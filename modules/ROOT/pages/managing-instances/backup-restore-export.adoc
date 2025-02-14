@@ -17,7 +17,7 @@ Snapshots of AuraDS Professional instances are available for 30 days and AuraDS 
 See <<snapshot-details>> for more information.
 ====
 
-Aura stores the data securely in encrypted and dedicated cloud storage buckets.
+Aura stores the data securely in encrypted cloud storage buckets.
 Backups are stored in the same Cloud Service Provider and region as the instance they are associated with.
 
 == Snapshot types
@@ -32,7 +32,7 @@ label:AuraDS-Enterprise[]
 
 A *Scheduled* snapshot is a snapshot that is automatically triggered at a cadence depending on your plan type.
 
-For Professional instances, scheduled snapshots are run automatically once a day, same for AuraDS instances, and for Business Critical and Virtual Dedicated Cloud instances, they run once an hour.
+For Professional instances, scheduled snapshots are run automatically once a day, same for AuraDS Professional instances, and for Business Critical and Virtual Dedicated Cloud instances, they run once an hour, as for AuraDS Enterprise instances.
 See <<snapshot-details>> further on for information about frequency, restorability, and exportability of scheduled snapshots.
 
 === On Demand
@@ -53,7 +53,9 @@ From the more (*...*) menu next to an existing snapshot, you can:
 
 [NOTE]
 ====
-The ability to Export or Create an instance from a Scheduled Virtual Dedicated Cloud snapshot is limited to 14 days.
+The ability to Export or Create an instance from a Scheduled Virtual Dedicated Cloud snapshot is limited to 14 days for 4.x instances.
+For latest version instances, this is limited to 60 days for full scheduled backups.
+Differential backups are not restorable/exportable and cannot be used to create a new instances from.
 
 Additionally, for Virtual Dedicated Cloud instances running Neo4j latest version, the ability to export or create an instance from a Scheduled snapshot is limited to the first full snapshot, taken once per day.
 
