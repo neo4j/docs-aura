@@ -48,7 +48,7 @@ image::snapshot-actions.png[width=400]
 
 From the more (*...*) menu next to an existing snapshot, you can:
 
-* *Export* - Download the instance as *_.backup_* file, allowing you to store a local copy and work on your data offline.
+* *Export* - Download the instance as a *_.backup_* file (for latest version) or *_.dump_* (for version 4.x), allowing you to store a local copy and work on your data offline.
 * *Create instance from snapshot* - Create a new AuraDB instance using the data from the snapshot.
 
 [NOTE]
@@ -57,7 +57,7 @@ The ability to Export or Create an instance from a Scheduled Virtual Dedicated C
 For latest version instances, this is limited to 60 days for full scheduled backups.
 Differential backups are not restorable/exportable and cannot be used to create a new instances from.
 
-Additionally, for Virtual Dedicated Cloud instances running Neo4j latest version, the ability to export or create an instance from a Scheduled snapshot is limited to the first full snapshot, taken once per day.
+Additionally, for Virtual Dedicated Cloud instances running Neo4j latest version, the ability to export or create an instance from a Scheduled snapshot is limited to one (full) snapshot per day.
 
 Use the toggle **Show exportable only** on top of the list of snapshots to filter by whether a snapshot is exportable or not.
 ====
