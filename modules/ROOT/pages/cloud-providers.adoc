@@ -1,19 +1,19 @@
 [[aura-cloud-providers]]
 = Aura with cloud provider marketplaces
 
-== Aura Enterprise and Business Critical
+== AuraDB Virtual Dedicated Cloud, AuraDS Enterprise, and AuraDB Business Critical
 
-label:AuraDB-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 label:AuraDB-Business-Critical[]
 
-You can purchase Neo4j Aura Enterprise and Neo4j Aura Business Critical via private offer through the following cloud provider marketplaces:
+You can purchase AuraDB Virtual Dedicated Cloud, AuraDS Enterprise, and AuraDB Business Critical via private offer through the following cloud provider marketplaces:
 
 * Amazon Web Services (AWS)
 * Microsoft Azure (Azure)
 * Google Cloud Platform (GCP)
 
-To discuss private offers, contact marketplace-sales@neo4j.com.
+mailto:marketplace-sales@neo4j.com[Contact us] to discuss private offers.
 
 == Aura Professional
 
@@ -23,6 +23,7 @@ label:AuraDS-Professional[]
 You can purchase Neo4j Aura Professional on a pay-as-you-go basis through the following cloud provider marketplaces:
 
 * Amazon Web Services (AWS)
+* Microsoft Azure (Azure)
 * Google Cloud Platform (GCP)
 
 Purchasing Neo4j Aura Professional through a cloud provider marketplace gives you access to integrated billing and usage reporting in your chosen cloud provider's console.
@@ -44,9 +45,9 @@ While you are shown a $0 yearly contract option, pricing is pay-as-you-go based 
 [discrete]
 ==== 2. Set up your account
 
-To start using Neo4j Aura, select *Click here to set up your account* to be directed to the Aura console.
+To start using Neo4j Aura, select *Click here to set up your account* to be directed to the Aura Console.
 
-If you are not already logged in to the Aura console, you will be taken to the Neo4j Aura login/sign-up page.
+If you are not already logged in to the Aura Console, you will be taken to the Neo4j Aura login/sign-up page.
 From here you can either log in with an existing Neo4j Aura account or create a new one.
 
 [NOTE]
@@ -54,9 +55,9 @@ From here you can either log in with an existing Neo4j Aura account or create a 
 You do not need to use the same email address for your Neo4j Aura account as your AWS account.
 ====
 
-If you are creating a Neo4j Aura account for the first time, you will need to confirm your email address and accept the Neo4j Aura Terms of Service before you can access the Aura console.
+If you are creating a Neo4j Aura account for the first time, you will need to confirm your email address and accept the Neo4j Aura Terms of Service before you can access the Aura Console.
 
-Once logged in to the Aura console, the AWS Marketplace order will be confirmed, and your account will automatically default to the AWS Marketplace tenant.
+Once logged in to the Aura Console, the AWS Marketplace order will be confirmed, and your account will automatically default to the AWS Marketplace tenant.
 
 === GCP
 
@@ -76,7 +77,8 @@ Purchasing from the GCP Marketplace requires the `Billing Account Administrator 
 ==== 2. Choose a project
 
 If you purchase the service at the top level of your GCP account, you'll need to choose a target project.
-You will only need to _purchase_ Neo4j Aura for GCP once, as you can then enable it on a project-by-project basis. However, you still need to choose a target project when you first purchase the service.
+You will only need to _purchase_ Neo4j Aura for GCP once, as you can then enable it on a project-by-project basis.
+However, you still need to choose a target project when you first purchase the service.
 
 [discrete]
 ==== 3. Enable the service
@@ -95,18 +97,24 @@ When this is first set up, you should have no billing history.
 [discrete]
 ==== 4. Complete the set up
 
-To start using Neo4j Aura, select *MANAGE VIA NEO4J, INC.* to be directed to the Aura console.
+pass:[<!-- vale Vale.Terms = NO -->]
+pass:[<!-- vale Neo4j.ParaNewLine = NO -->]
+
+To start using Neo4j Aura, select *MANAGE VIA NEO4J, INC.* to be directed to the Aura Console.
 
 [NOTE]
 ====
 When you click "MANAGE VIA NEO4J, INC.", you will be alerted that "You're leaving Google".
-When you click *Confirm*, if the Aura console fails to open you may need to address any popup blockers in your browser and try again.
+When you click *Confirm*, if the Aura Console fails to open you may need to address any popup blockers in your browser and try again.
 ====
 
-For security purposes, Neo4j and GCP do not share your login credentials.
-You will need to log in to the Neo4j console with the same Google account you have used on GCP.
+pass:[<!-- vale Vale.Terms = YES -->]
+pass:[<!-- vale Neo4j.ParaNewLine = YES -->]
 
-Once logged in, you'll be asked to accept the Neo4j Aura Terms of Service, before being directed to the Neo4j console and placed within your GCP Marketplace tenant.
+For security purposes, Neo4j and GCP do not share your login credentials.
+You will need to log in to the Neo4j Console with the same Google account you have used on GCP.
+
+Once logged in, you'll be asked to accept the Neo4j Aura Terms of Service, before being directed to the Neo4j Console and placed within your GCP Marketplace tenant.
 
 From here, you are ready to create a Neo4j Aura instance hosted on GCP and usage will be billed directly to your GCP billing account.
 
@@ -123,14 +131,16 @@ To get started, visit the https://azuremarketplace.microsoft.com/en-us/marketpla
 [discrete]
 ==== 3. Subscribe to Neo4j Aura Professional
 
-* Select the resource group that the Aura Professional subscription will apply to. Then, create a name for the SaaS subscription so you can easily identify it later.
-* Your billing term will be a 1-month subscription at $0 cost. Aura Professional has a consumption based pricing model, so you will only be charged for the amount you consume in Gigabyte hours (Gb/h)
+* Select the resource group that the Aura Professional subscription will apply to.
+Then, create a name for the SaaS subscription so you can easily identify it later.
+* Your billing term will be a 1-month subscription at $0 cost.
+Aura Professional has a consumption based pricing model, so you will only be charged for the amount you consume in Gigabyte hours (Gb/h)
 * Set recurring billing to *On*
 * Click *Review + subscribe*
 
 [NOTE]
 ====
 * Ensure your Azure account is upgraded before continuing.
-* Enable *marketplace purchases* in Azure. See more info on the https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/enable-marketplace-purchases[Azure website]
+* Enable *marketplace purchases* in Azure.
+See more info on the https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/enable-marketplace-purchases[Azure website]
 ====
-
