@@ -53,11 +53,11 @@ From the more (*...*) menu next to an existing snapshot, you can:
 
 [NOTE]
 ====
-The ability to Export or Create an instance from a Scheduled Virtual Dedicated Cloud snapshot is limited to 14 days for 4.x instances.
+The ability to Export or Create an instance from a scheduled Virtual Dedicated Cloud snapshot is limited to 14 days for 4.x instances.
 For latest version instances, this is limited to 60 days for full scheduled backups.
 Differential backups are not restorable/exportable and cannot be used to create a new instances from.
 
-Additionally, for Virtual Dedicated Cloud instances running Neo4j latest version, the ability to export or create an instance from a Scheduled snapshot is limited to one (full) snapshot per day.
+Additionally, for Virtual Dedicated Cloud instances running Neo4j latest version, the ability to export or create an instance from a scheduled snapshot is limited to one (full) snapshot per day.
 
 Use the toggle **Show exportable only** on top of the list of snapshots to filter by whether a snapshot is exportable or not.
 ====
@@ -71,7 +71,7 @@ Restoring from a snapshot overwrites the data in your instance, replacing it wit
 ====
 
 You can restore data in your instance to a previous snapshot.
-Use the arrow next to the (*...*) menu on the Snapshot you want to restore from.
+Use the arrow next to the (*...*) menu on the snapshot you want to restore from.
 This action overwrites the data currently in your instance and you will be asked to confirm that this is indeed desired.
 If not, you can create a new instance from the snapshot instead, as described in <<export-create>>.
 
