@@ -9,13 +9,9 @@ A snapshot is a copy of the data in an instance at a specific point in time.
 The *Snapshots* tab within an Aura instance card shows a list of available snapshots.
 You can find the *Snapshots* tab via *Inspect* in the more menu (*...*) on the instance card.
 
-[NOTE]
-====
-Only the latest snapshot is available for Free instances.
-Scheduled snapshots are available for 30 days for Professional instances, Business Critical instances, and 60 days for Virtual Dedicated Cloud instances.
-Snapshots of AuraDS Professional instances are available for 30 days and AuraDS Enterprise instances' snapshots for 60 days.
+There are different kinds of snapshots taken at different intervals with different lifecycles depending on your plan.
 See <<snapshot-details>> for more information.
-====
+
 
 Aura stores the data securely in encrypted cloud storage buckets.
 Backups are stored in the same Cloud Service Provider and region as the instance they are associated with.
@@ -38,6 +34,7 @@ See <<snapshot-details>> further on for information about frequency, restorabili
 === On Demand
 
 An *On Demand* snapshot is a snapshot that you manually trigger with the *Take snapshot* button.
+This type of snapshot is the only snapshot available for Free instances.
 
 == Snapshot actions
 
