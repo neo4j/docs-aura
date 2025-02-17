@@ -170,7 +170,7 @@ For more information about the Azure CLI, see link:https://learn.microsoft.com/e
 
 === Azure key rotation
 
-Customers have observed that after rotating their Azure Key and immediately disabling the old version of the key, the connection status in Aura changes from "Ready" to "Pending".
+If you rotate an Azure key and immediately disable the old one, there is a chance that the connection status in Aura changes from "Ready" to "Pending".
 This happens because Azure Storage checks for key updates once every 24 hours, as outlined in link:https://learn.microsoft.com/en-gb/azure/storage/common/customer-managed-keys-configure-new-account?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&bc=%2Fazure%2Fstorage%2Fblobs%2Fbreadcrumb%2Ftoc.json&tabs=azure-portal#configure-encryption-for-automatic-updating-of-key-versions[Microsoft Azure documentation]. 
 If a key is rotated and the old version is disabled before this time passes, services relying on the key in Neo4j Aura lose access.
 We recommended waiting at least 24 hours after rotating a key before disabling the old version to allow the change to take effect in Azure. Disabling the old version too early results in Aura losing access to the key.
