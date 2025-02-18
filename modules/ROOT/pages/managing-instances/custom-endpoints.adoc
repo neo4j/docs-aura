@@ -14,6 +14,7 @@ image::endpoints.png[width=800]
 
 Use the *Create custom endpoint* button to define your endpoint.
 Choose an appropriate name for the endpoint (it can only contain lowercase letters, numbers, and hyphens) and select which instance to assign the endpoint to.
+Note that the name doesn't have to be unique, Aura will append a series of random characters to the name to ensure that the URL is unique, regardless of what you name the endpoint.
 
 Once a custom endpoint has been assigned to an instance, it will be listed along with existing custom endpoints in the menu in the Project settings.
 They can be managed both from this menu as well as from the instance card.
