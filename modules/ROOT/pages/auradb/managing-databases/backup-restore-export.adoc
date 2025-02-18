@@ -60,14 +60,15 @@ Restoring a snapshot requires you to confirm the action by typing RESTORE and se
 The ellipses (*...*) button next to an existing snapshot, allows you to:
 
 * *Export* - Download the instance as *_.backup_* file, allowing you to store a local copy and work on your data offline.
-(This applies to AuraDB v5 databases, for v4, the instances can be downloaded as *_.dump_* files.)
+(This applies to AuraDB latest version databases, for v4, the instances can be downloaded as *_.dump_* files.
+AuraDB Professional with the GDS configuration has a _.tar_ file extension as it contains the backup and additional metadata for Graph Data Science.)
 * *Create instance from snapshot* - Create a new AuraDB instance using the data from the snapshot.
 
 [NOTE]
 ====
 The ability to Export or Create an instance from a Scheduled Virtual Dedicated Cloud snapshot is limited to 14 days.
 
-Additionally, for Virtual Dedicated Cloud instances running Neo4j version 5, the ability to export or create an instance from a Scheduled snapshot is limited to the first full snapshot, taken once per day.
+Additionally, for Virtual Dedicated Cloud instances running Neo4j latest version, the ability to export or create an instance from a Scheduled snapshot is limited to the first full snapshot, taken once per day.
 
 Use the toggle **Show exportable only** on top of the list of snapshots to filter by whether a snapshot is exportable or not.
 ====
@@ -104,7 +105,7 @@ In the console, it's possible to:
 | *Restorable and exportable days*
 
 | AuraDB Free
-| 4, 5
+| 4, latest
 | N/A
 | N/A
 | N/A
@@ -112,7 +113,7 @@ In the console, it's possible to:
 | 30
 
 | AuraDB Professional
-| 4, 5
+| 4, latest
 | Daily
 | N/A
 | 30
@@ -120,7 +121,7 @@ In the console, it's possible to:
 | 30
 
 | AuraDB Business Critical
-| 5
+| latest
 | Daily
 | Hourly
 | 30
@@ -135,7 +136,7 @@ In the console, it's possible to:
 | 14 (long), 7 (short)
 | 90
 
-| 5
+| latest
 | Daily
 | Hourly
 | 60

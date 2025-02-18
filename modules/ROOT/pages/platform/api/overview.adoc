@@ -2,6 +2,9 @@
 = Overview
 :description: This page introduces the Aura API.
 
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDS-Enterprise[]
+
 The Aura API allows you to programmatically perform actions on your Aura instances without the need to log in to the Console.
 
 A complete list of the available endpoints can be seen and tested in the link:{neo4j-docs-base-uri}/aura/platform/api/specification/[API Specification].
@@ -37,9 +40,9 @@ The following example shows how to use the base URL and versioning to make a req
 In the event of `5xx` server error responses, you may consider retrying the request after a delay if it is safe to do so.
 The response may include a `Retry-After` header with a suggestion of a suitable minimum delay before attempting to retry.
 
-Rate limiting is set to 125 requests per minute.
+The global rate limit for all requests is 125 requests per minute.
 
-You should consider your use of the Rate Limit before attempting to retry, and we recommend using an exponential backoff delay with a limited number of retries before giving up.
+You should consider your use of the rate limit before attempting to retry, and it is recommended that you use an exponential backoff delay with a limited number of retries before giving up.
 
 A request is only guaranteed to be safe to retry if it uses an idempotent HTTP method, such as `GET`.
 If, for example, you retry a request for creating an instance, you may end up with duplicate instances and end up being charged extra as a result.
@@ -47,6 +50,18 @@ If, for example, you retry a request for creating an instance, you may end up wi
 In the case of `429 Too Many Requests`, we would recommend slowing down the rate of all requests sent from your client application and consider retrying with a suitable minimum delay and backoff strategy.
 
 For other `4xx` client error responses, you should not resend such requests without first correcting them.
+
+[NOTE]
+====
+
+Excessive token requests may cause inefficiencies or rate-limiting.
+
+You can optimize your API usage by following these steps:
+
+* *Retrieve the token once per hour:* As tokens remain valid for an hour, reduce the frequency of token requests and reuse the same token for multiple API calls.
+
+* *Implement token caching:* Store the token securely within your system to reuse it for subsequent requests during its validity period, minimizing unnecessary calls to the endpoint.
+====
 
 == Request tracing and troubleshooting
 
