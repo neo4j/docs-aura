@@ -36,32 +36,32 @@ The following roles are available at the org level and these are assigned via in
 | {check-mark}
 |
 
-| Add projects
+| Invite users to projects
 | {check-mark}
 | {check-mark}
 |
 
-| List existing SSO configs
+| List existing security settings
 | {check-mark}
 | {check-mark}
 |
 
-| Add SSO configs
+| Add security settings
 | {check-mark}
 | {check-mark}
 |
 
-| List SSO configs on project-level
+| List security settings on project-level
 | {check-mark}
 | {check-mark}
 |
 
-| Update SSO configs on project-level
+| Update security settings on project-level
 | {check-mark}
 | {check-mark}
 |
 
-| Delete SSO configs on project-level
+| Delete security settings on project-level
 | {check-mark}
 | {check-mark}
 |
@@ -131,10 +131,10 @@ The following roles are available at the org level and these are assigned via in
 
 Each project can have multiple users with individual accounts allowing access to the same environment.
 
-The users with access to a project can be viewed and managed from the *Users* page. 
+The users with access to a project can be viewed and managed from the *Users* page.
 Access the Users page by selecting Users from the sidebar menu of the console.
 
-The project you're currently viewing is displayed in the header of the console. 
+The project you're currently viewing is displayed in the header of the console.
 You can select the project name to open the project dropdown menu, allowing you to view all the projects that you have access to and switch between them.
 
 Additionally, you can perform the following actions from the *Project Settings* page.
@@ -148,7 +148,7 @@ You can access the **Settings** page by selecting **Settings** from the sidebar 
 
 Each project can have multiple users with individual accounts allowing access to the same environment.
 
-The users with access to a project can be viewed and managed from the **Users** page. 
+The users with access to a project can be viewed and managed from the **Users** page.
 You can access the **Users** page by selecting **Users** from the sidebar menu of the console.
 
 === Roles
@@ -168,7 +168,7 @@ Users within a project can be assigned one of the following roles:
 | Capability | Admin | Member | Viewer
 | View users and their roles | {check-mark} | {check-mark} | {check-mark}
 | View and open instances | {check-mark} | {check-mark} | {check-mark}
-| Access the Neo4j Customer Support Portal | {check-mark} | {check-mark} | {check-mark} 
+| Access the Neo4j Customer Support Portal | {check-mark} | {check-mark} | {check-mark}
 | Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instances.] | {check-mark} | {check-mark} |
 | Clone data to new and existing instances | {check-mark} | {check-mark} |
 | Take on-demand snapshots | {check-mark} | {check-mark} |
@@ -225,13 +225,13 @@ As an _Admin_, to delete an existing user:
 
 === Accepting an invite
 
-When invited to a project, you will receive an email with a link to accept the invite. 
+When invited to a project, you will receive an email with a link to accept the invite.
 This link will direct you to the Aura console, where a **Project invitation** modal will appear.
-You can select the project(s) you have been invited to and choose to accept or decline the invite(s). 
+You can select the project(s) you have been invited to and choose to accept or decline the invite(s).
 
 // You can also close the **Project invitation** modal without accepting or declining the invite(s) and later manually re-open the modal by selecting the **Pending invites** envelope icon in the console header.
 
 [TIP]
 ====
-User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level. 
+User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
 ====
