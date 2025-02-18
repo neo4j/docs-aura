@@ -165,7 +165,8 @@ They expire after one hour.
 If you send a request to the Aura API using an expired token, you will receive a 403 Forbidden response. 
 To continue using the API, you must obtain a new token.
 
-In the *Account Details* section of the Aura console, Aura API credentials refer to OAuth clients (Client ID and Client Secret). These credentials do not expire unless deleted and are used to generate access tokens, which do expire.
+In the *Account Details* section of the Aura console, Aura API credentials refer to OAuth clients (Client ID and Client Secret). 
+These credentials do not expire unless deleted and are used to generate access tokens, which do expire.
 
 When an access token is created using a Client ID and Client Secret, the response payload specifies its expiration time in seconds. 
 Once the token expires, the application must request a new one.
