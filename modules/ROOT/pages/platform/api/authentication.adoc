@@ -161,8 +161,8 @@ print(response.json())
 === Token expiration
 
 Tokens are temporary access tokens used for authentication when making API requests. 
-They expire after one hour. 
-If you send a request to the Aura API using an expired token, you will receive a 403 Forbidden response. 
+A token expires after one hour. 
+If you send a request to the Aura API using an expired token, you will receive a `403 Forbidden` response. 
 To continue using the API, you must obtain a new token.
 
 In the *Account Details* section of the Aura console, Aura API credentials refer to OAuth clients (Client ID and Client Secret). 
