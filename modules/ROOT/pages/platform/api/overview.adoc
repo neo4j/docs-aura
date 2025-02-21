@@ -51,18 +51,6 @@ In the case of `429 Too Many Requests`, we would recommend slowing down the rate
 
 For other `4xx` client error responses, you should not resend such requests without first correcting them.
 
-[NOTE]
-====
-
-Excessive token requests may cause inefficiencies or rate-limiting.
-
-You can optimize your API usage by following these steps:
-
-* *Retrieve the token once per hour:* As tokens remain valid for an hour, reduce the frequency of token requests and reuse the same token for multiple API calls.
-
-* *Implement token caching:* Store the token securely within your system to reuse it for subsequent requests during its validity period, minimizing unnecessary calls to the endpoint.
-====
-
 == Request tracing and troubleshooting
 
 An `X-Request-Id` response header is returned with each request and can be used for troubleshooting.
