@@ -14,85 +14,83 @@ See the Aura xref::/getting-started/quick-start-guide.adoc[Quick start guide] fo
 
 == Add a sample data set
 
-Download the Neo4j link:https://github.com/neo4j-graph-examples/recommendations/raw/refs/heads/main/data/recommendations-50.dump[movie recommendations sample data set dump file].
-See link:https://neo4j.com/docs/getting-started/appendix/example-data/#_available_datasets[Available datasets] for alternative datasets.
-However, the rest of this page refers to the movie recommendations dataset.
+Import the Northwind dataset to your instance:
 
-To add the sample data set in Aura:
+* In Aura, click **Learn** at the top right.
+* In the **Beginner** page, click the **Learn the basics** guide.
+* When prompted to **Connect to instance**, select the instance where you would like to import sample data.
+* In step 4 of 11 of the guide, click **Get the Northwind dataset**.
+* In the **Import** page, click **Run import**.
 
-. Click *Instances* under *Data services* in the left-side navigation.
-. Locate the instance where you want to upload the sample data set and click the three dots icon at the top right, then click *Inspect*.
-. In the dialog, select the *Restore from backup file* tab.
-. Drag and drop or browse for the file you downloaded.
-. Confirm the *Upload*.
+The examples on this page refer to dataset.
+
 
 == Create a dashboard
 
 Create a new dashboard:
 
-. In the *Dashboards* page, click *New Dashboard* at the top right.
-. Click the dashboard tile that appears.
-. In the *Dashboards app* page, you can find the dashboard configuration menu for your new dashboard appears  below *All dashboards*.
-. Optionally assign a dashboard title and a role to share the dashboard with.
-. Create a new page by entering a page title in the *Add page* input.
+. In the **Dashboards** page, click **Create dashboard** at the top right.
+. In the **New dashboard** dialog, assign a title and an optional description to your dashboard and click **Create**.
+. Click the dashboard tile.
+. Your dashboard has a single page.
+// add a step as soon as page titles can be edited.
+. Click **Add card** to create cards which represent visualizations.
+
 
 === Add a card with a line chart
 
-Create a line chart which displays the number of movies released for each year.
+Create a line chart which displays the number of products for each order ID.
 
 In the dashboard page tab:
 
 . Click *Add card* at the bottom right of the page.
-. in the new card, click the three dots icon at the top right, then select *Line chart* as the *Chart type*.
+. Optionally change the title of the card by clicking and editing, then confirm.
+. In the new card, click the three dots icon at the top right, then select **Line chart** as the **Chart type**.
 . Click *Edit* to edit the Cypher query of the card.
 . Paste the following Cypher query to the input field:
 +
 [source,cypher]
 ----
-MATCH (m:Movie)
-RETURN m.year as Year, count(m.title) as Number
-ORDER BY Year DESC
+MATCH (o:Order)-[:ORDERS]->(p:Product)
+RETURN o.orderID AS OrderID, count(p) as Products
 ----
 +
-. Click **Done**.
+. Click **Save**.
 
-The line chart should have selected *Year* as the *Dimension* and *Number* as the Value to display.
+Your line chart should look like this:
 
-// Add screenshot
+.Example line chart
+image::dashboards/products-per-order-id.png[]
+
 
 === Add a card with a bar chart
 
-Create a bar chart which displays the number of movies for each genre.
+Create a bar chart which displays the number of orders per customer.
 
 In the dashboard page tab:
 
 . Click *Add card* at the bottom right of the page.
-. in the new card, click the three dots icon at the top right, then select *Bar chart* as the *Chart type*.
+. Optionally change the title of the card by clicking and editing, then confirm.
+. In the new card, click the three dots icon at the top right, then select **Bar chart** as the **Chart type**.
 . Click *Edit* to edit the Cypher query of the card.
 . Paste the following Cypher query to the input field:
 +
 [source,cypher]
 ----
-MATCH (g:Genre)<-[:IN_GENRE]-(m:Movie)
-RETURN g.name as Genre, count(m) as Number
-ORDER BY Number DESC
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)
+RETURN c.contactName AS Customer, count(o) AS Orders
+ORDER BY Orders DESC
 ----
 +
-. Click **Done**.
+. Click **Save**.
 
-The bar chart should have selected *Genre* as the *Category* and *Number* as the Value to display.
+Your bar chart should look like this:
 
-// Add screenshot
+.Example line chart
+image::dashboards/orders-per-customer.png[]
 
 
 == Next steps
-
-[IMPORTANT]
-====
-Save your dashboard by clicking the cloud icon next to the dashboard title in the dashboard configuration menu.
-====
-
-Optionally edit the title of the charts you created.
 
 See xref::/dashboards/working-with-dashboards/index.adoc[Working with dashboards] for more dashboard options.
 

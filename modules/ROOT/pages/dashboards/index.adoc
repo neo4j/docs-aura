@@ -2,15 +2,26 @@
 = About Neo4j dashboards
 :description: Dashboards as a part of the new Aura console experience.
 
-Lorem ipsum.
-
 == Features
 
-Lorem ipsum.
+// table to be updated
 
-* Lorem
-* ipsum
+[cols="9,^4",grid="cols"]
+|===
 
-== Dashboards vs BI connector
+2+h| Core features
 
-Lorem ipsum.
+| Native Aura application                                       | ✅            
+| Dashboard management                                          | ✅            
+| Dashboard parameterization                                    | ✅            
+| Rule-based styling                                            | ✅          
+| Sharing dashboards                                            | ✅            
+|===
+
+== Aura dashboards vs BI connector
+
+There are many data visualization and dashboard applications on the market.
+With the link:https://neo4j.com/bi-connector/[Neo4j Connector for Business Intelligence] (BI connector), Neo4j databases can be connected to tools like link:https://www.tableau.com/visualization[Tableau] or link:https://www.microsoft.com/en-us/power-platform/products/power-bi[Power BI].
+
+While connecting graph data to existing business intelligence and visualization application landscapes is an important use case, Aura dashboards offer native support for graph data.
+Aura dashboards operate directly on your Neo4j database instance via the native Cypher query language and generate visualizations seemlessly in Aura.
