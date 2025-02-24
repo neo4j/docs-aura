@@ -130,7 +130,7 @@ print(response.json())
 ----
 
 <1> The `access_token` returned here is what you will provide as the Bearer Token in the `Authorization` header of Aura API requests.
-<2> When an access token is created using a client ID and client secret, the response specifies its expiration time in seconds. 
+<2> The value of `expires_in` is the token expiration time in seconds. 
 Once the token expires, the application must request a new one.
 
 ==== HTTP response codes
