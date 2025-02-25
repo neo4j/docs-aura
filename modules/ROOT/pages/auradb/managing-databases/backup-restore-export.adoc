@@ -55,19 +55,14 @@ You can restore data in your instance to a previous snapshot by selecting *Resto
 
 Restoring a snapshot requires you to confirm the action by typing RESTORE and selecting *Restore*.
 
-=== Additional snapshot actions (Export and create)
+=== Export
 
-The ellipses (*...*) button next to an existing snapshot provides two options: *Export* or *Create instance from snapshot*.
-
-
-*Export* downloads the instance as a `.backup` file, allowing you to store a local copy and work on your data offline.
-
-For AuraDB instances (including AuraDB with the GDS plugin installed) backups are always exported as a `.backup` file.
-
-For AuraDS instances, backups are exported as a `.tar` file because this format bundles both the backup data and the additional metadata required for Data Science.
+By selecting the ellipses (…​) button next to a snapshot, you can *Export*.
+*Export* downloads the database as a compressed `.backup` file, allowing you to store a local copy and work on your data offline.
 
 === Create instance from snapshot 
 
+By selecting the ellipses (…​) button next to a snapshot, you can *Export*.
 Create a new AuraDB instance using the data from the snapshot. 
 This creates a clone of the instance. 
 
