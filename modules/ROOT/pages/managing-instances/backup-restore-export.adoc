@@ -41,12 +41,18 @@ This type of snapshot is the only snapshot available for Free instances.
 image::snapshot-actions.png[width=400]
 
 [[export-create]]
-=== Export/Create
 
-From the more (*...*) menu next to an existing snapshot, you can:
+=== Export
 
-* *Export* - Download the instance as a *_.backup_* file (for latest version) or *_.dump_* (for version 4.x), allowing you to store a local copy and work on your data offline.
-* *Create instance from snapshot* - Create a new AuraDB instance using the data from the snapshot.
+From the more menu (...) next to an existing snapshot, you can *Export*.
+*Export* downloads the instance as a `.backup` file allowing you to store a local copy and work on your data offline.
+For AuraDB instances (including AuraDB instances with the Graph Analytics plugin installed) backups are always exported as a `backup` file.
+
+=== Create instance from snapshot
+
+From the more (*...*) menu next to an existing snapshot, you can create an instance from a snapshot.
+*Create instance from snapshot* creates a new AuraDB instance using the data from the snapshot. 
+This creates a clone of the instance.
 
 [NOTE]
 ====
