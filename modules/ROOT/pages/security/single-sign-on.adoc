@@ -6,9 +6,23 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDB-Business-Critical[]
 label:AuraDS-Enterprise[]
 
+== Introduction to SSO
+
+Single Sign-On (SSO) enables you to use your organization’s identity provider (IDP) to authenticate users so they can access the Aura console and Aura instances.
+
+Neo4j Aura supports SSO authentication and authorization through Microsoft Entra and Okta identity providers (IDP). 
+Implementing the OpenID Connect (OIDC) identity authentication protocol.
+
+Neo4j Aura (as the service provider) passes the redirect URL to the identity provider (IDP).
+
+=== Supported identity providers
+
+* Entra - documentation is available at link:https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc[Entra Documentation]
+* Okta - documentation available at link:https://developer.okta.com/docs/guides/oin-sso-overview/[Okta Documentation]
+
 == SSO levels
 
-Organization admins can configure SSO at the organization-level and project-level.
+`Organization admins` and `Organization owner` roles can configure SSO at the organization-level and project-level.
 SSO is a log-in method. 
 Access, roles, and permissions are dictated by role-based access control (RBAC).
 
@@ -76,9 +90,11 @@ Support can assist with SSO configurations at instance-level including:
 * Custom groups claim besides `groups`
 * Updating SSO on already running instances
 
-If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
+== Support
 
+If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
 
 . The _Project ID_ of the projects you want to use SSO for. Click on the project settings to copy the ID.
 
 . The name of your IdP
+
