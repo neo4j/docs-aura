@@ -1,0 +1,90 @@
+:description: This page highlights the main differences between the new and classic concoles.
+= New Neo4j Aura console
+
+The new console is an evolution of the classic Aura console, updated to enhance the experience with Neo4j Aura.
+It integrates the features and functionalities of various tools, services, and operations from the Neo4j catalog.
+
+The key features, structural changes, and improvements compared to the classic console are outlined here.
+
+== What's new
+
+=== Key features and improvements
+
+** *Vector-optimized configurations* - Optimized for AI workloads, enabling more efficient use of graph data.
+See xref:managing-instances/instance-details.adoc#aura-vector-optimization[Vector optimization] for more information.
+
+** *Graph Analytics plugin* - Allows you to experiment with graph algorithms within the console.
+See xref:graph-analytics/index.adoc#aura-gds-plugin[Graph Analytics plugin] for more information.
+
+** *Secondaries* - Scale the read query workload of your AuraDB instance while maintaining high availablility.
+See xref:managing-instances/secondaries.adoc[Secondaries] for more information.
+
+** *Database import/restore* - Upload and restore databases from multiple data sources, including support for PostgreSQL, MySQL, SQL Server, Oracle, as well as local _.CSV_ files.
+See xref:import/introduction.adoc[Import] for more information.
+
+** *Billing* - The interface has been redesigned to be easier to navigate and more transparent.
+
+=== Navigation updates
+
+** *More streamlined access to instance details* - Connection status, instance configuration, metrics, and more are available from the instance card.
+See xref:managing-instances/instance-details.adoc[Instance details] for more information.
+
+** *A unified navigation bar* - Allows you to quickly switch between tools like Query and Explore, to Settings and User management, for example.
+See xref:visual-tour/index.adoc[Visual tour] for more information about the UI.
+
+=== Topology
+
+*Organization*
+
+** *Centralized management* of settings and roles, supporting improved scaling and governance.
+
+** *Organization owner* - A new role that allows shared administrative responsibility.
+
+** *OAuth (SSO)* - Configurable single sign-on for secure and simplified authentication.
+
+*Project* is the evolution is *Tenant*.
+
+** *Projects* allow you to organize multiple instances under a single project to standardize configurations and streamline access control.
+
+** You can assign *project-specific roles* to manage permissions effectively.
+See xref:user-management.adoc[User management] for more information.
+
+*Instance*
+
+** *Improved instance management* - You can now resize instances, monitor monthly usage, and manage custom endpoints directly from the instance card.
+
+** *Rolling updates* - Updates are applied without downtime with optional deferred updates for production environments.
+
+=== Integrated tools
+
+** *Query and Explore* are tools for querying and visualizing your data and are now integrated into the console.
+You can navigate between instances directly from the tools.
+
+=== Assisted querying
+
+** *Cypher reference* - Available directly in the Query tool.
+
+** *Co-pilots* - Allows you to use natural language to query the database.
+Co-pilots are available both in the Query and Explore tools.
+
+=== Connectivity
+
+** *Auto-connect* - Establish connections to your database automatically.
+
+** *Database user connections* - Support for connecting using database credentials.
+
+** *Remote connections* - Allows you to connect from remote sources.
+
+** *Cloud metadata storage* - Centralized repository for queries, visualization scenes, and configurations.
+
+=== Monitoring and logs
+
+** *Metrics dashboard* - Visualize performance metrics for your databases.
+
+** *Logs explorer* - Allows you to view detailed logs to troubleshoot and analyze database activity.
+
+** *Metrics scraping* - You can configure instance metrics for integration with external monitoring systems.
+
+=== Educational tools
+
+** *Learning resources in one place* - Interactive guides, sample datasets, and directions to documentation, Developer center, and Graph Academy.

@@ -2,17 +2,17 @@
 = Instance actions
 :description: This page describes the following instance actions - rename, resest, upgrade, resize, pause, resume, clone to a new database, clone to an existing database, or delete and instance.
 
-Perform multiple instance actions directly from an instance card: Pause/resume, develop, view instance details, clone to new instance/clone to existing instance, edit secondaries, delete, resize, view resources/view all metrics.
+Perform multiple instance actions directly from an instance card: Pause/resume, develop, inspect and instance's details, clone to new instance/clone to existing instance, edit secondaries, delete, resize, view resources/view all metrics.
 
-image::instanceactions.png[]
-
-== Instance details
+== Inspect an instance's details
 
 From the instance card, select the more menu (*...*) then select *instance details*.
 From the instance details you can rename an instance and view instance details.
 See xref:managing-instances/instance-details.adoc[Instance details] for more information.
 
-image::instancedetails.png[]
+[.shadow]
+.The more [...] menu
+image::instanceactions.png[]
 
 // == Reset an instance
 
@@ -118,7 +118,7 @@ If an Aura Free instance remains paused for more than 30 days, Aura deletes the 
 == Clone an instance
 
 You can clone an existing instance to create a new instance with the same data.
-You can clone across regions, and from Neo4j version 4 to Neo4j version 5.
+You can clone across regions, and from Neo4j version 4 to Neo4j latest version.
 
 There are two options to clone an instance:
 
@@ -129,14 +129,13 @@ You can access all the cloning options from the more menu (*...*) on the instanc
 
 [NOTE]
 ====
-You cannot clone from a Neo4j version 5 instance to a Neo4j version 4 instance.
+You cannot clone from a Neo4j latest version instance to a Neo4j version 4 instance.
 ====
-
 === Clone to a new instance
 
 . From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *New instance* from the contextual menu.
 . Set your desired settings for the new database.
-For more information on AuraDB database creation, see xref:getting-started/quick-start-guide.adoc#create-instance[Create an instance].
+For more information on AuraDB database creation, see xref:getting-started/create-instance.adoc[Create an instance].
 . Check the *I accept* box and select *Create*.
 +
 [WARNING]
@@ -183,10 +182,10 @@ label:AuraDB-Business-Critical[]
 
 Admins can mark a database instance as `production` in AuraDB Virtual Dedicated Cloud and AuraDB Business Critical.
 
-When Neo4j updates Aura Database versions, instances marked as `production` are last to have the Aura Database version updated. 
+When Neo4j updates Aura Database versions, instances marked as `production` are last to have the Aura Database version updated.
 Because updates are applied to these database instances after other database instances receive updates, you can monitor any potential impact on less critical instances first.
 
-After marking the instance as `production` the label is applied immediately, and all instance actions (such as pause or clone) are temporarily unavailable while the instance is set to `production` in the Neo4j backend. 
+After marking the instance as `production` the label is applied immediately, and all instance actions (such as pause or clone) are temporarily unavailable while the instance is set to `production` in the Neo4j backend.
 
 Use the more menu (*...*) on the instance card to mark it as `production`.
 

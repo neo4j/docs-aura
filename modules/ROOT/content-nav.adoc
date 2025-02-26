@@ -1,24 +1,35 @@
 ////
 Generic Start
 ////
-* **Neo4j Aura console**
+* Neo4j Aura console
 
-* **Introduction**
+* Introduction
 ** xref:index.adoc[About Aura]
+** xref:new-console.adoc[New Neo4j Aura console]
+** xref:graph-analytics/index.adoc[]
 ** xref:visual-tour/index.adoc[Visual tour]
-* **Quick start**
-**  xref:getting-started/quick-start-guide.adoc[Quick start guide]
-* **Manage instances**
+
+* Quick start
+** xref:getting-started/create-account.adoc[Create an account]
+** xref:getting-started/create-instance.adoc[Create an instance]
+** xref:getting-started/connect-instance.adoc[Connect to an instance]
+** xref:getting-started/migrate-metadata.adoc[Migrate metadata from Workspace]
+
+* xref:cloud-providers.adoc[Cloud provider marketplaces]
+
+* Manage instances
 ** xref:managing-instances/instance-actions.adoc[Instance actions]
 ** xref:managing-instances/instance-details.adoc[Instance details]
 ** xref:managing-instances/secondaries.adoc[Secondaries]
 ** xref:managing-instances/instance-resources.adoc[Resources]
 ** xref:managing-instances/migration-readiness.adoc[Migration Readiness Report]
 ** xref:managing-instances/develop.adoc[Develop]
+** xref:managing-instances/regions.adoc[Regions]
+** xref:managing-instances/backup-restore-export.adoc[Backup, export, and restore]
+** xref:managing-instances/vector-optimization.adoc[Vector optimization]
 
-//(tapping on resources will take you to the metrics tab, and then I fully document the metrics tab further down and I link to that in my notes)
 
-* **Import data**
+* Import data
 ** xref:import/introduction.adoc[What is Import?]
 ** xref:import/quick-start.adoc[Quick start]
 ** xref:import/visual-tour.adoc[Visual tour]
@@ -29,7 +40,7 @@ Generic Start
 ** xref:import/import.adoc[Run the import]
 
 
-* **Explore data**
+* Explore data
 ** xref:explore/introduction.adoc[What is Explore?]
 ** xref:explore/explore-quick-start.adoc[Quick start]
 
@@ -57,14 +68,20 @@ Generic Start
 *** xref:explore/explore-features/slicer.adoc[Slicer]
 ** xref:explore/explore-default-actions.adoc[Default actions and shortcuts]
 
-
-* **Query data**
+* Query data
 ** xref:query/introduction.adoc[What is Query?]
 ** xref:query/visual-tour.adoc[Visual tour]
 ** xref:query/operations.adoc[Query operations]
+** xref:query/apoc.adoc[APOC support]
 
-* **Metrics**
-** xref:all-metrics.adoc[All metrics]
+* Metrics
+** xref:metrics/view-metrics.adoc[View metrics]
+** Metrics integration
+*** xref:metrics/metrics-integration/introduction.adoc[Introduction]
+*** xref:metrics/metrics-integration/process.adoc[Integration Process]
+*** xref:metrics/metrics-integration/status.adoc[Endpoint Status]
+*** xref:metrics/metrics-integration/examples.adoc[Examples]
+*** xref:metrics/metrics-integration/reference.adoc[Reference]
 
 * **Dashboards**
 ** xref:dashboards/index.adoc[Overview]
@@ -86,18 +103,23 @@ Generic Start
 ** xref:dashboards/integrations.adoc[Integrations]
 ** xref:dashboards/faq-and-resources.adoc[FAQ and resources]
 
-
-* **Logs**
+* Logs
 // ** xref:logging/download-logs.adoc[Request and download logs]
 // ** xref:logging/log-forwarding.adoc[Security log forwarding]
 ** xref:logging/query-log-analyzer.adoc[Query log analyzer]
 ** xref:logging/security-log-analyzer.adoc[Security log analyzer]
 ** xref:logging/log-downloads.adoc[Download logs]
 
-* **Manage users**
-** xref:user-management.adoc[]
+* Security
+** xref:security/secure-connections.adoc[Secure connections]
+** xref:security/single-sign-on.adoc[Single sign-on]
+** xref:security/encryption.adoc[Encryption]
 
-* **Connecting applications**
+* xref:user-management.adoc[User management]
+
+* xref:billing.adoc[Billing]
+
+* Connecting applications
 ** xref:connecting-applications/overview.adoc[Drivers and libraries]
 ////
 AuraDB End

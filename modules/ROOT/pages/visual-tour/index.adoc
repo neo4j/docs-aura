@@ -14,6 +14,7 @@ The hierarchy of the console consists of organizations, projects, and instances:
 When you first log in to the console, you are part of an organization.
 An organization can contain one or more projects.
 Click a project to open it.
+Please note that project creation is not yet available in the new Aura console.
 
 image::project.png[]
 
@@ -25,13 +26,15 @@ The organization or project you're currently viewing is always displayed in the 
 To switch between different organizations or projects, click on its name.
 This opens a dropdown menu where you can see all the organizations and projects you have access to and select the one you want to switch to.
 
-image::breadcrumbs.png[]
+[.shadow]
+.Breadcrumb navigation / org and project switcher
+image::breadcrumbs.png[Breadcrumb navigation]
 
 [[org-settings]]
 
 === Organizations
 
-Organizations are a layer in the Aura account hierarchy that sits above Projects. 
+Organizations are a layer in the Aura account hierarchy that sits above Projects.
 This allows you to organize and manage multiple projects under a single organization.
 
 Management at this level allows control over all Projects within an Organization and, thus, instances within Projects and lets Organization owners roll out Project-level settings for all Projects simultaneously.
@@ -48,7 +51,7 @@ image::enable-copilot.png[]
 == Data Services
 
 This section contains your instances and the Import service.
-To access your data, navigate to a project and xref:getting-started/quick-start-guide.adoc#connect-to-instance[connect to an instance].
+To access your data, navigate to a project and xref:getting-started/connect-instance.adoc[connect to an instance].
 
 === Instances
 
@@ -70,6 +73,8 @@ See the xref:import/introduction.adoc[What is Import?] for more information abou
 The tools allow you to interact with your data and therefore require an active connection to an instance.
 Once connected to an instance, you can use both the Explore and the Query tools.
 
+[.shadow]
+.Tools on the left side panel
 image::leftsidepanel.png[]
 
 === Explore
@@ -101,7 +106,7 @@ See xref:query/introduction.adoc[What is Query?] for more information.
 Metrics help you monitor and analyze your database's performance and usage.
 Some metrics are available directly on the instance card, and you can find the full range in **Metrics**.
 
-See xref:all-metrics.adoc[Metrics] for more information.
+See xref:metrics/view-metrics.adoc[Metrics] for more information.
 
 // === Logs
 

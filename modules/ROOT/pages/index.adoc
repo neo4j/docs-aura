@@ -14,14 +14,27 @@ The Aura environment starts with an organization which can contain multiple proj
 Projects, users, and billing can all be managed directly from the same console.
 
 If you have used Aura before, you will find the console familiar but with a host of new features.
-The classic Aura console is still available as the default experience, and will remain available until all available features have been integrated into the new console.
+The classic Aura console is still available, and will remain available until all available features have been integrated into the new console.
 
-*Comparison to the classic console*
+See xref:new-console.adoc[New Neo4j Aura console] for a comparison between the new console and the classic experience.
 
-* Some features, such as metrics, have moved to the panel on the left.
-* **Projects** are an evolution of **Tenants**.
-* The new console's left navigation now provides access to tools, marking a significant change from the classic console's concept of "opening" the instance.
-* The process for creating an instance remains unchanged.
+Aura includes AuraDB, a fully managed graph database, and AuraDS, a fully managed data science as a service solution for running graph analytics on Aura.
+The documentation is based on AuraDB unless specified otherwise.
+See xref:graph-analytics/index.adoc[] for more information about AuraDS and graph analytics.
+
+== Plans
+
+Aura offers the following subscription plans:
+
+** *AuraDB Free*
+** *AuraDB Professional*
+** *AuraDB Business Critical*
+** *AuraDB Virtual Dedicated Cloud*
+** *AuraDS Professional*
+** *AuraDS Enterprise*
+
+The full list of features available with each plan is available on the link:https://neo4j.com/pricing/[Neo4j Pricing page].
+
 
 
 (C) {copyright}

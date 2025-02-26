@@ -1,0 +1,74 @@
+[[aura-vector-optimization]]
+= Vector optimization
+:description: This section describes vector optimization for Neo4j Aura instances.
+
+label:AuraDB-Professional[]
+label:AuraDB-Business-Critical[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
+
+Vector optimization reserves memory for vector indexes, enhancing performance for vector-based operations.
+It is available for AuraDB instances with more than 4GB of memory and across all supported cloud providers and regions.
+
+This configuration re-allocates memory from the graph database to the vector index.
+If this has an impact on your application, consider resizing to a larger Aura instance.
+
+To enable vector optimization during instance creation, select *Instance details* > *Additional settings* > *Vector-optimized configuration*.
+
+To enable vector optimization on existing instances, from the instance card, use the *Configure* button to access *Configure instance* and find the toggle called *Vector-optimized configuration*.
+You can view the current vector configuration status in the instance details, from the (*...*) menu on the instance card.
+
+If you lower the instance size below 4GB, vector optimization is disabled automatically.
+
+If you clone your instance to a new instance, the new instance inherits the vector optimization settings of the original instance.
+But if you clone to an existing instance, its vector optimization setting remains unchanged.
+
+To learn more about how to use vector indexes, see link:https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
+
+
+== Instance sizing guide
+
+The vector optimized configuration is intended to allow an Aura instances' available storage to be completely filled and still provide consistent vector search performance.
+The table below shows the theoretical maximum GiB of vectors for each instance size, and the equivalent number of 768 dimension float-32 vectors.
+
+[cols="1,1,2"]
+|===
+|Aura Instance Size
+|GiB vectors
+|Million vectors (768 dimensions)
+
+|4GB
+|2.8
+|0.9
+
+|8GB
+|5.6
+|1.8
+
+|16GB
+|11.2
+|3.6
+
+|32GB
+|22.4
+|7.3
+
+|64GB
+|44.9
+|14.6
+
+|128GB
+|89.8
+|29.2
+
+|256GB
+|179.6
+|58.4
+
+|512GB
+|359.3
+|116.9
+
+|===
+
+GiB vectors is limited by available storage.
+As larger stores become available, you can increase the vector capacity for these instances.

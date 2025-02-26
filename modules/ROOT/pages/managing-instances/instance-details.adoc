@@ -2,10 +2,14 @@
 = Instance details
 :description: This page describes the instance details.
 
-From the instance card, select the more menu *(…​)* then select *instance details*.
-Apart from viewing the instance details, you can also rename your instance using the pen icon next to the instance name.
+From the instance card, select the more menu *(…​)* then select *Inspect*.
+From here you can see an Overview of the instance details, Snapshots, Restore from backup file, or see the logs.
 
-image::instancedetailsexpanded.png[]
+== Overview
+
+In the Overview, apart from viewing the instance details, you can also rename your instance using the pen icon next to the instance name.
+
+image::inspectdetails.png[]
 
 
 .Instance details
@@ -13,24 +17,27 @@ image::instancedetailsexpanded.png[]
 |===
 | Detail | Description
 
-|Region
-|Where servers are located
-
-|Version
-|The version of the Aura database
+|ID
+|Every instance has an ID which is a unique identifier.
+It means multiple instances can have the same instance name, because they are distinguishable by their unique ID.
 
 |Connection URI
 |Use this to connect to an instance
 
+|Query API URL
+|Use this to connect to an instance with Query API
+
 |Private URI
 |Applicable if you have a private link set up
 
-|ID
-|Every instance has with an ID which is a unique identifier.
-It means multiple instances can have the same instance name, because they are distinguishable by their unique ID.
+|Version
+|The version of the Aura database
+
+|Region
+|Where servers are located
 
 |Memory
-|The capacity of your instance.
+|The capacity of your instance
 
 |CPU
 |Aura provides database as a service through public cloud providers.
@@ -43,8 +50,14 @@ Backups are saved in the storage bucket of the cloud provider in the same region
 |Encryption key
 |Neo4j Managed Key encrypts your data
 
-|===
+|Vector Optimized
+|Whether vector optimization is enabled for the instance or not.
+See xref:managing-instances/vector-optimization.adoc[Vector optimization] for more information.
 
+|Graph Data Science Plugin
+|Whether the GDS Plugin is present or not.
+See xref:graph-analytics/index.adoc#aura-gds-plugin[Graph Analytics plugin] for more information.
+|===
 
 == Snapshots
 
@@ -54,83 +67,17 @@ A snapshot is a copy of the data in an instance at a specific point in time.
 Neo4j regularly takes snapshots of your instance, and you can also take a snapshot on demand.
 These snapshots can be used to restore data to a different Neo4j instance.
 
-[[aura-vector-optimization]]
-== Vector optimization
+For more information, see xref:managing-instances/backup-restore-export.adoc[Backup, export, and restore].
 
-label:AuraDB-Professional[]
-label:AuraDB-Business-Critical[]
-label:AuraDB-Virtual-Dedicated-Cloud[]
 
-Vector optimization reserves memory for vector indexes, enhancing performance for vector-based operations.
-It is available for AuraDB instances with more than 4GB of memory and across all supported cloud providers and regions.
+== Restore from backup file
 
-This configuration re-allocates memory from the graph database to the vector index.
-If this has an impact on your application, consider resizing to a larger Aura instance.
+You can restore a database to your instance by dragging and dropping it to this tab.
+It needs to be either a _.dump_, _.backup_, or _.tar_ file.
+When you restore a database, all existing data is overwritten by your selected file.
 
-To enable vector optimization during instance creation, select *Instance details* > *Additional settings* > *Vector-optimized configuration*.
-
-To enable vector optimization on existing instances, from the instance card, use *Inspect* from the more menu *(…​)* to access the instance details.
-You can view the current vector configuration status from the *instance details*.
-
-If you lower the instance size below 4GB, vector optimization is disabled automatically.
-
-If you clone your instance to a new instance, the new instance inherits the vector optimization settings of the original instance.
-But if you clone to an existing instance, its vector optimization setting remains unchanged.
-
-To learn more about how to use vector indexes, see link:https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
-
-=== Instance sizing guide
-
-The vector optimized configuration is intended to allow an Aura instances' available storage to be completely filled and still provide consistent vector search performance. 
-The table below shows the theoretical maximum GiB of vectors for each instance size, and the equivalent number of 768 dimension float-32 vectors. 
-
-[cols="1,1,2"]
-|===
-|Aura Instance Size |GiB vectors |Million vectors (768 dimensions)  
-
-|4GB
-|2.8 
-|0.9
-
-|8GB
-|5.6 
-|1.8
-
-|16GB
-|11.2 
-|3.6
-
-|32GB
-|22.4 
-|7.3
-
-|64GB
-|44.9 
-|14.6
-
-|128GB
-|89.8 
-|29.2
-
-|256GB
-|179.6 
-|58.4
-
-|512GB
-|359.3 
-|116.9
-
-|=== 
-
-GiB vectors is limited by available storage. 
-As larger stores become available, we can increase the vector capacity for these instances.
-
-// == Import instance
-
-// _Feature coming soon!_
+See xref:managing-instances/backup-restore-export.adoc#restore[Restore] for more information.
 
 // == Logs
 
-// If something goes wrong, the logs are a good place to start.
-// The standard log is called `neo4j.log` and it contains general information about Neo4j.
-// There is one for each DBMS and it can be accessed directly from Desktop via the Developer menu. It opens in a separate window, which allows you to keep it in the background.
+// From the _Logs_ tab, you can request Query logs for a specified time frame.

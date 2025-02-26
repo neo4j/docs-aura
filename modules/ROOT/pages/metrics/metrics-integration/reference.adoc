@@ -1,243 +1,13 @@
-[aura-customer-metrics-integration]
-= Customer Metrics Integration (CMI)
+[aura-cmi-reference]
+= Reference
 :table-caption!:
 
-label:AuraDB-Enterprise[] label:AuraDS-Enterprise[]
-
-An application performance monitoring system can be configured to fetch metrics of Neo4j Aura Enterprise instances.
-This gives users access to their Neo4j Aura instance metric data for monitoring purposes.
-Analyzing the metrics data allows users to:
-
-* Optimize their Neo4j load
-* Adjust Aura instance sizing
-* Set up notifications
-
-[aura-cmi-process-overview]
-== Process overview
-
-image::process.png[]
-
-[aura-cmi-steps]
-== Detailed steps
-
-. Log in to Aura as project admin.
-. Make sure there is a dedicated Aura user to use for fetching metrics.
-You can either:
- ** Create a new user:
-  ... In https://console.neo4j.io/#user-management["User Management"^] of Neo4j Aura, invite a new user, selecting "Metrics Integration Reader" as a role.
-image:invite_user.png[]
-  ... Follow the invitation link and log in to Neo4j Aura.
-  ... Confirm the project membership.
- ** Or you can find an existing user in https://console.neo4j.io/#user-management["User Management"^] and change its role to "Metrics Integration Reader" +
-+
-[NOTE]
-====
-Capabilities of users with the role "Metrics Integration Reader" are limited to fetching the metrics and getting a read-only view of the project.
-====
-. Ensure you are logged in to Aura as the user selected in the previous step.
-In https://console.neo4j.io/#account["Account Details"^], create new Aura API credentials.
-Save client secret. +
-image:api_credentials.png[]
-. Configure the APM system to fetch metrics from the URL(s) or configuration templates shown in https://console.neo4j.io/#metrics-integration["Metrics Integration"^] of Neo4j Aura. Use `oauth2` type of authentication specifying the Client ID and Client Secret created in the previous step. See examples for <<_example_using_prometheus,Prometheus and Grafana>> and <<_example_using_datadog,Datadog>> below.
-. Use the APM system to create visualizations, dashboards, and alarms based on Neo4j metrics.
-
-[aura-cmi-security]
-== Security
-
-Metrics for a Neo4j Aura instance are only returned if all the following are true:
-
-* `Authorization` header of the metrics request contains a valid token.
-* The token was issued for an Aura user with "Metrics Integration Reader" role.
-* Project is of type `enterprise`.
-* The specified instance belongs to the specified project.
-
-[aura-cmi-revoke-access-to-metrics]
-.Revoke access to metrics
-
-To revoke a user's access to metrics of a specific project, remove the user from that project in https://console.neo4j.io/#user-management["User Management"^].
-After that, the user still exists but its connection to the project is removed.
-
-[NOTE]
-====
-The revocation described takes effect after the authorization caches expire, which takes approximately 5 minutes.
-It results in HTTP 401 being returned, along with the message `User doesn't have access to Metrics resources.`
-However, if you remove only the Aura API credentials used to retrieve metrics, the revocation will take effect only after the tokens issued with these credentials expire, as no new token can be issued anymore. Currently used token expiration time is 1 hour.
-====
-
-[aura-cmi-metric-labels]
-.Metric labels
-
-Depending on the metric, the following labels are applied:
-
-* `aggregation`: the aggregation used to calculate the metric value, set on every metric.
-Since the Neo4j instance is deployed as a Neo4j cluster, aggregations are performed to combine values from all relevant cluster nodes.
-The following aggregations are used: `MIN`, `MAX`, `AVG` and `SUM`.
-* `instance_id`: the Aura instance ID the metric is reported for, set on every metric.
-* `database`: the name of the Neo4j database the metric is reported for.
-Set to `neo4j` by default.
-
-.Example
-
-[source, shell]
-----
-# HELP neo4j_database_count_node The total number of nodes in the database.
-# TYPE neo4j_database_count_node gauge
-neo4j_database_count_node{aggregation="MAX",database="neo4j",instance_id="78e7c3e0"} 778114.000000 1711462853000
-----
-
-[aura-cmi-looking-up-metric-name]
-.Looking up metric name in Neo4j Aura Advanced Metrics
-
-In Neo4j Aura Advanced Metrics, it is possible to find out the metric name that corresponds to the chart, by using the chart menu item "Metrics Integration" as shown.
-
-image::advanced_metrics.png[]
-
-[aura-cmi-metric-scrape-interval]
-== Metric scrape interval
-
-Recommended scrape interval for metrics is in the range of 30 seconds up to 2 minutes, depending on requirements. The metrics endpoint caches metrics for 30 seconds.
-
-[aura-cmi-example-using-prometheus]
-== Example using Prometheus
-
-.Install Prometheus
-
-One way is to get a tarball from link:https://prometheus.io/docs/prometheus/latest/installation/[^]
-
-.Configure Prometheus
-
-To monitor one or more instances, add a section to the Prometheus configuration file `prometheus.yml`.
-
-Copy the configuration section proposed in link:https://console.neo4j.io/#metrics-integration[Metrics Integration^], as shown.
-
-[NOTE]
-====
-Replace the placeholders `<AURA_CLIENT_ID>` and `<AURA_CLIENT_SECRET>` with corresponding values created in the previous step.
-====
-
-image::metrics_integration.png[]
-
-For details, see https://prometheus.io/docs/prometheus/latest/configuration/configuration/[Prometheus configuration reference^].
-
-.Start Prometheus
-
-[source, shell]
-----
-./prometheus --config.file=prometheus.yml
-----
-
-.Test that metrics are fetched
-
-Open http://localhost:9090 and enter a metric name or expression in the search field (ex. `neo4j_aura_cpu_usage`).
-
-.Use Grafana
-
-Install and configure Grafana, adding the endpoint of the Prometheus instance configured in the previous step as a data source.
-You can create visualizations, dashboards, and alarms based on Neo4j metrics.
-
-[aura-cmi-example-using-datadog]
-== Example using Datadog
-
-.Get a Datadog account, link:https://www.datadoghq.com/[^]
-
-.Install a Datadog agent as described in Datadog documentation
-
-.Configure an endpoint with token authentication
-
-Edit `/etc/datadog-agent/conf.d/openmetrics.d/conf.yaml` as follows:
-
-[NOTE]
-====
-Replace the placeholders `<ENDPOINT_URL>`, `<AURA_CLIENT_ID>` and `<AURA_CLIENT_SECRET>` with corresponding values from the previous steps.
-====
-
-./etc/datadog-agent/conf.d/openmetrics.d/conf.yaml
-
-[source, yaml]
-----
-init_config:
-instances:
-  - openmetrics_endpoint: <ENDPOINT_URL>
-    metrics:
-      - neo4j_.*
-    auth_token:
-      reader:
-        type: oauth
-        url: https://api.neo4j.io/oauth/token
-        client_id: <AURA_CLIENT_ID>
-        client_secret: <AURA_CLIENT_SECRET>
-      writer:
-        type: header
-        name: Authorization
-        value: "Bearer <TOKEN>"
-----
-
-For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent documentation^] and link:https://github.com/DataDog/datadog-agent/blob/main/pkg/config/config_template.yaml[configuration reference^].
-
-.Test that metrics are fetched
-
-* `sudo systemctl restart datadog-agent`
-* Watch `/var/log/datadog/*` to see if fetching metrics happens or if there are warnings regarding parsing the config.
-* Check in Datadog metric explorer to see if metrics appear (after a couple of minutes).
-
-[aura-cmi-programmatic-support]
-== Programmatic support
-
-[aura-cmi-api-for-metrics-integration]
-.Aura API for Metrics Integration
-
-* Aura API supports fetching metrics integration endpoints using:
- ** endpoint `+/tenants/{tenantId}/metrics-integration+` (for project metrics)
- ** JSON property `metrics_integration_url` as part of `+/instances/{instanceId}+` response (for instance metrics)
-* Reference: link:https://neo4j.com/docs/aura/platform/api/specification/[Aura API Specification^]
-
-[aura-cmi-cli-for-metrics-integration]
-.Aura CLI for Metrics Integration
-
-* Aura CLI has a subcommand for `projects` command to fetch project metrics endpoint:
-+change tenants to projects'
-[source]
-----
-aura tenants get-metrics-integration --tenant-id <YOUR_PROJECT_ID>
-
-# example output
-{
-  endpoint: "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_TENANT_ID>/metrics"
-}
-
-# extract endpoint
-aura tenants get-metrics-integration --tenant-id <YOUR_PROJECT_ID> | jq '.endpoint'
-----
-
-* For instance metrics endpoint, Aura CLI `instances get` command JSON output includes a new property `metrics_integration_url`:
-+
-[source]
-----
-aura instances get --instance-id <YOUR_INSTANCE_ID>
-
-# example output
-{
-    "id": "id",
-    "name": "Production",
-    "status": "running",
-    "tenant_id": "YOUR_PROJECT_ID",
-    "cloud_provider": "gcp",
-    "connection_url": "YOUR_CONNECTION_URL",
-    "metrics_integration_url": "https://customer-metrics-api.neo4j.io/api/v1/<YOUR_PROJECT_ID>/<YOUR_INSTANCE_ID>/metrics",
-    "region": "europe-west1",
-    "type": "enterprise-db",
-    "memory": "8GB",
-    "storage": "16GB"
-  }
-
-# extract endpoint
-aura instances get --instance-id <YOUR_INSTANCE_ID> | jq '.metrics_integration_url'
-----
-
-* Reference: link:https://neo4j.com/labs/aura-cli/1.0/cheatsheet/[Aura CLI cheetsheet^]
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDS-Enterprise[]
+label:AuraDB-Business-Critical[]
 
 [aura-cmi-metric_definitions]
-== Metric Definitions
+== Metric definitions
 
 [caption=]
 .Out of Memory Errors
@@ -273,7 +43,8 @@ m| MAX
 | Metric name
 m| neo4j_aura_cpu_usage
 | Description
-| CPU usage (cores). CPU is used for planning and serving queries.
+| CPU usage (cores).
+CPU is used for planning and serving queries.
 If this metric is constantly spiking or at its limits, consider increasing the size of your instance.
 | Metric type
 | _Gauge_
@@ -313,6 +84,22 @@ This helps avoid unwanted pauses for garbage collection.
 | _Gauge_
 | Default aggregation
 m| MAX
+|===
+
+.Page Cache Hit Ratio (per minute)
+[frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
+|===
+| Metric name
+m| neo4j_dbms_page_cache_hit_ratio_per_minute
+| Description
+| The percentage of times data required during query execution was found in memory vs needing to be read from disk.
+Ideally the whole graph should fit into memory, and this should consistently be between 98% and 100%.
+If this value is consistently or significantly under 100%, check the page cache usage ratio to see if the graph is too large to fit into memory.
+A high amount of insert or update activity on a graph can also cause this value to change.
+| Metric type
+| _Gauge_
+| Default aggregation
+m| AVG
 |===
 
 .Page Cache Usage Ratio
@@ -665,3 +452,34 @@ This also corresponds to the median of the query execution time.
 m| MAX
 |===
 
+.Last Committed Transaction ID
+[frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
+|===
+| Metric name
+m| neo4j_database_transaction_last_committed_tx_id_total
+| Description
+| The id of the last committed transaction. 
+Track this for primary cluster members of your Aura instance. 
+It should show overlapping, ever-increasing lines and if one of the lines levels off or falls behind, it is clear that this cluster member is no longer replicating data, and action is needed to rectify the situation.
+| Metric type
+| _Counter_
+| Default aggregation
+m| MAX
+|===
+
+.Cluster Leader (only included if <<_metrics_granularity,high granularity>> is turned on)
+[frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
+|===
+| Metric name
+| neo4j_cluster_raft_is_leader
+| Description
+| Is this server the leader? Track this for each rafted member in the cluster. 
+It reports 0 if it is not the leader and 1 if it is the leader. 
+The sum of all of these should always be 1. 
+However, there are transient periods in which the sum can be more than 1 because more than one member thinks it is the leader. 
+Action may be needed if the metric shows 0 for more than 30 seconds.
+| Metric type
+| _Gauge_
+| Default aggregation
+m| MAX
+|===

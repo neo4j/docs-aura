@@ -1,0 +1,69 @@
+[[graph-analytics-aura]]
+= Graph analytics on Aura
+:description: This page describes how to run graph analytics on Aura.
+
+There are two ways to run graph analytics on Aura:
+
+* Create an AuraDB Professional instance with the <<aura-gds-plugin>>, or enable the plugin on an existing AuraDB Professional instance.
+* Create an <<aura-ds, AuraDS instance>>.
+
+[[aura-gds-plugin]]
+== Graph Analytics plugin
+
+label:AuraDB-Professional[]
+
+The Graph Analytics plugin allows you to use the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library] in any AuraDB Professional instance with the following requirements:
+
+* Neo4j version 5 or later
+* 4 GB of memory or more
+* Any supported cloud providers and regions
+
+You can enable or disable the plugin when necessary.
+
+[WARNING]
+====
+You can no longer use the plugin if you resize your instance to less than 4 GB of memory.
+====
+
+[[aura-ds]]
+== AuraDS
+
+label:AuraDS-Professional[] label:AuraDS-Enterprise[]
+
+AuraDS is the fully managed version of the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library].
+
+AuraDS instances have the following features:
+
+* Upgrades and patches are automatically applied.
+* Can be seamlessly scaled up or down.
+* Can be paused to reduce costs.
+
+=== Plans
+
+AuraDS offers the AuraDS Professional and AuraDS Enterprise subscription plans.
+The full list of features for each plan is available on the link:https://neo4j.com/pricing/#graph-data-science[Neo4j Pricing page].
+
+=== Updates and upgrades
+
+AuraDS updates and upgrades are handled by the platform, and as such do not require user intervention.
+Security patches and new versions of GDS and Neo4j are installed within short time windows during which the affected instances are unavailable.
+
+The operations are non-destructive, so graph projections, models, and data present on an instance are not affected.
+No operation is applied until all the running GDS algorithms have completed.
+
+== Comparison
+
+There are important operational differences between the Graph Analytics plugin on AuraDB Professional and AuraDS.
+
+[opts="header", cols="1,1"]
+|===
+|AuraDB Pro + Graph Analytics plugin
+|AuraDS
+
+|Rolling updates clear all projections.
+|Rolling updates save projections to disk and restore them upon restart.
+
+|Backup files do not include projections.
+|Backup files include all projections.
+
+|===
