@@ -108,21 +108,40 @@ Troubleshooting SSO spans multiple systems such as the Aura console, Auth0, IdP,
 Ensure that the IDP is issuing valid tokens with the correct claims required for authentication.
 If authentication issues persist, verify the token contents using an online JWT decoder.
 
-== Test SSO
+== Azure SSO configuration
 
-To verify that single sign-on is working:
+. Navigate to Azure at link:portal.azure.com[portal.azure.com]
 
-. Visit Neo4j Console.
+. Go to Microsoft Entra ID 
 
-. On the login page, you should see a Login with SSO button.
+. Go to App Registrations and then New Registration
 
-. Click Login with SSO to be redirected to your Identity Provider’s (IdP) login portal.
+. Add a name for the new app registration and click Register. Skip redirect URI’s for now.
 
-. If you are already logged in with your IdP, you will be automatically redirected back to the Aura console.
+. On the app overview page, take note of the Application (client) ID.
 
-. If you are not logged in, enter your credentials to log in.
+. Click the Client Credentials link to navigate to the client credentials page.
 
-. After a successful login, you should be redirected to the Aura console.
+. Create a new secret and take note of the Value field, you won’t be able to see it again after leaving this page.
 
-. To confirm that SSO is active, you will see your SSO profile in the upper right hand corner of the console.
+. Go back to the app overview page and open the app endpoints and take note of the Open ID Connection metadata document uri
 
+. Under Authentication on the left side nav, setup redirect urls by adding a new Web platform and adding https://login.neo4j.com/login/callback as the redirect URI. 
+
+. Create an Azure SSO config via console. You can do this via the org settings for your org, or via the org details page under the SSO Configs tab in the Admin UI. On the SSO config create form, do the following:
+
+.. (Optional) Select if you want the SSO config to be applied to org logins, to specific tenants within the org, or both
+
+.. For IdP Type select Azure Active Directory
+
+.. For Client ID enter the Application (client) ID from the azure app
+
+.. For Client Secret enter the client secret value (not secret id) from the secret you created in the azure app
+
+.. For Discovery URI enter the OpenID Connect metadata document uri
+
+.. Configure the rest of the SSO config as you’d like
+
+.. Click Create
+
+.. To test Instance SSO, create an instance now in a tenant that has the just created SSO config linked.
