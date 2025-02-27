@@ -128,7 +128,7 @@ If authentication issues persist, verify the token contents using an online JWT 
 
 . Under Authentication on the left side nav, setup redirect urls by adding a new Web platform and adding https://login.neo4j.com/login/callback as the redirect URI. 
 
-. Create an Azure SSO config via console. You can do this via the org settings for your org, or via the org details page under the SSO Configs tab in the Admin UI. On the SSO config create form, do the following:
+. Create an Azure SSO config via console. You can do this via the org settings for your org. On the SSO config create form, do the following:
 
 .. (Optional) Select if you want the SSO config to be applied to org logins, to specific tenants within the org, or both
 
