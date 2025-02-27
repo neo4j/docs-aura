@@ -1,0 +1,16 @@
+[[aura]]
+= graphRAG
+:description: RAG with aura
+
+Here’s a summary of a recent LLM discussion on Graph RAG:
+
+. Graph RAG Concept: Uses a graph database to structure and retrieve relevant information for LLMs, enhancing retrieval-augmented generation (RAG).
+. Graph Representation for Time & Space: Graphs naturally capture relationships, making them ideal for modeling events, locations, and sequences.
+. Neo4j & RAG: Graph databases like Neo4j simplify data retrieval by storing relationships directly, avoiding expensive joins.
+. Data Ingestion & Indexing: Extracting and structuring data efficiently (e.g., from articles) improves search and retrieval performance.
+. Hybrid Search: Combines keyword and semantic search to improve accuracy and handle misspellings or variations in queries.
+. Summarization & Distillation: Reduces noise so the LLM can focus on high-level reasoning, minimizing hallucinations.
+. Agentic Approaches: LLMs can dynamically select tools (e.g., Cypher queries) to improve decision-making and retrieval accuracy.
+. Prompt Engineering: Structured prompt templates ensure consistency and better responses from the LLM.
+. Knowledge Graphs & Entity Linking: Using triples (subject-predicate-object) helps structure data effectively for retrieval and reasoning.
+. Emil’s Demo: Showcased how Neo4j can automatically create a graph from articles, demonstrating knowledge extraction and structuring.
