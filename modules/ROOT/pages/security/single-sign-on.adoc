@@ -108,5 +108,15 @@ Troubleshooting SSO spans multiple systems such as the Aura console, Auth0, IdP,
 Ensure that the IDP is issuing valid tokens with the correct claims required for authentication.
 If authentication issues persist, verify the token contents using an online JWT decoder.
 
-== Testing steps for pilot users
+== Test SSO
+
+To verify that single sign-on is working:
+
+.Visit Neo4j Console.
+.On the login page, you should see a Login with SSO button.
+.Click Login with SSO to be redirected to your Identity Provider’s (IdP) login portal.
+.If you are already logged in with your IdP, you will be automatically redirected back to the Aura console.
+.If you are not logged in, enter your credentials to log in.
+.After a successful login, you should be redirected to the Aura console.
+.To confirm that SSO is active, you will see your SSO profile in the upper right hand corner of the console.
 
