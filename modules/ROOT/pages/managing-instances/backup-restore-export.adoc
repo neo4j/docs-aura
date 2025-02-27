@@ -46,7 +46,9 @@ image::snapshot-actions.png[width=400]
 
 From the more menu (...) next to an existing snapshot, you can:
 
-* *Export* - Download the *AuraDB* instance as a *_.backup_* file (for latest version) or *_.dump_* (for version 4.x) or the *AuraDS* instance as a *_.tar_* file, allowing you to store a local copy and work on your data offline.
+* *Export* - Download an AuraDB instance as a .backup file (latest version) or .dump file (version 4.x) to store a local copy and work on data offline.
+AuraDB instances with the Graph Analytics plugin are also exported as a .backup file. 
+Download an AuraDS instance as a .tar file.
 
 * *Create instance from snapshot* - Create a new instance using the data from the snapshot.
 
