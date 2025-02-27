@@ -99,15 +99,6 @@ If you require support assistance, visit link:https://support.neo4j.com/[Custome
 
 . The name of your IdP
 
-== Troubleshooting
-
-Troubleshooting SSO spans multiple systems such as the Aura console, Auth0, IdP, Workspace/Desktop, and Instance.
-
-=== Correct tokens
-
-Ensure that the IDP is issuing valid tokens with the correct claims required for authentication.
-If authentication issues persist, verify the token contents using an online JWT decoder.
-
 == Azure SSO configuration
 
 . Navigate to Azure at link:portal.azure.com[portal.azure.com]
@@ -145,3 +136,12 @@ If authentication issues persist, verify the token contents using an online JWT 
 .. Click Create
 
 .. To test Instance SSO, create an instance now in a tenant that has the just created SSO config linked.
+
+== Troubleshooting
+
+Troubleshooting SSO spans multiple systems such as the Aura console, Auth0, IdP, Workspace/Desktop, and Instance.
+
+=== Correct tokens
+
+Ensure that the IDP is issuing valid tokens with the correct claims required for authentication.
+If authentication issues persist, verify the token contents using an online JWT decoder.
