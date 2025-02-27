@@ -1,5 +1,7 @@
 [aura-customer-metrics-process]
 = Metrics integration process
+:description: This page describes the metrics integration process for Neo4j Aura.
+:page-aliases: platform/metrics-integration.adoc
 :table-caption!:
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
@@ -9,7 +11,7 @@ label:AuraDB-Business-Critical[]
 Metrics integration is a two step process:
 
 - Aura CMI setup
-- Customer APM integration 
+- Customer APM integration
 
 [aura-cmi-setup]
 == Aura CMI setup
@@ -63,9 +65,9 @@ Use the __Settings__ button for an endpoint in the table to configure that endpo
 ====
 **_Selecting endpoints_**
 
-Selecting an endpoint is based on individual use cases. 
+Selecting an endpoint is based on individual use cases.
 
-In general, if there is a need to monitor the performance of a specific Aura instance in your project it's better to use the instance endpoint. 
+In general, if there is a need to monitor the performance of a specific Aura instance in your project it's better to use the instance endpoint.
 
 If your goal is to monitor a subset of instances in the Project and you don't want to configure an APM system for each endpoint, then configure the Project endpoint and select the instances you are interested in.
 ====
@@ -76,14 +78,14 @@ image::cmi_project_config.png[]
 +
 . `Selecting instances to include in project endpoint` - This is a project endpoint specific setting which allows users to select instances to endpoint metrics for.
 . `Include new instances` - This setting enables scraping for newly created instance without manually updating the Project endpoint configuration.
-. `Metrics granularity` - This setting allows scraping more granular metrics (`Comprehensive`) for each of the instances enabled. 
+. `Metrics granularity` - This setting allows scraping more granular metrics (`Comprehensive`) for each of the instances enabled.
 It is an on-demand setting only available for Virtual Dedicated Cloud projects and needs to be requested through link:https://support.neo4j.com/[Customer Support].
 
 * Instance endpoint configuration :
 +
 image::cmi_instance_config.png[]
 +
-. `Metrics granularity` - This setting allows scraping more granular metrics(`Comprehensive`) for each of the instances enabled. 
+. `Metrics granularity` - This setting allows scraping more granular metrics(`Comprehensive`) for each of the instances enabled.
 It is an on-demand setting only available for Virtual Dedicated Cloud project instances and it needs to be requested through link:https://support.neo4j.com/[Customer Support].
 +
 image::cmi_enable_comprehensive.png[]
