@@ -151,18 +151,22 @@ Each project can have multiple users with individual accounts allowing access to
 The users with access to a project can be viewed and managed from the **Users** page.
 You can access the **Users** page by selecting **Users** from the sidebar menu of the console.
 
-=== Roles
+[[roles]]
+== Roles
 
-Users within a project can be assigned one of the following roles:
+Users within a project can be assigned one of the following predefined roles:
 
 * _Project Admin_
 * _Project Member_
 * _Project Viewer_
 * _Metrics Reader_
 
+These roles grant the users certain privileges both on the console level as well as on the instance level.
+The roles are immutable and every new user needs to be assigned one.
+
 :check-mark: icon:check[]
 
-.Roles
+.Roles and console capabilities
 [opts="header",cols="3,1,1,1"]
 |===
 | Capability | Admin | Member | Viewer
@@ -184,6 +188,21 @@ Users within a project can be assigned one of the following roles:
 ====
 Each project must have at least one Project Admin, but it is also possible for projects to have multiple Project Admins.
 ====
+
+Additionally, predefined roles are assigned certain privileges on the instance level as well.
+
+.Roles and database privileges
+[options="header", cols="3,1,1,1"]
+|===
+| Privilege
+| Admin
+| Member
+| Data viewer
+
+|
+|
+|
+|
 
 === Inviting users
 
