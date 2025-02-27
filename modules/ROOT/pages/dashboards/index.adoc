@@ -1,0 +1,36 @@
+[[dashboards]]
+= About Neo4j Aura dashboards
+:description: Dashboards as a part of the new Aura console experience.
+
+Neo4j Aura dashboards help you visualize your data in a low-code manner.
+You can compose different visualizations such as tables or bar charts in dashboard pages to have relevant data at a glance.
+
+== Features
+
+* Neo4j Aura dashboards are a part of the Aura console experience
+* Neo4j Aura dashboards operate directly on your graph data via Cypher queries
+* Manage and customize your dashboards, dashboard pages and cards
+* Customize visualizations via settings and their corresponding Cypher query
+// * Parameterize visualizations or entire dashboards
+// * Apply rule-based styling to your visualizations
+// * Share your dashboards across your team or your company
+
+
+== Aura dashboards vs NeoDash commercial
+
+link:https://neo4j.com/docs/neodash-commercial/[NeoDash commercial] is Neo4j's standalone dashboard solution.
+By contrast, Neo4j Aura dashboards is a part of the unified Aura console experience and lets you work with dashboards directly in Aura without application switch.
+
+== Aura dashboards vs Bloom
+
+link:https://neo4j.com/docs/bloom-user-guide[Neo4j Bloom] is a graph exploration application for visually interacting with graph data.
+It is also a part of the Aura console experience.
+By contrast, Neo4j Aura dashboards offers visualization beyond the graph layer such as charts and diagrams, maps and more.
+
+== Aura dashboards vs BI connector
+
+There are many data visualization and dashboard applications on the market.
+With the link:https://neo4j.com/bi-connector/[Neo4j Connector for Business Intelligence] (BI connector), Neo4j databases can be connected to tools like link:https://www.tableau.com/visualization[Tableau] or link:https://www.microsoft.com/en-us/power-platform/products/power-bi[Power BI].
+
+While connecting graph data to existing business intelligence and visualization application landscapes is an important use case, Aura dashboards offer native support for graph data.
+Aura dashboards operate directly on your Neo4j database instance via the native Cypher query language and generate visualizations seemlessly in Aura.
