@@ -36,14 +36,14 @@ It *does not* give access to edit the project settings, for example to edit the 
 Log-in methods are different for each SSO level.
 Administrators can configure a combination of one or more of the log-in methods.
 
-*Organization-level supports:*
+*Supported log-in methods at the organization-level:*
 
 * Email/password
 * Okta
 * Microsoft Entra ID
 * Google SSO (not Google Workspace SSO)
 
-*Project-level supports:*
+*Supported log-in methods at the project-level:*
 
 * User/password
 * Okta
@@ -58,13 +58,16 @@ Accessing Aura with SSO requires:
 * Authorization Code Flow
 * A publicly accessible IdP server
 
+Aura requires the Authorization Code Flow, an OAuth2 authentication method that involves redirecting users to an Identity Provider (IdP) for login.
+
 To create an SSO Configuration, either a Discovery URI or a combination of Issuer, Authorization Endpoint, Token Endpoint, and JWKS URI is required.
 
 == Create a new SSO configuration
 
 From the *Organization settings*, go to *Single Sign-On* to set up a new SSO configuration.
 
-The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on Organization level, only on Project level, or both.
+The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on organization-level, only on project-level, or both. 
+Selecting both checkboxes means the SSO setup applies to both the organization-level and project-level.
 
 The required basic SSO configuration information can be retrieved from the IdP.
 Entering the Discovery URI pre-fills the fields below.
@@ -76,7 +79,7 @@ image::sso.png[A screenshot of the SSO configuration,640,480]
 
 == Role mapping
 
-Role mapping applies to all new instances in the selected project.
+Role mapping applies to all new instances created within the selected project.
 To configure role mapping for an individual instance, contact support.
 
 == Individual instance-level
@@ -99,6 +102,8 @@ If you require support assistance, visit link:https://support.neo4j.com/[Custome
 
 Troubleshooting SSO spans multiple systems such as the Aura console, Auth0, IdP, Workspace/Desktop, and Instance.
 
-*Correct tokens*
+=== Correct tokens
+
+Ensure that the IDP is issuing valid tokens with the correct claims required for authentication.
 
 
