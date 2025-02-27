@@ -65,12 +65,12 @@ To create an SSO Configuration, either a Discovery URI or a combination of Issue
 
 == Create a new SSO configuration
 
-1. From the *Organization settings*, go to *Single Sign-On* to set up a new SSO configuration.
+. From the *Organization settings*, go to *Single Sign-On* to set up a new SSO configuration.
 
-2. The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on organization-level, only on project-level, or both. 
+. The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on organization-level, only on project-level, or both. 
 Selecting both checkboxes means the SSO setup applies to both the organization-level and project-level.
 
-3. The required basic SSO configuration information can be retrieved from the IdP.
+. The required basic SSO configuration information can be retrieved from the IdP.
 Entering the Discovery URI pre-fills the fields below.
 If this is not known these fields can be completed manually.
 
@@ -112,11 +112,17 @@ If authentication issues persist, verify the token contents using an online JWT 
 
 To verify that single sign-on is working:
 
-.Visit Neo4j Console.
-.On the login page, you should see a Login with SSO button.
-.Click Login with SSO to be redirected to your Identity Provider’s (IdP) login portal.
-.If you are already logged in with your IdP, you will be automatically redirected back to the Aura console.
-.If you are not logged in, enter your credentials to log in.
-.After a successful login, you should be redirected to the Aura console.
-.To confirm that SSO is active, you will see your SSO profile in the upper right hand corner of the console.
+. Visit Neo4j Console.
+
+. On the login page, you should see a Login with SSO button.
+
+. Click Login with SSO to be redirected to your Identity Provider’s (IdP) login portal.
+
+. If you are already logged in with your IdP, you will be automatically redirected back to the Aura console.
+
+. If you are not logged in, enter your credentials to log in.
+
+. After a successful login, you should be redirected to the Aura console.
+
+. To confirm that SSO is active, you will see your SSO profile in the upper right hand corner of the console.
 
