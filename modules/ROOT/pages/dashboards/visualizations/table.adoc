@@ -2,9 +2,8 @@
 :description: The Neo4j Aura dashboard table.
 
 
-// Needs verification:
-Neo4j Aura dashboard tables can render all data returned by a Cypher query.
-This includes simple data like numbers or text, but also Neo4j native data like nodes, relationships, and paths.
+Neo4j Aura dashboard tables can render all data returned by a Cypher query as a result table.
+This includes simple data like numbers or text, but also Neo4j-native data like nodes, relationships, and paths.
 
 ////
 Tables support the following additional features: 
@@ -22,31 +21,39 @@ Click it to copy the content of the table cell to the clipboard.
 
 === Basic table
 
+A Cypher query for a table which displays the number of products per category in a table:
+
 [source,cypher]
 ----
-MATCH (n:Movie)<-[:ACTED_IN]-(p:Person)
-RETURN n.title AS Title, n.released AS Released, count(p) as Actors LIMIT 20
+MATCH (p:Product)-[:PART_OF]->(c:Category)
+RETURN c.categoryName AS Category, count(p) AS Products LIMIT 20
 ----
 
-// Screenshot
+.A table displaying the number of products per category
+image::dashboards/visualization-table-basic.png[]
 
 
-////
+
 === Table with nodes and collections
 
 [source,cypher]
 ----
-MATCH (n:Movie)<-[:ACTED_IN]-(p:Person)
-RETURN n, collect(p.name) as actors LIMIT 20
+MATCH (p:Product)-[:PART_OF]->(c:Category)
+RETURN c as CategoryNode, collect(p) AS Products LIMIT 20
 ----
 
-image::table2.png[Table with nodes / collections]
-////
+.A table displaying the category nodes and collections of products
+image::dashboards/visualization-table-nodes-and-collections.png[]
+
+
+== Configuration
+
+Coming soon.
 
 
 == Advanced settings
 
-Lorem ipsum.
+Coming soon.
 
 ////
 [width="100%",cols="12%s,6%,26%,56%",options="header",]
@@ -73,7 +80,7 @@ The pop-up contains the rendered Markdown from this setting.
 
 == Rule-based styling
 
-Lorem ipsum.
+Coming soon.
 
 ////
 Using the xref::/user-guide/extensions/rule-based-styling.adoc[] menu, the following style rules can be applied to the table: 
@@ -89,7 +96,7 @@ If a column is hidden (header prefixed with `__` double underscore), it can stil
 
 == Report actions
 
-Lorem ipsum.
+Coming soon.
 
 ////
 With the xref:/user-guide/extensions/report-actions.adoc[] extension, tables can be turned into interactive components that set parameters.
@@ -98,7 +105,7 @@ Two flavours of report actions for tables exist, see the following sections.
 
 === Select a value from a row
 
-Lorem ipsum.
+Coming soon.
 
 ////
 Adding a "cell clicked" action to a table column turns the values in that row into clickable buttons.
@@ -110,7 +117,7 @@ image::select-single-table.png[Select a value from a table to be used as a param
 
 === Select multiple from a row
 
-Lorem ipsum.
+Coming soon.
 
 ////
 Adding a "row clicked" action to a table prepends each row with a checkbox.

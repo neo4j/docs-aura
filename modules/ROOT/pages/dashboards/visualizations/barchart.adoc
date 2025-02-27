@@ -15,19 +15,23 @@ Choose the following:
 
 === Simple bar chart
 
-A Cypher query for a bar chart which displays the number of people who acted in, directed or rated movies by title:
+A Cypher query for a bar chart which displays the number of products per category:
 
 [source,cypher]
 ----
-MATCH (p:Person)-[e]->(m:Movie)
-RETURN m.title as Title, COUNT(p) as People ORDER BY People DESC LIMIT 20
+MATCH (p:Product)-[:PART_OF]->(c:Category)
+RETURN c.categoryName AS Category, count(p) AS Products LIMIT 20
 ----
 
-// Screenshot
+.A bar chart displaying the number of products per category
+image::dashboards/visualization-bar-chart.png[]
 
-////
+
 === Stacked Bar Chart
 
+Coming soon.
+
+////
 [source,cypher]
 ----
 Match (p:Person)-[e]->(m:Movie)
@@ -40,7 +44,7 @@ image::barstacked.png[Basic Table]
 
 == Advanced settings
 
-Lorem ipsum.
+Coming soon.
 
 ////
 [width="100%",cols="19%s,17%,26%,38%",options="header",]
@@ -115,7 +119,7 @@ If set, the chart height adjusts to the number of rows returned by the query to 
 
 == Rule-based styling
 
-Lorem ipsum.
+Coming soon.
 
 ////
 Using the xref::/user-guide/extensions/rule-based-styling.adoc[] menu, the following style rules can be applied to the bar chart: 

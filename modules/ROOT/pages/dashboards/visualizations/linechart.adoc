@@ -17,20 +17,21 @@ It has two numeric fields:
 
 === Basic line chart
 
-Cypher query for a line chart which displays the number of movies released for each year:
+Cypher query for a line chart which displays the number of products per order ID:
 
 [source,cypher]
 ----
-MATCH (a:Actor)
-RETURN  ((a.born).year / 10) * 10 as Decade, count(a) as Actors
-ORDER BY Decade ASC
+MATCH (o:Order)-[:ORDERS]->(p:Product)
+RETURN o.orderID AS OrderID, count(p) as Products
 ----
 
-// Screenshot
+.A line chart displaying the number of products per order ID
+image::dashboards/products-per-order-id.png[]
 
 
 === Multi-line chart
 
+////
 Cypher query for a line chart which displays the number of actors born and number of movies released by decade:
 
 [source,cypher]
@@ -43,11 +44,11 @@ RETURN Decade, Actors, count(DISTINCT m) AS Movies
 ----
 
 // Screenshot
-
+////
 
 == Advanced settings
 
-Lorem ipsum.
+Coming soon.
 
 ////
 
@@ -120,7 +121,7 @@ The pop-up contains the rendered Markdown from this setting.
 
 == Rule-based styling
 
-Lorem ipsum.
+Coming soon.
 
 ////
 Using the xref::/user-guide/extensions/rule-based-styling.adoc[] menu, the following style rules can be applied to the line chart: 

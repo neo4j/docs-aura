@@ -5,10 +5,10 @@ A visualization is embedded in a dashboard card.
 Visualizations have different types, each of which expect different types of data.
 
 
-== Writing queries
+== Writing Cypher queries
 
-Each visualization uses the Cypher query specified in the dashboard card to retrieve data from your Neo4j database and display it.
-Edit the query associated with a dashboard card by clicking the three dots icon at the top right of a card and then *Edit card*.
+Each visualization uses a Cypher query specified in the dashboard card to retrieve data from your Neo4j database and display it.
+Edit the query associated with a dashboard card by clicking the three dots icon at the top right of a card and then **Edit card**.
 
 
 Any Cypher syntax is supported, including link:https://neo4j.com/developer/neo4j-apoc/[APOC], link:https://neo4j.com/docs/graph-data-science/current/[GDS], and link:https://neo4j.com/docs/operations-manual/current/fabric/queries/[Fabric].
@@ -16,7 +16,7 @@ Any Cypher syntax is supported, including link:https://neo4j.com/developer/neo4j
 
 Keep the following best practices in mind when writing your Cypher queries: 
 
-. Use a `LIMIT` in your query to keep the result size manageable. 
+. Use a `LIMIT` clause in your query to keep the result size manageable. 
 . Ensure that you return the correct data types for the correct visualization type.
 
 //
