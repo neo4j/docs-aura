@@ -1,0 +1,12 @@
+= Tool authentication
+:description: This section describes the seamless tool authentication functionality in AuraDB.
+
+Organization admins can allow users in a project to seamlessly and securely connect to a project and the instances within it.
+
+This feature can be enabled and configured from the Org settings.
+
+As an Org admin, you maintain access control of all projects within the organization.
+You can select which projects and instances users can connect seamlessly to and which they should be required to use username and password to connect to.
+To prevent unauthorized access and allow Project admins full access control, the authentication is used in conjunction with predefined roles with varying levels of access to the database.
+This means that Project admins assign roles to the users that grants them seamless connection to the project and its instances as well as certain privileges to the databases there.
+See xref:user-management.adoc#roles[User management - Roles] for more information.

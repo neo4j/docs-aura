@@ -162,28 +162,163 @@ Users within a project can be assigned one of the following roles:
 
 :check-mark: icon:check[]
 
-.Roles
+.Roles and console capabilities
 [opts="header",cols="3,1,1,1"]
 |===
-| Capability | Admin | Member | Viewer
+| Capability | Viewer | Member | Admin
 | View users and their roles | {check-mark} | {check-mark} | {check-mark}
 | View and open instances | {check-mark} | {check-mark} | {check-mark}
 | Access the Neo4j Customer Support Portal | {check-mark} | {check-mark} | {check-mark}
-| Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instances.] | {check-mark} | {check-mark} |
-| Clone data to new and existing instances | {check-mark} | {check-mark} |
-| Take on-demand snapshots | {check-mark} | {check-mark} |
-| Restore from snapshots | {check-mark} | {check-mark} |
-| Edit the project name | {check-mark} | |
-| Invite new users to the project | {check-mark} | |
-| Edit existing users' roles | {check-mark} | |
-| Delete existing users from the project | {check-mark} | |
-| View and edit billing information | {check-mark} | |
+| Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instances.] | | {check-mark} | {check-mark}
+| Clone data to new and existing instances | | {check-mark} | {check-mark}
+| Take on-demand snapshots | | {check-mark} | {check-mark}
+| Restore from snapshots | | {check-mark} | {check-mark}
+| Edit the project name | | | {check-mark}
+| Invite new users to the project | | | {check-mark}
+| Edit existing users' roles | | | {check-mark}
+| Delete existing users from the project | | | {check-mark}
+| View and edit billing information | | | {check-mark}
 |===
 
 [NOTE]
 ====
 Each project must have at least one Project Admin, but it is also possible for projects to have multiple Project Admins.
 ====
+
+Additionally, predefined roles are assigned certain privileges on the instance level as well.
+
+.Roles and database privileges
+[options="header", cols="3,^,^,^,^,^"]
+|===
+| Privilege
+| Viewer
+| Member
+3+| Admin
+
+|
+|
+|
+| Free
+| Professional
+| Business Critical
+
+| Access to database
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| List constraints
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| Create constraints
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| Delete constraints
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| List indexes
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| Create indexes
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| Delete indexes
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| Find nodes and relationships and read their properties
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| Load external data in queries
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| Write to the graph
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| Name management for node labels, relationship types, and property names.
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| List and end transactions for specified users on the database.
+|
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| List, create, delete, and modify users.
+|
+|
+|
+| {check-mark}
+| {check-mark}
+| List roles
+|
+|
+|
+| {check-mark}
+| {check-mark}
+| Create roles
+|
+|
+|
+|
+| {check-mark}
+| Assign roles
+|
+|
+|
+| {check-mark}
+| {check-mark}
+| Rename roles
+|
+|
+|
+|
+| {check-mark}
+| Remove roles
+|
+|
+|
+| {check-mark}
+| {check-mark}
+
+| Privilege management footnote:[This includes to list, grant, and revoke privileges.]
+|
+|
+|
+|
+| {check-mark}
+|===
 
 === Inviting users
 
@@ -231,7 +366,7 @@ You can select the project(s) you have been invited to and choose to accept or d
 
 // You can also close the **Project invitation** modal without accepting or declining the invite(s) and later manually re-open the modal by selecting the **Pending invites** envelope icon in the console header.
 
-[TIP]
-====
-User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
-====
+// [TIP]
+// ====
+// User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
+// ====
