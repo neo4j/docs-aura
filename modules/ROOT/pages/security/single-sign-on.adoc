@@ -143,9 +143,7 @@ If you require support assistance, visit link:https://support.neo4j.com/[Custome
 
 == FAQ
 
-Troubleshooting SSO spans multiple systems such as the Aura console, Auth0, IdP, Workspace/Desktop, and Instance.
+*Can users get roles added to them in Console via Console/Organization SSO and a group to role mapping?*
 
-=== Correct tokens
+No, users must be granted the role on the org via Console invites and access management like with any other organization.
 
-Ensure that the IDP is issuing valid tokens with the correct claims required for authentication.
-If authentication issues persist, verify the token contents using an online JWT decoder.
