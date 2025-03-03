@@ -16,7 +16,6 @@ As the service provider, Neo4j Aura redirects authentication requests to the con
 When a user attempts to log in, Aura generates a redirect URL with authentication parameters and sends the user to the IDP for authentication. 
 Upon successful login, the IDP redirects the user back to Aura with a secure token, allowing Aura to establish an authenticated session.
 
-
 == SSO levels
 
 `Organization admins` and `Organization owner` roles can configure SSO at the organization-level and project-level.
@@ -51,6 +50,10 @@ Administrators can configure a combination of one or more of the log-in methods.
 
 At the project-level, admins cannot disable user/password. 
 However, at the organization-level, admins can disable email/password and Google SSO as long as at least one other custom SSO provider is configured.
+
+== Pilot testing
+
+Keep the email/password or user/password login enabled so that if SSO fails, you can still access the Aura console and adjust the configuration.
 
 == Setup requirements
 
