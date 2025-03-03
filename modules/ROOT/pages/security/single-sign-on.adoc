@@ -53,7 +53,17 @@ However, at the organization-level, admins can disable email/password and Google
 
 == Pilot testing
 
-Keep the email/password or user/password login enabled so that if SSO fails, you can still access the Aura console and adjust the configuration.
+*Organization-level testing*
+
+Keep the Email/password log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
+
+Login to the Aura console with SSO.
+
+*Project level-testing*
+
+Keep the User/password login enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
+
+Create a new instance in the project with SSO and login.
 
 == Setup requirements
 
@@ -145,8 +155,6 @@ Skip redirect URI’s for now.
 . Configure any additional settings as needed
 
 . Select *Create*
-
-. To test Instance SSO, create an instance within a project that has been selected in the newly created SSO configuration.
 
 == FAQ
 
