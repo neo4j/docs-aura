@@ -9,7 +9,8 @@ From here you can see an Overview of the instance details, Snapshots, Restore fr
 
 In the Overview, apart from viewing the instance details, you can also rename your instance using the pen icon next to the instance name.
 
-image::inspectdetails.png[]
+[.shadow]
+image::inspectdetails1.png[]
 
 
 .Instance details
@@ -26,6 +27,10 @@ It means multiple instances can have the same instance name, because they are di
 
 |Query API URL
 |Use this to connect to an instance with Query API
+
+|Custom endpoint
+|Applicable if a custom endpoint has been configured for the instance.
+See xref:managing-instances/custom-endpoints.adoc[Custom endpoints] for more information.
 
 |Private URI
 |Applicable if you have a private link set up
