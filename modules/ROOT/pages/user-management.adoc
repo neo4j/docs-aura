@@ -13,7 +13,7 @@ The following roles are available at the org level and these are assigned via in
 * Member
 
 :check-mark: icon:check[]
-.Roles
+.Roles and organization capabilities
 [opts="header",cols="3,1,1,1"]
 |===
 | Capability
@@ -208,60 +208,84 @@ Additionally, predefined roles are assigned certain privileges on the instance l
 | {check-mark}
 | {check-mark}
 | {check-mark}
+
+| Start and stop database
+|
+|
+|
+|
+| {check-mark}
+
 | List constraints
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
+
 | Create constraints
 |
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
+
 | Delete constraints
 |
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
+
 | List indexes
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
+
 | Create indexes
 |
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
+
 | Delete indexes
 |
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
+
 | Find nodes and relationships and read their properties
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
+
 | Load external data in queries
 |
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
+
 | Write to the graph
 |
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
+
+| Execute procedures and functions
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
 | Name management for node labels, relationship types, and property names.
 |
 | {check-mark}
@@ -275,37 +299,50 @@ Additionally, predefined roles are assigned certain privileges on the instance l
 | {check-mark}
 | {check-mark}
 | {check-mark}
+
 | List, create, delete, and modify users.
 |
 |
 |
 | {check-mark}
 | {check-mark}
-| List roles
-|
-|
-|
-| {check-mark}
-| {check-mark}
-| Create roles
-|
-|
-|
-|
-| {check-mark}
+
 | Assign roles
 |
 |
 |
 | {check-mark}
 | {check-mark}
+
+| Remove roles
+|
+|
+|
+| {check-mark}
+| {check-mark}
+
+| Create roles
+|
+|
+|
+|
+| {check-mark}
+
+| Delete roles
+|
+|
+|
+|
+| {check-mark}
+
 | Rename roles
 |
 |
 |
 |
 | {check-mark}
-| Remove roles
+
+| List roles
 |
 |
 |
