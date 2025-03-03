@@ -14,7 +14,7 @@ Aura supports SSO authentication and authorization using https://learn.microsoft
 As the service provider, Neo4j Aura redirects authentication requests to the configured IdP using the OpenID Connect (OIDC) protocol. 
 Aura also supports authenticating with Google as the identity provider.
 When a user attempts to log in, Aura generates a redirect URL with authentication parameters and sends the user to the IdP for authentication. 
-Upon successful authentication, the IdP redirects the user back to Aura with a secure token, allowing Aura to establish an authenticated session.
+After successful authentication, the IdP redirects the user back to Aura with a secure token, allowing Aura to establish an authenticated session.
 
 == SSO levels
 
