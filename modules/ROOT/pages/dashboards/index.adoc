@@ -15,12 +15,3 @@ You can compose different visualizations such as tables or bar charts in dashboa
 // * Parameterize visualizations or entire dashboards
 // * Apply rule-based styling to your visualizations
 // * Share your dashboards across your team or your company
-
-
-== Aura dashboards vs BI connector
-
-There are many data visualization and dashboard applications on the market.
-With the link:https://neo4j.com/bi-connector/[Neo4j Connector for Business Intelligence] (BI connector), Neo4j databases can be connected to tools like link:https://www.tableau.com/visualization[Tableau] or link:https://www.microsoft.com/en-us/power-platform/products/power-bi[Power BI].
-
-While connecting graph data to existing business intelligence and visualization application landscapes is an important use case, Aura dashboards offer native support for graph data.
-Aura dashboards operate directly on your Neo4j database instance via the native Cypher query language and generate visualizations seemlessly in Aura.
