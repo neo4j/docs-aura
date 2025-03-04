@@ -141,6 +141,19 @@ Skip redirect URI’s for now.
 
 . Select *Create*
 
+=== Token request scopes
+
+When requesting the token from Azure, the scopes Aura sends are:
+
+* `openid` access to a unique identifier to identify the user. 
+
+* `profile` access to basic profile information.
+
+* `email` contains the user's email address.
+
+This will result in Azure asking for consent to display details related to these scopes. 
+For more information, see link:https://auth0.com/docs/get-started/apis/scopes/openid-connect-scopes#standard-claims[OpenID Connect Scopes]
+
 == Pilot testing
 
 *Organization-level testing*
