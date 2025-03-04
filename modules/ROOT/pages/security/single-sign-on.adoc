@@ -154,6 +154,19 @@ Skip redirect URI’s for now.
 
 . Select *Create*
 
+=== Token request scopes
+
+When requesting the token from Azure, the scopes Aura sends are:
+
+* `openid` access to a unique identifier to identify the user. 
+
+* `profile` access to basic profile information.
+
+* `email` contains the user's email address.
+
+This will result in Azure asking for consent to display details related to these scopes. 
+For more information, see link:https://auth0.com/docs/get-started/apis/scopes/openid-connect-scopes#standard-claims[OpenID Connect Scopes]
+
 == FAQ
 
 *Can users get roles added to them in Aura console via SSO and a group to role mapping?*
@@ -163,6 +176,5 @@ No, users must be granted the role on the org via Aura console invites and acces
 *Why am I unable to connect to the instance after completing the SSO login, the connection is showing as unconnected?*
 
 Ensure that the email field is provided on your user in Entra. If it already is, contact support for further assistance.
-
 
 
