@@ -1,0 +1,74 @@
+= Initial configuration
+:description: First configuration of the Neo4j Aura command line interface.
+
+
+== Obtain an Aura API Key
+
+[NOTE]
+====
+You need to have some form of payment information in your account to access this functionality.
+This also applies to Aura Free.
+====
+
+
+=== Aura console classic
+
+. Login into the link:https://console.neo4j.io/[Neo4j Aura Console].
+. Navigate to the top right where your account name is displayed.
+  Click the down arrow.
++
+image::/aura-cli/console-classic-home.png[]
++
+. In the a menu with your account name, click **Account Details**.
+. In the **Account Details** display, click **Create** under **Aura API** and **Credentials**.
++
+image::/aura-cli/console-classic-api-keys.png[]
++
+. In the pop-up window, enter a client name, then click **Create**.
+. You will be shown the newly created client ID and client secret.
+  Make sure to securely save these as they are required to use the Aura CLI.
+
+
+=== New unified Aura Console experience
+
+. Login into the link:https://console.neo4j.io/[Neo4j Aura Console].
+. Navigate to the top right where your account name is displayed and click the down arrow.
++
+image::/aura-cli/unified-console-home.png[]
++
+. In the menu, click **API Keys**.
++
+image::/aura-cli/unified-console-account-dropdown.png[]
++
+. In the **API Keys** window, click **Create**.
++
+image::/aura-cli/unified-console-api-keys.png[]
++
+. In the pop-up window, enter a name for the API key and click **Create**.
++
+image::/aura-cli/unified-console-create-api-key.png[]
++
+. You will be shown the client ID and client secret.
+  Make a note as the client secret will not be shown again and you need both.
+  If you download them, keep them safe.
+
+
+== Configure Aura CLI with an Aura API key
+
+Configure the Aura CLI with the Aura API client ID and client secret you obtained earlier.
+The Aura CLI refers to these as "credentials".
+You can have several sets of credentials and  choose which one to use.
+
+. At the command prompt, enter the following, using your values for the items in CAPITALS:
++
+[source, shell]
+----
+aura-cli credential add --name YOUR\_LABEL --client-id YOUR\_CLIENT\_ID --client-secret YOUR\_CLIENT\_SECRET
+----
++
+. To confirm the credentials are working, list your Aura instances:
++
+[source, shell]
+----
+aura-cli instance list --output table
+----
