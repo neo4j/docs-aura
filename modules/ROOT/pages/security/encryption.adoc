@@ -1,6 +1,7 @@
 [[aura-reference-security]]
 = Encryption
 :description: Aura is encrypted using intra-cluster encryption, and is CMK compatible.
+:page-aliases: platform/security/encryption.adoc
 
 All data stored in Neo4j Aura is encrypted using intra-cluster encryption between the various nodes comprising your instance and encrypted at rest using the underlying cloud provider's encryption mechanism.
 
@@ -29,7 +30,7 @@ Externally, Customer Managed Keys are also known as Customer Managed Encryption 
 When using a Customer Managed Key, all data at rest is encrypted with the key.
 Customer Managed Keys are supported for v4.x and latest version instances.
 
-It is not possible to add a Customer Managed Key to an existing Neo4j Aura instance. 
+It is not possible to add a Customer Managed Key to an existing Neo4j Aura instance.
 The encryption key must be selected during instance creation.
 To change an encryption key, clone the Aura instance and select a different encryption key.
 
@@ -171,9 +172,9 @@ For more information about the Azure CLI, see link:https://learn.microsoft.com/e
 === Azure key rotation
 
 If you immediately disable the old key version after the Azure key is rotated, the connection status in Aura changes from "Ready" to "Pending".
-This happens because Azure Storage checks for key updates once every 24 hours, as outlined in link:https://learn.microsoft.com/en-gb/azure/storage/common/customer-managed-keys-configure-new-account?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&bc=%2Fazure%2Fstorage%2Fblobs%2Fbreadcrumb%2Ftoc.json&tabs=azure-portal#configure-encryption-for-automatic-updating-of-key-versions[Microsoft Azure documentation]. 
+This happens because Azure Storage checks for key updates once every 24 hours, as outlined in link:https://learn.microsoft.com/en-gb/azure/storage/common/customer-managed-keys-configure-new-account?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&bc=%2Fazure%2Fstorage%2Fblobs%2Fbreadcrumb%2Ftoc.json&tabs=azure-portal#configure-encryption-for-automatic-updating-of-key-versions[Microsoft Azure documentation].
 If a key is rotated and the old version is disabled before this time passes, services relying on the key in Neo4j Aura lose access.
-To avoid this wait at least 24 hours after rotating a key before disabling the old version to allow the change to take effect in Azure. 
+To avoid this wait at least 24 hours after rotating a key before disabling the old version to allow the change to take effect in Azure.
 Disabling the old version too early results in Aura losing access to the key.
 
 == GCP keys
