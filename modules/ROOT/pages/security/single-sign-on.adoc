@@ -19,8 +19,6 @@ After successful authentication, the IdP redirects the user back to Aura with a 
 == SSO levels
 
 Users with either the `Organization admin` or the `Organization owner` role can configure SSO at both the organization-level and project-level.
-SSO is a log-in method. 
-Access, roles, and permissions are dictated by role-based access control (RBAC).
 
 * *Organization-level:* Allows org admins to control how users log in when they are trying to access the organization. It is a log-in method for the Aura console.
 
@@ -55,10 +53,7 @@ However, at the organization-level, admins can disable email/password and Google
 
 Accessing Aura with SSO requires:
 
-* Authorization Code Flow
-* A publicly accessible IdP server
-
-Aura requires the Authorization Code Flow, an OAuth2 authentication method that involves redirecting users to an IdP for login.
+Aura requires the Authorization Code Flow, an OAuth2 authentication method that involves redirecting users to a publicly accessible IdP server for login.
 
 To create an SSO Configuration, either a Discovery URI or a combination of Issuer, Authorization Endpoint, Token Endpoint, and JWKS URI is required.
 
@@ -93,17 +88,13 @@ Support can assist with SSO configurations at instance-level including:
 * link:https://auth0.com/docs/secure/tokens/json-web-tokens/create-custom-claims[Create custom claims] besides `groups`
 * Updating SSO on already running instances
 
-== Support
-
 If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
 
 . The _Project ID_ of the projects you want to use SSO for. Click on the project settings to copy the ID.
 
 . The name of your IdP
 
-== Azure configuration
-
-=== Azure SSO configuration
+== Microsoft Entra ID SSO 
 
 . In the *Azure Portal*, go to *App Registrations* and then *New Registration*.
 
@@ -123,9 +114,7 @@ Skip redirect URI’s for now.
 .. Adding a new Web platform 
 .. Enter `https://login.neo4j.com/login/callback` as the redirect URI.
 
-=== Create an Azure SSO configuration in the Aura console
-
-. Go to *Organization Settings*
+. In the Aura console, Go to *Organization Settings*
 
 . Select if you want the SSO configuration to be applied to organization logins, to specific projects within the organization, or both.
 
