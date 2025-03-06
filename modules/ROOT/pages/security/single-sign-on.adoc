@@ -149,6 +149,29 @@ When requesting the token from Azure, the scopes Aura sends are:
 This will result in Azure asking for consent to display details related to these scopes. 
 For more information, see link:https://auth0.com/docs/get-started/apis/scopes/openid-connect-scopes#standard-claims[OpenID Connect Scopes]
 
+== Okta SSO 
+
+. In the *Okta admin portal* go to *Applications* and then *Create App Integration*
+
+. For Sign-in method, select *OIDC - OpenID Connect*
+. For Application type, select *Web Application*
+. Ensure that *Authorization Code* is selected for *Grant type*
+. Under Sign-in redirect URI’s add https://login.neo4j.com/login/callback as the redirect URI
+. Create an Okta SSO config via console > You can do this via the organization settings for your organization.
+On the SSO config create form, do the following:
+.. Select if you want the SSO config to be applied to organization logins, to specific projects within the org, or both
+.. Enter a Display Name
+.. For IdP Type select Okta
+.. For Client ID enter the Client ID field from the Okta app details page
+.. For Client Secret enter copy the client secret from the Okta app details page
+
+. For Discovery URI take the domain from your Okta portal which should be something like https://dev-123-admin.okta.com/ and add .well-known/openid-configuration 
+.. so the final URL should look something like https://dev-123-admin.okta.com/.well-known/openid-configuration
+.. Configure any additional settings as needed
+. For tenant/instance SSO you’ll have to link the SSO config to the tenant via the tenants SSO configs tab once you’ve created the SSO config.
+. Click Create
+. To test Instance SSO, create an instance now in a tenant that has the just created SSO config linked.
+
 == FAQ
 
 *Can users get roles added to them in Aura console via SSO and a group to role mapping?*
