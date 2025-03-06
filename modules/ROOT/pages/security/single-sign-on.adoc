@@ -116,7 +116,7 @@ Skip redirect URI’s for now.
 
 . In the Aura console, Go to *Organization Settings*
 
-. Select if you want the SSO configuration to be applied to organization-level logins (which acts as a login to the Aura console), to specific projects within the organization (where login is on the actual instance), or both.
+. Select if you want the SSO configuration to be applied to organization-level logins (which acts as a login to the Aura console), to specific projects within the organization (where login is on the instance), or both.
 
 . For IdP Type select *Microsoft Entra ID*
 
@@ -153,24 +153,40 @@ For more information, see link:https://auth0.com/docs/get-started/apis/scopes/op
 
 . In the *Okta admin portal* go to *Applications* and then *Create App Integration*
 
-. For Sign-in method, select *OIDC - OpenID Connect*
-. For Application type, select *Web Application*
-. Ensure that *Authorization Code* is selected for *Grant type*
-. Under Sign-in redirect URI’s add https://login.neo4j.com/login/callback as the redirect URI
-. Create an Okta SSO config via console > You can do this via the organization settings for your organization.
-On the SSO config create form, do the following:
-.. Select if you want the SSO config to be applied to organization logins, to specific projects within the org, or both
-.. Enter a Display Name
-.. For IdP Type select Okta
-.. For Client ID enter the Client ID field from the Okta app details page
-.. For Client Secret enter copy the client secret from the Okta app details page
+. For *Sign-in method* select *OIDC - OpenID Connect*. 
 
-. For Discovery URI take the domain from your Okta portal which should be something like https://dev-123-admin.okta.com/ and add .well-known/openid-configuration 
-.. so the final URL should look something like https://dev-123-admin.okta.com/.well-known/openid-configuration
+. For *Application type* select *Web Application*.
+
+. Select *Next*.
+
+. For *Grant type* select *Authorization Code*.
+
+. For *Sign-in redirect URIs* add https://login.neo4j.com/login/callback as the redirect URI
+
+. Save 
+
+. Create an Okta SSO config via console. You can do this via the organization settings for your organization.
+On the SSO config create form, do the following:
+
+. Select if you want the SSO configuration to be applied to organization-level logins (which acts as a login to the Aura console), to specific projects within the organization (where login is on the instance), or both.
+
+. For IdP Type select *Okta*
+
+. For Client ID enter the Okta *Client ID* 
+
+.. For Client Secret enter the *Client Secret*
+
+. For Discovery URI take the domain from your Okta portal which should be something like https://dev-123-admin.okta.com/ and add `.well-known/openid-configuration` so the final URL should look something like https://dev-123-admin.okta.com/.well-known/openid-configuration
+
 .. Configure any additional settings as needed
-. For tenant/instance SSO you’ll have to link the SSO config to the tenant via the tenants SSO configs tab once you’ve created the SSO config.
-. Click Create
-. To test Instance SSO, create an instance now in a tenant that has the just created SSO config linked.
+
+. Click *Create* 
+
+. Configure the additional log in methods
+
+.. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
+
+.. For *Project-level testing* it is recommended to keep the User/password login enabled, so that if SSO fails, you can still access the database.
 
 == FAQ
 
