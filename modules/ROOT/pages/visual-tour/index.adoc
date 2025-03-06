@@ -1,6 +1,7 @@
 [[visual-overview]]
 = Visual tour of the console
 :description: This section introduces the console UI.
+:gds-sessions-page: {neo4j-docs-base-uri}/graph-data-science/current/installation/gds-sessions/ 
 
 == Console structure
 
@@ -30,8 +31,6 @@ This opens a dropdown menu where you can see all the organizations and projects 
 .Breadcrumb navigation / org and project switcher
 image::breadcrumbs.png[Breadcrumb navigation]
 
-[[org-settings]]
-
 === Organizations
 
 Organizations are a layer in the Aura account hierarchy that sits above Projects.
@@ -39,6 +38,7 @@ This allows you to organize and manage multiple projects under a single organiza
 
 Management at this level allows control over all Projects within an Organization and, thus, instances within Projects and lets Organization owners roll out Project-level settings for all Projects simultaneously.
 
+[[org-settings]]
 === Organization settings
 
 On the organization level, you can also find a Settings menu where you can manage your organization's settings, provided that you are an organization admin.
@@ -48,9 +48,18 @@ See xref:query/visual-tour.adoc#copilot[Query co-pilot] and xref:explore/explore
 
 image::enable-copilot.png[]
 
+==== Settings for GDS sessions
+
+include::partial$EAP.adoc[]
+
+The following configuration settings are available for link:{gds-sessions-page}[GDS Sessions]:
+
+* The maximum available memory for each Session
+* The maximum number of concurrent Sessions within the organization
+
 == Data Services
 
-This section contains your instances and the Import service.
+This section contains the data services you have access to.
 To access your data, navigate to a project and xref:getting-started/connect-instance.adoc[connect to an instance].
 
 === Instances
@@ -67,6 +76,20 @@ Additionally, you can also connect the instance to an application.
 If your instance doesn't contain any data, the Import service allows you to import CSV files to your database.
 This service lets you create your data model and map it to your files.
 See the xref:import/introduction.adoc[What is Import?] for more information about this service.
+
+=== Sessions
+
+include::partial$EAP.adoc[]
+
+This page lists the link:{gds-sessions-page}[GDS Sessions] running within a project (if any).
+
+The list shows Session details and a **Delete** button for each Session.
+Session details include:
+
+* The Neo4j database instance containing the data projected in the Session
+* The memory allocated to the Session (configurable in the <<org-settings>> page)
+* The user who created the Session
+* The time remaining to the Session configured time limitfootnote:[Or to the internal time limit.]
 
 == Tools
 
