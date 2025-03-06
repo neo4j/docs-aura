@@ -1,15 +1,15 @@
 = Migrating to the Aura CLI
 :description: Migrate to the Neo4j Aura command line interface.
 
-Aura CLI  has evolved from a Neo4j Labs to a proper Neo4j product.
+Aura CLI  has evolved from a Neo4j Labs to a supported Neo4j product.
 The Neo4j Labs Aura CLI will continue to be available for installation for the foreseeable future, but without any further development.
-We recommend you to move to the Aura CLI as soon as you are able.
+It is recommended that you move to the Aura CLI as soon as you are able.
 This section outlines what you must consider to move the Aura CLI.
 
 
 == Behavior
 
-* The name of the CLI is now "aura-cli".
+* The name of the CLI is now `aura-cli`.
 * Support for using environmental variables has been removed as they can be visible in process listings and can be accidentally logged making them vulnerable to exposure.
   For sensitive values e.g. Aura API client ID and client secret, a secrets manager is recommended.
 * Neo4j Labs Aura CLI used plural names for commands; the new Aura CLI has singular naming instead.
@@ -29,7 +29,7 @@ At the time of general availability, the Aura CLI supports these new features co
 
 Download the Aura CLI from link:https://github.com/neo4j/aura-cli/releases[https://github.com/neo4j/aura-cli/releases].
 It is available as a native binary for Windows, Linux and Mac platforms.
-After downloading the relevant file and extracting the executable, the Aura CLI can be run immediately; there are no dependencies.
+After downloading the relevant file and extracting the executable, the Aura CLI can be run immediately as there are no dependencies.
 
 
 == Commands
@@ -51,8 +51,7 @@ After downloading the relevant file and extracting the executable, the Aura CLI 
 == Command and flag changes with Aura CLI
 
 As far as was possible, the Aura CLI commands and their flags are the same as for the Labs based Aura CLI.
-However, there are some changes.
-See the following sections.
+However, there are some changes as outlined in the following sections.
 
 
 == Config

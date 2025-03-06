@@ -13,53 +13,48 @@ This also applies to Aura Free.
 
 === Aura console classic
 
-. Login into the link:https://console.neo4j.io/[Neo4j Aura Console].
-. Navigate to the top right where your account name is displayed.
-  Click the down arrow.
+. Log in to the link:https://console.neo4j.io/[Neo4j Aura Console].
+. Navigate to the top right where your account name is displayed and use the down arrow to access the account menu.
 +
 image::/aura-cli/console-classic-home.png[]
 +
-. In the a menu with your account name, click **Account Details**.
+. Navigate to **Account Details**.
 . In the **Account Details** display, click **Create** under **Aura API** and **Credentials**.
 +
 image::/aura-cli/console-classic-api-keys.png[]
 +
-. In the pop-up window, enter a client name, then click **Create**.
-. You will be shown the newly created client ID and client secret.
-  Make sure to securely save these as they are required to use the Aura CLI.
+. In the pop-up window, enter a name for the client and then **Create**.
+. Make sure to securely save the generated client ID and client secret as they are required to use the Aura CLI. 
 
 
 === New unified Aura Console experience
 
-. Login into the link:https://console.neo4j.io/[Neo4j Aura Console].
-. Navigate to the top right where your account name is displayed and click the down arrow.
+. Log in to the link:https://console.neo4j.io/[Neo4j Aura Console].
+ Navigate to the top right where your account name is displayed and use the down arrow to access the account menu.
 +
 image::/aura-cli/unified-console-home.png[]
 +
-. In the menu, click **API Keys**.
+. Use *Create** from **API Keys** in the menu to create a new key.
 +
 image::/aura-cli/unified-console-account-dropdown.png[]
 +
-. In the **API Keys** window, click **Create**.
 +
 image::/aura-cli/unified-console-api-keys.png[]
 +
-. In the pop-up window, enter a name for the API key and click **Create**.
+. In the pop-up window, enter a name for the client and then **Create**.
 +
 image::/aura-cli/unified-console-create-api-key.png[]
 +
-. You will be shown the client ID and client secret.
-  Make a note as the client secret will not be shown again and you need both.
-  If you download them, keep them safe.
+. Make sure to securely save the generated client ID and client secret as they are required to use the Aura CLI and they are not shown again.
 
 
 == Configure the Aura CLI with an Aura API key
 
 Configure the Aura CLI with the Aura API client ID and client secret you obtained earlier.
 The Aura CLI refers to these as "credentials".
-You can have several sets of credentials and  choose which one to use.
+You can have several sets of credentials and select which one to use.
 
-. At the command prompt, enter the following, using your values for the items in CAPITALS:
+. At the command prompt, enter the following, using your own values:
 +
 [source, shell]
 ----

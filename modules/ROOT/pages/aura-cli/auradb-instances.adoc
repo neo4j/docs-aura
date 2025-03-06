@@ -6,7 +6,7 @@ The Aura CLI provides a full set of commands to manage the lifecycle of an AuraD
 
 == Create
 
-Before you can create an AuraDB instance, make sure that your desired configuration is available in a tenant where the AuraDB will reside.
+Before you can create an AuraDB instance, make sure that your desired configuration is available in a project where the AuraDB will reside.
 Get these by using the tenant command from xref:aura-cli/auradb-tenants.adoc[Working with AuraDB tenants].
 If you are using Aura Free, there is no need to do this as the configurations are fixed.
 Create an AuraDB instance with:
@@ -16,7 +16,7 @@ Create an AuraDB instance with:
 aura-cli instance create --name YOUR\_INSTANCE\_NAME --type free-db --await 
 ----
 
-For other Aura tiers, provide the following:
+For other Aura plans, provide the following:
 
 * Instance name
 * Memory
@@ -34,14 +34,13 @@ aura-cli instance create --name YOUR_INSTANCE_NAME --cloud-provider YOUR_CLOUD_P
 
 You can skip `--tenant-id` if you have set a default tenant.
 
-The response will provide the connection details for the request AuraDB which will contain authentication details, the username and password.
-They are only shown once.
-Make sure to record these safely and securely.
+The response provides the connection details for the request AuraDB and contains authentication details, the username and password.
+Make sure to record these safely and securely as they are only shown once.
 
 
 == List
 
-Viewing AuraDB instances is achieved by using:
+To see a list of AuraDB instances, use:
 
 [source, shell]
 ----
@@ -65,7 +64,7 @@ aura-cli instance get YOUR_INSTANCE_ID
 
 == Update
 
-A deployed AuraDB instance can have its name, memory or both changed.
+You can change name, memory, or both for a deployed AuraDB instance:
 
 [source, shell]
 ----
@@ -77,8 +76,8 @@ You may omit `--name` and `--memory` as needed but at least one must be present.
 
 == Delete
 
-There's no confirmation required when using the aura-cli for deletion and the operation starts immediately.
-Use with caution:
+If you want to delete an instance, keep in mind that the operation starts immediately and without requiring confirmation.
+Therefore, use with caution:
 
 [source, shell]
 ----
@@ -150,13 +149,10 @@ You can overwrite the content of one AuraDB instance with the content of another
 However, the destination storage must be large enough.
 Use a snapshot of the source AuraDB instance.
 Overwrites can be used for restoration of an AuraDB instance databases, for duplication, moving between regions or any situation where you want to use the content of one AuraDB with another AuraDB.
-Note that the content of the destination AuraDB instance is completely overwritten.
+Keep in mind that the content of the destination AuraDB is **completely overwritten** and the operation does not require confirmation.
+Therefore, use with caution.
 
-There is no confirmation for an overwrite.
-Proceed with caution.
-
-The steps to overwrite an existing AuraDB with the snapshot from another differs for a historical snapshot and the latest snapshot.
-See the following sections.
+The steps to overwrite an existing AuraDB with the snapshot from another differs for a historical snapshot and the latest snapshot, as described in the following sections.
 
 In both cases, the destination AuraDB instance must be running.
 
@@ -199,6 +195,7 @@ Error: [Source snapshot SOURCE_SNAPSHOT_ID is not exportable ]
 ----
 +
 It is not possible at this time for the Aura CLI to indicate which snapshots are exportable.
+See xref:managing-instances/backup-restore-export.adoc#export-create[Export / Create] for more information about exportable snapshots.
 +
 . The destination AuraDB instance content will now be overwritten.
   Depending on the size, this will take several minutes to complete.
@@ -244,8 +241,8 @@ When the status is "Running" the overwrite is completed.
 
 Encryption of data at REST is a standard feature of AuraDB and uses keys from a supported cloud key management service (KMS).
 AuraDB Virtual Dedicated Cloud customers may wish to use their own encryption keys, a capability that is referred to as Customer-Managed Encryption Keys (CMEK).
-More information is available in the Aura documentation for link:https://neo4j.com/docs/aura/classic/platform/security/encryption/[Encryption].
-We advise you to read this before continuing.
+For more information about Customer Managed Keys, see xref:security/encryption.adoc#customer-managed-keys/[Encryption].
+It is recommended to familiarize yourself with this before proceeding.
 The Aura CLI allows management of this feature with these commands:
 
 * `create` - allows Aura to use the key defined in your Cloud Key Management System.
@@ -257,7 +254,7 @@ The Aura CLI allows management of this feature with these commands:
 === Create
 
 To use this command, you must have created your custom managed key in your cloud provider's Key Management System (KMS) and configured its permissions correctly.
-This is explained in the Neo4j AuraDB documentation under link:https://neo4j.com/docs/aura/classic/platform/security/encryption/[Encryption].
+For more information, see xref:security/encryption.adoc[Encryption].
 
 [source, shell]
 ----
@@ -267,8 +264,8 @@ aura-cli customer-managed-key create --tenant-id YOUR_TENANT_ID --type AURADB_TY
 
 === Delete
 
-This command executes immediately, resulting in a loss of data access by any AuraDB which is using the CMEK.
-Use with caution:
+Keep in mind that this command executes immediately, resulting in a loss of data access by any AuraDB which is using the CMEK.
+Therefore, use with caution:
 
 [source, shell]
 ----
