@@ -116,7 +116,7 @@ Skip redirect URI’s for now.
 
 . In the Aura console, Go to *Organization Settings*
 
-. Select if you want the SSO configuration to be applied to organization logins, to specific projects within the organization, or both.
+. Select if you want the SSO configuration to be applied to organization-level logins (which acts as a login to the Aura console), to specific projects within the organization (where login is on the actual instance), or both.
 
 . For IdP Type select *Microsoft Entra ID*
 
@@ -129,6 +129,12 @@ Skip redirect URI’s for now.
 . Configure any additional settings as needed
 
 . Select *Create*
+
+. Configure the additional log in methods
+
+.. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
+
+.. For *Project-level testing* it is recommended to keep the User/password login enabled, so that if SSO fails, you can still access the database.
 
 === Token request scopes
 
@@ -143,19 +149,6 @@ When requesting the token from Azure, the scopes Aura sends are:
 This will result in Azure asking for consent to display details related to these scopes. 
 For more information, see link:https://auth0.com/docs/get-started/apis/scopes/openid-connect-scopes#standard-claims[OpenID Connect Scopes]
 
-== Pilot testing
-
-*Organization-level testing*
-
-Keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
-
-Login to the Aura console with SSO.
-
-*Project-level testing*
-
-Keep the User/password login enabled, so that if SSO fails, you can still access the database.
-Create a new instance in the project with SSO and login.
-
 == FAQ
 
 *Can users get roles added to them in Aura console via SSO and a group to role mapping?*
@@ -166,3 +159,4 @@ No, users must be granted the role on the org via Aura console invites and acces
 
 Ensure that the email field is provided on your user in Microsoft Entra ID. 
 If it already is, contact support for further assistance.
+
