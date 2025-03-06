@@ -3,8 +3,8 @@
 
 Aura CLI  has evolved from a Neo4j Labs to a proper Neo4j product.
 The Neo4j Labs Aura CLI will continue to be available for installation for the foreseeable future, but without any further development.
-Customers are recommended to move to the new Aura CLI as soon as they are able to do so.
-This section outlines what you need to consider to move the new Aura CLI.
+We recommend you to move to the Aura CLI as soon as you are able.
+This section outlines what you must consider to move the Aura CLI.
 
 
 == Behavior
@@ -13,13 +13,13 @@ This section outlines what you need to consider to move the new Aura CLI.
 * Support for using environmental variables has been removed as they can be visible in process listings and can be accidentally logged making them vulnerable to exposure.
   For sensitive values e.g. Aura API client ID and client secret, a secrets manager is recommended.
 * Neo4j Labs Aura CLI used plural names for commands; the new Aura CLI has singular naming instead.
-* It is not possible to return the raw API response body with the new Aura CLI.
-* Flags with the new Aura CLI do not have a short form and must be specified in full length.
+* It is not possible to return the raw API response body with the Aura CLI.
+* Flags with the Aura CLI do not have a short form and must be specified in full length.
 
 
 == Feature set
 
-At the time of general availability, the new Aura CLI supports these new features compared to the previous Labs project:
+At the time of general availability, the Aura CLI supports these new features compared to the previous Labs project:
 
 * Customer-managed keys
 * Beta of GraphQL Data APIs
@@ -27,9 +27,9 @@ At the time of general availability, the new Aura CLI supports these new feature
 
 == Installation
 
-Download the new Aura CLI from link:https://github.com/neo4j/aura-cli/releases[https://github.com/neo4j/aura-cli/releases].
+Download the Aura CLI from link:https://github.com/neo4j/aura-cli/releases[https://github.com/neo4j/aura-cli/releases].
 It is available as a native binary for Windows, Linux and Mac platforms.
-After downloading the relevant file and extracting the executable, the new Aura CLI can be run immediately; there are no dependencies.
+After downloading the relevant file and extracting the executable, the Aura CLI can be run immediately; there are no dependencies.
 
 
 == Commands
@@ -48,9 +48,9 @@ After downloading the relevant file and extracting the executable, the new Aura 
 |====
 
 
-== Command and flag changes with new Aura CLI
+== Command and flag changes with Aura CLI
 
-As far as was possible, the new Aura CLI commands and their flags are the same as for the Labs based Aura CLI.
+As far as was possible, the Aura CLI commands and their flags are the same as for the Labs based Aura CLI.
 However, there are some changes.
 See the following sections.
 
@@ -63,13 +63,13 @@ If deletion is wanted, then remove it from the JSON configuration file, either _
 
 == Create a new AuraDB
 
-When creating an Aura instance with the new Aura CLI, the memory size is specified with an integer appended with "GB" e.g. "8GB".
+When creating an Aura instance with the Aura CLI, the memory size is specified with an integer appended with "GB" e.g. "8GB".
 Previously, this was just the integer.
 
 
 == Delete an AuraDB
 
-The new Aura CLI does not prompt for confirmation when deleting an AuraDB and starts the operation immediately.
+The Aura CLI does not prompt for confirmation when deleting an AuraDB and starts the operation immediately.
 
 
 == Update an AuraDB
