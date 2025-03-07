@@ -8,7 +8,7 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 
 AuraDB Virtual Dedicated Cloud and AuraDS Enterprise run in a dedicated AWS cloud account, Azure subscription, or GCP project to achieve complete isolation for your deployment.
-Additional Virtual Private Cloud (VPC) boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected. 
+Additional Virtual Private Cloud (VPC) boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
 The Aura console resides in a separate VPC, isolated from the rest of the Aura services.
 
 == Network access
@@ -20,7 +20,7 @@ If public traffic is enabled, your Aura instances are public and traffic to them
 To make your instance completely private, you need to disable public traffic, use the cloud provider's network, and create a private endpoint inside your VPC, which gives you a private connection to Aura.
 The only way to connect to your database is from inside your network (your VPC in your AWS/Azure/GCP account) using an internal IP address you choose and DNS records you create.
 
-To configure network access, you need to be authorized to access the part of the infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC. 
+To configure network access, you need to be authorized to access the part of the infrastructure that runs and handles these instances as well as the networking used to establish secure connections between the database and the application's VPC.
 This includes the ability to connect over the cloud provider's private link and private endpoint.
 
 To configure settings for network access to your instance, go to *Aura console* > *Project settings* > *Security & Networking* > *Private endpoints* > *New network access configuration*.
@@ -35,9 +35,9 @@ The Aura console provides a step-by-step configuration guide to:
 . *Disable public traffic (optional)*
 If you disable public traffic it is highly recommended to test connectivity through the private endpoint before disabling public traffic.
 
-You can return to Step 4 at any time to disable public traffic, even if you’ve already completed the network access configuration and initially allowed public traffic. 
+You can return to Step 4 at any time to disable public traffic, even if you’ve already completed the network access configuration and initially allowed public traffic.
 To do this, click through the steps in the network access configuration guide until you reach Step 4, where there is the option to disable public traffic.
-Disabling public traffic does not take effect immediately. 
+Disabling public traffic does not take effect immediately.
 You can monitor the status change in the console to confirm when the process is complete.
 
 To continue accessing Browser and Bloom, you can configure a VPN in your VPC and connect to these services over the VPN.
@@ -231,7 +231,7 @@ image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing Browser and Bl
 .. Select your product from the available options.
 .. Select the appropriate region for your deployment. (Azure Private Link applies to all instances in the region.)
 .. Enter the *Target Azure Subscription IDs*.
-.. Select *Enable Private Link*. 
+.. Select *Enable Private Link*.
 
 . Obtain a Private Link service name
 .. After enabling Private Link, you receive a Private Link service name in the Aura console.
@@ -263,7 +263,7 @@ Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-pe
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-This private link section is cloud-agnostic and therefore applicable to all clouds. 
+This private link section is cloud-agnostic and therefore applicable to all clouds.
 A private link provides secure network connectivity between your application and AuraDB without exposing traffic to the public internet.
 
 The term “private link” refers to:
@@ -272,23 +272,23 @@ The term “private link” refers to:
 * PrivateLink = AWS
 * Private Link = Azure
 
-The following steps explain the process of establishing a private link connection to securely connect your application to an AuraDB Virtual Dedicated Cloud environment. 
+The following steps explain the process of establishing a private link connection to securely connect your application to an AuraDB Virtual Dedicated Cloud environment.
 
 [NOTE]
 ======
-The dbid: abcd1234 and orch-id: 0000 are used in this example. 
+The dbid: abcd1234 and orch-id: 0000 are used in this example.
 These are different in your AuraDB Virtual Dedicated Cloud environment.
 ======
 
 . The application initializes a driver connection to neo4j+s://abcd1234.production-orch-0000.neo4j.io.
 . The network layer then queries the DNS server to resolve the fully qualified domain name (FQDN) (in this case, abcd1234.production-orch-0000.neo4j.io) to its corresponding IP address.
 . The Cloud Virtual Network private DNS is queried, and it resolves the FQDN to 10.10.10.10, based on the wildcard DNS A record created: *.production-orch-0000.neo4j.io -> 10.10.10.10
-. The application's connection is directed to 10.10.10.10, which is the private link endpoint. 
+. The application's connection is directed to 10.10.10.10, which is the private link endpoint.
 From there, the private link endpoint forwards the network connection to the private ingress through the private link.
 . The private ingress extracts the dbid from the FQDN and directs the connection to the appropriate Aura instance (dbid: abcd1234).
 . The Aura instance responds by sending the Neo4j cluster routing table back to the application, which contains information about the instances and their roles.
 . Based on the type of transaction (read or write) the driver selects an appropriate instance to execute a read or write transaction. The code has the ability to direct the transaction to the appropriate instances this way.
-. Similar to before, the Cloud Virtual Network private DNS is queried and resolves the FQDN to 10.10.10.10. The application's connection is sent to the private link endpoint (10.10.10.10), which forwards the network connection to the private ingress through the private link. 
+. Similar to before, the Cloud Virtual Network private DNS is queried and resolves the FQDN to 10.10.10.10. The application's connection is sent to the private link endpoint (10.10.10.10), which forwards the network connection to the private ingress through the private link.
 The private ingress then directs the connection to the Aura instance with dbid: abcd1234.
 . Finally, the write transaction is received and executed within the Aura instance with dbid: abcd1234.
 
@@ -303,7 +303,7 @@ The private ingress then directs the connection to the Aura instance with dbid: 
 
 |abcd1234.production-orch-0000.neo4j.io
 |role: read
-|=== 
+|===
 
 == Test connectivity through the private endpoint
 
@@ -314,7 +314,7 @@ Use the `nslookup` command to confirm whether the Fully Qualified Domain Names (
 nslookup <dbid>.production-orch-<orchestra>.neo4j.io
 ----
 
-Use cURL from a VM instance or a container located in the related VPC network. 
+Use cURL from a VM instance or a container located in the related VPC network.
 
 [source,bash]
 ----
@@ -342,6 +342,38 @@ Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 443
 # if you are using AuraDS
 Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 8491
 ----
+
+=== Custom endpoints with private link
+
+In addition to the production-orch-<orch>.neo4j.io DNS records configured for your private link databases, you must add the following records in order for a Custom Endpoint assigned to a Private Link database to work.
+When configuring a custom endpoint with a URI like `my-endpoint-abcdef-123456.endpoints.neo4j.io`, you must add the following DNS records for the custom endpoint to function properly:
+
+[source,bash]
+----
+my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
+a-my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
+b-my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
+c-my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
+d-my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
+----
+
+*Alternative wildcard approach*
+
+Instead of adding individual records for a custom endpoint, it is possible to use a wildcard:
+
+[source,bash]
+----
+*.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
+----
+
+This would automatically cover any custom endpoint created for that region.
+Note that similarly to the individual records, this wildcard record must also be added in addition to the `production-orch-<orch>.neo4j.io` DNS records as mentioned above.
+
+[IMPORTANT]
+====
+If users have regions with different private link endpoints, but have linked those endpoints to one client VPC , then the wildcard record would direct all traffic for custom endpoints to only one region—whichever is associated with the IP address used in the DNS records.
+This breaks routing for custom endpoints located in the other regions, and therefore, if you do not have a simple private link setup, it is recommended to use the individual custom endpoint records, rather than the wildcard.
+====
 
 == Supported TLS cipher suites
 

@@ -2,10 +2,20 @@
 = Custom endpoints
 :description: This section describes custom endpoints.
 
+label:AuraDB-Professional[]
+label:AuraDB-Business-Critical[]
+label:AuraDB-Enterprise[]
+
 Custom endpoints can be used for database management and migration.
 
 You can create custom endpoints for your instances directly from the console.
 This allows you to establish connection to a database using this endpoint instead of the `<dbid>`.
+
+[NOTE]
+====
+Once a custom endpoint is created (and thus assigned) or re-assigned to an instance no further changes can be made for up to three hours.
+If you re-assign an endpoint, you have the option to undo the re-assignment at any time without waiting.
+====
 
 [.shadow]
 image::endpoints.png[width=800]
@@ -16,6 +26,8 @@ Use the *Create custom endpoint* button to define your endpoint.
 Choose an appropriate name for the endpoint (it can only contain lowercase letters, numbers, and hyphens) and select which instance to assign the endpoint to.
 Note that the name doesn't have to be unique, Aura will append a series of random characters to the name to ensure that the URL is unique, regardless of what you name the endpoint.
 
+*Authentication* to the custom endpoint is via the username / password credentials for the assigned database instance.
+
 Once a custom endpoint has been assigned to an instance, it will be listed along with existing custom endpoints in the menu in the Project settings.
 They can be managed both from this menu as well as from the instance card.
 
@@ -23,9 +35,11 @@ They can be managed both from this menu as well as from the instance card.
 image::manage-endpoints.png[width=600]
 
 A custom endpoint can be configured to a different instance or deleted.
+If you reassign a custom endpoint, ensure that the instance security and networking configurations you need are also applied to your target assigned instance.
 
-[NOTE]
-====
-Once a custom endpoint is created (and thus assigned) or re-assigned to an instance, you have to wait three hours before you can make any further changes to it.
-If you re-assign an endpoint, you have the option to undo the re-assignment at any time without waiting.
-====
+* *For CMEK enabled instances* - make sure both assigned instances have the same key.
+
+* *For Private link* - Custom endpoints are allowed to be established for private link enabled instances within the same region.
+If a custom endpoint is assigned to an instance with private traffic enabled (public traffic disabled) it cannot then be linked to an instance with public traffic enabled, and vice versa.
+If a custom endpoint was once assigned to a private link enabled instance that has later been destroyed, these rules still apply.
+For more information, see xref:security/secure-connections.adoc#_private_links[Private links].
