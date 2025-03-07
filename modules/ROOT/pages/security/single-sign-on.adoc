@@ -116,7 +116,13 @@ Skip redirect URI’s for now.
 
 . In the Aura console, go to *Organization Settings* > *Security* > *Single Sign On* > *New configuration*
 
-. Select if you want the SSO configuration to be applied to organization-level logins (which acts as a login to the Aura console), to specific projects within the organization (where login is on the instance), or both.
+. Select how you want the SSO configuration to be applied in Aura:
+
+.. *Use as a log in method for the organization* applies to organization-level logins (which acts as a login to the Aura console).
+
+.. *Use as a login method for instances within Projects in this Org* applies to the project-level and you can select specific projects within the organization (where login is on the instance).
+
+.. Or, you can select both
 
 . For IdP Type select *Microsoft Entra ID*
 
@@ -127,6 +133,10 @@ Skip redirect URI’s for now.
 . For Discovery URI enter the *OpenID Connect metadata document URI*
 
 . Configure any additional settings as needed
+
+..  For organization-level SSO, no additional settings needed
+
+.. For project-level SSO, enter role mappings if applicable
 
 . Select *Create*
 
@@ -167,7 +177,13 @@ For more information, see link:https://auth0.com/docs/get-started/apis/scopes/op
 
 . In the Aura console, go to *Organization Settings* > *Security* > *Single Sign On* > *New configuration*
 
-. Select if you want the SSO configuration to be applied to organization-level logins (which acts as a login to the Aura console), to specific projects within the organization (where login is on the instance), or both.
+. Select how you want the SSO configuration to be applied in Aura:
+
+.. *Use as a log in method for the organization* applies to organization-level logins (which acts as a login to the Aura console).
+
+.. *Use as a login method for instances within Projects in this Org* applies to the project-level and you can select specific projects within the organization (where login is on the instance).
+
+.. Or, you can select both
 
 . For IdP Type select *Okta*
 
@@ -175,9 +191,17 @@ For more information, see link:https://auth0.com/docs/get-started/apis/scopes/op
 
 . For Client Secret enter the *Client Secret*
 
-. For Discovery URI take the domain from your Okta portal which should be something like https://dev-123-admin.okta.com/ and add `.well-known/openid-configuration` so the final URL should look something like https://dev-123-admin.okta.com/.well-known/openid-configuration
+. Choose discovery method
+
+.. For Discovery URI take the domain from your Okta portal which should be something like https://dev-123-admin.okta.com/ and add `.well-known/openid-configuration` so the final URL should look something like https://dev-123-admin.okta.com/.well-known/openid-configuration
+
+.. Alternatively, you can select *Manual Configuration* and enter the values separately, including Issuer, Authorization Endpoint Token Endpoint and JWKS URI.
 
 . Configure any additional settings as needed
+
+..  For organization-level SSO, no additional settings needed
+
+.. For project-level SSO, enter role mappings if applicable
 
 . Select *Create*
 
