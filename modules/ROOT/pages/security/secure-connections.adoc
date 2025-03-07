@@ -305,6 +305,38 @@ The private ingress then directs the connection to the Aura instance with dbid: 
 |role: read
 |===
 
+=== Custom endpoints with private link
+
+In addition to the production-orch-<orch>.neo4j.io DNS records configured for your private link databases, you must add the following records in order for a Custom Endpoint assigned to a Private Link database to work.
+When configuring a custom endpoint with a URI like `my-endpoint-abcdef-123456.endpoints.neo4j.io`, you must add the following DNS records for the custom endpoint to function properly:
+
+[source,bash]
+----
+my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
+a-my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
+b-my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
+c-my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
+d-my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
+----
+
+*Alternative wildcard approach*
+
+Instead of adding individual records for a custom endpoint, it is possible to use a wildcard:
+
+[source,bash]
+----
+*.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
+----
+
+This would automatically cover any custom endpoint created for that region.
+Note that similarly to the individual records, this wildcard record must also be added in addition to the `production-orch-<orch>.neo4j.io` DNS records as mentioned above.
+
+[IMPORTANT]
+====
+If users have regions with different private link endpoints, but have linked those endpoints to one client VPC , then the wildcard record would direct all traffic for custom endpoints to only one region—whichever is associated with the IP address used in the DNS records.
+This breaks routing for custom endpoints located in the other regions, and therefore, if you do not have a simple private link setup, it is recommended to use the individual custom endpoint records, rather than the wildcard.
+====
+
 == Test connectivity through the private endpoint
 
 Use the `nslookup` command to confirm whether the Fully Qualified Domain Names (FQDNs) of your Aura instances are directed to the IP address of the PrivateLink endpoint (usually represented by an internal IP address, such as 10.0.0.0).
@@ -342,38 +374,6 @@ Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 443
 # if you are using AuraDS
 Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 8491
 ----
-
-=== Custom endpoints with private link
-
-In addition to the production-orch-<orch>.neo4j.io DNS records configured for your private link databases, you must add the following records in order for a Custom Endpoint assigned to a Private Link database to work.
-When configuring a custom endpoint with a URI like `my-endpoint-abcdef-123456.endpoints.neo4j.io`, you must add the following DNS records for the custom endpoint to function properly:
-
-[source,bash]
-----
-my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
-a-my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
-b-my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
-c-my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
-d-my-endpoint-abcdef-123456.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
-----
-
-*Alternative wildcard approach*
-
-Instead of adding individual records for a custom endpoint, it is possible to use a wildcard:
-
-[source,bash]
-----
-*.endpoints.neo4j.io IN A <ip-address-of-your-endpoint>
-----
-
-This would automatically cover any custom endpoint created for that region.
-Note that similarly to the individual records, this wildcard record must also be added in addition to the `production-orch-<orch>.neo4j.io` DNS records as mentioned above.
-
-[IMPORTANT]
-====
-If users have regions with different private link endpoints, but have linked those endpoints to one client VPC , then the wildcard record would direct all traffic for custom endpoints to only one region—whichever is associated with the IP address used in the DNS records.
-This breaks routing for custom endpoints located in the other regions, and therefore, if you do not have a simple private link setup, it is recommended to use the individual custom endpoint records, rather than the wildcard.
-====
 
 == Supported TLS cipher suites
 

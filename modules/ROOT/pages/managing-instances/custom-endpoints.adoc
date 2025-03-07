@@ -42,4 +42,4 @@ If you reassign a custom endpoint, ensure that the instance security and network
 * *For Private link* - Custom endpoints are allowed to be established for private link enabled instances within the same region.
 If a custom endpoint is assigned to an instance with private traffic enabled (public traffic disabled) it cannot then be linked to an instance with public traffic enabled, and vice versa.
 If a custom endpoint was once assigned to a private link enabled instance that has later been destroyed, these rules still apply.
-For more information, see xref:security/secure-connections.adoc#_private_links[Private links].
+For more information, see xref:security/secure-connections.adoc#_custom_endpoints_with_private_link[Private links].
