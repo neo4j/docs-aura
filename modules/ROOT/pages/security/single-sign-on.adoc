@@ -114,7 +114,7 @@ Skip redirect URI’s for now.
 .. Adding a new Web platform 
 .. Enter `https://login.neo4j.com/login/callback` as the redirect URI.
 
-. In the Aura console, Go to *Organization Settings*
+. In the Aura console, go to *Organization Settings* > *Security* > *Single Sign On* > *New configuration*
 
 . Select if you want the SSO configuration to be applied to organization-level logins (which acts as a login to the Aura console), to specific projects within the organization (where login is on the instance), or both.
 
@@ -130,7 +130,7 @@ Skip redirect URI’s for now.
 
 . Select *Create*
 
-. Configure the additional log in methods
+. Select the additional log in methods
 
 .. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
 
@@ -165,8 +165,7 @@ For more information, see link:https://auth0.com/docs/get-started/apis/scopes/op
 
 . Save 
 
-. Create an Okta SSO config via console. You can do this via the organization settings for your organization.
-On the SSO config create form, do the following:
+. In the Aura console, go to *Organization Settings* > *Security* > *Single Sign On* > *New configuration*
 
 . Select if you want the SSO configuration to be applied to organization-level logins (which acts as a login to the Aura console), to specific projects within the organization (where login is on the instance), or both.
 
@@ -174,15 +173,15 @@ On the SSO config create form, do the following:
 
 . For Client ID enter the Okta *Client ID* 
 
-.. For Client Secret enter the *Client Secret*
+. For Client Secret enter the *Client Secret*
 
 . For Discovery URI take the domain from your Okta portal which should be something like https://dev-123-admin.okta.com/ and add `.well-known/openid-configuration` so the final URL should look something like https://dev-123-admin.okta.com/.well-known/openid-configuration
 
-.. Configure any additional settings as needed
+. Configure any additional settings as needed
 
-. Click *Create* 
+. Select *Create*
 
-. Configure the additional log in methods
+. Select the additional log in methods
 
 .. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
 
