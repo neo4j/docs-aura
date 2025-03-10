@@ -122,29 +122,29 @@ Skip redirect URI’s for now.
 
 .. *Use as a login method for instances within Projects in this Org* applies to the project-level and you can select specific projects within the organization (where login is on the instance).
 
-.. Or, you can select both.
+.. Or, select both.
 
-. For IdP Type select *Microsoft Entra ID*
+. For IdP Type select *Microsoft Entra ID*.
 
-. For Client ID enter the *Application (client) ID* from the Azure app
+. For Client ID enter the *Application (client) ID* from the Azure app.
 
-. For Client Secret enter the client secret value (not secret id) from the secret you created in the Azure app
+. For Client Secret enter the client secret value (not secret id) from the secret you created in the Azure app.
 
-. For Discovery URI enter the *OpenID Connect metadata document URI*
+. For Discovery URI enter the *OpenID Connect metadata document URI*.
 
-. Configure any additional settings as needed
+. Configure any additional settings as needed:
 
-..  For organization-level SSO, no additional settings needed
+..  For organization-level SSO, no additional settings needed.
 
-.. For project-level SSO, enter role mappings if applicable
+.. For project-level SSO, enter role mappings if applicable.
 
-. Select *Create*
+. Select *Create*.
 
-. Select the additional log in methods
+. Select the additional log in methods:
 
 .. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
 
-.. For *Project-level testing* it is recommended to keep the User/password login enabled, so that if SSO fails, you can still access the database.
+.. For *Project-level testing* it is recommended to keep the User/password login enabled, so that if SSO fails, you can still access the instance.
 
 === Token request scopes
 
@@ -171,11 +171,11 @@ For more information, see link:https://auth0.com/docs/get-started/apis/scopes/op
 
 . For *Grant type* select *Authorization Code*.
 
-. For *Sign-in redirect URIs* add https://login.neo4j.com/login/callback as the redirect URI
+. For *Sign-in redirect URIs* add https://login.neo4j.com/login/callback as the redirect URI.
 
-. Save 
+. Save.
 
-. In the Aura console, go to *Organization Settings* > *Security* > *Single Sign On* > *New configuration*
+. In the Aura console, go to *Organization Settings* > *Security* > *Single Sign On* > *New configuration*.
 
 . Select how you want the SSO configuration to be applied in Aura:
 
@@ -183,13 +183,13 @@ For more information, see link:https://auth0.com/docs/get-started/apis/scopes/op
 
 .. *Use as a login method for instances within Projects in this Org* applies to the project-level and you can select specific projects within the organization (where login is on the instance).
 
-.. Or, you can select both
+.. Or, select both.
 
-. For IdP Type select *Okta*
+. For IdP Type select *Okta*.
 
-. For Client ID enter the Okta *Client ID* 
+. For Client ID enter the Okta *Client ID*.
 
-. For Client Secret enter the *Client Secret*
+. For Client Secret enter the *Client Secret*.
 
 . Select discovery method:
 
@@ -198,19 +198,19 @@ The final URL should look similar to `https://dev-123-admin.okta.com/.well-known
 
 .. Alternatively, you can select *Manual Configuration* and enter the values separately, including Issuer, Authorization Endpoint, Token Endpoint and JWKS URI.
 
-. Configure any additional settings as needed
+. Configure any additional settings as needed:
 
 ..  For organization-level SSO, no additional settings needed.
 
 .. For project-level SSO, enter role mappings if applicable.
 
-. Select *Create*
+. Select *Create*.
 
-. Select the additional log in methods
+. Select the additional log in methods:
 
 .. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
 
-.. For *Project-level testing* it is recommended to keep the User/password login enabled, so that if SSO fails, you can still access the database.
+.. For *Project-level testing* it is recommended to keep the User/password login enabled, so that if SSO fails, you can still access the instance.
 
 == FAQ
 
