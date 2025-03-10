@@ -193,7 +193,8 @@ For more information, see link:https://auth0.com/docs/get-started/apis/scopes/op
 
 . Select discovery method:
 
-.. For Discovery URI take the domain from your Okta portal which should be something like https://dev-123-admin.okta.com/ and add `.well-known/openid-configuration` so the final URL should look something like https://dev-123-admin.okta.com/.well-known/openid-configuration
+.. For Discovery URI take the domain from your Okta portal which should be something like https://dev-123-admin.okta.com/ and add `.well-known/openid-configuration`.
+The final URL should look similar to `https://dev-123-admin.okta.com/.well-known/openid-configuration`.
 
 .. Alternatively, you can select *Manual Configuration* and enter the values separately, including Issuer, Authorization Endpoint, Token Endpoint and JWKS URI.
 
