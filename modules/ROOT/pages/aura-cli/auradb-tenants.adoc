@@ -1,6 +1,12 @@
 = Working with AuraDB tenants
 :description: Work with AuraDB tenants in the Neo4j Aura command line interface.
 
+[NOTE]
+====
+The Aura CLI makes heavy use of console commands containing the keyword "tenant".
+To be consistent with that, all Aura CLI documentation pages use the term "tenant", which other parts of the documentation refer to as "project" instead.
+====
+
 Aura CLI allows you to list the Aura tenants you can access and then obtain the available AuraDB instance for each one.
 To list the tenants:
 

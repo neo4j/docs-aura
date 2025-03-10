@@ -1,6 +1,12 @@
 = Configuration of Aura CLI
 :description: Configure the Neo4j Aura command line interface.
 
+[NOTE]
+====
+The Aura CLI makes heavy use of console commands containing the keyword "tenant".
+To be consistent with that, all Aura CLI documentation pages use the term "tenant", which other parts of the documentation refer to as "project" instead.
+====
+
 Aura CLI has two commands for its own configuration:
 
 * `credential` - sets of client IDs and client secrets that are used to authenticate with the Aura API that the Aura CLI uses to perform its own operations.

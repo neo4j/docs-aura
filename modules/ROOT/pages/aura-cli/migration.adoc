@@ -1,7 +1,13 @@
 = Migrating to the Aura CLI
 :description: Migrate to the Neo4j Aura command line interface.
 
-Aura CLI  has evolved from a Neo4j Labs to a supported Neo4j product.
+[NOTE]
+====
+The Aura CLI makes heavy use of console commands containing the keyword "tenant".
+To be consistent with that, all Aura CLI documentation pages use the term "tenant", which other parts of the documentation refer to as "project" instead.
+====
+
+The Aura CLI has evolved from a Neo4j Labs to a supported Neo4j product.
 The Neo4j Labs Aura CLI will continue to be available for installation for the foreseeable future, but without any further development.
 It is recommended that you move to the Aura CLI as soon as you are able.
 This section outlines what you must consider to move the Aura CLI.
@@ -21,7 +27,7 @@ This section outlines what you must consider to move the Aura CLI.
 
 At the time of general availability, the Aura CLI supports these new features compared to the previous Labs project:
 
-* Customer-managed keys
+* Customer Managed keys
 * Beta of GraphQL Data APIs
 
 
