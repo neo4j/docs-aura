@@ -2,24 +2,19 @@
 = Security log forwarding
 
 label:AuraDB-Business-Critical[]
-label:AuraDB-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 
 With security log forwarding, you can stream security logs directly to a cloud project owned by your organization, in real time.
 
 To access *Log forwarding*:
 
-. Navigate to the https://console.neo4j.io/[Neo4j Aura console] in your browser.
-. Select *Log forwarding* from the sidebar menu.
+. Navigate to *Settings* under the Project section in the sidebar.
+. Click *Log forwarding*. If you cannot see this option, you may not have the necessary permissions.
 
 This will display a list of currently configured log forwarding processes for the active project.
 
 If no log forwarding process is set up, a button to do so is displayed in the center of the page.
-
-[NOTE]
-====
-A log forwarding process is scoped to a specific product and region combination, and limited to one for each.
-====
 
 == Set up log forwarding
 
@@ -37,7 +32,10 @@ The complete steps for setting up log forwarding depends on the chosen cloud pro
 Exhaustive instructions are provided in the wizard which appears by following the steps below.
 
 . Navigate to the *Log forwarding* page as described above.
-. Click *Create new log forwarding process*.
+. Click *Configure log forwarding*.
+. Select the scope for log forwarding.
+* label:AuraDB-Virtual-Dedicated-Cloud[] All instances matching the selected product and region will have their logs forwarded.
+* label:AuraDB-Business-Critical[] A specific instance will have its logs forwarded.
 . Follow the instructions specific to your cloud provider.
 
 == Output destination
