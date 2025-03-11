@@ -16,25 +16,26 @@ See xref::/getting-started/create-account.adoc[Create an account] and xref::/get
 
 Import the Northwind dataset to your instance:
 
-* In Aura, click **Learn** at the top right.
-* In the **Beginner** page, click the **Learn the basics** guide.
+* In Aura, find the **Learn** button at the top right.
+* In the **Beginner** page, select the **Learn the basics** guide.
 * When prompted to **Connect to instance**, select the instance where you would like to import sample data.
-* In step 4 of 11 of the guide, click **Get the Northwind dataset**.
-* In the **Import** page, click **Run import**.
+* In step 4 of 11 of the guide, import via **Get the Northwind dataset**.
+* Run the import from the **Import** page via **Run import**.
 
-The examples on this page refer to dataset.
+The examples on this page refer to the Northwind dataset.
 
 
 == Create a dashboard
 
 Create a new dashboard:
 
-. In the **Dashboards** page, click **Create dashboard** at the top right.
-. In the **New dashboard** dialog, assign a title and an optional description to your dashboard and click **Create**.
+. In the **Dashboards** page, create a new dashboard with **Create dashboard** at the top right.
+. If prompted to **Connect to instance**, select your instance.
+. In the **New dashboard** dialog, assign a title and an optional description to your dashboard, then **Create**.
 . Click the dashboard tile.
-. Your dashboard has a single page.
-// add a step as soon as page titles can be edited.
-. Click **Add card** to create cards which represent visualizations.
+. Your dashboard has a single page titled "Default page".
+. Optionally edit the page name by hovering it, then using the three dots (**Options**) and **Edit page name**.
+. Use **Add card** to create cards which represent visualizations.
 
 
 === Add a card with a line chart
@@ -43,19 +44,16 @@ Create a line chart which displays the number of products for each order ID.
 
 In the dashboard page tab:
 
-. Click *Add card* at the bottom right of the page.
+. Use **Add card** at the bottom right of the page.
 . Optionally change the title of the card by clicking and editing, then confirm.
-. In the new card, click the three dots icon at the top right, then select **Line chart** as the **Chart type**.
-. Click *Edit* to edit the Cypher query of the card.
-. Paste the following Cypher query to the input field:
+. In the new card, use the three dots icon at the top right, then select **Line chart** as the **Chart type**.
+. **Edit** the Cypher query of the card and paste the following Cypher query to the input field, then **Save**:
 +
 [source,cypher]
 ----
 MATCH (o:Order)-[:ORDERS]->(p:Product)
 RETURN o.orderID AS OrderID, count(p) as Products
 ----
-+
-. Click **Save**.
 
 Your line chart should look like this:
 
@@ -69,11 +67,10 @@ Create a bar chart which displays the number of orders per customer.
 
 In the dashboard page tab:
 
-. Click *Add card* at the bottom right of the page.
+. Use **Add card** at the bottom right of the page.
 . Optionally change the title of the card by clicking and editing, then confirm.
 . In the new card, click the three dots icon at the top right, then select **Bar chart** as the **Chart type**.
-. Click *Edit* to edit the Cypher query of the card.
-. Paste the following Cypher query to the input field:
+. **Edit** the Cypher query of the card and paste the following Cypher query to the input field, then **Save**:
 +
 [source,cypher]
 ----
@@ -81,8 +78,6 @@ MATCH (c:Customer)-[:PURCHASED]->(o:Order)
 RETURN c.contactName AS Customer, count(o) AS Orders
 ORDER BY Orders DESC
 ----
-+
-. Click **Save**.
 
 Your bar chart should look like this:
 
