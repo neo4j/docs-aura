@@ -6,18 +6,26 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDB-Business-Critical[]
 label:AuraDS-Enterprise[]
 
+
+Single Sign-On (SSO) enables organization owners and admins to use your organization’s identity provider (IdP) to authenticate users so they can access the Aura console and Aura instances.
+
+Aura supports SSO authentication and authorization using https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc[Microsoft Entra] and link:https://developer.okta.com/docs/guides/oin-sso-overview/[Okta] as IdPs, implementing the OpenID Connect (OIDC) protocol.
+
+As the service provider, Neo4j Aura redirects authentication requests to the configured IdP using the OpenID Connect (OIDC) protocol. 
+Aura also supports authenticating with Google as the identity provider.
+When a user attempts to log in, Aura generates a redirect URL with authentication parameters and sends the user to the IdP for authentication. 
+After successful authentication, the IdP redirects the user back to Aura with a secure token, allowing Aura to establish an authenticated session.
+
 == SSO levels
 
-Organization admins can configure SSO at the organization-level and project-level.
-SSO is a log-in method. 
-Access, roles, and permissions are dictated by role-based access control (RBAC).
+Users with either the `Organization admin` or the `Organization owner` role can configure SSO at both the organization-level and project-level.
 
 * *Organization-level:* Allows org admins to control how users log in when they are trying to access the organization. It is a log-in method for the Aura console.
 
 * *Project-level:*  Impacts new database instances created within that project.
 It ensures users logging in with SSO have access to the database instances within the project.
 It depends on RBAC if the user can access and view or modify data within the instances themselves.
-For this level, the role mapping may be used to grant users different levels of access based on a role in their identity provider (IdP).
+For this level, the role mapping may be used to grant users different levels of access based on a role in their IdP.
 It *does not* give access to edit the project settings, for example to edit the project name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
 
 == Log-in methods
@@ -25,37 +33,37 @@ It *does not* give access to edit the project settings, for example to edit the 
 Log-in methods are different for each SSO level.
 Administrators can configure a combination of one or more of the log-in methods.
 
-*Organization-level supports:*
+*Supported log-in methods at the organization-level:*
 
 * Email/password
 * Okta
 * Microsoft Entra ID
 * Google SSO (not Google Workspace SSO)
 
-*Project-level supports:*
+*Supported log-in methods at the project-level:*
 
 * User/password
 * Okta
 * Microsoft Entra ID
 
-At the project-level admins cannot disable user/password, but at the organization-level admins can disable email/password and Google SSO as long as there is at least one other custom SSO provider configured.
+At the project-level, admins cannot disable user/password. 
+However, at the organization-level, admins can disable email/password and Google SSO as long as at least one other custom SSO provider is configured.
 
 == Setup requirements
 
 Accessing Aura with SSO requires:
 
-* Authorization Code Flow
-* A publicly accessible IdP server
+Aura requires the Authorization Code Flow, an OAuth2 authentication method that involves redirecting users to a publicly accessible IdP server for login.
 
 To create an SSO Configuration, either a Discovery URI or a combination of Issuer, Authorization Endpoint, Token Endpoint, and JWKS URI is required.
 
 == Create a new SSO configuration
 
-From the *Organization settings*, go to *Single Sign-On* to set up a new SSO configuration.
+. From the *Organization settings*, go to *Single Sign-On* to set up a new SSO configuration.
 
-The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on Organization level, only on Project level, or both.
+. The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on organization-level, only on project-level, or both. 
 
-The required basic SSO configuration information can be retrieved from the IdP.
+. The required basic SSO configuration information can be retrieved from the IdP.
 Entering the Discovery URI pre-fills the fields below.
 If this is not known these fields can be completed manually.
 
@@ -63,9 +71,13 @@ If this is not known these fields can be completed manually.
 [.shadow]
 image::sso.png[A screenshot of the SSO configuration,640,480]
 
+== Log-in link
+
+After setting up SSO, the `Organization sso login` link can be found in the organization summary page in the Aura console.
+
 == Role mapping
 
-Role mapping applies to all new instances in the selected project.
+Role mapping applies to all new instances created within the selected project.
 To configure role mapping for an individual instance, contact support.
 
 == Individual instance-level
@@ -73,12 +85,141 @@ To configure role mapping for an individual instance, contact support.
 Support can assist with SSO configurations at instance-level including:
 
 * Role mapping specific to a database instance
-* Custom groups claim besides `groups`
+* link:https://auth0.com/docs/secure/tokens/json-web-tokens/create-custom-claims[Create custom claims] besides `groups`
 * Updating SSO on already running instances
 
 If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
 
-
 . The _Project ID_ of the projects you want to use SSO for. Click on the project settings to copy the ID.
 
 . The name of your IdP
+
+== Microsoft Entra ID SSO 
+
+. In the *Azure Portal*, go to *App Registrations* and then *New Registration*.
+
+. Add a name for the new app registration and select *Register*. 
+Skip redirect URI’s for now.
+
+. On the app overview page, take note of the Application (client) ID.
+
+. Select the *Client Credentials* link to open the client credentials page.
+
+. Create a new secret and *copy the Value field*, it won’t be visible after leaving the page.
+
+. Go back to the *App Overview* page and open the *App Endpoints* and take note of the OpenID Connection metadata document URI
+
+. Under *Authentication* in the left-hand navigation, setup redirect URLs:
+
+.. Adding a new Web platform 
+.. Enter `https://login.neo4j.com/login/callback` as the redirect URI.
+
+. In the Aura console, go to *Organization Settings* > *Security* > *Single Sign On* > *New configuration*
+
+. Select how you want the SSO configuration to be applied in Aura:
+
+.. *Use as a log in method for the organization* applies to organization-level logins (which acts as a login to the Aura console).
+
+.. *Use as a login method for instances within Projects in this Org* applies to the project-level and you can select specific projects within the organization (where login is on the instance).
+
+.. Or, select both.
+
+. For IdP Type select *Microsoft Entra ID*.
+
+. For Client ID enter the *Application (client) ID* from the Azure app.
+
+. For Client Secret enter the client secret value (not secret id) from the secret you created in the Azure app.
+
+. For Discovery URI enter the *OpenID Connect metadata document URI*.
+
+. Configure any additional settings as needed:
+
+..  For organization-level SSO, no additional settings needed.
+
+.. For project-level SSO, enter role mappings if applicable.
+
+. Select *Create*.
+
+. Select the additional log in methods:
+
+.. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
+
+.. For *Project-level testing* it is recommended to keep the User/password login enabled, so that if SSO fails, you can still access the instance.
+
+=== Token request scopes
+
+When requesting the token from Azure, the scopes Aura sends are:
+
+* `openid` access to a unique identifier to identify the user. 
+
+* `profile` access to basic profile information.
+
+* `email` contains the user's email address.
+
+This will result in Azure asking for consent to display details related to these scopes. 
+For more information, see link:https://auth0.com/docs/get-started/apis/scopes/openid-connect-scopes#standard-claims[OpenID Connect Scopes]
+
+== Okta SSO 
+
+. In the *Okta admin portal* go to *Applications* and then *Create App Integration*.
+
+. For *Sign-in method* select *OIDC - OpenID Connect*. 
+
+. For *Application type* select *Web Application*.
+
+. Select *Next*.
+
+. For *Grant type* select *Authorization Code*.
+
+. For *Sign-in redirect URIs* add https://login.neo4j.com/login/callback as the redirect URI.
+
+. Save.
+
+. In the Aura console, go to *Organization Settings* > *Security* > *Single Sign On* > *New configuration*.
+
+. Select how you want the SSO configuration to be applied in Aura:
+
+.. *Use as a log in method for the organization* applies to organization-level logins (which acts as a login to the Aura console).
+
+.. *Use as a login method for instances within Projects in this Org* applies to the project-level and you can select specific projects within the organization (where login is on the instance).
+
+.. Or, select both.
+
+. For IdP Type select *Okta*.
+
+. For Client ID enter the Okta *Client ID*.
+
+. For Client Secret enter the *Client Secret*.
+
+. Select discovery method:
+
+.. For Discovery URI take the domain from your Okta portal which should be something like https://dev-123-admin.okta.com/ and add `.well-known/openid-configuration`.
+The final URL should look similar to `https://dev-123-admin.okta.com/.well-known/openid-configuration`.
+
+.. Alternatively, you can select *Manual Configuration* and enter the values separately, including Issuer, Authorization Endpoint, Token Endpoint and JWKS URI.
+
+. Configure any additional settings as needed:
+
+..  For organization-level SSO, no additional settings needed.
+
+.. For project-level SSO, enter role mappings if applicable.
+
+. Select *Create*.
+
+. Select the additional log in methods:
+
+.. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
+
+.. For *Project-level testing* it is recommended to keep the User/password login enabled, so that if SSO fails, you can still access the instance.
+
+== FAQ
+
+*Can users get roles added to them in Aura console via SSO and a group to role mapping?*
+
+No, users must be granted the role on the organization via Aura console invites and access management like with any other organization.
+
+*Why am I unable to connect to the instance after completing the SSO login, the connection is showing as unconnected?*
+
+Ensure that the email field is provided on your user in Microsoft Entra ID. 
+If it already is, contact support for further assistance.
+
