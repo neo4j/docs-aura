@@ -39,6 +39,11 @@ Exhaustive instructions are provided in the wizard which appears by following th
 * label:AuraDS-Enterprise[] All instances in the selected region will have their logs forwarded.
 . Follow the instructions specific to your cloud provider.
 
+[NOTE]
+====
+Only one log forwarding configuration is permitted for each unique scope.
+====
+
 == Output destination
 
 Log forwarding can forward logs to the log service of the same cloud provider as the monitored instance is located in.
