@@ -35,6 +35,8 @@ Earlier versions, such as Neo4j 4 and 5 used semantic versioning (SemVer).
 Neo4j Aura uses only the latest version.
 ====
 
+After implementing all the recommended fixes from the report, you can use the test and live migration functionalities to prepare and finally guide you through the actual migration.
+
 === Control over the time window
 
 image::mrr-deprecation-query-timeline.png[]
@@ -103,14 +105,44 @@ Like the Cypher deprecations table, the last column links to a view of this spec
 The tool can provide information on each query execution in which the selected driver was used.
 The tool can view queries on all databases except the `system` database.
 
-=== Deprecated index types
+== Deprecated index types
 
 This section provides information on how to deal with deprecated indexes that may be used in version 4 but need to be handled before or while moving to the latest version.
 
 This part involves manually running a provided Cypher query on your database to identify the deprecated indexes and then deciding how to best deal with them.
 Further enhancements to this feature will be provided in the future.
 
-=== Next steps
+== Testing and executing the migration
 
-After implementing all the recommended fixes from the report, you can now test the migration.
-Use the "Test migration" button at the bottom of the page and then follow the steps outlined in the docs.
+After implementing all the recommended fixes from the report, you can now test and run the migration. We highly recommend running a test migration before attempting the live migration.
+
+=== Run a test migration
+
+Use the "Run test migration" buttons at the top or bottom of the page and then follow the steps outlined in the dialog boxes.
+
+The steps of running a test migration are:
+
+* Carefully read and act upon the steps described in the "Read before test migration" dialog. Proceed only if you made the appropriate preparations (e.g. backups of your configurations).
+* Configure a target instance, as described in the next section.
+** If you have selected a new instance to migrate to: Download the new credentials for that instance.
+* Wait for the migration to finish.
+* Follow all steps outlined in "Next steps before finalizing the test migration" at the top of the Migration Readiness Report page. This includes all your testing on the migrated instance.
+* Once you are done with testing, click the "Finalize test migration" and complete the dialog box to remove your test instance.
+
+You can repeat test migrations or run them in parallel as much as need. Please be aware that running those instances will incur the same cost as running any other instance of that size.
+
+[NOTE]
+====
+During the migration, the new instance might be shown with a few different status on the instance page like LOADING or OVERWRITING. Do not access the instance before the migration is safely finished. Please check the Migration Readiness Report of the old instance.
+====
+
+==== Configure target instance
+
+[NOTE]
+====
+In the process of migrating to a test instance, that instance, regardless if new or existing, will get a new name. It will start with "[Testing]", followed by (most of) the old instances name and a test counter in parentheses e.g. "[Testing] old name (1)"
+====
+
+=== Run the live migration
+
+Use the "Live migration" buttons at the top or bottom of the page and then follow the steps outlined in the dialog boxes. The process for a live migration is very similar to the test migration. To avoid unnecessary repetition, only the additional and changed steps and details will be documented here.
