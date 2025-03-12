@@ -5,36 +5,32 @@ In Neo4j Aura, click **Dashboards** under **Tools** in the left-side navigation 
 
 == Creating a dashboard
 
-. In the **Dashboards** page, click **New Dashboard** at the top right.
-. Enter a title and an optional description in the **New dashboard** dialog and click **Create**.
+. In the **Dashboards** page, use **New Dashboard** at the top right.
+. Enter a title and an optional description in the **New dashboard** dialog, then **Create**.
 . A new dashboard tile is added to the dashboards gallery.
 
 == Editing a dashboard
 
-// Title cannot be changed atm
-Coming soon.
+. In the **Dashboards** page, use the three dots of the tile you want to edit.
+. Select **Edit name/description**.
+. Enter a title and a description and **Save**.
 
 === Dashboard pages
 
-Click a dashboard tile.
+Select a dashboard tile.
 If you are prompted to **Connect to instance**, select the instance with your data set.
-The new dashboard contains a single page.
-You can add more pages by clicking **+** next to the existing pages' names.
+Dashboard pages are organized as tabs.
+A new dashboard contains a single page "Default page".
+You can edit, delete or duplicate the page via the three dots and add more pages via **+** next to the existing pages' names.
 
-////
-Add a dashboard page by adding a title to the **Add page** input in the dashboard configuration menu.
-The **Dashboards app** page displays the pages of a dashboard below the configuration menu.
-Click a tab to display the content of that page.
-Click **Delete [page name]** to delete the page.
-////
 
 === Dashboard cards
 
 A dashboard page consists of cards.
 Each card can hold a xref::/dashboards/visualizations/index.adoc[visualization], also referred to as the **Chart type**.
-To add a card, click **Add card* at the bottom right.
-Click the three dots at the top right of a card to edit the card.
-Click the six dots at the top left of a card to drag and drop it within a page.
+To add a card, use **Add card* at the bottom right.
+Use the three dots at the top right of a card to edit the card.
+Click the six dots at the top left of a card to drag and drop it within the grid of the page.
 
 
 ////
@@ -52,4 +48,4 @@ Lorem ipsum.
 
 == Deleting a dashboard
 
-To delete a dashboard, click its three dots icon in the dashboards gallery tile, then click **Delete** and confirm.
+In the dashboards tile page, use the three dots icon of a dashboard tile and select **Delete**, then confirm.
