@@ -1,7 +1,7 @@
 = Getting started with dashboards
-:description: Follow these steps for a working example of Neo4j Aura dashboards.
+:description: Follow these steps for a working example of Neo4j dashboards.
 
-Set up a working example of Neo4j Aura dashboards.
+Set up a working example of Neo4j dashboards.
 
 == Prerequisites
 
@@ -53,12 +53,13 @@ In the dashboard page tab:
 ----
 MATCH (o:Order)-[:ORDERS]->(p:Product)
 RETURN o.orderID AS OrderID, count(p) as Products
+LIMIT 20
 ----
 
 Your line chart should look like this:
 
 .Example line chart
-image::dashboards/products-per-order-id.png[]
+image::dashboards/product-categories-per-order-id.png[]
 
 
 === Add a card with a bar chart
@@ -76,17 +77,17 @@ In the dashboard page tab:
 ----
 MATCH (c:Customer)-[:PURCHASED]->(o:Order)
 RETURN c.contactName AS Customer, count(o) AS Orders
-ORDER BY Orders DESC
+ORDER BY Orders DESC LIMIT 10
 ----
 
 Your bar chart should look like this:
 
 .Example bar chart
-image::dashboards/orders-per-customer.png[]
+image::dashboards/visualization-bar-chart.png[]
 
 
 == Next steps
 
 See xref::/dashboards/working-with-dashboards/index.adoc[Working with dashboards] for more dashboard options.
 
-See xref::/dashboards/visualizations/index[Visualizations] to learn about the different charts and visualizations of Neo4j Aura dashboards.
+See xref::/dashboards/visualizations/index[Visualizations] to learn about the different charts and visualizations of Neo4j dashboards.
