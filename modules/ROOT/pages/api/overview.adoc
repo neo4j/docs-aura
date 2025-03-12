@@ -11,7 +11,7 @@ A complete list of the available endpoints can be seen and tested in the link:{n
 
 [TIP]
 ====
-Before using the API, you must follow the steps outlined in xref:platform/api/authentication.adoc[] to create your credentials and authenticate your requests.
+Before using the API, you must follow the steps outlined in xref:api/authentication.adoc[] to create your credentials and authenticate your requests.
 ====
 
 == API URL
@@ -24,9 +24,9 @@ The base URL for the Aura API is `\https://api.neo4j.io`.
 
 The current version of the Aura API is `link:{neo4j-docs-base-uri}/aura/platform/api/specification/[v1]`
 
-As and when we need to introduce breaking changes to the API, we will release a new version to ensure we do not break existing integrations.
+If and when there is a need to introduce breaking changes to the API, a new version will be released to ensure no existing integrations are broken.
 
-In the future, as we deprecate legacy API versions, we will provide notice.
+In the future, legacy API versions are deprectaed, notice will be issued.
 Once the expiry date for a deprecated version has passed, that version will no longer be available.
 
 === Example request

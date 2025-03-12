@@ -1,5 +1,7 @@
 [aura-customer-metrics-integration]
 = Customer Metrics Integration (CMI)
+:description: This page descriped the Custom Metrics Integration for Neo4j Aura.
+:page-aliases: platform/metrics-integration.adoc
 :table-caption!:
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
@@ -55,7 +57,7 @@ After that, the user still exists but its connection to the project is removed.
 ====
 The revocation described takes effect after the authorization caches expire, which takes approximately 5 minutes.
 It results in HTTP 401 being returned, along with the message `User doesn't have access to Metrics resources.`
-However, if you remove only the Aura API credentials used to retrieve metrics, the revocation takes effect only after the tokens issued with these credentials expire, as no new token can be issued anymore. 
+However, if you remove only the Aura API credentials used to retrieve metrics, the revocation takes effect only after the tokens issued with these credentials expire, as no new token can be issued anymore.
 Currently used token expiration time is 1 hour.
 ====
 
