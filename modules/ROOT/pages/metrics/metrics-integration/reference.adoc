@@ -1,5 +1,7 @@
 [aura-cmi-reference]
 = Reference
+:description: This page lists the available metrics in the metric integration for Neo4j Aura.
+:page-aliases: platform/metrics-integration.adoc#aura-cmi-metric_definitions
 :table-caption!:
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
@@ -458,8 +460,8 @@ m| MAX
 | Metric name
 m| neo4j_database_transaction_last_committed_tx_id_total
 | Description
-| The id of the last committed transaction. 
-Track this for primary cluster members of your Aura instance. 
+| The id of the last committed transaction.
+Track this for primary cluster members of your Aura instance.
 It should show overlapping, ever-increasing lines and if one of the lines levels off or falls behind, it is clear that this cluster member is no longer replicating data, and action is needed to rectify the situation.
 | Metric type
 | _Counter_
@@ -473,10 +475,10 @@ m| MAX
 | Metric name
 | neo4j_cluster_raft_is_leader
 | Description
-| Is this server the leader? Track this for each rafted member in the cluster. 
-It reports 0 if it is not the leader and 1 if it is the leader. 
-The sum of all of these should always be 1. 
-However, there are transient periods in which the sum can be more than 1 because more than one member thinks it is the leader. 
+| Is this server the leader? Track this for each rafted member in the cluster.
+It reports 0 if it is not the leader and 1 if it is the leader.
+The sum of all of these should always be 1.
+However, there are transient periods in which the sum can be more than 1 because more than one member thinks it is the leader.
 Action may be needed if the metric shows 0 for more than 30 seconds.
 | Metric type
 | _Gauge_
