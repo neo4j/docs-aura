@@ -41,14 +41,16 @@ Administrators can configure a combination of one or more of the log-in methods.
 * Microsoft Entra ID
 * Google SSO (not Google Workspace SSO)
 
+At the organization-level, admins can disable email/password and Google SSO as long as at least one other custom SSO provider is configured.
+
 *Supported log-in methods at the project-level:*
 
 * User/password
 * Okta
 * Microsoft Entra ID
 
-At the project-level, admins cannot disable user/password. 
-However, at the organization-level, admins can disable email/password and Google SSO as long as at least one other custom SSO provider is configured.
+
+At the project-level, admins cannot disable user/password.
 
 == Setup requirements
 
