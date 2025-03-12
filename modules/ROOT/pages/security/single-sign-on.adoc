@@ -145,7 +145,7 @@ Skip redirect URI’s for now.
 
 .. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
 
-.. For *Project-level testing* it is recommended to keep the User/password login enabled, so that if SSO fails, you can still access the instance.
+.. For *Project-level testing* the user/password login is always available on the instance, so if SSO isn't working, the instance is still accessible.
 
 === Token request scopes
 
@@ -211,7 +211,7 @@ The final URL should look similar to `https://dev-123-admin.okta.com/.well-known
 
 .. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
 
-.. For *Project-level testing* it is recommended to keep the User/password login enabled, so that if SSO fails, you can still access the instance.
+.. For *Project-level testing* the user/password login is always available on the instance, so if SSO isn't working, the instance is still accessible.
 
 == FAQ
 
