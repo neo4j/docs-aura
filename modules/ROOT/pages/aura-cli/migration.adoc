@@ -7,8 +7,8 @@ The Aura CLI makes heavy use of console commands containing the keyword "tenant"
 To be consistent with that, all Aura CLI documentation pages use the term "tenant", which other parts of the documentation refer to as "project" instead.
 ====
 
-The Aura CLI has evolved from a Neo4j Labs to a supported Neo4j product.
-The Neo4j Labs Aura CLI will continue to be available for installation for the foreseeable future, but without any further development.
+The Aura CLI has evolved from link:https://neo4j.com/labs/aura-cli/[Neo4j Labs] to a supported Neo4j product.
+The Neo4j Labs Aura CLI continues to be available for installation for the foreseeable future, but without any further development.
 It is recommended that you move to the Aura CLI as soon as you are able.
 This section outlines what you must consider to move the Aura CLI.
 
@@ -63,7 +63,7 @@ However, there are some changes as outlined in the following sections.
 == Config
 
 It is not possible to remove a setting and its value although the value itself can be changed.
-If deletion is wanted, then remove it from the JSON configuration file, either _$HOME/Library/Preferences/neo4j/cli/config.json_ (MAC) or _%LOCALAPPDATA%\neo4j\cli\config.json_ (Windows).
+If deletion is wanted, then remove it from the JSON configuration file, either `$HOME/Library/Preferences/neo4j/cli/config.json` (MAC) or `%LOCALAPPDATA%\neo4j\cli\config.json` (Windows).
 
 
 == Create a new AuraDB
