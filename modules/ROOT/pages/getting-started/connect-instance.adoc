@@ -38,3 +38,15 @@ The default is `neo4j+s//`.
 |Password
 |You are given the password when you initially create the instance
 |===
+
+== Connection errors
+
+In an enterprise environment with restrictive networking, connection errors are sometimes caused because non-standard ports used by the Bolt protocol are blocked by firewalls.
+
+Neo4j tools have traditionally connected over Bolt, a binary protocol that offers optimal performance and stability, that requires an open WebSocket connection to the Neo4j port.
+
+However, to address connection issues caused by network security policies, users can now switch to the Query API, which runs over HTTPS on port 443 (a standard, widely open port).
+
+This ensures seamless connectivity without requiring additional configurations.
+
+
