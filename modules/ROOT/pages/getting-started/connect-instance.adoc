@@ -3,6 +3,8 @@
 :description: This page describes how to connect to an instance in the new Neo4j Aura console.
 :page-aliases: auradb/getting-started/connect-database.adoc, aurads/connecting/index.adoc
 
+== Establish a connection
+
 To interact with a database in an instance, you need to establish a connection.
 
 . Go to *Import*, *Explore* or *Query*.
@@ -22,9 +24,7 @@ image::connectionmodalnonremote.png[width=300]
 | Field | Description
 
 |Connection method
-|The protocol is used for the communication between the Neo4j database server and the client application or tool.
-The default is `neo4j+s//`.
-// For more information about connection schemes, see link:https://neo4j.com/docs/operations-manual/current/configuration/connectors/[Operations Manual -> Configure network connectors] and link:https://neo4j.com/docs/bolt/current/bolt/[Bolt Protocol].
+|Neo4j is selected by default, and if you're learning about Neo4j you'll probably be alright with just leaving that selected.
 
 // |Connection URL
 // |You can get this from your instance details
@@ -39,14 +39,26 @@ The default is `neo4j+s//`.
 |You are given the password when you initially create the instance
 |===
 
-== Connection errors
+== Connection method
+
+To connect to an instance, you can choose from the following connection methods: Neo4j or Query API.
+
+*Neo4j*: The default is The default is Neo4j Bolt `neo4j+s//`.
+Connect through the Neo4j Bolt protocol using a WebSocket connection to the Neo4j port. 
+Use for best performance and stability.
+
+*Query API*: Connect to Neo4j through the Query API over HTTPS on port 443 (a standard, widely open port). 
+Use for debugging or when Bolt is unavailable due to network configuration.
+
+The connection method protocol is used for the communication between the Neo4j database server and the client application or tool.
+
+For more information about connection schemes, see link:https://neo4j.com/docs/operations-manual/current/configuration/connectors/[Operations Manual -> Configure network connectors] and link:https://neo4j.com/docs/bolt/current/bolt/[Bolt Protocol].
+
+== Errors 
 
 In an enterprise environment with restrictive networking, connection errors are sometimes caused because non-standard ports used by the Bolt protocol are blocked by firewalls.
 
 Neo4j tools have traditionally connected over Bolt, a binary protocol that offers optimal performance and stability, that requires an open WebSocket connection to the Neo4j port.
 
 However, to address connection issues caused by network security policies, users can now switch to the Query API, which runs over HTTPS on port 443 (a standard, widely open port).
-
 This ensures seamless connectivity without requiring additional configurations.
-
-
