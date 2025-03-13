@@ -1,6 +1,7 @@
 [[aura-reference-security]]
 = Secure connections
 :description: VPC boundaries enable you to operate within an isolated section of the service.
+:page-aliases: platform/security/secure-connections.adoc
 
 == VPC isolation
 
@@ -305,6 +306,7 @@ The private ingress then directs the connection to the Aura instance with dbid: 
 |role: read
 |===
 
+
 === Custom endpoints with private link
 
 In addition to the production-orch-<orch>.neo4j.io DNS records configured for your private link databases, you must add the following records in order for a Custom Endpoint assigned to a Private Link database to work.
@@ -336,6 +338,7 @@ Note that similarly to the individual records, this wildcard record must also be
 If users have regions with different private link endpoints, but have linked those endpoints to one client VPC , then the wildcard record would direct all traffic for custom endpoints to only one region—whichever is associated with the IP address used in the DNS records.
 This breaks routing for custom endpoints located in the other regions, and therefore, if you do not have a simple private link setup, it is recommended to use the individual custom endpoint records, rather than the wildcard.
 ====
+
 
 == Test connectivity through the private endpoint
 

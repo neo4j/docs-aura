@@ -1,6 +1,7 @@
 [[aura-reference-security]]
 = Single Sign-On (SSO)
 :description: SSO allows you to log in to the Aura Console using their company IdP credentials.
+:page-aliases: platform/security/single-sign-on.adoc
 
 label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDB-Business-Critical[]
@@ -40,14 +41,16 @@ Administrators can configure a combination of one or more of the log-in methods.
 * Microsoft Entra ID
 * Google SSO (not Google Workspace SSO)
 
+At the organization-level, admins can disable email/password and Google SSO if one other custom SSO provider is configured.
+
 *Supported log-in methods at the project-level:*
 
 * User/password
 * Okta
 * Microsoft Entra ID
 
-At the project-level, admins cannot disable user/password. 
-However, at the organization-level, admins can disable email/password and Google SSO as long as at least one other custom SSO provider is configured.
+
+At the project-level, admins cannot disable user/password.
 
 == Setup requirements
 
@@ -144,7 +147,7 @@ Skip redirect URI’s for now.
 
 .. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
 
-.. For *Project-level testing* it is recommended to keep the User/password login enabled, so that if SSO fails, you can still access the instance.
+.. For *Project-level testing* the user/password login is always available on the instance, so if SSO isn't working, the instance is still accessible.
 
 === Token request scopes
 
@@ -210,7 +213,7 @@ The final URL should look similar to `https://dev-123-admin.okta.com/.well-known
 
 .. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
 
-.. For *Project-level testing* it is recommended to keep the User/password login enabled, so that if SSO fails, you can still access the instance.
+.. For *Project-level testing* the user/password login is always available on the instance, so if SSO isn't working, the instance is still accessible.
 
 == FAQ
 
