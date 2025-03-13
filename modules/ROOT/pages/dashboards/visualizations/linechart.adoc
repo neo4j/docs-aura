@@ -1,0 +1,47 @@
+= Line chart
+:description: The Neo4j dashboard line chart visualization.
+
+You can use a line chart to draw one or more lines in a two-dimensional plane.
+It has two numeric fields:
+
+* **Dimension**: The values used as the x-axis.
+* **Value**: The values used on the y-axis.
+
+// Needs confirmation:
+// The line chart supports plotting both simple numbers and time values on the x-axis.
+// If you select a Neo4j datetime property on the x-axis, the chart is automatically drawn as a time series.
+
+
+== Examples
+
+
+=== Basic line chart
+
+.Cypher query for a line chart which displays the number of products categories per order ID
+[source,cypher]
+----
+MATCH (o:Order)-[:ORDERS]->(p:Product)
+RETURN o.orderID AS OrderID, count(p) as Products
+LIMIT 20
+----
+
+.A line chart displaying the number of product categories per order ID
+image::dashboards/product-categories-per-order-id.png[]
+
+
+=== Multi-line chart
+
+.Cypher query for a line chart which displays the number of products categories and product count per order ID
+[source,cypher]
+----
+MATCH (o:Order)-[or:ORDERS]->(p:Product)
+RETURN o.orderID AS OrderID, count(p) as Products, sum(or.quantity) as Quantity
+LIMIT 20
+----
+
+.A line chart displaying the number of product categories and product count per order ID
+image::dashboards/product-categories-and-product-count-per-order-id.png[]
+
+== Configuration
+
+Select your **Dimension** for the x-axis and one or multiple **Value**s for the y-axis.
