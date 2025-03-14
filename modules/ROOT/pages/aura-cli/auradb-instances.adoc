@@ -3,7 +3,7 @@
 
 [NOTE]
 ====
-The Aura CLI makes heavy use of console commands containing the keyword "tenant".
+The Aura CLI makes heavy use of console commands containing the keyword `tenant`.
 To be consistent with that, all Aura CLI documentation pages use the term "tenant", which other parts of the documentation refer to as "project" instead.
 ====
 
@@ -152,8 +152,8 @@ aura-cli instance snapshot SNAPSHOT_ID --instance-id YOUR_INSTANCE_ID
 ## Overwrite
 
 You can overwrite the content of one AuraDB instance with the content of another while leaving the configuration as is.
-However, the destination storage must be large enough.
-Use a snapshot of the source AuraDB instance.
+This requires that the destination storage is large enough.
+You use a snapshot of the source AuraDB instance for this operation.
 Overwrites can be used for restoration of an AuraDB instance databases, for duplication, moving between regions or any situation where you want to use the content of one AuraDB with another AuraDB.
 Keep in mind that the content of the destination AuraDB is **completely overwritten** and the operation does not require confirmation.
 Therefore, use with caution.
