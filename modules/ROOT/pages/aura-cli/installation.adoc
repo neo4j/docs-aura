@@ -1,0 +1,50 @@
+= Installation
+:description: Install the Neo4j Aura command line interface.
+
+[NOTE]
+====
+The Aura CLI makes heavy use of console commands containing the keyword `tenant`.
+To be consistent with that, all Aura CLI documentation pages use the term "tenant", which other parts of the documentation refer to as "project" instead, which is the xref:new-console.adoc#_topology[topological evolution] of "tenant".
+====
+
+The Aura CLI is available on link:https://github.com/neo4j/aura-cli/releases[GitHub] and works with all versions onf the Aura API.
+Select the latest release and download the archive suitable for your platform and architecture of choice.
+The CLI is fully compatible with Mac, Linux and Windows.
+
+. Navigate to link:https://github.com/neo4j/aura-cli/releases[https://github.com/neo4j/aura-cli/releases].
+. Download the compressed file that matches your OS.
+  Make a note of the folder where the file is located.
+. Once the file is downloaded, extract the contents.
+. Open a command prompt and move to the location where you extracted the files.
+. Complete the installation by moving the aura-cli executable file into the file path.
++
+Mac users:
++
+[source, shell]
+----
+sudo mv aura-cli /usr/local/bin
+----
++
+Windows users:
++
+[source, shell]
+----
+move aura-cli c:\windows\system32
+----
+
+Check the installation with:
+
+[source, shell]
+----
+aura-cli -v
+----
+
+You should see the version of the Aura CLI displayed.
+
+[NOTE]
+====
+If you are using a Mac, you may receive a warning from Apple that aura-cli could not be verified.
+If this happens, open **System Settings**, select **Privacy & Security** on the left, and scroll down on the right.
+Select **Open Anyway**.
+This is temporary and will be resolved shortly.
+====

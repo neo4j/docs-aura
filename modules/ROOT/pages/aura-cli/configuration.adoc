@@ -1,0 +1,85 @@
+= Configuration of Aura CLI
+:description: Configure the Neo4j Aura command line interface.
+
+[NOTE]
+====
+The Aura CLI makes heavy use of console commands containing the keyword `tenant`.
+To be consistent with that, all Aura CLI documentation pages use the term "tenant", which other parts of the documentation refer to as "project" instead, which is the xref:new-console.adoc#_topology[topological evolution] of "tenant".
+====
+
+Aura CLI has two commands for its own configuration:
+
+* `credential` - sets of client IDs and client secrets that are used to authenticate with the Aura API that the Aura CLI uses to perform its own operations.
+* `config` - addtional configuration options for the Aura CLI, such as turning Beta features on or off.
+
+
+== Credential
+
+
+=== Add
+
+Adds a set of credentials, client ID and client secret, that were obtained from the Aura Console:
+
+[source, shell]
+----
+aura-cli credential add --name YOUR_LABEL --client-id YOUR_CLIENT_ID --client-secret YOUR_CLIENT_SECRET
+----
+
+=== List
+
+Show all configured credentials that can be used by the Aura CLI:
+
+[source, shell]
+----
+aura-cli credential list
+----
+
+=== Remove
+
+Remove a set of credentials:
+
+[source, shell]
+----
+aura-cli credential list --name NAME_TO_REMOVE
+----
+
+=== Use
+
+Set the default credentials for the Aura CLI to use:
+
+[source, shell]
+----
+aura-cli credential use --name NAME_TO_USE
+----
+
+== Config
+
+There are various configuration settings that can be controlled by this command, for example, enabling beta features.
+
+
+=== List
+
+Show the current configuration settings:
+
+[source, shell]
+----
+aura-cli config list
+----
+
+=== Get
+
+Show the value of a selected setting:
+
+[source, shell]
+----
+aura-cli config set SETTING\_NAME
+----
+
+=== Set
+
+Set the value for a selected setting:
+
+[source, shell]
+----
+aura-cli config set SETTING_NAME SETTING_VALUE
+----
