@@ -62,7 +62,7 @@ If you run into any issues with a particular request, you can https://support.ne
 == Query API
 
 The Query API allows you to interact with an Aura database using Cypher over HTTPS. 
-Unlike the deprecated HTTP API, the Query API is now exposed for Aura, making it a viable alternative to Bolt for running queries programmatically. 
+The Query API is a viable alternative to Bolt for running queries programmatically. 
 For more information, see the link:https://neo4j.com/docs/query-api/current/[Query API documentation]
 
 To send Cypher queries to an Aura instance, make a POST request to the following endpoint:
