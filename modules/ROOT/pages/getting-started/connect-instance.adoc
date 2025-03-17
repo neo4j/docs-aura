@@ -54,9 +54,9 @@ For more information about connection schemes, see link:https://neo4j.com/docs/o
 
 == Errors 
 
+If you get an error when trying to connect via the Neo4j connection method, try switching to Query API.
+
 In an enterprise environment with restrictive networking, connection errors are sometimes caused because non-standard ports used by the Neo4j protocol are blocked by firewalls.
 
-The Neo4j protocol is built on Bolt, a binary protocol that offers optimal performance and stability, that requires an open WebSocket connection to the Neo4j port.
-
-However, to address connection issues caused by network security policies, users can now switch to the Query API, which runs over HTTPS on port 443 (a standard, widely open port).
+To address connection issues caused by network security policies, users can now switch to the Query API, which runs over HTTPS on port 443 (a standard, widely open port).
 This ensures seamless connectivity without requiring additional configurations.
