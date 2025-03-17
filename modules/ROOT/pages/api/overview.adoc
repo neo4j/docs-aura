@@ -58,3 +58,27 @@ An `X-Request-Id` response header is returned with each request and can be used 
 The value of this header contains a unique ID that can be used to track the journey of a request.
 
 If you run into any issues with a particular request, you can https://support.neo4j.com/[raise a support ticket] and provide the `X-Request-Id`.
+
+== Query API
+
+The Query API allows you to interact with an Aura database using Cypher over HTTPS. 
+Unlike the deprecated HTTP API, the Query API is now exposed for Aura, making it a viable alternative to Bolt for running queries programmatically.
+
+To send Cypher queries to an Aura instance, make a POST request to the following endpoint:
+
+https://<databaseID>.databases.neo4j.io/db/<databaseName>/query/v2
+<databaseID>: The unique ID of your Aura database (e.g., e011c23c).
+<databaseName>: The target database (e.g., neo4j for the default database).
+
+Aura only supports HTTPS (port 443). There’s no need to specify a port explicitly, as it defaults to 443.
+
+Here's how to create a node in Aura using `curl`:
+
+curl -vvv -X POST
+     -H "Authorization: Basic bmVvNGo6Zd9vdGJhbGg="
+     -H "Content-Type: application/json"
+     -d "{   \"statement\": \"create (n:Person) RETURN n;\" } }"
+      https://e011c22f.databases.neo4j.io:443/db/neo4j/query/v2
+
+Note the last line above and inclusion of :443 is not required as its the default.
+
