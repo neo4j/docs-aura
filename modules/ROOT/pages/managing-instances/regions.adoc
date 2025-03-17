@@ -3,42 +3,474 @@
 :description: This page describes every region users can deploy in.
 :page-aliases: auradb/managing-databases/regions.adoc
 
-label:AuraDS-Professional[]
 label:AuraDB-Professional[]
+label:AuraDS-Professional[]
 label:AuraDB-Business-Critical[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 
-Aura supports the following regions:
+Aura supports the following regions based on your subscription plan:
 
 == Amazon Web Services (AWS)
 
-** `ap-south-1`
-** `ap-southeast-1`
-** `eu-west-1`
-** `eu-west-3`
-** `sa-east-1`
-** `us-east-1`
-** `us-west-2`
+:check-mark: icon:check[]
+.Roles
+[opts="header",cols="a,<,<,<,<"]
+|===
+| Region
+| AuraDB Professional
+| AuraDS Professional
+| AuraDB Business Critical
+| AuraDB Virtual Dedicated Cloud
+
+| `ap-south-1`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `ap-southeast-1`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `ap-southeast-2`
+|
+|
+|
+| {check-mark}
+
+| `ap-northeast-1`
+|
+|
+|
+| {check-mark}
+
+| `ap-northeast-2`
+|
+|
+|
+| {check-mark}
+
+| `ap-northeast-3`
+|
+|
+|
+| {check-mark}
+
+| `ca-central-1`
+|
+|
+|
+| {check-mark}
+
+| `eu-central-1`
+|
+|
+|
+| {check-mark}
+
+| `eu-north-1`
+|
+|
+|
+| {check-mark}
+
+| `eu-south-1`
+|
+|
+|
+| {check-mark}
+
+| `eu-west-1`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `eu-west-2`
+|
+|
+|
+| {check-mark}
+
+| `eu-west-3`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `il-central-1`
+|
+|
+|
+| {check-mark}
+
+| `sa-east-1`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `us-east-1`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `us-east-2`
+|
+|
+|
+| {check-mark}
+
+| `us-west-2`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+|===
 
 == Microsoft Azure
 
-** `centralindia`
-** `brazilsouth`
-** `eastus`
-** `francecentral`
-** `koreacentral`
-** `uksouth`
-** `westus3`
+:check-mark: icon:check[]
+.Roles
+[opts="header",cols="a,<,<,<,<"]
+|===
+| Region
+| AuraDB Professional
+| AuraDS Professional
+| AuraDB Business Critical
+| AuraDB Virtual Dedicated Cloud
+
+| `australiaeast`
+|
+|
+|
+| {check-mark}
+
+| `brazilsouth`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `canadacentral`
+|
+|
+|
+| {check-mark}
+
+| `centralindia`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `eastus`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `eastus2`
+|
+|
+|
+| {check-mark}
+
+| `francecentral`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `germanywestcentral`
+|
+|
+|
+| {check-mark}
+
+| `koreacentral`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `northeurope`
+|
+|
+|
+| {check-mark}
+
+| `norwayeast`
+|
+|
+|
+| {check-mark}
+
+| `southafricanorth`
+|
+|
+|
+| {check-mark}
+
+| `switzerlandnorth`
+|
+|
+|
+| {check-mark}
+
+| `uaenorth`
+|
+|
+|
+| {check-mark}
+
+| `uksouth`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `westus3`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+|===
 
 == Google Cloud Platform (GCP)
 
-** `asia-south1`
-** `asia-east1`
-** `asia-east2`
-** `asia-southeast1`
-** `australia-southeast1`
-** `europe-west1`
-** `europe-west2`
-** `europe-west3`
-** `us-central1`
-** `us-east1`
-** `us-west1`
+:check-mark: icon:check[]
+.Roles
+[opts="header",cols="a,<,<,<,<"]
+|===
+| Region
+| AuraDB Professional
+| AuraDS Professional
+| AuraDB Business Critical
+| AuraDB Virtual Dedicated Cloud
+
+| `asia-east1`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `asia-east2`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `asia-northeast1`
+|
+|
+|
+| {check-mark}
+
+| `asia-northeast2`
+|
+|
+|
+| {check-mark}
+
+| `asia-northeast3`
+|
+|
+|
+| {check-mark}
+
+| `asia-south1`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `asia-south2`
+|
+|
+|
+| {check-mark}
+
+| `asia-southeast1`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `asia-southeast2`
+|
+|
+|
+| {check-mark}
+
+| `australia-southeast1`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `australia-southeast2`
+|
+|
+|
+| {check-mark}
+
+| `europe-central2`
+|
+|
+|
+| {check-mark}
+
+| `europe-north1`
+|
+|
+|
+| {check-mark}
+
+| `europe-southwest1`
+|
+|
+|
+| {check-mark}
+
+| `europe-west1`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `europe-west2`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `europe-west3`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `europe-west4`
+|
+|
+|
+| {check-mark}
+
+| `europe-west6`
+|
+|
+|
+| {check-mark}
+
+| `europe-west8`
+|
+|
+|
+| {check-mark}
+
+| `europe-west9`
+|
+|
+|
+| {check-mark}
+
+| `europe-west12`
+|
+|
+|
+| {check-mark}
+
+| `northamerica-northeast1`
+|
+|
+|
+| {check-mark}
+
+| `northamerica-northeast2`
+|
+|
+|
+| {check-mark}
+
+| `us-central1`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `us-east1`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `us-east4`
+|
+|
+|
+| {check-mark}
+
+| `us-east5`
+|
+|
+|
+| {check-mark}
+
+| `us-west1`
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| `us-west2`
+|
+|
+|
+| {check-mark}
+
+| `us-west3`
+|
+|
+|
+| {check-mark}
+
+| `us-west4`
+|
+|
+|
+| {check-mark}
+
+| `us-south1`
+|
+|
+|
+| {check-mark}
+
+| `southamerica-east1`
+|
+|
+|
+| {check-mark}
+
+| `southamerica-west1`
+|
+|
+|
+| {check-mark}
+
+| `me-central1`
+|
+|
+|
+| {check-mark}
+
+| `me-west1`
+|
+|
+|
+| {check-mark}
+|===
