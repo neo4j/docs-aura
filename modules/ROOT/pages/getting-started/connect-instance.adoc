@@ -43,8 +43,8 @@ See below for more information about connection methods.
 
 To connect to an instance, you select one of the following connection methods: `neo4j+s//` or Query API.
 
-*Neo4j*: The default is The default is Neo4j Bolt `neo4j+s//`.
-Connect through the Neo4j Bolt protocol using a WebSocket connection to the Neo4j port. 
+*`neo4j+s//`*: This is the default connection method. 
+This scheme is built on  the `bolt://` protocol and uses a WebSocket connection to the Neo4j port. 
 Use for best performance and stability.
 
 *Query API*: Connect to Neo4j through the Query API over HTTPS on port 443 (a standard, widely open port). 
