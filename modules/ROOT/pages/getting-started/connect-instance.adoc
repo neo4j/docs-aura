@@ -22,7 +22,9 @@ image::connectionmodalnonremote.png[width=300]
 | Field | Description
 
 |Connection method
-|Neo4j is selected by default, and if you're learning about Neo4j you'll probably be alright with just leaving that selected.
+| The protocol is used for the communication between the Neo4j database server and the client application or tool.
+The default is `neo4j+s//`.
+See below for more information about connection methods.
 
 // |Connection URL
 // |You can get this from your instance details
