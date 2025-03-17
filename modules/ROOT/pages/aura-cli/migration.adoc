@@ -1,0 +1,101 @@
+= Migrating to the Aura CLI
+:description: Migrate to the Neo4j Aura command line interface.
+
+[NOTE]
+====
+The Aura CLI makes heavy use of console commands containing the keyword `tenant`.
+To be consistent with that, all Aura CLI documentation pages use the term "tenant", which other parts of the documentation refer to as "project" instead, which is the xref:new-console.adoc#_topology[topological evolution] of "tenant".
+====
+
+The Aura CLI has evolved from link:https://neo4j.com/labs/aura-cli/[Neo4j Labs] to a supported Neo4j product.
+The Neo4j Labs Aura CLI continues to be available for installation for the foreseeable future, but without any further development.
+It is recommended that you move to the Aura CLI as soon as you are able.
+This section outlines what you must consider to move the Aura CLI.
+
+
+== Behavior
+
+* The name of the CLI is now `aura-cli`.
+* Support for using environmental variables has been removed as they can be visible in process listings and can be accidentally logged making them vulnerable to exposure.
+  For sensitive values e.g. Aura API client ID and client secret, a secrets manager is recommended.
+* Neo4j Labs Aura CLI used plural names for commands; the new Aura CLI has singular naming instead.
+* It is not possible to return the raw API response body with the Aura CLI.
+* Flags with the Aura CLI do not have a short form and must be specified in full length.
+
+
+== Feature set
+
+At the time of general availability, the Aura CLI supports these new features compared to the previous Labs project:
+
+* Customer Managed keys
+* Beta of GraphQL Data APIs
+
+
+== Installation
+
+Download the Aura CLI from link:https://github.com/neo4j/aura-cli/releases[https://github.com/neo4j/aura-cli/releases].
+It is available as a native binary for Windows, Linux and Mac platforms.
+After downloading the relevant file and extracting the executable, the Aura CLI can be run immediately as there are no dependencies.
+
+
+== Commands
+
+[cols="3,^1,3", options="header"]
+|====
+| Labs Aura CLI                      | maps to | Aura CLI
+| config                             | →       | config
+| credentials                        | →       | credential       
+| instances                          | →       | instance         
+| snapshots                          | →       | instance → snapshot               
+| tenants                            | →       | tenant            
+| tenants → get-metrics-integration  | →       | instance get `<InstanceID>` returns the URL for metrics integration
+|                                    |         | **NEW**: customer-managed-key
+|                                    |         | **NEW**: data-api (beta)
+|====
+
+
+== Command and flag changes with Aura CLI
+
+As far as was possible, the Aura CLI commands and their flags are the same as for the Labs based Aura CLI.
+However, there are some changes as outlined in the following sections.
+
+
+== Config
+
+It is not possible to remove a setting and its value although the value itself can be changed.
+If deletion is wanted, then remove it from the JSON configuration file, either `$HOME/Library/Preferences/neo4j/cli/config.json` (MAC) or `%LOCALAPPDATA%\neo4j\cli\config.json` (Windows).
+
+
+== Create a new AuraDB
+
+When creating an Aura instance with the Aura CLI, the memory size is specified with an integer appended with "GB" e.g. "8GB".
+Previously, this was just the integer.
+
+
+== Delete an AuraDB
+
+The Aura CLI does not prompt for confirmation when deleting an AuraDB and starts the operation immediately.
+
+
+== Update an AuraDB
+
+Only the ID can be used to identify the AuraDB to update.
+The same properties can be changed as previously: its name and memory size.
+
+
+== Get AuraDB instance details
+
+This now includes the URL to obtain metrics.
+
+
+== Tenants
+
+This command no longer includes a flag to obtain metric integration information.
+It is also now part of the details returned for an individual AuraDB.
+See Get AuraDB instance details.
+
+
+== Snapshots
+
+Management of snapshots is now a sub-command of instance and allows for their creation, listing and obtaining their details.
+Restoration of a snapshot is performed by using the aura-cli instance overwrite command.
