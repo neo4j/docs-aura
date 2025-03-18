@@ -12,3 +12,56 @@
 . Prompt Engineering: Structured prompt templates ensure consistency and better responses from the LLM.
 . Knowledge Graphs & Entity Linking: Using triples (subject-predicate-object) helps structure data effectively for retrieval and reasoning.
 . Emil’s Demo: Showcased how Neo4j can automatically create a graph from articles, demonstrating knowledge extraction and structuring.
+
+== Introduction
+
+* Aura is simplifying Graph RAG – Making it easier to use.
+* A wrapper for the code → The user interacts through the UI instead of coding everything to do with GraphRAG Agents themselves.
+* “You know Cypher → Now you can create tools → Now you can create questions.”
+
+Graph RAG answers complex questions but is hard to implement today.
+Reduces the need for deep Cypher and technical knowledge.
+Many want to build agents, but it’s not trivial.
+In Aura:
+A low-code/no-code experience.
+Grounded in a knowledge graph (ensuring reliable answers).
+
+== Neo4j Agent Overview
+
+An Agent consist of
+
+* Choice – The agent makes decisions.
+* Tools – Functions the agent can use.
+* Flow Router – Determines how tasks are handled.
+* Components – Different parts that make up the agent system.
+
+== Goal of the Agent
+
+* Answer complex questions and take actions.
+* Grounded in knowledge: Answers are based on a knowledge graph.
+
+== How the UI Works
+
+* Users can specify functions.
+* The agent has tools/functions it can use (e.g., Cypher queries).
+* The LLM determines access to these tools:
+* The Agent selects 1 or 2 tools to answer the question.
+* Chooses the best Gemini models for the approach.
+
+Example: Movie Agent
+
+Movie Graph DB in Aura – Create a tool like "Find Movies by Actor."
+
+Input: Actor name → Queries: ACTOR ACTS IN / ACTOR IN MOVIE.
+
+Example: "Which movies does Keanu Reeves act in?" → The agent selects the relevant tools and queries the data.
+
+== Publishing the agent:
+Developers send questions to endpoints.
+
+== Industry-specific use cases:
+
+* Security
+* Supply Chain Graph
+* Customer 360
+* How can I answer tough questions?
