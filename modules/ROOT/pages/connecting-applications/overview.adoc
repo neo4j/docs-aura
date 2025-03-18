@@ -9,33 +9,3 @@ Regardless of what language you use, you will need to provide the following info
 
 * `uri` - The *Connection URI* for your AuraDB instance. You can copy this from the instance card or details page in the console.
 * `username` and `password` - The *Username* and *Password* for your AuraDB instance. You can copy or download these during the instance creation process.
-
-== Query API for Aura
-
-The Query API allows you to interact with an Aura database using Cypher over HTTPS. 
-The Query API is a viable alternative to Bolt for running queries programmatically. 
-For more information, see the link:https://neo4j.com/docs/query-api/current/[Query API documentation].
-
-To send Cypher queries to an Aura instance, make a `POST` request to the following endpoint:
-
-[source, header]
-----
-https://<databaseID>.databases.neo4j.io/db/<databaseName>/query/v2
-----
-
-`<databaseID>` The unique ID of your Aura database (e.g. e011c23c).
-
-`<databaseName>` The target database (e.g. neo4j for the default database).
-
-Aura supports HTTPS, which defaults to port `443`, so you don't need to specify `:443` in the URL.
-
-This is how to create a node in Aura using `curl`:
-
-[source, shell]
-----
-curl -vvv -X POST \
-     -H "Authorization: Basic bmVvNGo6Zd9vdGJhbGg=" \
-     -H "Content-Type: application/json" \
-     -d '{ "statement": "CREATE (n:Person) RETURN n;" }' \
-     https://e011c22f.databases.neo4j.io/db/neo4j/query/v2
-----

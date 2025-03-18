@@ -41,7 +41,7 @@ See below for more information about connection methods.
 
 == Connection method
 
-To connect to an instance, you select one of the following connection methods: `neo4j+s//` or Query API.
+To connect to an instance, you select one of the following connection methods: Neo4j `neo4j+s//` or Query API.
 
 *Neo4j*: `neo4j+s//` This is the default connection method. 
 This scheme is built on  the `bolt://` protocol and uses a WebSocket connection to the Neo4j port. 
@@ -52,11 +52,41 @@ Use for debugging or when Bolt is unavailable due to network configuration.
 
 For more information about connection schemes, see link:https://neo4j.com/docs/operations-manual/current/configuration/connectors/[Operations Manual -> Configure network connectors] and link:https://neo4j.com/docs/bolt/current/bolt/[Bolt Protocol].
 
-== Connection errors 
+== Troubleshooting
 
 If you get an error when trying to connect via the Neo4j connection method, try switching to Query API.
 
 In an enterprise environment with restrictive networking, connection errors are sometimes caused because non-standard ports used by the Neo4j protocol are blocked by firewalls.
 
-To address connection issues caused by network security policies, users can now switch to the Query API, which runs over HTTPS on port 443 (a standard, widely open port).
+Query API runs over HTTPS on port 443 (a standard, widely open port), ensuring compatibility with most firewalls.
 This ensures seamless connectivity without requiring additional configurations.
+
+== Query API for Aura
+
+The Query API allows you to interact with an Aura database using Cypher over HTTPS. 
+The Query API is a viable alternative to Bolt for running queries programmatically. 
+For more information, see the link:https://neo4j.com/docs/query-api/current/[Query API documentation].
+
+To send Cypher queries to an Aura instance, make a `POST` request to the following API endpoint:
+
+[source, header]
+----
+https://<databaseID>.databases.neo4j.io/db/<databaseName>/query/v2
+----
+
+`<databaseID>` = The unique ID of your Aura database (e.g. e011c23c).
+
+`<databaseName>` = The target database (e.g. neo4j for the default database).
+
+Aura supports HTTPS, which defaults to port `443`, so you don't need to specify `:443` in the URL.
+
+This is how to create a node in Aura using `curl`:
+
+[source, shell]
+----
+curl -vvv -X POST
+     -H "Authorization: Basic bmVvNGo6Zm9vdGJhbGw="
+     -H "Content-Type: application/json"
+     -d "{   \"statement\": \"create (n:Person) RETURN n;\" } }"
+      https://e057c26c.databases.neo4j.io/db/neo4j/query/v2
+----
