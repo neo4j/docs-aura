@@ -65,7 +65,7 @@ For more information, see the link:https://neo4j.com/docs/query-api/current/[Que
 
 * for Aura instances host is of the format `<databaseID>.databases.neo4j.io`
 
-* the on-prem documentation refers to port `:7474` and this is true for a on-prem install but Aura, given its HTTPS, the <port> defaults as 443.
+* the documentation refers to self-managed instances and port `:7474` but Aura supports HTTPS, which defaults to port `:443`
 
 To send Cypher queries to an Aura instance, make a `POST` request to the following API endpoint:
 
@@ -77,8 +77,6 @@ https://<databaseID>.databases.neo4j.io/db/<databaseName>/query/v2
 `<databaseID>` = The unique ID of your Aura database (e.g. e011c23c).
 
 `<databaseName>` = The target database (e.g. neo4j for the default database).
-
-Aura supports HTTPS, which defaults to port `443`, so you don't need to specify `:443` in the URL.
 
 This is how to create a node in Aura using `curl`:
 
