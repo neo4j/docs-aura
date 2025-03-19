@@ -54,7 +54,7 @@ For more information about connection schemes, see link:https://neo4j.com/docs/o
 
 === Connection error
 
-If you encounter connection errors with the Neo4j connection method, try switching to Query API. 
+If you encounter a connection error with the `neo4j://` connection method, try switching to Query API. 
 In an enterprise environment with restrictive networking, connection errors are sometimes caused because non-standard ports used by the Neo4j protocol are blocked by firewalls.
 
 == Query API for Aura
