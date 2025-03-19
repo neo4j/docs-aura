@@ -14,8 +14,8 @@ Tables support the following additional features:
 - Downloading your data as a CSV file.
 ////
 
-When you hover over a table cell, a copy icon appears towards the end of the cell.
-Click it to copy the content of the table cell to the clipboard.
+When you hover over a table cell, a copy icon appears towards the end of the cell which lets you copy the content of the table cell to the clipboard.
+
 
 == Examples
 
@@ -33,6 +33,7 @@ image::dashboards/visualization-table-basic.png[]
 
 
 
+////
 === Table with nodes and collections
 
 .Cypher query for a table which displays the category nodes and collections of products
@@ -45,6 +46,7 @@ RETURN c as CategoryNode, collect(p) AS Products LIMIT 20
 .A table displaying the category nodes and collections of products
 image::dashboards/visualization-table-nodes-and-collections.png[]
 
+////
 
 == Configuration
 

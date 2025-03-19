@@ -11,36 +11,44 @@ It has two numeric fields:
 // The line chart supports plotting both simple numbers and time values on the x-axis.
 // If you select a Neo4j datetime property on the x-axis, the chart is automatically drawn as a time series.
 
+[TIP]
+====
+Select a horizontal segment of the line chart to zoom in.
+Use the reload button to reset the line chart zoom.
+====
 
 == Examples
 
 
 === Basic line chart
 
-.Cypher query for a line chart which displays the number of products categories per order ID
+.Cypher query for a line chart which displays the number of product categories by order dates
 [source,cypher]
 ----
 MATCH (o:Order)-[:ORDERS]->(p:Product)
-RETURN o.orderID AS OrderID, count(p) as Products
+RETURN datetime(replace(o.orderDate, " ", "T")) AS Date,
+       count(p) as Categories
 LIMIT 20
 ----
 
-.A line chart displaying the number of product categories per order ID
-image::dashboards/product-categories-per-order-id.png[]
+.A line chart displaying the number of product categories by order dates
+image::dashboards/visualization-line-chart.png[]
 
 
 === Multi-line chart
 
-.Cypher query for a line chart which displays the number of products categories and product count per order ID
+.Cypher query for a line chart which displays the number of product categories and the product count by order dates
 [source,cypher]
 ----
 MATCH (o:Order)-[or:ORDERS]->(p:Product)
-RETURN o.orderID AS OrderID, count(p) as Products, sum(or.quantity) as Quantity
+RETURN datetime(replace(o.orderDate, " ", "T")) AS Date,
+       count(p) as Categories,
+       sum(or.quantity) as Quantity
 LIMIT 20
 ----
 
-.A line chart displaying the number of product categories and product count per order ID
-image::dashboards/product-categories-and-product-count-per-order-id.png[]
+.A line chart displaying the number of product categories and the product count by order dates
+image::dashboards/visualization-line-chart-multi.png[]
 
 == Configuration
 

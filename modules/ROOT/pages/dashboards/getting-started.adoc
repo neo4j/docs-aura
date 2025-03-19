@@ -52,14 +52,15 @@ In the dashboard page tab:
 [source,cypher]
 ----
 MATCH (o:Order)-[:ORDERS]->(p:Product)
-RETURN o.orderID AS OrderID, count(p) as Products
+RETURN datetime(replace(o.orderDate, " ", "T")) AS Date,
+       count(p) as Categories
 LIMIT 20
 ----
 
 Your line chart should look like this:
 
 .Example line chart
-image::dashboards/product-categories-per-order-id.png[]
+image::dashboards/visualization-line-chart.png[]
 
 
 === Add a card with a bar chart

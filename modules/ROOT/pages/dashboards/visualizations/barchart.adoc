@@ -9,6 +9,11 @@ Choose the following:
 
 //* *Group*: A second optional text field. When grouping is enabled in the advanced settings, the group can be used to draw a stacked bar chart, with several groups per category.
 
+[TIP]
+====
+Select a horizontal segment of the bar chart to zoom in.
+Use the reload button to reset the bar chart zoom.
+====
 
 == Examples
 
@@ -47,3 +52,8 @@ image::dashboards/visualization-bar-chart-stacked.png[]
 == Configuration
 
 Select your **Category** for the x-axis and one or multiple **Value**s for the y-axis.
+
+[TIP]
+====
+If you are configuring a stacked bar chart, use the entries in the **Value** drop down to deselect and select your value axes to manipulate the order in which the corresponding bars are displayed.
+====
