@@ -61,8 +61,8 @@ curl -vvv -X POST \
 
 `-X POST` Specifies that the request is a POST request.
 
-`-H "Authorization: Basic <base64_encoded_credentials>":` Replace <base64_encoded_credentials> with your base64-encoded credentials.
-Encode your Neo4j credentials (neo4j:your-password) using a base64 encoder (many are available online).
+`-H "Authorization: Basic <base64_encoded_credentials>":` Replace <base64_encoded_credentials> with your Base64-encoded Neo4j credentials (neo4j:your-password).
+Learn more about link:https://neo4j.com/docs/query-api/current/authentication-authorization/#_basic_authentication[basic authentication].
 
 `-H "Content-Type: application/json"` Specifies that the request body is in JSON format.
 
