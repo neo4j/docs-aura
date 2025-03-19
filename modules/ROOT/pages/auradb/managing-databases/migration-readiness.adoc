@@ -118,7 +118,7 @@ After implementing all the recommended fixes from the report, you can now test a
 
 [NOTE]
 ====
-During the migration, the migration target instance might be shown with a few different status on the instance page like LOADING or OVERWRITING. Do not access the instance before the migration is safely finished. Please check the Migration Readiness Report of the old instance.
+During the migration, the migration target instance might be shown with a few different status on the instance page like LOADING or OVERWRITING. Do not access the instance before the migration is safely finished. The progress of migration can be seen in the Migration Readiness Report of the old instance.
 ====
 
 === Run a test migration
@@ -149,7 +149,7 @@ In the process of migrating to a test instance, that instance, regardless if new
 
 ==== Testing the migrated instance
 
-Once you see the following box on the Migration Readiness Report your migrated instance is ready for testing. Follow the steps described and test your instance to make sure your live migration will go smoothly.
+Once you see the following box on the Migration Readiness Report, your migrated instance is ready for testing. Follow the steps described and test your instance to make sure your live migration will go smoothly.
 
 image::mrr-test-instance-ready.png[]
 
@@ -159,7 +159,7 @@ Once you are done with testing, click the "Finalize test migration" button and t
 
 image::mrr-finalize-test.png[width=500]
 
-For the purpose of this migration process and to save cost for the user, the test instance should be removed after manual testing is done. You can also choose to skip this step and keep the test instance as long as you want.
+To save costs remember to delete the test instance after manual testing is done. You can also choose to skip this step and keep the test instance as long as you want.
 
 === Run the live migration
 
