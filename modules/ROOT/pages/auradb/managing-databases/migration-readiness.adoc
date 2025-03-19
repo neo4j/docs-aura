@@ -114,11 +114,13 @@ Further enhancements to this feature will be provided in the future.
 
 == Testing and executing the migration
 
-After implementing all the recommended fixes from the report, you can now test and run the migration. We highly recommend running a test migration before attempting the live migration.
+After implementing all the recommended fixes from the report, you can now test and run the migration.
+We highly recommend running a test migration before attempting the live migration.
 
 [NOTE]
 ====
-During the migration, the migration target instance might be shown with a few different status on the instance page like LOADING or OVERWRITING. Do not access the instance before the migration is safely finished. The progress of migration can be seen in the Migration Readiness Report of the old instance.
+During the migration, the migration target instance might be shown with a few different status on the instance page like LOADING or OVERWRITING.
+Do not access the instance before the migration is safely finished. The progress of migration can be seen in the Migration Readiness Report of the original instance.
 ====
 
 === Run a test migration
@@ -127,29 +129,37 @@ Use the "Run test migration" buttons at the top or bottom of the page and then f
 
 The steps of running a test migration are:
 
-* Carefully read and act upon the steps described in the "Read before test migration" dialog. Proceed only if you made the appropriate preparations (e.g. backups of your configurations).
+* Carefully read and act upon the steps described in the "Read before test migration" dialog.
+Proceed only if you made the appropriate preparations (e.g. backups of your configurations).
 * Configure a target instance, as described in the next section.
 ** If you have selected a new instance to migrate to: Download the new credentials for that instance.
 * Wait for the migration to finish.
-* Follow all steps outlined in "Next steps before finalizing the test migration" at the top of the Migration Readiness Report page. This includes all your testing on the migrated instance.
+* Follow all steps outlined in "Next steps before finalizing the test migration" at the top of the Migration Readiness Report page.
+This includes all your testing on the migrated instance.
 * Once you are done with testing, click the "Finalize test migration" button and complete the dialog to remove your test instance.
 
-You can repeat test migrations or run them in parallel as much as need. Please be aware that running those instances will incur the same cost as running any other instance of that size.
+You can repeat test migrations or run them in parallel as much as need.
+Please be aware that running those instances will incur the same cost as running any other instance of that size.
 
 ==== Configure target instance
 
-An instance can either be migrated to a brand-new instance or an instance that is already running the latest version of Aura and that fits the memory and storage configuration of the old instance. This means that if you choose the second option the instance you want to migrate to has to have at least the same amount of memory and storage as the old one.
+An instance can either be migrated to a brand-new instance or an instance that is already running the latest version of Aura and that fits the memory and storage configuration of the original instance.
+This means that if you choose the second option the instance you want to migrate to has to have at least the same amount of memory and storage as the original one.
 
-Note that cloning into an existing instance will overwrite all of its existing data and name. This action cannot be undone and may take longer than cloning to a new instance. It is advised to take a snapshot and download it before continuing if you still have data on that instance you want to keep.
+Note that cloning into an existing instance will overwrite all of its existing data and name.
+This action cannot be undone and may take longer than cloning to a new instance.
+It is advised to take a snapshot and download it before continuing if you still have data on that instance you want to keep.
 
 [NOTE]
 ====
-In the process of migrating to a test instance, that instance, regardless if new or existing, will get a new name. It will start with "[Testing]", followed by (most of) the old instances name and a test counter in parentheses e.g. "[Testing] old name (1)"
+In the process of migrating to a test instance, that instance, regardless if new or existing, will get a new name.
+It will start with "[Testing]", followed by (most of) the original instances name and a test counter in parentheses e.g. "[Testing] original name (1)".
 ====
 
 ==== Testing the migrated instance
 
-Once you see the following box on the Migration Readiness Report, your migrated instance is ready for testing. Follow the steps described and test your instance to make sure your live migration will go smoothly.
+Once you see the following box on the Migration Readiness Report, your migrated instance is ready for testing.
+Follow the steps described and test your instance to make sure your live migration will go smoothly.
 
 image::mrr-test-instance-ready.png[]
 
@@ -159,7 +169,8 @@ Once you are done with testing, click the "Finalize test migration" button and t
 
 image::mrr-finalize-test.png[width=500]
 
-To save costs remember to delete the test instance after manual testing is done. You can also choose to skip this step and keep the test instance as long as you want.
+To save costs remember to delete the test instance after manual testing is done.
+You can also choose to skip this step and keep the test instance as long as you want.
 
 === Run the live migration
 
@@ -167,27 +178,35 @@ Use the "Live migration" buttons at the top or bottom of the page and then follo
 
 The steps of running the live migration are:
 
-* Carefully read and act upon the steps described in the "Read before live migration" dialog. Proceed only if you made the appropriate preparations (e.g. backups of your configurations).
-* Carefully read and act upon the step described in the "Writes made on the v4 instance during migration" dialog. Make sure that your application will not write to the original instance during the migration to prevent this data from being lost.
+* Carefully read and act upon the steps described in the "Read before live migration" dialog.
+Proceed only if you made the appropriate preparations (e.g. backups of your configurations).
+* Carefully read and act upon the step described in the "Writes made on the v4 instance during migration" dialog.
+Make sure that your application will not write to the original instance during the migration to prevent this data from being lost.
 * Configure a target instance, as described in the next section.
 ** If you have selected a new instance to migrate to: Download the new credentials for that instance.
 * Wait for the migration to finish.
-* Follow all steps outlined in "Next steps before finalizing the live migration" at the top of the Migration Readiness Report page. This includes all your testing on the migrated instance.
+* Follow all steps outlined in "Next steps before finalizing the live migration" at the top of the Migration Readiness Report page.
+This includes all your testing on the migrated instance.
 * Once you are done with testing, click the "Finalize live migration" button and complete the dialog to remove your original version 4 instance.
 
-There can only be one live migration in progress at any time. If you need to, you can restart the process at any point by removing the migrated instance until you finalize the migration by removing the original instance.
+There can only be one live migration in progress at any time.
+If you need to, you can restart the process at any point by removing the migrated instance until you finalize the migration by removing the original instance.
 
 ==== Configure target instance
 
-An instance can either be migrated to a brand-new instance or an instance that is already running the latest version of Aura and that fits the memory and storage configuration of the old instance. This means that if you choose the second option the instance you want to migrate to has to have at least the same amount of memory and storage as the old one.
+An instance can either be migrated to a brand-new instance or an instance that is already running the latest version of Aura and that fits the memory and storage configuration of the original instance.
+This means that if you choose the second option the instance you want to migrate to has to have at least the same amount of memory and storage as the original one.
 
-Note that cloning into an existing instance will overwrite all of its existing data and name. This action cannot be undone and may take longer than cloning to a new instance. It is advised to take a snapshot and download it before continuing if you still have data on that instance you want to keep.
+Note that cloning into an existing instance will overwrite all of its existing data and name.
+This action cannot be undone and may take longer than cloning to a new instance.
+It is advised to take a snapshot and download it before continuing if you still have data on that instance you want to keep.
 
 Regardless of which option you choose, the name of the migration target instance will be the same as the original instance.
 
 ==== Testing the migrated instance
 
-Once you see the following box on the Migration Readiness Report your migrated instance is ready for testing. Follow the steps described and test your instance to make sure your application can work with it in your production system.
+Once you see the following box on the Migration Readiness Report your migrated instance is ready for testing.
+Follow the steps described and test your instance to make sure your application can work with it in your production system.
 
 image::mrr-live-migration-ready-for-test.png[]
 
