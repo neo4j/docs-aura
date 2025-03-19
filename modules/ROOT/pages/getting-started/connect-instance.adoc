@@ -55,38 +55,5 @@ For more information about connection schemes, see link:https://neo4j.com/docs/o
 === Connection error
 
 If you encounter a connection error with the `neo4j://` connection method, try switching to Query API. 
-In an enterprise environment with restrictive networking, connection errors are sometimes caused because non-standard ports used by the Neo4j protocol are blocked by firewalls.
-
-== Query API for Aura
-
-The Query API allows interaction with an Aura database using Cypher via HTTPS.
-
-For more information, see the link:https://neo4j.com/docs/query-api/current/[Query API documentation] but note that:
-
-* for Aura instances host is of the format `<databaseID>.databases.neo4j.io`
-
-* the documentation refers to self-managed instances and port `:7474` but Aura supports HTTPS, which defaults to port `:443`
-
-To send Cypher queries to an Aura instance, make a `POST` request to the following API endpoint:
-
-[source, header]
-----
-https://<databaseID>.databases.neo4j.io/db/<databaseName>/query/v2
-----
-
-`<databaseID>` = The unique ID of your Aura database (e.g. e011c23c).
-
-`<databaseName>` = The target database (e.g. neo4j for the default database).
-
-This is how to create a node in Aura using `curl`:
-
-[source, shell]
-----
-curl -vvv -X POST
-     -H "Authorization: Basic bmVvNGo6Zm9vdGJhbGw="
-     -H "Content-Type: application/json"
-     -d "{   \"statement\": \"create (n:Person) RETURN n;\" } }"
-      https://e057c26c.databases.neo4j.io/db/neo4j/query/v2
-----
-
+In an enterprise environment with restrictive networking, an error is sometimes caused because the port used by the Neo4j protocol is blocked by a firewall.
 

@@ -1,0 +1,79 @@
+[[query-api-aura]]
+= Aura Query API
+:description: This page describes how to create a node using Query API and an Aura instance.
+
+== Introduction
+
+The Query API enables interaction with an Aura database using Cypher via HTTPS.
+
+This tutorial guides you through the process of sending Cypher queries to an Aura instance using the Query API.
+
+For more information, see the link:https://neo4j.com/docs/query-api/current/[Query API documentation] but note that:
+
+* For Aura instances, the host follows the format `<databaseID>.databases.neo4j.io`
+
+* The official documentation mainly refers to self-managed instances that use port `:7474` however Aura supports HTTPS, which defaults to port `:443` 
+
+* As HTTPS implies port `:443` in the request, you do not need to include the port in the request.
+
+== API endpoint
+
+To send Cypher queries to an Aura instance, make a `POST` request to the following API endpoint:
+
+[source, header]
+----
+https://<databaseID>.databases.neo4j.io/db/<databaseName>/query/v2
+----
+
+*Parameters*
+
+`<databaseID>` = The unique ID of your Aura database (e.g. e011c23c).
+
+`<databaseName>` = The target database (use `neo4j` for the default database).
+
+*Example Endpoint:*
+
+[source, header]
+----
+https://537dfda7.databases.neo4j.io/db/neo4j/query/v2
+----
+
+== Queries using curl
+
+You can interact with the Query API using curl, in your command-line terminal. 
+This provides a simple way to communicate with the database without using a driver. 
+Ensure that curl is installed in your terminal before proceeding.
+
+== Example: create a node 
+
+This example demonstrates how to create a Person node in an Aura instance, using curl:
+
+[source, shell]
+----
+curl -vvv -X POST \
+   -H "Authorization: Basic bmVvNGo6MlFidnE4TEFrRnZwXzdjT3NRM2F3NTJXVVRpTXotUERXQTU4NTdmRWFKdw==" \
+   -H "Content-Type: application/json" \
+   -d '{ "statement": "create (n:Person)  RETURN n" }' \ 
+   https://537dfda7.databases.neo4j.io/db/neo4j/query/v2
+----
+
+=== Explanation
+
+`-X POST` Specifies that the request is a POST request.
+
+`-H "Authorization: Basic <base64_encoded_credentials>":` Replace <base64_encoded_credentials> with your base64-encoded credentials.
+Encode your Neo4j credentials (neo4j:your-password) using a base64 encoder (many are available online).
+
+`-H "Content-Type: application/json"` Specifies that the request body is in JSON format.
+
+`-d '{ "statement": "CREATE (n:Person) RETURN n" }'` Contains the Cypher query to create a Person node.
+
+Note: The `\` backslashes allow multi-line commands in the terminal.
+
+== Tip
+
+You can also use tools like Postman to format and send requests more easily.
+
+== Next Steps
+
+Try executing different Cypher queries to retrieve, update, or delete nodes in your Aura database.
