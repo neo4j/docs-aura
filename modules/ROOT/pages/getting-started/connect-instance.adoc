@@ -52,7 +52,7 @@ Use for debugging or when Bolt is unavailable due to network configurations.
 
 For more information about connection schemes, see link:https://neo4j.com/docs/operations-manual/current/configuration/connectors/[Operations Manual -> Configure network connectors] and link:https://neo4j.com/docs/bolt/current/bolt/[Bolt Protocol].
 
-== Troubleshooting
+=== Connection error
 
 If you encounter connection errors with the Neo4j connection method, try switching to Query API. 
 In an enterprise environment with restrictive networking, connection errors are sometimes caused because non-standard ports used by the Neo4j protocol are blocked by firewalls.
