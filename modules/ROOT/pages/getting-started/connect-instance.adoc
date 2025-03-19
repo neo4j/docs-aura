@@ -48,7 +48,7 @@ This scheme is built on the `bolt://` protocol and uses a WebSocket connection t
 Use for best performance and stability.
 
 *Query API*: Connects to Aura through the Query API via HTTPS on port 443 (a standard, widely open port, compatible with most firewalls). 
-Use for debugging or when Bolt is unavailable due to your organization's network configuration.
+Use for debugging or when Bolt is unavailable due to network configurations.
 
 For more information about connection schemes, see link:https://neo4j.com/docs/operations-manual/current/configuration/connectors/[Operations Manual -> Configure network connectors] and link:https://neo4j.com/docs/bolt/current/bolt/[Bolt Protocol].
 
