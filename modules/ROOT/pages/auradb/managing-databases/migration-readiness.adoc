@@ -39,6 +39,7 @@ After implementing the recommendations from the report, you can use the test and
 
 === Control over the time window
 
+[.shadow]
 image::mrr-deprecation-query-timeline.png[]
 
 In the "Deprecations and query timeline" section, you will see a chart displaying the usage of deprecated Cypher features and constructs and a general measure of query load on that system (query rate).
@@ -57,6 +58,7 @@ Be aware that while the chart can display up to 7 days, the details for Cypher d
 
 == Cypher deprecations
 
+[.shadow]
 image::mrr-fetch-logs.png[width=250]
 
 After selecting a time frame of a maximum of 24 hours, use the button to fetch the deprecations logs in this section.
@@ -72,24 +74,28 @@ You can filter on:
 
 Use the button in the popup to fetch applicable data to populate the report's table.
 
+[.shadow]
 image::mrr-deprecation-table.png[]
 
 Each row in the table represents a query in the selected timeframe that must be changed to seamlessly migrate to the latest Aura version.
-You have to rewrite those queries to only use Cypher supported by the latest version.
+You have to rewrite those queries to only use Cypher supported by the latest Aura version.
 
 All executions of the same query are aggregated into one row (see also the "Count" column).
 Use the magnifying glass at the start of each row to access a popup with more information about the query and suggestions on dealing with each issue.
 It also provides relevant links to the documentation for each deprecation.
 
+[.shadow]
 image::mrr-resolution-guide.png[width=600]
 
 The last column in the table of Cypher deprecations links to a view of this specific query in the Aura Query Log Analyzer tool, which can provide information on each execution of the selected query.
 The tool can view queries on all databases except the `system` database.
 
+[.shadow]
 image::mrr-show-query-log-button.png[width=400]
 
 == Deprecated driver usage
 
+[.shadow]
 image::mrr-fetch-driver-stats.png[width=400]
 
 After selecting a time frame of a maximum of 24 hours, use the button to fetch the driver statistics in this section.
@@ -99,6 +105,7 @@ You can change those freely to see all driver usage, for example.
 Use the button in the popup to fetch applicable data to populate the report's table.
 Depending on the type of client accessing the Neo4j database, links are provided in the column “Latest version” to help with the upgrade.
 
+[.shadow]
 image::mrr-driver-table.png[]
 
 Like the Cypher deprecations table, the last column links to a view of this specific driver's executed queries in the Aura Query Log tool.
@@ -109,13 +116,20 @@ The tool can view queries on all databases except the `system` database.
 
 This section provides information on how to deal with deprecated indexes that may be used in version 4 but need to be handled before or while moving to the latest version.
 
-This part involves manually running a provided Cypher query on your database to identify the deprecated indexes and then deciding how to best deal with them.
+This part involves manually running a provided Cypher query on your database to identify the deprecated indexes or constraints backed by deprecated indexes and then deciding how to best deal with them.
+For each deprecated index you can decide to manually create a replacement index before the migration (pre-create) or have the migration process create it for you.
+Pre-creating indexes will speed up the migration process but requires additional disk space.
+Not pre-creating indexes will lead to a longer migration process and may result in the need to manually recreate indexes after the migration, as the automatically migrated indexes may not be the optimal type for your application.
+
 Further enhancements to this feature will be provided in the future.
 
 == Testing and executing the migration
 
 After implementing the recommendations from the report, you can now test and run the migration.
 It is highly recommended to run a test migration before attempting the live migration.
+
+It is also advisable to set up a custom endpoint before the migration to speed up the switch to the migrated instance in your application.
+For more information, see xref:auradb/managing-databases/custom-endpoints.adoc[Custom endpoints].
 
 At this time, neither the test nor the live migration will include changes to the store format like moving to block format.
 
@@ -164,12 +178,13 @@ It starts with "[Testing]", followed by (most of) the original instance's name a
 Once you see the box below on the Migration Readiness Report, your migrated instance is ready for testing.
 Follow the steps described and test your instance to make sure your live migration will go smoothly.
 
+[.shadow]
 image::mrr-test-instance-ready.png[]
 
 ==== Finalize test migration
 
 Once you are done with testing, use the "Finalize test migration" button.
-You will be asked to acknowledge the finalization since the test instance is deleted in the process.
+You will be asked to acknowledge the finalization since the *test instance is deleted* in the process.
 You can skip this step and keep the test instance, but this incurs a cost.
 Therefore, to minimize costs if you test manually, don't forget to delete the test instance when you are done.
 
@@ -209,10 +224,15 @@ Regardless of which option you select, the name of the migration target instance
 Once you see the following box on the Migration Readiness Report your migrated instance is ready for testing.
 Follow the steps described and test your instance to make sure your application can work with it in your production system.
 
+[.shadow]
 image::mrr-live-migration-ready-for-test.png[]
 
 ==== Finalize live migration
 
 Once you are done with testing, use the "Finalize live migration" button.
-You will be asked to acknowledge the finalization since the original instance is permanently removed in the process.
+You will be asked to acknowledge the finalization since *the original instance is permanently removed* in the process.
 Additionally, when the dialog is completed, you will no longer have access to the Migration readiness report.
+
+You can also postpone this step and keep the original instance e.g. as a rollback option.
+Be mindful that this means you have the running costs for both the migrated and the original instance.
+If you wish to remove the original instance later, you can revisit this step or remove it via the Aura console.
