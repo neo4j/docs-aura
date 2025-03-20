@@ -53,7 +53,7 @@ This example demonstrates how to create a Person node in an Aura instance, using
 curl -vvv -X POST \
    -H "Authorization: Basic bmVvNGo1MlFidnE4TEFrRnZwXzdjT1NRM2F1NTJXVVRpTXotUERXQTU1NTdmRWFKdw==" \
    -H "Content-Type: application/json" \
-   -d '{ "statement": "create (n:Person)  RETURN n" }' \ 
+   -d '{ "statement": "CREATE (n:Person {name: \'Alice\'\}) RETURN n" }' \ 
    https://537dfda7.databases.neo4j.io/db/neo4j/query/v2
 ----
 
