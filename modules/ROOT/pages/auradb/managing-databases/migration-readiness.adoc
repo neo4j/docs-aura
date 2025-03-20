@@ -117,6 +117,8 @@ Further enhancements to this feature will be provided in the future.
 After implementing the recommendations from the report, you can now test and run the migration.
 It is highly recommended to run a test migration before attempting the live migration.
 
+At this time, neither the test nor the live migration will include changes to the store format like moving to block format.
+
 [NOTE]
 ====
 During the migration, the migration target instance may be shown with a few different statuses on the instance page, such as LOADING or OVERWRITING for example.
