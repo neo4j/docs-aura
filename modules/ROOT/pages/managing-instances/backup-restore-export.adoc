@@ -1,6 +1,6 @@
 [[aura-backup-restore-export]]
 = Backup, export, restore, and upload
-:description: This page describes how to backup, export, and restore your data from a snapshot asw ell as using `neo4j admin` to upload data.
+:description: This page describes how to backup, export, and restore your data from a snapshot as well as using `neo4j admin` to upload data.
 :page-aliases: auradb/managing-databases/backup-restore-export.adoc, aurads/managing-databases/backup-restore-export.adoc, aurads/managing-databases/importing-data/import-db
 
 The data in your Aura instance can be backed up, exported, and restored using snapshots.
@@ -164,14 +164,14 @@ If this is not desired, you can create a new instance from the snapshot instead,
 [[neo4j-admin-upload]]
 == Upload an existing Neo4j database
 
-If you have a local copy of a Neo4j database, you can use your local installation of Neo4j to upload this to your Aura instance.
+If you have a local copy of a Neo4j database and Neo4j installed locally, you can use this installation of Neo4j to upload this to your Aura instance.
 
 [CAUTION]
 ====
 This command does not work if you have a network access configuration setup that prevents public traffic to the region your instance is hosted in. See <<Public traffic>> below for more information.
 ====
 
-`database upload` is a `neo4j-admin` command that you can run to upload the contents of a Neo4j database into an Aura instance, regardless of the database's size.
+`database upload` is a `neo4j-admin` command that you can run to upload the contents of a Neo4j database into an Aura instance, regardless of the database's size, as long as it fits your Aura instance.
 Keep in mind that the database you want to upload may run a different version of Neo4j than your Aura instance.
 Additionally, your Neo4j Aura instance must be accessible from the machine running `neo4j-admin`.
 Otherwise, the upload will fail with SSL errors.
