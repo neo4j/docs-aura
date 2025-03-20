@@ -16,9 +16,9 @@ You can drag and drop nodes in the displayed graph.
 .Cypher query for a graph which displays products which are part of the "produce" category
 [source,cypher]
 ----
-MATCH path = (p:Product)-[:PART_OF]->(c:Category)
+MATCH (p:Product)-[o:PART_OF]->(c:Category)
 WHERE c.categoryName = "Produce"
-RETURN path
+RETURN p, o, c
 ----
 
 .A graph displaying the products which are part of the "produce" category

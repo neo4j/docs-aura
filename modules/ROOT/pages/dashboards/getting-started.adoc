@@ -38,6 +38,30 @@ Create a new dashboard:
 . Use **Add card** to create cards which represent visualizations.
 
 
+=== Add a card with a bar chart
+
+Create a bar chart which displays the number of orders per customer.
+
+In the dashboard page tab:
+
+. Use **Add card** at the bottom right of the page.
+. Optionally change the title of the card by clicking and editing, then confirm.
+. In the new card, click the three dots icon at the top right, then select **Bar chart** as the **Chart type**.
+. **Edit** the Cypher query of the card and paste the following Cypher query to the input field, then **Save**:
++
+[source,cypher]
+----
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)
+RETURN c.contactName AS Customer, count(o) AS Orders
+ORDER BY Orders DESC LIMIT 10
+----
+
+Your bar chart should look like this:
+
+.Example bar chart
+image::dashboards/visualization-bar-chart.png[]
+
+
 === Add a card with a line chart
 
 Create a line chart which displays the number of products for each order ID.
@@ -63,32 +87,8 @@ Your line chart should look like this:
 image::dashboards/visualization-line-chart.png[]
 
 
-=== Add a card with a bar chart
-
-Create a bar chart which displays the number of orders per customer.
-
-In the dashboard page tab:
-
-. Use **Add card** at the bottom right of the page.
-. Optionally change the title of the card by clicking and editing, then confirm.
-. In the new card, click the three dots icon at the top right, then select **Bar chart** as the **Chart type**.
-. **Edit** the Cypher query of the card and paste the following Cypher query to the input field, then **Save**:
-+
-[source,cypher]
-----
-MATCH (c:Customer)-[:PURCHASED]->(o:Order)
-RETURN c.contactName AS Customer, count(o) AS Orders
-ORDER BY Orders DESC LIMIT 10
-----
-
-Your bar chart should look like this:
-
-.Example bar chart
-image::dashboards/visualization-bar-chart.png[]
-
-
 == Next steps
 
-See xref::/dashboards/working-with-dashboards/index.adoc[Working with dashboards] for more dashboard options.
+See xref::/dashboards/working-with-dashboards/managing-dashboards.adoc[] for more dashboard options.
 
-See xref::/dashboards/visualizations/index[Visualizations] to learn about the different charts and visualizations of Neo4j dashboards.
+See xref::/dashboards/visualizations/index.adoc[] to learn about the different charts and visualizations of Neo4j dashboards.
