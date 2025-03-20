@@ -12,7 +12,7 @@ For more information, see the link:https://neo4j.com/docs/query-api/current/[Que
 
 * For Aura instances, the host follows the format `<databaseID>.databases.neo4j.io`
 
-* The official documentation mainly refers to self-managed instances that use port `:7474` however Aura supports HTTPS, which defaults to port `:443` 
+* The Query API documentation mainly refers to self-managed instances that use port `7474`, whereas Aura supports HTTPS only, which defaults to port `443` 
 
 * As HTTPS implies port `:443` in the request, you do not need to include the port in the request.
 
