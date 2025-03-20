@@ -126,6 +126,7 @@ Further enhancements to this feature will be provided in the future.
 == Testing and executing the migration
 
 After implementing the recommendations from the report, you can now test and run the migration.
+Only users with the permission to create and delete instances can access this functionality.
 It is highly recommended to run a test migration before attempting the live migration.
 
 It is also advisable to set up a custom endpoint before the migration to speed up the switch to the migrated instance in your application.
