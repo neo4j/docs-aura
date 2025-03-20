@@ -50,23 +50,23 @@ This example demonstrates how to create a Person node in an Aura instance, using
 
 [source, shell]
 ----
-curl -vvv -X POST \
-   -H "Authorization: Basic bmVvNGo1MlFidnE4TEFrRnZwXzdjT1NRM2F1NTJXVVRpTXotUERXQTU1NTdmRWFKdw==" \
-   -H "Content-Type: application/json" \
-   -d '{ "statement": "CREATE (n:Person {name: \'Alice\'\}) RETURN n" }' \ 
-   https://537dfda7.databases.neo4j.io/db/neo4j/query/v2
+curl -vvv -X POST \ # <1>
+   -H "Authorization: Basic bmVvNGo1MlFidnE4TEFrRnZwXzdjT1NRM2F1NTJXVVRpTXotUERXQTU1NTdmRWFKdw==" \ # <2>
+   -H "Content-Type: application/json" \ # <3>
+   -d '{ "statement": "CREATE (n:Person {name: \'Alice\'\}) RETURN n" }' \ # <4>
+   https://537dfda7.databases.neo4j.io/db/neo4j/query/v2 # <5>
 ----
 
 === Explanation
 
-`-X POST` Specifies that the request is a POST request.
+<1> `-X POST` Specifies that the request is a POST request.
 
-`-H "Authorization: Basic <base64_encoded_credentials>":` Replace <base64_encoded_credentials> with your Base64-encoded Neo4j credentials (neo4j:your-password).
+<2> `-H "Authorization: Basic <base64_encoded_credentials>":` Replace <base64_encoded_credentials> with your Base64-encoded Neo4j credentials (neo4j:your-password).
 Learn more about link:https://neo4j.com/docs/query-api/current/authentication-authorization/#_basic_authentication[basic authentication].
 
-`-H "Content-Type: application/json"` Specifies that the request body is in JSON format.
+<3> `-H "Content-Type: application/json"` Specifies that the request body is in JSON format.
 
-`-d '{ "statement": "CREATE (n:Person) RETURN n" }'` Contains the Cypher query to create a Person node.
+<4> `-d '{ "statement": "CREATE (n:Person) RETURN n" }'` Contains the Cypher query to create a Person node.
 
 Note: The `\` backslashes allow multi-line commands in the terminal.
 
