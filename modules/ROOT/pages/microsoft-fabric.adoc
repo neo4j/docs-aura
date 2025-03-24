@@ -9,14 +9,14 @@ The public preview of the Workload for Microsoft Fabric enables developers, data
 
 Microsoft Fabric allows you to do a number of things, including, but not limited to, the following:
 
-* Try AuraDB Professional for free.
+* Try AuraDB Professional for free with a 14-day free trial.
 * Transform the data in a OneLake Lakehouse into a graph in AuraDB, using generative AI assistance for schema inference.
 * Query the graph in the Fabric console.
 * Explore and run graph algorithms in the Fabric console.
 * Build applications using the Neo4j .Net driver.
 * Use collaborative Notebooks in the Fabric console that run PySpark with the Neo4j Python Driver or GDS Client.
 
-In order for the integration to function properly, the following are required on the Aura side:
+On the Aura-side, the following is required:
 
 * An AuraDB Professional instance.
 * Single Sign-On login with EntraID (see xref:security/single-sign-on.adoc#_microsoft_entra_id_sso[Microsoft Entra ID SSO] for more information).
@@ -29,7 +29,7 @@ In order for the integration to function properly, the following are required on
 * Results of graph analytics are not returned to OneLake.
 * Graphs can only be created from a single Lakehouse.
 * Creating a new item will create a new database in Aura.
-* Free AuraDB Professional trial is limited to one per user.
+* AuraDB Professional free trial is limited to one per organization.
 
 **Microsoft Certification**
 
@@ -47,7 +47,7 @@ A Fabric admin needs to perform the following steps:
 
 Once the workload has been enabled in your workspace, follow the steps outlined to create a graph data set:
 
-. Selext *New item*
+. Selext *...*
 . Select *Neo4j Graph Dataset (preview)*
 . Provide a name for the dataset
 . *Optional* Select *Start trial now* to start an AuraDB Professional 14-day trial if you don't have an Aura instance.
@@ -82,7 +82,3 @@ For more information about Query, see xref:query/introduction.adoc[Query].
 
 Administration is available via the Aura console and not the Microsoft Fabric console.
 Refer to xref:visual-tour/index.adoc[Visual tour of the console] for more information about the Aura console.
-
-== Limitations of Public Preview
-
-== Microsoft Certification page
