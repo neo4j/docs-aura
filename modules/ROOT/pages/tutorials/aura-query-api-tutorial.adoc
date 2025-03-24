@@ -38,15 +38,27 @@ https://<instanceID>.databases.neo4j.io/db/<databaseName>/query/v2
 https://537dfda7.databases.neo4j.io/db/neo4j/query/v2
 ----
 
-== Queries using curl
+aura recently introduced custom endpoint... i.e. a alias that points to #####.databases.neo4j.io
 
-You can interact with the Query API using curl, in your command-line terminal. 
+=== Custom endpoints
+
+You can send Cypher queries to the Query API using a custom endpoint just as you would with the standard one.
+
+https://<customerEndpoint>.endpoints.neo4j.io:443/db/neo4j/query/v2
+
+`<customerEndpoint>` = The target endpoint 
+
+https://technology3ndpoint-dev-eng.endpoints.neo4j.io:443/db/neo4j/query/v2
+
+== Queries using cURL
+
+You can interact with the Query API using cURL, in your command-line terminal. 
 This provides a simple way to communicate with the database without using a language library. 
-Ensure that curl is installed in your system before proceeding.
+Ensure that cURL is installed in your system before proceeding.
 
 == Example: create a node 
 
-This example demonstrates how to create a Person node in an Aura instance, using curl:
+This example demonstrates how to create a Person node in an Aura instance, using cURL:
 
 [source, shell]
 ----
