@@ -37,22 +37,25 @@ This workload has been certified by Microsoft, refer to the link:{neo4j-docs-bas
 
 == Configure the workload
 
-A Fabric admin needs to perform the following steps:
+If the workload is not available in your workspace, contact your administrator to add it.
+The administrator need to perform the following steps:
 
-. Step one
-. Step 2
-
+. Select *Workloads* in the Fabric console
+. Select the Neo4j AuraDB workload
+. Add the workload
+. Either select capabilities from the list or select *All capacities*
+. Add the workload
 
 == Create a graph data set
 
 Once the workload has been enabled in your workspace, follow the steps outlined to create a graph data set:
 
-. Selext *...*
+. Select `...`
 . Select *Neo4j Graph Dataset (preview)*
 . Provide a name for the dataset
-. *Optional* Select *Start trial now* to start an AuraDB Professional 14-day trial if you don't have an Aura instance.
-. Select the Lakehouse you want to use.
-. Select one or more tables in the Lakehouse.
+. *Optional*: Select *Start trial now* to start an AuraDB Professional 14-day trial if you don't have an Aura instance already.
+. Select the Lakehouse you want to use
+. Select one or more tables in the Lakehouse
 . Finally, select *Transform into graph data set* to create a new AuraDB graph database within an existing project.
 
 Keep in mind that you can only start one free trial per organization.
@@ -60,6 +63,7 @@ Keep in mind that you can only start one free trial per organization.
 [NOTE]
 ====
 If the AuraDB administrator disables Generative AI assistance in Aura, then the *Transform* button will be greyed out.
+See xref:visual-tour/index.adoc#org-settings[Organization settings] for more information.
 ====
 
 
