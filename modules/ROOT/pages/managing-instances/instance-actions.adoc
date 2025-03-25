@@ -58,16 +58,36 @@ image::instanceactions.png[]
 // . Tick the *I understand* checkbox and select *Upgrade Instance*.
 
 == Resize an instance
-
-Resizing an instance means changing the memory, CPU and storage size.
-Note that this option is not available for Free instances.
-
 // label:AuraDB-Professional[]
 // label:AuraDB-Enterprise[]
 // label:AuraDB-Business-Critical[]
 
+Resizing an instance means changing the memory, CPU and storage size.
+Note that this option is not available for Free instances.
+
 You can change the size of an existing instance using the *Resize* button on the instance you want to resize.
 An instance remains available during the resize operation.
+
+== Flexible storage
+
+[NOTE]
+====
+Available for:
+* AuraDB pre-paid plans.
+* Google Cloud Platform (GCP)
+* version 5.x
+====
+
+Aura instances have flexible storage, so you can increase storage without increasing memory, which is ideal for running heavy queries or for growing graphs.
+
+Why? Meet varying workloads and improve cost efficiency.
+
+Adjust storage at any time by selecting *Configuration* on the instance card then *Instance Size* and select the value in the Storage (adjustable column) which is only available for GCP.
+
+[.shadow]
+image::instancesizeconfig.png[screenshot of instance size configuration]
+
+Storage can be changed when creating the instance, or it can be done by resizing an instance.
 
 == Pause an instance
 
