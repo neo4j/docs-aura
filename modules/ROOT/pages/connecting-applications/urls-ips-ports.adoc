@@ -1,0 +1,302 @@
+[[aura-ip-addresses]]
+= IP addresses
+:description: Interesting description goes here
+
+To connect to Neo4j Aura, configure your firewall to allow traffic to and from the following groups of public IP addresses:
+
+* Common tools to access Aura that use global services and are centrally hosted.
+* Individual databases instances in respective regions and cloud providers.
+
+Common global addresses (all tiers)
+
+[cols="1,1,1"]
+|===
+|Access point name
+|URL
+|IPv4 Address 
+
+|Aura Console
+|console.neo4j.io
+|35.241.228.234 (for future use 34.110.249.124)
+
+|Aura Workspace
+|workspace-preview.neo4j.io	
+|34.160.183.136
+
+|Aura API
+|api.neo4j.io
+|34.36.216.162
+
+|Aura Support portal
+|support.neo4j.com	
+|link:https://help.salesforce.com/s/articleView?id=000384438&type=1[See full list]
+
+|Aura Bloom	
+|bloom.neo4j.io	
+|34.110.209.142 
+35.244.155.41
+
+|Aura Browser
+|browser.neo4j.io	
+|34.102.158.61
+
+|Aura Data Importer
+|data-importer.neo4j.io	
+|107.178.242.111
+
+|Aura Ops Manager
+|ops-manager.neo4j.io
+|34.160.136.34
+
+|Aura Customer Metrics Integration
+|customer-metrics-api.neo4j.io
+|34.140.105.178
+|===
+ 
+== Databases instance addresses
+The public IP address(es) of your AuraDB/AuraDS Instance(s) depends on the geography and product tier.
+
+=== AuraDB/AuraDS Enterprise
+For our Enterprise tier customers, you will have one or more dedicated IPs for your environment.
+If you need help finding that IP, please use this method.
+
+[IMPORTANT]
+====
+For AuraDS only - The Arrow server runs on port 8491 
+====
+
+== AuraDB Professional tier
+For our Professional tier customers, we have a collection of public IP addresses we use depending on the region your AuraDB Instance is deployed in and depending on the cloud service provider:
+
+=== GCP (for AuraDS also add port 8491)
+
+[cols="1,1,1,1,1"]
+|===
+|Geographic Region
+|Location
+|Name
+|Aura Professional
+IPv4 Address
+|Ports (TCP)
+
+|EUROPE
+|Belgium
+|europe-west1
+|35.240.50.81
+35.187.55.46
+|80*,443,7474*,7687
+
+|EUROPE
+|UK
+|europe-west2
+|34.105.131.232
+|80*,443,7474*,7687
+
+|EUROPE
+|Germany
+|europe-west3
+|35.242.209.97
+|80*,443,7474*,7687
+
+|USA
+|Iowa, USA	
+|us-central1
+|104.197.20.211
+35.226.25.193
+|80*,443,7474*,7687
+
+|USA
+|South Carolina, USA
+|us-east1	
+|104.196.181.95
+34.148.173.76
+|80*,443,7474*,7687
+
+|USA
+|Oregon, USA
+|us-west1
+|34.82.68.138
+34.82.120.138
+|80*,443,7474*,7687
+
+|ASIA
+|Hong Kong
+|asia-east2
+|34.96.218.41
+|80*,443,7474*,7687
+
+|ASIA
+|Taiwan
+|asia-east1
+|35.201.159.192	
+|80*,443,7474*,7687
+
+|OCEANIA
+|Australia
+|australia-southeast1
+|34.87.204.150
+|80*,443,7474*,7687
+|===
+
+Port 80 and 7474 are optional and only ever used to redirect to HTTPS. Not used for data communication. 
+
+=== AWS (for AuraDS also add port 8491) 
+
+[cols="1,1,1,1,1"]
+|===
+|Geographic Region
+|Location
+|Name
+|Aura Professional
+IPv4 Address
+|Ports (TCP)
+
+|EUROPE
+|Ireland
+|eu-west-1
+|54.73.23.22 
+63.32.207.218 
+54.216.115.14	
+|80*,443,7474*,7687
+
+|USA	
+|Oregon, USA
+|us-west-2
+|44.236.242.242
+44.227.200.111
+35.166.145.198
+44.232.120.60
+|80*,443,7474*,7687
+
+|USA
+|North Virginia, USA
+|us-east-1
+|54.205.140.194
+3.224.243.10
+34.237.189.213 
+3.229.58.166 
+52.21.223.250
+54.205.24.25
+52.73.189.221
+44.222.56.18
+34.205.10.16
+18.235.106.124	
+|80*,443,7474*,7687
+
+|SOUTH AMERICA
+|São Paulo, Brazil
+|sa-east-1	
+|54.232.153.180
+18.230.132.57
+54.207.37.117
+80*,443,7474*,7687
+
+|ASIA
+|Singapore
+|ap-southeast-1
+|52.74.5.242
+13.215.33.19
+54.179.248.226
+|80*,443,7474*,7687
+|===
+
+Port 80 and 7474 are optional and only ever used to redirect to HTTPS. Not used for data communication. 
+
+ 
+=== Azure (for AuraDS also add port 8491)
+
+[cols="1,1,1,1,1"]
+|===
+|Geographic Region
+|Location
+|Name
+|Aura Professional
+IPv4 Address
+|Ports (TCP)
+
+|EUROPE	
+|Paris, France	
+|francecentral	
+|51.103.49.175	
+|80*,443,7474*,7687
+
+|USA	
+|Virginia, USA	
+|eastus	
+|20.124.3.249	
+|80*,443,7474*,7687
+
+|USA	
+|Arizona, USA	
+|westus3	
+|20.124.3.249	
+|80*,443,7474*,7687
+
+|SOUTH AMERICA
+|São Paulo, Brazil	
+|brazilsouth	
+|20.124.3.249
+|80*,443,7474*,7687
+
+|ASIA
+|Seoul
+|koreacentral
+|20.124.3.249
+|80*,443,7474*,7687
+|===
+
+Port 80 and 7474 are optional and only ever used to redirect to HTTPS. Not used for data communication. 
+
+== AuraDB Free tier (GCP ONLY)
+
+[cols="1,1,1,1,1"]
+|===
+
+|Geographic Region	
+|Location	
+|Name
+|IPv4 Address	
+|Ports (TCP)
+
+|EUROPE	
+|Belgium
+|europe-west1
+|34.78.243.29
+34.76.245.87
+35.205.213.74
+35.189.250.174
+34.78.76.49
+35.241.237.34	
+|80*,443,7474*,7687
+
+|USA
+|Iowa, USA
+|us-central1	
+34.69.128.95
+34.66.78.163
+34.121.155.65
+34.31.169.230
+|80*,443,7474*,7687
+
+|ASIA
+|Singapore
+|asia-southeast1
+|34.126.64.110
+34.126.114.186
+34.126.171.25
+34.124.169.171	
+|80*,443,7474*,7687
+|===
+
+Port 80 and 7474 are optional and only ever used to redirect to HTTPS. Not used for data communication. 
+
+== Notes
+
+Further details of the physical location can be found in Google's link:https://cloud.google.com/compute/docs/regions-zones#locations[Regions and zones documentation]
+
+To connect to Aura in your application, your URI will need to use the fully qualified domain name (FQDN) of your AuraDB Instance, and not just the IP address.
+
+For example, if your AuraDB Instance ID is `abcd1234`, then the URI to use would be `neo4j+s://abcd1234.databases.neo4j.io`
+
+Ports 80 and 7474 are redirected to 443 for convenience but communication remains encrypted.
+ 
