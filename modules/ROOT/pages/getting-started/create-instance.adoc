@@ -3,14 +3,17 @@
 :description: This page describes how to create an instance in the new Neo4j Aura console.
 :page-aliases: auradb/getting-started/create-database.adoc, aurads/create-instance.adoc
 
-
 There are two types of Aura instances:
 
 * **AuraDB** (the default Aura instance type)
 * **AuraDS** (the xref:graph-analytics/index.adoc#aura-ds[fully managed version] of Neo4j Graph Data Science)
 
 Select the type of instance using the switch on the top right, then choose the plan that best suits your needs.
-Upgrade your plan, and resize your instance's memory or storage later if your needs change.
+
+/// 
+Storage is adjustable.
+Upgrade your plan, and resize your instance's memory or link:flexible storage[storage] later if your needs change.
+/// 
 
 You can optionally enable additional features:
 

@@ -72,22 +72,16 @@ An instance remains available during the resize operation.
 
 [NOTE]
 ====
-Available for:
-* AuraDB pre-paid plans.
-* Google Cloud Platform (GCP)
-* version 5.x
+Available for AuraDB pre-paid plans on Google Cloud Platform (GCP), version 5.x.
 ====
 
-Aura instances have flexible storage, so you can increase storage without increasing memory, which is ideal for running heavy queries or for growing graphs.
-
-Why? Meet varying workloads and improve cost efficiency.
-
-Adjust storage at any time by selecting *Configuration* on the instance card then *Instance Size* and select the value in the Storage (adjustable column) which is only available for GCP.
+Aura instances have flexible storage, so you can increase storage independent of memory.
+Storage can be selected when creating the instance, or later when your needs change.
+Select *Configuration* on the instance card, and select a new value in the *Storage* column.
 
 [.shadow]
-image::instancesizeconfig.png[screenshot of instance size configuration]
-
-Storage can be changed when creating the instance, or it can be done by resizing an instance.
+.Adjust the storage size of an existing instance
+image::flexiblestorage.png[screenshot of instance storage resize]
 
 == Pause an instance
 
