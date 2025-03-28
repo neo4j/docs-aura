@@ -1,0 +1,91 @@
+= Migrating your Neo4j AuraDB Free instance to another AuraDB plan
+:description: This section describes migrating your Neo4j AuraDB Free Instance to another AuraDB plan 
+
+== AuraDB Professional or AuraDB Virtual Dedicated Cloud
+
+Upgrading your plan to AuraDB Professional or AuraDB Virtual Dedicated Cloud gives you access to additional resources and functionalities to support production workloads and applications with demanding storage and processing needs.
+
+*Migration options*
+
+* Upgrade to AuraDB Professional 
+* Clone to new (Works for AuraDB Professional and AuraDS Professional) 
+* Manual process
+
+== Upgrade to AuraDB Professional
+
+You can upgrade an instance to the Professional plan directly from the console.
+
+Click the ellipsis (*...*) button on an instance card > *Upgrade to Professional*
+
+Verify that the cloud provider and region are correct and select the instance size you need.
+Note that the default version of Neo4j is 5.
+Once you are satisfied, click ***Upgrade***.
+
+== Clone (Works for AuraDB Professional and AuraDS)
+
+The other way is to _clone_ your existing instance to the Professional plan. 
+
+* Click the ellipsis (*...*) button on an instance 
+* Select either: *Clone to new* or *Clone to existing* (the current content will be overwritten)
+* Select the type: *AuraDB* or *AuraDS*
+
+== Manual process
+
+In your existing instance:
+
+. (Optional but recommended) Capture existing index and constraint definitions:
+.. Run the following Cypher statement:
++
+[source,cypher]
+----
+SHOW CONSTRAINTS YIELD createStatement
+----
++
+Save result to a file, to use later in the process.
+.. Run the following Cypher statement:
++
+[source,cypher]
+----
+SHOW INDEXES YIELD createStatement
+----
++
+Save result to a file, to use later in the process.
+
+. (Optional but recommended) Drop the indexes and constraints.
+.. Run the following Cypher statement to generate the commands to drop existing constraints:
++
+[source,cypher]
+----
+SHOW CONSTRAINTS YIELD name
+RETURN 'DROP CONSTRAINT ' + name + ';'
+----
+.. Execute the generated commands to drop existing constraints.
+.. Run the following Cypher statement to generate the commands to drop existing indexes:
++
+[source,cypher]
+----
+SHOW INDEX YIELD name
+RETURN 'DROP INDEX ' + name + ';'
+----
+.. Execute the generated commands to drop existing indexes.
++
+For more information about indexes and constrains, see link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/[Cypher Manual -> Indexes] and link:{neo4j-docs-base-uri}/cypher-manual/current/constraints/[Cypher Manual -> Constraints].
++
+. In the console of your existing instance (AuraDB Free), do the following:
+
+.. Download snapshot/Dump locally (the daily automatic snapshot)
+.. In the Aura Console select the AuraDB instance
+.. Go to the *Snapshots* tab
+.. Click the *three dots*, and select *Export*
+.. Save the dump file locally (preserve the .dump extension)
++
+. Then create a new AuraDB instance in AuraDB Professional or AuraDB Virtual Dedicated Cloud with the right resource sizing.
+From your new instance, do the following:
+
+.. Upload via Console drag and drop **or** push-to-cloud
+... From the Aura Console: drag and drop the .dump file
+... Using the command line: `neo4j-admin push-to-cloud`
++
+. In the newly created AuraDB Professional or AuraDB Virtual Dedicated Cloud instance
++
+(Optional) Once the AuraDB instance is loaded and started, you can recreate the indexes and constraints, using the information captured earlier in the process.
