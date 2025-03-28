@@ -1,14 +1,18 @@
 [[graph-analytics-aura]]
 = Graph analytics on Aura
 :description: This page describes how to run graph analytics on Aura.
+:gds-no-db-name: Graph Analytics [STANDALONE]
 
-There are two ways to run graph analytics on Aura:
+There are multiple ways to run graph analytics on Aura:
 
-* Create an AuraDB Professional instance with the <<aura-gds-plugin>>, or enable the plugin on an existing AuraDB Professional instance.
+* <<aura-gds-plugin,Enable Graph Analytics>> on an existing AuraDB Professional instance.
 * Create an <<aura-ds, AuraDS instance>>.
+* Use Graph Analytics without using AuraDB or AuraDS ("no database" option)
+
+== Graph analytics on AuraDB
 
 [[aura-gds-plugin]]
-== Graph Analytics plugin
+=== Graph Analytics plugin
 
 label:AuraDB-Professional[]
 
@@ -18,12 +22,23 @@ The Graph Analytics plugin allows you to use the link:https://neo4j.com/docs/gra
 * 4 GB of memory or more
 * Any supported cloud providers and regions
 
-You can enable or disable the plugin when necessary.
+You can enable or disable Graph Analytics when necessary.
+Graph Analytics will share compute and memory resources with the AuraDB server, and you will not incur additional costs.
 
-[WARNING]
-====
-You can no longer use the plugin if you resize your instance to less than 4 GB of memory.
-====
+[[aura-gds-serverless]]
+=== Graph Analytics Serverless
+
+label:AuraDB-Business-Critical[] label:AuraDB-Virtual-Dedicated-Cloud[]
+
+include::partial$EAP.adoc[]
+
+Graph Analytics Serverless allows you to use the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library] in any AuraDB Business Critical or Virtual Dedicated Cloud instance instance with the following requirements:
+
+* Neo4j version 5 or later
+* Any supported cloud providers and regions
+
+Graph Analytics TBD will run on one or more separate instances optimised for analytics workloads, which will not share any memory and compute resources with the AuraDB instances.
+You can control the shape and the number of these instances, and will only be billed for what you consume.
 
 [[aura-ds]]
 == AuraDS
@@ -38,6 +53,8 @@ AuraDS instances have the following features:
 * Can be seamlessly scaled up or down.
 * Can be paused to reduce costs.
 
+Graph Analytics TBD share compute and memory resources with the AuraDS server, and it is always available.
+
 === Plans
 
 AuraDS offers the AuraDS Professional and AuraDS Enterprise subscription plans.
@@ -51,19 +68,42 @@ Security patches and new versions of GDS and Neo4j are installed within short ti
 The operations are non-destructive, so graph projections, models, and data present on an instance are not affected.
 No operation is applied until all the running GDS algorithms have completed.
 
+[[aura-gds-no-db]]
+== {gds-no-db-name}
+
+{gds-no-db-name} allows you to use the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library] on Aura without AuraDB or AuraDS, on any supported cloud providers and regions.
+
+Graph Analytics TBD will run on one or more instances, optimised for analytics workloads.
+You can import your data [...]
+You can control the shape and the number of these instances, and will only be billed for what you consume.
+
 == Comparison
 
-There are important operational differences between the Graph Analytics plugin on AuraDB Professional and AuraDS.
-
-[opts="header", cols="1,1"]
+[opts="header", cols="1,1,1,1"]
 |===
-|AuraDB Pro + Graph Analytics plugin
+|Graph Analytics plugin
+|Graph Analytics Serverless
 |AuraDS
+|{gds-no-db-name}
 
-|Rolling updates clear all projections.
-|Rolling updates save projections to disk and restore them upon restart.
+|Up to 64 GB memory
+|Up to 512 GB memory
+|Up to 384 GB memory
+|Up to 64 GB memory
 
-|Backup files do not include projections.
-|Backup files include all projections.
+|Shared resources
+|Dedicated resources
+|Shared resources
+|Dedicated resources
+
+|Single instance
+|Up to 10* asynchronous instances
+|Single instance
+|Up to 10* asynchronous instances
+
+|AuraDB source
+|AuraDB source
+|AuraDS source
+|No Neo4j DB needed
 
 |===
