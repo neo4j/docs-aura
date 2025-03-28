@@ -107,8 +107,8 @@ You can pause an instance for up to 30 days, after which point Aura automaticall
 === Time it takes to pause/resume
 
 When you pause an instance, Aura performs a backup operation behind the scenes.
-The time it takes to pause includes these backups.
-Resuming an instance restores the database and the backups.
+It can take a while to pause, depending on your instance size, because Aura is creating the backup.
+Resuming an instance restores the database from the backup.
 
 === Resume a paused instance
 
