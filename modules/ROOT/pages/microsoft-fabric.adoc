@@ -3,6 +3,8 @@
 = Workload for Microsoft Fabric
 :description: This page describes how to use Aura on Microsoft Fabric.
 
+label:Aura-DB-Professional[]
+
 [IMPORTANT]
 ====
 Workload for Microsoft Fabric is a Public Preview and is not intended for production use.
@@ -28,6 +30,16 @@ On the Aura-side, the following is required:
 * Tool authentication enabled for the database.
 //(see xref:security/tool-auth.adoc[Tool authentication] for more information).
 * Generative AI assistance enabled.
+
+The following Azure Fabric regions are supported:
+
+** `brazilsouth`
+** `centralindia`
+** `eastus`
+** `francecentral`
+** `koreacentral`
+** `uksouth`
+** `westus3`
 
 **Limitations**
 
