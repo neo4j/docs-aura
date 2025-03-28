@@ -132,6 +132,7 @@ You can access all the cloning options from the more menu (*...*) on the instanc
 ====
 You cannot clone from a Neo4j latest version instance to a Neo4j version 4 instance.
 ====
+
 === Clone to a new instance
 
 . From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *New instance* from the contextual menu.
@@ -164,6 +165,12 @@ Existing instances that are not large enough to clone into will not be available
 ====
 +
 . Check the *I understand the target instance will be overwritten* box and select *Clone*.
+
+=== Update to the upgrade flow
+
+The *clone to New method* available via the Aura console and Aura API, previously created a new AuraDB Business Critical instance with a different DBID. 
+Now, AuraDB Professional instances can be upgraded to Business Critical without downtime and without changing the database ID.
+The upgrade scales the AuraDB Professional single-node cluster to an AuraDB Business Critical three-node Business Critical cluster and enables all associated features.
 
 == Delete an instance
 
