@@ -15,19 +15,16 @@ Upgrading your plan to AuraDB Professional or AuraDB Virtual Dedicated Cloud giv
 
 You can upgrade an instance to the Professional plan directly from the console.
 
-Click the ellipsis (*...*) button on an instance card > *Upgrade to Professional*
+On the instance card, click the button that says *Upgrade*. 
 
-Verify that the cloud provider and region are correct and select the instance size you need.
-Note that the default version of Neo4j is 5.
-Once you are satisfied, click ***Upgrade***.
+Verify that the cloud provider and region are correct and select the instance size you need, add the extra details and select *Create*.
 
 == Clone (Works for AuraDB Professional and AuraDS)
 
 The other way is to _clone_ your existing instance to the Professional plan. 
 
-* Click the ellipsis (*...*) button on an instance 
-* Select either: *Clone to new* or *Clone to existing* (the current content will be overwritten)
-* Select the type: *AuraDB* or *AuraDS*
+* Click the three dots (*...*) on an instance card
+* Select either: *Clone to new* or create a new *Clone to existing* (the current content will be overwritten)
 
 == Manual process
 
@@ -77,14 +74,14 @@ For more information about indexes and constrains, see link:{neo4j-docs-base-uri
 .. In the Aura Console select the AuraDB instance
 .. Go to the *Snapshots* tab
 .. Click the *three dots*, and select *Export*
-.. Save the dump file locally (preserve the .dump extension)
+.. Save the dump file locally (preserve the .backup extension)
 +
 . Then create a new AuraDB instance in AuraDB Professional or AuraDB Virtual Dedicated Cloud with the right resource sizing.
 From your new instance, do the following:
 
-.. Upload via Console drag and drop **or** push-to-cloud
-... From the Aura Console: drag and drop the .dump file
-... Using the command line: `neo4j-admin push-to-cloud`
+.. Go to the instance card
+.. Select *Backup & Restore*
+.. Upload your .backup file
 +
 . In the newly created AuraDB Professional or AuraDB Virtual Dedicated Cloud instance
 +
