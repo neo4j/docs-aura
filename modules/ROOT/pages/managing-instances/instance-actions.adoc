@@ -104,6 +104,12 @@ Paused instances run at a discounted rate compared to standard consumption, as o
 You can pause an instance for up to 30 days, after which point Aura automatically resumes the instance.
 ====
 
+=== Time it takes to pause/resume
+
+When you pause an instance, Aura performs a backup operation behind the scenes.
+The time it takes to pause includes these backups.
+Resuming an instance restores the database and the backups.
+
 === Resume a paused instance
 
 Resume a paused instance with the *Play* button on the instance card.
