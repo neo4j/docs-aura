@@ -1,13 +1,20 @@
 [[aura-ip-addresses]]
 = IP addresses
-:description: Interesting description goes here
+:description: How to configure your firewall to allow traffic to and from public IP addresses.
 
-To connect to Neo4j Aura, configure your firewall to allow traffic to and from the following groups of public IP addresses:
+An IP address (internet protocol) is a unique identifier for a device connecting to a network.
 
-* Common tools to access Aura that use global services and are centrally hosted.
-* Individual databases instances in respective regions and cloud providers.
+Enterprises typically only want to have their resources accessible by a selected range of IP addresses, and not on public internet.
+By specifying the exact IP addresses Aura uses, you can configure firewalls to allow only trusted inbound and outbound connections.
 
-== Common global addresses (all tiers)
+To use Aura, you need access to two groups of IP addresses:
+
+* Common tools to access Aura that use global services and are centrally hosted (These are the tools and services that are shared across all Aura databases, no matter the region those databases are located. Think of them as the backend infrastructure and user-facing tools)
+* The instances in respective regions and cloud providers (These are the instances that you create in Aura - and where they physically live in the cloud e.g. Instance, us-east-1, AWS)
+
+== Common global addresses 
+
+These are applicable to all Aura plans.
 
 [cols="1,1,1"]
 |===
@@ -51,26 +58,63 @@ To connect to Neo4j Aura, configure your firewall to allow traffic to and from t
 |34.140.105.178
 |===
  
-== Databases instance addresses
-The public IP address(es) of your AuraDB/AuraDS Instance(s) depends on the geography and product tier.
+== Instance addresses
 
-=== AuraDB/AuraDS Enterprise
-For our Enterprise tier customers, you will have one or more dedicated IPs for your environment.
-If you need help finding that IP, please use this method.
+The public IP address of your AuraDB or AuraDS instance depends on the region and Aura plan. 
+
+=== AuraDB Virtual Dedicated Cloud / AuraDS Enterprise
+AuraDB Virtual Dedicated Cloud / AuraDS Enterprise, have one or more dedicated IPs for your environment.
+If you need help finding that IP, please use this method:
+
+AuraDB Enterprise tier customers have a dedicated IP endpoint to access their AuraDB Instance.
+
+For the Aura Console, the fixed IP addresses are listed link:https://support.neo4j.com/s/article/10932963739539-Using-neo4j-admin-database-upload-in-Neo4j-5-x-to-load-a-database-dump-to-Neo4j-Aura[here]
+
+To work out the fixed IP address used to access your AuraDB Instances in your environment you can proceed as follows:
+
+.Select or if none exist create an AuraDB Instance in your environment
+.Copy the connection URI of that AuraDB Instance
+.Remove the protocol specifier of the URI e.g. neo4j+s://abcd1234.databases.neo4j.io => keep only abcd1234.databases.neo4j.io
+.Run from your environment in a command prompt
+.nslookup dbid .databases.neo4j.io (adjust the dbid as appropriate)
+.Example: `nslookup abcd1234.databases.neo4j.io`
+
+If your AuraDB Instance is on AWS you would see at least 3 IPv4 addresses - one IPv4 address per availability zone - (some regions have up to 5 availability zones and hence there would be more)
+
+$ nslookup abcd1234.databases.neo4j.io
+Server:		127.0.0.53
+Address:	127.0.0.53#53
+
+Non-authoritative answer:
+Name:	abcd1234.databases.neo4j.io
+Address: 50.161.105.214
+Name:	abcd1234.databases.neo4j.io
+Address: 54.233.121.213
+Name:	abcd1234.databases.neo4j.io
+Address: 54.167.147.97
+If your AuraDB Instance is running on GCP or Azure you will only see 1 single IPv4 address instead
+
+$ nslookup a1b2c3d4.databases.neo4j.io
+Server:		127.0.0.53
+Address:	127.0.0.53#53
+
+Non-authoritative answer:
+Name:	a1b2c3d4.databases.neo4j.io
+Address: 51.161.125.214
 
 [IMPORTANT]
 ====
 For AuraDS only - The Arrow server runs on port 8491 
 ====
 
-== AuraDB Professional tier
-For our Professional tier customers, we have a collection of public IP addresses we use depending on the region your AuraDB Instance is deployed in and depending on the cloud service provider:
+== AuraDB Professional
+AuraDB Professional uses a collection of public IP addresses depending on the instance's region and depending on the cloud service provider.
 
 === GCP (for AuraDS also add port 8491)
 
 [cols="1,1,1,1,1"]
 |===
-|Geographic Region |Location |Name |Aura Professional IPv4 Address |Ports (TCP)
+|Region |Location |Name |Aura Professional IPv4 Address |Ports (TCP)
 
 |EUROPE
 |Belgium
@@ -137,7 +181,7 @@ Port 80 and 7474 are optional and only ever used to redirect to HTTPS. Not used 
 
 [cols="1,1,1,1,1"]
 |===
-|Geographic Region |Location |Name |Aura Professional IPv4 Address |Ports (TCP)
+|Region |Location |Name |Aura Professional IPv4 Address |Ports (TCP)
 
 |EUROPE
 |Ireland
@@ -194,7 +238,7 @@ Port 80 and 7474 are optional and only ever used to redirect to HTTPS. Not used 
 
 [cols="1,1,1,1,1"]
 |===
-|Geographic Region |Location |Name |Aura Professional IPv4 Address |Ports (TCP)
+|Region |Location |Name |Aura Professional IPv4 Address |Ports (TCP)
 
 |EUROPE	
 |Paris, France	
@@ -234,7 +278,7 @@ Port 80 and 7474 are optional and only ever used to redirect to HTTPS. Not used 
 [cols="1,1,1,1,1"]
 |===
 
-|Geographic Region |Location	|Name |IPv4 Address	|Ports (TCP)
+|Region |Location	|Name |IPv4 Address	|Ports (TCP)
 
 |EUROPE	
 |Belgium
