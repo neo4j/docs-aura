@@ -1,15 +1,23 @@
 [[regions]]
 = Regions
-:description: This page describes every region users can deploy in.
+:description: This page lists all regions Aura supports deployment in, sorted by subscription plan.
+:page-aliases: auradb/managing-databases/regions.adoc
 
-label:AuraDS-Professional[]
 label:AuraDB-Professional[]
+label:AuraDS-Professional[]
 label:AuraDB-Business-Critical[]
+label:AuraDS-Enterprise[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 
-Aura supports the following regions:
+Aura supports the following regions based on your subscription plan:
 
 == Amazon Web Services (AWS)
 
+[.tabbed-example]
+====
+
+[.include-with-AuraDB-Professional]
+======
 ** `ap-south-1`
 ** `ap-southeast-1`
 ** `eu-west-1`
@@ -17,22 +25,153 @@ Aura supports the following regions:
 ** `sa-east-1`
 ** `us-east-1`
 ** `us-west-2`
+======
+
+[.include-with-AuraDS-Professional]
+======
+** `ap-south-1`
+** `ap-southeast-1`
+** `eu-west-1`
+** `eu-west-3`
+** `sa-east-1`
+** `us-east-1`
+** `us-west-2`
+======
+
+[.include-with-AuraDB-Business-Critical]
+======
+** `ap-south-1`
+** `ap-southeast-1`
+** `eu-west-1`
+** `eu-west-3`
+** `sa-east-1`
+** `us-east-1`
+** `us-east-2`
+** `us-west-2`
+======
+
+[.include-with-AuraDS-Enterprise]
+======
+** `ap-southeast-1`
+** `ap-southeast-2`
+** `eu-central-1`
+** `eu-west-1`
+** `sa-east1`
+** `us-east-1`
+** `us-east-2`
+
+======
+[.include-with-AuraDB-Virtual-Dedicated-Cloud]
+======
+** `ap-south-1`
+** `ap-southeast-1`
+** `ap-southeast-2`
+** `ap-northeast-1`
+** `ap-northeast-2`
+** `ap-northeast-3`
+** `ca-central-1`
+** `eu-central-1`
+** `eu-north-1`
+** `eu-south-1`
+** `eu-west-1`
+** `eu-west-2`
+** `eu-west-3`
+** `il-central-1`
+** `sa-east-1`
+** `us-east-1`
+** `us-east-2`
+** `us-west-2`
+======
+====
 
 == Microsoft Azure
 
-** `centralindia`
+[.tabbed-example]
+====
+
+[.include-with-AuraDB-Professional]
+======
 ** `brazilsouth`
+** `centralindia`
 ** `eastus`
 ** `francecentral`
 ** `koreacentral`
 ** `uksouth`
 ** `westus3`
+======
+
+[.include-with-AuraDS-Professional]
+======
+** `brazilsouth`
+** `centralindia`
+** `eastus`
+** `francecentral`
+** `koreacentral`
+** `uksouth`
+** `westus3`
+======
+
+[.include-with-AuraDB-Business-Critical]
+======
+** `brazilsouth`
+** `centralindia`
+** `eastus`
+** `francecentral`
+** `koreacentral`
+** `uksouth`
+** `westus3`
+======
+
+[.include-with-AuraDS-Enterprise]
+======
+** `australiaeast`
+** `brazilsouth`
+** `centralus`
+**` eastus`
+** `eastus2`
+** `francecentral`
+** `germanywestcentral`
+** `koreacentral`
+** `northeurope`
+** `norwayeast`
+** `southcentralus`
+** `southeastasia`
+** `uksouth`
+** `westeurope`
+** `westus3`
+======
+
+[.include-with-AuraDB-Virtual-Dedicated-Cloud]
+======
+** `australiaeast`
+** `brazilsouth`
+** `canadacentral`
+** `centralindia`
+** `eastus`
+** `eastus2`
+** `francecentral`
+** `germanywestcentral`
+** `koreacentral`
+** `northeurope`
+** `norwayeast`
+** `southafricanorth`
+** `switzerlandnorth`
+** `uaenorth`
+** `uksouth`
+** `westus3`
+======
+====
 
 == Google Cloud Platform (GCP)
 
-** `asia-south1`
+[.tabbed-example]
+====
+
+[.include-with-AuraDB-Professional]
+======
 ** `asia-east1`
 ** `asia-east2`
+** `asia-south1`
 ** `asia-southeast1`
 ** `australia-southeast1`
 ** `europe-west1`
@@ -41,3 +180,97 @@ Aura supports the following regions:
 ** `us-central1`
 ** `us-east1`
 ** `us-west1`
+======
+
+[.include-with-AuraDS-Professional]
+======
+** `asia-east1`
+** `asia-east2`
+** `asia-south1`
+** `asia-southeast1`
+** `australia-southeast1`
+** `europe-west1`
+** `europe-west2`
+** `europe-west3`
+** `us-central1`
+** `us-east1`
+** `us-west1`
+======
+
+[.include-with-AuraDB-Business-Critical]
+======
+** `asia-east1`
+** `asia-east2`
+** `asia-south1`
+** `asia-southeast1`
+** `australia-southeast1`
+** `europe-west1`
+** `europe-west2`
+** `europe-west3`
+** `us-central1`
+** `us-east1`
+** `us-west1`
+======
+
+[.include-with-AuraDS-Enterprise]
+======
+** `asia-east1
+** `asia-south1
+** `asia-south2
+** `australia-southeast1`
+** `australia-southeast2`
+** `europe-southwest1`
+** `europe-west1`
+** `europe-west2`
+** `europe-west4`
+** `northamerica-northeast1`
+** `southamerica-east1`
+** `us-central1`
+** `us-east1`
+** `us-east4`
+** `us-south1`
+** `us-west1`
+** `us-west2`
+======
+
+[.include-with-AuraDB-Virtual-Dedicated-Cloud]
+======
+** `asia-east1`
+** `asia-east2`
+** `asia-northeast1`
+** `asia-northeast2`
+** `asia-northeast3`
+** `asia-south1`
+** `asia-south2`
+** `asia-southeast1`
+** `asia-southeast2`
+** `australia-southeast1`
+** `australia-southeast2`
+** `europe-central2`
+** `europe-north1`
+** `europe-southwest1`
+** `europe-west1`
+** `europe-west2`
+** `europe-west3`
+** `europe-west4`
+** `europe-west6`
+** `europe-west8`
+** `europe-west9`
+** `europe-west12`
+** `northamerica-northeast1`
+** `northamerica-northeast2`
+** `us-central1`
+** `us-east1`
+** `us-east4`
+** `us-east5`
+** `us-west1`
+** `us-west2`
+** `us-west3`
+** `us-west4`
+** `us-south1`
+** `southamerica-east1`
+** `southamerica-west1`
+** `me-central1`
+** `me-west1`
+======
+====

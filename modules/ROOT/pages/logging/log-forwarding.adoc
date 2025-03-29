@@ -1,24 +1,33 @@
 [[aura-query-logs]]
 = Security log forwarding
+:page-aliases: platform/logging/log-forwarding.adoc
 
-label:AuraDB-Enterprise[]
+label:AuraDB-Business-Critical[]
+label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 
 With security log forwarding, you can stream security logs directly to a cloud project owned by your organization, in real time.
 
-To access *Log forwarding*:
-
-. Navigate to the https://console.neo4j.io/[Neo4j Aura console] in your browser.
-. Select *Log forwarding* from the sidebar menu.
-
-This will display a list of currently configured log forwarding processes for the active project.
-
-If no log forwarding process is set up, a button to do so is displayed in the center of the page.
-
 [NOTE]
 ====
-A log forwarding process is scoped to a specific product and region combination, and limited to one for each.
+To access log forwarding, you need to have the _Project Admin_ role.
 ====
+
+To access *Log forwarding*:
+
+. Navigate to *Settings* under the Project section in the sidebar.
+. Select *Log forwarding*.
+
+This will display a list of currently configured log forwarding processes for the active project.
+Each configuration will show its scope (region or instance) and status (`forwarding`, `setting up` or `paused`).
+
+For actions related to existing configurations, use the `...` button on the right side of the row to open a menu from which the following actions can be taken:
+
+* *View configuration* - Displays the complete details of the configuration.
+* *Edit* - Allows you to change the configuration.
+* *Delete* - Removes the configuration.
+
+If no log forwarding process is set up, a button to do so is displayed in the center of the page.
 
 == Set up log forwarding
 
@@ -36,8 +45,16 @@ The complete steps for setting up log forwarding depends on the chosen cloud pro
 Exhaustive instructions are provided in the wizard which appears by following the steps below.
 
 . Navigate to the *Log forwarding* page as described above.
-. Click *Create new log forwarding process*.
+. Use *Configure log forwarding* and select the scope for log forwarding.
+* label:AuraDB-Business-Critical[] A specific instance will have its logs forwarded.
+* label:AuraDB-Virtual-Dedicated-Cloud[] All instances in the selected region will have their logs forwarded.
+* label:AuraDS-Enterprise[] All instances in the selected region will have their logs forwarded.
 . Follow the instructions specific to your cloud provider.
+
+[NOTE]
+====
+Only one log forwarding configuration is permitted for each unique scope.
+====
 
 == Output destination
 

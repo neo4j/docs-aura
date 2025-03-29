@@ -1,8 +1,9 @@
 [[connecting-kafka]]
 = Neo4j Connector for Apache Kafka
 :description: This page describes how to connect to Aura using Kafka.
+:page-aliases: platform/connectors/kafka.adoc
 
-Many users and customers want to integrate Kafka and other streaming solutions with Neo4j, either to ingest data into the graph from other sources or to send update events to the event log for later consumption. 
+Many users and customers want to integrate Kafka and other streaming solutions with Neo4j, either to ingest data into the graph from other sources or to send update events to the event log for later consumption.
 Aura supports the use of the https://neo4j.com/docs/kafka/[Kafka Connect Neo4j Connector^], which allows you to ingest data into Neo4j from Kafka topics or send change events from Neo4j into Kafka topics.
 
 Connecting to Aura only requires to make a few changes to the https://neo4j.com/docs/kafka/kafka-connect/source/[source^] and https://neo4j.com/docs/kafka/kafka-connect/sink/[sink^] configuration examples:

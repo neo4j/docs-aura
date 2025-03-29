@@ -1,6 +1,7 @@
 [[aura-backup-restore-export]]
-= Backup, export, and restore
-:description: This page describes how to backup, export and restore your data from a snapshot.
+= Backup, export, restore, and upload
+:description: This page describes how to backup, export, and restore your data from a snapshot as well as using `neo4j admin` to upload data.
+:page-aliases: auradb/managing-databases/backup-restore-export.adoc, aurads/managing-databases/backup-restore-export.adoc, aurads/managing-databases/importing-data/import-db
 
 The data in your Aura instance can be backed up, exported, and restored using snapshots.
 
@@ -159,3 +160,50 @@ If not, you can create a new instance from the snapshot instead, as described in
 From the *Restore from backup file* tab, next to the *Snapshots* tab on the instance card, drag and drop your _.backup_, _.dump_, or _.tar_ file or browse for it.
 This action also overwrites the data currently in your instance.
 If this is not desired, you can create a new instance from the snapshot instead, as described in <<export-create>>.
+
+[[neo4j-admin-upload]]
+== Upload an existing Neo4j database
+
+If you have a local copy of a Neo4j database and Neo4j installed locally, you can use this installation of Neo4j to upload this to your Aura instance.
+
+[CAUTION]
+====
+This command does not work if you have a network access configuration setup that prevents public traffic to the region your instance is hosted in. See <<Public traffic>> below for more information.
+====
+
+`database upload` is a `neo4j-admin` command that you can run to upload the contents of a Neo4j database into an Aura instance, regardless of the database's size, as long as it fits your Aura instance.
+Keep in mind that the database you want to upload may run a different version of Neo4j than your Aura instance.
+Additionally, your Neo4j Aura instance must be accessible from the machine running `neo4j-admin`.
+Otherwise, the upload will fail with SSL errors.
+
+For details on how to use the `neo4j-admin database upload` command, along with a full list of options and version compatibility, see link:{neo4j-docs-base-uri}/operations-manual/current/tools/neo4j-admin/upload-to-aura/[Operations Manual → Upload to Neo4j Aura].
+
+[NOTE]
+====
+The `database upload` command, introduced in Neo4j 5, replaces the `push-to-cloud` command in Neo4j 4.4 and 4.3.
+If the database you want to upload is running an earlier version of Neo4j, please see link:https://neo4j.com/docs/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[the Neo4j Admin push-to-cloud documentation].
+====
+
+[CAUTION]
+====
+The `neo4j-admin push-to-cloud` command in Neo4j 4.4 and earlier is not compatible with instances encrypted with Customer Managed Keys.
+Use `neo4j-admin database upload` in Neo4j 5 to upload data to instances encrypted with Customer Managed Keys.
+
+For Neo4j 4.x instances in Azure encrypted with Customer Managed Keys, use the Import data service to load data, as `neo4j-admin database upload` is not supported.
+See xref:import/introduction.adoc[Import] for more information.
+====
+
+=== Public traffic
+
+If you have created a network access configuration from the *Network Access* page, accessed through the sidebar menu of the Console, *Public traffic* must be enabled for the region your instance is hosted in before you can use the `database upload` command on that instance.
+
+To enable *Public traffic* on a network access configuration:
+
+. Select *Configure* next to the region that has Public traffic disabled.
+
+. Select *Next* until you reach step 4 of 4 in the resulting *Edit network access configuration* modal.
+
+. Clear the *Disable public traffic* checkbox and *Save*.
+
+You can now use the `database upload` command on the instances within that region.
+Once the command has completed, you can disable *Public traffic* again by following the same steps and re-selecting the *Disable public* traffic checkbox.

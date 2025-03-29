@@ -41,12 +41,16 @@ Management at this level allows control over all Projects within an Organization
 [[org-settings]]
 === Organization settings
 
-On the organization level, you can also find a Settings menu where you can manage your organization's settings, provided that you are an organization admin.
-You can change the name of the organization and toggle an organization-wide setting for co-pilots.
-Co-pilots are available in Query and Explore and use Generative AI to help you write queries and generate search patterns.
-See xref:query/visual-tour.adoc#copilot[Query co-pilot] and xref:explore/explore-visual-tour/search-bar.adoc#copilot[Explore co-pilot] for more information.
+On the organization level, you can also find a Settings menu where you can manage your organization's settings, provided that you are an organization admin. 
+You can change the name of the organization and toggle an organization-wide setting for Generative AI assistance.
 
-image::enable-copilot.png[]
+
+When enabled, Generative AI assistance is available in a number of places, including the xref:query/visual-tour.adoc#copilot[Query copilot] and xref:explore/explore-visual-tour/search-bar.adoc#copilot[Explore copilot]. 
+These features are always identified with a ✨ and your use is subject to our link:{neo4j-docs-base-uri}/reference/license/#_genai_outputs[GenAI outputs] disclaimer
+
+// TO-DO: When section exists for Import GenAI feature, add link to it.
+image::enable-genai-assistance.png[]
+
 
 ==== Settings for GDS sessions
 
