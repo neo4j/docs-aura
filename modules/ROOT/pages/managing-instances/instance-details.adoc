@@ -52,10 +52,8 @@ It runs on container technology and this allows for the AuraDB Instance to alloc
 |Backups, automated and manual, are stored separately from your instance's allocated storage.
 These are saved in the cloud provider's storage bucket in the same region as your Aura instance.
 
-Storage is adjustable independent of memory for AuraDB pre-paid billing on Google Cloud Platform (GCP), version 5.x. See xref:/managing-instances/instance-actions/#_flexible_storage[Flexible storage] for more information.
-
-|Neo4j Aura automates the backup process (you can also create your own on-demand snapshots), storing your data securely in the cloud.
-Backups are saved in the storage bucket of the cloud provider in the same region as your Neo4j Aura instance.
+Options for flexible storage is available for AuraDB pre-paid billing on Google Cloud Platform (GCP), latest version.  
+See xref:managing-instances/instance-actions.adoc#_flexible_storage[Flexible storage] for more information. 
 
 |Encryption key
 |Neo4j Managed Key encrypts your data
