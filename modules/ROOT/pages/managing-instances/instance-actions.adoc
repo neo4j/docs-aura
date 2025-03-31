@@ -95,8 +95,10 @@ You cannot manually pause an AuraDB Free instance; they are paused automatically
 
 You can pause an instance when not needed and resume it at any time.
 Do so by using the *Pause* button on the instance card.
-
 After confirming, the instance begins pausing, and a play button replaces the pause button.
+
+When you pause an instance, Aura performs a backup operation behind the scenes.
+It can take a while to pause, depending on your instance size, because Aura is creating the backup.
 
 [NOTE]
 ====
@@ -104,17 +106,12 @@ Paused instances run at a discounted rate compared to standard consumption, as o
 You can pause an instance for up to 30 days, after which point Aura automatically resumes the instance.
 ====
 
-=== Time it takes to pause/resume
-
-When you pause an instance, Aura performs a backup operation behind the scenes.
-It can take a while to pause, depending on your instance size, because Aura is creating the backup.
-Resuming an instance restores the database from the backup.
-
 === Resume a paused instance
 
 Resume a paused instance with the *Play* button on the instance card.
 
 After confirming, the instance begins resuming, which may take a few minutes.
+Resuming an instance restores the database from the backup.
 
 [WARNING]
 ====
