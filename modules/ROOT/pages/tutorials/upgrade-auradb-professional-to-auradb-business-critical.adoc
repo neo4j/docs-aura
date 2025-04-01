@@ -1,0 +1,19 @@
+[[aura-pro-to-bc]]
+= Upgrade AuraDB Professional to AuraDB Business Critical
+:description: This section describes upgrading an AuraDB Professional instance to AuraDB Business Critical
+
+To upgrade your AuraDB Professional instance to AuraDB Business Critical, select the more menu (three dots) on an instance card, then select *Upgrade*.
+
+.Upgrade your AuraDB Professional instance to AuraDB Business Critical
+[.shadow]
+image::upgradeprotobc.png[]
+
+This upgrade does not change the original DBID, so your application strings remain valid.
+It enables the capabilities that would otherwise be available with an AuraDB Business Critical instance. 
+
+*GDS plugin removal:* 
+If your AuraDB Professional instance uses the GDS plugin, it will be removed during the upgrade. 
+The GDS plugin is not supported in AuraDB Business Critical.
+
+*Minimum instance size:* 
+If you try to upgrade a 1GB Professional instance, you will need to resize it to at least 2GB of storage, because this is the minimum supported size in AuraDB Business Critical.
