@@ -7,6 +7,7 @@ Generic Start
 ** xref:index.adoc[About Aura]
 ** xref:new-console.adoc[New Neo4j Aura console]
 ** xref:graph-analytics/index.adoc[]
+** xref:microsoft-fabric.adoc[Workload for Microsoft Fabric]
 ** xref:visual-tour/index.adoc[Visual tour]
 
 * Quick start
@@ -22,6 +23,7 @@ Generic Start
 ** xref:managing-instances/instance-details.adoc[Instance details]
 ** xref:managing-instances/secondaries.adoc[Secondaries]
 ** xref:managing-instances/instance-resources.adoc[Resources]
+** xref:managing-instances/custom-endpoints.adoc[Custom endpoints]
 ** xref:managing-instances/migration-readiness.adoc[Migration Readiness Report]
 ** xref:managing-instances/develop.adoc[Develop]
 ** xref:managing-instances/regions.adoc[Regions]
@@ -72,7 +74,17 @@ Generic Start
 ** xref:query/introduction.adoc[What is Query?]
 ** xref:query/visual-tour.adoc[Visual tour]
 ** xref:query/operations.adoc[Query operations]
-** xref:query/apoc.adoc[APOC support]
+
+* xref:apoc.adoc[APOC support]
+
+* Aura CLI
+** xref:aura-cli/index.adoc[Introduction]
+** xref:aura-cli/installation.adoc[Installation]
+** xref:aura-cli/initial-configuration.adoc[Initial configuration]
+** xref:aura-cli/auradb-tenants.adoc[Working with AuraDB tenants]
+** xref:aura-cli/auradb-instances.adoc[Managing AuraDB instances]
+** xref:aura-cli/configuration.adoc[Configuration]
+** xref:aura-cli/migration.adoc[Migration]
 
 * Metrics
 ** xref:metrics/view-metrics.adoc[View metrics]
@@ -103,11 +115,28 @@ Generic Start
 
 * Connecting applications
 ** xref:connecting-applications/overview.adoc[Drivers and libraries]
+** xref:connecting-applications/query-api.adoc[Using Query API]
+
+* Neo4j Connectors
+** xref:connectors/spark.adoc[Neo4j Connector for Apache Spark]
+** xref:connectors/kafka.adoc[Neo4j Connector for Apache Kafka]
+** xref:connectors/bi.adoc[Neo4j Connector for BI]
 
 * Aura API
 ** xref:api/overview.adoc[]
 ** xref:api/authentication.adoc[]
 ** link:{neo4j-docs-base-uri}/aura/platform/api/specification/[API Specification]
+
+* *Tutorials*
+* Upgrade and migration
+** xref:tutorials/migration-free.adoc[]
+* Integrating with Neo4j Connectors
+** xref:tutorials/spark.adoc[]
+** xref:tutorials/bi.adoc[]
+* xref:tutorials/performance-improvements.adoc[]
+* xref:tutorials/troubleshooting.adoc[]
+* xref:tutorials/create-auradb-instance-from-terminal.adoc[]
+
 ////
 AuraDB End
 ////

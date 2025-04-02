@@ -5,6 +5,7 @@
 = Security log analyzer
 
 label:AuraDB-Professional[]
+label:AuraDB-Business-Critical[]
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
 Security log analyzer is a feature that provides a UI to review the security events on an Aura instance.
@@ -65,11 +66,11 @@ The field is case insensitive.
 
 The log tables provide two different views of your security data:
 
-* The *Summary table* aggregates similar security events, showing statistics like total count and time range. 
+* The *Summary table* aggregates similar security events, showing statistics like total count and time range.
 The table will be grouped by status and executing user.
 This view helps identify patterns and potential security issues across multiple events.
 
-* The *Details table* shows individual security events with their specific timestamps, users, and other details. 
+* The *Details table* shows individual security events with their specific timestamps, users, and other details.
 This granular view is useful for investigating specific incidents or understanding the context of individual security events.
 
 === Summary

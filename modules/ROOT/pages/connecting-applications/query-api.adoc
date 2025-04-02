@@ -1,0 +1,15 @@
+[[aura-query-api-tutorial]]
+= Using the Query API with Aura
+:description: Use the Query API with Aura to execute Cypher statements against a Neo4j server through HTTPS requests.
+
+== Introduction
+
+The Query API enables interaction with an Aura database using Cypher via HTTPS.
+
+For more information, see the link:https://neo4j.com/docs/query-api/current/[Query API documentation] but note that:
+
+* For Aura instances, the host follows the format `<databaseID>.databases.neo4j.io`
+
+* The Query API documentation mainly refers to self-managed instances that use port `7474`, whereas Aura supports HTTPS only, which defaults to port `443` 
+
+* As HTTPS implies port `443` in the request, you do not need to include the port in the URL.
