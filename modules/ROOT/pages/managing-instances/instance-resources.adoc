@@ -17,7 +17,7 @@ If this metric is constantly spiking or at its limits, select `resize` on the in
 Amount of disk space reserved to store data, in gigabytes (GB). 
 Ideally, the database should all fit into memory (page cache) for the best performance. 
 Keep an eye on storage metrics to make sure you have enough storage for future growth. 
-The graph is available in *Metrics > Resources > Storage*.
+This metric is available in *Metrics > Resources > Storage*.
 Check this metric with page cache usage to see if the data is too large for the memory and consider increasing the size of your instance in this case.
 
 Storage is adjustable independent of memory for AuraDB pre-paid plans on Google Cloud Platform (GCP), version 5.x. See xref:managing-instances/instance-actions.adoc#_flexible_storage[Flexible storage] for more information.
