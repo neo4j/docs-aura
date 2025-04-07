@@ -82,31 +82,39 @@ You can control the size and the number of the Serverless sessions, and will onl
 
 == Comparison
 
-[opts="header", cols="1,1,1,1"]
+[opts="header", cols="1s,1,1,1,1"]
 |===
-|AuraDB Pro with Graph Analytics plugin
-|Graph Analytics Serverless in Virtual Dedicated Cloud
-|Graph Analytics Serverless in AuraDB Business Critical
+|
+|Graph Analytics plugin +
+(AuraDB Pro)
+|Graph Analytics Serverless +
+(AuraDB VDC)
+|Graph Analytics Serverless +
+(AuraDB BC)
 |AuraDS
 
-|Up to 64 GB memory
-|Up to 512 GB memory
-|Up to 128 GB memory
-|Up to 384 GB memory
+|Memory
+|Up to 64 GB
+|Up to 512 GB
+|Up to 128 GB
+|Up to 384 GB
 
-|Shared resources
-|Dedicated resources
-|Dedicated resources
-|Shared resources
+|Resources for analytics
+|Shared
+|Dedicated
+|Dedicated
+|Shared
 
+|Number of instances
 |Single instance
 |Up to 100 concurrent sessions
 |Up to 10 concurrent sessions
 |Single instance
 
-|AuraDB source
-|AuraDB Virtual Dedicated Cloud, self-managed Neo4j DBMS, or custom data source
-|AuraDB Business Critical, self-managed Neo4j DBMS, or custom data source
-|AuraDS source
+|Data sources
+|AuraDB
+|AuraDB VDC, self-managed Neo4j DBMS, custom
+|AuraDB BC, self-managed Neo4j DBMS, custom
+|AuraDS
 
 |===
