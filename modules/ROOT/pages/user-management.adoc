@@ -168,10 +168,12 @@ Users within a project can be assigned one of the following roles:
 |===
 | Capability | Admin | Member | Viewer | Reader
 | View metrics via an API endpoint | {check-mark} | {check-mark} | {check-mark} | {check-mark} 
-| View users and their roles | {check-mark} | {check-mark} | {check-mark} | 
-| View and open instances | {check-mark} | {check-mark} | {check-mark} | 
-| Access the Neo4j Customer Support Portal | {check-mark} | {check-mark} | {check-mark} | ?
-| Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instances.] | {check-mark} | {check-mark} | | 
+| View users and their roles | {check-mark} | {check-mark} | {check-mark} | {check-mark}
+| View and open instances | {check-mark} | {check-mark} | {check-mark} | {check-mark}
+| Access the Neo4j Customer Support Portal | {check-mark} | {check-mark} | {check-mark} | {check-mark}
+| Edit CDC mode | {check-mark} | {check-mark} | | 
+| Edit secondary count | {check-mark} | {check-mark} | | 
+| Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instance names.] | {check-mark} | {check-mark} | | 
 | Clone data to new and existing instances | {check-mark} | {check-mark} | | 
 | Take on-demand snapshots | {check-mark} | {check-mark} | | 
 | Restore from snapshots | {check-mark} | {check-mark} | | 
@@ -180,9 +182,7 @@ Users within a project can be assigned one of the following roles:
 | Edit existing users' roles | {check-mark} | | | 
 | Delete existing users from the project | {check-mark} | | | 
 | View and edit billing information | {check-mark} | | | 
-| Edit CDC mode | {check-mark} | | | 
 | Mark an instance as `production` | {check-mark} | | | 
-| Edit secondary count | {check-mark} | | | 
 |===
 
 [NOTE]
@@ -243,7 +243,11 @@ User management within the Aura console does not replace built-in roles or fine-
 
 == Metrics reader role
 
-The `metrics reader` role can be assigned to any user.
+The `metrics reader` role can be assigned to any user,
 It has the same permissions as the `project viewer` role, but with some extra permissions specifically for reading metrics via an API endpoint. 
 The role allows them to read metrics for all instances within a project.
-Accessing metric endpoints requires  xref:/api/authentication.adoc[Aura API Credentials].
+Accessing metric endpoints requires xref:/api/authentication.adoc[Aura API Credentials] and a the `metrics reader` role enables the user to create these credentials.
+
+Users with the `metrics reader` role can view and open instances (without access to any tools unless they login) in the console. 
+However, they must still log in to the instance to be able to interact with it further, and access to the Explore and Query tools are defined by the instance’s RBAC settings.
+
