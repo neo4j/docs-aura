@@ -123,7 +123,7 @@ The following roles are available at the org level and these are assigned via in
 |
 
 | Transfer projects to and from the org
-| {check-mark} footnote:[An owner needs to permission for both the source and destination orgs.]
+| {check-mark} footnote:[An owner needs owner permission for both the source and destination orgs.]
 |
 |
 |===
@@ -164,21 +164,25 @@ Users within a project can be assigned one of the following roles:
 :check-mark: icon:check[]
 
 .Roles
-[opts="header",cols="3,1,1,1"]
+[opts="header",cols="3,1,1,1,1"]
 |===
-| Capability | Admin | Member | Viewer
-| View users and their roles | {check-mark} | {check-mark} | {check-mark}
-| View and open instances | {check-mark} | {check-mark} | {check-mark}
-| Access the Neo4j Customer Support Portal | {check-mark} | {check-mark} | {check-mark}
-| Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instances.] | {check-mark} | {check-mark} |
-| Clone data to new and existing instances | {check-mark} | {check-mark} |
-| Take on-demand snapshots | {check-mark} | {check-mark} |
-| Restore from snapshots | {check-mark} | {check-mark} |
-| Edit the project name | {check-mark} | |
-| Invite new users to the project | {check-mark} | |
-| Edit existing users' roles | {check-mark} | |
-| Delete existing users from the project | {check-mark} | |
-| View and edit billing information | {check-mark} | |
+| Capability | Admin | Member | Viewer | Reader
+| View metrics via an API endpoint | {check-mark} | {check-mark} | {check-mark} | {check-mark} 
+| View users and their roles | {check-mark} | {check-mark} | {check-mark} | 
+| View and open instances | {check-mark} | {check-mark} | {check-mark} | 
+| Access the Neo4j Customer Support Portal | {check-mark} | {check-mark} | {check-mark} | ?
+| Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instances.] | {check-mark} | {check-mark} | | 
+| Clone data to new and existing instances | {check-mark} | {check-mark} | | 
+| Take on-demand snapshots | {check-mark} | {check-mark} | | 
+| Restore from snapshots | {check-mark} | {check-mark} | | 
+| Edit the project name | {check-mark} | | | 
+| Invite new users to the project | {check-mark} | | | 
+| Edit existing users' roles | {check-mark} | | | 
+| Delete existing users from the project | {check-mark} | | | 
+| View and edit billing information | {check-mark} | | | 
+| Edit CDC mode | {check-mark} | | | 
+| Mark an instance as `production` | {check-mark} | | | 
+| Edit secondary count | {check-mark} | | | 
 |===
 
 [NOTE]
@@ -236,3 +240,10 @@ You can select the project(s) you have been invited to and choose to accept or d
 ====
 User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
 ====
+
+== Metrics reader role
+
+The `metrics reader` role can be assigned to any user.
+It has the same permissions as the `project viewer` role, but with some extra permissions specifically for reading metrics via an API endpoint. 
+The role allows them to read metrics for all instances within a project.
+Accessing metric endpoints requires  xref:/api/authentication.adoc[Aura API Credentials].
