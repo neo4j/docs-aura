@@ -243,11 +243,10 @@ User management within the Aura console does not replace built-in roles or fine-
 
 == Metrics reader role
 
-The `metrics reader` role can be assigned to any user,
+The `metrics reader` role can be assigned to any user or service account.
 It has the same permissions as the `project viewer` role, but with some extra permissions specifically for reading metrics via an API endpoint. 
-The role allows them to read metrics for all instances within a project.
-Accessing metric endpoints requires xref:/api/authentication.adoc[Aura API Credentials] and a the `metrics reader` role enables the user to create these credentials.
+The role allows access to metrics for all instances in a project.
+Accessing metric endpoints requires xref:/api/authentication.adoc[Aura API Credentials] and the `metrics reader` role enables the creation of these credentials.
 
-Users with the `metrics reader` role can view and open instances (without access to any tools unless they login) in the console. 
-However, they must still log in to the instance to be able to interact with it further, and access to the Explore and Query tools are defined by the instance’s RBAC settings.
+The `metrics reader` role can view and open instances in the console, however, login to the instance is required to interact with it, with access to Explore and Query defined by the instance’s RBAC settings.
 
