@@ -32,7 +32,7 @@ include::partial$EAP.adoc[]
 
 Graph Analytics Serverless allows you to use the Graph Data Science library regardless of where your source data is stored.
 
-Graph Analytics Serverless runs in Aura as a link:https://neo4j.com/docs/graph-data-science-client/current/gds-session/[dedicated service] optimised for analytics workloads, with no memory or compute resources shared with your data store.
+Graph Analytics Serverless runs in Aura as a link:ttps://neo4j.com/docs/graph-data-science/current/installation/gds-sessions/[dedicated service] optimised for analytics workloads, with no memory or compute resources shared with your data store.
 
 === From an AuraDB instance
 
@@ -41,7 +41,7 @@ label:AuraDB-Business-Critical[] label:AuraDB-Virtual-Dedicated-Cloud[]
 You can use Graph Analytics Serverless from any AuraDB Business Critical or AuraDB Virtual Dedicated Cloud instance with the following requirements:
 
 * Neo4j version 5 or later
-* Any supported cloud providers and regions
+* All supported cloud providers and regions
 
 [[aura-ds]]
 == AuraDS
@@ -85,33 +85,33 @@ No operation is applied until all the running GDS algorithms have completed.
 (AuraDB VDC)
 |AuraDS
 
-|Memory
-|Up to 64 GB
+|Maximum memory
+|Up to 128 GB
 |Up to 128 GB
 |Up to 512 GB
 |Up to 384 GB
 
 |Resources for analytics
-|Shared with DB
+|Shared with DB (optimized for DB)
 |Dedicated
 |Dedicated
-|Shared with DB
+|Shared with DB (optimized for analytics)
 
-|Number of instances
-|Single instance
+|Number of concurrent sessions
+|-
 |Up to 10 concurrent sessions
 |Up to 100 concurrent sessions
-|Single instance
+|-
 
 |Data sources
-|AuraDB
-|AuraDB BC, self-managed Neo4j DBMS, custom
-|AuraDB VDC, self-managed Neo4j DBMS, custom
-|AuraDS
+|Same server
+|AuraDB BC; self-managed Neo4j DBMS; custom
+|AuraDB VDC; self-managed Neo4j DBMS; custom
+|Same server; custom
 
-|Instance upgrade behavior
-|No downtime; projected graphs are not retained
-|No downtime; projected graphs are not retained
-|No downtime; projected graphs are not retained
-|Short downtime; projected graphs are recreated
+|DBMS restart behavior
+|No downtime; projected graphs and trained models are not retained
+|No downtime; projected graphs and trained models are unaffected
+|No downtime; projected graphs and trained models are unaffected
+|Short downtime; projected graphs and trained models are restored
 |===
