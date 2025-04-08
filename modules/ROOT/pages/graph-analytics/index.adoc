@@ -2,20 +2,17 @@
 = Graph analytics in Aura
 :description: This page describes how to run graph analytics in Aura.
 :page-aliases: aurads/index.adoc
-:gds-no-db-name: Graph Analytics [STANDALONE]
 
-There are multiple ways to run graph analytics in Aura:
+If your data is in Aura or you plan to move it to Aura, you have several options to run graph analytics:
 
-* <<aura-gds-plugin,Enable Graph Analytics>> on an existing AuraDB Professional instance.
-* <<aura-gds-serverless,Use Graph Analytics Serverless>> sourced from an existing AuraDB Business Critical or AuraDB Virtual Dedicated Cloud instance.
+* Enable <<aura-gds-plugin,Graph Analytics>> on an existing AuraDB instance (Professional only).
+* Use <<aura-gds-serverless,Graph Analytics Serverless>> from an existing AuraDB instance (Business Critical or Virtual Dedicated Cloud).
 * Create an <<aura-ds, AuraDS instance>>.
-* <<aura-gds-serverless,Use Graph Analytics Serverless>> sourced from a self-managed Neo4j DBMS deployment.
-* <<aura-gds-serverless,Use Graph Analytics Serverless>> sourced from a non-Neo4j data source.
 
-== Graph analytics on AuraDB
+If your data is in a self-managed Neo4j DBMS or a non-Neo4j data source, you can still use <<aura-gds-serverless,Graph Analytics Serverless>>.
 
 [[aura-gds-plugin]]
-=== Graph Analytics plugin
+== Graph Analytics plugin
 
 label:AuraDB-Professional[]
 
@@ -26,37 +23,41 @@ The Graph Analytics plugin allows you to use the link:https://neo4j.com/docs/gra
 * Any supported cloud providers and regions
 
 You can enable or disable Graph Analytics when necessary.
-Graph Analytics will share compute and memory resources with the AuraDB server, and you will not incur additional costs.
+The plugin shares compute and memory resources with the AuraDB server, so you do not incur any additional costs when you enable it.
 
 [[aura-gds-serverless]]
-=== Graph Analytics Serverless
-
-label:AuraDB-Business-Critical[] label:AuraDB-Virtual-Dedicated-Cloud[]
+== Graph Analytics Serverless
 
 include::partial$EAP.adoc[]
 
-Graph Analytics Serverless allows you to use the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library] with data sourced from any AuraDB Business Critical or Virtual Dedicated Cloud instance with the following requirements:
+Graph Analytics Serverless allows you to use the Graph Data Science library regardless of where your source data is stored.
+
+Graph Analytics Serverless runs in Aura as a link:https://neo4j.com/docs/graph-data-science-client/current/gds-session/[dedicated service] optimised for analytics workloads, with no memory or compute resources shared with your data store.
+
+=== From an AuraDB instance
+
+label:AuraDB-Business-Critical[] label:AuraDB-Virtual-Dedicated-Cloud[]
+
+You can use Graph Analytics Serverless from any AuraDB Business Critical or AuraDB Virtual Dedicated Cloud instance with the following requirements:
 
 * Neo4j version 5 or later
 * Any supported cloud providers and regions
-
-Graph Analytics Serverless is a dedicated service optimised for analytics workloads, which will not share any memory or compute resources with the AuraDB instance.
-You can control the size and the number of the Serverless sessions, and will only be billed for what you consume.
 
 [[aura-ds]]
 == AuraDS
 
 label:AuraDS-Professional[] label:AuraDS-Enterprise[]
 
-AuraDS is the fully managed version of the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library].
+AuraDS is the fully managed version of the Graph Data Science library where the <<aura-gds-plugin>> is deployed by default.
+
+In an AuraDS instance, Graph Analytics is always on.
+The plugin shares compute and memory resources with the AuraDS server.
 
 AuraDS instances have the following features:
 
 * Upgrades and patches are automatically applied.
 * Can be seamlessly scaled up or down.
 * Can be paused to reduce costs.
-
-Graph Analytics TBD share compute and memory resources with the AuraDS server, and it is always available.
 
 === Plans
 
@@ -71,15 +72,6 @@ Security patches and new versions of GDS and Neo4j are installed within short ti
 The operations are non-destructive, so graph projections, models, and data present on an instance are not affected.
 No operation is applied until all the running GDS algorithms have completed.
 
-[[aura-gds-no-db]]
-== {gds-no-db-name}
-
-{gds-no-db-name} allows you to use the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library] in Aura without AuraDB or AuraDS, on any supported cloud providers and regions.
-
-Graph Analytics Serverless is a dedicated service optimised for analytics workloads.
-You can import your data [...]
-You can control the size and the number of the Serverless sessions, and will only be billed for what you consume.
-
 == Comparison
 
 [opts="header", cols="1s,1,1,1,1"]
@@ -88,33 +80,39 @@ You can control the size and the number of the Serverless sessions, and will onl
 |Graph Analytics plugin +
 (AuraDB Pro)
 |Graph Analytics Serverless +
-(AuraDB VDC)
-|Graph Analytics Serverless +
 (AuraDB BC)
+|Graph Analytics Serverless +
+(AuraDB VDC)
 |AuraDS
 
 |Memory
 |Up to 64 GB
-|Up to 512 GB
 |Up to 128 GB
+|Up to 512 GB
 |Up to 384 GB
 
 |Resources for analytics
-|Shared
+|Shared with DB
 |Dedicated
 |Dedicated
-|Shared
+|Shared with DB
 
 |Number of instances
 |Single instance
-|Up to 100 concurrent sessions
 |Up to 10 concurrent sessions
+|Up to 100 concurrent sessions
 |Single instance
 
 |Data sources
 |AuraDB
-|AuraDB VDC, self-managed Neo4j DBMS, custom
 |AuraDB BC, self-managed Neo4j DBMS, custom
+|AuraDB VDC, self-managed Neo4j DBMS, custom
 |AuraDS
+
+|Instance upgrade behavior
+|No downtime; projected graphs are not retained
+|No downtime; projected graphs are not retained
+|No downtime; projected graphs are not retained
+|Short downtime; projected graphs are recreated
 
 |===
