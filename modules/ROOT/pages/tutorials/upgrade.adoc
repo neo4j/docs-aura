@@ -1,11 +1,11 @@
 = Upgrade to Neo4j 5 within Aura
 :description: This tutorial describes how to upgrade an Aura instance running Neo4j version 4 to Neo4j version 5.
 
-This tutorial describes how to upgrade an Aura instance running Neo4j version 4 to Neo4j version 5.
+This tutorial describes how to upgrade an Aura instance running Neo4j 4 to Neo4j latest version.
 
 [CAUTION]
 ====
-Instances use Neo4j latest version as standard.
+All new instances use Neo4j latest version as standard.
 ====
 
 == Prepare for the upgrade
@@ -17,13 +17,13 @@ For a smooth migration:
 
 . Check the breaking changes for each driver you use, for example in the link:https://neo4j.com/docs/api/python-driver/5.0/breaking_changes.html#breaking-changes[Python driver] and in the link:https://github.com/neo4j/graph-data-science-client/blob/main/changelog.md[GDS client].
 . Make sure you switch to the latest version of the driver in line with the version of the Neo4j database. 
-This can be done before upgrading the version of Neo4j that you are using with Aura, as 5.x drivers are backward compatible.
+This can be done before upgrading the version of Neo4j that you are using with Aura, as Neo4j latest version drivers are backward compatible.
 
 The link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/[Update and migration guide] contains all information and lists all the breaking changes.
 
 === Indexes
 
-In Neo4j 5, BTREE indexes are replaced by RANGE, POINT, and TEXT indexes. 
+In Neo4j latest version, BTREE indexes are replaced by RANGE, POINT, and TEXT indexes. 
 Before migrating a database, in Neo4j 4, you should create a matching RANGE, POINT, or TEXT index for each BTREE index (or index-backed constraint). 
 You can run `SHOW INDEXES` on your Neo4j 4 database to display its indexes.
 
@@ -54,7 +54,7 @@ For more information about creating indexes, see link:https://neo4j.com/docs/cyp
 
 === Cypher updates
 
-Neo4j 5 introduces some changes to the Cypher syntax and error handling.
+Neo4j 5 latest version causes changes to the Cypher syntax and error handling.
 
 ==== Cypher syntax
 
