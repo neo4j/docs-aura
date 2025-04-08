@@ -105,7 +105,7 @@ CREATE DATABASE `databaseName.withDot` ...
 ==== Error handling in Cypher
 
 Many semantic errors that Cypher finds are reported as `Neo.ClientError.Statement.SyntaxError` even though they are semantic and not syntax errors.
-In Neo4j 5, the metadata returned by Cypher queries is improved.
+In Neo4j latest version, the metadata returned by Cypher queries is improved.
 
 * The severity of some of the Warning codes is moved to Info:
 
@@ -154,20 +154,20 @@ Refer to the link:https://neo4j.com/docs/upgrade-migration-guide/current/version
 
 === Neo4j Connectors
 
-If you are using a Neo4j Connector for link:https://github.com/neo4j-contrib/neo4j-spark-connector/releases/[Apache Spark] or link:https://github.com/neo4j-contrib/neo4j-streams/releases[Apache Kafka], make sure its version is compatible with Neo4j 5.
+If you are using a Neo4j Connector for link:https://github.com/neo4j-contrib/neo4j-spark-connector/releases/[Apache Spark] or link:https://github.com/neo4j-contrib/neo4j-streams/releases[Apache Kafka], make sure its version is compatible with Neo4j latest version.
 
-The Neo4j BI Connectors available on the link:https://neo4j.com/download-center/#integrations[Download center] are compatible with Neo4j 5.
+The Neo4j BI Connectors available on the link:https://neo4j.com/download-center/#integrations[Download center] are compatible with Neo4j latest version.
 
 == Perform the upgrade
 
-Once you have prepared your Neo4j 4 Aura instance, you are ready to migrate the instance to a new or existing Neo4j 5 instance.
+Once you have prepared your Neo4j 4 Aura instance, you are ready to migrate the instance to a new or existing Neo4j latest version instance.
 
 === Clone
 
-If you have an existing Neo4j 5 instance, you can use the *Clone To Existing* instance action on your Neo4j 4 xref:auradb/managing-databases/database-actions.adoc#_clone_to_an_existing_auradb_instance[AuraDB] or xref:aurads/managing-instances/instance-actions#_clone_to_an_existing_aurads_instance[AuraDS] instance. 
+If you have an existing Neo4j latest version instance, you can use the *Clone To Existing* instance action on your Neo4j 4 xref:auradb/managing-databases/database-actions.adoc#_clone_to_an_existing_auradb_instance[AuraDB] or xref:aurads/managing-instances/instance-actions#_clone_to_an_existing_aurads_instance[AuraDS] instance. 
 
-If you do not have an existing Neo4j 5 instance, you can use the *Clone To New* instance action on your Neo4j 4 xref:auradb/managing-databases/database-actions.adoc#_clone_to_a_new_auradb_instance[AuraDB] or xref:aurads/managing-instances/instance-actions#_clone_to_a_new_aurads_instance[AuraDS] instance. 
+If you do not have an existing Neo4j latest version instance, you can use the *Clone To New* instance action on your Neo4j 4 xref:auradb/managing-databases/database-actions.adoc#_clone_to_a_new_auradb_instance[AuraDB] or xref:aurads/managing-instances/instance-actions#_clone_to_a_new_aurads_instance[AuraDS] instance. 
 
 === Export and import
 
-Alternatively, you can *Export* a snapshot dump file from your Neo4j 4 xref:auradb/managing-databases/backup-restore-export#_backup_and_export[AuraDB] or xref:aurads/managing-instances/backup-restore-export#_backup_and_export[AuraDS] instance, create a new Neo4j 5 instance manually, and then import the dump file into your new Neo4j 5 xref:auradb/importing/import-database#_import_database[AuraDB] or xref:aurads/importing-data/import-db#_import_database[AuraDS] instance.
+Alternatively, you can *Export* a snapshot dump file from your Neo4j 4 xref:auradb/managing-databases/backup-restore-export#_backup_and_export[AuraDB] or xref:aurads/managing-instances/backup-restore-export#_backup_and_export[AuraDS] instance, create a new Neo4j 5 instance manually, and then import the dump file into your new Neo4j latest version xref:auradb/importing/import-database#_import_database[AuraDB] or xref:aurads/importing-data/import-db#_import_database[AuraDS] instance.
