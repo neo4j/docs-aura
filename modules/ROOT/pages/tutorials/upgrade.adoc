@@ -28,12 +28,13 @@ Neo4j 5 replaced b-tree indexes with link:{neo4j-docs-base-uri}/cypher-manual/cu
 Before migrating a database, in Neo4j 4, you should create a matching RANGE, POINT, or TEXT index for each BTREE index (or index-backed constraint). 
 The `SHOW INDEXES` command lists all database indexes.
 
-In most cases, RANGE indexes can replace BTREE. 
-However, there might be occasions when a different index type is more suitable, such as:
+Range indexes can replace most b-tree indexes.
 
-* Use POINT indexes if the property value type is `point` and `distance` or `bounding box` queries are used for the property.
-* Use TEXT indexes if the property value type is `text` and the values can be larger than 8Kb.
-* Use TEXT indexes if the property value type is `text` and `CONTAINS` and `ENDS WITH` are used in queries for the property.
+Text indexes can be more appropriate for queries evaluating `STRING` predicates involving the `CONTAINS` or `ENDS WITH` operators.
+For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/managing-indexes/#create-text-index[Cypher Manual -> Create text indexes].
+
+Point indexes should be used for queries evaluating `POINT` values.
+For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/managing-indexes/#create-text-index[Cypher Manual -> Create point indexes].
 
 After creating the new index, the old index should be dropped. 
 
