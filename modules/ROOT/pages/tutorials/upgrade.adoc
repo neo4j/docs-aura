@@ -1,0 +1,130 @@
+= Upgrade to Neo4j 5 within Aura
+:description: This tutorial describes how to upgrade an Aura instance running Neo4j version 4 to Neo4j latest.
+
+This tutorial describes how to upgrade an Aura instance running Neo4j 4 to Neo4j latest version.
+
+[CAUTION]
+====
+All new instances use Neo4j latest version as standard.
+The Migration Readiness Report in the Aura console helps Neo4j Aura 4 users to assess their usage of Neo4j and easily spot deprecated functionalities in their code.
+====
+
+== Prepare for the upgrade
+
+=== Drivers
+
+Neo4j's official drivers have some significant and breaking changes between versions you need to be aware of.
+For a smooth migration:
+
+. Check the breaking changes for each driver you use, for example in the link:https://neo4j.com/docs/api/python-driver/5.0/breaking_changes.html#breaking-changes[Python driver] and in the link:https://github.com/neo4j/graph-data-science-client/blob/main/changelog.md[GDS client].
+. Make sure you switch to the latest version of the driver in line with the version of the Neo4j database. 
+This can be done before upgrading the version of Neo4j that you are using with Aura, as Neo4j latest version drivers are backward compatible.
+
+The link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/[Update and migration guide] contains all information and lists all the breaking changes.
+
+=== Indexes
+
+Neo4j 5 replaced b-tree indexes with link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/managing-indexes/#create-range-index[range indexes].
+Before migrating a database, in Neo4j 4, you should create a matching RANGE, POINT, or TEXT index for each BTREE index (or index-backed constraint). 
+The `SHOW INDEXES` command lists all database indexes.
+
+Range indexes can replace most b-tree indexes.
+
+Text indexes can be more appropriate for queries evaluating `STRING` predicates involving the `CONTAINS` or `ENDS WITH` operators.
+For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/managing-indexes/#create-text-index[Cypher Manual -> Create text indexes].
+
+Point indexes should be used for queries evaluating `POINT` values.
+For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/managing-indexes/#create-text-index[Cypher Manual -> Create point indexes].
+
+After creating the new index, the old index should be dropped. 
+
+.Create a range index and drop an existing b-tree index
+[source, Cypher, role="noplay"]
+----
+CREATE RANGE INDEX range_index_name FOR (n:Label) ON (n.prop1);
+DROP INDEX index_name;
+----
+
+Propety uniqueness and key constraints are backed by indexes.
+For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/constraints/managing-constraints/#constraints-and-backing-indexes[Cypher Manual -> Constraints and backing indexes].
+
+For information about indexes and query performance, see the link: link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/using-indexes/[Cypher Manual -> The impact of indexes on query performance].
+
+=== Cypher updates
+
+All changes to Cypher, including featre additions, deprecations, and removals, are introduced in Neo4j versions.
+For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/deprecations-additions-removals-compatibility[Cypher Manual -> Removals, deprecations, additions and extensions].
+
+Thoroughly review this section in the version you are moving to and make the necessary changes in your code.
+
+Here is a short list of the main changes introduced in Neo4j 5:
+
+
+==== Error handling in Cypher
+
+The following warnings in Neo4j 4.4 have since been changed into....```
+
+* The severity of some of the Warning codes is moved to Info:
+
+** `SubqueryVariableShadowingWarning` -> `SubqueryVariableShadowing`
+** `NoApplicableIndexWarning` -> `NoApplicableIndex`
+** `CartesianProductWarning` -> `CartesianProduct`
+** `DynamicPropertyWarning` -> `DynamicProperty`
+** `EagerOperatorWarning` -> `EagerOperator`
+** `ExhustiveShortestPathWarning` -> `ExhaustiveShortestPath`
+** `UnboundedVariableLengthPatternWarning` -> `UnboundedVariableLengthPattern`
+** `ExperimentalFeature` -> `RuntimeExperimental`
+
+=== APOC
+
+Aura contains most but not all functions and procedures contained in the link:{neo4j-docs-base-uri}/apoc/current[APOC Core] library.
+All APOC procedures and functions available in Aura are listed in the link:https://neo4j.com/docs/aura/platform/apoc/[APOC Core library].
+
+=== Procedures
+
+Some procedures have been replaced by commands:
+
+[cols="1,2", options="header"]
+|===
+| Procedure                                   | Replacement
+| `db.indexes`                                | `SHOW INDEXES` command
+| `db.indexDetails`                           | `SHOW INDEXES YIELD *` command
+| `db.schemaStatements`                       | `SHOW INDEXES YIELD *` command and `SHOW CONSTRAINTS YIELD *` command
+| `db.constraints`                            | `SHOW CONSTRAINTS` command
+| `db.createIndex`                            | `CREATE INDEX` command
+| `db.createUniquePropertyConstraint`         | `CREATE CONSTRAINT ... IS UNIQUE` command
+| `db.index.fulltext.createNodeIndex`         | `CREATE FULLTEXT INDEX` command
+| `db.index.fulltext.createRelationshipIndex` | `CREATE FULLTEXT INDEX` command
+| `db.index.fulltext.drop`                    | `DROP INDEX` command
+| `dbms.procedures`                           | `SHOW PROCEDURES` command
+| `dbms.functions`                            | `SHOW FUNCTIONS` command
+| `dbms.listTransactions`                     | `SHOW TRANSACTIONS` command
+| `dbms.killTransaction`                      | `TERMINATE TRANSACTIONS` command
+| `dbms.killTransactions`                     | `TERMINATE TRANSACTIONS` command
+| `dbms.listQueries`                          | `SHOW TRANSACTIONS` command
+| `dbms.killQuery`                            | `TERMINATE TRANSACTIONS` command
+| `dbms.killQueries`                          | `TERMINATE TRANSACTIONS` command
+| `dbms.scheduler.profile`                    | -
+|===
+
+Refer to the link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/#_removals[Update and migration guide] for a full list of removals and deprecations.
+
+=== Neo4j Connectors
+
+If you are using a Neo4j Connector for link:https://github.com/neo4j-contrib/neo4j-spark-connector/releases/[Apache Spark] or link:https://github.com/neo4j-contrib/neo4j-streams/releases[Apache Kafka], make sure its version is compatible with Neo4j latest version.
+
+The Neo4j BI Connectors available on the link:https://neo4j.com/deployment-center/#integrations[Deployment center] are compatible with Neo4j latest version.
+
+== Perform the upgrade
+
+Once you have prepared your Neo4j 4 Aura instance, you are ready to migrate the instance to a new or existing Neo4j latest version instance.
+
+=== Clone
+
+If you have an existing Neo4j latest version instance, you can use the *Clone To Existing* instance action on your link:https://neo4j.com/docs/aura/managing-instances/instance-actions/#_clone_to_a_new_instance[Neo4j 4 AuraDB] instance.
+
+If you do not have an existing Neo4j latest version instance, you can use the *Clone To New* instance action on your link:https://neo4j.com/docs/aura/managing-instances/instance-actions/#_clone_to_an_existing_instance[Neo4j 4 AuraDB instance.] 
+
+=== Export and import
+
+Alternatively, you can *Export* a snapshot dump file from your Neo4j 4 xref:auradb/managing-databases/backup-restore-export#_backup_and_export[AuraDB] or xref:aurads/managing-instances/backup-restore-export#_backup_and_export[AuraDS] instance, create a new Neo4j 5 latest version instance manually, and then link:https://neo4j.com/docs/aura/managing-instances/backup-restore-export/#restore-backup[import the dump file] into your new Neo4j latest version instance.
