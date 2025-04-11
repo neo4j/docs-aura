@@ -159,9 +159,18 @@ Users within a project can be assigned one of the following roles:
 
 * _Data Viewer_
 * _Project Viewer_
+* _Metrics Reader_
 * _Project Member_
 * _Project Admin_
-* _Metrics Reader_
+
+==== Metrics reader role
+
+The `metrics reader` role can be assigned to any user or service account.
+It has the same permissions as the `project viewer` role, but with some extra permissions specifically for reading metrics via an API endpoint.
+The role allows access to metrics for all instances in a project.
+Accessing metric endpoints requires xref:/api/authentication.adoc[Aura API Credentials] and the `metrics reader` role enables the creation of these credentials.
+
+The `metrics reader` role can view and open instances in the console, however, login to the instance is required to interact with it, with access to Explore and Query defined by the instance’s RBAC settings.
 
 [NOTE]
 ====
@@ -171,15 +180,17 @@ Each project must have at least one Project Admin, but it is also possible for p
 :check-mark: icon:check[]
 
 .Roles and console capabilities
-[opts="header",cols="3,1,1,1,1"]
+[opts="header",cols="3,1,1,1,1,1"]
 |===
 | Capability
 | Viewer
 | Data Viewer
+| Metrics reader
 | Member
 | Admin
 
 | View users and their roles
+| {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -190,8 +201,10 @@ Each project must have at least one Project Admin, but it is also possible for p
 | {check-mark}
 | {check-mark}
 | {check-mark}
+| {check-mark}
 
 | Access the Neo4j Customer Support Portal
+| {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -200,10 +213,12 @@ Each project must have at least one Project Admin, but it is also possible for p
 | Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instances.]
 |
 |
+|
 | {check-mark}
 | {check-mark}
 
 | Clone data to new and existing instances
+|
 |
 |
 | {check-mark}
@@ -212,10 +227,12 @@ Each project must have at least one Project Admin, but it is also possible for p
 | Take on-demand snapshots
 |
 |
+|
 | {check-mark}
 | {check-mark}
 
 | Restore from snapshots
+|
 |
 |
 | {check-mark}
@@ -225,9 +242,11 @@ Each project must have at least one Project Admin, but it is also possible for p
 |
 |
 |
+|
 | {check-mark}
 
 | Invite new users to the project
+|
 |
 |
 |
@@ -237,15 +256,18 @@ Each project must have at least one Project Admin, but it is also possible for p
 |
 |
 |
+|
 | {check-mark}
 
 | Delete existing users from the project
 |
 |
 |
+|
 | {check-mark}
 
 | View and edit billing information
+|
 |
 |
 |
