@@ -45,12 +45,8 @@ CREATE RANGE INDEX range_index_name FOR (n:Label) ON (n.prop1);
 DROP INDEX index_name;
 ----
 
-The following example instead shows how to create a constraint backed by a RANGE index:
-
-[source, Cypher, role="noplay"]
-----
-CREATE CONSTRAINT constraint_with_provider FOR (n:Label) REQUIRE (n.prop1) IS UNIQUE OPTIONS {indexProvider: 'range-1.0'}
-----
+Propety uniqueness and key constraints are backed by indexes.
+For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/constraints/managing-constraints/#constraints-and-backing-indexes[Cypher Manual -> Constraints and backing indexes].
 
 For more information about creating indexes, see link:https://neo4j.com/docs/cypher-manual/current/indexes-for-search-performance/#administration-indexes-examples[Cypher Manual -> Creating indexes].
 
