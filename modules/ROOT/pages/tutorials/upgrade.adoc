@@ -58,44 +58,6 @@ Thoroughly review this section in the version you are moving to and make the nec
 
 Here is a short list of the main changes introduced in Neo4j 5:
 
-[cols="1a,1a", options="header"]
-|===
-|*Deprecated feature*
-|*Details*
-
-|[source, Cypher, role="noplay"]
-----
-MATCH (n)-[r:REL]->(m) SET n=r
-----
-|Use the `properties()` function instead to get the map of properties of nodes/relationships that can then be used in a `SET` clause:
-
-[source, Cypher, role="noplay"]
-----
-MATCH (n)-[r:REL]->(m) SET n=properties(r)
-----
-
-|[source, Cypher, role="noplay"]
-----
-MATCH (a), (b), allShortestPaths((a)-[r]->(b)) RETURN b
-
-MATCH (a), (b), shortestPath((a)-[r]->(b)) RETURN b
-----
-|`shortestPath` and `allShortestPaths` without link:https://neo4j.com/docs/cypher-manual/5/syntax/patterns/#cypher-pattern-varlength[variable-length relationship] are deprecated. Instead, use a `MATCH` with a `LIMIT` of 1 or:
-[source, Cypher, role="noplay"]
-----
-MATCH (a), (b), shortestPath((a)-[r*1..1]->(b)) RETURN b
-----
-
-|[source, Cypher, role="noplay"]
-----
-CREATE DATABASE databaseName.withDot ...
-----
-|Creating a database with unescaped dots in the name has been deprecated, instead escape the database name:
-[source, Cypher, role="noplay"]
-----
-CREATE DATABASE `databaseName.withDot` ...
-----
-|===
 
 ==== Error handling in Cypher
 
