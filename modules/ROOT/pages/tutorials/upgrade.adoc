@@ -26,7 +26,7 @@ The link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migrat
 
 Neo4j 5 replaced b-tree indexes with link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/managing-indexes/#create-range-index[range indexes].
 Before migrating a database, in Neo4j 4, you should create a matching RANGE, POINT, or TEXT index for each BTREE index (or index-backed constraint). 
-You can run `SHOW INDEXES` on your Neo4j 4 database to display its indexes.
+The `SHOW INDEXES` command lists all database indexes.
 
 In most cases, RANGE indexes can replace BTREE. 
 However, there might be occasions when a different index type is more suitable, such as:
