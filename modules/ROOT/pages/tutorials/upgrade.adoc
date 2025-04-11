@@ -38,6 +38,7 @@ However, there might be occasions when a different index type is more suitable, 
 After creating the new index, the old index should be dropped. 
 The following example shows how to create a new RANGE index and drop an existing `index_name` index:
 
+.Create a range index and drop an existing b-tree index
 [source, Cypher, role="noplay"]
 ----
 CREATE RANGE INDEX range_index_name FOR (n:Label) ON (n.prop1);
