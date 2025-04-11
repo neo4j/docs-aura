@@ -275,7 +275,7 @@ Each project must have at least one Project Admin, but it is also possible for p
 |===
 
 
-Users within a project can access instances seamlessly with their console role xref:security/tool-auth.adoc[Tool authentication with Aura user] is enabled.
+Users within a project can access instances seamlessly with their console role if xref:security/tool-auth.adoc[Tool authentication with Aura user] is enabled.
 When enabled, a user connects seamlessly with a predefined database role that matches their console role, i.e. their project-level role.
 The predefined roles are assigned the following privileges on the instance level:
 
