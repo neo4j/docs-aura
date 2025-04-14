@@ -1,12 +1,12 @@
-= Upgrade to Neo4j 5 within Aura
+= Upgrade to Neo4j latest version
 :description: This tutorial describes how to upgrade an Aura instance running Neo4j version 4 to Neo4j latest.
 
 This tutorial describes how to upgrade an Aura instance running Neo4j 4 to Neo4j latest version.
 
-[CAUTION]
+[NOTE]
 ====
-All new instances use Neo4j latest version as standard.
-The Migration Readiness Report in the Aura console helps Neo4j Aura 4 users to assess their usage of Neo4j and easily spot deprecated functionalities in their code.
+* New instances are created running the latest version of Neo4j.
+* The Migration Readiness Report in the Aura console helps Neo4j Aura 4 users assess their usage of Neo4j and easily spot deprecated functionalities in their code.
 ====
 
 == Prepare for the upgrade
@@ -25,7 +25,7 @@ The link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migrat
 === Indexes
 
 Neo4j 5 replaced b-tree indexes with link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/managing-indexes/#create-range-index[range indexes].
-Before migrating a database, in Neo4j 4, you should create a matching RANGE, POINT, or TEXT index for each BTREE index (or index-backed constraint). 
+Before migrating a database, in Neo4j 4, you should create a matching RANGE, POINT, or TEXT index for each b-tree index (or index-backed constraint). 
 The `SHOW INDEXES` command lists all database indexes.
 
 Range indexes can replace most b-tree indexes.
@@ -127,4 +127,4 @@ If you do not have an existing Neo4j latest version instance, you can use the *C
 
 === Export and import
 
-Alternatively, you can *Export* a snapshot dump file from your Neo4j 4 xref:auradb/managing-databases/backup-restore-export#_backup_and_export[AuraDB] or xref:aurads/managing-instances/backup-restore-export#_backup_and_export[AuraDS] instance, create a new Neo4j 5 latest version instance manually, and then link:https://neo4j.com/docs/aura/managing-instances/backup-restore-export/#restore-backup[import the dump file] into your new Neo4j latest version instance.
+Alternatively, you can *Export* a snapshot dump file from your Neo4j 4 xref:auradb/managing-databases/backup-restore-export#_backup_and_export[AuraDB] instance, create a new Neo4j latest version instance manually, and then link:https://neo4j.com/docs/aura/managing-instances/backup-restore-export/#restore-backup[import the dump file] into your new Neo4j latest version instance.
