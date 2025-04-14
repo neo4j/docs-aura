@@ -1,15 +1,16 @@
-= Update a version 4 instance to the latest version of Neo4j
+= Update a version 4 instance to the latest version
 :description: This tutorial describes how to upgrade an Aura instance running Neo4j version 4 to Neo4j latest.
 
-This tutorial describes how to update (referred to as *upgrade* from here on, to match terminology used in other documentation) an Aura instance running Neo4j 4 to the latest version of Neo4j.
+This tutorial describes how to update an Aura instance running Neo4j 4 to the latest version of Neo4j. 
+*Update* will be referred to as *upgrade* from here on, to match terminology used in other documentation.
 
 [NOTE]
 ====
-* There are still a few Aura users running Neo4j 4. 
+* There are very few Aura users running version 4. 
 If that includes you, we’ll have contacted you directly. 
 Otherwise, you’re already up to date.
 * New instances are created running the latest version of Neo4j.
-* The Migration Readiness Report in the Aura console helps Neo4j Aura 4 users assess their usage of Neo4j and easily spot unsupported features in their code.
+* The Migration Readiness Report in the Aura console helps Neo4j Aura 4 users assess their usage of Neo4j and easily spot deprecated functionality in their code.
 ====
 
 == Prepare for the upgrade
@@ -23,7 +24,7 @@ For a smooth migration:
 . Make sure you switch to the latest version of the driver in line with the version of the Neo4j database. 
 This can be done before upgrading the version of Neo4j that you are using with Aura, as Neo4j latest version drivers are backward compatible.
 
-The link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/[Update and migration guide] contains all information and lists all the breaking changes.
+The link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/[Upgrade and migration guide] contains all information and lists all the breaking changes.
 
 === Indexes
 
@@ -55,28 +56,10 @@ For information about indexes and query performance, see the link: link:{neo4j-d
 
 === Cypher updates
 
-All changes to Cypher, including featre additions, deprecations, and removals, are introduced in Neo4j versions.
+All changes to Cypher, including feature additions, deprecations, and removals, are introduced in Neo4j versions.
 For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/deprecations-additions-removals-compatibility[Cypher Manual -> Removals, deprecations, additions and extensions].
 
 Thoroughly review this section in the version you are moving to and make the necessary changes in your code.
-
-Here is a short list of the main changes introduced in Neo4j 5:
-
-
-==== Error handling in Cypher
-
-The following warnings in Neo4j 4.4 have since been changed into....```
-
-* The severity of some of the Warning codes is moved to Info:
-
-** `SubqueryVariableShadowingWarning` -> `SubqueryVariableShadowing`
-** `NoApplicableIndexWarning` -> `NoApplicableIndex`
-** `CartesianProductWarning` -> `CartesianProduct`
-** `DynamicPropertyWarning` -> `DynamicProperty`
-** `EagerOperatorWarning` -> `EagerOperator`
-** `ExhustiveShortestPathWarning` -> `ExhaustiveShortestPath`
-** `UnboundedVariableLengthPatternWarning` -> `UnboundedVariableLengthPattern`
-** `ExperimentalFeature` -> `RuntimeExperimental`
 
 === APOC
 
@@ -110,7 +93,7 @@ Some procedures have been replaced by commands:
 | `dbms.scheduler.profile`                    | -
 |===
 
-Refer to the link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/#_removals[Update and migration guide] for a full list of removals and deprecations.
+Refer to the link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/#_removals[Upgrade and migration guide] for a full list of removals and deprecations.
 
 === Neo4j Connectors
 
