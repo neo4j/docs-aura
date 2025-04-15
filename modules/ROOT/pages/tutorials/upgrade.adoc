@@ -24,8 +24,8 @@ The link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migrat
 
 === Indexes
 
-B-tree indexes have been replaced by RANGE, POINT, and TEXT indexes. 
-These indexes are not automatically created during migration, so you must manually create an equivalent index for each b-tree index in Neo4j 4.
+BTREE indexes have been replaced by RANGE, POINT, and TEXT indexes. 
+These indexes are not automatically created during migration, so you must manually create an equivalent index for each BTREE index in Neo4j 4.
 
 The `SHOW INDEXES` command lists all database indexes.
 
@@ -33,7 +33,7 @@ If your database is running Neo4j 4.4 or later, you can create these new index t
 
 Read more in the link:{neo4j-docs-base-uri}cypher-manual/4.4/indexes-for-search-performance/#indexes-future-indexes[Cypher Manual] / Read more in the Cypher 4.4 docs > Future Indexes.
 
-RANGE indexes can replace most b-tree indexes.
+RANGE indexes can replace most BTREE indexes.
 
 TEXT indexes are more appropriate for queries evaluating `STRING` predicates involving the `CONTAINS` or `ENDS WITH` operators.
 For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/managing-indexes/#create-text-index[Cypher Manual -> Create text indexes].
@@ -43,7 +43,7 @@ For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/i
 
 After creating the new index, the old index should be dropped. 
 
-.Create a range index and drop an existing b-tree index
+.Create a range index and drop an existing BTREE index
 [source, Cypher, role="noplay"]
 ----
 CREATE RANGE INDEX range_index_name FOR (n:Label) ON (n.prop1);
