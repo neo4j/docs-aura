@@ -6,7 +6,7 @@ This tutorial describes how to migrate an Aura instance running Neo4j 4 to the l
 [NOTE]
 ====
 * New instances are created with the latest version of Neo4j.
-* The Migration Readiness Report in the Aura console helps Neo4j Aura 4 users to get code ready for migration.
+* The Migration Readiness Report in the Aura console helps Neo4j Aura 4 users get code ready for migration.
 ====
 
 == Prepare for the upgrade
@@ -30,8 +30,7 @@ These indexes are not automatically created during migration, so you must manual
 The `SHOW INDEXES` command lists all database indexes.
 
 If your database is running Neo4j 4.4 or later, you can create these new index types before migrating. 
-
-Read more in the link:{neo4j-docs-base-uri}cypher-manual/4.4/indexes-for-search-performance/#indexes-future-indexes[Cypher Manual] / Read more in the Cypher 4.4 docs > Future Indexes.
+Read more in the link:{neo4j-docs-base-uri}cypher-manual/4.4/indexes-for-search-performance/#indexes-future-indexes[Cypher Manual > Future Indexes].
 
 RANGE indexes can replace most BTREE indexes.
 
