@@ -6,7 +6,7 @@ This tutorial describes how to migrate an Aura instance running Neo4j 4 to the l
 [NOTE]
 ====
 * New instances are created with the latest version of Neo4j.
-* The Migration Readiness Report in the Aura console helps Neo4j Aura 4 users assess their usage of Neo4j and what they need to do in order to ready their code for migration.
+* The Migration Readiness Report in the Aura console helps Neo4j Aura 4 users to get code ready for migration.
 ====
 
 == Prepare for the upgrade
@@ -24,16 +24,21 @@ The link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migrat
 
 === Indexes
 
-Neo4j 5 replaced b-tree indexes with link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/managing-indexes/#create-range-index[range indexes].
-Before migrating a database, in Neo4j 4, you should create a matching RANGE, POINT, or TEXT index for each b-tree index (or index-backed constraint). 
+B-tree indexes have been replaced by RANGE, POINT, and TEXT indexes. 
+These indexes are not automatically created during migration, so you must manually create an equivalent index for each b-tree index in Neo4j 4.
+
 The `SHOW INDEXES` command lists all database indexes.
 
-Range indexes can replace most b-tree indexes.
+If your database is running Neo4j 4.4 or later, you can create these new index types before migrating. 
 
-Text indexes can be more appropriate for queries evaluating `STRING` predicates involving the `CONTAINS` or `ENDS WITH` operators.
+Read more in the link:{neo4j-docs-base-uri}cypher-manual/4.4/indexes-for-search-performance/#indexes-future-indexes[Cypher Manual] / Read more in the Cypher 4.4 docs > Future Indexes.
+
+RANGE indexes can replace most b-tree indexes.
+
+TEXT indexes are more appropriate for queries evaluating `STRING` predicates involving the `CONTAINS` or `ENDS WITH` operators.
 For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/managing-indexes/#create-text-index[Cypher Manual -> Create text indexes].
 
-Point indexes should be used for queries evaluating `POINT` values.
+POINT indexes should be used for queries evaluating `POINT` values.
 For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/managing-indexes/#create-text-index[Cypher Manual -> Create point indexes].
 
 After creating the new index, the old index should be dropped. 
