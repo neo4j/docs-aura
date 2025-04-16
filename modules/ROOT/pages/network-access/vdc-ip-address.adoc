@@ -1,0 +1,48 @@
+[[aura-fixed-ip-addresses]]
+= Finding out the fixed IP address to provision in Firewall for an AuraDB Enterprise tier
+
+AuraDB Virtual Dedicated Cloud and AuraDS Enterprise customers have a dedicated IP endpoint to access their AuraDB Instance.
+
+For the Aura Console, the fixed IP addresses are listed here link:connecting-applications/urls-ips-ports.adoc[fixed ip addresses].
+
+To work out the fixed IP address used to access your AuraDB Instances in your environment:
+
+. Select or if none exist create an AuraDB Instance in your environment
+
+. Copy the connection URI of that AuraDB Instance
+
+. Remove the protocol specifier of the URI e.g. neo4j+s://abcd1234.databases.neo4j.io => keep only abcd1234.databases.neo4j.io
+
+. Run from your environment in a command prompt
+
+. nslookup dbid .databases.neo4j.io (adjust the dbid as appropriate)
+
+. Example: `nslookup abcd1234.databases.neo4j.io`
+
+If your AuraDB Instance is on AWS you would see at least 3 IPv4 addresses - one IPv4 address per availability zone - (some regions have up to 5 availability zones and hence there would be more)
+
+$ nslookup abcd1234.databases.neo4j.io
+Server:		127.0.0.53
+Address:	127.0.0.53#53
+
+Non-authoritative answer:
+Name:	abcd1234.databases.neo4j.io
+Address: 50.161.105.214
+Name:	abcd1234.databases.neo4j.io
+Address: 54.233.121.213
+Name:	abcd1234.databases.neo4j.io
+Address: 54.167.147.97
+If your AuraDB Instance is running on GCP or Azure you will only see 1 single IPv4 address instead
+
+$ nslookup a1b2c3d4.databases.neo4j.io
+Server:		127.0.0.53
+Address:	127.0.0.53#53
+
+Non-authoritative answer:
+Name:	a1b2c3d4.databases.neo4j.io
+Address: 51.161.125.214
+
+[IMPORTANT]
+====
+For AuraDS only - The Arrow server runs on port 8491 
+====
