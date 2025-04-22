@@ -95,8 +95,10 @@ You cannot manually pause an AuraDB Free instance; they are paused automatically
 
 You can pause an instance when not needed and resume it at any time.
 Do so by using the *Pause* button on the instance card.
-
 After confirming, the instance begins pausing, and a play button replaces the pause button.
+
+When you pause an instance, Aura performs a backup operation behind the scenes.
+It can take a while to pause, depending on your instance size, because Aura is creating the backup.
 
 [NOTE]
 ====
@@ -109,6 +111,7 @@ You can pause an instance for up to 30 days, after which point Aura automaticall
 Resume a paused instance with the *Play* button on the instance card.
 
 After confirming, the instance begins resuming, which may take a few minutes.
+Resuming an instance restores the database from the backup.
 
 [WARNING]
 ====
@@ -197,3 +200,20 @@ image::mark-as-production.png[]
 [.shadow]
 .Instance marked as production
 image::marked-as-production.png[]
+
+== Upgrade AuraDB Professional to AuraDB Business Critical
+
+To upgrade your AuraDB Professional instance to AuraDB Business Critical, select the more menu (*…​*) on an instance card, then select *Upgrade*.
+
+.Upgrade your AuraDB Professional instance to AuraDB Business Critical
+[.shadow]
+image::upgradeprotobc.png[]
+
+This upgrade does not change the original DBID, so your application strings remain valid.
+
+*GDS plugin removal:* 
+If your AuraDB Professional instance uses the GDS plugin, it is removed during the upgrade. 
+The GDS plugin is not supported in AuraDB Business Critical.
+
+*Minimum instance size:* 
+If you try to upgrade a 1GB Professional instance, you need to resize it to at least 2GB of storage, because this is the minimum supported size in AuraDB Business Critical.

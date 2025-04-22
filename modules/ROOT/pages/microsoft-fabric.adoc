@@ -1,0 +1,108 @@
+
+[[microsoft-fabric]]
+= Workload for Microsoft Fabric
+:description: This page describes how to use Aura on Microsoft Fabric.
+
+label:Aura-DB-Professional[]
+
+[IMPORTANT]
+====
+Workload for Microsoft Fabric is a Public Preview and is not intended for production use.
+====
+
+== Overview
+
+The public preview of the Workload for Microsoft Fabric enables developers, data scientists, and analysts to transform their OneLake data into a graph database in Aura and perform graph analytics within the Microsoft Fabric console.
+
+Microsoft Fabric allows you to do a number of things, including, but not limited to, the following:
+
+* Try AuraDB Professional for free with a 14-day free trial.
+* Transform the data in a OneLake Lakehouse into a graph in AuraDB, using generative AI assistance for schema inference.
+* Query the graph in the Fabric console.
+* Explore and run graph algorithms in the Fabric console.
+* Build applications using the Neo4j .Net driver.
+* Use collaborative Notebooks in the Fabric console that run PySpark with the Neo4j Python Driver or GDS Client.
+
+Requirements:
+
+* Public end point for Microsoft Fabric.
+* Microsoft Fabric Capacity, or Free Trial.
+* An AuraDB Professional instance or Free Trial.
+* Single Sign-On login with EntraID (see xref:security/single-sign-on.adoc#_microsoft_entra_id_sso[Microsoft Entra ID SSO] for more information).
+* Tool authentication enabled for the database.
+//(see xref:security/tool-auth.adoc[Tool authentication] for more information).
+* Generative AI assistance enabled.
+
+The following Azure Fabric regions are supported:
+
+** `brazilsouth`
+** `centralindia`
+** `eastus`
+** `francecentral`
+** `koreacentral`
+** `uksouth`
+** `westus3`
+
+**Limitations**
+
+* The graph is created by generative AI assistance and cannot be edited before it is imported into Aura.
+* Results of graph analytics are not returned to OneLake.
+* Graphs can only be created from a single Lakehouse.
+* Creating a new item will create a new database in Aura.
+* AuraDB Professional free trial is limited to one per organization.
+
+**Microsoft Certification**
+
+This workload has been certified by Microsoft, refer to the link:{neo4j-docs-base-uri}/reference/neo4j-for-microsoft-attestation[Microsoft Attestation Certification Checklist] for details.
+
+== Configure the workload
+
+If the workload is not available in your workspace, contact your administrator to add it.
+The administrator need to perform the following steps:
+
+. Select *Workloads* in the Fabric console
+. Select the Neo4j AuraDB workload
+. Add the workload
+. Either select capabilities from the list or select *All capacities*
+. Add the workload
+
+== Create a graph data set
+
+Once the workload has been enabled in your workspace, follow the steps outlined to create a graph data set:
+
+. Select `...`
+. Select *Neo4j Graph Dataset (preview)*
+. Provide a name for the dataset
+. *Optional*: Select *Start trial now* to start an AuraDB Professional 14-day trial if you don't have an Aura instance already.
+. Select the Lakehouse you want to use
+. Select one or more tables in the Lakehouse
+. Finally, select *Transform into graph data set* to create a new AuraDB graph database within an existing project.
+
+Keep in mind that you can only start one free trial per organization.
+
+[NOTE]
+====
+If the AuraDB administrator disables Generative AI assistance in Aura, then the *Transform* button will be greyed out.
+See xref:visual-tour/index.adoc#org-settings[Organization settings] for more information.
+====
+
+
+
+== Exploring data sets
+
+Once the transformation is complete, you can explore the graph with the *Explore* button on the Fabric ribbon.
+Explore in Fabric offers the same functionality as Explore in the Aura console.
+
+For more information Explore, see xref:explore/introduction.adoc[Explore].
+
+== Query data sets
+
+You can also query the graph, once the transformation is complete, with the *Query* button on the Fabric ribbon.
+Query in Fabric works in the same way as Query in the Aura console.
+
+For more information about Query, see xref:query/introduction.adoc[Query].
+
+== Administration
+
+Administration is available via the Aura console and not the Microsoft Fabric console.
+Refer to xref:visual-tour/index.adoc[Visual tour of the console] for more information about the Aura console.
