@@ -68,20 +68,22 @@ Note that this option is not available for Free instances.
 You can change the size of an existing instance using the *Resize* button on the instance you want to resize.
 An instance remains available during the resize operation.
 
-== Flexible storage
+== Adjustable storage
 
 [NOTE]
 ====
-Available for AuraDB prepaid billing on Google Cloud Platform (GCP), version 5.x.
+Available for AuraDB prepaid billing on Google Cloud Platform (GCP).
 ====
 
-Aura offers flexible storage for your instance, so you can increase storage independent of memory.
-You can select your storage size when you create an instance, or later if your needs change.
-Select *Configuration* on the instance card, and select a new value in the *Storage* column.
+Adjust the storage size of your instance at any time.
+
+To select the storage size during instance creation, select the value in the *Storage (Adjustable)* column. This opens a drop down with other available options.
+
+To adjust an existing instance's storage, select *Configuration* on the instance card and choose a new value in the *Storage (Adjustable)* column. (See Figure 2.)
 
 [.shadow]
-.Adjust the storage size of an existing instance
-image::flexiblestorage.png[screenshot of instance storage resize]
+.Adjust storage size
+image::adjustablestorage.png[screenshot of instance storage resize]
 
 == Pause an instance
 
