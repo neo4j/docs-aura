@@ -23,9 +23,11 @@ Microsoft Fabric allows you to do a number of things, including, but not limited
 * Build applications using the Neo4j .Net driver.
 * Use collaborative Notebooks in the Fabric console that run PySpark with the Neo4j Python Driver or GDS Client.
 
-On the Aura-side, the following is required:
+Requirements:
 
-* An AuraDB Professional instance.
+* Public end point for Microsoft Fabric.
+* Microsoft Fabric Capacity, or Free Trial.
+* An AuraDB Professional instance or Free Trial.
 * Single Sign-On login with EntraID (see xref:security/single-sign-on.adoc#_microsoft_entra_id_sso[Microsoft Entra ID SSO] for more information).
 * Tool authentication enabled for the database.
 //(see xref:security/tool-auth.adoc[Tool authentication] for more information).
@@ -51,7 +53,7 @@ The following Azure Fabric regions are supported:
 
 **Microsoft Certification**
 
-This workload has been certified by Microsoft, refer to the link:{neo4j-docs-base-uri}/reference/neo4j-for-microsoft-attestation.adoc[Microsoft Attestation Certification Checklist] for details.
+This workload has been certified by Microsoft, refer to the link:{neo4j-docs-base-uri}/reference/neo4j-for-microsoft-attestation[Microsoft Attestation Certification Checklist] for details.
 
 == Configure the workload
 
