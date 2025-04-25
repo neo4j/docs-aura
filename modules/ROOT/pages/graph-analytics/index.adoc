@@ -2,6 +2,7 @@
 = Graph analytics in Aura
 :description: This page describes how to run graph analytics in Aura.
 :page-aliases: aurads/index.adoc
+:gds-sessions-page: {neo4j-docs-base-uri}/graph-data-science/current/installation/gds-sessions/ 
 
 If your data is in Aura or you plan to move it to Aura, you have several options to run graph analytics:
 
@@ -32,7 +33,7 @@ include::partial$EAP.adoc[]
 
 Graph Analytics Serverless allows you to use the Graph Data Science library regardless of where your source data is stored.
 
-Graph Analytics Serverless runs in Aura as a link:https://neo4j.com/docs/graph-data-science/current/installation/gds-sessions/[dedicated service] optimised for analytics workloads, with no memory or compute resources shared with your data store.
+Graph Analytics Serverless runs in Aura as a link:{gds-sessions-page}[dedicated service] optimised for analytics workloads, with no memory or compute resources shared with your data store.
 
 === From an AuraDB instance
 
