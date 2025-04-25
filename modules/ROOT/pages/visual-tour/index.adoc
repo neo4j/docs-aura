@@ -52,14 +52,14 @@ These features are always identified with a ✨ and your use is subject to our l
 image::enable-genai-assistance.png[]
 
 
-==== Settings for GDS sessions
+==== Settings for Graph Analytics Serverless
 
 include::partial$EAP.adoc[]
 
-From this page you can enable or disable link:{gds-sessions-page}[GDS Sessions], as well as configure the following settings:
+From this page you can enable or disable link:{gds-sessions-page}[Graph Analytics Serverless], as well as configure the following settings:
 
-* The maximum available memory for each Session
-* The maximum number of concurrent Sessions within the organization
+* The maximum available memory for each session
+* The maximum number of concurrent sessions within the organization
 
 == Data Services
 
@@ -81,19 +81,19 @@ If your instance doesn't contain any data, the Import service allows you to impo
 This service lets you create your data model and map it to your files.
 See the xref:import/introduction.adoc[What is Import?] for more information about this service.
 
-=== Sessions
+=== Graph Analytics
 
 include::partial$EAP.adoc[]
 
-This page lists the link:{gds-sessions-page}[GDS Sessions] running within a project (if any).
+This page lists the link:{gds-sessions-page}[Graph Analytics Serverless] sessions running within a project (if any).
 
-The list shows Session details and a **Delete** button for each Session.
+The list shows session details and a **Delete** button for each session.
 Session details include:
 
-* The Neo4j database instance containing the data projected in the Session
-* The memory allocated to the Session (configurable in the <<org-settings>> page)
-* The user who created the Session
-* The time remaining to the Session configured time limit
+* The Neo4j database instance containing the data projected in the session
+* The memory allocated to the session (configurable in the <<org-settings>> page)
+* The user who created the session
+* The time remaining to the session configured time limit
 
 == Tools
 
