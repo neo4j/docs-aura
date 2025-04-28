@@ -42,7 +42,6 @@ This guarantees that Neo4j has full rights to start and work with the database f
 
 . Stop your self-managed Neo4j database.
 Stop the database you want to make a dump of, using the command `STOP DATABASE {database}` in Cypher Shell or Browser - or use the UI.
-An AuraDB instance does not need to be stopped to upload a dump.
 
 . Ensure the target directory to store the database dumps (for instance `{dump-folder}`) exists.
 
