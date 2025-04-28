@@ -24,7 +24,7 @@ The link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migrat
 
 === Indexes
 
-BTREE indexes have been replaced by RANGE, POINT, and TEXT indexes. 
+In Neo4j 5, BTREE indexes were replaced by RANGE, POINT, and TEXT indexes.
 These indexes are not automatically created during migration, so you must manually create an equivalent index for each BTREE index in Neo4j 4.
 
 The `SHOW INDEXES` command lists all database indexes.
