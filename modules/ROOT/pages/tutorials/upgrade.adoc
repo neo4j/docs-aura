@@ -1,0 +1,116 @@
+= Migrate a version 4 instance to the latest version
+:description: This tutorial describes how to migrate an Aura instance running Neo4j version 4 to Neo4j latest.
+
+This tutorial describes how to migrate an Aura instance running Neo4j 4 to the latest version of Neo4j. 
+
+[NOTE]
+====
+* New instances are created with the latest version of Neo4j.
+* The Migration Readiness Report in the Aura console helps Neo4j Aura 4 users prepare for migration.
+====
+
+== Prepare for the upgrade
+
+=== Drivers
+
+Neo4j's official drivers have some significant and breaking changes between versions you need to be aware of.
+For a smooth migration:
+
+. Check the breaking changes for each driver you use, for example in the link:https://neo4j.com/docs/api/python-driver/5.0/breaking_changes.html#breaking-changes[Python driver] and in the link:https://github.com/neo4j/graph-data-science-client/blob/main/changelog.md[GDS client].
+. Make sure you switch to the latest version of the driver in line with the version of the Neo4j database. 
+This can be done before upgrading the version of Neo4j that you are using with Aura, as Neo4j latest version drivers are backward compatible.
+
+The link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/[Upgrade and migration guide] contains all information and lists all the breaking changes.
+
+=== Indexes
+
+In Neo4j 5, BTREE indexes were replaced by RANGE, POINT, and TEXT indexes.
+These indexes are not automatically created during migration, so you must manually create an equivalent index for each BTREE index in Neo4j 4.
+
+The `SHOW INDEXES` command lists all database indexes.
+
+If your database is running Neo4j 4.4 or later, you can create these new index types before migrating. 
+Read more in the link:{neo4j-docs-base-uri}cypher-manual/4.4/indexes-for-search-performance/#indexes-future-indexes[Cypher Manual > Future Indexes].
+
+RANGE indexes can replace most BTREE indexes.
+
+TEXT indexes are more appropriate for queries evaluating `STRING` predicates involving the `CONTAINS` or `ENDS WITH` operators.
+For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/managing-indexes/#create-text-index[Cypher Manual -> Create text indexes].
+
+POINT indexes should be used for queries evaluating `POINT` values.
+For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/managing-indexes/#create-text-index[Cypher Manual -> Create point indexes].
+
+After creating the new index, the old index should be dropped. 
+
+.Create a range index and drop an existing BTREE index
+[source, Cypher, role="noplay"]
+----
+CREATE RANGE INDEX range_index_name FOR (n:Label) ON (n.prop1);
+DROP INDEX index_name;
+----
+
+Propety uniqueness and key constraints are backed by indexes.
+For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/constraints/managing-constraints/#constraints-and-backing-indexes[Cypher Manual -> Constraints and backing indexes].
+
+For information about indexes and query performance, see the link: link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/search-performance-indexes/using-indexes/[Cypher Manual -> The impact of indexes on query performance].
+
+=== Cypher updates
+
+All changes to Cypher, including feature additions, deprecations, and removals, are introduced in Neo4j versions.
+For more information, see the link:{neo4j-docs-base-uri}/cypher-manual/current/deprecations-additions-removals-compatibility[Cypher Manual -> Removals, deprecations, additions and extensions].
+
+Thoroughly review this section in the version you are moving to and make the necessary changes in your code.
+
+=== APOC
+
+Aura contains most but not all functions and procedures contained in the link:{neo4j-docs-base-uri}/apoc/current[APOC Core] library.
+All APOC procedures and functions available in Aura are listed in the link:https://neo4j.com/docs/aura/platform/apoc/[APOC Core library].
+
+=== Procedures
+
+Some procedures have been replaced by commands:
+
+[cols="1,2", options="header"]
+|===
+| Procedure                                   | Replacement
+| `db.indexes`                                | `SHOW INDEXES` command
+| `db.indexDetails`                           | `SHOW INDEXES YIELD *` command
+| `db.schemaStatements`                       | `SHOW INDEXES YIELD *` command and `SHOW CONSTRAINTS YIELD *` command
+| `db.constraints`                            | `SHOW CONSTRAINTS` command
+| `db.createIndex`                            | `CREATE INDEX` command
+| `db.createUniquePropertyConstraint`         | `CREATE CONSTRAINT ... IS UNIQUE` command
+| `db.index.fulltext.createNodeIndex`         | `CREATE FULLTEXT INDEX` command
+| `db.index.fulltext.createRelationshipIndex` | `CREATE FULLTEXT INDEX` command
+| `db.index.fulltext.drop`                    | `DROP INDEX` command
+| `dbms.procedures`                           | `SHOW PROCEDURES` command
+| `dbms.functions`                            | `SHOW FUNCTIONS` command
+| `dbms.listTransactions`                     | `SHOW TRANSACTIONS` command
+| `dbms.killTransaction`                      | `TERMINATE TRANSACTIONS` command
+| `dbms.killTransactions`                     | `TERMINATE TRANSACTIONS` command
+| `dbms.listQueries`                          | `SHOW TRANSACTIONS` command
+| `dbms.killQuery`                            | `TERMINATE TRANSACTIONS` command
+| `dbms.killQueries`                          | `TERMINATE TRANSACTIONS` command
+| `dbms.scheduler.profile`                    | -
+|===
+
+Refer to the link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/breaking-changes/#_removals[Upgrade and migration guide] for a full list of removals and deprecations.
+
+=== Neo4j Connectors
+
+If you are using a Neo4j Connector for link:https://github.com/neo4j-contrib/neo4j-spark-connector/releases/[Apache Spark] or link:https://github.com/neo4j-contrib/neo4j-streams/releases[Apache Kafka], make sure its version is compatible with Neo4j latest version.
+
+The Neo4j BI Connectors available on the link:https://neo4j.com/deployment-center/#integrations[Deployment center] are compatible with Neo4j latest version.
+
+== Perform the upgrade
+
+Once you have prepared your Neo4j 4 Aura instance, you are ready to migrate the instance to a new or existing Neo4j latest version instance.
+
+=== Clone
+
+If you have an existing Neo4j latest version instance, you can use the *Clone To Existing* instance action on your link:https://neo4j.com/docs/aura/managing-instances/instance-actions/#_clone_to_a_new_instance[Neo4j 4 AuraDB] instance.
+
+If you do not have an existing Neo4j latest version instance, you can use the *Clone To New* instance action on your link:https://neo4j.com/docs/aura/managing-instances/instance-actions/#_clone_to_an_existing_instance[Neo4j 4 AuraDB instance.] 
+
+=== Export and import
+
+Alternatively, you can *Export* a snapshot dump file from your Neo4j 4 xref:auradb/managing-databases/backup-restore-export#_backup_and_export[AuraDB] instance, create a new Neo4j latest version instance manually, and then link:https://neo4j.com/docs/aura/managing-instances/backup-restore-export/#restore-backup[import the dump file] into your new Neo4j latest version instance.
