@@ -1,12 +1,16 @@
 [[graph-analytics-aura]]
-= Graph analytics on Aura
-:description: This page describes how to run graph analytics on Aura.
+= Graph analytics in Aura
+:description: This page describes how to run graph analytics in Aura.
 :page-aliases: aurads/index.adoc
+:gds-sessions-page: {neo4j-docs-base-uri}/graph-data-science/current/installation/aura-graph-analytics-serverless/
 
-There are two ways to run graph analytics on Aura:
+If your data is in Aura or you plan to move it to Aura, you have several options to run graph analytics:
 
-* Create an AuraDB Professional instance with the <<aura-gds-plugin>>, or enable the plugin on an existing AuraDB Professional instance.
-* Create an <<aura-ds, AuraDS instance>>.
+* Enable <<aura-gds-plugin,Graph Analytics>> on an existing AuraDB instance (Professional).
+* Use <<aura-gds-serverless,Graph Analytics Serverless>> from an existing AuraDB instance (Business Critical, Virtual Dedicated Cloud).
+* Create an <<aura-ds, AuraDS instance>> (Professional, Enterprise).
+
+If your data is in a self-managed Neo4j DBMS or a non-Neo4j data source, you can still use <<aura-gds-serverless,Graph Analytics Serverless>>.
 
 [[aura-gds-plugin]]
 == Graph Analytics plugin
@@ -17,21 +21,38 @@ The Graph Analytics plugin allows you to use the link:https://neo4j.com/docs/gra
 
 * Neo4j version 5 or later
 * 4 GB of memory or more
-* Any supported cloud providers and regions
+* All supported cloud providers and regions
 
-You can enable or disable the plugin when necessary.
+You can enable or disable Graph Analytics when necessary, both during xref:getting-started/create-instance.adoc[instance creation] and on an xref:managing-instances/instance-details.adoc[existing instance].
+The plugin shares compute and memory resources with the AuraDB server, so you do not incur any additional costs when you enable it.
 
-[WARNING]
-====
-You can no longer use the plugin if you resize your instance to less than 4 GB of memory.
-====
+[[aura-gds-serverless]]
+== Graph Analytics Serverless
+
+include::partial$EAP.adoc[]
+
+Graph Analytics Serverless allows you to use the Graph Data Science library regardless of where your source data is stored.
+
+Graph Analytics Serverless runs in Aura as a link:{gds-sessions-page}[dedicated service] optimised for analytics workloads, with no memory or compute resources shared with your data store.
+
+=== From an AuraDB instance
+
+label:AuraDB-Business-Critical[] label:AuraDB-Virtual-Dedicated-Cloud[]
+
+You can use Graph Analytics Serverless from any AuraDB Business Critical or AuraDB Virtual Dedicated Cloud instance with the following requirements:
+
+* Neo4j version 5 or later
+* All supported cloud providers and regions
 
 [[aura-ds]]
 == AuraDS
 
 label:AuraDS-Professional[] label:AuraDS-Enterprise[]
 
-AuraDS is the fully managed version of the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library].
+AuraDS is the fully managed version of the Graph Data Science library where the <<aura-gds-plugin>> is deployed by default.
+
+In an AuraDS instance, Graph Analytics is always on.
+The plugin shares compute and memory resources with the AuraDS server.
 
 AuraDS instances have the following features:
 
@@ -54,17 +75,44 @@ No operation is applied until all the running GDS algorithms have completed.
 
 == Comparison
 
-There are important operational differences between the Graph Analytics plugin on AuraDB Professional and AuraDS.
-
-[opts="header", cols="1,1"]
+[opts="header", cols="1s,1,1,1,1"]
 |===
-|AuraDB Pro + Graph Analytics plugin
+|
+|Graph Analytics plugin +
+(AuraDB Pro)
+|Graph Analytics Serverless +
+(AuraDB BC)
+|Graph Analytics Serverless +
+(AuraDB VDC)
 |AuraDS
 
-|Rolling updates clear all projections.
-|Rolling updates save projections to disk and restore them upon restart.
+|Maximum memory
+|Up to 128 GB
+|Up to 128 GB
+|Up to 512 GB
+|Up to 384 GB
 
-|Backup files do not include projections.
-|Backup files include all projections.
+|Resources for analytics
+|Shared with DB (optimized for DB)
+|Dedicated
+|Dedicated
+|Shared with DB (optimized for analytics)
 
+|Number of concurrent sessions
+|-
+|Up to 10
+|Up to 100
+|-
+
+|Data sources
+|Same server
+|AuraDB BC; self-managed Neo4j DBMS; custom
+|AuraDB VDC; self-managed Neo4j DBMS; custom
+|Same server; custom
+
+|DBMS restart behavior
+|No downtime; projected graphs and trained models are not retained
+|No downtime; projected graphs and trained models are unaffected
+|No downtime; projected graphs and trained models are unaffected
+|Short downtime; projected graphs and trained models are restored
 |===
