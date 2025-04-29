@@ -2,14 +2,26 @@
 = Data modeling
 
 The data model is the is the blueprint for the database.
-It defines how the data is organized and is the key to create a graph from your files.
-The data model is what you map your files to.
+It defines how the data is organized and is the key to create a graph from your data.
+The data model is what you map your tables or files to.
 It consists of nodes and relationships.
 Nodes need to have a _label_ and one or more _properties_.
 Relationships need to have a _type_ and one or more _properties_.
 
-When you connect a remote data source, you are offered to have the model generated and mapped for you.
-You can also upload a model, with or without data, in a _.json_ format.
+You can add a new model and see your available models (if you have any) in the *Graph models* tab.
+If you add a new model, you can either either *Connect to a data source* to select a source from your list (see xref:import/file-provision.adoc[] for information about data sources), or you can drag and drop (or browse for) local flat files.
+
+Once you have defined your data source, you have three options to create your model:
+
+* *Define manually* -- sketch your model and map your data
+* *Generate from schema* -- automatically define and map a model based on tables and constraints in your data
+* *Generate with AI* -- if you have enabled *Generative AI assistance* (in the xref:visual-tour/index.adoc#org-settings[Organization settings]), your model and mapping is automatically defined using AI on available metadata in your data source, to give you a more complete model.
+
+When you have a model generated, with or without AI, always review and make sure the model and mapping is done as expected.
+The generated model as meant to be a starting point and you add elements to it as needed since a relational database often does not contain sufficient information for the Import service to generate a complete model.
+Depending on what metadata your data contains, you may get a more complete model if you generate with AI.
+
+If you are streaming local files, you can also upload a model, with or without data, in a _.json_ format via the [*...*] more menu.
 But if you want full control of how your data is modeled, you can create the model manually.
 
 The data model panel is located in the center of the screen.

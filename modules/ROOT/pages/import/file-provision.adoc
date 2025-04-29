@@ -2,9 +2,11 @@
 = Data provision
 :description: This section describes how to provide files for import.
 
-You start by connecting your data source, which can be a relational database, a cloud data warehouse, or local flat files.
+The *Data sources* tab is where you can add new data sources and see sources you have already added.
 
-In essence, you provide the data in some format to be imported and Import imports this into your instance.
+You start by connecting a data source, which can be a relational database or a cloud data warehouse, or you can stream local flat files.
+
+In essence, you provide the data in some format to be imported and the Import service imports this into your instance.
 
 Import supports relational databases and flat files, i.e. files that contain data in a tabular format where each row represents a record and each column represents a field in that record.
 The most common format for flat files is CSV (comma-separated values), but Import also supports TSV (tab-separated values).
@@ -45,14 +47,19 @@ If no information is provided in these fields, the default values are used.
 Third, you need to provide user credentials for your data source.
 These are the username and password used to access the remote data source, *not* your Aura credentials.
 
-Once you have entered all the required information, the Import service connects to your remote source and can fetch all the tables  and import them to your Aura instance.
+Once you have entered all the required information, the Import service can connect to your remote source and can fetch all the tables and import them to your Aura instance.
 
 When you have added a data source, you need to create a data model before you can import data.
-See xref:modeling.adoc[] for more information.
+See xref:import/modeling.adoc[] for more information.
+Your added data sources are listed on the *Data sources* tab and you can interact with them via the *[...]* menu.
+
+.Interact with data source
+[.shadow]
+image::data-sources-interaction.png[]
 
 == Streaming local files
 
-Wen you stream your local CSV files, the process can be more iterative and manual.
+When you stream your local CSV files, the process can be more iterative and manual.
 
 Import requires all CSV files to have a header row and at least one row of data.
 The header row speficies how the data in the file should be interpreted and contains information for each field.
@@ -70,3 +77,6 @@ When you provide CSV files to Import, only a reference to your local files is ke
 This is used to send the necessary commands to stream the data to your target database when you run the import.
 Your local files themselves are *not* uploaded anywhere and therefore, if you reload the page before running the import, the files are no longer available to the page and you need to provide them again.
 This is due to security features of your browser.
+
+Once the files are in place, you need to specify how they should be organized in relation to each other, you need to *model your data*, in other words.
+See xref:import/modeling.adoc[] for more information.

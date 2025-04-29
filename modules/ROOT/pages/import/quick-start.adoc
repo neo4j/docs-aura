@@ -2,7 +2,9 @@
 :description: This section gives an overview of the Import service.
 = Quick start
 
-The Import service consists of three tabs; *Data sources*, *Graph models*, and *Import jobs*.
+The Import service UI consists of three tabs; *Data sources*, *Graph models*, and *Import jobs*.
+These refelct the three stages of importing data; provide the data, i.e. configure a source to fetch the data from, model the data, i.e. how is the data organized, and finally, run the import.
+
 If you haven't previously imported any data, all three are empty, otherwise sources, models, and import jobs are listed here.
 
 [.shadow]
@@ -22,7 +24,7 @@ See xref:import/file-provision.adoc[] for more information.
 
 If you want to stream local files, you can drag and drop them into the data source panel or browse for them.
 
-== Model the data
+== Model and map the data
 
 When you have connected a data source, you have the option to have a model generated based on primary and foreign key constraints in the source database.
 The quickest way is to accept to have a model generated, but you can draw your own later, see xref:import/modeling.adoc[] for more information.
