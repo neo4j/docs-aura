@@ -131,7 +131,8 @@ The Cypher query to create the replacement index(es) is shown as well.
 
 [NOTE]
 ====
-Index replacements created using the provided UI will be of type RANGE. To create replacements of other types (e.g. TEXT or POINT), change the provided Cypher query appropriately.
+Index replacements created using the provided UI will be of type RANGE.
+In cases where RANGE is not the best option, change the provided Cypher query appropriately (e.g. to create TEXT or POINT index) and execute it manually.
 ====
 
 == Testing and executing the migration
