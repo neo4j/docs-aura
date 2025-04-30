@@ -116,12 +116,23 @@ The tool can view queries on all databases except the `system` database.
 
 This section provides information on how to deal with deprecated indexes that may be used in version 4 but need to be handled before or while moving to the latest version.
 
-This part involves manually running a provided Cypher query on your database to identify the deprecated indexes or constraints backed by deprecated indexes and then deciding how to best deal with them.
+This part involves running a provided Cypher query on your database to identify the deprecated indexes or constraints backed by deprecated indexes and then deciding how to best deal with them.
 For each deprecated index you can decide to manually create a replacement index before the migration (pre-create) or have the migration process create it for you.
 Pre-creating indexes will speed up the migration process but requires additional disk space.
 Not pre-creating indexes will lead to a longer migration process and may result in the need to manually recreate indexes after the migration, as the automatically migrated indexes may not be the optimal type for your application.
 
-Further enhancements to this feature will be provided in the future.
+Index replacement can either be done manually by following the documentation or using the following UI provided in the Migration Readiness Report.
+
+[.shadow]
+image::mrr-index-replacement.png[]
+
+Indexes that are not supported in the latest version are shown in the table, and their replacements of type RANGE can be created for single indexes or all indexes at once.
+The Cypher query to create the replacement index(es) is shown as well.
+
+[NOTE]
+====
+Index replacements created using the provided UI will be of type RANGE. To create replacements of other types (e.g. TEXT or POINT), change the provided Cypher query appropriately.
+====
 
 == Testing and executing the migration
 
