@@ -68,6 +68,8 @@ Note that this option is *not available* for *Free instances*.
 You can change the size of an existing instance using the *Configure* button on the instance you want to resize.
 An instance remains available during the resize operation.
 
+Instance actions (such as pause or clone) are temporarily unavailable while size or storage is changing.
+
 == Adjust storage
 
 [NOTE]
@@ -77,6 +79,9 @@ Available for AuraDB prepaid billing on GCP, Neo4j latest version.
 
 Adjust the storage size of your instance at any time. 
 Each AuraDB instance includes a standard storage allocation and configuration; additional storage is chargeable.
+
+You can’t downsize to a storage size smaller than what you're currently using. 
+For example, if your storage usage is 8 GB, you won’t be able to downsize to 6 GB.
 
 To select the storage size during instance creation, select the desired value in the *Storage (Adjustable)* column. 
 
