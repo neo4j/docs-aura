@@ -1,4 +1,51 @@
-= Parameters and interactivity
-:description: Parameterize your Aura dashboards and let their constituents interact with each other.
+= Parameters
+:description: Use parameters in your Aura dashboards and customize queries further.
 
-Coming soon.
+Parameters are associated with a specific dashboard.
+Each parameter has a value and type both of which you can set initially. 
+
+Display the parameters of a dashboard by using the parentheses button to show the **Parameters** drawer.
+
+.The parameters drawer
+image::dashboards/parameters-drawer.png[]
+
+The drawer shows the dashboard parameters in alphabetical order.
+Each parameter has an icon next to it hinting at its data type:
+
+* A text icon for strings,
+* A hashtag icon for numbers,
+* A calendar icon for dates,
+* A filter icon for unspecified data types. 
+
+
+== Creating a parameter
+
+. From the **Parameters** drawer, use the **Add** button.
+. In the dialog, enter a parameter name, select a data type and optionally an initial value for the parameter, then **Save**.
+
+
+== Editing a parameter
+
+. From the **Parameters** drawer, hover over the parameter you wish to edit.
+. Use the pen button that appears.
+. In the dialog, edit the parameter name, data type and/or initial value, then **Save**.
+
+
+== Using a parameter in a query
+
+To use a parameter in a query, use the parameter name prefixed with `$`, for example `$example_number_param` for the parameter with name "example_number_param".
+
+.Using a parameter in a query
+image::dashboards/parameter-in-query.png[]
+
+
+== Deleting a parameter
+
+. From the **Parameters** drawer, hover over the parameter you wish to edit.
+. Use the trash bin button that appears.
+
+
+== Parameters and filters
+
+To create a xref:dashboards/visualizations/filter.adoc[], you need a parameter that is used with the filter.
+You can either use an existing parameter or create one alongside the filter.
