@@ -8,13 +8,12 @@ An IP address is a unique identifier for a device on a network.
 Enterprises typically only want their resources accessible by a selected range of IP addresses, not the public internet. 
 By specifying the exact IPs Aura uses, you can configure firewalls to allow only trusted inbound and outbound connections.
 
-*Two groups of IP addresses you need to use Aura:*
+There are two groups of IP addresses used by Aura:
 
-*Common tools* with *common global addresses* that use global services and are centrally hosted (e.g. the Aura console, `console.neo4j.io` would be 34.110.249.124).
-These tools and services are shared across all Aura databases, regardless of region. 
+*Global service IP addresses*: Common tools with common global addresses that use global services and are centrally hosted (e.g. the Aura console, `console.neo4j.io` would be 34.110.249.124).
+These IPs are the same regardless of the region where your database is deployed.
 
-*Instances in specific regions and cloud providers.* 
-These are the databases you create in Aura and where they physically reside in the cloud (e.g. instance in `us-east-1`, AWS).
+*Instances with specific cloud providers and regions:* These are the databases you create in Aura and where they physically reside in the cloud (e.g. instance in `us-east-1`, AWS).
 
 == Common global addresses 
 
@@ -69,7 +68,9 @@ The public IP address of your AuraDB or AuraDS instance depends on the region an
 === AuraDB Professional
 AuraDB Professional uses a collection of public IP addresses depending on the instance's region and depending on the cloud service provider.
 
-=== GCP (for AuraDS also add port 8491)
+=== GCP 
+
+(for AuraDS also add port 8491)
 
 [cols="1,1,1,1,1"]
 |===
@@ -136,7 +137,9 @@ AuraDB Professional uses a collection of public IP addresses depending on the in
 
 Port 80 and 7474 are optional and only ever used to redirect to HTTPS. Not used for data communication. 
 
-=== AWS (for AuraDS also add port 8491) 
+=== AWS 
+
+(for AuraDS also add port 8491) 
 
 [cols="1,1,1,1,1"]
 |===
@@ -193,7 +196,9 @@ Port 80 and 7474 are optional and only ever used to redirect to HTTPS. Not used 
 
 Port 80 and 7474 are optional and only ever used to redirect to HTTPS. Not used for data communication. 
  
-=== Azure (for AuraDS also add port 8491)
+=== Azure 
+
+(for AuraDS also add port 8491)
 
 [cols="1,1,1,1,1"]
 |===
