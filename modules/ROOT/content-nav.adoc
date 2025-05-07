@@ -6,8 +6,10 @@ Generic Start
 * Introduction
 ** xref:index.adoc[About Aura]
 ** xref:new-console.adoc[New Neo4j Aura console]
-** xref:graph-analytics/index.adoc[]
+** xref:microsoft-fabric.adoc[Workload for Microsoft Fabric]
 ** xref:visual-tour/index.adoc[Visual tour]
+
+* xref:graph-analytics/index.adoc[]
 
 * Quick start
 ** xref:getting-started/create-account.adoc[Create an account]
@@ -73,7 +75,8 @@ Generic Start
 ** xref:query/introduction.adoc[What is Query?]
 ** xref:query/visual-tour.adoc[Visual tour]
 ** xref:query/operations.adoc[Query operations]
-** xref:query/apoc.adoc[APOC support]
+
+* xref:apoc.adoc[APOC support]
 
 * Aura CLI
 ** xref:aura-cli/index.adoc[Introduction]
@@ -132,6 +135,7 @@ Generic Start
 
 * Connecting applications
 ** xref:connecting-applications/overview.adoc[Drivers and libraries]
+** xref:connecting-applications/query-api.adoc[Using Query API]
 
 * Neo4j Connectors
 ** xref:connectors/spark.adoc[Neo4j Connector for Apache Spark]
@@ -142,6 +146,19 @@ Generic Start
 ** xref:api/overview.adoc[]
 ** xref:api/authentication.adoc[]
 ** link:{neo4j-docs-base-uri}/aura/platform/api/specification/[API Specification]
+
+* *Tutorials*
+* Upgrade and migration
+** xref:tutorials/upgrade.adoc[]
+** xref:tutorials/migration.adoc[]
+** xref:tutorials/migration-free.adoc[]
+* Integrating with Neo4j Connectors
+** xref:tutorials/spark.adoc[]
+** xref:tutorials/bi.adoc[]
+* xref:tutorials/performance-improvements.adoc[]
+* xref:tutorials/troubleshooting.adoc[]
+* xref:tutorials/create-auradb-instance-from-terminal.adoc[]
+
 ////
 AuraDB End
 ////
