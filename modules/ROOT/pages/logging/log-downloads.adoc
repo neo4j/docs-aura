@@ -11,31 +11,31 @@
 label:AuraDB-Professional[]
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-Downloading logs requires a project role of either _{role-project-admin}_ or _{role-project-member}_.
+Downloading logs requires a role of either _{role-project-admin}_ or _{role-project-member}_.
 
-You can download logs from the *Query log* and the *Security log*.
+You can download Query logs and Security logs.
 The logs include any filters or search terms applied when the logs were fetched.
 Downloading logs consists of two steps: **initiate the download** and **download the file**.
 
-== Initiate logs 
+== Request the log
 
-Each request is up to {max-request-hours} hours of data and a maximum of {max-download-rows} rows.
+You can request a log for up to {max-request-hours} hours of data and a maximum of {max-download-rows} rows.
 
-After fetching logs, use the *Initiate logs download* button (arrow down tray icon) in the top right corner of the *Summary* and *Details* table. 
+After fetching logs, use the *Initiate logs download* button in the top right corner of the *Summary* and *Details* table. 
 
 * Select the *log type*: Summary (aggregated log statistics), Details (individual log events), or both. 
-* Choose a format: JSON or CSV. 
-If you choose CSV, you can optionally include CSV headers (enabled by default) and specify a field delimiter (default: comma).
+* Select a format: JSON or CSV. 
+If you select CSV, you can optionally include CSV headers (enabled by default) and specify a field delimiter (default: comma).
 * Select *Confirm* to request the logs.
 
-When the requested log is ready, it appears in the *Downloads archive.*
+The requested log appears in the *Downloads archive.*
 
-== Download log
+== Download the log
 
 Download logs from the *Downloads archive*.
-When the status is Ready, select the Download icon to download the file.
+When the status is Ready, use the Download icon to download the file.
 
-Logs are provided as a zipped file in your chosen format (JSON or CSV), containing the same fields shown in the Field Name columns of the Summary and Details tables above.
+Logs are provided as a zipped file of your selected format (JSON or CSV).
 The file name follows this pattern: `<db_id>-<timestamp>-<log_type>-logs-<log_sub_type>.<format>.gz`, for example: `dd9ba752-1731586207476-query-logs-details.json.gz`
 
 To delete a log file, select the delete icon in the Actions column.
@@ -47,7 +47,7 @@ Log files are automatically deleted from the downloads archive after {log-downlo
 
 == Downloads archive
 
-To access the archive click the *Open downloads archive* icon (Document Text icon) in the top-right corner of the page.
+To access the archive click the *Open downloads archive* icon in the top-right corner of the page.
 
 The archive displays a table of all the requested logs for the selected instance.
 It includes the following information about each download:
