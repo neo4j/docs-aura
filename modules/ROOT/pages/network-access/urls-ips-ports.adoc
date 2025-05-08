@@ -4,14 +4,13 @@
 
 This page lists the public IP addresses and ports required to allow traffic to and from Neo4j Aura.
 
-An IP address is a unique identifier for a device on a network.
-Enterprises typically only want their resources accessible by a selected range of IP addresses, not the public internet. 
+Because an IP address is a unique identifier for a device on a network, enterprises typically only want their resources accessible by a selected range of IP addresses, not the public internet. 
 By specifying the exact IPs Aura uses, you can configure firewalls to allow only trusted inbound and outbound connections.
 
 There are two groups of IP addresses used by Aura:
 
 *Global service IP addresses*: Common tools with common global addresses that use global services and are centrally hosted (e.g. the Aura console, `console.neo4j.io` would be 34.110.249.124).
-These IPs are the same regardless of the region where your database is deployed.
+These IPs are the same regardless of the region a database is deployed.
 
 *Instances with specific cloud providers and regions:* These are the databases you create in Aura and where they physically reside in the cloud (e.g. instance in `us-east-1`, AWS).
 
