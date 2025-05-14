@@ -180,6 +180,10 @@ Note that cloning into an existing instance overwrites all of its existing data 
 This action cannot be undone and may take longer than cloning to a new instance.
 If you still have data that you want to keep on the instance, it is advised to take a snapshot and download it before continuing.
 
+For both migration options you can also choose to include the migration of the store format to `block` storage.
+It is highly recommended to do this, as it will enable you to make use of the newest features in Neo4j Aura as well as its superior performance and scalability.
+More information on the `block` format can be found link:https://neo4j.com/docs/operations-manual/current/database-internals/store-formats/[here].
+
 [NOTE]
 ====
 In the process of migrating to a test instance, the instance will get a new name, regardless if it is new or existing.
@@ -229,6 +233,10 @@ This means that if you select the second option, the instance you want to migrat
 Note that cloning into an existing instance overwrites all of its existing data and name.
 This action cannot be undone and may take longer than cloning to a new instance.
 If you still have data that you want to keep on the instance, it is advised to take a snapshot and download it before continuing.
+
+For both migration options you can also choose to include the migration of the store format to `block` storage.
+It is highly recommended to do this, as it will enable you to make use of the newest features in Neo4j Aura as well as its superior performance and scalability.
+More information on the `block` format can be found link:https://neo4j.com/docs/operations-manual/current/database-internals/store-formats/[here].
 
 Regardless of which option you select, the name of the migration target instance will be the same as the original instance.
 
