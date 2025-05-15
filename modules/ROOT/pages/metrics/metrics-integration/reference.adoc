@@ -414,7 +414,7 @@ m| neo4j_db_query_execution_failure_total
 m| SUM
 |===
 
-.Query Latency 99th Percentile (only included for Neo4j Version 5 and later)
+.Query Latency 99th Percentile label:new[Introduced in 5.0]
 [frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
 |===
 | Metric name
@@ -427,7 +427,7 @@ m| neo4j_db_query_execution_internal_latency_q99
 m| MAX
 |===
 
-.Query Latency 75th Percentile (only included for Neo4j Version 5 and later)
+.Query Latency 75th Percentile label:new[Introduced in 5.0]
 [frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
 |===
 | Metric name
@@ -440,7 +440,7 @@ m| neo4j_db_query_execution_internal_latency_q75
 m| MAX
 |===
 
-.Query Latency 50th Percentile (only included for Neo4j Version 5 and later)
+.Query Latency 50th Percentile label:new[Introduced in 5.0]
 [frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
 |===
 | Metric name
