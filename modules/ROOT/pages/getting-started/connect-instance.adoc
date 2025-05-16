@@ -47,10 +47,12 @@ The connection method protocol is used for the communication between the Neo4j d
 For more information about connection schemes, see link:https://neo4j.com/docs/operations-manual/current/configuration/connectors/[Operations Manual -> Configure network connectors] and link:https://neo4j.com/docs/bolt/current/bolt/[Bolt Protocol].
 
 === *neo4j+s://*
-Establishes a TLS-encrypted connection to Neo4j using the Bolt protocol over WebSockets, with full certificate validation. Use for optimal performance.
+Establishes a TLS-encrypted connection to Neo4j using the Bolt protocol over WebSockets, with full certificate validation. 
+Use for optimal performance.
 
 === *https://*
-TLS encrypted connection to Neo4j over HTTPS (Query API), with full certificate validation . Use in environments where port restrictions may prevent access to the Bolt port.
+TLS encrypted connection to Neo4j over HTTPS (Query API), with full certificate validation. 
+Use in environments where port restrictions may prevent access to the Bolt port.
 
 == Errors 
 
