@@ -38,3 +38,22 @@ The default is `neo4j+s//`.
 |Password
 |You are given the password when you initially create the instance
 |===
+
+== Connection method
+
+To connect to an instance, choose from the following connection methods: *neo4j+s://* or *https://*
+
+The connection method protocol is used for the communication between the Neo4j database server and the client application or tool.
+For more information about connection schemes, see link:https://neo4j.com/docs/operations-manual/current/configuration/connectors/[Operations Manual -> Configure network connectors] and link:https://neo4j.com/docs/bolt/current/bolt/[Bolt Protocol].
+
+=== *neo4j+s://*
+Establishes a TLS-encrypted connection to Neo4j using the Bolt protocol over WebSockets, with full certificate validation. Use for optimal performance.
+
+=== *https://*
+TLS encrypted connection to Neo4j over HTTPS (Query API), with full certificate validation . Use in environments where port restrictions may prevent access to the Bolt port.
+
+== Errors 
+
+In an enterprise environment with restrictive networking, connection errors are sometimes caused because non-standard ports (like the Bolt protocol) are blocked by firewalls when using *neo4j+s://*.
+
+Switching to *https://* can address connection issues and ensure seamless connectivity without extra configuration.
