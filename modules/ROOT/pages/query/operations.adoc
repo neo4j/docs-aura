@@ -136,7 +136,6 @@ For more details on the Cypher parameters, see link:https://neo4j.com/docs/cyphe
 
 You can set a parameter to be sent with your queries via the *Parameters sidebar* (*{}*) or by using the `:param` command.
 
-
 ==== Parameter sidebar
 
 The Parameter sidebar provides inputs directly from the UI for most of the property types in Neo4j.
@@ -144,6 +143,9 @@ The Parameter sidebar provides inputs directly from the UI for most of the prope
 .Parameter sidebar
 [.shadow]
 image::param-sidebar.png[]
+
+For other property types, such as link:https://neo4j.com/docs/cypher-manual/current/values-and-types/spatial/#spatial-values-point-type[Point] and setting link:https://neo4j.com/docs/cypher-manual/current/values-and-types/property-structural-constructed/#constructed-types[constructed types], the parameter sidebar has a special `evaluated` option.
+This option allows you to express a parameter type and have it evaluated by the server as Cypher, much like using the `:param` command, as described in the following section.
 
 ==== `:param` command
 
