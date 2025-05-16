@@ -2,9 +2,13 @@
 :description: This sections describes how to map files to a data model.
 = Mapping
 
-Mapping is the process of associating a file with an element in your data model.
+Mapping is the process of associating a table or file with an element in your data model.
 This is what allows Import to construct the Cypher statements needed to load your data.
-Your source files may contain data that is not relevant to your data model, and when you build your model, you can select what data to use.
+
+When you generate a data model, the mapping is largely done for you.
+However, as you add elements to your model, whether you create a model manually or if you are adding to a generated model, the new elements need to be mapped to their corresponding tables or files.
+
+Your data source may contain data that is not relevant to your data model, and when you build your model, you can select what data to use.
 Only data that is mapped correctly to the elements in your model is imported, so it is important to get the mapping right.
 
 [NOTE]

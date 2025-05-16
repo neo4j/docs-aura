@@ -2,7 +2,9 @@
 :description: This section gives an overview of the Import service.
 = Quick start
 
-The Import service consists of three tabs; *Data sources*, *Graph models*, and *Import jobs*.
+The Import service UI consists of three tabs; *Data sources*, *Graph models*, and *Import jobs*.
+These reflect the three stages of importing data; provide the data, i.e., configure a source to fetch the data from, model the data, i.e., define how the data is organized, and finally, run the import.
+
 If you haven't previously imported any data, all three are empty, otherwise sources, models, and import jobs are listed here.
 
 [.shadow]
@@ -16,10 +18,13 @@ Import supports PostgreSQL, MySQL, SQL Server, as well as locally hosted flat fi
 [.shadow]
 image::sources.png[width=400]
 
-For SQL-files, you need to configure the data source, add user credentials for the SQL-database, and give the data source a name.
+For relational databases and cloud data warehouses, you need to give the data source a name, configure the data source, and add user credentials for the database account.
+The data source configuration is essentially the same for both relational databases and data warehouses; you specify a *host* for your database, a *port* to connect to, the name of the *database*/*service*, and a *schema* that contains your tables (except for MySQL data sources).
+See xref:import/file-provision.adoc[] for more information.
+
 If you want to stream local files, you can drag and drop them into the data source panel or browse for them.
 
-== Model the data
+== Model and map the data
 
 When you have connected a data source, you have the option to have a model generated based on primary and foreign key constraints in the source database.
 The quickest way is to accept to have a model generated, but you can draw your own later, see xref:import/modeling.adoc[] for more information.
