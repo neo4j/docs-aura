@@ -114,15 +114,16 @@ Parameters can be used for:
 
 * literals and expressions
 * node and relationship IDs
+* Properties, when referenced *dynamically* (for more information, see link:https://neo4j.com/docs/cypher-manual/current/clauses/where/#filter-on-dynamic-property[Filter on dynamically-computed node property]).
+* Node labels and relationship types, when referenced *dynamically* (for more information, see link:https://neo4j.com/docs/cypher-manual/current/clauses/match/#dynamic-match[MATCH using dynamic node labels and relationship types]).
 
 Parameters cannot be used for the following constructs, as these form part of the query structure that is compiled into a query plan:
 
-* property keys
-* relationship types
-* labels
+* Property keys; `MATCH (n) WHERE n.$param = 'something'` is invalid.
+* Relationship types; `MATCH (n)-[:$param]→(m)` is invalid.
+* Node labels; `MATCH (n:$param)` is invalid.
 
 Parameters may consist of letters and numbers and any combination of these but cannot start with a number or a currency symbol.
-
 
 [TIP]
 ====
@@ -133,8 +134,22 @@ For more details on the Cypher parameters, see link:https://neo4j.com/docs/cyphe
 [[set-params]]
 === Set query parameters
 
-You can set a parameter to be sent with your queries by using the `:param` command.
-Using parameters rather than hard-coded values allows for the reuse of the query plan cache.
+You can set a parameter to be sent with your queries via the *Parameters sidebar* (*{}*) or by using the `:param` command.
+
+==== Parameter sidebar
+
+The Parameter sidebar provides inputs directly from the UI for most of the property types in Neo4j.
+
+.Parameter sidebar
+[.shadow]
+image::param-sidebar.png[]
+
+For other property types, such as link:https://neo4j.com/docs/cypher-manual/current/values-and-types/spatial/#spatial-values-point-type[Point] and setting link:https://neo4j.com/docs/cypher-manual/current/values-and-types/property-structural-constructed/#constructed-types[constructed types], the parameter sidebar has a special `evaluated` option.
+This option allows you to express a parameter type and have it evaluated by the server as Cypher.
+Give the parameter a name, select `evaluated` as the type, enter the value, and use the play button to evaluate the parameter.
+This process is much like using the `:param` command, as described in the following section.
+
+==== `:param` command
 
 The `+:param name => 'Example'+` command defines a parameter named `name`, which will be sent along with your queries. +
 The right hand side of `=>` is sent to the server and evaluated as Cypher with an implicit `RETURN` in front.
@@ -283,6 +298,7 @@ If you run a query using parameters without first declaring them all, Queryretur
 You can click the provided template to populate the editor with the command for setting parameters and all you have to do is enter the value(s) for the missing parameter(s).
 Since the result frame is reusable, once you have set your parameter(s), you can run the same Cypher query again without having to re-enter it.
 
+[.shadow]
 image::params-assist.png[]
 
 [NOTE]
@@ -292,5 +308,12 @@ The command offered with parameter assistance is always `:params` even if you on
 
 === Duration for the query parameters
 
-Parameters are not saved when you close Query.
-You can save a `:params` command to your Saved Cypher to quickly populate parameters again.
+Parameters are not automatically saved when you refresh or close Query, nor if you switch instances.
+
+If you wish to retain your parameters across sessions, you can use the *Local storage* toggle in the Query Settings, as shown:
+
+.Save parameters across sessions
+[.shadow]
+image::param-settings.png[]
+
+You can also save a `:params` command to your Saved Cypher.
