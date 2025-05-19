@@ -41,7 +41,8 @@ To do this, click through the steps in the network access configuration guide un
 Disabling public traffic does not take effect immediately.
 You can monitor the status change in the console to confirm when the process is complete.
 
-To continue accessing Browser and Bloom, you can configure a VPN in your VPC and connect to these services over the VPN.
+To continue accessing Browser and Bloom, you can either connect via HTTPS (port 443), this is helpful when network security blocks Bolt (port 7687), e.g. when a private link is setup on the database with public traffic disabled.
+Alternatively you can set up a VPN (Virtual Private Network) in your VPC and connect to Browser and Bloom over the VPN.
 
 == Private endpoints
 
@@ -92,8 +93,6 @@ When you have enabled private endpoints **and** disabled public internet access,
 
 image::privatelink_02_enabled_private_traffic_only.png["Architecture overview with private endpoints enabled and public traffic disabled", title="Architecture overview with private endpoints enabled and public traffic disabled"]
 
-To continue accessing Browser and Bloom, you can configure a VPN (Virtual Private Network) in your VPC and connect to Browser and Bloom over the VPN.
-
 [NOTE]
 ====
 To access Bloom and Browser over a VPN, you must ensure that:
@@ -101,6 +100,8 @@ To access Bloom and Browser over a VPN, you must ensure that:
 * The VPN server uses the https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#AmazonDNS[VPC's DNS servers].
 * You use the *Private URI* shown on the instance tile and in the instance details.
 It will be different from the *Connection URI* you used before.
+* To continue accessing Browser and Bloom, you can either connect via HTTPS (port 443), this is helpful when network security blocks Bolt (port 7687), e.g. when a private link is setup on the database with public traffic disabled.
+Alternatively you can set up a VPN (Virtual Private Network) in your VPC and connect to Browser and Bloom over the VPN.
 ====
 
 image::privatelink_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
@@ -153,6 +154,9 @@ image::privateserviceconnect_02_enabled_private_traffic_only.png["Architecture o
 
 To continue accessing Browser and Bloom, you can configure a https://cloud.google.com/network-connectivity/docs/vpn/concepts/overview[GCP Cloud VPN] (Virtual Private Network) in your VPC and connect to Browser and Bloom over the VPN.
 
+* To continue accessing Browser and Bloom, you can either connect via HTTPS (port 443), this is helpful when network security blocks Bolt (port 7687), e.g. when a private link is setup on the database with public traffic disabled.
+Alternatively you can set up a VPN (Virtual Private Network) in your VPC and connect to Browser and Bloom over the VPN.
+
 [NOTE]
 ====
 To access Bloom and Browser over a VPN, you must ensure that:
@@ -160,6 +164,8 @@ To access Bloom and Browser over a VPN, you must ensure that:
 * You have set up link:https://cloud.google.com/dns/docs/zones/manage-response-policies[GCP Response Policy Zone], or an equivalent DNS service, inside of the VPC.
 * You use the *Private URI* shown on the instance tile and in the instance details.
 It will be different from the *Connection URI* you used before.
+* To continue accessing Browser and Bloom, you can either connect via HTTPS (port 443), this is helpful when network security blocks Bolt (port 7687), e.g. when a private link is setup on the database with public traffic disabled.
+Alternatively you can set up a VPN (Virtual Private Network) in your VPC and connect to Browser and Bloom over the VPN.
 ====
 
 image::privateserviceconnect_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
@@ -208,8 +214,6 @@ image::azure_privatelink_01_before_enabling.png["Architecture overview before en
 When you have enabled private endpoints and disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet:
 
 image::azure_privatelink_02_enabled_private_traffic_only.png["Architecture overview with private endpoints enabled and public traffic disabled", title="Architecture overview with private endpoints enabled and public traffic disabled"]
-
-To continue accessing Browser and Bloom, you can configure a VPN (Virtual Private Network) in your VNet and connect to Browser and Bloom over the VPN.
 
 [NOTE]
 ====
