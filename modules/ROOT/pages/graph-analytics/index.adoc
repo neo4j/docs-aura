@@ -26,6 +26,13 @@ The Graph Analytics plugin allows you to use the link:https://neo4j.com/docs/gra
 You can enable or disable Graph Analytics when necessary, both during xref:getting-started/create-instance.adoc[instance creation] and on an xref:managing-instances/instance-details.adoc[existing instance].
 The plugin shares compute and memory resources with the AuraDB server, so you do not incur any additional costs when you enable it.
 
+=== Getting started
+
+With the Graph Analytics plugin enabled:
+
+* If you use the Neo4j Browser or run Cypher queries through a Neo4j driver, start with the link:{neo4j-docs-base-uri}/graph-data-science/current/getting-started/[Graph Data Science] tutorials.
+* If you use Python, start with the link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/tutorials/[Python client tutorials].
+
 [[aura-gds-serverless]]
 == Graph Analytics Serverless
 
@@ -43,6 +50,16 @@ You can use Graph Analytics Serverless from any AuraDB Business Critical or Aura
 
 * Neo4j version 5 or later
 * All supported cloud providers and regions
+
+=== Getting started
+
+With Graph Analytics Serverless enabled in your organization, you only need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] before you can get started.
+
+With the Aura API credentials available:
+
+* If you use the Neo4j Browser or run Cypher queries through a Neo4j driver, start with the link:{neo4j-docs-base-uri}/graph-data-science/current/installation/aura-graph-analytics-serverless/#_examples_2[example] in the Graph Data Science documentation.
+* If you use Python, start with one of the Python client tutorials depending on whether your data is in
+link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless/[AuraDB], in a link:{neo4j-docs-base-uri}//graph-data-science-client/current/tutorials/graph-analytics-serverless-self-managed/[self-managed Neo4j database], or a link:{neo4j-docs-base-uri}//graph-data-science-client/current/tutorials/graph-analytics-serverless-standalone/[non-Neo4j data source].
 
 [[aura-ds]]
 == AuraDS
