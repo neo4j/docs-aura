@@ -58,16 +58,38 @@ image::instanceactions.png[]
 // . Tick the *I understand* checkbox and select *Upgrade Instance*.
 
 == Resize an instance
-
-Resizing an instance means changing the memory, CPU and storage size.
-Note that this option is not available for Free instances.
-
 // label:AuraDB-Professional[]
 // label:AuraDB-Enterprise[]
 // label:AuraDB-Business-Critical[]
 
-You can change the size of an existing instance using the *Resize* button on the instance you want to resize.
+Resizing an instance means changing the memory, CPU and storage size.
+Note that this option is *not available* for *Free instances*.
+
+You can change the size of an existing instance using the *Configure* button on the instance you want to resize.
 An instance remains available during the resize operation.
+
+== Adjust storage
+
+[NOTE]
+====
+Available for AuraDB prepaid billing on GCP, Neo4j latest version.
+====
+
+Adjust the storage size of your instance at any time. 
+Each AuraDB instance includes a standard storage allocation and configuration; additional storage is chargeable.
+
+To select the storage size during instance creation, select the desired value in the *Storage (Adjustable)* column. 
+
+To adjust an existing instance's storage, use the *Configure* button on the instance card and select a new value for the storage size.
+
+You may reduce your storage allocation, provided the new size is equal to or greater than your current usage. 
+For example, if you are using 8GB of data, the minimum selectable option will be 8GB. 
+Selecting a size smaller than your current usage is not permitted. 
+This store size policy also applies to general instance downsizing.
+
+[.shadow]
+.Adjust storage size
+image::adjust_storage.png[adjust storage screenshot,540,380]
 
 == Pause an instance
 
