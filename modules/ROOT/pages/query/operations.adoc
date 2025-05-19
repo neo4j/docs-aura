@@ -145,7 +145,9 @@ The Parameter sidebar provides inputs directly from the UI for most of the prope
 image::param-sidebar.png[]
 
 For other property types, such as link:https://neo4j.com/docs/cypher-manual/current/values-and-types/spatial/#spatial-values-point-type[Point] and setting link:https://neo4j.com/docs/cypher-manual/current/values-and-types/property-structural-constructed/#constructed-types[constructed types], the parameter sidebar has a special `evaluated` option.
-This option allows you to express a parameter type and have it evaluated by the server as Cypher, much like using the `:param` command, as described in the following section.
+This option allows you to express a parameter type and have it evaluated by the server as Cypher.
+Give the parameter a name, select `evaluated` as the type, enter the value, and use the play button to evaluate the parameter.
+This process is much like using the `:param` command, as described in the following section.
 
 ==== `:param` command
 
