@@ -157,7 +157,6 @@ You can access the **Users** page by selecting **Users** from the sidebar menu o
 
 Users within a project can be assigned one of the following roles:
 
-* _Data Viewer_
 * _Project Viewer_
 * _Metrics Reader_
 * _Project Member_
@@ -180,17 +179,15 @@ Each project must have at least one Project Admin, but it is also possible for p
 :check-mark: icon:check[]
 
 .Roles and console capabilities
-[opts="header",cols="3,1,1,1,1,1"]
+[opts="header",cols="3,1,1,1,1"]
 |===
 | Capability
-| Viewer
-| Data Viewer
+| Project Viewer
 | Metrics reader
 | Member
 | Admin
 
 | View users and their roles
-| {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -201,10 +198,8 @@ Each project must have at least one Project Admin, but it is also possible for p
 | {check-mark}
 | {check-mark}
 | {check-mark}
-| {check-mark}
 
 | Access the Neo4j Customer Support Portal
-| {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -213,12 +208,10 @@ Each project must have at least one Project Admin, but it is also possible for p
 | Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instances.]
 |
 |
-|
 | {check-mark}
 | {check-mark}
 
 | Clone data to new and existing instances
-|
 |
 |
 | {check-mark}
@@ -227,12 +220,10 @@ Each project must have at least one Project Admin, but it is also possible for p
 | Take on-demand snapshots
 |
 |
-|
 | {check-mark}
 | {check-mark}
 
 | Restore from snapshots
-|
 |
 |
 | {check-mark}
@@ -242,11 +233,9 @@ Each project must have at least one Project Admin, but it is also possible for p
 |
 |
 |
-|
 | {check-mark}
 
 | Invite new users to the project
-|
 |
 |
 |
@@ -256,11 +245,9 @@ Each project must have at least one Project Admin, but it is also possible for p
 |
 |
 |
-|
 | {check-mark}
 
 | Delete existing users from the project
-|
 |
 |
 |
@@ -270,25 +257,31 @@ Each project must have at least one Project Admin, but it is also possible for p
 |
 |
 |
-|
 | {check-mark}
 |===
 
 
+=== Predefined roles
+
 Users within a project can access instances seamlessly with their console role if xref:security/tool-auth.adoc[Tool authentication with Aura user] is enabled.
+
+[NOTE]
+====
+New organizations created after May 5th 2025 will have Tool auhtentication with Aura user enabled by default.
+====
+
 When enabled, a user connects seamlessly with a predefined database role that matches their console role, i.e. their project-level role.
+Predefined roles are *immutable* and apply to all Free, Professional, and Business Critical instances.
 The predefined roles are assigned the following privileges on the instance level:
 
-.Roles and database privileges
-[options="header", cols="3,^,^,^,^,^,^"]
+.Predefined roles and database privileges
+[options="header", cols="3,^,^,^,^,^"]
 |===
 | Privilege
 | Viewer
-| Data Viewer
 | Member
 3+| Admin
 
-|
 |
 |
 |
@@ -297,7 +290,6 @@ The predefined roles are assigned the following privileges on the instance level
 | Business Critical
 
 | Access to database
-|
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -309,11 +301,9 @@ The predefined roles are assigned the following privileges on the instance level
 |
 |
 |
-|
 | {check-mark}
 
 | List constraints
-|
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -323,7 +313,6 @@ The predefined roles are assigned the following privileges on the instance level
 | Create constraints
 |
 |
-|
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -331,13 +320,11 @@ The predefined roles are assigned the following privileges on the instance level
 | Delete constraints
 |
 |
-|
 | {check-mark}
 | {check-mark}
 | {check-mark}
 
 | List indexes
-|
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -350,7 +337,6 @@ The predefined roles are assigned the following privileges on the instance level
 | {check-mark}
 | {check-mark}
 | {check-mark}
-| {check-mark}
 
 | Delete indexes
 |
@@ -358,10 +344,8 @@ The predefined roles are assigned the following privileges on the instance level
 | {check-mark}
 | {check-mark}
 | {check-mark}
-| {check-mark}
 
 | Find nodes and relationships and read their properties
-|
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -370,7 +354,6 @@ The predefined roles are assigned the following privileges on the instance level
 
 | Load external data in queries
 |
-|
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -378,14 +361,12 @@ The predefined roles are assigned the following privileges on the instance level
 
 | Write to the graph
 |
-|
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
 
 | Execute procedures and functions
-|
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -394,14 +375,12 @@ The predefined roles are assigned the following privileges on the instance level
 
 | Name management for node labels, relationship types, and property names.
 |
-|
 | {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
 
 | List and end transactions for specified users on the database.
-|
 |
 |
 | {check-mark}
@@ -412,7 +391,6 @@ The predefined roles are assigned the following privileges on the instance level
 |
 |
 |
-|
 | {check-mark}
 | {check-mark}
 
@@ -420,12 +398,10 @@ The predefined roles are assigned the following privileges on the instance level
 |
 |
 |
-|
 | {check-mark}
 | {check-mark}
 
 | Remove roles
-|
 |
 |
 |
@@ -437,11 +413,9 @@ The predefined roles are assigned the following privileges on the instance level
 |
 |
 |
-|
 | {check-mark}
 
 | Delete roles
-|
 |
 |
 |
@@ -453,11 +427,9 @@ The predefined roles are assigned the following privileges on the instance level
 |
 |
 |
-|
 | {check-mark}
 
 | List roles
-|
 |
 |
 |
@@ -469,9 +441,9 @@ The predefined roles are assigned the following privileges on the instance level
 |
 |
 |
-|
 | {check-mark}
 |===
+
 
 === Inviting users
 

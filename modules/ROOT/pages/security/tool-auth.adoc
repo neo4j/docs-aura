@@ -2,7 +2,7 @@
 :description: This section describes the seamless tool authentication functionality in AuraDB.
 
 Organization admins can allow their users to seamlessly and securely connect to instances using their Aura account credentials.
-When enabled, users connect to an instance with a predefined database role matching their console role (see xref:user-management.adoc#roles[User management - Roles] for more information about roles and privileges.)
+When enabled, users connect to an instance via Query or Explore with a predefined database role matching their console role (see xref:user-management.adoc#roles[User management - Roles] for more information about roles and privileges.)
 
 If this setting is disabled, all users are required to connect to graph tools with a database username and password.
 
@@ -14,8 +14,10 @@ Tool authentication with Aura user is enabled by default on all new organization
 This feature can be enabled and configured from the Organization settings, available by selecting the organization name in the dropdown menu.
 
 Organization admins control the scope of seamless tool authentication via Aura user roles.
-You can enable or disable access via the checkboxes.
+You can enable or disable access via the checkboxes on *individual instance level*, for an *entire project*, and set *the default for new instances within a project*.
+
 You can select which projects and instances users can connect seamlessly to and which they should be required to use username and password to connect to.
+
 To prevent unauthorized access and allow Project admins full access control, the authentication is used in conjunction with predefined roles with varying levels of access to the database.
 This means that Project admins assign roles to the users that grants them seamless connection to the project and its instances as well as certain privileges to the databases there.
 
