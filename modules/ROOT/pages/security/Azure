@@ -1,0 +1,73 @@
+= Azure using Private Link
+
+Create a private endpoint in your Azure Virtual Network (VNet).
+
+All traffic remains within your VNet.
+
+Setup steps:
+
+Go to Security > Network Access in the Aura Console.
+
+Select New configuration, choose your region, and enter your Azure Subscription ID.
+
+Enable Private Link and copy the generated Private Link service name.
+
+In the Azure portal, create a new Private Link endpoint using the service name.
+
+Return to Aura Console to accept the connection.
+
+Test connectivity before disabling public traffic.
+
+Refer to Azure Documentation for required permissions.
+
+== How Private Links Work
+
+Private links securely connect your application to Aura without exposing traffic to the public internet.
+
+PrivateLink = AWS
+
+Private Service Connect = GCP
+
+Private Link = Azure
+
+When your application connects using a URI like neo4j+s://abcd1234.production-orch-0000.neo4j.io, your DNS server resolves it to a private IP (e.g., 10.10.10.10). This private address forwards the connection through the private ingress to the appropriate Aura instance.
+
+Custom endpoints (e.g., my-endpoint-abc123.endpoints.neo4j.io) require additional DNS records:
+
+my-endpoint-abc123.endpoints.neo4j.io IN A <ip-address>
+a-my-endpoint-abc123.endpoints.neo4j.io IN A <ip-address>
+...
+
+Or use a wildcard:
+
+*.endpoints.neo4j.io IN A <ip-address>
+
+[NOTE]
+====
+Use wildcard DNS only if all private endpoints resolve to the same IP. Otherwise, use individual records
+====
+
+Testing Private Endpoint Connectivity
+
+To confirm connectivity:
+
+Use nslookup:
+
+nslookup abcd1234.production-orch-0000.neo4j.io
+
+Use curl:
+
+curl https://abcd1234.production-orch-0000.neo4j.io
+
+Use nc (netcat) or PowerShell:
+
+nc -vz abcd1234.production-orch-0000.neo4j.io 7687
+Test-NetConnection abcd1234.production-orch-0000.neo4j.io -Port 7687
+
+Check relevant ports based on product:
+
+7687, 7474, 443 for AuraDB
+
+8491 for AuraDS
+
+This consolidated guide ensures your Aura deployment is secure, compliant, and reliably connected through private network configurations.
