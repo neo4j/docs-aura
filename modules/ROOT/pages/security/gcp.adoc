@@ -10,6 +10,8 @@ image::privateserviceconnect_01_before_enabling.png["Architecture overview befor
 
 When you have enabled private endpoints and disabled public internet access, you can no longer connect Query or Explore to your instances over the internet:
 
+To continue accessing Query and Explore, you can either connect via HTTPS (port 443), this is helpful when network security blocks Bolt (port 7687), e.g. when a private link is setup on the database with public traffic disabled. Alternatively you can set up a VPN (Virtual Private Network) in your VPC and connect to Query and Explore over the VPN.
+
 image::privateserviceconnect_02_enabled_private_traffic_only.png["Architecture overview with private endpoints enabled and public traffic disabled", title="Architecture overview with private endpoints enabled and public traffic disabled"]
 
 [NOTE]
