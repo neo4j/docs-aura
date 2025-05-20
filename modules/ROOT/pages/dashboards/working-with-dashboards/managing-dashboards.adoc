@@ -6,8 +6,33 @@ In Neo4j Aura, click **Dashboards** under **Tools** in the left-side navigation 
 
 == Creating a dashboard
 
-. In the **Dashboards** page, use **Create Dashboard** at the top right.
-. The UI takes you directly to the new dashboard.
+If you have no dashboards, select either **Create from scratch** or **Create with AI**.
+
+.Create your first dashboard
+image::dashboards/create-first-dashboard.png[]
+
+If you want to create another dashboard: use **Create Dashboard** at the top right, and select either **Create from scratch** or **Create with AI**.
+
+**Create from scratch** takes you directly to a new and empty dashboard.
+
+
+=== Creating a dashboard with AI
+
+. In the **Create with AI** dialog, you can enter an optional natural language text prompt to let Neo4j create a customized dashboard.
+. Once you are happy with the prompt, **Create** the dashboard.
+
+.Create a dashboard with a focus on produce products
+image::dashboards/create-produce-product-dashboard.png[]
+
+.A produce product dashboard created with AI
+image::dashboards/produce-product-ai-dashboard.png[]
+
+[NOTE]
+====
+When creating a dashboard with AI, the AI analyzes your database schema, not the actual data in your database.
+====
+
+If you do not enter a prompt, Neo4j AI will still make use of your database schema and come up with a suitable dashboard.
 
 
 == Editing a dashboard
