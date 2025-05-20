@@ -1,0 +1,26 @@
+= Pie chart
+:description: The Neo4j dashboard pie chart visualization.
+
+A pie chart displays different categories and values as slices of a circular disc.
+Choose the following:
+
+* *Category*: a text field. Categories are the labels of the pie slices.
+* *Value*: a numeric field. This determines the size of the slices.
+
+== Example
+
+
+.Cypher query for a pie chart which displays the number of products per category
+[source,cypher]
+----
+MATCH (p:Product)-[:PART_OF]->(c:Category)
+RETURN c.categoryName AS Category, count(p) AS Products LIMIT 20
+----
+
+.A pie chart displaying the number of products per category
+image::dashboards/visualization-pie-chart.png[]
+
+
+== Configuration
+
+Select your **Category** for the x-axis and a **Value** for the y-axis.
