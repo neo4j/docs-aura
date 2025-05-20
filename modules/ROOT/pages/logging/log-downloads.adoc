@@ -11,43 +11,48 @@
 label:AuraDB-Professional[]
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-Both *Query log analyzer* and *Security log analyzer* allow you to download the fetched logs.
-The downloaded logs account for any filters and search that have been applied.
+Downloading logs requires a role of either _{role-project-admin}_ or _{role-project-member}_.
+
+You can download query logs and security logs.
+The logs include any filters or search terms applied when the logs were fetched.
 Downloading logs consists of two steps: **initiate the download** and **download the file**.
 
+== Request log 
+
+You can request a log of up to {max-request-hours} hours of data and a maximum of {max-download-rows} rows.
+
+After fetching logs, use the *download* button in the top right corner of the *Summary* and *Details* table to initiate the download. 
+
+* Select the *log type*: Summary (aggregated log statistics), Details (individual log events), or both. 
+* Select a format: JSON or CSV. 
+If you select CSV, you can optionally include CSV headers (enabled by default) and specify a field delimiter (default: comma).
+* Select *Confirm* to request the logs.
+
+Once the log is ready for download, it appears in the *Downloads archive*.
+
+== Download the log
+
+Download logs from the *Downloads archive*.
+When the status is Ready, use the Download icon to download the file.
+
+Logs are provided as a zipped file of your selected format (JSON or CSV).
+The file name follows this pattern: `<db_id>-<timestamp>-<log_type>-logs-<log_sub_type>.<format>.gz`, for example: `dd9ba752-1731586207476-query-logs-details.json.gz`
+
+To delete a log file, use the delete icon in the Actions column.
+
 [NOTE]
 ====
-Downloading logs requires a project role of either _{role-project-admin}_ or _{role-project-member}_.
+Log files are automatically deleted from the downloads archive after {log-download-retention-days} days.
 ====
 
-== Initiate download
+== Downloads archive
 
-To initiate a download, after fetching the logs, use the _Initiate log download_ icon button (Arrow Down Tray Icon) in the top right corner of either the Summary or Details table.
-Select the following options in the dialog:
+To access the archive click the *Open downloads archive* icon in the top-right corner of the page.
 
-* *Log type* - Select one or both:
-** *Summary* - Aggregated log statistics
-** *Details* - Individual log events
-* *Format* - Choose your preferred format:
-** *JSON*
-** *CSV* with optional settings:
-*** Include CSV headers (default: enabled)
-*** CSV field delimiter (default: comma)
+The archive displays a table of all the requested logs for the selected instance.
+It includes the following information about each download:
 
-*Confirm* starts the download.
-
-[NOTE]
-====
-Each download request is limited to {max-request-hours} hours of data and a maximum of {max-download-rows} rows.
-====
-
-== Download the file
-
-Use the _Open downloads archive_ icon button (Document Text Icon) in the top right corner of the page, to view your downloads.
-The _Downloads archive_ side drawer displays a table with all downloads for the currently selected instance.
-The table includes the following information for each download:
-
-.Downloads archive table columns
+.Downloads archive columns
 [cols="25,75v"]
 |===
 | Display Name | Description
@@ -77,13 +82,7 @@ The table includes the following information for each download:
 | _Download log_ icon button (Arrow Down Tray Icon) and _Delete log_ icon button (Trash Icon) for the log file.
 |===
 
-You can download log files by selecting the download icon in the Actions column once the status shows _Ready_.
-Downloaded logs are provided as a zipped file in your chosen format (JSON or CSV), containing the same fields shown in the Field Name columns of the Summary and Details tables above.
-The file name follows this pattern: `<db_id>-<timestamp>-<log_type>-logs-<log_sub_type>.<format>.gz`, for example: `dd9ba752-1731586207476-query-logs-details.json.gz`
+.Initiate logs download / open downloads archive icons
+[.shadow]
+image::logsicons.png[]
 
-To delete a log file, select the delete icon in the Actions column.
-
-[NOTE]
-====
-Log files are automatically deleted from the downloads archive after {log-download-retention-days} days.
-====
