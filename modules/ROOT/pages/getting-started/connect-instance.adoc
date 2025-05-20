@@ -55,9 +55,3 @@ Use for optimal performance.
 
 TLS encrypted connection to Neo4j over HTTPS (Query API), with full certificate validation. 
 Use in environments where port restrictions may prevent access to the Bolt port.
-
-== Errors 
-
-In an enterprise environment with restrictive networking, connection errors are sometimes caused because non-standard ports (like the Bolt protocol) are blocked by firewalls when using *neo4j+s://*.
-
-Switching to *https://* can address connection issues and ensure seamless connectivity without extra configuration.
