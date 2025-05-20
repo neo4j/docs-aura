@@ -9,6 +9,8 @@ label:AuraDS-Enterprise[]
 AuraDB Virtual Dedicated Cloud and AuraDS Enterprise run in a dedicated AWS cloud account, Azure subscription, or GCP project to achieve complete isolation for your deployment. 
 Additional Virtual Private Cloud (VPC) boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected. 
 The Aura console resides in a separate VPC, isolated from the rest of the Aura services.
+Connections using private endpoints are one-way, as Aura VPCs doesn't initiate connections back to your VPCs.
+
 
 == Network access overview
 
@@ -31,7 +33,9 @@ The Aura console provides a step-by-step configuration guide to:
 
 [NOTE]
 ====
-Disabling public traffic is not instant. Monitor the status change in the console to confirm when the process is complete.
+Disabling public traffic is not instant. 
+Monitor the status change in the console to confirm when the process is complete.
+When activated, a Private Connection label, shield icon, and dedicated Private URI will appear on any instance in the Aura console.
 ====
 
 == Query and Explore access
@@ -43,7 +47,8 @@ Alternatively you can set up a VPN (Virtual Private Network) in your VPC and con
 == Private endpoints
 
 Private endpoints are network interfaces inside your VPC, accessible only within your private network. 
-The cloud provider connects them to Neo4j Aura over their internal network. They are not exposed to the public internet, ensuring access is restricted to private, secure networks.
+The cloud provider connects them to Neo4j Aura over their internal network. 
+They are not exposed to the public internet, ensuring access is restricted to private, secure networks.
 
 A single private link connection applies to all instances in a region. 
 If you set one up in `us-east-1` it covers all instances in that region. 
@@ -51,36 +56,30 @@ You can set up a second private link connection to applications that are hosted 
 
 === AWS using PrivateLink
 
-Create an endpoint in your AWS VPC to connect to Aura.
-All traffic remains private; public access can be disabled.
-PrivateLink applies to all instances in a region.
-Private endpoints are one-way (Aura VPCs cannot initiate connections).
-
-To enable:
-
-* In the console, go to *Network Access > New configuration.* 
-* Follow the setup steps and refer to AWS Documentation for IAM requirements.
+For a step-by-step guide, see the link:https://neo4j.com/blog/auradb/neo4j-aws-privatelink-configuration/#2[How to Configure Neo4j Aura With AWS PrivateLink] blog article.
+Refer to https://aws.amazon.com/privatelink[AWS PrivateLink] docs for IAM requirements.
 
 [NOTE]
 ====
-AWS region us-east-1 does not support AZ use1-az3 for private endpoints.
+AWS region `us-east-1` does not support AZ `use1-az3` for private endpoints.
 ====
+
+image::privatelink.png["VPC connectivity with AWS PrivateLink", title="VPC connectivity with AWS PrivateLink"]
+
+[NOTE]
+====
+To access Bloom and Browser over a VPN, you must ensure that:
+
+* You have set up link:https://cloud.google.com/dns/docs/zones/manage-response-policies[GCP Response Policy Zone], or an equivalent DNS service, inside of the VPC.
+* You use the *Private URI* shown on the instance tile and in the instance details.
+It will be different from the *Connection URI* you used before.
+====
+
+image::privateserviceconnect_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
 
 === GCP using Private Service Connect
 
-Create a private endpoint in your GCP VPC.
 
-All traffic is routed privately.
-
-Private Service Connect applies region-wide.
-
-Setup steps:
-
-Navigate to Network Access in the console.
-
-Follow the configuration guide.
-
-Refer to GCP Documentation for permission roles.
 
 === Azure using Private Link
 
