@@ -1,73 +1,86 @@
-= Azure using Private Link
+= Azure private endpoints
 
-Create a private endpoint in your Azure Virtual Network (VNet).
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDS-Enterprise[]
 
-All traffic remains within your VNet.
+AuraDB Virtual Dedicated Cloud and AuraDS Enterprise support private endpoints on Azure using https://azure.microsoft.com/en-us/products/private-link/#overview[Azure Private Link].
 
-Setup steps:
+Once activated, you can create an endpoint in your Virtual Network (VNet) that connects to Aura.
 
-Go to Security > Network Access in the Aura Console.
+image::azure_privatelink.png["VNet connectivity with Azure Private Link", title="VNet connectivity with Azure Private Link"]
 
-Select New configuration, choose your region, and enter your Azure Subscription ID.
-
-Enable Private Link and copy the generated Private Link service name.
-
-In the Azure portal, create a new Private Link endpoint using the service name.
-
-Return to Aura Console to accept the connection.
-
-Test connectivity before disabling public traffic.
-
-Refer to Azure Documentation for required permissions.
-
-== How Private Links Work
-
-Private links securely connect your application to Aura without exposing traffic to the public internet.
-
-PrivateLink = AWS
-
-Private Service Connect = GCP
-
-Private Link = Azure
-
-When your application connects using a URI like neo4j+s://abcd1234.production-orch-0000.neo4j.io, your DNS server resolves it to a private IP (e.g., 10.10.10.10). This private address forwards the connection through the private ingress to the appropriate Aura instance.
-
-Custom endpoints (e.g., my-endpoint-abc123.endpoints.neo4j.io) require additional DNS records:
-
-my-endpoint-abc123.endpoints.neo4j.io IN A <ip-address>
-a-my-endpoint-abc123.endpoints.neo4j.io IN A <ip-address>
-...
-
-Or use a wildcard:
-
-*.endpoints.neo4j.io IN A <ip-address>
+All applications running Neo4j workloads inside the VNet are routed directly to your isolated environment in Aura without traversing the public internet.
+You can then disable public traffic, ensuring all traffic to the instance remains private to your VNet.
 
 [NOTE]
 ====
-Use wildcard DNS only if all private endpoints resolve to the same IP. Otherwise, use individual records
+* Private Link applies to all instances in the region.
+* When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using Private Link in the Aura Console.
+* If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
+* Connections using private endpoints are one-way.
+Aura VNets can't initiate connections back to your VNets.
 ====
 
-Testing Private Endpoint Connectivity
+==== Browser and Bloom access over private endpoints
 
-To confirm connectivity:
+To connect to your instance via Browser or Bloom, you must use a dedicated VPN.
+This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
 
-Use nslookup:
+Without private endpoints, you access Browser and Bloom over the internet:
 
-nslookup abcd1234.production-orch-0000.neo4j.io
+image::azure_privatelink_01_before_enabling.png["Architecture overview before enabling private endpoints", title="Architecture overview before enabling private endpoints"]
 
-Use curl:
+When you have enabled private endpoints and disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet:
 
-curl https://abcd1234.production-orch-0000.neo4j.io
+image::azure_privatelink_02_enabled_private_traffic_only.png["Architecture overview with private endpoints enabled and public traffic disabled", title="Architecture overview with private endpoints enabled and public traffic disabled"]
 
-Use nc (netcat) or PowerShell:
+To continue accessing Browser and Bloom, you can configure a VPN (Virtual Private Network) in your VNet and connect to Browser and Bloom over the VPN.
 
-nc -vz abcd1234.production-orch-0000.neo4j.io 7687
-Test-NetConnection abcd1234.production-orch-0000.neo4j.io -Port 7687
+[NOTE]
+====
+To access Bloom and Browser over a VPN, you must ensure that:
 
-Check relevant ports based on product:
+* You have setup https://learn.microsoft.com/en-us/azure/dns/private-dns-overview[Azure Private DNS], or an equivalent DNS service, inside of the VNet.
+* You use the *Private URI* shown on the instance tile and in the instance details.
+It will be different from the *Connection URI* you used before.
+====
 
-7687, 7474, 443 for AuraDB
+image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing Browser and Bloom over a VPN", title="Accessing Browser and Bloom over a VPN"]
 
-8491 for AuraDS
+==== Enable Azure Private Endpoints for Aura
 
-This consolidated guide ensures your Aura deployment is secure, compliant, and reliably connected through private network configurations.
+. To enable private endpoints using Azure Private Link:
+.. From the sidebar menu in the Aura console, select *Security > Network Access > Network Access*
+.. Select *New network access configuration* and follow the setup instructions.
+
+. Configure Network Access in the Aura console
+.. Select your product from the available options.
+.. Select the appropriate region for your deployment. (Azure Private Link applies to all instances in the region.)
+.. Enter the *Target Azure Subscription IDs*.
+.. Select *Enable Private Link*.
+
+. Obtain a Private Link service name
+.. After enabling Private Link, you receive a Private Link service name in the Aura console.
+.. Copy this service name, you need it in the next step.
+
+. Create Private Link endpoint in the Azure portal
+.. Log in to your Azure portal.
+.. Navigate to your cloud VPC and create a new Private Link endpoint.
+.. Use the Private Link service name obtained in step three for the configuration.
+
+. Accept Endpoint in Aura console
+.. Return to the Aura Console.
+.. Check for the newly created Private Link endpoint.
+.. Accept the endpoint to complete the connection process.
+.. *At this point, it is highly recommended to test connectivity through the private endpoint.*
+
+. Disable public traffic
+.. Before disabling public traffic, test all your application connectivity with Private Link to ensure everything is functioning correctly.
+.. Once verified, you can disable public traffic by toggling off the public access option.
+.. Note: If needed, you can postpone disabling public traffic.
+
+. Monitor Private Link status
+.. You can monitor the status of your Private Link configuration in the Aura Console.
+.. Ensure that all services are running as expected and troubleshoot any issues if necessary.
+
+Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
