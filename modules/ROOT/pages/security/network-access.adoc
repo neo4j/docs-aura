@@ -1,0 +1,219 @@
+[[aura-reference-security]]
+= Network access
+:description: VPC boundaries enable you to operate within an isolated section of the service.
+:page-aliases: platform/security/secure-connections.adoc
+
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDS-Enterprise[]
+
+AuraDB Virtual Dedicated Cloud and AuraDS Enterprise run in a dedicated AWS cloud account, Azure subscription, or GCP project to achieve complete isolation for your deployment. 
+Additional Virtual Private Cloud (VPC) boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected. 
+The Aura console resides in a separate VPC, isolated from the rest of the Aura services.
+Connections using private endpoints are one-way, as Aura VPCs doesn't initiate connections back to your VPCs.
+
+== Network access overview
+
+Aura instances support public access, private access, or both.
+
+* Public access allows traffic over the internet using the correct credentials.
+* Private access uses private endpoints and requires traffic to remain within your cloud provider's network.
+
+To configure settings for network access to your instance, go to *Aura console > Project settings > Security & Networking > Private endpoints > New network access configuration.*
+
+The Aura console provides a step-by-step configuration guide to:
+
+. Choose your Aura instance details
+
+. Create an endpoint
+
+. Accept endpoint connection requests and enable private DNS in the cloud provider’s console
+
+. *Disable public traffic.* It is highly recommended to test connectivity through the private endpoint before disabling public traffic. Return to Step 4 at any time to disable public traffic.
+
+[NOTE]
+====
+Disabling public traffic is not instant. 
+Monitor the status change in the console to confirm when the process is complete.
+When activated, a Private Connection label, shield icon, and dedicated Private URI will appear on any instance in the Aura console.
+====
+
+== Query and Explore access
+
+When public traffic is disabled, Query and Explore are not accessible via the internet. 
+To continue accessing Query and Explore, link:https://neo4j.com/docs/aura/getting-started/connect-instance/#_connection_method[connect via HTTPS (port 443)], this is helpful when network security blocks Bolt (port 7687), e.g. when a private link is setup on the database with public traffic disabled.
+Alternatively you can set up a VPN (Virtual Private Network) in your VPC and connect to Query and Explore over the VPN.
+
+== Private endpoints
+
+Private endpoints are network interfaces inside your VPC, accessible only within your private network. 
+The cloud provider connects them to Neo4j Aura over their internal network. 
+They are not exposed to the public internet, ensuring access is restricted to private, secure networks.
+
+A single private link connection applies to all instances in a region. 
+If you set one up in `us-east-1` it covers all instances in that region. 
+You can set up a second private link connection to applications that are hosted in a second region (e.g. `us-west-1`) but still housed inside the same Aura project.
+
+[.tabbed-example]
+====
+[.include-with-AWS-using-PrivateLink]
+=====
+For a step-by-step guide, see the link:https://neo4j.com/blog/auradb/neo4j-aws-privatelink-configuration/#2[How to Configure Neo4j Aura With AWS PrivateLink] blog article.
+Refer to https://aws.amazon.com/privatelink[AWS PrivateLink] docs for IAM requirements.
+
+AWS region `us-east-1` does not support AZ `use1-az3` for private endpoints.
+
+image::privatelink.png["VPC connectivity with AWS PrivateLink"]
+
+Without private endpoints, you access Query and Explore over the internet:
+
+image::privatelink_01_before_enabling.png["Architecture overview before enabling private endpoints"]
+
+When you have enabled private endpoints and disabled public internet access, you can no longer connect Query or Explore to your instances over the internet:
+
+To continue accessing Query and Explore, you can either connect via HTTPS (port 443), this is helpful when network security blocks Bolt (port 7687), e.g. when a private link is setup on the database with public traffic disabled.
+Alternatively you can set up a VPN (Virtual Private Network) in your VPC and connect to Query and Explore over the VPN.
+
+image::privatelink_02_enabled_private_traffic_only.png["Architecture overview with private endpoints enabled and public traffic disabled"]
+
+To access Query and Explore over a VPN, you must ensure that:
+
+* The VPN server uses the https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#AmazonDNS[VPC's DNS servers].
+* You use the *Private URI* shown on the instance tile and in the instance details.
+It will be different from the *Connection URI* you used before.
+
+image::privatelink_03_browser_bloom_over_vpn.png["Accessing Query and Explore over a VPN"]
+=====
+
+[.include-with-GCP-using-Private-Service-Connect]
+=====
+
+Refer to https://cloud.google.com/vpc/docs/private-service-connect[GCP Private Service Connect] docs for required permissions.
+
+image::privateserviceconnect.png["VPC connectivity with GCP Private Service Connect"]
+
+Without private endpoints, you access Query and Explore over the internet:
+
+image::privateserviceconnect_01_before_enabling.png["Architecture overview before enabling private endpoints"]
+
+When you have enabled private endpoints and disabled public internet access, you can no longer connect Query or Explore to your instances over the internet:
+
+To continue accessing Query and Explore, you can either connect via HTTPS (port 443), this is helpful when network security blocks Bolt (port 7687), e.g. when a private link is setup on the database with public traffic disabled. Alternatively you can set up a VPN (Virtual Private Network) in your VPC and connect to Query and Explore over the VPN.
+
+image::privateserviceconnect_02_enabled_private_traffic_only.png["Architecture overview with private endpoints enabled and public traffic disabled"]
+
+To access Query and Explore over a VPN, you must ensure that:
+
+* You have set up link:https://cloud.google.com/dns/docs/zones/manage-response-policies[GCP Response Policy Zone], or an equivalent DNS service, inside of the VPC.
+* You use the *Private URI* shown on the instance tile and in the instance details.
+It will be different from the *Connection URI* you used before.
+
+image::privateserviceconnect_03_browser_bloom_over_vpn.png["Accessing Query and Explore over a VPN"]
+=====
+
+[.include-with-Azure-using-Private-Link]
+=====
+
+Refer to https://azure.microsoft.com/en-us/products/private-link/#overview[Azure Private Link] docs to create an endpoint in your Virtual Network (VNet) that connects to Aura.
+
+image::azure_privatelink.png["VNet connectivity with Azure Private Link"]
+
+All applications running Neo4j workloads inside the VNet are routed directly to your isolated environment in Aura without traversing the public internet.
+You can then disable public traffic, ensuring all traffic to the instance remains private to your VNet.
+
+* Private Link applies to all instances in the region.
+* When activated, a *Private Connection* label, shield icon, and dedicated *Private URI* will appear on any instance tile using Private Link in the Aura Console.
+* If you disable public traffic, you must use a dedicated VPN to connect to your instance via Browser or Bloom.
+* Connections using private endpoints are one-way.
+Aura VNets can't initiate connections back to your VNets.
+
+Query and Explore access over private endpoints
+
+To connect to your instance via Query and Explore, you must use a dedicated VPN.
+This is because when you disable public access to your instance, this applies to all connections, including those from your computer when using Browser or Bloom.
+
+Without private endpoints, you access Query and Explore over the internet:
+
+image::azure_privatelink_01_before_enabling.png["Architecture overview before enabling private endpoints"]
+
+When you have enabled private endpoints and disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet:
+
+image::azure_privatelink_02_enabled_private_traffic_only.png["Architecture overview with private endpoints enabled and public traffic disabled"]
+
+To continue accessing Query and Explore, you can configure a VPN (Virtual Private Network) in your VNet and connect to Query and Explore over the VPN.
+
+To access Query and Explore over a VPN, you must ensure that:
+
+* You have setup https://learn.microsoft.com/en-us/azure/dns/private-dns-overview[Azure Private DNS], or an equivalent DNS service, inside of the VNet.
+* You use the *Private URI* shown on the instance tile and in the instance details.
+It will be different from the *Connection URI* you used before.
+
+image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing Query and Explore over a VPN"]
+
+Enable Azure Private Endpoints for Aura
+
+. To enable private endpoints using Azure Private Link:
+.. From the sidebar menu in the Aura console, select *Security > Network Access > Network Access*
+.. Select *New network access configuration* and follow the setup instructions.
+
+. Configure Network Access in the Aura console
+.. Select your product from the available options.
+.. Select the appropriate region for your deployment. (Azure Private Link applies to all instances in the region.)
+.. Enter the *Target Azure Subscription IDs*.
+.. Select *Enable Private Link*.
+
+. Obtain a Private Link service name
+.. After enabling Private Link, you receive a Private Link service name in the Aura console.
+.. Copy this service name, you need it in the next step.
+
+. Create Private Link endpoint in the Azure portal
+.. Log in to your Azure portal.
+.. Navigate to your cloud VPC and create a new Private Link endpoint.
+.. Use the Private Link service name obtained in step three for the configuration.
+
+. Accept Endpoint in Aura console
+.. Return to the Aura Console.
+.. Check for the newly created Private Link endpoint.
+.. Accept the endpoint to complete the connection process.
+.. *At this point, it is highly recommended to test connectivity through the private endpoint.*
+
+. Disable public traffic
+.. Before disabling public traffic, test all your application connectivity with Private Link to ensure everything is functioning correctly.
+.. Once verified, you can disable public traffic by toggling off the public access option.
+.. Note: If needed, you can postpone disabling public traffic.
+
+. Monitor Private Link status
+.. You can monitor the status of your Private Link configuration in the Aura Console.
+.. Ensure that all services are running as expected and troubleshoot any issues if necessary.
+
+Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
+=====
+====
+
+== Supported TLS cipher suites
+
+For additional security, client communications are carried via TLS v1.2 and TLS v1.3.
+
+AuraDB has a restricted list of cipher suites accepted during the TLS handshake, and does not accept all of the available cipher suites.
+The following list conforms to safety recommendations from IANA, the OpenSSL, and GnuTLS library.
+
+TLS v1.3:
+
+* `TLS_CHACHA20_POLY1305_SHA256 (RFC8446)`
+* `TLS_AES_128_GCM_SHA256 (RFC8446)`
+* `TLS_AES_256_GCM_SHA384 (RFC8446)`
+
+TLS v1.2:
+
+* `TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (RFC5288)`
+* `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (RFC5289)`
+* `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5289)`
+* `TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (RFC7905)`
+* `TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5288)`
+
+
+
+
+
+
+
+
