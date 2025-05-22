@@ -44,7 +44,6 @@ The private ingress then directs the connection to the Aura instance with dbid: 
 |role: read
 |===
 
-
 === Custom endpoints with private link
 
 In addition to the production-orch-<orch>.neo4j.io DNS records configured for your private link databases, you must add the following records in order for a Custom Endpoint assigned to a Private Link database to work.
