@@ -1,0 +1,307 @@
+= Fleet Management Plugin Documentation
+
+This document describes the data structures used in fleet management messages.
+
+== ConnectMessage
+
+Message sent from the server to the Fleet Management service to establish a connection
+
+[cols="1,1,1,1"]
+|===
+|Field |Type |Description |Values
+|serverId
+|String
+|Unique identifier for the server
+|
+|name
+|String
+|Name of the server
+|
+|dbmsId
+|String
+|Unique identifier for the DBMS instance
+|
+|serverVersion
+|String
+|Version of the server
+|
+|projectId
+|String
+|Identifier for the project
+|
+|buildProfile
+|String
+|Build profile of the server
+|
+|===
+
+== MetricsMessage
+
+Message sent from the server to the Fleet Management service containing metrics data
+
+[cols="1,1,1,1"]
+|===
+|Field |Type |Description |Values
+|timestamp
+|long
+|Unix timestamp in milliseconds when the message was created
+|
+|projectId
+|String
+|Identifier for the project
+|
+|dbmsId
+|String
+|Unique identifier for the DBMS instance
+|
+|serverId
+|String
+|Unique identifier for the server
+|
+|metrics
+|Map<String, List<DataPoint>>
+|Map of metric names to lists of DataPoint objects
+|Values not yet known.
+|metrics<>[].tags
+|Map<String, String>
+|Map of string key-value pairs providing additional context for the metric
+|
+|metrics<>[].value
+|Double
+|Double value representing the metric measurement
+|
+|===
+
+== ReportingMessage
+
+Message sent from the server to the Fleet Management service containing reporting data
+
+[cols="1,1,1,1"]
+|===
+|Field |Type |Description |Values
+|timestamp
+|long
+|Unix timestamp in milliseconds when the message was created
+|
+|projectId
+|String
+|Identifier for the project
+|
+|dbms
+|Dbms
+|DBMS information object
+|
+|dbms.dbmsId
+|String
+|Unique identifier for the DBMS instance
+|
+|dbms.serverId
+|String
+|Unique identifier for the server
+|
+|dbms.databases
+|List<String>
+|List of database names
+|
+|dbms.edition
+|String
+|Edition of the DBMS (e.g., Enterprise, Community)
+|
+|dbms.packaging
+|String
+|Packaging information of the DBMS
+|
+|dbms.servers
+|List<Server>
+|List of servers in the DBMS cluster
+|
+|dbms.servers[].serverId
+|String
+|Unique identifier for the server
+|
+|dbms.servers[].address
+|String
+|Network address of the server
+|
+|dbms.servers[].health
+|String
+|Current health status of the server
+|
+|dbms.servers[].modeConstraint
+|String
+|Mode constraint of the server
+|
+|dbms.servers[].version
+|String
+|Version of the server software
+|
+|dbms.servers[].databases
+|List<Database>
+|List of databases hosted on this server
+|
+|dbms.servers[].databases[].name
+|String
+|Name of the database
+|
+|dbms.servers[].databases[].role
+|String
+|Role of the database in the cluster
+|
+|dbms.servers[].databases[].aliases
+|List<String>
+|List of database aliases
+|
+|dbms.servers[].databases[].access
+|String
+|Access level of the database
+|
+|dbms.servers[].databases[].databaseId
+|String
+|Unique identifier for the database
+|
+|dbms.servers[].databases[].requestedStatus
+|String
+|Requested status of the database
+|
+|dbms.servers[].databases[].currentStatus
+|String
+|Current status of the database
+|
+|dbms.servers[].databases[].statusMessage
+|String
+|Status message describing the current state
+|
+|dbms.servers[].databases[]._default
+|boolean
+|Whether this is the default database
+|
+|dbms.servers[].databases[].home
+|boolean
+|Whether this is the home database
+|
+|dbms.servers[].databases[].currentPrimariesCount
+|long
+|Current number of primary instances
+|
+|dbms.servers[].databases[].currentSecondariesCount
+|long
+|Current number of secondary instances
+|
+|dbms.servers[].databases[].requestedPrimariesCount
+|Integer
+|Requested number of primary instances
+|
+|dbms.servers[].databases[].requestedSecondariesCount
+|Integer
+|Requested number of secondary instances
+|
+|dbms.servers[].databases[].creationTime
+|long
+|Timestamp when the database was created
+|
+|dbms.servers[].databases[].lastStartTime
+|long
+|Timestamp when the database was last started
+|
+|dbms.servers[].databases[].store
+|String
+|Store information for the database
+|
+|dbms.servers[].databases[].writer
+|boolean
+|Whether this instance is a writer
+|
+|dbms.servers[].databases[].lastCommittedTxn
+|Integer
+|Last committed transaction ID
+|
+|dbms.servers[].databases[].replicationLag
+|Integer
+|Current replication lag
+|
+|dbms.servers[].license
+|License
+|Main license information
+|
+|dbms.servers[].license.type
+|String
+|Type of the license
+|
+|dbms.servers[].license.state
+|String
+|Current state of the license
+|
+|dbms.servers[].license.daysLeftOnTrial
+|Integer
+|Number of days remaining in trial period
+|
+|dbms.servers[].license.totalTrialDays
+|Integer
+|Total number of days in trial period
+|
+|dbms.servers[].bloomLicense
+|License
+|Bloom license information
+|
+|dbms.servers[].bloomLicense.type
+|String
+|Type of the license
+|
+|dbms.servers[].bloomLicense.state
+|String
+|Current state of the license
+|
+|dbms.servers[].bloomLicense.daysLeftOnTrial
+|Integer
+|Number of days remaining in trial period
+|
+|dbms.servers[].bloomLicense.totalTrialDays
+|Integer
+|Total number of days in trial period
+|
+|dbms.servers[].gdsLicense
+|License
+|GDS license information
+|
+|dbms.servers[].gdsLicense.type
+|String
+|Type of the license
+|
+|dbms.servers[].gdsLicense.state
+|String
+|Current state of the license
+|
+|dbms.servers[].gdsLicense.daysLeftOnTrial
+|Integer
+|Number of days remaining in trial period
+|
+|dbms.servers[].gdsLicense.totalTrialDays
+|Integer
+|Total number of days in trial period
+|
+|pluginVersion
+|String
+|Version of the fleet management plugin
+|
+|osName
+|String
+|Operating system name
+|
+|osVersion
+|String
+|Operating system version
+|
+|osArch
+|String
+|Operating system architecture
+|
+|jvmVersion
+|String
+|Java Virtual Machine version
+|
+|jvmVendor
+|String
+|Java Virtual Machine vendor
+|
+|===
+
