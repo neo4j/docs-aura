@@ -46,7 +46,7 @@ To continue accessing Browser and Bloom, you can configure a VPN in your VPC and
 == Tool access
 
 When public traffic is disabled, Query and Bloom are not accessible via the public internet. 
-To continue accessing these tools, link:https://neo4j.com/docs/aura/getting-started/connect-instance/#_connection_method[connect via HTTPS (port 443)], this is helpful when network security blocks Bolt (port 7687), e.g. when a private link is setup on the database with public traffic disabled.
+To continue accessing these tools, xref:getting-started/connect-instance.adoc#_connection_method[connect via HTTPS (port 443)], this is helpful when network security blocks Bolt (port 7687), e.g. when a private link is setup on the database with public traffic disabled.
 Alternatively you can set up a VPN (Virtual Private Network) in your VPC and connect to Query and Explore over the VPN.
 
 == Private endpoints
@@ -97,7 +97,8 @@ Without private endpoints, you access Query and Explore over the internet:
 
 image::privateserviceconnect_01_before_enabling.png["Architecture overview before enabling private endpoints"]
 
-When you have enabled private endpoints and disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet and therefore to continue accessing Query and Explore, you can either connect via HTTPS (port 443), or use a private endpoint.
+When you have enabled private endpoints and disabled public internet access, you can no longer connect Query and Explore to your instances over the internet.
+To continue accessing the tools, you can either connect via HTTPS (port 443), or use a private endpoint.
 
 To access Query and Explore over a VPN, you must ensure that:
 
