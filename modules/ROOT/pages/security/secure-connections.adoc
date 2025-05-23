@@ -119,7 +119,8 @@ Without private endpoints, you access Query and Explore over the internet:
 
 image::azure_privatelink_01_before_enabling.png["Architecture overview before enabling private endpoints"]
 
-When you have enabled private endpoints and disabled public internet access, you can no longer connect Browser or Bloom to your instances over the internet and therefore to continue accessing Query and Explore, you can either connect via HTTPS (port 443), or use a private endpoint.
+When you have enabled private endpoints and disabled public internet access, you can no longer connect Query or Explore to your instances over the internet.
+To continue accessing the tools, you can either connect via HTTPS (port 443), or use a private endpoint.
 
 To access Query and Explore over a VPN, you must ensure that:
 
