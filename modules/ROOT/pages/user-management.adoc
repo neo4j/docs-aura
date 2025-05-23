@@ -19,7 +19,7 @@ The following roles are available at the org level and these are assigned via in
 * Member
 
 :check-mark: icon:check[]
-.Roles
+.Roles and organization capabilities
 [opts="header",cols="3,1,1,1"]
 |===
 | Capability
@@ -157,39 +157,298 @@ Each project can have multiple users with individual accounts allowing access to
 The users with access to a project can be viewed and managed from the **Users** page.
 You can access the **Users** page by selecting **Users** from the sidebar menu of the console.
 
+[[roles]]
 === Roles
 
 Users within a project can be assigned one of the following roles:
 
-* _Project Admin_
-* _Project Member_
 * _Project Viewer_
 * _Metrics Reader_
+* _Project Member_
+* _Project Admin_
 
-:check-mark: icon:check[]
+==== Metrics reader role
 
-.Roles
-[opts="header",cols="3,1,1,1"]
-|===
-| Capability | Admin | Member | Viewer
-| View users and their roles | {check-mark} | {check-mark} | {check-mark}
-| View and open instances | {check-mark} | {check-mark} | {check-mark}
-| Access the Neo4j Customer Support Portal | {check-mark} | {check-mark} | {check-mark}
-| Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instances.] | {check-mark} | {check-mark} |
-| Clone data to new and existing instances | {check-mark} | {check-mark} |
-| Take on-demand snapshots | {check-mark} | {check-mark} |
-| Restore from snapshots | {check-mark} | {check-mark} |
-| Edit the project name | {check-mark} | |
-| Invite new users to the project | {check-mark} | |
-| Edit existing users' roles | {check-mark} | |
-| Delete existing users from the project | {check-mark} | |
-| View and edit billing information | {check-mark} | |
-|===
+The `metrics reader` role can be assigned to any user or service account.
+It has the same permissions as the `project viewer` role, but with some extra permissions specifically for reading metrics via an API endpoint.
+The role allows access to metrics for all instances in a project.
+Accessing metric endpoints requires xref:/api/authentication.adoc[Aura API Credentials] and the `metrics reader` role enables the creation of these credentials.
+
+The `metrics reader` role can view and open instances in the console, however, login to the instance is required to interact with it, with access to Explore and Query defined by the instance’s RBAC settings.
 
 [NOTE]
 ====
 Each project must have at least one Project Admin, but it is also possible for projects to have multiple Project Admins.
 ====
+
+:check-mark: icon:check[]
+
+.Roles and console capabilities
+[opts="header",cols="3,1,1,1,1"]
+|===
+| Capability
+| Project Viewer
+| Metrics reader
+| Member
+| Admin
+
+| View users and their roles
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| View and open instances
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Access the Neo4j Customer Support Portal
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Perform all actions on instances footnote:[Actions include creating, deleting, pausing, resuming, and editing instances.]
+|
+|
+| {check-mark}
+| {check-mark}
+
+| Clone data to new and existing instances
+|
+|
+| {check-mark}
+| {check-mark}
+
+| Take on-demand snapshots
+|
+|
+| {check-mark}
+| {check-mark}
+
+| Restore from snapshots
+|
+|
+| {check-mark}
+| {check-mark}
+
+| Edit the project name
+|
+|
+|
+| {check-mark}
+
+| Invite new users to the project
+|
+|
+|
+| {check-mark}
+
+| Edit existing users' roles
+|
+|
+|
+| {check-mark}
+
+| Delete existing users from the project
+|
+|
+|
+| {check-mark}
+
+| View and edit billing information
+|
+|
+|
+| {check-mark}
+|===
+
+
+=== Predefined roles
+
+Users within a project can access instances seamlessly with their console role if xref:security/tool-auth.adoc[Tool authentication with Aura user] is enabled.
+
+[NOTE]
+====
+New organizations created after May 29th 2025 will have Tool auhtentication with Aura user enabled by default.
+====
+
+When enabled, a user connects seamlessly with a predefined database role that matches their console role, i.e. their project-level role.
+Predefined roles are *immutable* and apply to all Free, Professional, and Business Critical instances.
+The predefined roles are assigned the following privileges on the instance level:
+
+.Predefined roles and database privileges
+[options="header", cols="3,^,^,^,^,^"]
+|===
+| Privilege
+| Viewer
+| Member
+3+| Admin
+
+|
+|
+|
+| Free
+| Professional
+| Business Critical
+
+| Access to database
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Start and stop database
+|
+|
+|
+|
+| {check-mark}
+
+| List constraints
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Create constraints
+|
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Delete constraints
+|
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| List indexes
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Create indexes
+|
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Delete indexes
+|
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Find nodes and relationships and read their properties
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Load external data in queries
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Write to the graph
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Execute procedures and functions
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Name management for node labels, relationship types, and property names.
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| List and end transactions for specified users on the database.
+|
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| List, create, delete, and modify users.
+|
+|
+|
+| {check-mark}
+| {check-mark}
+
+| Assign roles
+|
+|
+|
+| {check-mark}
+| {check-mark}
+
+| Remove roles
+|
+|
+|
+| {check-mark}
+| {check-mark}
+
+| Create roles
+|
+|
+|
+|
+| {check-mark}
+
+| Delete roles
+|
+|
+|
+|
+| {check-mark}
+
+| Rename roles
+|
+|
+|
+|
+| {check-mark}
+
+| List roles
+|
+|
+|
+| {check-mark}
+| {check-mark}
+
+| Privilege management footnote:[This includes to list, grant, and revoke privileges.]
+|
+|
+|
+|
+| {check-mark}
+|===
+
 
 === Inviting users
 
@@ -242,7 +501,7 @@ You can select the project(s) you have been invited to and choose to accept or d
 
 // You can also close the **Project invitation** modal without accepting or declining the invite(s) and later manually re-open the modal by selecting the **Pending invites** envelope icon in the console header.
 
-[TIP]
-====
-User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
-====
+// [TIP]
+// ====
+// User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
+// ====
