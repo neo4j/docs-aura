@@ -59,6 +59,13 @@ A single private link connection applies to all instances in a region.
 So if you've set one up for `us-east-1` then those network connections will apply to all instances in that region.
 You can set up a second private link connection to applications that are hosted in a second region (for example `us-west-1`) but still housed inside the same Aura project.
 
+[NOTE]
+====
+* Private endpoints apply to all instances in the region.
+* When activated, a Private Connection label, shield icon, and dedicated Private URI will appear on any instance tile using a private endpoint in the Aura console.
+* Connections using private endpoints are one-way. Aura VPCs can’t initiate connections back to your VPCs.
+====
+
 === AWS private endpoints
 
 For a step-by-step guide, see the link:https://neo4j.com/blog/auradb/neo4j-aws-privatelink-configuration/#2[How to Configure Neo4j Aura With AWS PrivateLink] blog article.
