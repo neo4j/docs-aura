@@ -59,19 +59,21 @@ A single private link connection applies to all instances in a region.
 So if you've set one up for `us-east-1` then those network connections will apply to all instances in that region.
 You can set up a second private link connection to applications that are hosted in a second region (for example `us-west-1`) but still housed inside the same Aura project.
 
-[.tabbed-example]
-====
-[.include-with-AWS-using-PrivateLink]
-=====
+=== AWS private endpoints
+
 For a step-by-step guide, see the link:https://neo4j.com/blog/auradb/neo4j-aws-privatelink-configuration/#2[How to Configure Neo4j Aura With AWS PrivateLink] blog article.
 Refer to link:https://aws.amazon.com/privatelink[AWS PrivateLink] docs for IAM requirements.
 
-AWS region `us-east-1` does not support AZ `use1-az3` for private endpoints.
+[NOTE]
+====
+AWS region `us-east-1` does not support private endpoints in the `use1-az3` Availability Zone.
+====
 
 image::privatelink.png["VPC connectivity with AWS PrivateLink"]
 
 Without private endpoints, you access Query and Explore over the internet:
 
+.Architecture overview before enabling private endpoints
 image::privatelink_01_before_enabling.png["Architecture overview before enabling private endpoints"]
 
 When you have enabled private endpoints and disabled public internet access, you can no longer connect Query and Explore to your instances over the internet.
@@ -83,18 +85,19 @@ To access Query and Explore over a VPN, you must ensure that:
 * You use the *Private URI* shown on the instance tile and in the instance details.
 It is different from the *Connection URI* you used before.
 
-image::privatelink_03_browser_bloom_over_vpn.png["Accessing Query and Explore over a VPN"]
-=====
+.Accessing tools over a VPN
+image::privatelink_03_browser_bloom_over_vpn.png["Accessing tools over a VPN"]
 
-[.include-with-GCP-using-Private-Service-Connect]
-=====
+=== GCP private endpoints
 
 Refer to https://cloud.google.com/vpc/docs/private-service-connect[GCP Private Service Connect] docs for required permissions.
 
+.VPC connectivity with GCP Private Service Connect
 image::privateserviceconnect.png["VPC connectivity with GCP Private Service Connect"]
 
 Without private endpoints, you access Query and Explore over the internet:
 
+.Architecture overview before enabling private endpoints
 image::privateserviceconnect_01_before_enabling.png["Architecture overview before enabling private endpoints"]
 
 When you have enabled private endpoints and disabled public internet access, you can no longer connect Query and Explore to your instances over the internet.
@@ -106,18 +109,19 @@ To access Query and Explore over a VPN, you must ensure that:
 * You use the *Private URI* shown on the instance tile and in the instance details.
 It is different from the *Connection URI* you used before.
 
-image::privateserviceconnect_03_browser_bloom_over_vpn.png["Accessing Query (Browser) and Explore (Bloom) over a VPN"]
-=====
+.Accessing tools over a VPN
+image::privateserviceconnect_03_browser_bloom_over_vpn.png["Accessing tools over a VPN"]
 
-[.include-with-Azure-using-Private-Link]
-=====
+=== Azure private endpoints
 
 Refer to link:https://azure.microsoft.com/en-us/products/private-link/#overview[Azure Private Link] docs to create an endpoint in your Virtual Network (VNet) that connects to Aura.
 
+.VNet connectivity with Azure Private Link
 image::azure_privatelink.png["VNet connectivity with Azure Private Link"]
 
 Without private endpoints, you access Query and Explore over the internet:
 
+.Architecture overview before enabling private endpoints
 image::azure_privatelink_01_before_enabling.png["Architecture overview before enabling private endpoints"]
 
 When you have enabled private endpoints and disabled public internet access, you can no longer connect Query or Explore to your instances over the internet.
@@ -129,9 +133,10 @@ To access Query and Explore over a VPN, you must ensure that:
 * You use the *Private URI* shown on the instance tile and in the instance details.
 It is different from the *Connection URI* you used before.
 
-image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing Query (Browser) and Explore (Bloom) over a VPN"]
+.Accessing tools over a VPN
+image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing tools over a VPN"]
 
-Enable Azure Private Endpoints for Aura
+==== Enable Azure Private Endpoints for Aura
 
 . To enable private endpoints using Azure Private Link:
 .. From the sidebar menu in the Aura console, select *Security > Network Access > Network Access*
@@ -168,8 +173,6 @@ Enable Azure Private Endpoints for Aura
 .. Ensure that all services are running as expected and troubleshoot any issues if necessary.
 
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
-=====
-====
 
 == Private links
 
