@@ -24,6 +24,7 @@ Aura metrics integration examples for various APM platforms.
 
 - Copy the job configuration template provided for the project endpoint or the instance endpoint, as shown.
 
+// todo screenshot from prod!
 image::cmi_prometheus_job_config.png[]
 
 - Replace the placeholders `<AURA_CLIENT_ID>` and `<AURA_CLIENT_SECRET>` with corresponding values created  in the API credentials section.
@@ -90,6 +91,7 @@ Replace the placeholders `<ENDPOINT_URL>`, `<AURA_CLIENT_ID>` and `<AURA_CLIENT_
 init_config:
 instances:
   - openmetrics_endpoint: <ENDPOINT_URL>
+    timeout: 30
     metrics:
       - neo4j_.*
     auth_token:
