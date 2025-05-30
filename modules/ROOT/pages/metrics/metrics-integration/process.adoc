@@ -8,7 +8,7 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Enterprise[]
 label:AuraDB-Business-Critical[]
 
-Metrics integration is a two step process:
+Metrics integration is a two-step process:
 
 - Aura CMI setup
 - Customer APM integration
@@ -36,8 +36,8 @@ Capabilities of users with the role _Metrics Reader_ are limited to fetching the
 [aura-cmi-apm-integration]
 == Customer APM integration
 
-. Optionally configure interested endpoints as decribed in <<cmi-endpoint-config, Metrics endpoint configuration>> before setting up the APM system.
-. To setup an APM system to fetch Aura metrics, click on the `...` in the table view and copy either the endpoint URL or Prometheus job configuration template (if configuring Prometheus).
+. Optionally configure interested endpoints as described in <<cmi-endpoint-config, Metrics endpoint configuration>> before setting up the APM system.
+. To set up an APM system to fetch Aura metrics, click on the `...` in the table view and copy either the endpoint URL or Prometheus job configuration template (if configuring Prometheus).
 +
 image::cmi_apm_config_input.png[]
 +
