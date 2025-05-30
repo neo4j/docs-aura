@@ -420,7 +420,7 @@ m| SUM
 | Metric name
 m| neo4j_db_query_execution_internal_latency_q99
 | Description
-| The query execution time in milliseconds where 99% of queries executed faster than the reported time.
+| label:new[Introduced in 5.0] The query execution time in milliseconds where 99% of queries executed faster than the reported time.
 | Metric type
 | _Gauge_
 | Default aggregation
@@ -433,7 +433,7 @@ m| MAX
 | Metric name
 m| neo4j_db_query_execution_internal_latency_q75
 | Description
-| The query execution time in milliseconds where 75% of queries executed faster than the reported time.
+| label:new[Introduced in 5.0] The query execution time in milliseconds where 75% of queries executed faster than the reported time.
 | Metric type
 | _Gauge_
 | Default aggregation
@@ -446,7 +446,7 @@ m| MAX
 | Metric name
 m| neo4j_db_query_execution_internal_latency_q50
 | Description
-| The query execution time in milliseconds where 50% of queries executed faster than the reported time.
+| label:new[Introduced in 5.0] The query execution time in milliseconds where 50% of queries executed faster than the reported time.
 This also corresponds to the median of the query execution time.
 | Metric type
 | _Gauge_
@@ -469,7 +469,7 @@ It should show overlapping, ever-increasing lines and if one of the lines levels
 m| MAX
 |===
 
-.Cluster Leader (only included if <<_metrics_granularity,high granularity>> is turned on)
+.Cluster Leader (only included if xref:metrics/metrics-integration/introduction.adoc#_metric_granularity[high granularity] is turned on)
 [frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
 |===
 | Metric name
