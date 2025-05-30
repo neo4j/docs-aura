@@ -78,19 +78,14 @@ image::cmi_project_config.png[]
 +
 . `Selecting instances to include in project endpoint` - This is a project endpoint specific setting which allows users to select instances to endpoint metrics for.
 . `Include new instances` - This setting enables scraping for newly created instance without manually updating the Project endpoint configuration.
-. `Metrics granularity` - This setting allows scraping more granular metrics (`Comprehensive`) for each of the instances enabled.
-It is an on-demand setting only available for Virtual Dedicated Cloud projects and needs to be requested through link:https://support.neo4j.com/[Customer Support].
+. `Metrics granularity` - This setting allows scraping more granular metrics (`Comprehensive`) for the instance(s) of this endpoint.
+This currently includes grouping by availability zone and exposing instance type (primary/secondary).
 
-* Instance endpoint configuration :
+* Instance endpoint configuration allows configuring the `Metrics granularity` for the corresponding instance.
 +
 image::cmi_instance_config.png[]
-+
-. `Metrics granularity` - This setting allows scraping more granular metrics(`Comprehensive`) for each of the instances enabled.
-It is an on-demand setting only available for Virtual Dedicated Cloud project instances and it needs to be requested through link:https://support.neo4j.com/[Customer Support].
-+
-image::cmi_enable_comprehensive.png[]
 
 [IMPORTANT]
 ====
-Endpoint configuration changes affect the metrics endpoints only after **__5 minutes__** of submittng these changes from UI due to Metrics integration service caching.
+Endpoint configuration changes affect the metrics endpoints only after **__5 minutes__** of submitting these changes from UI due to Metrics integration service caching.
 ====
