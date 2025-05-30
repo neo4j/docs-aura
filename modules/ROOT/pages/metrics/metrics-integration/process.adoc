@@ -76,7 +76,12 @@ If your goal is to monitor a subset of instances in the Project and you don't wa
 +
 image::cmi_project_config.png[]
 +
-. `Selecting instances to include in project endpoint` - This is a project endpoint specific setting which allows users to select instances to endpoint metrics for.
+. `Selecting instances to include in project endpoint` - This is a project endpoint specific setting which allows users to select instances this endpoint should report metrics for.
++
+[IMPORTANT]
+====
+Selecting only the relevant instances helps to improve the latency of the metrics endpoint and reduces the amount of data sent to the APM system.
+====
 . `Include new instances` - This setting enables scraping for newly created instance without manually updating the Project endpoint configuration.
 . `Metrics granularity` - This setting allows scraping more granular metrics (`Comprehensive`) for the instance(s) of this endpoint.
 This currently includes grouping by availability zone and exposing instance type (primary/secondary).
