@@ -84,7 +84,7 @@ Selecting only the relevant instances helps to improve the latency of the metric
 ====
 . `Include new instances` - This setting enables scraping for newly created instance without manually updating the Project endpoint configuration.
 . `Metrics granularity` - This setting allows scraping more granular metrics (`Comprehensive`) for the instance(s) of this endpoint.
-This currently includes grouping by availability zone and exposing instance type (primary/secondary).
+Comprehensive metric values are labeled with cloud provider availability zone and Neo4j node type (primary/secondary) for more detailed observability.
 
 * Instance endpoint configuration allows configuring the `Metrics granularity` for the corresponding instance.
 +
