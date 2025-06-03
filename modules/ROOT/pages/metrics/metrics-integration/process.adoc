@@ -39,6 +39,7 @@ Capabilities of users with the role _Metrics Reader_ are limited to fetching the
 . Optionally configure interested endpoints as described in <<cmi-endpoint-config, Metrics endpoint configuration>> before setting up the APM system.
 . To set up an APM system to fetch Aura metrics, use the `[...]` in the table view and copy either the endpoint URL or Prometheus job configuration template (if configuring Prometheus).
 +
+[.shadow]
 image::cmi_apm_config_input.png[]
 +
 . Use OAuth2 type of authentication specifying the Client ID and Client Secret created in the previous step.
@@ -58,6 +59,7 @@ Aura Metrics Integration setup offers two types of metrics endpoints to endpoint
 - **Project metrics endpoint** - A single endpoint with Project level endpoint configuration that allows selecting which instance metrics to include.
 - **Instance metrics endpoint** - Individual endpoint for each of the instances in the Project with corresponding endpoint configuration.
 
+[.shadow]
 image::cmi_status_table.png[]
 
 Use the __Settings__ button for an endpoint in the table to configure that endpoint.
@@ -77,7 +79,7 @@ Selecting only the relevant instances helps to improve the latency of the metric
 * Project endpoint configuration:
 +
 [.shadow]
-image::cmi_project_config.png[]
+image::cmi_project_config.png[width=400]
 +
 . `Selecting instances to include in project endpoint` - This is a project endpoint specific setting which allows users to select instances this endpoint should report metrics for.
 +
@@ -88,6 +90,6 @@ Comprehensive metric values are labeled with cloud provider availability zone an
 * Instance endpoint configuration allows configuring the `Metrics granularity` for the corresponding instance.
 +
 [.shadow]
-image::cmi_instance_config.png[]
+image::cmi_instance_config.png[width=400]
 
 Endpoint configuration changes affect the metrics endpoints only after **__5 minutes__** of submitting these changes from UI due to Metrics integration service caching.
