@@ -8,16 +8,12 @@ Each project can have multiple users with individual accounts allowing access to
 
 == Invite users
 
-As an _Admin_, to invite a new user, you invite at the project level and assign a project-level role.
-
-. Within a project, go to *Users* and select *Invite user*.
-. Enter the **Email** address of the person you want to invite and press *Add*.
-. Select the user's **Role**.
+As an _Admin_, go to *Users* from within a project, and select *Invite users*.
+You need to provide an email address for the new user and decide which project-level role to assign them.
 . Select **Invite**.
-* The invited user will receive an email with a link to accept the invitation.
-* The new user will appear within the list of users on the project **User** page with the `Pending invite` Status until they accept the invite.
-* On accepting the invite, the invited user automatically gets an `ORG_MEMBER` role in the organization the project is part of
-* If needed, you can change the org-level role after the invite is accepted - only do this if the user needs a different role at the organization level.
+The invited user will receive an email with a link to accept the invitation and their status is *Pending* until they accept the invitation.
+Note that on accepting the invite, the invited user automatically gets an `ORG_MEMBER` role in the organization the project is part of.
+If needed, you can change the org-level role after the invite is accepted.
 
 .Grant users access to a project
 image::inviteusers.png[]
@@ -25,20 +21,10 @@ image::inviteusers.png[]
 
 // You can also close the **Project invitation** modal without accepting or declining the invite(s) and later manually re-open the modal by selecting the **Pending invites** envelope icon in the console header.
 
-== Edit roles
+== Edit users and roles
 
-As an _Admin_, to edit an existing user's role:
+From the *Users* page, as and _Admin_, you can edit users and their roles using the [...] more menu by the user's name.
 
-. Select the more actions (three dots) icon next to the user's name from the **User** page.
-. Select the user's new **Role**.
-. Select **Save**.
-
-== Delete users
-
-As an _Admin_, to delete an existing user:
-
-. Select the more actions (three dots) next to the user's name from the **User** page.
-. Select **Delete**.
 
 == Organization-level roles
 
@@ -168,7 +154,7 @@ The following roles are available at the org level:
 [[roles]]
 == Project-level roles
 
-Users within a project can be assigned one of the following roles and these are assigned on invitation:
+Users within a project can be assigned one of the following roles:
 
 * _Project Viewer_
 * _Metrics Reader_
