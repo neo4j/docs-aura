@@ -283,6 +283,10 @@ Returns a stream of `MAP` values, representing the given `PATH` values as a tree
 ¦ Qualified Name ¦ Type
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.addLabels[apoc.create.addLabels icon:book[] ^] +
 Adds the given labels to the given `NODE` values.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.clonePathToVirtual[apoc.create.clonePathToVirtual icon:book[] ^] +
+Takes the given `PATH` and returns a virtual representation of it.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.clonePathsToVirtual[apoc.create.clonePathsToVirtual icon:book[] ^] +
+Takes the given `LIST<PATH>` and returns a virtual representation of them.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.node[apoc.create.node icon:book[] ^] +
 Creates a `NODE` with the given dynamic labels.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.nodes[apoc.create.nodes icon:book[] ^] +
@@ -321,7 +325,9 @@ Returns a virtual `RELATIONSHIP`.
 Returns a virtual `RELATIONSHIP`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.virtual.fromNode[apoc.create.virtual.fromNode icon:book[] ^] +
 Returns a virtual `NODE` from the given existing `NODE`. The virtual `NODE` only contains the requested properties.
-¦ label:function[]
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.virtualPath[apoc.create.virtualPath icon:book[] ^] +
+Returns a virtual `PATH`.
+¦ label:procedure[]
 |===
 
 
@@ -671,7 +677,11 @@ Returns the minimum value of an integer.
 Returns the minimum value of a long.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.math/apoc.math.regr[apoc.math.regr icon:book[] ^] +
 Returns the coefficient of determination (R-squared) for the values of propertyY and propertyX in the given label.
-¦ label:procedure[]
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.math/apoc.math.sigmoid[apoc.math.sigmoid icon:book[] ^] +
+Returns the sigmoid of the given value.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.math/apoc.math.sigmoidPrime[apoc.math.sigmoidPrime icon:book[] ^] +
+Returns the sigmoid prime [ sigmoid(val) * (1 - sigmoid(val)) ] of the given value.
+¦ label:function[]
 |===
 
 
@@ -684,10 +694,18 @@ Returns the coefficient of determination (R-squared) for the values of propertyY
 Merges the given `NODE` values with the given dynamic labels.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.merge/apoc.merge.node.eager[apoc.merge.node.eager icon:book[] ^] +
 Merges the given `NODE` values with the given dynamic labels eagerly.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.merge/apoc.merge.nodeWithStats[apoc.merge.nodeWithStats icon:book[] ^] +
+Merges the given `NODE` values with the given dynamic labels. Provides queryStatistics in the result.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.merge/apoc.merge.nodeWithStats.eager[apoc.merge.nodeWithStats.eager icon:book[] ^] +
+Merges the given `NODE` values with the given dynamic labels eagerly. Provides queryStatistics in the result.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.merge/apoc.merge.relationship[apoc.merge.relationship icon:book[] ^] +
 Merges the given `RELATIONSHIP` values with the given dynamic types/properties.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.merge/apoc.merge.relationship.eager[apoc.merge.relationship.eager icon:book[] ^] +
 Merges the given `RELATIONSHIP` values with the given dynamic types/properties eagerly.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.merge/apoc.merge.relationshipWithStats[apoc.merge.relationshipWithStats icon:book[] ^] +
+Merges the given `RELATIONSHIP` values with the given dynamic types/properties. Provides queryStatistics in the result.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.merge/apoc.merge.relationshipWithStats.eager[apoc.merge.relationshipWithStats.eager icon:book[] ^] +
+Merges the given `RELATIONSHIP` values with the given dynamic types/properties eagerly. Provides queryStatistics in the result.
 ¦ label:procedure[]
 |===
 
@@ -705,14 +723,20 @@ Returns the type name of the given value.
 Returns a `MAP` containing the type names of the given values.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.data[apoc.meta.data icon:book[] ^] +
 Examines the full graph and returns a table of metadata.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.data.of[apoc.meta.data.of icon:book[] ^] +
+Examines the given sub-graph and returns a table of metadata.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.graph[apoc.meta.graph icon:book[] ^] +
 Examines the full graph and returns a meta-graph.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.graph.of[apoc.meta.graph.of icon:book[] ^] +
+Examines the given sub-graph and returns a meta-graph.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.graphSample[apoc.meta.graphSample icon:book[] ^] +
 Examines the full graph and returns a meta-graph.
 Unlike `apoc.meta.graph`, this procedure does not filter away non-existing paths.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.nodeTypeProperties[apoc.meta.nodeTypeProperties icon:book[] ^] +
 Examines the full graph and returns a table of metadata with information about the `NODE` values therein.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.relTypeProperties[apoc.meta.relTypeProperties icon:book[] ^] +
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.nodes.count[apoc.meta.nodes.count icon:book[] ^] +
+Returns the sum of the `NODE` values with the given labels in the `LIST<STRING>`.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.relTypeProperties[apoc.meta.relTypeProperties icon:book[] ^] +
 Examines the full graph and returns a table of metadata with information about the `RELATIONSHIP` values therein.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.schema[apoc.meta.schema icon:book[] ^] +
 Examines the given sub-graph and returns metadata as a `MAP`.
@@ -782,7 +806,10 @@ The `NODE` values are then combined to become one `NODE`, with all labels of the
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.nodes/apoc.nodes.connected[apoc.nodes.connected icon:book[] ^] +
 Returns true when a given `NODE` is directly connected to another given `NODE`.
 This function is optimized for dense nodes.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.nodes/apoc.nodes.delete[apoc.nodes.delete icon:book[] ^] +
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.nodes/apoc.nodes.cycles[apoc.nodes.cycles icon:book[] ^] +
+Detects all `PATH` cycles in the given `LIST<NODE>`.
+This procedure can be limited on `RELATIONSHIP` values as well.
+¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.nodes/apoc.nodes.delete[apoc.nodes.delete icon:book[] ^] +
 Deletes all `NODE` values with the given ids.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.nodes/apoc.nodes.get[apoc.nodes.get icon:book[] ^] +
 Returns all `NODE` values with the given ids.
@@ -957,8 +984,12 @@ Redirects the given `RELATIONSHIP` to the given end `NODE`.
 [.procedures, opts=header, cols='5a,1a', separator=¦]
 |===
 ¦ Qualified Name ¦ Type
-¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.rel/apoc.rel.id[apoc.rel.id icon:book[] ^] +
+¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.rel/apoc.rel.endNode[apoc.rel.endNode icon:book[] ^] +
+Returns the end `NODE` for the given virtual `RELATIONSHIP`.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.rel/apoc.rel.id[apoc.rel.id icon:book[] ^] +
 Returns the id for the given virtual `RELATIONSHIP`.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.rel/apoc.rel.startNode[apoc.rel.startNode icon:book[] ^] +
+Returns the start `NODE` for the given virtual `RELATIONSHIP`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.rel/apoc.rel.type[apoc.rel.type icon:book[] ^] +
 Returns the type for the given virtual `RELATIONSHIP`.
 ¦ label:function[]
@@ -986,6 +1017,8 @@ Returns all distinct `NODE` property values for the given key.
 Returns all distinct property values and counts for the given key.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.schema/apoc.schema.relationship.constraintExists[apoc.schema.relationship.constraintExists icon:book[] ^] +
 Returns a `BOOLEAN` depending on whether or not a constraint exists for the given `RELATIONSHIP` type with the given property names.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.schema/apoc.schema.relationship.indexExists[apoc.schema.relationship.indexExists icon:book[] ^] +
+Returns a `BOOLEAN` depending on whether or not an index exists for the given `RELATIONSHIP` type with the given property names.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.schema/apoc.schema.relationships[apoc.schema.relationships icon:book[] ^] +
 Returns the indexes and constraints information for all the relationship types in the database.
 It is possible to define a set of relationship types to include or exclude in the config parameters.
@@ -1145,6 +1178,8 @@ Generates a random `STRING` to the given length using a length parameter and an 
 Unsuitable for cryptographic use-cases.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.regexGroups[apoc.text.regexGroups icon:book[] ^] +
 Returns all groups matching the given regular expression in the given text.
+¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.regexGroupsByName[apoc.text.regexGroupsByName icon:book[] ^] +
+Returns all groups with their group name matching the given regular expression in the given text.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.regreplace[apoc.text.regreplace icon:book[] ^] +
 Finds and replaces all matches found by the given regular expression with the given replacement.
 ¦ label:function[] label:deprecated[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.repeat[apoc.text.repeat icon:book[] ^] +
