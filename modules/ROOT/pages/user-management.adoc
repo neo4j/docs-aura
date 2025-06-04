@@ -434,10 +434,18 @@ The predefined roles are assigned the following privileges on the instance level
 // User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
 // ====
 
-== Invite users
+== Users
+
+== Users
+
+Each project can have multiple users with individual accounts allowing access to the same environment.
+
+The users with access to a project can be viewed and managed from the **Users** page, available from the sidebar in the console.
+
+=== Invite users
 
 * As an _Admin_, go to *Users* from within a project, and select *Invite users*.
-You need to provide an email address for the new user and decide which project-level role to assign them. Select **Invite**.
+You need to provide an email address for the new user and decide which project-level role to assign them. 
 * The invited user will receive an email with a link to accept the invitation and their status is *Pending* until they accept the invitation.
 Note that on accepting the invite, the invited user automatically gets an `ORG_MEMBER` role in the organization the project is part of.
 If needed, you can change the org-level role after the invite is accepted.
@@ -445,6 +453,6 @@ If needed, you can change the org-level role after the invite is accepted.
 .Grant users access to a project
 image::inviteusers.png[]
 
-== Edit users and roles
+=== Edit users and roles
 
 From the *Users* page, as and _Admin_, you can edit users and their roles using the [...] more menu by the user's name.
