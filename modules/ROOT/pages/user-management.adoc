@@ -6,6 +6,11 @@
 User management is a feature within Aura that allows admins to invite users and set their roles within an isolated environment.
 Each project can have multiple users with individual accounts allowing access to the same environment.
 
+[NOTE]
+Invite users at the project-level via *Project > Users* and assign their project role when you invite them. 
+Once they accept the invite, they automatically get added at the organization-level as an `ORG_MEMBER` in addition to the project role. 
+If needed, change their organization role via *Organization > Users*.
+
 == Organization-level roles
 
 Roles at the organization level determine what administrative capabilities a user has across all projects within the organization.
