@@ -1,6 +1,6 @@
 [aura-customer-metrics-integration]
 = Customer Metrics Integration (CMI)
-:description: This page descriped the Custom Metrics Integration for Neo4j Aura.
+:description: This page describes the Custom Metrics Integration for Neo4j Aura.
 :page-aliases: platform/metrics-integration.adoc
 :table-caption!:
 
@@ -38,7 +38,7 @@ Observability is of paramount importance, and therefore the customer metrics int
 
 image::cmi_process_overview.png[]
 
-Detailed Aura CMI setup steps & APM integration examples are described in next chapters.
+Detailed Aura CMI setup steps and APM integration examples are described in the next chapters.
 
 [aura-cmi-security]
 == Security
@@ -46,7 +46,7 @@ Detailed Aura CMI setup steps & APM integration examples are described in next c
 Metrics for a Neo4j Aura instance are only returned if all the following are true:
 
 * `Authorization` header of the metrics request contains a valid token.
-* The token was issued for an Aura user with _Metrics Reader_ role.
+* The token was issued for an Aura user with the _Metrics Reader_ role.
 * Project has instances of types `Enterprise (Virtual Dedicated Cloud)` or `Business Critical`.
 * The specified instance belongs to the specified project.
 
@@ -103,8 +103,23 @@ Metrics reference is provided xref:./reference.adoc[here].
 [aura-cmi-metric-scrape-interval]
 == Metric scrape interval
 
-Recommended scrape interval for metrics is in the range of 30 seconds up to 2 minutes, depending on requirements.
+The recommended scrape interval for metrics is in the range of 30 seconds up to 2 minutes, depending on requirements.
 The metrics endpoint caches metrics for 30 seconds.
+
+[aura-cmi-metric-scrape-timeout]
+== Metric scrape timeout
+
+The recommended scrape timeout for metrics is 30 seconds.
+
+Examples of setting scrape timeout for different APM systems:
+
+* Prometheus: `scrape_timeout: 30s` (see link:https://prometheus.io/docs/prometheus/latest/configuration/configuration/#:~:text=scrape%20interval.%0A%5B-,scrape_timeout%3A%20%3Cduration%3E,-%7C%20default%20%3D%20%3Cglobal_config.scrape_timeout[Prometheus configuration reference^])
+* Datadog: `timeout: 30` (see link:https://github.com/DataDog/integrations-core/blob/824902a298e54e4af8d5e6e080e7131e3f1e98b0/openmetrics/datadog_checks/openmetrics/data/conf.yaml.example#L35C7-L35C14[Datadog Agent configuration^])
+
+[IMPORTANT]
+====
+Setting the scrape timeout to a lower value increases the risk of request timeouts which can lead to less accurate or less up-to-date metric data.
+====
 
 [aura-cmi-metrics-granularity]
 == Metric granularity
