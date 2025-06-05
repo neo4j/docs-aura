@@ -4,12 +4,17 @@
 :page-aliases: platform/user-management.adoc
 
 User management is a feature within Aura that allows admins to invite users and set their roles within an isolated environment.
-Each project can have multiple users with individual accounts allowing access to the same environment.
+
+You can view and manage roles from *Users* pages, accessible via the console sidebar.
+An organization has one *Users* page for managing organization-level roles.
+Each project has a *Users* page for managing project-specific roles.
 
 [NOTE]
-Invite users at the project-level via *Project > Users* and assign their project role when you invite them. 
-Once they accept the invite, they automatically get added at the organization-level as an `ORG_MEMBER` in addition to the project role. 
-If needed, change their organization role via *Organization > Users*.
+====
+Users can only be invited on the project-level. 
+Regardless of which project-role is specified in the invitation, the user is added to the organization as an `ORG_MEMBER` by default. 
+The organization-level role cannot be changed until the user accepts their invitation.
+====
 
 == Organization-level roles
 
@@ -439,23 +444,17 @@ The predefined roles are assigned the following privileges on the instance level
 // User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
 // ====
 
-== Users
-
-Each project can have multiple users with individual accounts allowing access to the same environment.
-
-The users with access to a project can be viewed and managed from the **Users** page, available from the sidebar in the console.
-
 === Invite users
 
 * As an _Admin_, go to *Users* from within a project, and select *Invite users*.
 You need to provide an email address for the new user and decide which project-level role to assign them. 
 * The invited user will receive an email with a link to accept the invitation and their status is *Pending* until they accept the invitation.
 Note that on accepting the invite, the invited user automatically gets an `ORG_MEMBER` role in the organization the project is part of.
-If needed, you can change the org-level role after the invite is accepted.
+If needed, you can edit the organization-level role after the invite is accepted.
 
 .Grant users access to a project
 image::inviteusers.png[]
 
 === Edit users and roles
 
-From the *Users* page, as and _Admin_, you can edit users and their roles using the [...] more menu by the user's name.
+From the *Users* page, as and _Admin_, you can delete users or edit their roles using the [...] more menu by the user's name.
