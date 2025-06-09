@@ -24,6 +24,8 @@ The Graph Analytics plugin allows you to use the link:https://neo4j.com/docs/gra
 * All supported cloud providers and regions
 
 You can enable or disable Graph Analytics when necessary, both during xref:getting-started/create-instance.adoc[instance creation] and on an xref:managing-instances/instance-details.adoc[existing instance].
+It can also be changed with the link:https://neo4j.com/docs/aura/platform/api/specification/#/instances/patch-instance-id[Aura API].
+
 The plugin shares compute and memory resources with the AuraDB server, so you do not incur any additional costs when you enable it.
 
 [[get-started-plugin]]
@@ -46,6 +48,11 @@ The details on any running sessions are available in the xref:visual-tour/index.
 === From an AuraDB instance
 
 label:AuraDB-Business-Critical[] label:AuraDB-Virtual-Dedicated-Cloud[]
+
+[IMPORTANT]
+====
+Graph Analytics Serverless is currently unavailable via any of the xref:cloud-providers.adoc[cloud provider marketplaces].
+====
 
 You can use Graph Analytics Serverless from any AuraDB Business Critical or AuraDB Virtual Dedicated Cloud instance with the following requirements:
 
