@@ -2,19 +2,67 @@
 = Data provision
 :description: This section describes how to provide files for import.
 
-You start by connecting your data source, which can be a relational database or local flat files.
+The *Data sources* tab is where you can add new data sources and see sources you have already added.
 
-In essence, you provide the data in some format to be imported and Import imports this into your instance.
+You start by connecting a data source, which can be a relational database or a cloud data warehouse, or you can stream local flat files.
+
+In essence, you provide the data in some format to be imported and the Import service imports this into your instance.
 
 Import supports relational databases and flat files, i.e. files that contain data in a tabular format where each row represents a record and each column represents a field in that record.
 The most common format for flat files is CSV (comma-separated values), but Import also supports TSV (tab-separated values).
 
-When connecting to a remote data source, the tables are provided for you from that database.
+== Connecting to remote data sources
 
-But when you stream your local CSV files, the process can be more iterative and manual.
+When you use the *New data source* button, you are presented with the following options for remote sources:
+
+* PostgreSQL
+* MySQL
+* SQL Server
+* Oracle
+* Snowflake
+
+Regardless of which one you select, you are required to provide roughly the same information to allow the Import service to load the tables for you from your remote source.
+
+.Example data source
+[.shadow]
+image::data-source-fields.png[]
+
+First, you need to give the data source a name to identify it.
+
+Second, you need to complete various fields with information from your data source.
+These are different depending on which source you are using.
+
+The *Host* field is the same for all sources, it is your database server's hostname or IP address, and it can normally be found in your account details with the vendor in question.
+
+The *Port* is pre-populated for you and defines which network port is used to connect to your database server.
+
+*Database* or *Service* (for Oracle) is the name of the database that contains the tables you want to import to your Aura instance.
+
+The *Schema* of your tabular data is needed for Import to know how your tables relate to each other.
+Note that this field is not included for MySQL.
+
+Additionally for cloud data warehouses (Snowflake), you can optionally provide both a *Warehouse* name and a *Role*.
+If no information is provided in these fields, the default values are used.
+
+Third, you need to provide user credentials for your data source.
+These are the username and password used to access the remote data source, *not* your Aura credentials.
+
+Once you have entered all the required information, the Import service can connect to your remote source and can fetch all the tables and import them to your Aura instance.
+
+When you have added a data source, you need to create a data model before you can import data.
+See xref:import/modeling.adoc[] for more information.
+Your added data sources are listed on the *Data sources* tab and you can interact with them via the *[...]* menu.
+
+.Interact with data source
+[.shadow]
+image::data-sources-interaction.png[]
+
+== Streaming local files
+
+When you stream your local CSV files, the process can be more iterative and manual.
 
 Import requires all CSV files to have a header row and at least one row of data.
-The header row speficies how the data in the file should be interpreted and contains information for each field.
+The header row specifies how the data in the file should be interpreted and contains information for each field.
 For more information about CSV files and the header format, see link:{neo4j-docs-base-uri}/operations-manual/current/tools/neo4j-admin/neo4j-admin-import/#import-tool-header-format[Operations Manual -> CSV header format].
 Keep in mind that the column names must be unique, i.e. it is not possible to have two columns with the same name within the same file.
 
@@ -29,3 +77,7 @@ When you provide CSV files to Import, only a reference to your local files is ke
 This is used to send the necessary commands to stream the data to your target database when you run the import.
 Your local files themselves are *not* uploaded anywhere and therefore, if you reload the page before running the import, the files are no longer available to the page and you need to provide them again.
 This is due to security features of your browser.
+
+
+Once the tables or files are in place, you need to specify how they should be organized in relation to each other, you need to *model your data*, in other words.
+See xref:import/modeling.adoc[] for more information.

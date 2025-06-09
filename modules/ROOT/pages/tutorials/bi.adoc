@@ -1,0 +1,88 @@
+= Using the Neo4j BI Connector
+:page-aliases:platform/tutorials/bi.adoc
+
+In this tutorial we use the Neo4j Connector for BI to read graph data from an Aura instance using some common <<_using_command_line_sql_clients,SQL clients>> and <<_using_bi_tools,BI tools>>.
+
+[CAUTION]
+====
+This tutorial includes instructions on the usage of third-party software, which may be subject to changes beyond our control. 
+In case of doubt, refer to the third-party software documentation.
+====
+
+== Downloading the connector
+
+Download the connector from the https://neo4j.com/download-center/#integrations[Download Center].
+Depending on the SQL client or BI tool it will be used with, you will need either the JDBC or the ODBC connector; see the usage examples for further details.
+
+== Preparing example data
+
+Before trying the connector with any of the listed tools, some data needs to be loaded on Aura.
+This can be achieved by running the following Cypher query in the Neo4j Browser:
+
+[source, cypher, subs=attributes+, role=noplay]
+----
+CREATE
+  (john:Person {name: "John", surname: "Doe", age: 42}),
+  (jane:Person {name: "Jane", surname: "Doe", age: 40}),
+  (john)-[:KNOWS]->(jane)
+----
+
+== Using BI tools
+
+Commonly used BI tools include <<_tableau>> (which uses the JDBC driver) and <<_power_bi>> (which uses the ODBC driver).
+
+[TIP]
+====
+When connecting with a JDBC driver, the `neo4j+s` URI scheme must be changed into `neo4j` and the `SSL=true` parameter must be added to the URL.
+====
+
+=== Tableau
+
+[NOTE]
+====
+This example requires https://www.tableau.com/en-gb/products/desktop[Tableau Desktop].
+
+Refer to the link:https://help.tableau.com/current/pro/desktop/en-us/examples_otherdatabases_jdbc.htm[Tableau documentation] for more information on how to add a JDBC database.
+====
+
+After downloading the JDBC Neo4j Connector for BI from the https://neo4j.com/download-center/#integrations[Download Center]:
+
+. Close any running instances of Tableau Desktop.
+. Copy the Neo4j driver JAR file into the appropriate Tableau `Drivers` folder.
+* Use `C:\Program Files\Tableau\Drivers` on Windows.
+* Use `~/Library/Tableau/Drivers` on macOS.
+If the folder is not visible, select `Go -> Go to Folder` in Finder to open the folder manually.
+
+. Start Tableau and search for the `Other Databases (JDBC)` option.
+. Insert the Aura URL as `jdbc:neo4j://xxxxxxxx.databases.neo4j.io?SSL=true`, leave the SQL dialect as `SQL92`, and complete the relevant credentials.
+
+After the connection is established, you can select the `neo4j` database and the `Node` schema to find the `Person` table.
+You can then explore the table to find the example data.
+
+==== Troubleshooting
+
+If the connection fails with a `Generic JDBC connection error`, check if you installed the Neo4j driver in the correct location and then:
+
+* Download the `SSL.com` root certificates as explained on link:https://www.ssl.com/how-to/install-ssl-com-ca-root-certificates/[ssl.com] and install them as shown in the link:https://help.tableau.com/current/pro/desktop/en-us/jdbc_ssl_config.htm[Tableau documentation], then restart Tableau and repeat the previous steps (recommended option).
+* Add `&sslTrustStrategy=TRUST_ALL_CERTIFICATES` to the connection string (after `SSL=true`) and try to connect again.
+**This option requires caution and should not be used in a production environment**.
+
+=== Power BI
+
+[NOTE]
+====
+This example requires Microsoft Windows and https://powerbi.microsoft.com/en-us/desktop/[Power BI Desktop].
+
+Refer to the link:https://docs.microsoft.com/en-us/power-bi/connect-data/desktop-connect-using-generic-interfaces[Power BI documentation] for more information on how to add an ODBC database.
+====
+
+After downloading and installing the ODBC Neo4j Connector for BI from the https://neo4j.com/download-center/#integrations[Download Center]:
+
+. Open Power BI Desktop.
+. Search for `ODBC` in the *Get data from another source* panel.
+. Select `Simba Neo4j` in the *DSN dropdown* menu.
+. Insert the connection string `Host=xxxxxxxx.databases.neo4j.io;SSL=1` in the *Advanced options* section.
+. Insert your username and password.
+
+Once connected, open sequentially `ODBC` -> `neo4j` -> `Node` -> `Person` in the *Navigator* window to see a preview of the table.
+

@@ -51,8 +51,10 @@ asciidoc:
     # sectnums: true, removed so they are off by default
     # sectnumlevel: 3,
     experimental: ''
-    copyright: 2024
+    copyright: 2025
     common-license-page-uri: https://neo4j.com/docs/license/
+    page-add-notes-module: ROOT
+    page-add-notes-tags: note
     # apoc procedures contain content that look like attributes, but aren't
     params: '\{params}'
     config: '\{config}'
@@ -60,5 +62,13 @@ asciidoc:
     properties: '\{properties}'
     json: '\{json}'
     maps: '\{maps}'
-    neo4j-base-uri: https://neo4j.com 
+    neo4j-base-uri: https://neo4j.com
     neo4j-docs-base-uri: https://neo4j.com/docs
+    # User research promo
+    page-ad-overline-link: https://neo4j.com/docs/user-research/?ref=aura-docs
+    page-ad-title: Join the User Research panel
+    page-ad-icon: chat-bubble-left-right
+    page-ad-description:  Influence the future of Neo4j products by sharing your experiences with a researcher.
+    page-ad-link: https://neo4j.com/docs/user-research/?ref=aura-docs
+    page-ad-underline-role: button
+    page-ad-underline: Learn more
