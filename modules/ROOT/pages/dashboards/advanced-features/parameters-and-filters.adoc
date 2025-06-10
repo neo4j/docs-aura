@@ -50,7 +50,8 @@ image::dashboards/parameter-in-query.png[]
 
 == Filters
 
-Filters are special xref:dashboards/working-with-dashboards/managing-dashboards.adoc#_dashboard_cards[cards] and you can add them to your dashboards in a similar fashion.
+Filters are special dashboard xref:dashboards/working-with-dashboards/managing-dashboards.adoc#_dashboard_cards[cards].
+You can add them to your dashboards in a similar fashion.
 
 You can use a filter to dynamically set parameter values inside queries. 
 
@@ -79,9 +80,11 @@ In the **Dashboards** page, use the three dots icon of the filter you wish to ed
 
 // screenshot
 
-////
-== Use a filter in a card
 
-Lorem ipsum.
-////
+== Using a filter in a card
+
+Use the filter parameter as you normally would in the query of the card, see <<using-a-parameter-in-a-query>>.
+To set a different value, select the value in the filter.
+All cards which make use of the parameter will be updated with the new value. 
+
 
