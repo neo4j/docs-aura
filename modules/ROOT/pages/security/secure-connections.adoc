@@ -71,7 +71,7 @@ Refer to link:https://aws.amazon.com/privatelink[AWS PrivateLink] documentation 
 
 [NOTE]
 ====
-In AWS region `us-east-1`, we do not support the Availability Zone with ID `use1-az3` for private endpoints.
+In AWS region `us-east-1`, Neo4j does not support the Availability Zone with ID `use1-az3` for private endpoints.
 ====
 
 All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet. 
