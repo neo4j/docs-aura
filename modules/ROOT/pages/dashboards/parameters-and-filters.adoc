@@ -36,13 +36,14 @@ Each parameter has an icon next to it hinting at its data type:
 
 === Using a parameter in a query
 
-To use a parameter in a query, use the parameter name prefixed with `$`, for example `$example_number_param` for the parameter with name "example_number_param":
+To use a parameter in a query, prefix the parameter name with `$`.
+For example, to use a parameter with a number value of 4 and the name "unit_param", use `$unit_param` in your query:
 
 .Cypher query for a table which displays products with a certain number of units in stock
 [source,cypher]
 ----
 MATCH (p:Product)
-WHERE p.unitsInStock < $example_number_param
+WHERE p.unitsInStock = $unit_param
 RETURN p.productName as product, p.unitsInStock AS units
   LIMIT 10
 ----
@@ -105,17 +106,10 @@ In the **Dashboards** page, use the three dots icon of the filter you wish to ed
 
 Use the filter parameter as you normally would in the query of the card.
 
-For example, the table from xref:#_using_a_parameter_in_a_query[] and the parameter from xref:#_adding_a_filter[] are connected:
-
-.A filter for `unitsInStock` and a card using it
-image::dashboards/parameters-and-filters/filter-and-card.png[]
-
+For example, the table from xref:#_using_a_parameter_in_a_query[] and the parameter from xref:#_adding_a_filter[] are connected.
 You can select a value from the filter card drop down to let the dashboard assign this value to the parameter `$example_number_param` and dynamically update the table:
 
 .Selecting a new value for the unitsInStock filter
-image::dashboards/parameters-and-filters/filter-and-card-new-value.png[]
+image::dashboards/parameters-and-filters/filter-and-card.gif[]
 
-All cards which make use of the parameter are updated with the new value: 
-
-.The updated card
-image::dashboards/parameters-and-filters/filter-and-card-updated.png[]
+All cards which make use of the parameter are updated with the new value.
