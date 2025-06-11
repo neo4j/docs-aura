@@ -1,17 +1,16 @@
-= Filters and parameters
+= Parameters and filters
 :description: Use parameters in your dashboards to further customize queries or use them in filters for node and relationship properties.
 
 
 == Parameters
 
 Parameters are associated with a specific dashboard.
-Each parameter can have a value and a type both of which you can set initially.
-If you want to set a value, you must set a type first.
+Each parameter has a value and type both of which you can set initially. 
 
 Display the parameters of a dashboard by using the parentheses button to show the **Parameters** drawer.
 
 .The parameters drawer
-image::dashboards/parameters-drawer.png[]
+image::dashboards/parameters-and-filters/parameters-drawer.png[]
 
 The drawer shows the dashboard parameters in alphabetical order.
 Each parameter has an icon next to it hinting at its data type:
@@ -25,7 +24,7 @@ Each parameter has an icon next to it hinting at its data type:
 === Creating a parameter
 
 . From the **Parameters** drawer, use the **Add** button.
-. In the dialog, enter a parameter name and optionally select a data type and an initial value, then **Save**.
+. In the dialog, enter a parameter name, select a data type and optionally an initial value for the parameter, then **Save**.
 
 
 === Editing a parameter
@@ -37,10 +36,19 @@ Each parameter has an icon next to it hinting at its data type:
 
 === Using a parameter in a query
 
-To use a parameter in a query, use the parameter name prefixed with `$`, for example `$example_number_param` for the parameter with name "example_number_param".
+To use a parameter in a query, use the parameter name prefixed with `$`, for example `$example_number_param` for the parameter with name "example_number_param":
 
-.Using a parameter in a query
-image::dashboards/parameter-in-query.png[]
+.Cypher query for a table which displays products with a certain number of units in stock
+[source,cypher]
+----
+MATCH (p:Product)
+WHERE p.unitsInStock < $example_number_param
+RETURN p.productName as product, p.unitsInStock AS units
+  LIMIT 10
+----
+
+.Using a parameter in a query to display products with a certain number of units in stock
+image::dashboards/parameters-and-filters/parameter-in-query.png[]
 
 
 === Deleting a parameter
@@ -52,40 +60,62 @@ image::dashboards/parameter-in-query.png[]
 == Filters
 
 Filters are special dashboard xref:dashboards/working-with-dashboards/managing-dashboards.adoc#_dashboard_cards[cards].
+
+.A filter card for the product node property `unitsInStock`
+image::dashboards/parameters-and-filters/filter-units-in-stock-card.png[]
+
 You can add them to your dashboards in a similar fashion.
+You can use a filter to dynamically set parameter values inside queries.
 
-You can use a filter to dynamically set parameter values inside queries. 
 
-
-== Adding a filter
+=== Adding a filter
 
 . In the **Dashboards** page, use **Add filter** at the bottom right.
 . In the **Add filter** dialog, select a filter type: a node or relationship type, and a property.
 . Use either an existing parameter or create a new one, then **Save**.
 
+.Creating a filter for the product node property `unitsInStock`
+image::dashboards/parameters-and-filters/filter-units-in-stock.png[]
 
-== Editing a filter
+[NOTE]
+====
+The tie between the filter and the node or relationship property is necessary to let the dashboard infer values for the filter card to chose from.
+====
+
+
+=== Editing a filter
 
 . In the **Dashboards** page, use the three dots icon of the filter you wish to edit and select **Edit filter**.
 . Edit your filter and **Save**.
 
 
-== Deleting a filter
+=== Deleting a filter
 
 In the **Dashboards** page, use the three dots icon of the filter you wish to edit and select **Delete**, then confirm.
 
 
-//== Highlight all cards using a filter
+//=== Highlight all cards using a filter
 //
 //In the **Dashboards** page, use the target icon of a filter to highlight all cards that make use of this particular filter.
 
 // screenshot
 
 
-== Using a filter in a card
+=== Using a filter in a card
 
-Use the filter parameter as you normally would in the query of the card, see <<using-a-parameter-in-a-query>>.
-To set a different value, select the value in the filter.
-All cards which make use of the parameter will be updated with the new value. 
+Use the filter parameter as you normally would in the query of the card.
 
+For example, the table from xref:#_using_a_parameter_in_a_query[] and the parameter from xref:#_adding_a_filter[] are connected:
 
+.A filter for `unitsInStock` and a card using it
+image::dashboards/parameters-and-filters/filter-and-card.png[]
+
+You can select a value from the filter card drop down to let the dashboard assign this value to the parameter `$example_number_param` and dynamically update the table:
+
+.Selecting a new value for the unitsInStock filter
+image::dashboards/parameters-and-filters/filter-and-card-new-value.png[]
+
+All cards which make use of the parameter are updated with the new value: 
+
+.The updated card
+image::dashboards/parameters-and-filters/filter-and-card-updated.png[]
