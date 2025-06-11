@@ -29,7 +29,7 @@ RETURN c.categoryName AS Category, count(p) AS Products LIMIT 20
 ----
 
 .A table displaying the number of products per category
-image::dashboards/visualization-table-basic.png[]
+image::dashboards/visualizations/visualization-table-basic.png[]
 
 
 
@@ -44,7 +44,7 @@ RETURN c as CategoryNode, collect(p) AS Products LIMIT 20
 ----
 
 .A table displaying the category nodes and collections of products
-image::dashboards/visualization-table-nodes-and-collections.png[]
+image::dashboards/visualizations/visualization-table-nodes-and-collections.png[]
 
 ////
 
