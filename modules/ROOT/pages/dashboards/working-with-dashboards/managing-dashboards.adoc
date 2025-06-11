@@ -25,13 +25,13 @@ See xref::/dashboards/working-with-dashboards/ai-dashboards.adoc[] for advice ho
 
 == Editing a dashboard
 
-. Select a dashboard tile from the the **Dashboards** page.
+. Select a dashboard tile from the **Dashboards** page.
 . To change the title, select the title text and edit it, then confirm.
 
 
 === Dashboard pages
 
-Select a dashboard tile from the the **Dashboards** page.
+Select a dashboard tile from the **Dashboards** page.
 Dashboard pages are organized as tabs.
 A new dashboard contains a single page "Main page".
 You can edit or duplicate the page via hovering the page name and using the three dots icon.
@@ -41,11 +41,26 @@ Additional pages can also be deleted from the three dots menu.
 
 === Dashboard cards
 
-A dashboard page consists of cards.
+A dashboard page can hold any number of cards.
 Each card can hold a xref::/dashboards/visualizations/index.adoc[visualization], also referred to as the **Chart type**.
-To add a card, use **Add card* at the bottom right.
+To add a card, use **Add card** at the bottom right.
 Use the three dots at the top right of a card to edit the card.
 Click the six dots at the top left of a card to drag and drop it within the grid of the page.
+
+
+=== Dashboard filters
+
+A dashboard page can hold filters.
+A filter is a special type of card reserved for parameters used to filter data retrieved from your database.
+See xref:dashboards/advanced-features/parameters-and-filters.adoc#_filters[filters] for more information.
+To add a filter, use **Add filter** at the bottom right.
+Use the three dots at the top right of a filter to edit the filter.
+Click the six dots at the top left of a filter to drag and drop it within the grid of the page.
+
+
+=== Dashboard parameters
+
+See xref:dashboards/advanced-features/parameters-and-filters.adoc#_parameters[parameters].
 
 
 ////
