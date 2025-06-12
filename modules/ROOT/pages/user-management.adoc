@@ -11,8 +11,8 @@ Each project has a *Users* page for managing project-specific roles.
 
 [NOTE]
 ====
-Users can only be invited on the project-level. 
-Regardless of which project-role is specified in the invitation, the user is added to the organization as an `ORG_MEMBER` by default. 
+Users can only be invited on the project-level.
+Regardless of which project-role is specified in the invitation, the user is added to the organization as an `ORG_MEMBER` by default.
 The organization-level role cannot be changed until the user accepts their invitation.
 ====
 
@@ -249,205 +249,199 @@ The `metrics reader` role can view and open instances in the console, however, l
 | {check-mark}
 |===
 
-=== Predefined roles
+// === Predefined roles
 
-Users within a project can access instances seamlessly with their console role if xref:security/tool-auth.adoc[Tool authentication with Aura user] is enabled.
-
-[NOTE]
-====
-New organizations created after May 29th 2025 will have Tool authentication with Aura user enabled by default.
-====
-
-When enabled, a user connects seamlessly with a predefined database role that matches their console role, i.e. their project-level role.
-Predefined roles are *immutable* and apply to all Free, Professional, and Business Critical instances.
-The predefined roles are assigned the following privileges on the instance level:
-
-.Predefined roles and database privileges
-[options="header", cols="3,^,^,^,^,^"]
-|===
-| Privilege
-| Viewer
-| Member
-3+| Admin
-
-|
-|
-|
-| Free
-| Professional
-| Business Critical
-
-| Access to database
-| {check-mark}
-| {check-mark}
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| Start and stop database
-|
-|
-|
-|
-| {check-mark}
-
-| List constraints
-| {check-mark}
-| {check-mark}
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| Create constraints
-|
-|
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| Delete constraints
-|
-|
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| List indexes
-| {check-mark}
-| {check-mark}
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| Create indexes
-|
-|
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| Delete indexes
-|
-|
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| Find nodes and relationships and read their properties
-| {check-mark}
-| {check-mark}
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| Load external data in queries
-|
-| {check-mark}
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| Write to the graph
-|
-| {check-mark}
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| Execute procedures and functions
-| {check-mark}
-| {check-mark}
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| Name management for node labels, relationship types, and property names.
-|
-| {check-mark}
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| List and end transactions for specified users on the database.
-|
-|
-| {check-mark}
-| {check-mark}
-| {check-mark}
-
-| List, create, delete, and modify users.
-|
-|
-|
-| {check-mark}
-| {check-mark}
-
-| Assign roles
-|
-|
-|
-| {check-mark}
-| {check-mark}
-
-| Remove roles
-|
-|
-|
-| {check-mark}
-| {check-mark}
-
-| Create roles
-|
-|
-|
-|
-| {check-mark}
-
-| Delete roles
-|
-|
-|
-|
-| {check-mark}
-
-| Rename roles
-|
-|
-|
-|
-| {check-mark}
-
-| List roles
-|
-|
-|
-| {check-mark}
-| {check-mark}
-
-| Privilege management footnote:[This includes to list, grant, and revoke privileges.]
-|
-|
-|
-|
-| {check-mark}
-|===
+// Users within a project can access instances seamlessly with their console role if xref:security/tool-auth.adoc[Tool authentication with Aura user] is enabled.
 
 // [NOTE]
 // ====
-// It is also possible to delete a user whose **Status** is _Pending invite_.
-
-// Select the trash can icon next to the user's name, and then select **Revoke**.
+// New organizations created after May 29th 2025 will have Tool authentication with Aura user enabled by default.
 // ====
 
-// [TIP]
-// ====
-// User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
-// ====
+// When enabled, a user connects seamlessly with a predefined database role that matches their console role, i.e. their project-level role.
+// Predefined roles are *immutable* and apply to all Free, Professional, and Business Critical instances.
+// The predefined roles are assigned the following privileges on the instance level:
+
+// .Predefined roles and database privileges
+// [options="header", cols="3,^,^,^,^,^"]
+// |===
+// | Privilege
+// | Viewer
+// | Member
+// 3+| Admin
+
+// |
+// |
+// |
+// | Free
+// | Professional
+// | Business Critical
+
+// | Access to database
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+
+// | Start and stop database
+// |
+// |
+// |
+// |
+// | {check-mark}
+
+// | List constraints
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+
+// | Create constraints
+// |
+// |
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+
+// | Delete constraints
+// |
+// |
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+
+// | List indexes
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+
+// | Create indexes
+// |
+// |
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+
+// | Delete indexes
+// |
+// |
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+
+// | Find nodes and relationships and read their properties
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+
+// | Load external data in queries
+// |
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+
+// | Write to the graph
+// |
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+
+// | Execute procedures and functions
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+
+// | Name management for node labels, relationship types, and property names.
+// |
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+
+// | List and end transactions for specified users on the database.
+// |
+// |
+// | {check-mark}
+// | {check-mark}
+// | {check-mark}
+
+// | List, create, delete, and modify users.
+// |
+// |
+// |
+// | {check-mark}
+// | {check-mark}
+
+// | Assign roles
+// |
+// |
+// |
+// | {check-mark}
+// | {check-mark}
+
+// | Remove roles
+// |
+// |
+// |
+// | {check-mark}
+// | {check-mark}
+
+// | Create roles
+// |
+// |
+// |
+// |
+// | {check-mark}
+
+// | Delete roles
+// |
+// |
+// |
+// |
+// | {check-mark}
+
+// | Rename roles
+// |
+// |
+// |
+// |
+// | {check-mark}
+
+// | List roles
+// |
+// |
+// |
+// | {check-mark}
+// | {check-mark}
+
+// | Privilege management footnote:[This includes to list, grant, and revoke privileges.]
+// |
+// |
+// |
+// |
+// | {check-mark}
+// |===
+
+
+[TIP]
+====
+User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
+====
 
 === Invite users
 
 * As an _Admin_, go to *Users* from within a project, and select *Invite users*.
-You need to provide an email address for the new user and decide which project-level role to assign them. 
+You need to provide an email address for the new user and decide which project-level role to assign them.
 * The invited user will receive an email with a link to accept the invitation and their status is *Pending* until they accept the invitation.
 Note that on accepting the invite, the invited user automatically gets an `ORG_MEMBER` role in the organization the project is part of.
 If needed, you can edit the organization-level role after the invite is accepted.
