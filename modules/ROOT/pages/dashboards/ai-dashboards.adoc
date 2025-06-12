@@ -16,13 +16,16 @@ This is due to the nature of how LLM processing works.
 
 == Creating a data-focused dashboard
 
-Copy the following prompt and use it to create a dashboard:
+Copy the following prompt or create your own and use it to create a dashboard:
 
 .Prompt for a data-focused dashboard
 [source]
 ----
 Create a dashboard on my retail database, giving me an overview over recent top customers, top selling products, currently available stock, a category overview and sales volume per quarter.
 ----
+
+The more information you include, the better the result.
+This holds for information about the database itself as well as entities in the data model. 
 
 .Create a data-focused dashboard
 image::dashboards/ai-dashboard-prompt-data-focus.png[]
@@ -35,7 +38,7 @@ image::dashboards/ai-dashboard-data-focus.png[]
 
 == Creating a visualization-focused dashboard
 
-Copy the following prompt and use it to create a dashboard:
+Copy the following prompt or create your own and use it to create a dashboard:
 
 .Prompt for a visualization-focused dashboard
 [source]
@@ -54,7 +57,7 @@ image::dashboards/ai-dashboard-visualization-focus.png[]
 
 == Combining data- and visualization focus
 
-Copy the following prompt and use it to create a dashboard:
+Copy the following prompt or create your own and use it to create a dashboard:
 
 .Prompt for a dashboard with both a data and a visualization focus
 [source]
