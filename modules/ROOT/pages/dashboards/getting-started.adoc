@@ -1,0 +1,92 @@
+= Getting started
+:description: This page contains a working example of Neo4j dashboards.
+
+Set up a working example of Neo4j dashboards.
+
+== Prerequisites
+
+You need:
+
+. A Neo4j Aura account
+. A Neo4j Aura database instance
+
+See xref::/getting-started/create-account.adoc[Create an account] and xref::/getting-started/create-instance.adoc[Create an instance] for details.
+
+== Add a sample data set
+
+Import the Northwind dataset to your instance:
+
+* In Aura, find the **Learn** button at the top right.
+* In the **Beginner** page, select the **Learn the basics** guide.
+* When prompted to **Connect to instance**, select the instance where you would like to import sample data.
+* In step 4 of 11 of the guide, import via **Get the Northwind dataset**.
+* Run the import from the **Import** page via **Run import**.
+
+The examples on this page refer to the Northwind dataset.
+
+
+== Create a dashboard
+
+Create a new dashboard:
+
+. In the **Dashboards** page, create a new dashboard with **Create dashboard** at the top right.
+. If prompted to **Connect to instance**, select your instance.
+. The UI takes you directly to the new dashboard. To change the title, select the title text and edit it, then confirm.
+. Your dashboard has a single page titled "Main page". To change the name, hover it and then use the more menu *[...]* and **Edit page name**.
+. Use **Add card** to create cards which represent visualizations.
+
+
+=== Add a card with a bar chart
+
+Create a bar chart which displays the number of orders per customer.
+
+In the dashboard page tab:
+
+. Use **Add card** at the bottom right of the page.
+. Optionally change the title of the card by clicking and editing, then confirm.
+. In the new card, use the more menu *[...]* at the top right, then select **Bar chart** as the **Chart type**.
+. **Edit** the Cypher query of the card and paste the following Cypher query to the input field, then **Save**:
++
+[source,cypher]
+----
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)
+RETURN c.contactName AS Customer, count(o) AS Orders
+ORDER BY Orders DESC LIMIT 10
+----
+
+Your bar chart should look like this:
+
+.Example bar chart
+image::dashboards/visualizations/visualization-bar-chart.png[]
+
+
+=== Add a card with a line chart
+
+Create a line chart which displays the number of products for each order ID.
+
+In the dashboard page tab:
+
+. Use **Add card** at the bottom right of the page.
+. Optionally change the title of the card by clicking and editing, then confirm.
+. In the new card, use the more menu *[...]* at the top right, then select **Line chart** as the **Chart type**.
+. **Edit** the Cypher query of the card and paste the following Cypher query to the input field, then **Save**:
++
+[source,cypher]
+----
+MATCH (o:Order)-[:ORDERS]->(p:Product)
+RETURN datetime(replace(o.orderDate, " ", "T")) AS Date,
+       count(p) as Categories
+LIMIT 20
+----
+
+Your line chart should look like this:
+
+.Example line chart
+image::dashboards/visualizations/visualization-line-chart.png[]
+
+
+== Next steps
+
+See xref::/dashboards/managing-dashboards.adoc[] for more dashboard options.
+
+See xref::/dashboards/visualizations/index.adoc[] to learn about the different charts and visualizations of Neo4j dashboards.

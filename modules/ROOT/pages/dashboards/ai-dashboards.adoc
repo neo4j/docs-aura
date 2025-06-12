@@ -1,0 +1,79 @@
+= Creating a dashboard with AI
+
+. In the **Create with AI** dialog, you can enter an optional natural language text prompt to let Neo4j create a customized dashboard.
+. Once you are happy with the prompt, **Create** the dashboard.
+
+[NOTE]
+====
+When creating a dashboard with AI, the AI analyzes your database schema, not the actual data in your database.
+====
+
+If you do not enter a prompt, Neo4j AI will still make use of your database schema and come up with a suitable dashboard.
+
+Note that the following examples might differ when you reproduce them.
+This is due to the nature of how LLM processing works.
+
+
+== Creating a data-focused dashboard
+
+Copy the following prompt or create your own and use it to create a dashboard:
+
+.Prompt for a data-focused dashboard
+[source]
+----
+Create a dashboard on my retail database, giving me an overview over recent top customers, top selling products, currently available stock, a category overview and sales volume per quarter.
+----
+
+The more information you include, the better the result.
+This holds for information about the database itself as well as entities in the data model. 
+
+.Create a data-focused dashboard
+image::dashboards/ai-dashboard-prompt-data-focus.png[]
+
+Here is a sample result:
+
+.A data-focused dashboard
+image::dashboards/ai-dashboard-data-focus.png[]
+
+
+== Creating a visualization-focused dashboard
+
+Copy the following prompt or create your own and use it to create a dashboard:
+
+.Prompt for a visualization-focused dashboard
+[source]
+----
+Create a dashboard with only graph visualizations to analyze my graph.
+----
+
+.Create visualization-focused dashboard
+image::dashboards/ai-dashboard-prompt-visualization-focus.png[]
+
+Here is a sample result:
+
+.A visualization-focused dashboard
+image::dashboards/ai-dashboard-visualization-focus.png[]
+
+
+== Combining data- and visualization focus
+
+Copy the following prompt or create your own and use it to create a dashboard:
+
+.Prompt for a dashboard with both a data and a visualization focus
+[source]
+----
+Create a dashboard with 5 bar charts analyzing products for categories and 5 graph visualizations for these categories.
+----
+
+.Create a dashboard with both a data and a visualization focus
+image::dashboards/ai-dashboard-prompt-dual-focus.png[]
+
+Here is a sample result:
+
+.A dashboard with both a data and a visualization focus (1)
+image::dashboards/ai-dashboard-dual-focus-1.png[]
+
+.A dashboard with both a data and a visualization focus (2)
+image::dashboards/ai-dashboard-dual-focus-2.png[]
+
+
