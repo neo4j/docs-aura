@@ -9,7 +9,7 @@ label:AuraDS-Enterprise[]
 
 [NOTE]
 ====
-If you're planning to use Single Sign-On (SSO), it's best to set it up early in your Aura journey. SSO does not retroactively apply to existing instances. It only applies to instances created after SSO is configured. To ensure new instances are covered, you'd need to repeat the setup, which can be time-consuming.
+If you're planning to use Single Sign-On (SSO), it's best to set it up early in your Aura journey. SSO does not retroactively apply to existing instances. It only applies to instances created after SSO is configured.
 ====
 
 Single Sign-On (SSO) enables organization owners and organization admins to use your organization’s identity provider (IdP) to authenticate users so they can access the Aura console and Aura instances.
@@ -69,16 +69,6 @@ To create an SSO Configuration, either a Discovery URI or a combination of Issue
 
 == Create a new SSO configuration
 
-[WARNING]
-====
-If you want users to authenticate with SSO for both the Aura Console and your database instances, make sure to select both of the following checkboxes during setup:
-
-- *Use as login for the Organization*
-- *Use as login method for instances within Projects in this Org*
-
-Skipping these options could require you to repeat the SSO setup later.
-====
-
 . From the *Organization settings*, go to *Single Sign-On* to set up a new SSO configuration.
 
 . The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on organization-level, only on project-level, or both. 
@@ -86,6 +76,14 @@ Skipping these options could require you to repeat the SSO setup later.
 . The required basic SSO configuration information can be retrieved from the IdP.
 Entering the Discovery URI pre-fills the fields below.
 If this is not known these fields can be completed manually.
+
+[IMPORTANT]
+====
+If you want users to authenticate with SSO for both the Aura Console and your database instances, make sure to select both of the following checkboxes during setup:
+
+- *Use as login for the Organization*
+- *Use as login method for instances within Projects in this Org*
+====
 
 .SSO configuration
 [.shadow]
