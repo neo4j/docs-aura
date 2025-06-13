@@ -7,26 +7,33 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 IP Filters restrict access to your Aura instance over the public internet by allowing only trusted IP addresses. 
 This feature helps secure your environment without requiring private network configurations.
 
-* Aura Business Critical supports 20 allowed IP Ranges.
-* Aura Virtual Dedicated Cloud supports 100 allowed IP Ranges. 
-* Higher capacity options are available by request. 
+* Aura Business Critical supports up to 20 allowed IP Ranges.
+* Aura Virtual Dedicated Cloud supports up to 100 allowed IP Ranges.
+* Higher capacity options are available on request.
 
-Organization Owners and Admins can create and edit IP Filters from the organization settings menu.
+Contact support if you need to increase the default IP range limits.
+
+== Required roles
+
+Users with the xref:/aura/user-management.adoc[roles] `Organization Owner` or `Organization Admin` can create and edit IP Filters from the xref:visual-tour/#org-settings.adoc[organization settings] page.
 
 == Add an IP Filter
 
 . In the Aura console, go to *Organization > Settings > Security & Networking > IP Filtering*
-. Select entities – *Organizations, Projects, Instances.*
-. Select allowed IP addresses
-.. *All* – No filtering is applied, all IP addresses are allowed.
+. *Select entities* - Choose where to apply the filter:
+.. *Organization* – applies to all instances in the org
+.. *Project* – applies to all instances in the project
+.. *Instance* – applies to individual instances
+. Select allowed IP addresses:
+.. *All* – No filtering is applied, all IPs are allowed.
 .. *Specific range of IP addresses* – Enter individual IP addresses or CIDR ranges.
 
 === How IP Filters are applied
 
-A database instance can have one IP Filter.
-If you try to apply another filter to an instance, it will not be possible, the instance's checkbox will be greyed out.
-
 IP Filters allow or deny a connection to an instance. 
+An instance can have one IP Filter only.
+If a filter is already applied, the instance’s checkbox will be greyed out.
+
 Applying filters at the organization or project level helps admins set filters for multiple instances and newly created instances.
 When applied at the organization or project level, new entities created within that scope will automatically inherit the filter settings.
 
@@ -38,11 +45,11 @@ To edit an existing filter configuration, use the *Inspect* button.
 
 IP Filtering is a great fit when you want to:
 
-* Quickly secure public instances without cloud configuration 
-* Limit access to trusted networks such as office locations or partner data centers
-* Enforce corporate or regulatory access boundaries with minimal setup
-* Apply access controls to dev or test environments where private endpoints are unnecessary
-* Block access from geographic regions that you do not operate from
-* Standardize access policies across an organisation or project without having to manage each instance individually
+* Quickly secure public instances without cloud configuration.
+* Limit access to trusted networks such as office locations or partner data centers.
+* Enforce corporate or regulatory access boundaries with minimal setup.
+* Apply access controls to dev or test environments where private endpoints are unnecessary.
+* Block access from geographic regions outside an area of operation.
+* Standardize access policies across an organisation or project without having to manage each instance individually.
 
-If you want more robust secure connections, away from the public internet, you could use a Private Link setup.
+If you want more robust secure connections, away from the public internet, you could use xref:secure-connections/#_private_endpoints[Private Endpoints]
