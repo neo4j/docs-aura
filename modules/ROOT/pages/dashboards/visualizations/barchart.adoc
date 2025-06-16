@@ -1,0 +1,66 @@
+= Bar chart
+:description: The Neo4j dashboard bar chart visualization.
+
+A bar chart displays different categories and values in a bar layout.
+Choose the following:
+
+* *Category*: a text field. Categories are the bar labels.
+* *Value*: a numeric field. This determines the height of the bars.
+
+//* *Group*: A second optional text field. When grouping is enabled in the advanced settings, the group can be used to draw a stacked bar chart, with several groups per category.
+
+[TIP]
+====
+Select a horizontal segment of the bar chart to zoom in.
+Use the reload button to reset the bar chart zoom.
+====
+
+== Examples
+
+
+=== Simple bar chart
+
+.Cypher query for a bar chart which displays the customers with the most orders
+[source,cypher]
+----
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)
+RETURN c.contactName AS Customer, count(o) AS Orders
+ORDER BY Orders DESC LIMIT 10
+----
+
+.A bar chart displaying the customers with the most orders
+image::dashboards/visualizations/visualization-bar-chart.png[]
+
+
+=== Stacked bar chart
+
+.Cypher query for a bar chart which separates customer orders by freight weight
+[source,cypher]
+----
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)
+WITH c, count(o) AS Orders, collect(o) as os
+RETURN c.contactName AS Customer,
+  size([x IN os WHERE x.freight > "20.0" | x ]) AS freightGT20,
+  size([x IN os WHERE x.freight <= "20.0" | x ]) AS freightLT20
+ORDER BY Orders DESC LIMIT 10
+----
+
+.A bar chart separating customers orders by freight weight
+image::dashboards/visualizations/visualization-bar-chart-stacked.png[]
+
+
+== Configuration
+
+Select your **Category** for the x-axis and one or multiple **Value**s for the y-axis.
+
+You can also select:
+
+* The **Bar arrangement** (grouped or stacked).
+* The **Orientation** (vertical or horizontal).
+* The **Scale** (linear or logarithmic).
+* Whether or not to show the legend of the bar chart.
+
+[TIP]
+====
+If you are configuring a stacked bar chart, use the entries in the **Value** drop down to deselect and select your value axes to manipulate the order in which the corresponding bars are displayed.
+====
