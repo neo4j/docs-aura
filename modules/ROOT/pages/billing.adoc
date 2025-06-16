@@ -7,15 +7,19 @@ label:AuraDB-Business-Critical[]
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
 Virtual Dedicated Cloud services are offered through prepaid consumption plans.
-
 Billing is based on usage, with credits deducted from the available balance each month.
+The report helps track usage patterns over time to make informed resource allocation decisions.
+The usage data is also exportable.
 
 == Required roles
 
-Available to `Admins`, the consumption report helps track usage patterns over time to make informed resource allocation decisions.
-The usage data is also exportable.
-
+Available to roles `Organzation Owner`, `Organization Admin` and `Project Admin`.
 To view the billing consumption report, a payment method must be attached to the account. 
+
+== Monthly summary
+
+At the top-right corner of the Billing page, there's a summary of the total amount due for the current month. 
+This value is shown in Aura Credits (ACU), providing a real-time estimate of your projected billing.
 
 == Consumption report
 
@@ -23,7 +27,12 @@ The consumption report, accessible in the Billing section, provides real-time in
 It displays RAM usage in GB-hours and the equivalent cost in prepaid credits.
 You can also Export a CSV file containing usage in a selected period.
 
-== Instances billing
+== Tabs: Instances and Sessions
+
+There's two tabs for reviewing consumption by type:
+
+* The *Instances* tab includes a billing summary for database instances. 
+* The *Sessions* tab includes a billing summary for any Graph Analytics sessions
 
 === Product name and pricing
 
@@ -37,7 +46,6 @@ Can be `ongoing` (currently being billed) or `ended` (historical usage).
 === Units of measure
 
 Units of measure are displayed in the specified unit of measure applicable to the account.
-
 Note that GB-hours usage is calculated by multiplying the number of hours a database is running (whether actively used or not) by the memory size in gigabytes (GB).
 
 == Filters
@@ -49,19 +57,5 @@ Note that GB-hours usage is calculated by multiplying the number of hours a data
 .Consumption report example
 [.shadow]
 image::consumptionreport.png[]
-
-== Sessions billing
-
-The *Sessions* tab provides a breakdown of Graph Analytics sessions. Each row includes:
-
-* **Session ID** – The Graph Analytics session identifier
-* **Usage** – RAM consumed
-* **Units of measure** – GB-hours
-* **Credits consumed** – Cost in prepaid credits
-
-== Monthly summary
-
-At the top-right corner of the Billing page, there's a summary of the total amount due for the current month. 
-This value is shown in Aura Credits (ACU), providing a real-time estimate of your projected billing.
 
 
