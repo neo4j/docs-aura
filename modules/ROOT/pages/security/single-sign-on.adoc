@@ -7,8 +7,12 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDB-Business-Critical[]
 label:AuraDS-Enterprise[]
 
+[NOTE]
+====
+If you're planning to use Single Sign-On (SSO), it's best to set it up early in your Aura journey. SSO does not retroactively apply to existing instances. It only applies to instances created after SSO is configured.
+====
 
-Single Sign-On (SSO) enables organization owners and admins to use your organization’s identity provider (IdP) to authenticate users so they can access the Aura console and Aura instances.
+Single Sign-On (SSO) enables organization owners and organization admins to use your organization’s identity provider (IdP) to authenticate users so they can access the Aura console and Aura instances.
 
 Aura supports SSO authentication and authorization using https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc[Microsoft Entra] and link:https://developer.okta.com/docs/guides/oin-sso-overview/[Okta] as IdPs, implementing the OpenID Connect (OIDC) protocol.
 
@@ -17,17 +21,20 @@ Aura also supports authenticating with Google as the identity provider.
 When a user attempts to log in, Aura generates a redirect URL with authentication parameters and sends the user to the IdP for authentication. 
 After successful authentication, the IdP redirects the user back to Aura with a secure token, allowing Aura to establish an authenticated session.
 
+== Required roles
+
+The person setting up SSO needs an `Organization Owner` or `Organization Admin` role. 
+For information on how to assign roles see xref:/aura/user-management/[User management].
+
 == SSO levels
 
-Users with either the `Organization admin` or the `Organization owner` role can configure SSO at both the organization-level and project-level.
+* *Use as a log in for the Organization:* Login with SSO to the Aura console. Allows org admins to control how users log in when they are trying to access the organization.
 
-* *Organization-level:* Allows org admins to control how users log in when they are trying to access the organization. It is a log-in method for the Aura console.
-
-* *Project-level:*  Impacts new database instances created within that project.
+* *Use as login method for instances with Projects in this Org:*  The SSO log in will be on the instances. Impacts new database instances created within that project.
 It ensures users logging in with SSO have access to the database instances within the project.
+It does not give access to edit the project settings, for example to edit the project name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
 It depends on RBAC if the user can access and view or modify data within the instances themselves.
 For this level, the role mapping may be used to grant users different levels of access based on a role in their IdP.
-It *does not* give access to edit the project settings, for example to edit the project name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
 
 == Log-in methods
 
@@ -69,6 +76,14 @@ To create an SSO Configuration, either a Discovery URI or a combination of Issue
 . The required basic SSO configuration information can be retrieved from the IdP.
 Entering the Discovery URI pre-fills the fields below.
 If this is not known these fields can be completed manually.
+
+[IMPORTANT]
+====
+If you want users to authenticate with SSO for both the Aura Console and your database instances, make sure to select both of the following checkboxes during setup:
+
+- *Use as login for the Organization*
+- *Use as login method for instances within Projects in this Org*
+====
 
 .SSO configuration
 [.shadow]
