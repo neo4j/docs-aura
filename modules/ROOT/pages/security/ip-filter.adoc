@@ -15,7 +15,7 @@ Contact support if you need to increase the default IP range limits.
 
 == Required roles
 
-Users with the xref:/aura/user-management.adoc[roles] `Organization Owner` or `Organization Admin` can create and edit IP Filters from the xref:visual-tour/#org-settings.adoc[organization settings] page.
+Users with the xref:user-management.adoc[roles] `Organization Owner` or `Organization Admin` can create and edit IP Filters from the xref:visual-tour/index.adoc#org-settings[organization settings] page.
 
 == Add an IP Filter
 
@@ -50,6 +50,6 @@ IP Filtering is a great fit when you want to:
 * Enforce corporate or regulatory access boundaries with minimal setup.
 * Apply access controls to dev or test environments where private endpoints are unnecessary.
 * Block access from geographic regions outside an area of operation.
-* Standardize access policies across an organisation or project without having to manage each instance individually.
+* Standardize access policies across an organization or project without having to manage each instance individually.
 
-If you want more robust secure connections, away from the public internet, you could use xref:secure-connections/#_private_endpoints[Private Endpoints]
+If you want network access away from the public internet, you could use xref:security/secure-connections.adoc#_private_endpoints[Private Endpoints]
