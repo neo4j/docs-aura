@@ -144,8 +144,6 @@ It is highly recommended to run a test migration before attempting the live migr
 It is also advisable to set up a custom endpoint before the migration to speed up the switch to the migrated instance in your application.
 For more information, see xref:managing-instances/custom-endpoints.adoc[Custom endpoints].
 
-At this time, neither the test nor the live migration will include changes to the store format like moving to block format.
-
 [NOTE]
 ====
 During the migration, the migration target instance may be shown with a few different statuses on the instance page, such as LOADING or OVERWRITING for example.
