@@ -75,7 +75,8 @@ Below are the details and possible errors that you may encounter depending on th
 | **Console & API**          | Same CMK as source instance                            | Cloning allowed.
 | **Console**         | Different CMK than source instance                       | Cloning allowed. Warning message shown.
 | **Console**         | Neo4j Managed Key                        | Cloning blocked. Error message shown.
-| **API**         | Different CMK than source instance, or Neo4j Managed Key                        | Cloning blocked. Error message shown.
+| **API**         | Different CMK than source instance                        | Cloning blocked using API but allowed in console. Error message shown.
+| **API**         | Neo4j Managed Key                        | Cloning blocked. Error message shown.
 |===
 
 === Remove a CMK from Aura

@@ -1,0 +1,57 @@
+= Managing dashboards
+:description: Create and modify Neo4j dashboards.
+
+In Neo4j Aura, use **Dashboards** under **Tools** in the left-side navigation to access the dashboard page.
+
+[NOTE]
+====
+The number of dashboards you can create depends on your Aura subscription plan:
+
+* AuraDB Free: three dashboards
+* AuraDB Professional: 25 dashboards
+* AuraDB Business Critical and Virtual Dedicated Cloud: unlimited dashboards
+====
+
+
+== Creating a dashboard
+
+If you have no dashboards, select either **Create from scratch** or **Create with AI**.
+
+.Create your first dashboard
+image::dashboards/create-first-dashboard.png[]
+
+If you want to create another dashboard: use **Create Dashboard** at the top right, and select either **Create from scratch** or **Create with AI**.
+
+**Create from scratch** takes you directly to a new and empty dashboard.
+
+See xref::/dashboards/ai-dashboards.adoc[] for advice how to create a dashboard via prompt.
+
+
+== Editing a dashboard
+
+. Select a dashboard tile from the **Dashboards** page.
+. To change the title, select the title text and edit it, then confirm.
+
+
+=== Dashboard pages
+
+Select a dashboard tile from the **Dashboards** page.
+Dashboard pages are organized as tabs.
+A new dashboard contains a single page "Main page".
+You can edit or duplicate the page via hovering the page name and using the more menu *[...]*.
+Add more pages via **+** next to the existing pages' names.
+Additional pages can also be deleted from the more menu *[...]*.
+
+
+=== Dashboard cards
+
+A dashboard page can hold any number of cards.
+Each card can hold a xref::/dashboards/visualizations/index.adoc[visualization], also referred to as the **Chart type**.
+To add a card, use **Add card** at the bottom right.
+Use the more menu *[...]* at the top right of a card to edit the card.
+Use the six dots at the top left of a card to drag and drop it within the grid of the page.
+
+
+== Deleting a dashboard
+
+In the dashboards tile page, use the more menu *[...]* of a dashboard tile and select **Delete**, then confirm.
