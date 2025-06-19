@@ -18,7 +18,7 @@ Microsoft Fabric allows you to do a number of things, including, but not limited
 
 * Try AuraDB Professional for free with a 14-day free trial.
 * Transform the data in a OneLake Lakehouse into a graph in AuraDB, using generative AI assistance for schema inference.
-* Transform data sources accessible via OneLake Shortcuts including but not limited to in AWS S3, Azure Data Lake Storage, Google Cloud Storage.
+* Transform data sources accessible via OneLake Shortcuts including but not limited to those in AWS S3, Azure Data Lake Storage and Google Cloud Storage.
 * Query the graph in the Fabric console.
 * Explore and run graph algorithms in the Fabric console.
 * Build applications using the Neo4j .Net driver.
@@ -76,7 +76,7 @@ Once the workload has been enabled in your workspace, follow the steps outlined 
 . Select *Neo4j Graph Dataset (preview)*
 . Provide a name for the dataset
 . *Optional*: Select *Start trial now* to start an AuraDB Professional 14-day trial if you don't have a paid Aura plan already.
-If your Fabric capacity is outside of one of the supported Aura regions, then you will need to select your preferred region from the provided list.
+If your Fabric capacity is outside one of the supported Aura regions, then you need to select your preferred region from the list.
 . Select the Lakehouse you want to use
 . Select one or more tables in the Lakehouse
 . Finally, select *Transform into graph data set* to create a new AuraDB graph database within an existing project.
@@ -110,24 +110,24 @@ Refer to xref:visual-tour/index.adoc[Visual tour of the console] for more inform
 
 == Upgrading your trial
 
-During or at the end of your 14-day trial, you can upgrade to a paid plan using one of the following options:
+At any time during or after your 14-day trial, you can upgrade to a paid plan using one of the following options:
 
 === Credit Card
 
 . Open your trial graph dataset.
-. Select `Update` at the top right corner of your screen.
-. Select `Request Upgrade` on the popup dialog.
-. Navigate to the provided billing URL and login to Aura Console using `Continue with Microsoft` option with the same account you use to login to Fabric.
+. Select *Update* at the top right corner of your screen.
+. Select *Request Upgrade* on the popup dialog.
+. Navigate to the provided billing URL and login to the Aura console using *Continue with Microsoft* with the same account you use to login to Fabric.
 . Add your payment method on the billing page and this will transition your account to a paid account.
 
 === Azure Marketplace
 
-. Open link:https://azuremarketplace.microsoft.com/en-us/marketplace/apps/neo4j.neo4j_aura_professional[Neo4j AuraDB Professional (pay-as-you-go)] product page on Azure Marketplace.
-. Follow instructions to purchase the plan by selecting `Get It Now`.
+. Open the link:https://azuremarketplace.microsoft.com/en-us/marketplace/apps/neo4j.neo4j_aura_professional[Neo4j AuraDB Professional (pay-as-you-go)] product page on Azure Marketplace.
+. Select the button *Get It Now* and follow instructions to purchase the plan.
 . At the end of the process, you will have a new Aura project that is linked to Azure Marketplace.
-When creating new graph dataset instances, you will be presented with a list of projects that you can create AuraDB instances where you can select this new project and use the workload without any trial limitations.
+When creating new graph dataset instances, you will be presented with a list of available projects, where you can select this new project and use the workload without any trial limitations.
 
 [NOTE]
 ====
-Please note that the upgrade via the Azure Marketplace will result in a new Organisation and Project being created in Aura, which means that you will need to recreate your graph dataset item from scratch.
+Upgrading via Azure Marketplace will result in a new Organization and Project being created in Aura, which means that you will need to recreate your graph dataset item from scratch.
 ====
