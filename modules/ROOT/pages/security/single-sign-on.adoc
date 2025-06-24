@@ -108,6 +108,8 @@ When SSO is enabled at either the organization level or project level, Aura uses
 .. A user in the Data Analysts group is assigned the `EDITOR` role
 .. A user in the Interns group is assigned the `VIEWER` role
 
+"aws-neo4j-sso"=editor
+
 == Instance-level SSO support
 
 [NOTE]
@@ -117,30 +119,33 @@ Support is required to configure instance-level SSO due to the current Aura infr
 
 Support can assist with:
 
-* Mapping IdP groups to instance roles
-* Adding custom SAML claims (e.g., beyond `groups`)
+* Role mapping specific IdP groups to a database instance
+* Adding custom claims (e.g., beyond `groups`)
 * Updating SSO settings on already running instances
 
-Users can configure what SSO config is applied to new instances within a project. 
+Users can configure what SSO config is applied to new instances within an org or project. 
 However:
 
 * The selected config will apply to all new instances in that project
-* Support can modify the SSO config for individual instances once created
+* Support can modify the SSO config for individual instances 
 * Changes to a project’s SSO config will not retroactively apply to existing instances
 
 === Ticket template
 
-To request assistance, visit Customer Support and raise a ticket using the following template:
+To request assistance, contact Support and raise a ticket using the following template:
 
 [literal]
 Project ID: [Insert]  
 Instance ID: [Insert]  
-IdP Name: [e.g., Okta, Azure AD]  
+IdP name: [e.g., Okta, Azure]  
 SSO update for existing instance? Yes / No  
-Custom Role Mappings? Yes / No  
+Custom role mappings? Yes / No  
 If yes: [Insert details]  
-Custom Groups Claim? Yes / No  
+Custom groups claim? Yes / No  
 If yes: [Insert claim name]
+
+Project ID can be found at link:https://neo4j.com/docs/aura/visual-tour/#_settings[project settings]
+Instance ID can be found at https://neo4j.com/docs/aura/managing-instances/instance-details/[instance details]
 
 == Microsoft Entra ID SSO 
 
