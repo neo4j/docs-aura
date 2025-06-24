@@ -146,10 +146,10 @@ The following roles are available at the org level:
 
 Users within a project can be assigned one of the following roles:
 
-* _Project Viewer_
-* _Metrics Reader_
-* _Project Member_
-* _Project Admin_
+* _PROJECT_VIEWER_
+* _METRICS READER_
+* _PROJECT_MEMBER_
+* _PROJECT_ADMIN_
 
 [NOTE]
 ====
@@ -158,12 +158,12 @@ Each project must have at least one Project Admin, but it is also possible for p
 
 === Metrics reader role
 
-The `metrics reader` role can be assigned to any user or service account.
-It has the same permissions as the `project viewer` role, but with some extra permissions specifically for reading metrics via an API endpoint.
+The `METRICS_READER` role can be assigned to any user or service account.
+It has the same permissions as the `PROJECT_VIEWER` role, but with some extra permissions specifically for reading metrics via an API endpoint.
 The role allows access to metrics for all instances in a project.
-Accessing metric endpoints requires xref:/api/authentication.adoc[Aura API Credentials] and the `metrics reader` role enables the creation of these credentials.
+Accessing metric endpoints requires xref:/api/authentication.adoc[Aura API Credentials] and the `METRICS_READER` role enables the creation of these credentials.
 
-The `metrics reader` role can view and open instances in the console, however, login to the instance is required to interact with it, with access to Explore and Query defined by the instance’s RBAC settings.
+The `METRICS_READER` role can view and open instances in the console, however, login to the instance is required to interact with it, with access to Explore and Query defined by the instance’s RBAC settings.
 
 :check-mark: icon:check[]
 
@@ -172,7 +172,7 @@ The `metrics reader` role can view and open instances in the console, however, l
 |===
 | Capability
 | Project Viewer
-| Metrics reader
+| Metrics Reader
 | Member
 | Admin
 
