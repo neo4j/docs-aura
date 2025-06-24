@@ -95,10 +95,31 @@ After setting up SSO, the `Organization sso login` link can be found in the orga
 
 == Role mapping
 
+ role mapping connects a user’s identity from your identity provider (like Okta or Microsoft Entra ID) to a specific role in Aura based on attributes from the SSO token, like their group membership.
+
+ SSO is enabled for your Aura Org or Projects.
+A user logs in using SSO — Aura receives a token with identity info.
+Aura reads that token and uses role mapping to decide:
+✨ “This person is in the ‘Data Editors’ group — they get the EDITOR role.”
+✨ “This person is in the ‘Interns’ group — VIEWER only, please.”
+
+🧩 This happens at the project/instance level, not at the broader organization level. (Org roles still need to be assigned manually in the Aura console.)
+
 Role mapping applies to all new instances created within the selected project.
 To configure role mapping for an individual instance, contact support.
 
-== Individual instance-level
+== Instance-level SSO support
+
+[NOTE]
+====
+Support is needed to configure instance-level SSO due to the current Aura infrastructure.
+====
+
+What support can do:
+
+* Map IdP groups to instance roles
+* Add custom SAML claims (e.g., specific to an instance)
+* Update SSO settings on live instances
 
 Support can assist with SSO configurations at instance-level including:
 
@@ -106,11 +127,36 @@ Support can assist with SSO configurations at instance-level including:
 * link:https://auth0.com/docs/secure/tokens/json-web-tokens/create-custom-claims[Create custom claims] besides `groups`
 * Updating SSO on already running instances
 
-If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
+If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket using this template:
 
-. The _Project ID_ of the projects you want to use SSO for. Click on the project settings to copy the ID.
+==== Template message:
 
-. The name of your IdP
+Project ID: [Insert]   https://neo4j.com/docs/aura/visual-tour/#_settings
+
+Instance ID: [Insert] https://neo4j.com/docs/aura/managing-instances/instance-details/
+
+IdP Name: [e.g., Okta, Azure AD]
+
+SSO update for existing instance? Yes / No
+
+Custom Role Mappings? Yes / No
+If yes: [Insert details]
+
+Custom Groups Claim? Yes / No
+If yes: [Insert claim name]
+
+//
+
+Project ID: [Insert]  
+Instance ID: [Insert]  
+IdP Name: [e.g., Okta, Azure AD]  
+
+SSO update for existing instance? Yes / No  
+Custom Role Mappings? Yes / No  
+If yes: [Insert details]  
+
+Custom Groups Claim? Yes / No  
+If yes: [Insert claim name]
 
 == Microsoft Entra ID SSO 
 
