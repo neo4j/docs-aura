@@ -96,7 +96,7 @@ After setting up SSO, the `Organization sso login` link can be found in the orga
 == Role mapping
 
 Role mapping connects a user’s identity from the identity provider (IdP), such as Okta or Microsoft Entra ID, to a specific role in Aura. 
-This mapping is based on attributes included in the SSO token — for example, the user's group or department in your organization.
+This mapping is based on attributes included in the SSO token, for example, the user's group or department in your organization.
 
 *Where role mapping fits in the Aura login flow*
 
@@ -108,7 +108,14 @@ When SSO is enabled at either the organization level or project level, Aura uses
 .. A user in the Data Analysts group is assigned the `EDITOR` role
 .. A user in the Interns group is assigned the `VIEWER` role
 
-"aws-neo4j-sso"=editor
+== Example role mapping:
+
+`aws-neo4j-sso=editor`
+
+In this case:
+
+`aws-neo4j-sso` is a group name from the groups claim in the token
+`editor` is the Aura role assigned to any user in that group.
 
 == Instance-level SSO support
 
@@ -123,12 +130,13 @@ Support can assist with:
 * Adding custom claims (e.g., beyond `groups`)
 * Updating SSO settings on already running instances
 
-Users can configure what SSO config is applied to new instances within an org or project. 
-However:
+[NOTE]
+====
+Changes to a SSO configuration do not retroactively apply to existing AuraDB instances.
+If an instance already exists and you enable SSO afterward, the new role mappings won’t be applied automatically — the order of operations matters.
 
-* The selected config will apply to all new instances in that project
-* Support can modify the SSO config for individual instances 
-* Changes to a project’s SSO config will not retroactively apply to existing instances
+However, if you need to update the SSO settings or role mappings on an existing instance, Neo4j Support can help make that happen.
+====
 
 === Ticket template
 
@@ -145,6 +153,7 @@ Custom groups claim? Yes / No
 If yes: [Insert claim name]
 
 Project ID can be found at link:https://neo4j.com/docs/aura/visual-tour/#_settings[project settings]
+
 Instance ID can be found at https://neo4j.com/docs/aura/managing-instances/instance-details/[instance details]
 
 == Microsoft Entra ID SSO 
