@@ -1,0 +1,16 @@
+= Cypher version
+:description: This page describes how to set the default Cypher version for a database.
+
+Neo4j supports two Cypher versions, *Cypher 5* and *Cypher 25*.
+
+Cypher 5 receives only bug fixes and security updates.
+This is the current default query language.
+
+All new features are added to Cypher 25, which will eventually become the default language for new instances.
+
+To make use of new features and functionality, you need to change the default language.
+This is managed per Aura instance and requires a `project admin` role.
+It is done using the `ALTER DATABASE` command and thus affects all queries executed against your database.
+However, you can also override the default language for individual queries.
+
+For more information about Cypher versions and commands, see link:{neo4j-docs-base-uri}/cypher-manual/25/queries/select-version/[Cypher Manual -> Select Cypher version].
