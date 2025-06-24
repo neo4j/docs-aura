@@ -130,14 +130,6 @@ Support can assist with:
 * Adding custom claims (e.g., beyond `groups`)
 * Updating SSO settings on already running instances
 
-[NOTE]
-====
-Changes to a SSO configuration do not retroactively apply to existing AuraDB instances.
-If an instance already exists and you enable SSO afterward, the new role mappings won’t be applied automatically — the order of operations matters.
-
-However, if you need to update the SSO settings or role mappings on an existing instance, Neo4j Support can help make that happen.
-====
-
 === Ticket template
 
 To request assistance, contact Support and raise a ticket using the following template:
@@ -155,6 +147,12 @@ If yes: [Insert claim name]
 Project ID can be found at link:https://neo4j.com/docs/aura/visual-tour/#_settings[project settings]
 
 Instance ID can be found at https://neo4j.com/docs/aura/managing-instances/instance-details/[instance details]
+
+[NOTE]
+====
+SSO configuration changes are not applied retroactively.
+To apply updated SSO settings or role mappings to an existing instance, contact Neo4j Support for assistance.
+====
 
 == Microsoft Entra ID SSO 
 
