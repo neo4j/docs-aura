@@ -95,66 +95,50 @@ After setting up SSO, the `Organization sso login` link can be found in the orga
 
 == Role mapping
 
- role mapping connects a user’s identity from your identity provider (like Okta or Microsoft Entra ID) to a specific role in Aura based on attributes from the SSO token, like their group membership.
+Role mapping connects a user’s identity from the identity provider (IdP), such as Okta or Microsoft Entra ID, to a specific role in Aura. 
+This mapping is based on attributes included in the SSO token — for example, the user's group or department in your organization.
 
- SSO is enabled for your Aura Org or Projects.
-A user logs in using SSO — Aura receives a token with identity info.
-Aura reads that token and uses role mapping to decide:
-✨ “This person is in the ‘Data Editors’ group — they get the EDITOR role.”
-✨ “This person is in the ‘Interns’ group — VIEWER only, please.”
+*Where role mapping fits in the Aura login flow*
 
-🧩 This happens at the project/instance level, not at the broader organization level. (Org roles still need to be assigned manually in the Aura console.)
+When SSO is enabled at either the organization level or project level, Aura uses role mapping to determine what access a user should have based on their IdP group membership:
 
-Role mapping applies to all new instances created within the selected project.
-To configure role mapping for an individual instance, contact support.
+. A user logs in through SSO
+. Aura receives the token containing identity attributes
+. Aura evaluates the attributes against the configured mappings, for example:
+. A user in the Data Analysts group is assigned the EDITOR role
+. A user in the Interns group is assigned the VIEWER role
 
 == Instance-level SSO support
 
 [NOTE]
 ====
-Support is needed to configure instance-level SSO due to the current Aura infrastructure.
+Support is required to configure instance-level SSO due to the current Aura infrastructure.
 ====
 
-What support can do:
+Support can assist with:
 
-* Map IdP groups to instance roles
-* Add custom SAML claims (e.g., specific to an instance)
-* Update SSO settings on live instances
+* Mapping IdP groups to instance roles
+* Adding custom SAML claims (e.g., beyond `groups`)
+* Updating SSO settings on already running instances
 
-Support can assist with SSO configurations at instance-level including:
+Users can configure what SSO config is applied to new instances within a project. 
+However:
 
-* Role mapping specific to a database instance
-* link:https://auth0.com/docs/secure/tokens/json-web-tokens/create-custom-claims[Create custom claims] besides `groups`
-* Updating SSO on already running instances
+* The selected config will apply to all new instances in that project
+* Support can modify the SSO config for individual instances once created
+* Changes to a project’s SSO config will not retroactively apply to existing instances
 
-If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket using this template:
+=== Ticket template
 
-==== Template message:
+To request assistance, visit Customer Support and raise a ticket using the following template:
 
-Project ID: [Insert]   https://neo4j.com/docs/aura/visual-tour/#_settings
-
-Instance ID: [Insert] https://neo4j.com/docs/aura/managing-instances/instance-details/
-
-IdP Name: [e.g., Okta, Azure AD]
-
-SSO update for existing instance? Yes / No
-
-Custom Role Mappings? Yes / No
-If yes: [Insert details]
-
-Custom Groups Claim? Yes / No
-If yes: [Insert claim name]
-
-//
-
+[literal]
 Project ID: [Insert]  
 Instance ID: [Insert]  
 IdP Name: [e.g., Okta, Azure AD]  
-
 SSO update for existing instance? Yes / No  
 Custom Role Mappings? Yes / No  
 If yes: [Insert details]  
-
 Custom Groups Claim? Yes / No  
 If yes: [Insert claim name]
 
