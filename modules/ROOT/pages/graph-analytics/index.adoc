@@ -99,6 +99,11 @@ Security patches and new versions of GDS and Neo4j are installed within short ti
 The operations are non-destructive, so graph projections, models, and data present on an instance are not affected.
 No operation is applied until all the running GDS algorithms have completed.
 
+[IMPORTANT]
+====
+Graphs and models created or updated _after_ the instance update/upgrade process has started are *not guaranteed* to be restored upon restart.
+====
+
 == Comparison
 
 [opts="header", cols="1s,1,1,1,1"]
@@ -140,5 +145,5 @@ No operation is applied until all the running GDS algorithms have completed.
 |No downtime; projected graphs and trained models are not retained
 |No downtime; projected graphs and trained models are unaffected
 |No downtime; projected graphs and trained models are unaffected
-|Short downtime; projected graphs and trained models are restored
+|Short downtime; projected graphs and trained models are restoredfootnote:[Graphs and models created or updated _after_ the instance update/upgrade process has started are *not guaranteed* to be restored upon restart.]
 |===
