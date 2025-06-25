@@ -12,6 +12,9 @@ Billing is based on usage.
 For prepaid consumption, credits are deducted from the available balance each month. 
 For pay-as-you-go, usage is invoiced and charged on your credit card monthly in arrears.
 
+At the top-right corner of the Billing page, there's a summary of the total amount due for the current month.
+This value is shown in Aura Credits (ACU), providing a real-time estimate of your projected billing.
+
 == Consumption report
 
 The consumption report helps track usage patterns over time to make informed resource allocation decisions.
@@ -26,10 +29,6 @@ To view the billing consumption report, a payment method must be attached to the
 
 If there's no billing method attached, in a project, when *Billing* is selected, there is a call to action to *Add new payment information*.
 
-== Monthly summary
-
-At the top-right corner of the Billing page, there's a summary of the total amount due for the current month. 
-This value is shown in Aura Credits (ACU), providing a real-time estimate of your projected billing.
 
 == Consumption report
 
@@ -37,9 +36,12 @@ The consumption report, accessible in the Billing section, provides real-time in
 It displays RAM usage in GB-hours and the equivalent cost in prepaid credits.
 You can also Export a CSV file containing usage in a selected period.
 
-== Tabs: Instances and Sessions
+The report is available to the following roles: `Organization Owner`, `Organization Admin`, and `Project Admin`.
+To view the billing consumption report, a payment method must be attached to the account.
 
-There's two tabs for reviewing consumption by type:
+=== Instances and Sessions
+
+There are two tabs for reviewing consumption by type:
 
 * The *Instances* tab includes a billing summary for database instances. 
 * The *Sessions* tab includes a billing summary for any Graph Analytics sessions
@@ -58,7 +60,7 @@ Can be `ongoing` (currently being billed) or `ended` (historical usage).
 Usage is displayed in the specified unit of measure.
 GB-hours usage is calculated by multiplying the number of hours a database is running (whether actively used or not) by the memory size in gigabytes (GB).
 
-== Filters
+=== Filters
 
 * Filter the usage data by predefined and custom date intervals.
 * Look back for a period of up to one year.
