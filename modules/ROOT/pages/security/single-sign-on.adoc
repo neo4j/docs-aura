@@ -95,33 +95,25 @@ After setting up SSO, the `Organization sso login` link can be found in the orga
 
 == Role mapping
 
-Role mapping connects a user’s identity from the identity provider (IdP), such as Okta or Microsoft Entra ID, to a specific role in Aura. 
-This mapping is based on attributes included in the SSO token, for example, the user's group or department in your organization.
+Role mapping links a user’s identity from an identity provider (such as Okta or Microsoft Entra ID) to a specific Aura role, based on attributes passed during authentication, like group or department.
 
-*Where role mapping fits in the Aura login flow*
 
-When SSO is enabled at either the organization level or project level, Aura uses role mapping to determine what access a user should have based on their IdP group membership:
+When SSO is enabled at either the organization level or project level, Aura uses role mapping to determine what access a user should have based on their IdP group membership.
 
-. A user logs in through SSO
-. Aura receives the token containing identity attributes
-. Aura evaluates the attributes against the configured mappings, for example:
-.. A user in the Data Analysts group is assigned the `EDITOR` role
-.. A user in the Interns group is assigned the `VIEWER` role
 
-== Example role mapping:
+=== Example role mapping:
 
 `aws-neo4j-sso=editor`
 
 In this case:
 
-`aws-neo4j-sso` is a group name from the groups claim in the token
-`editor` is the Aura role assigned to any user in that group.
+`aws-neo4j-sso` is a group name from the groups claim in the token and `editor` is the Aura role assigned to any user in that group.
 
 == Instance-level SSO support
 
 [NOTE]
 ====
-Support is required to configure instance-level SSO due to the current Aura infrastructure.
+Support is required to configure instance-level SSO.
 ====
 
 Support can assist with:
@@ -134,7 +126,8 @@ Support can assist with:
 
 To request assistance, contact Support and raise a ticket using the following template:
 
-[literal]
+[source]
+----
 Project ID: [Insert]  
 Instance ID: [Insert]  
 IdP name: [e.g., Okta, Azure]  
@@ -143,10 +136,11 @@ Custom role mappings? Yes / No
 If yes: [Insert details]  
 Custom groups claim? Yes / No  
 If yes: [Insert claim name]
+----
 
-Project ID can be found at link:https://neo4j.com/docs/aura/visual-tour/#_settings[project settings]
+Project ID can be found at xref:visual-tour/index.adoc#_settings[project settings].
 
-Instance ID can be found at https://neo4j.com/docs/aura/managing-instances/instance-details/[instance details]
+Instance ID can be found at xref:managing-instances/instance-details.adoc[instance details].
 
 [NOTE]
 ====
