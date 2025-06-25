@@ -97,9 +97,9 @@ After setting up SSO, the `Organization sso login` link can be found in the orga
 
 Role mapping links a user’s identity from an identity provider (such as Okta or Microsoft Entra ID) to a specific Aura role, based on attributes passed during authentication, like group or department.
 
-
 When SSO is enabled at either the organization level or project level, Aura uses role mapping to determine what access a user should have based on their IdP group membership.
 
+This access then applies to *all newly created* instances the user has access to.
 
 === Example role mapping:
 
