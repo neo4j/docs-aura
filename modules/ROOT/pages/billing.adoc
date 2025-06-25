@@ -1,22 +1,45 @@
 [[aura-Billing]]
 = Billing
-:description: Consumption reporting allows Virtual Dedicated Cloud customers to closely monitor their consumption.
+:description: Consumption reporting allows customers to monitor their billing and credit consumption.
 
 label:Aura-DB-Professional[]
 label:AuraDB-Business-Critical[]
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-Virtual Dedicated Cloud services are offered through prepaid consumption plans.
-Billing is based on usage, with credits deducted from the available balance each month.
+Neo4j offers cloud services through two billing models. Prepaid consumption plans, where credits are deducted from the available balance each month. 
+Or pay-as-you-go, where usage is invoiced and charged on your credit card monthly in arrears.
+
+At the top-right corner of the Billing page, there's a summary of the total amount due for the current month.
+This value is shown in Aura Credits (ACU), providing a real-time estimate of your projected billing.
+
+== Required roles
+
+The report is available to the following roles: `Organization Owner`, `Organization Admin`, and `Project Admin`.
+
+To view the report, a payment method must be attached to the account.
+If there's no billing method attached, in a project, on the *Billing* page there's a button to *Add new payment information*.
 
 == Consumption report
 
-The consumption report, accessible in the Billing section, provides real-time insights into resource usage for the current project, including both running and paused states.
-It displays RAM usage in GB-hours and the equivalent cost in prepaid credits.
+The consumption report gives real-time insights into resource usage for the current project, including both running and paused states.
 You can also Export a CSV file containing usage in a selected period.
 
-Available to Admins, the consumption report helps track usage patterns over time to make informed resource allocation decisions.
-The usage data is also exportable.
+.Consumption report example
+[.shadow]
+image::consumptionreport.png[]
+
+=== Filters
+
+* Filter the usage data by predefined and custom date intervals.
+* Look back for a period of up to one year.
+* Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days` or a `Custom range`.
+
+=== Instances and Sessions
+
+There are two tabs for reviewing consumption by type:
+
+* The *Instances* tab includes a billing summary for database instances. 
+* The *Sessions* tab includes a billing summary for any Graph Analytics sessions
 
 === Product name and pricing
 
@@ -29,15 +52,6 @@ Can be `ongoing` (currently being billed) or `ended` (historical usage).
 
 === Units of measure
 
-Units of measure are displayed in the specified unit of measure.
+Usage is displayed in the specified unit of measure.
 GB-hours usage is calculated by multiplying the number of hours a database is running (whether actively used or not) by the memory size in gigabytes (GB).
 
-== Filters
-
-* Filter the usage data by predefined and custom date intervals.
-* Look back for a period of up to one year.
-* Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days` or a `Custom range`.
-
-.Consumption report example
-[.shadow]
-image::consumptionreport.png[]
