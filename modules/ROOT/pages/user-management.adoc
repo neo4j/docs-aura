@@ -249,189 +249,190 @@ The `metrics reader` role can view and open instances in the console, however, l
 | {check-mark}
 |===
 
-// === Predefined roles
+=== Predefined roles
 
-// Users within a project can access instances seamlessly with their console role if xref:security/tool-auth.adoc[Tool authentication with Aura user] is enabled.
+Users within a project can access instances seamlessly with their console role if xref:security/tool-auth.adoc[Tool authentication with Aura user] is enabled.
 
-// [NOTE]
-// ====
-// New organizations created after May 29th 2025 will have Tool authentication with Aura user enabled by default.
-// ====
+[NOTE]
+====
+New organizations created after May 29th 2025 will have Tool authentication with Aura user enabled by default.
+====
 
-// When enabled, a user connects seamlessly with a predefined database role that matches their console role, i.e. their project-level role.
-// Predefined roles are *immutable* and apply to all Free, Professional, and Business Critical instances.
-// The predefined roles are assigned the following privileges on the instance level:
+When enabled, a user connects seamlessly with a predefined database role that matches their console role, i.e. their project-level role.
+Predefined roles are *immutable* and apply to all Free, Professional, and Business Critical instances.
+The predefined roles are assigned the following privileges on the instance level:
 
-// .Predefined roles and database privileges
-// [options="header", cols="3,^,^,^,^,^"]
-// |===
-// | Privilege
-// | Viewer
-// | Member
-// 3+| Admin
+.Predefined roles and database privileges
+[options="header", cols="3,^,^,^,^,^"]
+|===
+| Privilege
+| Viewer
+| Member
+3+| Admin
 
-// |
-// |
-// |
-// | Free
-// | Professional
-// | Business Critical
+|
+|
+|
+| Free
+| Professional
+| Business Critical
 
-// | Access to database
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
+| Access to database
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
-// | Start and stop database
-// |
-// |
-// |
-// |
-// | {check-mark}
+| Start and stop database
+|
+|
+|
+|
+| {check-mark}
 
-// | List constraints
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
+| List constraints
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
-// | Create constraints
-// |
-// |
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
+| Create constraints
+|
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
-// | Delete constraints
-// |
-// |
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
+| Delete constraints
+|
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
-// | List indexes
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
+| List indexes
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
-// | Create indexes
-// |
-// |
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
+| Create indexes
+|
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
-// | Delete indexes
-// |
-// |
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
+| Delete indexes
+|
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
-// | Find nodes and relationships and read their properties
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
+| Find nodes and relationships and read their properties
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
-// | Load external data in queries
-// |
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
+| Load external data in queries
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
-// | Write to the graph
-// |
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
+| Write to the graph
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
-// | Execute procedures and functions
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
+| Execute procedures and functions
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
-// | Name management for node labels, relationship types, and property names.
-// |
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
+| Name management for node labels, relationship types, and property names.
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
-// | List and end transactions for specified users on the database.
-// |
-// |
-// | {check-mark}
-// | {check-mark}
-// | {check-mark}
+| List and end transactions for specified users on the database.
+|
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
 
-// | List, create, delete, and modify users.
-// |
-// |
-// |
-// | {check-mark}
-// | {check-mark}
+| List, create, delete, and modify users.
+|
+|
+|
+| {check-mark}
+| {check-mark}
 
-// | Assign roles
-// |
-// |
-// |
-// | {check-mark}
-// | {check-mark}
+| Assign roles
+|
+|
+|
+| {check-mark}
+| {check-mark}
 
-// | Remove roles
-// |
-// |
-// |
-// | {check-mark}
-// | {check-mark}
+| Remove roles
+|
+|
+|
+| {check-mark}
+| {check-mark}
 
-// | Create roles
-// |
-// |
-// |
-// |
-// | {check-mark}
+| Create roles
+|
+|
+|
+|
+| {check-mark}
 
-// | Delete roles
-// |
-// |
-// |
-// |
-// | {check-mark}
+| Delete roles
+|
+|
+|
+|
+| {check-mark}
 
-// | Rename roles
-// |
-// |
-// |
-// |
-// | {check-mark}
+| Rename roles
+|
+|
+|
+|
+| {check-mark}
 
-// | List roles
-// |
-// |
-// |
-// | {check-mark}
-// | {check-mark}
+| List roles
+|
+|
+|
+| {check-mark}
+| {check-mark}
 
-// | Privilege management footnote:[This includes to list, grant, and revoke privileges.]
-// |
-// |
-// |
-// |
-// | {check-mark}
-// |===
+| Privilege management footnote:[This includes to list, grant, and revoke privileges.]
+|
+|
+|
+|
+| {check-mark}
+|===
 
+The predefined roles take the following format: `console_<role>_<dbid>`, for example `console_member_73b84556` or `console_admin_pro_73b84556`.
 
 [TIP]
 ====
