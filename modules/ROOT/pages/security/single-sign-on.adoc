@@ -97,7 +97,7 @@ After setting up SSO, the `Organization sso login` link can be found in the orga
 
 Role mapping links a user’s identity from an identity provider (such as Okta or Microsoft Entra ID) to a specific Aura role, based on attributes passed during authentication, like group or department.
 
-When SSO is enabled at either the organization level or project level, Aura uses role mapping to determine what access a user should have based on their IdP group membership.
+When SSO is enabled at the project level, Aura uses role mapping to determine what access a user should have based on their IdP group membership.
 
 This access then applies to *all newly created* instances the user has access to.
 
@@ -107,7 +107,7 @@ This access then applies to *all newly created* instances the user has access to
 
 In this case:
 
-`aws-neo4j-sso` is a group name from the groups claim in the token and `editor` is the Aura role assigned to any user in that group.
+`aws-neo4j-sso` is a group name from the groups claim in the token and `editor` is the instance role assigned to any user in that group.
 
 == Instance-level SSO support
 
@@ -118,7 +118,7 @@ Support is required to configure instance-level SSO.
 
 Support can assist with:
 
-* Role mapping specific IdP groups to a database instance
+* Role mapping specific IdP groups to a single database instance, instead of all instances which is the default behavior.
 * Adding custom claims (e.g., beyond `groups`)
 * Updating SSO settings on already running instances
 
