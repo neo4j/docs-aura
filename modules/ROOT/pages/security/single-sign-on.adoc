@@ -110,19 +110,12 @@ In this case:
 
 == Instance-level SSO support
 
-[NOTE]
-====
-Customer support isn't required for all SSO, just certain setups. For example, support can help you configure instance-level SSO for individual instances.
-
-Also note that SSO configuration changes are not applied retroactively.
-To apply updated SSO settings, contact Neo4j Support for assistance.
-====
-
 Customer support can assist with:
 
+* Adding SSO just for specific instances
+* Updating SSO settings on already running instances
 * Role mapping specific IdP groups to a single database instance, instead of all instances which is the default behavior.
 * Creating link:https://auth0.com/docs/secure/tokens/json-web-tokens/create-custom-claims[custom claims] beyond `groups`
-* Updating SSO settings on already running instances
 
 === Ticket template
 
