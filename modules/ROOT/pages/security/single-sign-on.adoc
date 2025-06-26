@@ -121,7 +121,7 @@ To apply updated SSO settings or role mappings to an existing instance, contact 
 Customer support can assist with:
 
 * Role mapping specific IdP groups to a single database instance, instead of all instances which is the default behavior.
-* Adding link:https://auth0.com/docs/secure/tokens/json-web-tokens/create-custom-claims[custom claims] beyond `groups`
+* Creating link:https://auth0.com/docs/secure/tokens/json-web-tokens/create-custom-claims[custom claims] beyond `groups`
 * Updating SSO settings on already running instances
 
 === Ticket template
@@ -136,7 +136,7 @@ IdP name: [e.g., Okta, Azure]
 SSO update for existing instance? Yes / No  
 Role mappings? Yes / No  
 If yes: [Insert details]  
-Custom groups claim? Yes / No  
+Custom claim? Yes / No  
 If yes: [Insert details]
 ----
 
