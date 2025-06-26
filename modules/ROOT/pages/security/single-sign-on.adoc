@@ -56,7 +56,6 @@ At the organization-level, admins can disable email/password and Google SSO if o
 * Okta
 * Microsoft Entra ID
 
-
 At the project-level, admins cannot disable user/password.
 
 == Setup requirements
@@ -113,10 +112,13 @@ In this case:
 
 [NOTE]
 ====
-Support is required to configure instance-level SSO.
+Customer support isn't required for all SSO, just certain setups. For example, support can help you configure instance-level SSO for individual instances.
+
+Also note that SSO configuration changes are not applied retroactively.
+To apply updated SSO settings or role mappings to an existing instance, contact Neo4j Support for assistance.
 ====
 
-Support can assist with:
+Customer support can assist with:
 
 * Role mapping specific IdP groups to a single database instance, instead of all instances which is the default behavior.
 * Adding custom claims (e.g., beyond `groups`)
@@ -127,9 +129,9 @@ Support can assist with:
 To request assistance, contact Support and raise a ticket using the following template:
 
 [source]
-----
-Project ID: [Insert]  
-Instance ID: [Insert]  
+---- 
+Instance ID (Aura-only): [Insert]  
+Project ID (Aura-only): [Insert] 
 IdP name: [e.g., Okta, Azure]  
 SSO update for existing instance? Yes / No  
 Custom role mappings? Yes / No  
@@ -138,15 +140,8 @@ Custom groups claim? Yes / No
 If yes: [Insert claim name]
 ----
 
+Instance ID (also known as DBID) can be found at xref:managing-instances/instance-details.adoc[instance details].
 Project ID can be found at xref:visual-tour/index.adoc#_settings[project settings].
-
-Instance ID can be found at xref:managing-instances/instance-details.adoc[instance details].
-
-[NOTE]
-====
-SSO configuration changes are not applied retroactively.
-To apply updated SSO settings or role mappings to an existing instance, contact Neo4j Support for assistance.
-====
 
 == Microsoft Entra ID SSO 
 
