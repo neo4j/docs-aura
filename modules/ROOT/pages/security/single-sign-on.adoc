@@ -56,7 +56,6 @@ At the organization-level, admins can disable email/password and Google SSO if o
 * Okta
 * Microsoft Entra ID
 
-
 At the project-level, admins cannot disable user/password.
 
 == Setup requirements
@@ -95,22 +94,54 @@ After setting up SSO, the `Organization sso login` link can be found in the orga
 
 == Role mapping
 
-Role mapping applies to all new instances created within the selected project.
-To configure role mapping for an individual instance, contact support.
+Role mapping links a user’s identity from an identity provider (such as Okta or Microsoft Entra ID) to a specific Aura role, based on attributes passed during authentication, like group or department.
 
-== Individual instance-level
+When SSO is enabled at the project level, Aura uses role mapping to determine what access a user should have based on their IdP group membership.
 
-Support can assist with SSO configurations at instance-level including:
+This access then applies to *all newly created* instances the user has access to.
 
-* Role mapping specific to a database instance
-* link:https://auth0.com/docs/secure/tokens/json-web-tokens/create-custom-claims[Create custom claims] besides `groups`
-* Updating SSO on already running instances
+=== Example role mapping
 
-If you require support assistance, visit link:https://support.neo4j.com/[Customer Support] and raise a support ticket including the following information:
+`aws-neo4j-sso=editor`
 
-. The _Project ID_ of the projects you want to use SSO for. Click on the project settings to copy the ID.
+In this case:
 
-. The name of your IdP
+`aws-neo4j-sso` is a group name from the groups claim in the token and `editor` is the instance role assigned to any user in that group.
+
+== Instance-level SSO support
+
+[NOTE]
+====
+Customer support isn't required for all SSO, just certain setups. For example, support can help you configure instance-level SSO for individual instances.
+
+Also note that SSO configuration changes are not applied retroactively.
+To apply updated SSO settings or role mappings to an existing instance, contact Neo4j Support for assistance.
+====
+
+Customer support can assist with:
+
+* Role mapping specific IdP groups to a single database instance, instead of all instances which is the default behavior.
+* Adding custom claims (e.g., beyond `groups`)
+* Updating SSO settings on already running instances
+
+=== Ticket template
+
+To request assistance, contact Support and raise a ticket using the following template:
+
+[source]
+---- 
+Instance ID (Aura-only): [Insert]  
+Project ID (Aura-only): [Insert] 
+IdP name: [e.g., Okta, Azure]  
+SSO update for existing instance? Yes / No  
+Custom role mappings? Yes / No  
+If yes: [Insert details]  
+Custom groups claim? Yes / No  
+If yes: [Insert claim name]
+----
+
+Instance ID (also known as DBID) can be found at xref:managing-instances/instance-details.adoc[instance details].
+Project ID can be found at xref:visual-tour/index.adoc#_settings[project settings].
 
 == Microsoft Entra ID SSO 
 
