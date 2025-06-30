@@ -1,18 +1,12 @@
 = Multi-Factor Authentication 
 
-Multi-Factor Authentication (MFA) adds an extra layer of security to your Neo4j Aura account by requiring a one-time passcode (OTP) in addition to your password.
+Multi-Factor Authentication (MFA) adds an extra layer of security to your Neo4j Aura account by requiring a one-time passcode (OTP) in addition to your password. 
+To generate the one-time passcode use an authenticator app, such as Google Authenticator.
 
 There's two scenarios for MFA:
 
 * Scenario 1: Individual users can enable MFA for their own accounts.
 * Scenario 2: Organization administrators can enable MFA for an entire organization, then it's mandatory for all members to go through the MFA setup.
-
-Use any of the following apps to generate one-time codes:
-
-* Authy
-* Google Authenticator
-* Auth0 Guardian
-* Microsoft Authenticator
 
 == Scenario 1. Enable MFA as a user via account settings 
 
@@ -28,7 +22,7 @@ To enable MFA, you must log in using email and password, not Google login or SSO
 . Log back in with your email and password.
 . A setup modal appears with a QR code.
 . Scan the QR code.
-. Enter the *one-time code* from the app to verify.
+. Enter the *one-time code* from the authenticator app.
 . *Save your recovery code* somewhere secure.
 
 ==  Scenario 2. Enable MFA for an organization 
@@ -49,7 +43,7 @@ To enable MFA, you must log in using email and password, not Google login or SSO
 . Log back in using their email and password.
 . A setup modal appears with a QR code.
 . Using their authenticator app, they scan the QR code.
-. Enter the one-time code from the app to verify.
+. Enter the one-time code from the authenticator app.
 . Save the recovery code somewhere secure.
 
 
