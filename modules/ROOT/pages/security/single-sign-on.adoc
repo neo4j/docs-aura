@@ -110,19 +110,12 @@ In this case:
 
 == Instance-level SSO support
 
-[NOTE]
-====
-Customer support isn't required for all SSO, just certain setups. For example, support can help you configure instance-level SSO for individual instances.
-
-Also note that SSO configuration changes are not applied retroactively.
-To apply updated SSO settings or role mappings to an existing instance, contact Neo4j Support for assistance.
-====
-
 Customer support can assist with:
 
+* Adding SSO just for a specific instance
+* Updating SSO settings on existing instances
 * Role mapping specific IdP groups to a single database instance, instead of all instances which is the default behavior.
-* Adding custom claims (e.g., beyond `groups`)
-* Updating SSO settings on already running instances
+* Creating link:https://auth0.com/docs/secure/tokens/json-web-tokens/create-custom-claims[custom claims] beyond `groups`
 
 === Ticket template
 
@@ -134,10 +127,10 @@ Instance ID (Aura-only): [Insert]
 Project ID (Aura-only): [Insert] 
 IdP name: [e.g., Okta, Azure]  
 SSO update for existing instance? Yes / No  
-Custom role mappings? Yes / No  
+Role mappings? Yes / No  
 If yes: [Insert details]  
-Custom groups claim? Yes / No  
-If yes: [Insert claim name]
+Custom claim? Yes / No  
+If yes: [Insert details]
 ----
 
 Instance ID (also known as DBID) can be found at xref:managing-instances/instance-details.adoc[instance details].
