@@ -1,47 +1,49 @@
 = Multi-Factor Authentication 
 
 Multi-Factor Authentication (MFA) adds an extra layer of security to your Neo4j Aura account by requiring a verification code in addition to your password. 
-The verification code is generated using an authenticator app such as Google Authenticator.
+The verification code is generated using any authenticator app, such as Google Authenticator.
 
 There are two scenarios for MFA:
 
 * Individual users can enable MFA for their own accounts.
 * Organization administrators can enable MFA for an entire organization, then it's mandatory for all members to go through the MFA setup.
 
-== Enable MFA as a user via account settings 
-
 [IMPORTANT]
 ====
-To enable MFA, you must log in using email and password, not using any SSO.
+To enable MFA, you must log in using email and password, not using any SSO or Google Sign-In.
 ====
+ 
+
+== Enable MFA as a user via account settings 
 
 . Log in to the Aura Console using your email/password.
-. Go to *Account > Settings > Preferences > Security*.
+. Select your avatar to access *Account > Settings > Preferences > Security*.
 . Enable *Multi-Factor Authentication (MFA)*.
 This automatically logs you out.
 . Log back in with your email and password.
+. Enter the one-time password sent to your email account.
 . Scan the QR code in the setup modal.
 . Enter the verification code from the authenticator app.
 . Save your recovery code somewhere secure.
 
 ==  Enable MFA for an organization 
-Enabling MFA for all members of an organization consists of two parts:
 
-* `Organization Owners` or `Organization Admins` can enable MFA that applies to all members of the organization.
-* * Organization members complete the setup on their end with an authenticator app of their choice.
-
-For organization owner or organization admin to enable MFA for their organization:
+`Organization Owners` or `Organization Admins` can require all members of an organization to set up MFA.
+Then each organization member will be prompted to complete the setup, with an authenticator app of their choice.
+ 
+To enable MFA setup for an organization:
 
 . Go to *Account > Settings > Preferences > Security*.
 . Enable *Multi-Factor Authentication (MFA)*.
 
+Once MFA has been enabled on the organization level, all *organization members* need to complete the setup.
 
-Once MFA has been enabled on the organization level, as an *organization member*, you need to complete the setup on your end.
-Next time they log in, they will see the message, "_Your organization has required Multi Factor Authentication (MFA). 
+The following message is shown, "_Your organization has required Multi Factor Authentication (MFA). 
 Clicking enable MFA below will log you out and you will then need to login using your email and password to configure MFA._"
 
 . Once you click *Enable*, you are logged out automatically.
-. Log back in using your email and password, SSO is not supported for MFA setup.
+. Log back in using your email and password,
+. Enter the one-time password sent to your email account.
 . Use your authenticator app to scan the QR code in the setup modal.
 . Enter the verification code from the authenticator app.
-. Save the recovery code somewhere secure.
+. Save your recovery code somewhere secure.
