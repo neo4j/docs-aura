@@ -10,7 +10,7 @@ A snapshot is a copy of the data in an instance at a specific point in time.
 The *Snapshots* tab within an Aura instance card shows a list of available snapshots.
 You can find the *Snapshots* tab via *Inspect* in the more menu (*...*) on the instance card.
 
-There are different kinds of snapshots taken at different intervals with different lifecycles depending on your plan.
+There are different kinds of snapshots taken at different intervals with different lifecycles depending on your tier.
 See <<snapshot-details>> for more information.
 
 
@@ -27,7 +27,7 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 label:AuraDS-Professional[]
 label:AuraDS-Enterprise[]
 
-A *Scheduled* snapshot is a snapshot that is automatically triggered at a cadence depending on your plan type.
+A *Scheduled* snapshot is a snapshot that is automatically triggered at a cadence depending on your tier.
 
 For Professional instances running the latest version, scheduled snapshots are run automatically once a day, same for both AuraDS Professional and for AuraDS Enterprise instances, For Business Critical and Virtual Dedicated Cloud instances, they run once an hour.
 See <<snapshot-details>> further on for information about frequency, restorability, and exportability of scheduled snapshots, as well snapshots on instances running version 4.x.
@@ -84,7 +84,7 @@ If not, you can create a new instance from the snapshot instead, as described in
 
 [cols="^,^,^,^,^,^,^",options="header"]
 |===
-| Plan
+| Tier
 | Aura version
 2+| Frequency of snapshots
 2+| Scheduled snapshots
