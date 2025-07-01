@@ -9,7 +9,7 @@ This is the current default query language.
 All new features are added to Cypher 25, which will eventually become the default language for new instances.
 
 To make use of new features and functionality, you need to change the default language.
-This is managed per Aura instance and requires a `PROJECT_ADMIN` role.
+This is managed per Aura instance and requires an `ADMIN` role.
 It is done using the `ALTER DATABASE` command and thus affects all queries executed against your database.
 However, you can also override the default language for individual queries.
 
