@@ -1,0 +1,39 @@
+= Multi-Factor Authentication 
+
+Multi-Factor Authentication (MFA) adds an extra layer of security to an Aura account log-in by requiring a verification code in addition to username and password. 
+The verification code is generated using any authenticator app, such as Google Authenticator.
+
+There are two scenarios for MFA:
+
+* Individual users can enable MFA for their own accounts via account settings.
+* Organization administrators can enable MFA for an entire organization, then it's mandatory for all members to go through the MFA setup.
+
+[IMPORTANT]
+====
+Setting up MFA requires logging in using email and password, not using SSO or Google Sign-In.
+====
+
+== Enable individual MFA
+
+. Log in to the Aura Console using email/password.
+. Go to *Account > Settings > Preferences > Security*.
+. Enable *Multi-Factor Authentication (MFA)*.
+. Follow the MFA set up steps.
+
+==  Enable MFA for an organization 
+
+`Organization Owners` or `Organization Admins` can require all members of an organization to set up MFA from organization security settings.
+Then each organization member will be prompted to complete the setup, with an authenticator app of their choice.
+ 
+To set up organization-wide MFA:
+
+. Go to *Organization Settings > Security & Networking > App MFA (Multi-Factor Authentication)*.
+. Enable *Multi-Factor Authentication (MFA)*.
+
+After MFA is enabled at the organization level, all members will see the following message in the console:
+
+[quote]
+"_Your organization has required Multi Factor Authentication (MFA). 
+Clicking enable MFA below will log you out and you will then need to login using your email and password to configure MFA._"
+
+Selecting *Enable*, logs the user out automatically, and then they are required to continue with MFA setup steps.
