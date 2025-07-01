@@ -19,10 +19,10 @@ Create an AuraDB instance with:
 
 [source, shell]
 ----
-aura-cli instance create --name YOUR\_INSTANCE\_NAME --type free-db --await 
+aura-cli instance create --name YOUR\_INSTANCE\_NAME --type free-db --await
 ----
 
-For other Aura plans, provide the following:
+For other Aura tiers, provide the following:
 
 * Instance name
 * Memory
@@ -35,7 +35,7 @@ Once you have them, proceed with:
 
 [source, shell]
 ----
-aura-cli instance create --name YOUR_INSTANCE_NAME --cloud-provider YOUR_CLOUD_PROVIDER --region CLOUD_REGION --memory MEMORY --type  AURA_INSTANCE_TYPE --tenant-id YOUR_TENANT_ID 
+aura-cli instance create --name YOUR_INSTANCE_NAME --cloud-provider YOUR_CLOUD_PROVIDER --region CLOUD_REGION --memory MEMORY --type  AURA_INSTANCE_TYPE --tenant-id YOUR_TENANT_ID
 ----
 
 You can skip `--tenant-id` if you have set a default tenant.
@@ -57,7 +57,7 @@ Use the table format output option to improve readability:
 
 [source, shell]
 ----
-aura-cli instance list --output table 
+aura-cli instance list --output table
 ----
 
 From the list, you can then use the ID for an AuraDB instance to get detailed information about it, including the URL to use for metrics:
@@ -209,7 +209,7 @@ See xref:managing-instances/backup-restore-export.adoc#export-create[Export / Cr
 +
 [source, shell]
 ----
-aura-cli instance get DESTINATION_INSTANCE_ID 
+aura-cli instance get DESTINATION_INSTANCE_ID
 ----
 
 When the status is "Running" the overwrite is completed.
@@ -237,7 +237,7 @@ aura-cli instance overwrite DESTINATION_INSTANCE_ID --source-instance-id SOURCE_
 +
 [source, shell]
 ----
-aura-cli instance get DESTINATION_INSTANCE_ID 
+aura-cli instance get DESTINATION_INSTANCE_ID
 ----
 
 When the status is "Running" the overwrite is completed.

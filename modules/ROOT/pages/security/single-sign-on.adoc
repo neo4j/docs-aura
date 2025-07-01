@@ -9,21 +9,23 @@ label:AuraDS-Enterprise[]
 
 [NOTE]
 ====
-If you're planning to use Single Sign-On (SSO), it's best to set it up early in your Aura journey. SSO does not retroactively apply to existing instances. It only applies to instances created after SSO is configured.
+If you're planning to use Single Sign-On (SSO), keep in mind that SSO does not retroactively apply to existing instances.
+It only applies to instances created after SSO is configured.
+Therefore, plan accordingly.
 ====
 
 Single Sign-On (SSO) enables organization owners and organization admins to use your organization’s identity provider (IdP) to authenticate users so they can access the Aura console and Aura instances.
 
 Aura supports SSO authentication and authorization using https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc[Microsoft Entra] and link:https://developer.okta.com/docs/guides/oin-sso-overview/[Okta] as IdPs, implementing the OpenID Connect (OIDC) protocol.
 
-As the service provider, Neo4j Aura redirects authentication requests to the configured IdP using the OpenID Connect (OIDC) protocol. 
+As the service provider, Neo4j Aura redirects authentication requests to the configured IdP using the OpenID Connect (OIDC) protocol.
 Aura also supports authenticating with Google as the identity provider.
-When a user attempts to log in, Aura generates a redirect URL with authentication parameters and sends the user to the IdP for authentication. 
+When a user attempts to log in, Aura generates a redirect URL with authentication parameters and sends the user to the IdP for authentication.
 After successful authentication, the IdP redirects the user back to Aura with a secure token, allowing Aura to establish an authenticated session.
 
 == Required roles
 
-The person setting up SSO needs an `Organization Owner` or `Organization Admin` role. 
+The person setting up SSO needs an `Organization Owner` or `Organization Admin` role.
 For information on how to assign roles see xref:/aura/user-management/[User management].
 
 == SSO levels
@@ -70,7 +72,7 @@ To create an SSO Configuration, either a Discovery URI or a combination of Issue
 
 . From the *Organization settings*, go to *Single Sign-On* to set up a new SSO configuration.
 
-. The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on organization-level, only on project-level, or both. 
+. The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on organization-level, only on project-level, or both.
 
 . The required basic SSO configuration information can be retrieved from the IdP.
 Entering the Discovery URI pre-fills the fields below.
@@ -122,25 +124,25 @@ Customer support can assist with:
 To request assistance, contact Support and raise a ticket using the following template:
 
 [source]
----- 
-Instance ID (Aura-only): [Insert]  
-Project ID (Aura-only): [Insert] 
-IdP name: [e.g., Okta, Azure]  
-SSO update for existing instance? Yes / No  
-Role mappings? Yes / No  
-If yes: [Insert details]  
-Custom claim? Yes / No  
+----
+Instance ID (Aura-only): [Insert]
+Project ID (Aura-only): [Insert]
+IdP name: [e.g., Okta, Azure]
+SSO update for existing instance? Yes / No
+Role mappings? Yes / No
+If yes: [Insert details]
+Custom claim? Yes / No
 If yes: [Insert details]
 ----
 
 Instance ID (also known as DBID) can be found at xref:managing-instances/instance-details.adoc[instance details].
 Project ID can be found at xref:visual-tour/index.adoc#_settings[project settings].
 
-== Microsoft Entra ID SSO 
+== Microsoft Entra ID SSO
 
 . In the *Azure Portal*, go to *App Registrations* and then *New Registration*.
 
-. Add a name for the new app registration and select *Register*. 
+. Add a name for the new app registration and select *Register*.
 Skip redirect URI’s for now.
 
 . On the app overview page, take note of the Application (client) ID.
@@ -153,7 +155,7 @@ Skip redirect URI’s for now.
 
 . Under *Authentication* in the left-hand navigation, setup redirect URLs:
 
-.. Adding a new Web platform 
+.. Adding a new Web platform
 .. Enter `https://login.neo4j.com/login/callback` as the redirect URI.
 
 . In the Aura console, go to *Organization Settings* > *Security* > *Single Sign On* > *New configuration*
@@ -192,20 +194,20 @@ Skip redirect URI’s for now.
 
 When requesting the token from Azure, the scopes Aura sends are:
 
-* `openid` access to a unique identifier to identify the user. 
+* `openid` access to a unique identifier to identify the user.
 
 * `profile` access to basic profile information.
 
 * `email` contains the user's email address.
 
-This will result in Azure asking for consent to display details related to these scopes. 
+This will result in Azure asking for consent to display details related to these scopes.
 For more information, see link:https://auth0.com/docs/get-started/apis/scopes/openid-connect-scopes#standard-claims[OpenID Connect Scopes]
 
-== Okta SSO 
+== Okta SSO
 
 . In the *Okta admin portal* go to *Applications* and then *Create App Integration*.
 
-. For *Sign-in method* select *OIDC - OpenID Connect*. 
+. For *Sign-in method* select *OIDC - OpenID Connect*.
 
 . For *Application type* select *Web Application*.
 
@@ -262,6 +264,6 @@ No, users must be granted the role on the organization via Aura console invites 
 
 *Why am I unable to connect to the instance after completing the SSO login, the connection is showing as unconnected?*
 
-Ensure that the email field is provided on your user in Microsoft Entra ID. 
+Ensure that the email field is provided on your user in Microsoft Entra ID.
 If it already is, contact support for further assistance.
 

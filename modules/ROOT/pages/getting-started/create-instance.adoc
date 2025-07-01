@@ -3,14 +3,14 @@
 :description: This page describes how to create an instance in the new Neo4j Aura console.
 :page-aliases: auradb/getting-started/create-database.adoc, aurads/create-instance.adoc
 
-There are two types of Aura instances:
+There are two types of Aura product instances:
 
 * **AuraDB** (the default Aura instance type)
 * **AuraDS** (the xref:graph-analytics/index.adoc#aura-ds[fully managed version] of Neo4j Graph Data Science)
 
-Select the type of instance using the switch on the top right, then choose the plan that best suits your needs.
+Select the type of instance using the switch on the top right, then choose the tier that best suits your needs.
 
-For AuraDB, you can upgrade your plan, and resize your instance's memory and storage later if your needs change.
+For AuraDB, you can upgrade your tier, and resize your instance's memory and storage later if your needs change.
 For pre-paid AuraDB instances on GCP, adjustable storage independent of memory is available, see xref:managing-instances/instance-actions.adoc#_adjust_storage[Adjust storage] for more information.
 
 You can optionally enable additional features:
@@ -25,6 +25,6 @@ The password is required to access your instance later.
 [NOTE]
 ====
 You can only create **one Free instance** per account.
-To create more instances, you need to upgrade your plan.
-See link:https://neo4j.com/pricing/[Neo4j Pricing] for more information on the different plans.
+To create more instances, you need to upgrade your tier.
+See link:https://neo4j.com/pricing/[Neo4j Pricing] for more information on the different tiers.
 ====
