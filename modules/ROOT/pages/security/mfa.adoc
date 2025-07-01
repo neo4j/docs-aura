@@ -1,6 +1,6 @@
 = Multi-Factor Authentication 
 
-Multi-Factor Authentication (MFA) adds an extra layer of security to a Neo4j Aura account log-in by requiring a verification code in addition to username and password. 
+Multi-Factor Authentication (MFA) adds an extra layer of security to an Aura account log-in by requiring a verification code in addition to username and password. 
 The verification code is generated using any authenticator app, such as Google Authenticator.
 
 There are two scenarios for MFA:
@@ -44,5 +44,3 @@ Selecting *Enable*, logs the user out automatically, and then it's required to c
 . Enter the one-time code sent to your email account.
 . Use an authenticator app to scan the QR code in the setup modal.
 . Enter the verification code from the authenticator app.
-. After entering the verification code successfully, a recovery code is provided.
-. Save the recovery code somewhere secure.
