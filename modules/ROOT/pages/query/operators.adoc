@@ -1,0 +1,123 @@
+= Operators
+
+Operator commands are part of a shell-like interface within the Aura console and act as a built-in system tool.
+
+The following commands are accessed by typing `:` in the Neo4j Aura console:
+
+[source,cypher]
+----
+:access-mode
+:clear
+:connect
+:disconnect
+:history
+:param
+:play
+:server
+:style
+:style reset
+:sysinfo
+:use
+:welcome
+----
+
+== Command descriptions
+
+=== `:access-mode`
+
+Controls whether queries are sent in read or write mode.
+
+- Useful for load balancing or enforcing read-only sessions.
+- Current mode: `WRITE` (if shown in UI)
+
+=== `:connect` / `:disconnect`
+
+Establishes or terminates the connection to a database instance.
+
+=== `:param`
+
+Used to create or view Cypher parameters.
+
+- Parameters can be created either via the parameters sidebar (`{}`) or by invoking this command in the query editor.
+- See the official syntax guide at https://neo4j.com/docs/cypher-manual/current/syntax/parameters/
+
+.Example
+[source,cypher]
+----
+:param {
+  name: "Beatriz",
+  date: date("2025-07-03")
+}
+----
+
+=== `:clear`
+
+Clears the current output or query history in the UI.
+
+=== `:history`
+
+Brings up the list of previously executed queries and commands.
+
+=== `:play` 
+
+Launches built-in tutorials, interactive guides, or datasets.
+
+.Example
+[source,cypher]
+----
+:play movies
+----
+
+=== `:server`
+
+Displays server connection details or instance metadata.
+
+=== `:style` / `:style reset`
+
+- `:style` applies styling presets to the graph visualization.
+- `:style reset` reverts those styles to default.
+
+=== `:sysinfo`
+
+[TIP]
+====
+Use `:sysinfo` to investigate slow queries, memory pressure, or diagnose unexpected behavior in Aura instances.
+====
+
+Provides valuable diagnostic insights, especially for users working in Aura where file system access is not available.
+It provides the following info in the UI:
+
+[cols="1,3"]
+|===
+| *Section* | *Description*
+
+| ID Allocation
+| Tracks ID space usage for nodes, relationships, and relationship types.
+
+| Store Size
+| Shows total and per-database disk usage.
+
+| Page Cache
+| Displays hit ratio, memory usage, and page fault stats.
+
+| Transactions
+| Indicates current, peak, and committed transaction counts.
+
+| Databases
+| Lists online databases, default/home status, and roles.
+|===
+
+=== `:use`
+
+Switches between databases.
+
+.Example
+[source,cypher]
+----
+:use neo4j
+----
+
+=== `:welcome`
+
+Loads the welcome panel or quickstart UI in the query view.
+
