@@ -270,7 +270,7 @@ Note that similarly to the individual records, this wildcard record must also be
 
 [IMPORTANT]
 ====
-If users have regions with different private link endpoints, but have linked those endpoints to one client VPC , then the wildcard record would direct all traffic for custom endpoints to only one region—whichever is associated with the IP address used in the DNS records.
+If users have regions with different private link endpoints, but have linked those endpoints to one client VPC , then the wildcard record would direct all traffic for custom endpoints to only one region-whichever is associated with the IP address used in the DNS records.
 This breaks routing for custom endpoints located in the other regions, and therefore, if you do not have a simple private link setup, it is recommended to use the individual custom endpoint records, rather than the wildcard.
 ====
 
