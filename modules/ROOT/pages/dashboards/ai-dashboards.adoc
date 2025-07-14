@@ -5,7 +5,8 @@
 
 [NOTE]
 ====
-When creating a dashboard with AI, the AI analyzes your database schema, not the actual data in your database.
+When creating a dashboard with AI, the AI analyzes your link:https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[database schema], that is, the node labels and relationship types of your database.
+It cannot read the actual data in your database.
 ====
 
 If you do not enter a prompt, Neo4j AI will still make use of your database schema and come up with a suitable dashboard.
