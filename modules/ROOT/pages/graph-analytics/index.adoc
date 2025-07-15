@@ -6,11 +6,11 @@
 
 If your data is in Aura or you plan to move it to Aura, you have several options to run graph analytics:
 
-* Enable <<aura-gds-plugin,Graph Analytics>> on an existing AuraDB instance (Professional).
-* Use <<aura-gds-serverless,Graph Analytics Serverless>> from an existing AuraDB instance (Business Critical, Virtual Dedicated Cloud).
-* Create an <<aura-ds, AuraDS instance>> (Professional, Enterprise).
+* Enable the <<aura-gds-plugin,Graph Analytics plugin>> on an existing AuraDB instance (Professional).
+* Use <<aura-gds-serverless,Aura Graph Analytics>> from an existing AuraDB instance (Business Critical, Virtual Dedicated Cloud).
+* Create an <<aura-ds,AuraDS instance>> (Professional, Enterprise).
 
-If your data is in a self-managed Neo4j DBMS or a non-Neo4j data source, you can still use <<aura-gds-serverless,Graph Analytics Serverless>>.
+If your data is in a self-managed Neo4j DBMS or a non-Neo4j data source, you can still use <<aura-gds-serverless, Aura Graph Analytics>>.
 
 [[aura-gds-plugin]]
 == Graph Analytics plugin
@@ -37,12 +37,12 @@ With the Graph Analytics plugin enabled:
 * If you use Python, start with the link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/tutorials/[Python client tutorials].
 
 [[aura-gds-serverless]]
-== Graph Analytics Serverless
+== Aura Graph Analytics
 
-Graph Analytics Serverless allows you to use the Graph Data Science library regardless of where your source data is stored.
+Aura Graph Analytics allows you to use the Graph Data Science library regardless of where your source data is stored.
 It runs in Aura as a link:{gds-sessions-page}[dedicated service] optimised for analytics workloads, with no memory or compute resources shared with your data store.
 
-You can enable, disable, and configure Graph Analytics Serverless on the organization level in the xref:visual-tour/index.adoc#_settings_for_graph_analytics_serverless[organization settings].
+You can enable, disable, and configure Aura Graph Analytics serverless on the organization level in the xref:visual-tour/index.adoc#_settings_for_graph_analytics_serverless[organization settings].
 The details on any running sessions are available in the xref:visual-tour/index.adoc#_graph_analytics[Graph Analytics] page.
 
 === From an AuraDB instance
@@ -51,10 +51,10 @@ label:AuraDB-Business-Critical[] label:AuraDB-Virtual-Dedicated-Cloud[]
 
 [IMPORTANT]
 ====
-Graph Analytics Serverless is currently unavailable via any of the xref:cloud-providers.adoc[cloud provider marketplaces].
+Aura Graph Analytics is currently unavailable via any of the xref:cloud-providers.adoc[cloud provider marketplaces].
 ====
 
-You can use Graph Analytics Serverless from any AuraDB Business Critical or AuraDB Virtual Dedicated Cloud instance with the following requirements:
+You can use Aura Graph Analytics serverless from any AuraDB Business Critical or AuraDB Virtual Dedicated Cloud instance with the following requirements:
 
 * Neo4j version 5 or later
 * All supported cloud providers and regions
@@ -111,9 +111,9 @@ Graphs and models created or updated _after_ the instance update/upgrade process
 |
 |Graph Analytics plugin +
 (AuraDB Pro)
-|Graph Analytics Serverless +
+|Aura Graph Analytics serverless +
 (AuraDB BC)
-|Graph Analytics Serverless +
+|Aura Graph Analytics serverless +
 (AuraDB VDC)
 |AuraDS
 
