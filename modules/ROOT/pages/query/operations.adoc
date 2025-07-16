@@ -114,8 +114,8 @@ Parameters can be used for:
 
 * literals and expressions
 * node and relationship IDs
-* Properties, when referenced *dynamically* (for more information, see link:https://neo4j.com/docs/cypher-manual/current/clauses/where/#filter-on-dynamic-property[Filter on dynamically-computed node property]).
-* Node labels and relationship types, when referenced *dynamically* (for more information, see link:https://neo4j.com/docs/cypher-manual/current/clauses/match/#dynamic-match[MATCH using dynamic node labels and relationship types]).
+* properties, when referenced *dynamically* (for more information, see link:https://neo4j.com/docs/cypher-manual/current/clauses/where/#filter-on-dynamic-property[Filter on dynamically-computed node property]).
+* node labels and relationship types, when referenced *dynamically* (for more information, see link:https://neo4j.com/docs/cypher-manual/current/clauses/match/#dynamic-match[MATCH using dynamic node labels and relationship types]).
 
 Parameters cannot be used for the following constructs, as these form part of the query structure that is compiled into a query plan:
 
@@ -136,6 +136,7 @@ For more details on the Cypher parameters, see link:https://neo4j.com/docs/cyphe
 
 You can set a parameter to be sent with your queries via the *Parameters sidebar* (*{}*) or by using the `:param` command.
 
+
 ==== Parameter sidebar
 
 The Parameter sidebar provides inputs directly from the UI for most of the property types in Neo4j.
@@ -153,7 +154,7 @@ This process is much like using the `:param` command, as described in the follow
 
 The `+:param name => 'Example'+` command defines a parameter named `name`, which will be sent along with your queries. +
 The right hand side of `=>` is sent to the server and evaluated as Cypher with an implicit `RETURN` in front.
-This gives better type safety since some types (especially numbers) in JavaScript are hard to match with Neo4j:s type system.
+This gives better type safety since some types (especially numbers) in JavaScript are hard to match with Neo4j's type system.
 To see the list of all currently set query parameters and their values, use the `:params` command.
 For more information on how to use the commands, see `:help param` and `:help params`.
 
@@ -259,7 +260,7 @@ You can clear all currently set parameters from Query by running:
 
 [source, query command, role=noheader]
 ----
-:params {}
+:params clear
 ----
 
 
@@ -294,17 +295,14 @@ $f = false
 
 === Parameter assistance
 
-If you run a query using parameters without first declaring them all, Queryreturns a `ParameterMissing` error and lists the missing parameter(s).
+If you run a query using parameters without first declaring them all, Query returns a parameter-missing error and lists the missing parameter(s).
 You can click the provided template to populate the editor with the command for setting parameters and all you have to do is enter the value(s) for the missing parameter(s).
 Since the result frame is reusable, once you have set your parameter(s), you can run the same Cypher query again without having to re-enter it.
 
+.Parameter assistance
 [.shadow]
-image::params-assist.png[]
+image::param-assist.png[]
 
-[NOTE]
-====
-The command offered with parameter assistance is always `:params` even if you only have one parameter.
-====
 
 === Duration for the query parameters
 

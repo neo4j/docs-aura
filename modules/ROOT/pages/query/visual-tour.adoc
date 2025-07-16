@@ -5,7 +5,7 @@
 [.shadow]
 image::query-upx.png[width=800]
 
-== Connection banner
+== Connection bar
 
 If you are **not** connected to an instance, the dropdown on the connection banner lets you either select from recent instances or to specify a new instance.
 Once you have entered your credentials, if needed, the status shows **Connected** and you are ready to start querying.
@@ -20,12 +20,12 @@ image::query-connected-dropdown.png[width=300]
 
 == Sidebar
 
-The sidebar contains a set of drawers; database information, saved Cypher, and Query history.
+The sidebar contains a set of drawers to set up the environment for graph management and explore your data.
 
 === Database information
 
 This drawer contains information about the database you are connected to.
-It gives you an overview of the node labels and relationship types, as well as what property keys exist in the database.
+It gives you an overview of the *node labels* and *relationship types*, as well as which *property keys* exist in the database.
 If you select one, you see a sample of the selected element as a graph or table.
 
 [.shadow]
