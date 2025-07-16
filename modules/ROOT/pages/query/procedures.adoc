@@ -1,10 +1,10 @@
-= Aura Built-in Procedures Reference
+= Aura built-in procedures reference
 
 This page provides a reference for built-in procedures supported in Neo4j Aura (including both AuraDB and AuraDS). 
 Aura restricts access to certain administrative and custom capabilities due to its fully managed, secure architecture. 
 This guide highlights what is available, how to use them, and which procedures are not supported.
 
-The full list of Neo4j procedures is available at https://neo4j.com/docs/operations-manual/current/procedures/
+The full list of Neo4j procedures is available at link:https://neo4j.com/docs/operations-manual/current/procedures/[Procedures]
 
 To check which procedures are available in your Aura instance, run the following Cypher command in the query editor or Cypher shell:
 
@@ -20,11 +20,11 @@ SHOW PROCEDURES;
 CALL db.labels();
 ----
 
-== Supported Built-in Procedures
+== Supported built-in procedures
 
-The following procedures are available in Aura by default:
+The following procedures are available in Aura:
 
-== Schema and Metadata
+== Schema and metadata
 
 `CALL db.labels();`
 List all labels used in the database.
@@ -41,7 +41,7 @@ Provides a visual representation of the database schema.
 `CALL db.schema.nodeTypeProperties();`
 Lists properties by node type.
 
-== Index and Query Management
+== Index and query management
 
 `CALL db.awaitIndex('MyIndex', 300);`
 Wait for a specific index to come online.
@@ -64,7 +64,7 @@ Wait for all indexes to come online.
 
 `CALL db.clearQueryCaches();`
 
-== System and Admin
+== System and admin
 
 `CALL db.checkpoint();`
 Triggers a manual checkpoint. Temporarily bypasses IOPS limit for faster completion.
@@ -87,9 +87,9 @@ Returns earliest CDC state (if enabled).
 
 `CALL dbms.showCurrentUser();`
 
-== Restricted or Partially Supported Procedures
+== Restricted and partially supported procedures
 
-The following are known to be restricted in Aura (e.g. due to permission, cluster, or filesystem constraints). 
+The following are restricted in Aura (e.g. due to permission, cluster, or filesystem constraints). 
 
 `CALL db.info()` 
 Used for system-level diagnostics (❌ Not supported in Aura Free ✅ Supported in Aura Pro)
@@ -136,7 +136,7 @@ Same as above - forbidden in managed deployments.
 `CALL dbms.upgrade()` / `CALL dbms.upgradeStatus()`  
 Forbidden for client roles - handled by Neo4j infrastructure.
 
-== Usable, But With Caveats
+== Usable with caveats
 
 `CALL dbms.listActiveLocks('queryId')`  
 Requires a valid queryId. Will return syntax error if called without arguments.
@@ -147,7 +147,7 @@ Likely supported, but requires correct usage and roles. Syntax errors may occur 
 `CALL dbms.routing.getRoutingTable({context})`  
 Requires a map input. Fails with 0 arguments. Used internally for routing in clustered setups.
 
-== Unsupported Capabilities in Aura
+== Unsupported capabilities in Aura
 
 Neo4j Aura is a fully managed, cloud-hosted platform, and for security and stability reasons it does not support:
 
