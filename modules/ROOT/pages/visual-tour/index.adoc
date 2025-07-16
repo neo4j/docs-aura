@@ -41,11 +41,11 @@ Management at this level allows control over all Projects within an Organization
 [[org-settings]]
 === Organization settings
 
-On the organization level, you can also find a Settings menu where you can manage your organization's settings, provided that you are an organization admin. 
+On the organization level, you can also find a Settings menu where you can manage your organization's settings, provided that you are an organization admin.
 You can change the name of the organization and toggle an organization-wide setting for Generative AI assistance.
 
 
-When enabled, Generative AI assistance is available in a number of places, including the xref:query/visual-tour.adoc#copilot[Query copilot] and xref:explore/explore-visual-tour/search-bar.adoc#copilot[Explore copilot]. 
+When enabled, Generative AI assistance is available in a number of places, including the xref:query/visual-tour.adoc#copilot[Query copilot] and xref:explore/explore-visual-tour/search-bar.adoc#copilot[Explore copilot].
 These features are always identified with a ✨ and your use is subject to our link:{neo4j-docs-base-uri}/reference/license/#_genai_outputs[GenAI outputs] disclaimer
 
 // TO-DO: When section exists for Import GenAI feature, add link to it.
@@ -53,9 +53,9 @@ These features are always identified with a ✨ and your use is subject to our l
 .Organization settings
 image::organizationsettings.png[]
 
-==== Graph Analytics Serverless settings
+==== Aura Graph Analytics settings
 
-From this page you can enable or disable link:{gds-sessions-page}[Graph Analytics Serverless], as well as configure the following settings:
+From this page you can enable or disable link:{gds-sessions-page}[Aura Graph Analytics], as well as configure the following settings:
 
 * The maximum available memory for each session
 * The maximum number of concurrent sessions within the organization
@@ -82,7 +82,7 @@ See the xref:import/introduction.adoc[What is Import?] for more information abou
 
 === Graph Analytics
 
-This page lists the link:{gds-sessions-page}[Graph Analytics Serverless] sessions running within a project (if any).
+This page lists the link:{gds-sessions-page}[Aura Graph Analytics] sessions running within a project (if any).
 
 The list shows session details and a **Delete** button for each session.
 Session details include:
