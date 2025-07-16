@@ -89,7 +89,7 @@ Keep in mind that this process only breaks the link between the key and Aura —
 
 === Create an AWS key
 
-. Create a key in the AWS KMS making sure the region matches your Aura database instance.
+. Create your *symmetric key* in the AWS KMS making sure the region matches your Aura database instance.
 Copy the generated ARN.
 You need it in the next step.
 . Go to *security settings* in the Aura Console, add a *Customer Managed Key* and copy the JSON code that is generated in the Aura Console when you add a key.
