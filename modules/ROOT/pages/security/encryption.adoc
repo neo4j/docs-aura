@@ -91,11 +91,11 @@ Keep in mind that this process only breaks the link between the key and Aura - i
 
 [IMPORTANT]
 ====
-Create the *symmetric* key in AWS.
-Aura does not support asymmetric keys.
+Aura requires a symmetric key stored in AWS KMS. 
+Asymmetric keys are not supported.
 ====
 
-. Create the *symmetric key* in the AWS KMS making sure the region matches your Aura database instance. 
+. Create a *symmetric key* in the AWS KMS making sure the region matches your Aura database instance. 
 Copy the generated ARN.
 You need it in the next step.
 . Go to *security settings* in the Aura Console, add a *Customer Managed Key* and copy the JSON code that is generated in the Aura Console when you add a key.
@@ -141,13 +141,18 @@ Move through the tabs to enable to following:
 ** *Disable public access* (need to check *Allow trusted Microsoft services to bypass this firewall*)
 ** If you need to edit the public access setting after setting up the key vault, you will find public access options in Networking > Firewalls and Virtual Networks and below it is the Exception section the checkbox to Allow trusted Microsoft services to bypass this firewall.
 
-=== Create a key
+=== Create an Azure key
 
 . When preparing to create a key, if needed grant a role assignment:
 .. Inside the key vault, go to *Access Control (IAM)* and *add role assignment*.
 .. In the *Role* tab, select *Key Vault Administrator*.
 .. In the *Member* tab, select *User, group, or service principal*.
 .. From *Select members*, add yourself or the relevant person, then *Review + Assign*.
+
+[IMPORTANT]
+====
+Aura requires an RSA key, size 2048, 3072 or 4096.
+====
 
 . Create a key in the Azure Key Vault.
 . After the key is created, click into key version and copy the *Key Identifier*, you need it in the next step.
@@ -194,12 +199,12 @@ Disabling the old version too early results in Aura losing access to the key.
 . Make sure the region matches your Aura database instance region.
 . Select *Create* and you are automatically taken to the key creation page.
 
-=== Create a key
+=== Create a GCP key
 
 [IMPORTANT]
 ====
-Create the *symmetric encrypt/decrypt* key in GCP. 
-Aura does not support asymmetric keys.
+Aura requires a *symmetric encrypt/decrypt* key stored in GCP.
+Asymmetric keys are not supported.
 ====
 
 . Create the *symmetric encrypt/decrypt* key in the Google Console.
