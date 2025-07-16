@@ -83,13 +83,19 @@ Below are the details and possible errors that you may encounter depending on th
 
 When using a Customer Managed Key within Aura to encrypt one or more Aura database instances, it cannot be removed from Aura.
 If you no longer need to use this Customer Managed Key to encrypt Aura databases, first delete the Aura database instances that are encrypted with the key, then you can remove the key from Aura.
-Keep in mind that this process only breaks the link between the key and Aura —- it does not delete the actual key from the Cloud KMS.
+Keep in mind that this process only breaks the link between the key and Aura - it does not delete the actual key from the Cloud KMS.
 
 == AWS keys
 
 === Create an AWS key
 
-. Create your *symmetric key* in the AWS KMS making sure the region matches your Aura database instance.
+[IMPORTANT]
+====
+Create the *symmetric* key in AWS.
+Aura does not support asymmetric keys.
+====
+
+. Create the *symmetric key* in the AWS KMS making sure the region matches your Aura database instance. 
 Copy the generated ARN.
 You need it in the next step.
 . Go to *security settings* in the Aura Console, add a *Customer Managed Key* and copy the JSON code that is generated in the Aura Console when you add a key.
@@ -190,7 +196,13 @@ Disabling the old version too early results in Aura losing access to the key.
 
 === Create a key
 
-. Create a key in the Google Console.
+[IMPORTANT]
+====
+Create the *symmetric encrypt/decrypt* key in GCP. 
+Aura does not support asymmetric keys.
+====
+
+. Create the *symmetric encrypt/decrypt* key in the Google Console.
 You can use default settings for the options, but setting a key rotation period is recommended.
 . Select *Create* and you are brought to the key ring, with your key listed.
 . Click *More* (three dots) and *Copy resource name*, you need it in the next step.
