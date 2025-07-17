@@ -271,17 +271,14 @@ These servers are deployed across different Cloud Provider availability zones in
 Metrics Integration supports a more granular view of the Aura instance metrics with additional data points for availability zone & instance mode combinations.
 This view can be enabled on demand.
 
-[NOTE]
+[TIP]
 ====
 Use the new console to enable more granular metrics of instances for your project.
 See link:{neo4j-docs-base-uri}/aura/metrics/metrics-integration/introduction/#_metric_granularity[Metric granularity] in the new console for more information.```
 ====
 
-[NOTE]
-====
-There may be a delay in more granular metrics being available when a new Aura instance is created.
+Note that there may be a delay in more granular metrics being available when a new Aura instance is created.
 This is because of the way 'availability zone' data is collected.
-====
 
 .Example metric data points
 [source]
