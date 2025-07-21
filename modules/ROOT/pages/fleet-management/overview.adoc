@@ -6,302 +6,317 @@ This document describes the data structures used in fleet management messages.
 
 Message sent from the server to the Fleet Management service to establish a connection
 
-[cols="1,1,1,1"]
+[cols="1,1,1"]
 |===
-|Field |Type |Description |Values
-|serverId
+|Field |Type |Description
+|server_id
 |String
 |Unique identifier for the server
-|
 |name
 |String
 |Name of the server
-|
-|dbmsId
+|dbms_id
 |String
 |Unique identifier for the DBMS instance
-|
-|serverVersion
+|server_version
 |String
 |Version of the server
-|
-|projectId
+|project_id
 |String
 |Identifier for the project
-|
-|buildProfile
+|plugin_version
 |String
-|Build profile of the server
-|
+|Version of the plugin
+|build_profile
+|String
+|Build profile of the plugin
 |===
 
 == MetricsMessage
 
 Message sent from the server to the Fleet Management service containing metrics data
 
-[cols="1,1,1,1"]
+[cols="1,1,1"]
 |===
-|Field |Type |Description |Values
+|Field |Type |Description
 |timestamp
 |long
 |Unix timestamp in milliseconds when the message was created
-|
-|projectId
+|project_id
 |String
 |Identifier for the project
-|
-|dbmsId
+|dbms_id
 |String
 |Unique identifier for the DBMS instance
-|
-|serverId
+|server_id
 |String
 |Unique identifier for the server
-|
 |metrics
 |Map<String, List<DataPoint>>
-|Map of metric names to lists of DataPoint objects
-|Values not yet known.
+|Map of metric names to lists of DataPoint objects. Values are dynamically populated from the Fleet Management server.
 |metrics<>[].tags
 |Map<String, String>
 |Map of string key-value pairs providing additional context for the metric
-|
 |metrics<>[].value
 |Double
 |Double value representing the metric measurement
-|
+|===
+
+== Neo4jConfigMessage
+
+Message sent from the server to the Fleet Management service containing neo4j config data
+
+[cols="1,1,1"]
+|===
+|Field |Type |Description
+|timestamp
+|long
+|Unix timestamp in milliseconds when the message was created
+|project_id
+|String
+|Identifier for the project
+|dbms_id
+|String
+|Unique identifier for the DBMS instance
+|server_id
+|String
+|Unique identifier for the server
+|neo4j_config
+|Map<String, Object>
+|Map of neo4j config names to config values. Values are dynamically populated from the Fleet Management server.
+|===
+
+== PingMessage
+
+Message sent from the server to the Fleet Management service to retrieve configuration updates
+
+[cols="1,1,1"]
+|===
+|Field |Type |Description
+|server_id
+|String
+|Unique identifier for the server
+|server_version
+|String
+|Version of the server
+|project_id
+|String
+|Identifier for the project
 |===
 
 == ReportingMessage
 
 Message sent from the server to the Fleet Management service containing reporting data
 
-[cols="1,1,1,1"]
+[cols="1,1,1"]
 |===
-|Field |Type |Description |Values
+|Field |Type |Description
 |timestamp
 |long
 |Unix timestamp in milliseconds when the message was created
-|
 |projectId
 |String
 |Identifier for the project
-|
 |dbms
 |Dbms
 |DBMS information object
-|
 |dbms.dbmsId
 |String
 |Unique identifier for the DBMS instance
-|
 |dbms.serverId
 |String
 |Unique identifier for the server
-|
 |dbms.databases
 |List<String>
 |List of database names
-|
 |dbms.edition
 |String
 |Edition of the DBMS (e.g., Enterprise, Community)
-|
 |dbms.packaging
 |String
-|Packaging information of the DBMS
-|
+|Packaging of DBMS installation
 |dbms.servers
 |List<Server>
 |List of servers in the DBMS cluster
-|
 |dbms.servers[].serverId
 |String
 |Unique identifier for the server
-|
+|dbms.servers[].name
+|String
+|Name of the server
 |dbms.servers[].address
 |String
 |Network address of the server
-|
 |dbms.servers[].health
 |String
 |Current health status of the server
-|
+|dbms.servers[].state
+|String
+|Current state of the server
 |dbms.servers[].modeConstraint
 |String
 |Mode constraint of the server
-|
 |dbms.servers[].version
 |String
-|Version of the server software
-|
+|Neo4j version of the server
 |dbms.servers[].databases
 |List<Database>
 |List of databases hosted on this server
-|
 |dbms.servers[].databases[].name
 |String
 |Name of the database
-|
 |dbms.servers[].databases[].role
 |String
 |Role of the database in the cluster
-|
+|dbms.servers[].databases[].type
+|String
+|Type of the database in the cluster
 |dbms.servers[].databases[].aliases
 |List<String>
 |List of database aliases
-|
 |dbms.servers[].databases[].access
 |String
 |Access level of the database
-|
 |dbms.servers[].databases[].databaseId
 |String
 |Unique identifier for the database
-|
 |dbms.servers[].databases[].requestedStatus
 |String
 |Requested status of the database
-|
 |dbms.servers[].databases[].currentStatus
 |String
 |Current status of the database
-|
 |dbms.servers[].databases[].statusMessage
 |String
 |Status message describing the current state
-|
-|dbms.servers[].databases[]._default
+|dbms.servers[].databases[].default
 |boolean
 |Whether this is the default database
-|
 |dbms.servers[].databases[].home
 |boolean
 |Whether this is the home database
-|
 |dbms.servers[].databases[].currentPrimariesCount
-|long
-|Current number of primary instances
-|
+|Integer
+|Current number of primaries for this database
 |dbms.servers[].databases[].currentSecondariesCount
-|long
-|Current number of secondary instances
-|
+|Integer
+|Current number of secondaries for this database
 |dbms.servers[].databases[].requestedPrimariesCount
 |Integer
-|Requested number of primary instances
-|
+|Requested number of primaries for this database
 |dbms.servers[].databases[].requestedSecondariesCount
 |Integer
-|Requested number of secondary instances
-|
+|Requested number of secondaries for this database
 |dbms.servers[].databases[].creationTime
 |long
 |Timestamp when the database was created
-|
 |dbms.servers[].databases[].lastStartTime
 |long
 |Timestamp when the database was last started
-|
 |dbms.servers[].databases[].store
 |String
-|Store information for the database
-|
+|Store format of the database
 |dbms.servers[].databases[].writer
 |boolean
-|Whether this instance is a writer
-|
+|Whether this instance is a writer for this database
 |dbms.servers[].databases[].lastCommittedTxn
 |Integer
 |Last committed transaction ID
-|
 |dbms.servers[].databases[].replicationLag
 |Integer
 |Current replication lag
-|
+|dbms.servers[].databases[].graphCount
+|GraphCount
+|Current graph counts for the database
+|dbms.servers[].databases[].graphCount.node_count
+|Long
+|Number of nodes in the graph
+|dbms.servers[].databases[].graphCount.relationship_count
+|Long
+|Number of relationships in the graph
+|dbms.servers[].databases[].graphShards
+|List<String>
+|List of graph shards of this database
+|dbms.servers[].databases[].propertyShards
+|List<String>
+|List of property shards of this database
 |dbms.servers[].license
 |License
 |Main license information
-|
 |dbms.servers[].license.type
 |String
 |Type of the license
-|
 |dbms.servers[].license.state
 |String
 |Current state of the license
-|
 |dbms.servers[].license.daysLeftOnTrial
 |Integer
 |Number of days remaining in trial period
-|
 |dbms.servers[].license.totalTrialDays
 |Integer
 |Total number of days in trial period
-|
 |dbms.servers[].bloomLicense
 |License
 |Bloom license information
-|
 |dbms.servers[].bloomLicense.type
 |String
 |Type of the license
-|
 |dbms.servers[].bloomLicense.state
 |String
 |Current state of the license
-|
 |dbms.servers[].bloomLicense.daysLeftOnTrial
 |Integer
 |Number of days remaining in trial period
-|
 |dbms.servers[].bloomLicense.totalTrialDays
 |Integer
 |Total number of days in trial period
-|
 |dbms.servers[].gdsLicense
 |License
 |GDS license information
-|
 |dbms.servers[].gdsLicense.type
 |String
 |Type of the license
-|
 |dbms.servers[].gdsLicense.state
 |String
 |Current state of the license
-|
 |dbms.servers[].gdsLicense.daysLeftOnTrial
 |Integer
 |Number of days remaining in trial period
-|
 |dbms.servers[].gdsLicense.totalTrialDays
 |Integer
 |Total number of days in trial period
-|
+|dbms.servers[].plugins
+|List<Plugin>
+|List of plugins installed on the server
+|dbms.servers[].plugins[].filename
+|String
+|Filename of the plugin
+|dbms.servers[].plugins[].name
+|String
+|Manifest name of the plugin, if available
+|dbms.servers[].plugins[].version
+|String
+|Manifest version of the plugin, if available
+|dbms.servers[].plugins[].vendor
+|String
+|Manifest vendor of the plugin, if available
 |pluginVersion
 |String
 |Version of the fleet management plugin
-|
 |osName
 |String
 |Operating system name
-|
 |osVersion
 |String
 |Operating system version
-|
 |osArch
 |String
 |Operating system architecture
-|
 |jvmVersion
 |String
 |Java Virtual Machine version
-|
 |jvmVendor
 |String
 |Java Virtual Machine vendor
-|
 |===
 
