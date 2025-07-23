@@ -3,7 +3,7 @@
 :description: This section introduces the console UI.
 :gds-sessions-page: {neo4j-docs-base-uri}/graph-data-science/current/installation/aura-graph-analytics-serverless/
 
-== Console structure
+== Structure
 
 The hierarchy of the console consists of organizations, projects, and instances:
 
@@ -11,16 +11,21 @@ The hierarchy of the console consists of organizations, projects, and instances:
 * *Projects:* Folders that organize your instances.
 * *Instances:* Contain the databases.
 
+== Projects
 
 When you first log in to the console, you are part of an organization.
 An organization can contain one or more projects.
 Click a project to open it.
-Please note that project creation is not yet available in the new Aura console.
+Note that project creation is not yet available in the new Aura console.
 
+[.shadow]
+.Project view
 image::project.png[]
 
 Project cards provide a snapshot of each project, including the number of instances and members associated with it.
 Opening a project card takes you inside that project, where you can view existing instances and create new ones as needed.
+
+=== Switch organizations and projects
 
 The organization or project you're currently viewing is always displayed in the header of the console.
 
@@ -31,12 +36,12 @@ This opens a dropdown menu where you can see all the organizations and projects 
 .Breadcrumb navigation / org and project switcher
 image::breadcrumbs.png[Breadcrumb navigation]
 
-=== Organizations
+== Organizations
 
 Organizations are a layer in the Aura account hierarchy that sits above Projects.
 This allows you to organize and manage multiple projects under a single organization.
 
-Management at this level allows control over all Projects within an Organization and, thus, instances within Projects and lets Organization owners roll out Project-level settings for all Projects simultaneously.
+Management at this level allows control over all Projects within an Organization and instances within Projects and lets `Organization owners` roll out Project-level settings for all Projects simultaneously.
 
 [[org-settings]]
 === Organization settings
@@ -53,6 +58,7 @@ These features are always identified with a ✨ and your use is subject to our l
 .Organization settings
 image::organizationsettings.png[]
 
+[[graph-analytics-org-settings]]
 ==== Aura Graph Analytics settings
 
 From this page you can enable or disable link:{gds-sessions-page}[Aura Graph Analytics], as well as configure the following settings:
@@ -80,6 +86,7 @@ If your instance doesn't contain any data, the Import service allows you to impo
 This service lets you create your data model and map it to your files.
 See the xref:import/introduction.adoc[What is Import?] for more information about this service.
 
+[[graph-analytics-page]]
 === Graph Analytics
 
 This page lists the link:{gds-sessions-page}[Aura Graph Analytics] sessions running within a project (if any).
