@@ -105,8 +105,6 @@ Leveraging a tonne of different language models and basically putting the whole 
 
 And so to give you an idea of what this looks like, before we go into a demo:
 
-Basically, I’m going to show 3 or 4 steps here:
-
 . First you can connect to Neo4j using a driver - it’s a pretty simple step once you have your Neo4j database created (link to docs)
 . Next, to build your knowledge graph - this is a minimal example - you can define your language model.
 We’ll be using GPT a lot but we’ll talk about how you can use virtually any language model for this.
@@ -118,3 +116,11 @@ In this case, I’m using a vector retriever but we’ll see there’s other ret
 . And Then we create a GraphRAG object down here, providing an LLM in the retriever.
 . After that we can run it and can provide a question and it comes out with a response.
 . And you can integrate this into your knowledge assistant, or any other GenAI service that you like.
+
+== [demo] GraphRAG Python Package 
+=== How to go from PDF document to Q&A with your knowledge graph
+
+For this demo we are going to use a couple of papers about the disease Lupus. Don't worry you don't need to understand the field to understand the field to understand what’s coming in the webinar. We are making it very generic.
+Our goal for this first part is to build the knowledge graph so inject data into this Neo4j instance =which is empty.
+
+
