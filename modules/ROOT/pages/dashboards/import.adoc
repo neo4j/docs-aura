@@ -12,15 +12,18 @@ In the **Import dashboard** dialog, you have several options to source the dashb
 .Import dashboard dialog
 image::dashboards/import/import-dashboard-dialog.png[]
 
+[NOTE]
+====
 Note that you only have the option to select a stored dashboard specification when there are stored dashboards in your database.
 
 It is not possible to delete stored dashboards from the database through the dashboard application.
+====
 
 If the dashboard specification selected for the import is syntactically correct, the **Import dashboard** dialog displays a **Summary** and **Details** for the import.
 This means that the import can be run.
 
 
-== Supported types
+== Supported reports
 
 [cols="9,^4",options="header",grid="cols"]
 |===
@@ -49,12 +52,14 @@ Data fields relevant to the import are displayed under **Summary**.
 The latest version of both NeoDash Labs and NeoDash commercial are supported.
 However, the import procedure can always attempt to import a dashboard specification, even if the version differs from those.
 
-The summary includes the number of imported pages, cards, parameters and filters.
-You can see how many cards and filters were migrated, converted or skipped.
+The summary includes:
 
-Cards and filters tagged as migrated have a type that is supported by Aura dashboards and they can be fully migrated.
-If they are converted, Aura dashboards converts them to the closest supported similar type available, for example a NeoDash commercial map report is converted to an Aura dashboard graph visualization.
-The import procedure skips any types it can neither migrate nor convert.
+* the number of imported pages, cards, parameters and filters.
+* the number of cards and filters that were _migrated_, _converted_ or _skipped_.
+** _Migrated_ cards and filters have a type that is supported by Aura dashboards.
+** _Converted_ cards and filters have a closest supported similar type available in Aura dashboards.
+  For example a NeoDash commercial map report is converted to an Aura dashboard graph visualization.
+** The import procedure _skips_ any types it can neither migrate nor convert.
 
 Note that not all settings from NeoDash reports have a counterpart in Aura dashboards.
 Any such settings do not affect the import and are not preserved by the import procedure.
@@ -66,127 +71,7 @@ Expand the **Details** to inspect incidents reported during the import.
 
 Entries include the location of the incident in the JSON specification, that is, the specific page and report, as well as a description what went wrong or is of note.
 
+Descriptions can be, for example:
 
-== Example
-
-Here is an example NeoDash dashboard specification:
-
-[source, json, indent=0]
-----
-{
-  "uuid": "bb8f1146-6ea1-4640-9e19-60723648c68f",
-  "title": "NeoDash filters",
-  "version": "3.1",
-  "settings": {
-    "pagenumber": 0,
-    "editable": true,
-    "fullscreenEnabled": false,
-    "parameters": {
-      "neodash_product_productname": "Chai",
-      "neodash_product_productname_display": "Chai",
-      "undefined": "",
-      "undefined_display": ""
-    },
-    "theme": "light"
-  },
-  "pages": [
-    {
-      "title": "Main Page",
-      "reports": [
-        {
-          "id": "69e42486-87b7-4c6f-b8a5-e7da8e739434",
-          "title": "Product name fiter",
-          "query": "MATCH (n:`Product`) \nWHERE toLower(toString(n.`productName`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`productName` as value,  n.`productName` as display ORDER BY size(toString(value)) ASC LIMIT 5",
-          "width": 4,
-          "height": 2,
-          "x": 0,
-          "y": 0,
-          "type": "select",
-          "selection": {},
-          "settings": {
-            "type": "Node Property",
-            "entityType": "Product",
-            "propertyType": "productName",
-            "propertyTypeDisplay": "productName",
-            "parameterName": "neodash_product_productname"
-          },
-          "schema": [],
-          "fields": [],
-          "settingsOpen": true,
-          "collapseTimeout": "auto"
-        },
-        {
-          "id": "16b245a0-6467-4cb8-9a34-6a8cf77487c5",
-          "title": "Free text",
-          "query": "RETURN true;",
-          "width": 4,
-          "height": 3,
-          "x": 8,
-          "y": 0,
-          "type": "select",
-          "selection": {},
-          "settings": {
-            "type": "Free Text",
-            "entityType": "\"The free text\"",
-            "parameterName": "neodash_\"the_free_text\""
-          },
-          "schema": [],
-          "fields": []
-        },
-        {
-          "id": "1a822a3c-d703-4c52-9532-68e9e6a0cd43",
-          "title": "Date param select",
-          "query": "RETURN true;",
-          "width": 4,
-          "height": 4,
-          "x": 12,
-          "y": 0,
-          "type": "select",
-          "selection": {},
-          "settings": {
-            "type": "Date Picker",
-            "entityType": "this_is_a_date",
-            "parameterName": "neodash_this_is_a_date"
-          },
-          "schema": [],
-          "fields": []
-        },
-        {
-          "id": "70b4b53b-1ed8-4759-8881-e85d4b412e2d",
-          "title": "Product name fiter",
-          "query": "MATCH (n:`undefined`) \nWHERE toLower(toString(n.`undefined`)) CONTAINS toLower($input) \nRETURN DISTINCT n.`undefined` as value,  n.`undefined` as display ORDER BY size(toString(value)) ASC LIMIT 5",
-          "width": 4,
-          "height": 4,
-          "x": 4,
-          "y": 0,
-          "type": "select",
-          "selection": {},
-          "settings": {
-            "type": "Node Property"
-          },
-          "schema": [],
-          "fields": [],
-          "settingsOpen": true,
-          "collapseTimeout": "auto",
-          "advancedSettingsOpen": true
-        }
-      ]
-    }
-  ],
-  "parameters": {},
-  "extensions": {
-    "active": true,
-    "activeReducers": []
-  }
-}
-----
-
-Upon import, the following **Summary** and **Details** are generated:
-
-.Example import
-image::dashboards/import/import-example.png[]
-
-The import procedure was only able to import two of the four filters in the dashboard specification.
-The details hint at the reason: the second and third report (index 1 and 2) have an unsupported parameter select type (`Free Text` and `Date Picker`).
-The third **Details** entry reveals that the fourth report is missing an entity type, a property type and a parameter name.
-However, the import can still successfully create a parameter for this parameter select report, while it cannot for the other two.
+* Unsupported parameter select types, resulting in skipped filters.
+* Missing entity and/or property types, missing parameter names.
