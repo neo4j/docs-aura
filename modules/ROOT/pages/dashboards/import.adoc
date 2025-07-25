@@ -3,23 +3,23 @@
 
 When you create a dashboard, you can choose to **Import**.
 
-In the **Import dashboard** dialog, you have several options to source the dashboard specification for the import:
+In the **Import dashboard** dialog, you have several options to source the dashboard JSON for the import:
 
 * Browse for a JSON file on your machine.
-* Select a dashboard specification that is stored in your database.
-* Drag and drop or paste a dashboard specification in JSON format to the editor.
+* Select a dashboard JSON that is stored in your database.
+* Drag and drop or paste a dashboard JSON to the editor.
 
 .Import dashboard dialog
 image::dashboards/import/import-dashboard-dialog.png[]
 
 [NOTE]
 ====
-Note that you only have the option to select a stored dashboard specification when there are stored dashboards in your database.
+Note that you only have the option to select a stored dashboard JSON when there are stored dashboards in your database.
 
 It is not possible to delete stored dashboards from the database through the dashboard application.
 ====
 
-If the dashboard specification selected for the import is syntactically correct, the **Import dashboard** dialog displays a **Summary** and **Details** for the import.
+If the dashboard JSON selected for the import is syntactically correct, the **Import dashboard** dialog displays a **Summary** and **Details** for the import.
 This means that the import can be run.
 
 
@@ -52,7 +52,7 @@ Advanced NeoDash reports added via the Advanced visualization extension are not 
 Data fields relevant to the import are displayed under **Summary**.
 
 The latest version of both NeoDash Labs and NeoDash commercial are supported.
-However, the import procedure can always attempt to import a dashboard specification, even if the version differs from those.
+However, the import procedure can always attempt to import a dashboard JSON, even if the version differs from those.
 
 The summary includes:
 
@@ -71,7 +71,7 @@ Any such settings do not affect the import and are not preserved by the import p
 
 Expand the **Details** to inspect incidents reported during the import.
 
-Entries include the location of the incident in the JSON specification, that is, the specific page and report, as well as a description what went wrong or is of note.
+Entries include the location of the incident in the dashboard JSON, that is, the specific page and report, as well as a description what went wrong or is of note.
 
 Descriptions can be, for example:
 
