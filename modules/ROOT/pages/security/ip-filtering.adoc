@@ -1,0 +1,92 @@
+= IP Filtering
+:description: Control access to networks or systems by allowing or blocking traffic based on specified IP addresses.
+label:AuraDB-Business-Critical[]
+AuraDB:Virtual-Dedicated-Cloud[]
+
+IP filtering is a way to restrict access to your Aura instances over the public internet. 
+Only allowing trusted IPs or ranges helps secure your environment without requiring private network configurations.
+
+* AuraDB Business Critical supports up to 20 allowed IP ranges.
+* AuraDB Virtual Dedicated Cloud supports up to 100 allowed IP ranges.
+* Contact support if you need to increase the limit.
+
+== Required roles
+
+To create or edit IP Filters, users must have one of the following roles: 
+
+* `Organization Owner`
+* `Organization Admin`
+
+== Add a new filter
+
+. In the Aura console, go to *Organization Settings > Security > IP Filtering*
+. Add the name and description of the IP Filter (Adding a description makes it easier to manage later, because descriptions will be displayed in the Allow List when you’ve finished creating the filter.)
+. Select where to apply the filter:
+.. If you apply a filter to an Organization it applies to all instances in the org
+.. If you apply a filter to a Project it applies to all instances in the project
+.. If you apply a filter to an Instance it applies to that individual instance
+. Select allowed IP addresses:
+.. All – No filtering is applied, all IPs are allowed.
+.. Specific range of IP addresses – Add the addresses or CIDR ranges. Ranges of IP addresses require CIDR notation e.g. `46.15.1.0` with a subnet mask of `255.255.255.240` is written as `46.15.1.0/28` which includes all hosts from `46.15.1.1` through to `46.15.1.14` - You can use online subnet calculators to help determine the CIDR.
+. Once all the required information is provided, selecting Create will enforce the IP filter.
+
+.Add a filter
+[.shadow]
+image::ip-filtering.png[]
+
+== Scope and inheritance
+
+IP Filters allow or deny a connection to an instance. 
+Each instance can only have one IP Filter. 
+Applying filters at broader levels (organization or project level) helps admins enforce access control across multiple instances without configuring each one individually. 
+Filters set at the organization or project level are inherited by all existing instances and newly created instances within that scope.
+
+New instances created in an organization or project will automatically inherit the IP Filter applied to the project.
+
+== Edit a filter
+
+To edit an existing filter, use the [...] more menu, then select Inspect.
+
+.Edit a filter
+[.shadow]
+image::edit-a-filter.png[]
+
+Note that IP Filters are applied to new network connections only. 
+Existing connections, that are no longer in the allow list following an IP Filter modification, are not torn down. 
+
+== Benefits and use cases
+
+A benefit of IP Filtering, is that if user credentials are compromised, access is still restricted to traffic originating from approved IP addresses.
+
+It’s a great fit when you want to:
+
+* Quickly secure public instances without cloud configuration - useful when an instance is not managing sensitive production data.
+* Limit access to trusted networks such as office locations or partner data centers.
+* Enforce corporate or regulatory access boundaries with minimal setup.
+* Apply access controls to dev or test environments where private endpoints are unnecessary.
+* Block access from geographic regions outside an area of operation.
+Standardize access policies across an organization or project without having to manage each instance individually.
+
+== IP Filtering vs. Private Endpoints
+
+IP Filtering restricts network access when you don’t need to implement a Private Endpoint yet. Filters work on public endpoints and can be used if you later configure a Private Endpoint, as long as public traffic is still enabled. If you want to restrict traffic more securely to only private cloud networks, set up a Private Endpoint.
+IP Filtering manages traffic from the public internet, while Private Endpoints provide private access through your VPC.
+
+*With IP Filtering:*
+
+* No VPN or Private Endpoint setup is required.
+* Users only need to add their local IP address to the Allow List to access Aura from tools such as Query, Explore, and Neo4j Desktop.
+
+== Using `neo4j-admin database upload` with IP Filtering
+
+To use database upload, add the specific link:https://support.neo4j.com/s/article/360050504254-What-are-the-public-IP-addresses-to-provision-in-a-firewall-configuration-to-allow-Aura-use[Control Plane Egress] to your Aura IP Filter allow list. 
+This ensures the temporary connection needed to push data is permitted.
+
+== IP Filtering and GDS Sessions
+
+xref:graph-analytics/index.adoc[Graph Analytics] is an on-demand ephemeral compute environment for running GDS workloads. 
+Each compute unit is called a GDS Session.
+
+When a GDS Session uses an Aura instance as its data source, the IP Filter set on that Aura instance applies to the GDS Session. 
+A GDS Session is out-of-scope of the IP Filter if it connects to a self-managed Neo4j database or any non-Aura data source.
+
