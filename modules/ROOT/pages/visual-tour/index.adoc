@@ -46,6 +46,8 @@ Management at this level allows control over all Projects within an Organization
 [[org-settings]]
 === Organization settings
 
+Click on the organization name at the top of the page and click on *Settings* in the left menu.
+
 On the organization level, you can also find a Settings menu where you can manage your organization's settings, provided that you are an organization admin.
 You can change the name of the organization and toggle an organization-wide setting for Generative AI assistance.
 
@@ -99,6 +101,11 @@ Session details include:
 * The user who created the session
 * The time remaining to the session configured time limit
 
+=== Data APIs
+
+Create a GraphQL API to use the power of GraphQL with AuraDB.
+For information on GraphQL Data APIs, see the link:https://neo4j.com/docs/graphql/7/aura-graphql/[GraphQL docs]
+
 == Tools
 
 The tools allow you to interact with your data and therefore require an active connection to an instance.
@@ -119,6 +126,10 @@ Explore is designed to make working with graph data more intuitive and insightfu
 
 See xref:explore/introduction.adoc[What is Explore?] for more information.
 
+=== Dashboards 
+
+Neo4j dashboards let you compose different visualizations such as tables and graphs in tabbed pages to have relevant data at a glance.
+
 === Query
 
 Query is a helpful tool to interact with your data using Cypher, the graph query language.
@@ -129,29 +140,25 @@ Query is a helpful tool to interact with your data using Cypher, the graph query
 
 See xref:query/introduction.adoc[What is Query?] for more information.
 
-
 == Operations
-
-=== Logs
-Review queries with the xref:logging/query-log-analyzer.adoc[Query Log Analyzer] and view security events using the xref:logging/security-log-analyzer.adoc[Security Log Analyzer].
 
 === Metrics
 
 Metrics help you monitor and analyze your database's performance and usage.
 Some metrics are available directly on the instance card, and you can find the full range in **Metrics**.
-
 See xref:metrics/view-metrics.adoc[Metrics] for more information.
 
-// === Logs
+=== Logs
 
-// Track and review system activities and events.
-// Logs provide insights into database operations, errors, and other critical events, helping you monitor performance and troubleshoot issues.
+Track and review system activities and events.
+Logs provide insights into database operations, errors, and other critical events, helping you monitor performance and troubleshoot issues.
+
+Review queries with the xref:logging/query-log-analyzer.adoc[Query Log Analyzer] and view security events using the xref:logging/security-log-analyzer.adoc[Security Log Analyzer].
 
 == Project
 
 A project is an organizational grouping for one or more instances.
 Access, permissions, and billing are managed at the project level.
-
 
 === Users
 
