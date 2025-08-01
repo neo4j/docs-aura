@@ -11,20 +11,6 @@ The hierarchy of the console consists of organizations, projects, and instances:
 * *Projects:* Folders that organize your instances.
 * *Instances:* Contain the databases.
 
-== Projects
-
-When you first log in to the console, you are part of an organization.
-An organization can contain one or more projects.
-Click a project to open it.
-Note that project creation is not yet available in the new Aura console.
-
-[.shadow]
-.Project view
-image::project.png[]
-
-Project cards provide a snapshot of each project, including the number of instances and members associated with it.
-Opening a project card takes you inside that project, where you can view existing instances and create new ones as needed.
-
 === Switch organizations and projects
 
 The organization or project you're currently viewing is always displayed in the header of the console.
@@ -46,20 +32,23 @@ Management at this level allows control over all Projects within an Organization
 [[org-settings]]
 === Organization settings
 
-On the organization level, you can also find a Settings menu where you can manage your organization's settings, provided that you are an organization admin.
-You can change the name of the organization and toggle an organization-wide setting for Generative AI assistance.
+Click on the organization name at the top of the page and click on *Settings* in the left menu.
+This is where you can manage your organization's settings, provided that you are an `Organization admin`.
 
+.Organization settings
+[.shadow]
+image::organizationsettings.png[]
 
+=== Generative AI assistance
+
+You can change the name of the organization, find your organization ID, and toggle an organization-wide setting for Generative AI assistance.
 When enabled, Generative AI assistance is available in a number of places, including the xref:query/visual-tour.adoc#copilot[Query copilot] and xref:explore/explore-visual-tour/search-bar.adoc#copilot[Explore copilot].
-These features are always identified with a ✨ and your use is subject to our link:{neo4j-docs-base-uri}/reference/license/#_genai_outputs[GenAI outputs] disclaimer
+These features are always identified with a ✨ and your use is subject to our link:{neo4j-docs-base-uri}/reference/license/#_genai_outputs[GenAI outputs] disclaimer.
 
 // TO-DO: When section exists for Import GenAI feature, add link to it.
 
-.Organization settings
-image::organizationsettings.png[]
-
 [[graph-analytics-org-settings]]
-==== Aura Graph Analytics settings
+=== Aura Graph Analytics settings
 
 From this page you can enable or disable link:{gds-sessions-page}[Aura Graph Analytics], as well as configure the following settings:
 
@@ -99,6 +88,11 @@ Session details include:
 * The user who created the session
 * The time remaining to the session configured time limit
 
+=== Data APIs
+
+Create a GraphQL API to use the power of GraphQL with AuraDB.
+For information on GraphQL Data APIs, see the link:https://neo4j.com/docs/graphql/7/aura-graphql/[GraphQL docs]
+
 == Tools
 
 The tools allow you to interact with your data and therefore require an active connection to an instance.
@@ -119,6 +113,10 @@ Explore is designed to make working with graph data more intuitive and insightfu
 
 See xref:explore/introduction.adoc[What is Explore?] for more information.
 
+=== Dashboards 
+
+Neo4j dashboards let you compose different visualizations such as tables and graphs in tabbed pages to have relevant data at a glance.
+
 === Query
 
 Query is a helpful tool to interact with your data using Cypher, the graph query language.
@@ -129,29 +127,38 @@ Query is a helpful tool to interact with your data using Cypher, the graph query
 
 See xref:query/introduction.adoc[What is Query?] for more information.
 
-
 == Operations
-
-=== Logs
-Review queries with the xref:logging/query-log-analyzer.adoc[Query Log Analyzer] and view security events using the xref:logging/security-log-analyzer.adoc[Security Log Analyzer].
 
 === Metrics
 
 Metrics help you monitor and analyze your database's performance and usage.
 Some metrics are available directly on the instance card, and you can find the full range in **Metrics**.
-
 See xref:metrics/view-metrics.adoc[Metrics] for more information.
 
-// === Logs
+=== Logs
 
-// Track and review system activities and events.
-// Logs provide insights into database operations, errors, and other critical events, helping you monitor performance and troubleshoot issues.
+Track and review system activities and events.
+Logs provide insights into database operations, errors, and other critical events, helping you monitor performance and troubleshoot issues.
 
-== Project
+Review queries with the xref:logging/query-log-analyzer.adoc[Query Log Analyzer] and view security events using the xref:logging/security-log-analyzer.adoc[Security Log Analyzer].
 
-A project is an organizational grouping for one or more instances.
+== Projects
+
+An organization can contain one or more projects.
+A project is a grouping for one or more instances.
 Access, permissions, and billing are managed at the project level.
 
+There's a summary of each project, including the number of instances and members associated with it.
+Opening a project takes you inside that project, where you can view existing instances and create new ones as needed.
+
+[.shadow]
+.Project view
+image::project.png[]
+
+[IMPORTANT]
+====
+Note that project creation is not available yet.
+====
 
 === Users
 
@@ -174,12 +181,18 @@ See xref:billing.adoc[Billing] for more information.
 // Roles define the permissions and responsibilities of users within your console.
 // Roles manage what actions users can perform and what data they can access, ensuring proper control and organization.
 
-=== Settings
+=== Project settings
 
 The project settings allow you to change your project name.
 If you need to reference or share your project, you can copy your project ID.
 
+.Project settings
+[.shadow]
 image::projectsettings.png[]
 
 // Configure options to customize and optimize your console.
 // This includes adjusting performance settings, configuring alerts, and managing system preferences to suit your needs.
+
+== Learning
+
+Access educational tools and learning resources in one place, including interactive guides, sample datasets, directions to documentation, Developer center, and Graph Academy.
