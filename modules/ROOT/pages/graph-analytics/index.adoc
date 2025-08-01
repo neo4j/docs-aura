@@ -7,7 +7,7 @@
 If your data is in Aura or you plan to move it to Aura, you have several options to run graph analytics:
 
 * Enable the <<aura-gds-plugin,Graph Analytics plugin>> on an existing AuraDB instance (Professional).
-* Use <<aura-gds-serverless,Aura Graph Analytics>> from an existing AuraDB instance (Business Critical, Virtual Dedicated Cloud).
+* Use <<aura-gds-serverless,Aura Graph Analytics>> from an existing AuraDB instance (Professional, Business Critical, Virtual Dedicated Cloud).
 * Create an <<aura-ds,AuraDS instance>> (Professional, Enterprise).
 
 If your data is in a self-managed Neo4j DBMS or a non-Neo4j data source, you can still use <<aura-gds-serverless, Aura Graph Analytics>>.
@@ -54,7 +54,7 @@ label:AuraDB-Professional[] label:AuraDB-Business-Critical[] label:AuraDB-Virtua
 Aura Graph Analytics is currently unavailable via any of the xref:cloud-providers.adoc[cloud provider marketplaces].
 ====
 
-You can use Aura Graph Analytics from any AuraDB Business Critical or AuraDB Virtual Dedicated Cloud instance with the following requirements:
+You can use Aura Graph Analytics from any AuraDB Professional, Business Critical, or Virtual Dedicated Cloud instance with the following requirements:
 
 * Neo4j version 5 or later
 * All supported cloud providers and regions
