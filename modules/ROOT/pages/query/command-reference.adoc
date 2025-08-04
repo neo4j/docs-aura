@@ -1,0 +1,69 @@
+:description: This section list all the Query commands.
+= Command reference
+
+The editor in Query understands a few client-side commands, which begin with a colon (`:`).
+
+
+[[query-commands]]
+== Query commands
+
+
+.List of commands
+[options="header",cols="3,7"]
+|===
+| Command
+| Description
+
+m| :access-mode read/write
+a| Set the access mode to read or write.
+
+m| :clear
+a| Remove all frames from the stream.
+
+m| :connect
+a| Connect to a Neo4j instance.
+If already connected, this returns the instance you are connected to.
+
+m| :disconnect
+a| Disconnect the currently open connection toan instance.
+
+m| :history
+a| Open the history drawer of your executed commands.
+
+m| :history clear
+a| Remove all commands from Query command history.
+
+m| +:param <key-value>+
+a|
+Set one parameter. +
+The key-value can be specified as `+"x" => 1+` or `+x => 1+`.
+
+m| :params
+a| Show all parameters.
+See xref:query/operations.adoc#query-parameters[Query parameters] for more information.
+
+m| +:params {}+
+a| Remove all parameters.
+
+m| +:params {<key-value pairs>}+
+a|
+Remove all parameters and then set the parameters to the specified key-value pairs. +
+The key-value pairs can be specified as `+{"x": 1, "y": 2}+`, `+{'x': 1, 'y': 2}+`, or `+{x: 1, y: 2}+`.
+
+[NOTE]
+====
+Integers will be set as floats in this form.
+====
+
+m| :style
+a| Show the current style configuration.
+
+m| :style reset
+a| Reset the style to the default styling.
+
+m| :sysinfo
+a| Show information about _Store Size_, _Id Allocation_, _Page Cache_, _Transactions_, and _Databases_.
+|===
+
+
+

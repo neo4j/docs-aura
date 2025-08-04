@@ -3,20 +3,19 @@
 :description: This section describes how to use the Query tool.
 
 [.shadow]
-image::query-upx.png[width=800]
+image::query-ui.png[width=800]
 
 == Connection bar
 
-If you are **not** connected to an instance, the dropdown on the connection banner lets you either select from recent instances or to specify a new instance.
-Once you have entered your credentials, if needed, the status shows **Connected** and you are ready to start querying.
-This dropdown is also where you can switch database, instance, or disconnect.
-
-[.shadow]
-image::query-connection-dropdown.png[width=400]
+If you are **not** connected to an instance, the *Connection dropdown* shows grey for *No instance connected* but lets you select an instance to connect to.
+Once you have selected and entered your credentials, if needed, the status shows green for *Connected* and you are ready to start querying.
+This dropdown is also where you can switch instance, or disconnect.
 
 [.shadow]
 image::query-connected-dropdown.png[width=300]
 
+The database selector shows which database (and the Cypher version for that database) you are connected to.
+Additionally, the connection bar also contains information about the user.
 
 == Sidebar
 
@@ -61,6 +60,7 @@ It allows you to search for Cypher-related terms such as queries, patterns, and 
 It is divided into sections and subsections for easy navigation and each subsection can be expanded and collapsed.
 
 [.shadow]
+.Cypher reference
 image::cypher-reference.png[width=300]
 
 You can select an example to run it in the editor or copy it to the clipboard.
@@ -68,6 +68,14 @@ Note that some examples require data you may not have in your database and may n
 
 Every subsection is also a link to the link:https://neo4j.com/docs/cypher-manual/current/[Cypher Manual] for more details.
 
+=== Parameters
+
+The parameter drawer allows you to set parameters to use in your queries.
+This can also be accomplished by using the :param command. For more information about using parameters see xref:operations.adoc#query-parameters[Query parameters].
+
+[.shadow]
+.Parameter drawer
+image::param-drawer.png[width=400]
 
 == Cypher editor
 
@@ -135,7 +143,9 @@ Query supports different result frame views:
 
 A stream is a scrolling series of result frames.
 
-image:stream.png[]
+[.shadow]
+.Stream
+image::stream.png[]
 
 A reusable result frame is created for each command execution, added to the top of the stream to create a scrollable collection in reverse chronological order.
 You can expand and collapse the result frames using the *Collapse* icon.
@@ -161,6 +171,7 @@ The co-pilot is available from the Cypher editor once you have enabled it in the
 See xref:visual-tour/index.adoc#org-settings[Organization settings] for more information.
 
 [.shadow]
+.Query co-pilot
 image::query-copilot.png[width=800]
 
 The co-pilot is an experimental feature and is not guaranteed to always generate accurate Cypher queries.
