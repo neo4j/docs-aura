@@ -8,13 +8,13 @@
 ¦ Qualified Name ¦ Type
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc/apoc.case[apoc.case icon:book[] ^] +
 For each pair of conditional and read-only queries in the given `LIST<ANY>`, this procedure will run the first query for which the conditional is evaluated to true. If none of the conditionals are true, the `ELSE` query will run instead.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc/apoc.help[apoc.help icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc/apoc.help[apoc.help icon:book[] ^] +
 Returns descriptions of the available APOC procedures and functions. If a keyword is provided, it will return only those procedures and functions that have the keyword in their name.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc/apoc.version[apoc.version icon:book[] ^] +
 Returns the APOC version currently installed.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc/apoc.when[apoc.when icon:book[] ^] +
 This procedure will run the read-only `ifQuery` if the conditional has evaluated to true, otherwise the `elseQuery` will run.
-¦ label:procedure[]
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]
 |===
 
 
@@ -27,7 +27,7 @@ This procedure will run the read-only `ifQuery` if the conditional has evaluated
 Returns the first value from the given collection.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.agg/apoc.agg.graph[apoc.agg.graph icon:book[] ^] +
 Returns all distinct `NODE` and `RELATIONSHIP` values collected into a `MAP` with the keys `nodes` and `relationships`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.agg/apoc.agg.last[apoc.agg.last icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.agg/apoc.agg.last[apoc.agg.last icon:book[] ^] +
 Returns the last value from the given collection.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.agg/apoc.agg.maxItems[apoc.agg.maxItems icon:book[] ^] +
 Returns a `MAP` `{items: LIST<ANY>, value: ANY}` where the `value` key is the maximum value present, and `items` represent all items with the same value. The size of the list of items can be limited to a given max size.
@@ -41,7 +41,7 @@ Returns the nth value in the given collection (to fetch the last item of an unkn
 Returns the given percentiles over the range of numerical values in the given collection.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.agg/apoc.agg.product[apoc.agg.product icon:book[] ^] +
 Returns the product of all non-null `INTEGER` and `FLOAT` values in the collection.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.agg/apoc.agg.slice[apoc.agg.slice icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.agg/apoc.agg.slice[apoc.agg.slice icon:book[] ^] +
 Returns a subset of non-null values from the given collection (the collection is considered to be zero-indexed).
 To specify the range from start until the end of the collection, the length should be set to -1.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.agg/apoc.agg.statistics[apoc.agg.statistics icon:book[] ^] +
@@ -65,7 +65,7 @@ Runs a search algorithm to find all of the simple paths between the given `RELAT
 The returned paths will not contain loops.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.algo/apoc.algo.cover[apoc.algo.cover icon:book[] ^] +
 Returns all `RELATIONSHIP` values connecting the given set of `NODE` values.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.algo/apoc.algo.dijkstra[apoc.algo.dijkstra icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.algo/apoc.algo.dijkstra[apoc.algo.dijkstra icon:book[] ^] +
 Runs Dijkstra's algorithm using the given `RELATIONSHIP` property as the cost function.
 ¦ label:procedure[]
 |===
@@ -134,9 +134,9 @@ Returns the average of the numbers in the `LIST<INTEGER | FLOAT>`.
 Returns a collection of all combinations of `LIST<ANY>` elements between the selection size `minSelect` and `maxSelect` (default: `minSelect`).
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.contains[apoc.coll.contains icon:book[] ^] +
 Returns whether or not the given value exists in the given collection.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.containsAll[apoc.coll.containsAll icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.containsAll[apoc.coll.containsAll icon:book[] ^] +
 Returns whether or not all of the given values exist in the given collection.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.containsAllSorted[apoc.coll.containsAllSorted icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.containsAllSorted[apoc.coll.containsAllSorted icon:book[] ^] +
 Returns whether or not all of the given values in the second `LIST<ANY>` exist in an already sorted collection (using a binary search).
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.containsDuplicates[apoc.coll.containsDuplicates icon:book[] ^] +
 Returns true if a collection contains duplicate elements.
@@ -156,7 +156,7 @@ Returns a `LIST<ANY>` of duplicate items in the collection and their count, keye
 Deconstructs a `LIST<ANY>` into identifiers indicating their specific type.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.fill[apoc.coll.fill icon:book[] ^] +
 Returns a `LIST<ANY>` with the given count of items.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.flatten[apoc.coll.flatten icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.flatten[apoc.coll.flatten icon:book[] ^] +
 Flattens the given `LIST<ANY>` (to flatten nested `LIST<ANY>` values, set recursive to true).
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.frequencies[apoc.coll.frequencies icon:book[] ^] +
 Returns a `LIST<ANY>` of frequencies of the items in the collection, keyed by `item` and `count`.
@@ -174,23 +174,23 @@ Returns the distinct intersection of two `LIST<ANY>` values.
 Returns true if the two collections contain the same elements with the same cardinality in any order.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.max[apoc.coll.max icon:book[] ^] +
 Returns the maximum of all values in the given `LIST<ANY>`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.min[apoc.coll.min icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.min[apoc.coll.min icon:book[] ^] +
 Returns the minimum of all values in the given `LIST<ANY>`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.occurrences[apoc.coll.occurrences icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.occurrences[apoc.coll.occurrences icon:book[] ^] +
 Returns the count of the given item in the collection.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.pairs[apoc.coll.pairs icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.pairs[apoc.coll.pairs icon:book[] ^] +
 Returns a `LIST<ANY>` of adjacent elements in the `LIST<ANY>` ([1,2],[2,3],[3,null]).
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.pairsMin[apoc.coll.pairsMin icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.pairsMin[apoc.coll.pairsMin icon:book[] ^] +
 Returns `LIST<ANY>` values of adjacent elements in the `LIST<ANY>` ([1,2],[2,3]), skipping the final element.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.partition[apoc.coll.partition icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.partition[apoc.coll.partition icon:book[] ^] +
 Partitions the original `LIST<ANY>` into a new `LIST<ANY>` of the given batch size.
 The final `LIST<ANY>` may be smaller than the given batch size.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.partition[apoc.coll.partition icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.partition[apoc.coll.partition icon:book[] ^] +
 Partitions the original `LIST<ANY>` into a new `LIST<ANY>` of the given batch size.
 The final `LIST<ANY>` may be smaller than the given batch size.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.randomItem[apoc.coll.randomItem icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.randomItem[apoc.coll.randomItem icon:book[] ^] +
 Returns a random item from the `LIST<ANY>`, or null on `LIST<NOTHING>` or `LIST<NULL>`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.randomItems[apoc.coll.randomItems icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.randomItems[apoc.coll.randomItems icon:book[] ^] +
 Returns a `LIST<ANY>` of `itemCount` random items from the original `LIST<ANY>` (optionally allowing elements in the original `LIST<ANY>` to be selected more than once).
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.remove[apoc.coll.remove icon:book[] ^] +
 Removes a range of values from the `LIST<ANY>`, beginning at position index for the given length of values.
@@ -212,7 +212,7 @@ To indicate that a field should be sorted according to ascending values, prefix 
 It is also possible to add limits to the `LIST<MAP<STRING, ANY>>` and to skip values.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.sortNodes[apoc.coll.sortNodes icon:book[] ^] +
 Sorts the given `LIST<NODE>` by the property of the nodes into descending order.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.sortText[apoc.coll.sortText icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.sortText[apoc.coll.sortText icon:book[] ^] +
 Sorts the given `LIST<STRING>` into ascending order.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.split[apoc.coll.split icon:book[] ^] +
 Splits a collection by the given value.
@@ -221,19 +221,19 @@ The value itself will not be part of the resulting `LIST<ANY>` values.
 Returns the first `LIST<ANY>` as a set with all the elements of the second `LIST<ANY>` removed.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.sum[apoc.coll.sum icon:book[] ^] +
 Returns the sum of all the `INTEGER | FLOAT` in the `LIST<INTEGER | FLOAT>`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.sumLongs[apoc.coll.sumLongs icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.sumLongs[apoc.coll.sumLongs icon:book[] ^] +
 Returns the sum of all the `INTEGER | FLOAT` in the `LIST<INTEGER | FLOAT>`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.toSet[apoc.coll.toSet icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.toSet[apoc.coll.toSet icon:book[] ^] +
 Returns a unique `LIST<ANY>` from the given `LIST<ANY>`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.union[apoc.coll.union icon:book[] ^] +
 Returns the distinct union of the two given `LIST<ANY>` values.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.unionAll[apoc.coll.unionAll icon:book[] ^] +
 Returns the full union of the two given `LIST<ANY>` values (duplicates included).
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.zip[apoc.coll.zip icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.zip[apoc.coll.zip icon:book[] ^] +
 Returns the two given `LIST<ANY>` values zipped together as a `LIST<LIST<ANY>>`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.zipToRows[apoc.coll.zipToRows icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.zipToRows[apoc.coll.zipToRows icon:book[] ^] +
 Returns the two `LIST<ANY>` values zipped together, with one row per zipped pair.
-¦ label:procedure[]
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]
 |===
 
 
@@ -256,7 +256,7 @@ Serializes the given JSON object and sets it as a property on the given `NODE`.
 Serializes the given JSON value.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.convert/apoc.convert.toList[apoc.convert.toList icon:book[] ^] +
 Converts the given value into a `LIST<ANY>`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.convert/apoc.convert.toMap[apoc.convert.toMap icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.convert/apoc.convert.toMap[apoc.convert.toMap icon:book[] ^] +
 Converts the given value into a `MAP`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.convert/apoc.convert.toNode[apoc.convert.toNode icon:book[] ^] +
 Converts the given value into a `NODE`.
@@ -283,33 +283,33 @@ Returns a stream of `MAP` values, representing the given `PATH` values as a tree
 ¦ Qualified Name ¦ Type
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.addLabels[apoc.create.addLabels icon:book[] ^] +
 Adds the given labels to the given `NODE` values.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.clonePathToVirtual[apoc.create.clonePathToVirtual icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.clonePathToVirtual[apoc.create.clonePathToVirtual icon:book[] ^] +
 Takes the given `PATH` and returns a virtual representation of it.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.clonePathsToVirtual[apoc.create.clonePathsToVirtual icon:book[] ^] +
 Takes the given `LIST<PATH>` and returns a virtual representation of them.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.node[apoc.create.node icon:book[] ^] +
 Creates a `NODE` with the given dynamic labels.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.nodes[apoc.create.nodes icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.nodes[apoc.create.nodes icon:book[] ^] +
 Creates `NODE` values with the given dynamic labels.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.relationship[apoc.create.relationship icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.relationship[apoc.create.relationship icon:book[] ^] +
 Creates a `RELATIONSHIP` with the given dynamic relationship type.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.removeLabels[apoc.create.removeLabels icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.removeLabels[apoc.create.removeLabels icon:book[] ^] +
 Removes the given labels from the given `NODE` values.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.removeProperties[apoc.create.removeProperties icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.removeProperties[apoc.create.removeProperties icon:book[] ^] +
 Removes the given properties from the given `NODE` values.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.removeRelProperties[apoc.create.removeRelProperties icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.removeRelProperties[apoc.create.removeRelProperties icon:book[] ^] +
 Removes the given properties from the given `RELATIONSHIP` values.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.setLabels[apoc.create.setLabels icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.setLabels[apoc.create.setLabels icon:book[] ^] +
 Sets the given labels to the given `NODE` values. Non-matching labels are removed from the nodes.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.setProperties[apoc.create.setProperties icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.setProperties[apoc.create.setProperties icon:book[] ^] +
 Sets the given properties to the given `NODE` values.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.setProperty[apoc.create.setProperty icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.setProperty[apoc.create.setProperty icon:book[] ^] +
 Sets the given property to the given `NODE` values.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.setRelProperties[apoc.create.setRelProperties icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.setRelProperties[apoc.create.setRelProperties icon:book[] ^] +
 Sets the given properties on the `RELATIONSHIP` values.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.setRelProperty[apoc.create.setRelProperty icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.setRelProperty[apoc.create.setRelProperty icon:book[] ^] +
 Sets the given property on the `RELATIONSHIP` values.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.uuid[apoc.create.uuid icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.uuid[apoc.create.uuid icon:book[] ^] +
 Returns a UUID.
 ¦ label:function[] label:deprecated[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.uuids[apoc.create.uuids icon:book[] ^] +
 Returns a stream of UUIDs.
@@ -376,22 +376,22 @@ Converts the given timestamp from one time unit into a timestamp of a different 
 Converts a `STRING` of one type of date format into a `STRING` of another type of date format.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.currentTimestamp[apoc.date.currentTimestamp icon:book[] ^] +
 Returns the current Unix epoch timestamp in milliseconds.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.field[apoc.date.field icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.field[apoc.date.field icon:book[] ^] +
 Returns the value of one field from the given date time.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.fields[apoc.date.fields icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.fields[apoc.date.fields icon:book[] ^] +
 Splits the given date into fields returning a `MAP` containing the values of each field.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.format[apoc.date.format icon:book[] ^] +
 Returns a `STRING` representation of the time value.
 The time unit (default: ms), date format (default: ISO), and time zone (default: current time zone) can all be changed.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.fromISO8601[apoc.date.fromISO8601 icon:book[] ^] +
 Converts the given date `STRING` (ISO8601) to an `INTEGER` representing the time value in milliseconds.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.parse[apoc.date.parse icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.parse[apoc.date.parse icon:book[] ^] +
 Parses the given date `STRING` from a specified format into the specified time unit.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.systemTimezone[apoc.date.systemTimezone icon:book[] ^] +
 Returns the display name of the system time zone (e.g. Europe/London).
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.toISO8601[apoc.date.toISO8601 icon:book[] ^] +
 Returns a `STRING` representation of a specified time value in the ISO8601 format.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.toYears[apoc.date.toYears icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.toYears[apoc.date.toYears icon:book[] ^] +
 Converts the given timestamp or the given date into a `FLOAT` representing years.
 ¦ label:function[]
 |===
@@ -416,9 +416,9 @@ Returns a `MAP` detailing the differences between the two given `NODE` values.
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.do/apoc.do.case[apoc.do.case icon:book[] ^] +
 For each pair of conditional queries in the given `LIST<ANY>`, this procedure will run the first query for which the conditional is evaluated to true.
 If none of the conditionals are true, the `ELSE` query will run instead.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.do/apoc.do.when[apoc.do.when icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.do/apoc.do.when[apoc.do.when icon:book[] ^] +
 Runs the given read/write `ifQuery` if the conditional has evaluated to true, otherwise the `elseQuery` will run.
-¦ label:procedure[]
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]
 |===
 
 
@@ -717,9 +717,9 @@ Merges the given `RELATIONSHIP` values with the given dynamic types/properties e
 ¦ Qualified Name ¦ Type
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.cypher.isType[apoc.meta.cypher.isType icon:book[] ^] +
 Returns true if the given value matches the given type.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.cypher.type[apoc.meta.cypher.type icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.cypher.type[apoc.meta.cypher.type icon:book[] ^] +
 Returns the type name of the given value.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.cypher.types[apoc.meta.cypher.types icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.cypher.types[apoc.meta.cypher.types icon:book[] ^] +
 Returns a `MAP` containing the type names of the given values.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.data[apoc.meta.data icon:book[] ^] +
 Examines the full graph and returns a table of metadata.
@@ -777,17 +777,17 @@ Returns the count of all `NODE` values connected by the given `RELATIONSHIP` val
 ¦ Qualified Name ¦ Type
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.degree[apoc.node.degree icon:book[] ^] +
 Returns the total degrees of the given `NODE`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.degree.in[apoc.node.degree.in icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.degree.in[apoc.node.degree.in icon:book[] ^] +
 Returns the total number of incoming `RELATIONSHIP` values connected to the given `NODE`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.degree.out[apoc.node.degree.out icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.degree.out[apoc.node.degree.out icon:book[] ^] +
 Returns the total number of outgoing `RELATIONSHIP` values from the given `NODE`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.id[apoc.node.id icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.id[apoc.node.id icon:book[] ^] +
 Returns the id for the given virtual `NODE`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.labels[apoc.node.labels icon:book[] ^] +
 Returns the labels for the given virtual `NODE`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.relationship.exists[apoc.node.relationship.exists icon:book[] ^] +
 Returns a `BOOLEAN` based on whether the given `NODE` has a connecting `RELATIONSHIP` (or whether the given `NODE` has a connecting `RELATIONSHIP` of the given type and direction).
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.relationship.types[apoc.node.relationship.types icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.relationship.types[apoc.node.relationship.types icon:book[] ^] +
 Returns a `LIST<STRING>` of distinct `RELATIONSHIP` types for the given `NODE`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.relationships.exist[apoc.node.relationships.exist icon:book[] ^] +
 Returns a `BOOLEAN` based on whether the given `NODE` has connecting `RELATIONSHIP` values (or whether the given `NODE` has connecting `RELATIONSHIP` values of the given type and direction).
@@ -811,7 +811,7 @@ Detects all `PATH` cycles in the given `LIST<NODE>`.
 This procedure can be limited on `RELATIONSHIP` values as well.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.nodes/apoc.nodes.delete[apoc.nodes.delete icon:book[] ^] +
 Deletes all `NODE` values with the given ids.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.nodes/apoc.nodes.get[apoc.nodes.get icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.nodes/apoc.nodes.get[apoc.nodes.get icon:book[] ^] +
 Returns all `NODE` values with the given ids.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.nodes/apoc.nodes.group[apoc.nodes.group icon:book[] ^] +
 Allows for the aggregation of `NODE` values based on the given properties.
@@ -934,7 +934,7 @@ Creates a background job which runs the given Cypher statement once.
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.categorize[apoc.refactor.categorize icon:book[] ^] +
 Creates new category `NODE` values from `NODE` values in the graph with the specified `sourceKey` as one of its property keys.
 The new category `NODE` values are then connected to the original `NODE` values with a `RELATIONSHIP` of the given type.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.cloneNodes[apoc.refactor.cloneNodes icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.cloneNodes[apoc.refactor.cloneNodes icon:book[] ^] +
 Clones the given `NODE` values with their labels and properties.
 It is possible to skip any `NODE` properties using skipProperties (note: this only skips properties on `NODE` values and not their `RELATIONSHIP` values).
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.cloneSubgraph[apoc.refactor.cloneSubgraph icon:book[] ^] +
@@ -962,18 +962,18 @@ Refactors the given property to a `BOOLEAN`.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.rename.label[apoc.refactor.rename.label icon:book[] ^] +
 Renames the given label from `oldLabel` to `newLabel` for all `NODE` values.
 If a `LIST<NODE>` is provided, the renaming is applied to the `NODE` values within this `LIST<NODE>` only.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.rename.nodeProperty[apoc.refactor.rename.nodeProperty icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.rename.nodeProperty[apoc.refactor.rename.nodeProperty icon:book[] ^] +
 Renames the given property from `oldName` to `newName` for all `NODE` values.
 If a `LIST<NODE>` is provided, the renaming is applied to the `NODE` values within this `LIST<NODE>` only.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.rename.type[apoc.refactor.rename.type icon:book[] ^] +
 Renames all `RELATIONSHIP` values with type `oldType` to `newType`.
 If a `LIST<RELATIONSHIP>` is provided, the renaming is applied to the `RELATIONSHIP` values within this `LIST<RELATIONSHIP>` only.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.rename.typeProperty[apoc.refactor.rename.typeProperty icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.rename.typeProperty[apoc.refactor.rename.typeProperty icon:book[] ^] +
 Renames the given property from `oldName` to `newName` for all `RELATIONSHIP` values.
 If a `LIST<RELATIONSHIP>` is provided, the renaming is applied to the `RELATIONSHIP` values within this `LIST<RELATIONSHIP>` only.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.setType[apoc.refactor.setType icon:book[] ^] +
 Changes the type of the given `RELATIONSHIP`.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.to[apoc.refactor.to icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.to[apoc.refactor.to icon:book[] ^] +
 Redirects the given `RELATIONSHIP` to the given end `NODE`.
 ¦ label:procedure[]
 |===
