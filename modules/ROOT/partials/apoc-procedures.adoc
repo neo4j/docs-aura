@@ -3,9 +3,9 @@
 
 == apoc
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc/apoc.case[apoc.case icon:book[] ^] +
 For each pair of conditional and read-only queries in the given `LIST<ANY>`, this procedure will run the first query for which the conditional is evaluated to true. If none of the conditionals are true, the `ELSE` query will run instead.
 ¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc/apoc.help[apoc.help icon:book[] ^] +
@@ -20,9 +20,9 @@ This procedure will run the read-only `ifQuery` if the conditional has evaluated
 
 == apoc.agg
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.agg/apoc.agg.first[apoc.agg.first icon:book[] ^] +
 Returns the first value from the given collection.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.agg/apoc.agg.graph[apoc.agg.graph icon:book[] ^] +
@@ -52,9 +52,9 @@ Returns the following statistics on the `INTEGER` and `FLOAT` values in the give
 
 == apoc.algo
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.algo/apoc.algo.aStar[apoc.algo.aStar icon:book[] ^] +
 Runs the A* search algorithm to find the optimal path between two `NODE` values, using the given `RELATIONSHIP` property name for the cost function.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.algo/apoc.algo.aStarConfig[apoc.algo.aStarConfig icon:book[] ^] +
@@ -73,9 +73,9 @@ Runs Dijkstra's algorithm using the given `RELATIONSHIP` property as the cost fu
 
 == apoc.any
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.any/apoc.any.properties[apoc.any.properties icon:book[] ^] +
 Returns all properties of the given object.
 The object can be a virtual `NODE`, a real `NODE`, a virtual `RELATIONSHIP`, a real `RELATIONSHIP`, or a `MAP`.
@@ -88,9 +88,9 @@ The object can be a virtual `NODE`, a real `NODE`, a virtual `RELATIONSHIP`, a r
 
 == apoc.atomic
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.atomic/apoc.atomic.add[apoc.atomic.add icon:book[] ^] +
 Sets the given property to the sum of itself and the given `INTEGER` or `FLOAT` value.
 The procedure then sets the property to the returned sum.
@@ -114,9 +114,9 @@ Updates the value of a property with a Cypher operation.
 
 == apoc.bitwise
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.bitwise/apoc.bitwise.op[apoc.bitwise.op icon:book[] ^] +
 Returns the result of the bitwise operation
 ¦ label:function[]
@@ -125,9 +125,9 @@ Returns the result of the bitwise operation
 
 == apoc.coll
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.avg[apoc.coll.avg icon:book[] ^] +
 Returns the average of the numbers in the `LIST<INTEGER | FLOAT>`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.combinations[apoc.coll.combinations icon:book[] ^] +
@@ -239,9 +239,9 @@ Returns the two `LIST<ANY>` values zipped together, with one row per zipped pair
 
 == apoc.convert
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.convert/apoc.convert.fromJsonList[apoc.convert.fromJsonList icon:book[] ^] +
 Converts the given JSON list into a Cypher `LIST<STRING>`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.convert/apoc.convert.fromJsonMap[apoc.convert.fromJsonMap icon:book[] ^] +
@@ -272,15 +272,15 @@ Converts the given value into a set represented in Cypher as a `LIST<ANY>`.
 Converts a serialized JSON object from the property of a given `NODE` into a Cypher `MAP`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.convert/apoc.convert.toTree[apoc.convert.toTree icon:book[] ^] +
 Returns a stream of `MAP` values, representing the given `PATH` values as a tree with at least one root.
-¦ label:procedure[] label:deprecated[]
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 5] label:removed[Removed in Cypher 25]
 |===
 
 
 == apoc.create
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.addLabels[apoc.create.addLabels icon:book[] ^] +
 Adds the given labels to the given `NODE` values.
 ¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.clonePathToVirtual[apoc.create.clonePathToVirtual icon:book[] ^] +
@@ -311,9 +311,9 @@ Sets the given properties on the `RELATIONSHIP` values.
 Sets the given property on the `RELATIONSHIP` values.
 ¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.uuid[apoc.create.uuid icon:book[] ^] +
 Returns a UUID.
-¦ label:function[] label:deprecated[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.uuids[apoc.create.uuids icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 5] label:removed[Removed in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.uuids[apoc.create.uuids icon:book[] ^] +
 Returns a stream of UUIDs.
-¦ label:procedure[] label:deprecated[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.vNode[apoc.create.vNode icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 5] label:removed[Removed in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.vNode[apoc.create.vNode icon:book[] ^] +
 Returns a virtual `NODE`.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.create/apoc.create.vNode[apoc.create.vNode icon:book[] ^] +
 Returns a virtual `NODE`.
@@ -333,9 +333,9 @@ Returns a virtual `PATH`.
 
 == apoc.cypher
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.cypher/apoc.cypher.doIt[apoc.cypher.doIt icon:book[] ^] +
 Runs a dynamically constructed statement with the given parameters. This procedure allows for both read and write statements.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.cypher/apoc.cypher.run[apoc.cypher.run icon:book[] ^] +
@@ -354,9 +354,9 @@ Terminates a Cypher statement if it has not finished before the set timeout (ms)
 
 == apoc.data
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.data/apoc.data.url[apoc.data.url icon:book[] ^] +
 Turns a URL into a `MAP`.
 ¦ label:function[]
@@ -365,9 +365,9 @@ Turns a URL into a `MAP`.
 
 == apoc.date
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.add[apoc.date.add icon:book[] ^] +
 Adds a unit of specified time to the given timestamp.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.convert[apoc.date.convert icon:book[] ^] +
@@ -399,9 +399,9 @@ Converts the given timestamp or the given date into a `FLOAT` representing years
 
 == apoc.diff
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.diff/apoc.diff.nodes[apoc.diff.nodes icon:book[] ^] +
 Returns a `MAP` detailing the differences between the two given `NODE` values.
 ¦ label:function[]
@@ -410,9 +410,9 @@ Returns a `MAP` detailing the differences between the two given `NODE` values.
 
 == apoc.do
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.do/apoc.do.case[apoc.do.case icon:book[] ^] +
 For each pair of conditional queries in the given `LIST<ANY>`, this procedure will run the first query for which the conditional is evaluated to true.
 If none of the conditionals are true, the `ELSE` query will run instead.
@@ -424,9 +424,9 @@ Runs the given read/write `ifQuery` if the conditional has evaluated to true, ot
 
 == apoc.example
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.example/apoc.example.movies[apoc.example.movies icon:book[] ^] +
 Seeds the database with the Neo4j movie dataset.
 ¦ label:procedure[]
@@ -435,9 +435,9 @@ Seeds the database with the Neo4j movie dataset.
 
 == apoc.export
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.export/apoc.export.csv.all[apoc.export.csv.all icon:book[] ^] +
 Exports the full database to the provided CSV file.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.export/apoc.export.csv.data[apoc.export.csv.data icon:book[] ^] +
@@ -478,9 +478,9 @@ Exports the results from the Cypher statement to the provided JSON file.
 
 == apoc.graph
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.graph/apoc.graph.from[apoc.graph.from icon:book[] ^] +
 Generates a virtual sub-graph by extracting all of the `NODE` and `RELATIONSHIP` values from the given data.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.graph/apoc.graph.fromCypher[apoc.graph.fromCypher icon:book[] ^] +
@@ -503,9 +503,9 @@ Validates the JSON file and returns the result of the validation.
 
 == apoc.hashing
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.hashing/apoc.hashing.fingerprint[apoc.hashing.fingerprint icon:book[] ^] +
 Calculates a MD5 checksum over a `NODE` or `RELATIONSHIP` (identical entities share the same checksum).
 Unsuitable for cryptographic use-cases.
@@ -523,9 +523,9 @@ Unsuitable for cryptographic use-cases.
 
 == apoc.import
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.import/apoc.import.csv[apoc.import.csv icon:book[] ^] +
 Imports `NODE` and `RELATIONSHIP` values with the given labels and types from the provided CSV file.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.import/apoc.import.graphml[apoc.import.graphml icon:book[] ^] +
@@ -536,9 +536,9 @@ Imports a graph from the provided GraphML file.
 
 == apoc.json
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.json/apoc.json.path[apoc.json.path icon:book[] ^] +
 Returns the given JSON path.
 ¦ label:function[]
@@ -547,9 +547,9 @@ Returns the given JSON path.
 
 == apoc.label
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.label/apoc.label.exists[apoc.label.exists icon:book[] ^] +
 Returns true or false depending on whether or not the given label exists.
 ¦ label:function[]
@@ -558,9 +558,9 @@ Returns true or false depending on whether or not the given label exists.
 
 == apoc.load
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.load/apoc.load.json[apoc.load.json icon:book[] ^] +
 Imports JSON file as a stream of values if the given JSON file is a `LIST<ANY>`.
 If the given JSON file is a `MAP`, this procedure imports a single value instead.
@@ -574,9 +574,9 @@ Loads a single nested `MAP` from an XML URL (e.g. web-API).
 
 == apoc.lock
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.lock/apoc.lock.all[apoc.lock.all icon:book[] ^] +
 Acquires a write lock on the given `NODE` and `RELATIONSHIP` values.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.lock/apoc.lock.nodes[apoc.lock.nodes icon:book[] ^] +
@@ -593,9 +593,9 @@ Acquires a write lock on the given `RELATIONSHIP` values.
 
 == apoc.map
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.clean[apoc.map.clean icon:book[] ^] +
 Filters the keys and values contained in the given `LIST<ANY>` values.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.flatten[apoc.map.flatten icon:book[] ^] +
@@ -629,7 +629,7 @@ Removes the given key from the `MAP` (recursively if recursive is true).
 Removes the given keys from the `MAP` (recursively if recursive is true).
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.setEntry[apoc.map.setEntry icon:book[] ^] +
 Adds or updates the given entry in the `MAP`.
-¦ label:function[] label:deprecated[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.setKey[apoc.map.setKey icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 5] label:removed[Removed in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.setKey[apoc.map.setKey icon:book[] ^] +
 Adds or updates the given entry in the `MAP`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.setLists[apoc.map.setLists icon:book[] ^] +
 Adds or updates the given keys/value pairs provided in `LIST<ANY>` format (e.g. [key1, key2],[value1, value2]) in a `MAP`.
@@ -656,9 +656,9 @@ Returns a `LIST<ANY>` indicated by the given keys (returns a null value if a giv
 
 == apoc.math
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.math/apoc.math.maxByte[apoc.math.maxByte icon:book[] ^] +
 Returns the maximum value of a byte.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.math/apoc.math.maxDouble[apoc.math.maxDouble icon:book[] ^] +
@@ -687,9 +687,9 @@ Returns the sigmoid prime [ sigmoid(val) * (1 - sigmoid(val)) ] of the given val
 
 == apoc.merge
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.merge/apoc.merge.node[apoc.merge.node icon:book[] ^] +
 Merges the given `NODE` values with the given dynamic labels.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.merge/apoc.merge.node.eager[apoc.merge.node.eager icon:book[] ^] +
@@ -712,9 +712,9 @@ Merges the given `RELATIONSHIP` values with the given dynamic types/properties e
 
 == apoc.meta
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.cypher.isType[apoc.meta.cypher.isType icon:book[] ^] +
 Returns true if the given value matches the given type.
 ¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.meta/apoc.meta.cypher.type[apoc.meta.cypher.type icon:book[] ^] +
@@ -750,9 +750,9 @@ Examines the given sub-graph and returns a meta-graph.
 
 == apoc.neighbors
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.neighbors/apoc.neighbors.athop[apoc.neighbors.athop icon:book[] ^] +
 Returns all `NODE` values connected by the given `RELATIONSHIP` types at the specified distance.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.neighbors/apoc.neighbors.athop.count[apoc.neighbors.athop.count icon:book[] ^] +
@@ -772,9 +772,9 @@ Returns the count of all `NODE` values connected by the given `RELATIONSHIP` val
 
 == apoc.node
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.degree[apoc.node.degree icon:book[] ^] +
 Returns the total degrees of the given `NODE`.
 ¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.node/apoc.node.degree.in[apoc.node.degree.in icon:book[] ^] +
@@ -797,9 +797,9 @@ Returns a `BOOLEAN` based on whether the given `NODE` has connecting `RELATIONSH
 
 == apoc.nodes
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.nodes/apoc.nodes.collapse[apoc.nodes.collapse icon:book[] ^] +
 Merges `NODE` values together in the given `LIST<NODE>`.
 The `NODE` values are then combined to become one `NODE`, with all labels of the previous `NODE` values attached to it, and all `RELATIONSHIP` values pointing to it.
@@ -832,9 +832,9 @@ Returns all `RELATIONSHIP` values with the given ids.
 
 == apoc.number
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.number/apoc.number.arabicToRoman[apoc.number.arabicToRoman icon:book[] ^] +
 Converts the given Arabic numbers to Roman numbers.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.number/apoc.number.exact.add[apoc.number.exact.add icon:book[] ^] +
@@ -865,9 +865,9 @@ Converts the given Roman numbers to Arabic numbers.
 
 == apoc.path
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.path/apoc.path.combine[apoc.path.combine icon:book[] ^] +
 Combines the two given `PATH` values into one `PATH`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.path/apoc.path.create[apoc.path.create icon:book[] ^] +
@@ -892,9 +892,9 @@ Returns the `NODE` values in the sub-graph reachable from the start `NODE` follo
 
 == apoc.paths
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.paths/apoc.paths.toJsonTree[apoc.paths.toJsonTree icon:book[] ^] +
 Creates a stream of nested documents representing the graph as a tree by traversing outgoing relationships.
 ¦ label:procedure[]
@@ -903,9 +903,9 @@ Creates a stream of nested documents representing the graph as a tree by travers
 
 == apoc.periodic
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.periodic/apoc.periodic.cancel[apoc.periodic.cancel icon:book[] ^] +
 Cancels the given background job.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.periodic/apoc.periodic.commit[apoc.periodic.commit icon:book[] ^] +
@@ -928,9 +928,9 @@ Creates a background job which runs the given Cypher statement once.
 
 == apoc.refactor
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.refactor/apoc.refactor.categorize[apoc.refactor.categorize icon:book[] ^] +
 Creates new category `NODE` values from `NODE` values in the graph with the specified `sourceKey` as one of its property keys.
 The new category `NODE` values are then connected to the original `NODE` values with a `RELATIONSHIP` of the given type.
@@ -981,9 +981,9 @@ Redirects the given `RELATIONSHIP` to the given end `NODE`.
 
 == apoc.rel
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.rel/apoc.rel.endNode[apoc.rel.endNode icon:book[] ^] +
 Returns the end `NODE` for the given virtual `RELATIONSHIP`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.rel/apoc.rel.id[apoc.rel.id icon:book[] ^] +
@@ -998,9 +998,9 @@ Returns the type for the given virtual `RELATIONSHIP`.
 
 == apoc.schema
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.schema/apoc.schema.assert[apoc.schema.assert icon:book[] ^] +
 Drops all other existing indexes and constraints when `dropExisting` is `true` (default is `true`).
 Asserts at the end of the operation that the given indexes and unique constraints are there.
@@ -1028,9 +1028,9 @@ It is possible to define a set of relationship types to include or exclude in th
 
 == apoc.scoring
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.scoring/apoc.scoring.existence[apoc.scoring.existence icon:book[] ^] +
 Returns the given score if true, 0 if false.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.scoring/apoc.scoring.pareto[apoc.scoring.pareto icon:book[] ^] +
@@ -1041,9 +1041,9 @@ Applies a Pareto scoring function over the given `INTEGER` values.
 
 == apoc.search
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.search/apoc.search.multiSearchReduced[apoc.search.multiSearchReduced icon:book[] ^] +
 Returns a reduced representation of the `NODE` values found after a parallel search over multiple indexes.
 The reduced `NODE` values representation includes: node id, node labels, and the searched properties.
@@ -1063,9 +1063,9 @@ The reduced `NODE` values representation includes: node id, node labels, and the
 
 == apoc.spatial
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.spatial/apoc.spatial.geocode[apoc.spatial.geocode icon:book[] ^] +
 Returns the geographic location (latitude, longitude, and description) of the given address using a geocoding service (default: OpenStreetMap).
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.spatial/apoc.spatial.geocodeOnce[apoc.spatial.geocodeOnce icon:book[] ^] +
@@ -1082,9 +1082,9 @@ Sorts the given collection of `PATH` values by the sum of their distance based o
 
 == apoc.stats
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.stats/apoc.stats.degrees[apoc.stats.degrees icon:book[] ^] +
 Returns the percentile groupings of the degrees on the `NODE` values connected by the given `RELATIONSHIP` types.
 ¦ label:procedure[]
@@ -1093,9 +1093,9 @@ Returns the percentile groupings of the degrees on the `NODE` values connected b
 
 == apoc.temporal
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.temporal/apoc.temporal.format[apoc.temporal.format icon:book[] ^] +
 Formats the given temporal value into the given time format.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.temporal/apoc.temporal.formatDuration[apoc.temporal.formatDuration icon:book[] ^] +
@@ -1108,9 +1108,9 @@ Parses the given date `STRING` using the specified format into the given time zo
 
 == apoc.text
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.base64Decode[apoc.text.base64Decode icon:book[] ^] +
 Decodes the given Base64 encoded `STRING`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.base64Encode[apoc.text.base64Encode icon:book[] ^] +
@@ -1165,7 +1165,7 @@ Compares the two given `STRING` values using the Jaro-Winkler distance algorithm
 Joins the given `STRING` values using the given delimiter.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.levenshteinDistance[apoc.text.levenshteinDistance icon:book[] ^] +
 Compares the given `STRING` values using the Levenshtein distance algorithm.
-¦ label:function[] label:deprecated[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.levenshteinSimilarity[apoc.text.levenshteinSimilarity icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 5] label:removed[Removed in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.levenshteinSimilarity[apoc.text.levenshteinSimilarity icon:book[] ^] +
 Returns the similarity (a value within 0 and 1) between the two given `STRING` values based on the Levenshtein distance algorithm.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.lpad[apoc.text.lpad icon:book[] ^] +
 Left pads the given `STRING` by the given width.
@@ -1182,7 +1182,7 @@ Returns all groups matching the given regular expression in the given text.
 Returns all groups with their group name matching the given regular expression in the given text.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.regreplace[apoc.text.regreplace icon:book[] ^] +
 Finds and replaces all matches found by the given regular expression with the given replacement.
-¦ label:function[] label:deprecated[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.repeat[apoc.text.repeat icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 5] label:removed[Removed in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.repeat[apoc.text.repeat icon:book[] ^] +
 Returns the result of the given item multiplied by the given count.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.replace[apoc.text.replace icon:book[] ^] +
 Finds and replaces all matches found by the given regular expression with the given replacement.
@@ -1214,9 +1214,9 @@ Encodes the given URL `STRING`.
 
 == apoc.util
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.util/apoc.util.md5[apoc.util.md5 icon:book[] ^] +
 Returns the MD5 checksum of the concatenation of all `STRING` values in the given `LIST<ANY>`.
 MD5 is a weak hashing algorithm which is unsuitable for cryptographic use-cases.
@@ -1241,20 +1241,20 @@ If the given predicate is true an exception is thrown, otherwise it returns true
 
 == apoc.warmup
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.warmup/apoc.warmup.run[apoc.warmup.run icon:book[] ^] +
 Loads all `NODE` and `RELATIONSHIP` values in the database into memory.
-¦ label:procedure[] label:deprecated[]
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 5] label:removed[Removed in Cypher 25]
 |===
 
 
 == apoc.xml
 
-[.procedures, opts=header, cols='5a,1a', separator=¦]
+[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type
+¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.xml/apoc.xml.parse[apoc.xml.parse icon:book[] ^] +
 Parses the given XML `STRING` as a `MAP`.
 ¦ label:function[]
