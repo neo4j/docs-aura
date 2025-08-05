@@ -71,7 +71,7 @@ Every subsection is also a link to the link:https://neo4j.com/docs/cypher-manual
 === Parameters
 
 The parameter drawer allows you to set parameters to use in your queries.
-This can also be accomplished by using the :param command. For more information about using parameters see xref:operations.adoc#query-parameters[Query parameters].
+This can also be accomplished by using the :param command. For more information about using parameters see xref:query/operations.adoc#query-parameters[Query parameters].
 
 [.shadow]
 .Parameter drawer
@@ -174,7 +174,7 @@ See xref:visual-tour/index.adoc#org-settings[Organization settings] for more inf
 .Query co-pilot
 image::query-copilot.png[width=800]
 
-The co-pilot is an experimental feature and is not guaranteed to always generate accurate Cypher queries.
+The co-pilot is not guaranteed to always generate accurate Cypher queries.
 It is recommended to review the generated query before running it, especially if the query is meant to write to the database.
 
 Some known limitations include:
