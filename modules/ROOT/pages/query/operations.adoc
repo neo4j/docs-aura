@@ -45,9 +45,11 @@ You can also use the _Fit to screen_ button to fit all query results into the vi
 * Expand the Cypher editor area with the image:expand.svg[width=3%] icon next to the play button in the editor.
 * Select a node or a relationship to view its properties.
 The nodes already have sensible captions assigned by the Browser, which auto-selects a property from the property list to use as a caption.
-To change how your graph looks, see xref:query/operations.adoc#styling[].
+To change how your graph looks, see xref:operations/browser-styling.adoc[].
 * Right-click a node to *expand* (see its neighbors), *dismiss* it from the visualization, or *unpin* it.
+If you double-click a node, you automatically expand it, and if you double-click it again, you undo the expansion.
 If you right-click a relationship, you can dismiss it.
+* Right-click in an empty spot allows you to show *all* relationships between elements in the result frame or to undo your last ation with the visualization.
 * If you cannot see the whole graph or the results display too close together, you can adjust by moving the visual view and dragging nodes to rearrange them.
 
 The graph results also reports the query time, including the actual query execution time, latency, and deserialization costs.
@@ -73,6 +75,15 @@ It also reports the query time, including the actual query execution time, laten
 [.shadow]
 .RAW format
 image::raw.png[]
+
+=== Plan view
+
+The *Plan* view is available for `EXPLAIN` and `PROFILE` queries and shows the execution plan for the query.
+For such queries, you can also toggle to view the results in a RAW format.
+
+[.shadow]
+.Plan view
+image::plan-view.png[]
 
 [[styling]]
 == Styling

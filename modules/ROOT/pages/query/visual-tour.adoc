@@ -128,6 +128,35 @@ It can hold multiple lines for long queries or commands.
 | *Ctrl + Enter*
 |===
 
+
+== Query settings
+
+The settings menu is located to the right of the Cypher editor and contains various adjustable settings for the tool.
+
+[.shadow]
+.Query settings
+image::query-settings.png[]
+
+The first part contains settings that have to do with the *performance* of the tool.
+The *Visualization node limit* controls the number of nodes returned by an *initial* query.
+If your query's results exceeds this limit, you can still add more elements to the graph visualization.
+Setting any of the limits too high may degrade performance.
+
+The *local storage* section allows you to save your parameters to use across sessions.
+
+The next part relates to the *Cypher editor*.
+You can control whether your queries can write to the database or not with the *Access mode* setting.
+
+// [NOTE]
+// ====
+// This setting should mainly be used for load balancing/routing in a clustered environment and is *not* intended to replace RBAC in terms of restricting access.
+// ====
+
+// To learn more about custom load balancing, see the link:https://neo4j.com/docs/create-applications/[Neo4j Drivers documentation], specifically the section on *Run your own transactions/Request routing*, available for the link:https://neo4j.com/docs/javascript-manual/current/transactions/#_request_routing[JavaScript Driver], the link:https://neo4j.com/docs/java-manual/current/transactions/#_request_routing[Java Driver], the link:https://neo4j.com/docs/python-manual/current/transactions/#_request_routing[Python Driver], and the link:https://neo4j.com/docs/go-manual/current/transactions/#_request_routing[Go Driver].
+
+The toggle for errors and warnings is used to enable hints to help you find errors in your Cypher queries.
+
+
 == Reusable result frames
 
 The reusable result frames in Query allow you to edit the query of an existing result directly in the result fram and rerun it to update the result in situ.

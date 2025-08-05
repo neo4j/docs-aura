@@ -52,6 +52,13 @@ The key-value pairs can be specified as `+{x: 1, y: 2}+`.
 Integers will be set as numbers in this form.
 ====
 
+m| :server connect
+a| Connect to a Neo4j instance.
+If already connected, this returns the instance you are connected to.
+
+m| :server disconnect
+a| Disconnect the currently open connection to Neo4j.
+
 m| :style
 a| Show the current style configuration.
 
@@ -60,6 +67,10 @@ a| Reset the style to the default styling.
 
 m| :sysinfo
 a| Show information about _Store Size_, _Id Allocation_, _Page Cache_, _Transactions_, and _Databases_.
+
+m| :welcome
+a| Launches the entry page with interactive guides.
+This is the initial command that is automatically executed every time you connect to an instance.
 |===
 
 
