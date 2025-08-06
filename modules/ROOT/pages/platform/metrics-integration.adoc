@@ -198,6 +198,80 @@ For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent 
 * Watch `/var/log/datadog/*` to see if fetching metrics happens or if there are warnings regarding parsing the configuration.
 * Check in Datadog metric explorer to see if metrics appear (after a couple of minutes).
 
+[aura-cmi-example-using-dynatrace]
+== Example using Dynatrace
+
+.Pre-requisites
+
+* Dynatrace license
+* Access to an environment to deploy the Open Telemetry(OTel) collector to scrape the metrics
+
+.Steps
+Easiest way to read your instance metrics from metrics integration endpoint into your Dynatrace environment is to use link:https://docs.dynatrace.com/docs/dynatrace-api/environment-api/opentelemetry/post-metrics[Dynatrace Ingestion API]. You can implement a custom application to scrape and ingest metrics data into Dynatrace but the recommended way is to use the link:https://docs.dynatrace.com/docs/extend-dynatrace/opentelemetry/collector#dt-collector-dist[Dynatrace Open Telemetry Collector].
+
+* Generate an API access token with `metrics.ingest` scope.
+
+image::dynatrace_access_token.png[]
+
+* Based on the environment you have access to, install the link:https://docs.dynatrace.com/docs/extend-dynatrace/opentelemetry/collector#dt-collector-dist[Dynatrace Open Telemetry Collector].
+* Create a collector config file with this example Dynatrace collector config template:
+
+.`dynatrace-collector-config.yaml`
+[source, yaml]
+----
+receivers:
+  prometheus:
+    config:
+      global:
+        scrape_interval: "1m"
+        scrape_timeout: "5s"
+        evaluation_interval: "5s"
+      scrape_configs:
+        - job_name: "cmi-test"
+          metrics_path: /api/v1/<AURA_PROJECT_ID>/metrics
+          scheme: https
+          static_configs:
+            - targets: ['customer-metrics-api.neo4j.io']
+              labels:
+                group: 'neo4j-aura'
+          oauth2:
+            client_id: '<AURA_CLIENT_ID>'
+            client_secret: '<AURA_CLIENT_SECRET>'
+            token_url: 'https://api.neo4j.io/oauth/token'
+          tls_config:
+            insecure_skip_verify: true
+        - job_name: opentelemetry-collector # this is an option configuration to gather stats about the collector
+          scrape_interval: 60s
+          static_configs:
+          - targets:
+              - 127.0.0.1:8888
+
+processors:
+  cumulativetodelta:
+
+exporters:
+  otlphttp:
+    endpoint: https://<DYNATRACE_ENVIRONMENT_ID>.live.dynatrace.com/api/v2/otlp
+    headers:
+      Authorization: "Api-Token <DYNATRACE_API_ACCESS_TOKEN>"
+
+service:
+  pipelines:
+    metrics:
+      receivers: [prometheus]
+      processors: [cumulativetodelta]
+      exporters: [otlphttp]
+----
+* You can validate the configuration using the collector itself as mentioned link:https://docs.dynatrace.com/docs/extend-dynatrace/opentelemetry/collector/configuration#validate[here].
+* Deploy the collector with the configuration and make sure there are no error in the collector output.
+* Wait for the first scrape and check if the metrics can be queried.
+
+image::aura_metrics_in_dynatrace.png[]
+
+* You can start creating dashboards in Dynatrace either using DQL(Dynatrace Query Langruage) or various visualization options available and setup alerts.
+
+image::aura_metrics_in_dt_dashboard.png[]
+
 [aura-cmi-programmatic-support]
 == Programmatic support
 
