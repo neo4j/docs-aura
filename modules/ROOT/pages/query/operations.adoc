@@ -46,7 +46,7 @@ You can also use the _Fit to screen_ button to fit all query results into the vi
 * Expand the Cypher editor area with the image:expand.svg[width=3%] icon next to the play button in the editor.
 * Select a node or a relationship to view its properties.
 The nodes already have sensible captions assigned by the Browser, which auto-selects a property from the property list to use as a caption.
-To change how your graph looks, see xref:operations/browser-styling.adoc[].
+To change how your graph looks, see xref:query/operations.adoc#styling[].
 * Right-click a node to *expand* (see its neighbors), *dismiss* it from the visualization, or *unpin* it.
 If you double-click a node, you automatically expand it, and if you double-click it again, you undo the expansion.
 If you right-click a relationship, you can dismiss it.
@@ -285,10 +285,10 @@ You can clear all currently set parameters from Query by running:
 You can set several parameters with the `:params` command, this also clears all currently set parameters.
 
 
-[NOTE]
-====
-Integers are set to float with this style.
-====
+// [NOTE]
+// ====
+// Integers are set to float with this style.
+// ====
 
 
 .Set several parameters
