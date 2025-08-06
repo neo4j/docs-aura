@@ -13,6 +13,7 @@ Query results are rendered as:
 * Visual graph -- graph result frame.
 * Table -- table result frame.
 * Meta data -- RAW result frame.
+* Execution plan -- plan result frame (only available for `PROFILE` and `EXPLAIN` queries).
 
 You can switch between them in the top left corner of the result frame.
 
@@ -22,9 +23,11 @@ You can switch between them in the top left corner of the result frame.
 
 The graph visualization functionality is designed to display a node-graph representation of the underlying data stored in the database in response to a given Cypher query.
 The visual representation of the graph is useful for determining areas of interest or assessing the current state and structure of the data.
+Graph view results can be downloaded as _PNG_.
 
 [.shadow]
-image:graph-result-frame.png[]
+.Graph result frame
+image::graph-result-frame.png[]
 
 [NOTE]
 ====
@@ -33,24 +36,24 @@ This is most commonly caused by a query attempting to match a pattern not presen
 Hover over the underlined segment to see the explanation.
 ====
 
-Tips for navigating the graph view:
+Tips when using the *Graph* view:
 
 * Use the controls in the bottom right corner of the frame to zoom in and out of the visualization.
 Additionally, you can zoom using trackpad zoom gestures or a mouse wheel in combination with a modifier key.
 (If you are in full-screen view, the modifier key is not needed to zoom.)
 On Mac, use `⌘ + scroll` and on Windows and Linux, use `Ctrl + scroll` to trigger zoom.
 You can also use the _Fit to screen_ button to fit all query results into the view.
-* Click a node or a relationship to view its properties.
+* Expand the Cypher editor area with the image:expand.svg[width=3%] icon next to the play button in the editor.
+* Select a node or a relationship to view its properties.
 The nodes already have sensible captions assigned by the Browser, which auto-selects a property from the property list to use as a caption.
-To change what your graph looks like, see xref:query/operations.adoc#styling[Styling].
-* Right-click a node to:
-** Dismiss/hide a node.
-** Expand/collapse child relationships.
-** Unpin the node to re-layout it.
-Alternatively, you can click the node and drag it around.
+To change how your graph looks, see xref:query/operations.adoc#styling[].
+* Right-click a node to *expand* (see its neighbors), *dismiss* it from the visualization, or *unpin* it.
+If you double-click a node, you automatically expand it, and if you double-click it again, you undo the expansion.
+If you right-click a relationship, you can dismiss it.
+* Right-click in an empty spot allows you to show *all* relationships between elements in the result frame or to undo your last ation with the visualization.
 * If you cannot see the whole graph or the results display too close together, you can adjust by moving the visual view and dragging nodes to rearrange them.
-* To move the view to see more parts of the graph, click an empty spot within the graph pane and drag it.
 
+The graph results also reports the query time, including the actual query execution time, latency, and deserialization costs.
 
 
 [[table-result-frame]]
@@ -60,7 +63,8 @@ The *Table* result view displays the result in a table format.
 It also reports the query time, including the actual query execution time, latency, and deserialization costs.
 
 [.shadow]
-image:table.png[]
+.Table format
+image::table.png[]
 
 
 [[raw-result-frame]]
@@ -70,7 +74,17 @@ The *RAW* result view displays the submitted request, the Neo4j Server version a
 It also reports the query time, including the actual query execution time, latency, and deserialization costs.
 
 [.shadow]
-image:raw.png[]
+.RAW format
+image::raw.png[]
+
+=== Plan view
+
+The *Plan* view is available for `EXPLAIN` and `PROFILE` queries and shows the execution plan for the query.
+For such queries, you can also toggle to view the results in a RAW format.
+
+[.shadow]
+.Plan view
+image::plan-view.png[]
 
 [[styling]]
 == Styling
@@ -78,9 +92,10 @@ image:raw.png[]
 You can customize your graph query results directly in the result frame based on node labels and relationship types.
 
 [.shadow]
+.Query styling
 image::query-styling.png[width=800]
 
-If you select a node label in the _Overview_, there are several styling options available:
+If you select a node label in the *Results overview*, there are several styling options available:
 
 * Color -- set the color for nodes of the selected label.
 * Size  -- set the size for nodes of the selected label.
@@ -89,7 +104,7 @@ If you select a node label in the _Overview_, there are several styling options 
 [.shadow]
 image::node-styling.png[width=400]
 
-If you select a relationship type in the _Overview_, there are several styling options available:
+If you select a relationship type in the *Results overview*, there are several styling options available:
 
 * Color -- set the color for relationships of the selected type.
 * Line width  -- set the line width for relationships of the selected type.
@@ -105,6 +120,7 @@ Nodes with multiple labels are then styled according to the first label in the l
 [.shadow]
 image::prioritize.png[width=600]
 
+[[query-parameters]]
 == Query parameters
 
 Query supports querying based on parameters.
@@ -114,8 +130,8 @@ Parameters can be used for:
 
 * literals and expressions
 * node and relationship IDs
-* Properties, when referenced *dynamically* (for more information, see link:https://neo4j.com/docs/cypher-manual/current/clauses/where/#filter-on-dynamic-property[Filter on dynamically-computed node property]).
-* Node labels and relationship types, when referenced *dynamically* (for more information, see link:https://neo4j.com/docs/cypher-manual/current/clauses/match/#dynamic-match[MATCH using dynamic node labels and relationship types]).
+* properties, when referenced *dynamically* (for more information, see link:https://neo4j.com/docs/cypher-manual/current/clauses/where/#filter-on-dynamic-property[Filter on dynamically-computed node property]).
+* node labels and relationship types, when referenced *dynamically* (for more information, see link:https://neo4j.com/docs/cypher-manual/current/clauses/match/#dynamic-match[MATCH using dynamic node labels and relationship types]).
 
 Parameters cannot be used for the following constructs, as these form part of the query structure that is compiled into a query plan:
 
@@ -136,13 +152,14 @@ For more details on the Cypher parameters, see link:https://neo4j.com/docs/cyphe
 
 You can set a parameter to be sent with your queries via the *Parameters sidebar* (*{}*) or by using the `:param` command.
 
-==== Parameter sidebar
 
-The Parameter sidebar provides inputs directly from the UI for most of the property types in Neo4j.
+==== Parameter drawer
 
-.Parameter sidebar
+The Parameter drawer provides inputs directly from the UI for most of the property types in Neo4j.
+
+.Parameter drawer
 [.shadow]
-image::param-sidebar.png[]
+image::param-drawer.png[]
 
 For other property types, such as link:https://neo4j.com/docs/cypher-manual/current/values-and-types/spatial/#spatial-values-point-type[Point] and setting link:https://neo4j.com/docs/cypher-manual/current/values-and-types/property-structural-constructed/#constructed-types[constructed types], the parameter sidebar has a special `evaluated` option.
 This option allows you to express a parameter type and have it evaluated by the server as Cypher.
@@ -153,7 +170,7 @@ This process is much like using the `:param` command, as described in the follow
 
 The `+:param name => 'Example'+` command defines a parameter named `name`, which will be sent along with your queries. +
 The right hand side of `=>` is sent to the server and evaluated as Cypher with an implicit `RETURN` in front.
-This gives better type safety since some types (especially numbers) in JavaScript are hard to match with Neo4j:s type system.
+This gives better type safety since some types (especially numbers) in JavaScript are hard to match with Neo4j's type system.
 To see the list of all currently set query parameters and their values, use the `:params` command.
 For more information on how to use the commands, see `:help param` and `:help params`.
 
@@ -259,7 +276,7 @@ You can clear all currently set parameters from Query by running:
 
 [source, query command, role=noheader]
 ----
-:params {}
+:params clear
 ----
 
 
@@ -268,10 +285,10 @@ You can clear all currently set parameters from Query by running:
 You can set several parameters with the `:params` command, this also clears all currently set parameters.
 
 
-[NOTE]
-====
-Integers are set to float with this style.
-====
+// [NOTE]
+// ====
+// Integers are set to float with this style.
+// ====
 
 
 .Set several parameters
@@ -294,17 +311,14 @@ $f = false
 
 === Parameter assistance
 
-If you run a query using parameters without first declaring them all, Queryreturns a `ParameterMissing` error and lists the missing parameter(s).
+If you run a query using parameters without first declaring them all, Query returns a parameter-missing error and lists the missing parameter(s).
 You can click the provided template to populate the editor with the command for setting parameters and all you have to do is enter the value(s) for the missing parameter(s).
 Since the result frame is reusable, once you have set your parameter(s), you can run the same Cypher query again without having to re-enter it.
 
+.Parameter assistance
 [.shadow]
-image::params-assist.png[]
+image::param-assist.png[]
 
-[NOTE]
-====
-The command offered with parameter assistance is always `:params` even if you only have one parameter.
-====
 
 === Duration for the query parameters
 

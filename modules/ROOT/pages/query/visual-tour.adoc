@@ -3,29 +3,28 @@
 :description: This section describes how to use the Query tool.
 
 [.shadow]
-image::query-upx.png[width=800]
+image::query-ui.png[width=800]
 
-== Connection banner
+== Connection bar
 
-If you are **not** connected to an instance, the dropdown on the connection banner lets you either select from recent instances or to specify a new instance.
-Once you have entered your credentials, if needed, the status shows **Connected** and you are ready to start querying.
-This dropdown is also where you can switch database, instance, or disconnect.
-
-[.shadow]
-image::query-connection-dropdown.png[width=400]
+If you are **not** connected to an instance, the *Connection dropdown* shows grey for *No instance connected* but lets you select an instance to connect to.
+Once you have selected and entered your credentials, if needed, the status shows green for *Connected* and you are ready to start querying.
+This dropdown is also where you can switch instance, or disconnect.
 
 [.shadow]
 image::query-connected-dropdown.png[width=300]
 
+The database selector shows which database (and the Cypher version for that database) you are connected to.
+Additionally, the connection bar also contains information about the user.
 
 == Sidebar
 
-The sidebar contains a set of drawers; database information, saved Cypher, and Query history.
+The sidebar contains a set of drawers to set up the environment for graph management and explore your data.
 
 === Database information
 
 This drawer contains information about the database you are connected to.
-It gives you an overview of the node labels and relationship types, as well as what property keys exist in the database.
+It gives you an overview of the *node labels* and *relationship types*, as well as which *property keys* exist in the database.
 If you select one, you see a sample of the selected element as a graph or table.
 
 [.shadow]
@@ -61,6 +60,7 @@ It allows you to search for Cypher-related terms such as queries, patterns, and 
 It is divided into sections and subsections for easy navigation and each subsection can be expanded and collapsed.
 
 [.shadow]
+.Cypher reference
 image::cypher-reference.png[width=300]
 
 You can select an example to run it in the editor or copy it to the clipboard.
@@ -68,6 +68,14 @@ Note that some examples require data you may not have in your database and may n
 
 Every subsection is also a link to the link:https://neo4j.com/docs/cypher-manual/current/[Cypher Manual] for more details.
 
+=== Parameters
+
+The parameter drawer allows you to set parameters to use in your queries.
+This can also be accomplished by using the :param command. For more information about using parameters see xref:query/operations.adoc#query-parameters[Query parameters].
+
+[.shadow]
+.Parameter drawer
+image::param-drawer.png[width=400]
 
 == Cypher editor
 
@@ -120,6 +128,35 @@ It can hold multiple lines for long queries or commands.
 | *Ctrl + Enter*
 |===
 
+
+== Query settings
+
+The settings menu is located to the right of the Cypher editor and contains various adjustable settings for the tool.
+
+[.shadow]
+.Query settings
+image::query-settings.png[]
+
+The first part contains settings that have to do with the *performance* of the tool.
+The *Visualization node limit* controls the number of nodes returned by an *initial* query.
+If your query's results exceeds this limit, you can still add more elements to the graph visualization.
+Setting any of the limits too high may degrade performance.
+
+The *local storage* section allows you to save your parameters to use across sessions.
+
+The next part relates to the *Cypher editor*.
+You can control whether your queries can write to the database or not with the *Access mode* setting.
+
+// [NOTE]
+// ====
+// This setting should mainly be used for load balancing/routing in a clustered environment and is *not* intended to replace RBAC in terms of restricting access.
+// ====
+
+// To learn more about custom load balancing, see the link:https://neo4j.com/docs/create-applications/[Neo4j Drivers documentation], specifically the section on *Run your own transactions/Request routing*, available for the link:https://neo4j.com/docs/javascript-manual/current/transactions/#_request_routing[JavaScript Driver], the link:https://neo4j.com/docs/java-manual/current/transactions/#_request_routing[Java Driver], the link:https://neo4j.com/docs/python-manual/current/transactions/#_request_routing[Python Driver], and the link:https://neo4j.com/docs/go-manual/current/transactions/#_request_routing[Go Driver].
+
+The toggle for errors and warnings is used to enable hints to help you find errors in your Cypher queries.
+
+
 == Reusable result frames
 
 The reusable result frames in Query allow you to edit the query of an existing result directly in the result fram and rerun it to update the result in situ.
@@ -130,12 +167,15 @@ Query supports different result frame views:
 * Graph -- Display the result as nodes and relationships and allow xref:query/operations.adoc#styling[styling] to be configured.
 * Table -- Display the result as JSON formatted rows.
 * RAW -- Display the submitted request, the Neo4j Server version and address, and the response.
+* Plan -- Display the execution plan for the query, with out without execution.
 
 == Stream
 
 A stream is a scrolling series of result frames.
 
-image:stream.png[]
+[.shadow]
+.Stream
+image::stream.png[]
 
 A reusable result frame is created for each command execution, added to the top of the stream to create a scrollable collection in reverse chronological order.
 You can expand and collapse the result frames using the *Collapse* icon.
@@ -161,9 +201,10 @@ The co-pilot is available from the Cypher editor once you have enabled it in the
 See xref:visual-tour/index.adoc#org-settings[Organization settings] for more information.
 
 [.shadow]
+.Query co-pilot
 image::query-copilot.png[width=800]
 
-The co-pilot is an experimental feature and is not guaranteed to always generate accurate Cypher queries.
+The co-pilot is not guaranteed to always generate accurate Cypher queries.
 It is recommended to review the generated query before running it, especially if the query is meant to write to the database.
 
 Some known limitations include:
