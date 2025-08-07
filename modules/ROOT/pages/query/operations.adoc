@@ -6,7 +6,7 @@
 [[result-frames]]
 == Result frames
 
-There are a variety of ways to view data in Neo4j Browser.
+There are a variety of ways to view data in Query.
 All queries that you run in the Cypher editor populate a reusable result frame.
 Query results are rendered as:
 
@@ -45,8 +45,8 @@ On Mac, use `⌘ + scroll` and on Windows and Linux, use `Ctrl + scroll` to trig
 You can also use the _Fit to screen_ button to fit all query results into the view.
 * Expand the Cypher editor area with the image:expand.svg[width=3%] icon next to the play button in the editor.
 * Select a node or a relationship to view its properties.
-The nodes already have sensible captions assigned by the Browser, which auto-selects a property from the property list to use as a caption.
-To change how your graph looks, see xref:query/operations.adoc#styling[].
+The nodes already have sensible captions assigned by the Query tool, which auto-selects a property from the property list to use as a caption.
+To change the look of your graph, see xref:query/operations.adoc#styling[].
 * Right-click a node to *expand* (see its neighbors), *dismiss* it from the visualization, or *unpin* it.
 If you double-click a node, you automatically expand it, and if you double-click it again, you undo the expansion.
 If you right-click a relationship, you can dismiss it.
@@ -150,7 +150,7 @@ For more details on the Cypher parameters, see link:https://neo4j.com/docs/cyphe
 [[set-params]]
 === Set query parameters
 
-You can set a parameter to be sent with your queries via the *Parameters sidebar* (*{}*) or by using the `:param` command.
+You can set a parameter to be sent with your queries via the *Parameters drawer* (*{}*) or by using the `:param` command.
 
 
 ==== Parameter drawer
@@ -161,7 +161,7 @@ The Parameter drawer provides inputs directly from the UI for most of the proper
 [.shadow]
 image::param-drawer.png[]
 
-For other property types, such as link:https://neo4j.com/docs/cypher-manual/current/values-and-types/spatial/#spatial-values-point-type[Point] and setting link:https://neo4j.com/docs/cypher-manual/current/values-and-types/property-structural-constructed/#constructed-types[constructed types], the parameter sidebar has a special `evaluated` option.
+For other property types, such as link:https://neo4j.com/docs/cypher-manual/current/values-and-types/spatial/#spatial-values-point-type[Point] and setting link:https://neo4j.com/docs/cypher-manual/current/values-and-types/property-structural-constructed/#constructed-types[constructed types], the parameter drawer has a special `evaluated` option.
 This option allows you to express a parameter type and have it evaluated by the server as Cypher.
 Give the parameter a name, select `evaluated` as the type, enter the value, and use the play button to evaluate the parameter.
 This process is much like using the `:param` command, as described in the following section.
