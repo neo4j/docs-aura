@@ -27,22 +27,25 @@ image::breadcrumbs.png[Breadcrumb navigation]
 Organizations are a layer in the Aura account hierarchy that sits above projects.
 This allows you to organize and manage multiple projects under a single organization.
 
-Management at this level allows control over all projects and instances within an organization and lets `Organization owners` and `Organization admins` roll out project-level settings for all projects.
+Management at this level helps `Organization owners` and `Organization admins` roll out settings to all projects and instances within an organization.
 
-Click on the organization name at the top of the page.
-Then, within the organization there are specific sections [in the left side panel]:
+To access organization-level management, click the organization name at the top of the page. 
 
-* Projects /visual-tour/#_projects
-* Users (user email + their organization role) for more info see [inviting users] #_organization_level_roles
-* Security - see the security docs (At the organization level the following can be set up SSO, IP filtering, tool authentication with Aura user, MFA) aura/security/mfa/
-* Settings (aka Organization Settings) /visual-tour/#org-settings
+.Organization navigation
+[.shadow]
+image::organizationnav.png[]
+
+From there, use the left-hand panel to navigate to key sections:
+
+* xref:visual-tour/index.adoc#_projects[Projects]: View and manage all projects within the organization.
+* Users: View user emails and their xref:user-management.adoc#_organization_level_roles[organizational-level roles]
+* Security: Configure organization-level features such as SSO, IP filtering, and tool authentication with Aura user.
+* xref:visual-tour/index.adoc#org-settings[Settings]: Also called *Organization Settings*, this is where you can manage additional settings. 
 
 [[org-settings]]
 === Organization settings
 
-Click on the organization name at the top of the page and click on *Settings* in the left menu.
-This is where you can manage your organization's settings, provided that you are an `Organization owner` or `Organization admin`.
-You can change the name of the organization, find your organization ID, and toggle organization-wide settings for preferences and feature access.
+You can edit the name of the organization, find your organization ID, and enable Generative AI and Aura Graph Analytics across your teams.
 
 .Organization settings
 [.shadow]
