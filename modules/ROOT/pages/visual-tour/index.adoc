@@ -24,16 +24,24 @@ image::breadcrumbs.png[Breadcrumb navigation]
 
 == Organizations
 
-Organizations are a layer in the Aura account hierarchy that sits above Projects.
+Organizations are a layer in the Aura account hierarchy that sits above projects.
 This allows you to organize and manage multiple projects under a single organization.
 
-Management at this level allows control over all Projects within an Organization and instances within Projects and lets `Organization owners` roll out Project-level settings for all Projects simultaneously.
+Management at this level allows control over all projects and instances within an organization and lets `Organization owners` and `Organization admins` roll out project-level settings for all projects.
+
+Click on the organization name at the top of the page.
+Then, within the organization there are specific sections [in the left side panel]:
+
+* Projects /visual-tour/#_projects
+* Users (user email + their organization role) for more info see [inviting users] #_organization_level_roles
+* Security - see the security docs (At the organization level the following can be set up SSO, IP filtering, tool authentication with Aura user, MFA) aura/security/mfa/
+* Settings (aka Organization Settings) /visual-tour/#org-settings
 
 [[org-settings]]
 === Organization settings
 
 Click on the organization name at the top of the page and click on *Settings* in the left menu.
-This is where you can manage your organization's settings, provided that you are an `Organization admin`.
+This is where you can manage your organization's settings, provided that you are an `Organization owner` or `Organization admin`.
 You can change the name of the organization, find your organization ID, and toggle organization-wide settings for preferences and feature access.
 
 .Organization settings
