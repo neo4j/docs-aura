@@ -8,15 +8,17 @@ These reflect the three stages of importing data; provide the data, i.e., config
 If you haven't previously imported any data, all three are empty, otherwise sources, models, and import jobs are listed here.
 
 [.shadow]
+.Connect data source
 image::data-source.png[width=800]
 
 == Provide the data
 
 To get started you need to connect to a data source.
-Import supports PostgreSQL, MySQL, SQL Server, as well as locally hosted flat files.
+Import supports PostgreSQL, MySQL, SQL Server, Oracle, BigQuery, Databricks, Snowflake, AWS S3, Azure Blobs & Data Lake Storage, Google Cloud Storage, as well as locally hosted flat files.
 
 [.shadow]
-image::sources.png[width=400]
+.Supported data sources
+image::sources.png[width=500]
 
 For relational databases and cloud data warehouses, you need to give the data source a name, configure the data source, and add user credentials for the database account.
 The data source configuration is essentially the same for both relational databases and data warehouses; you specify a *host* for your database, a *port* to connect to, the name of the *database*/*service*, and a *schema* that contains your tables (except for MySQL data sources).
