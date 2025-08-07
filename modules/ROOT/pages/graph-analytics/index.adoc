@@ -119,7 +119,7 @@ on-premisesfootnote:[Assuming use of the link:{neo4j-docs-base-uri}/graph-data-s
 |AuraDS
 
 |Maximum memory
-|No upper limit
+|Contract-dependent
 |Up to 128 GB
 |Up to 128 GB (Pro, BC) or 512 GB (VDC)
 |Up to 384 GB
@@ -145,9 +145,25 @@ on-premisesfootnote:[Assuming use of the link:{neo4j-docs-base-uri}/graph-data-s
 |AuraDB (same tier); self-managed Neo4j DBMS; custom
 |Same server; custom
 
-|DBMS restart behavior
-|Projected graphs and trained models must be restored manually
-|No downtime; projected graphs and trained models are not retained
-|No downtime; projected graphs and trained models are unaffected
-|Short downtime; projected graphs and trained models are restoredfootnote:[Graphs and models created or updated _after_ the instance update/upgrade process has started are *not guaranteed* to be restored upon restart.]
+|Restart behavior
+4+|
+
+>|_Downtime_
+|Short
+|No
+|No
+|Short
+
+>|_Projected graphs_
+|Must be backed up and restored manually
+|Not retained
+|Unaffected
+|Restored automaticallyfootnote:createdafter[Graphs and models created or updated _after_ the instance update/upgrade process has started are *not guaranteed* to be restored upon restart.]
+
+>|_Trained models_
+|Must be backed up and restored manually
+|Not retained
+|Unaffected
+|Restored automaticallyfootnote:createdafter[]
+
 |===
