@@ -268,6 +268,13 @@ You need to run the `:param` command separately from the `MATCH` query.
 
 =====
 
+[NOTE]
+====
+Any parameter value enclosed in single (') or double (") quotes is considered a `string`.
+If the intention is to use _JSON_ objects as a parameter, you may use the APOC function `apoc.convert.fromJsonList` to achieve this.
+See link:{neo4j-docs-base-uri}/apoc/current/overview/apoc.convert/apoc.convert.fromJsonList/[APOC Core documentation -> Procedures and functions] for more information.
+====
+
 [[clear-params]]
 === Clear parameters
 
@@ -279,12 +286,6 @@ You can clear all currently set parameters from Query by running:
 :params clear
 ----
 
-[NOTE]
-====
-Any parameter value enclosed in single (') or double (") quotes is considered a `string`.
-If the intention is to use _JSON_ objects as a parameter, you may use the APOC function `apoc.convert.fromJsonList` to achieve this.
-See link:{neo4j-docs-base-uri}/apoc/current/overview/apoc.convert/apoc.convert.fromJsonList/[APOC Core documentation -> Procedures and functions] for more information.
-====
 
 === Set several parameters
 
