@@ -168,7 +168,7 @@ This process is much like using the `:param` command, as described in the follow
 
 ==== `:param` command
 
-The `+:param name => 'Example'+` command defines a parameter named `name`, which will be sent along with your queries. +
+The `+:param name => 'Example'+` command defines a parameter named `name`, which will be sent along with your queries.
 The right hand side of `=>` is sent to the server and evaluated as Cypher with an implicit `RETURN` in front.
 This gives better type safety since some types (especially numbers) in JavaScript are hard to match with Neo4j's type system.
 To see the list of all currently set query parameters and their values, use the `:params` command.
@@ -279,6 +279,12 @@ You can clear all currently set parameters from Query by running:
 :params clear
 ----
 
+[NOTE]
+====
+Any parameter value enclosed in single (') or double (") quotes is considered a `string`.
+If the intention is to use _JSON_ objects as a parameter, you may use the APOC function `apoc.convert.fromJsonList` to achieve this.
+See link:{neo4j-docs-base-uri}/apoc/current/overview/apoc.convert/apoc.convert.fromJsonList/[APOC Core documentation -> Procedures and functions] for more information.
+====
 
 === Set several parameters
 
