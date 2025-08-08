@@ -1,0 +1,126 @@
+= Overview of GraphRAG in Neo4j
+Then cover GraphRAG Python Package at a high level
+
+Based on Zach Blumenfeld & Estelle Scifo’s webinar, 2024
+
+== GenAI Landscape and Challenges
+
+A lot of us are familiar with GenAI at this point, we see GenAI applications for knowledge assistants, report generation, search APIs, different chat bots across a tonne of different industry verticals.
+
+But a lot of the challenge with GenAI comes down to 
+
+* Lack of domain knowledge inside of the pre-training data.
+* Inability to verify or explain answers - especially when working with very domain specific data and exact use cases.
+* Issues with hallucination. 
+* And, all this leads to a bunch of ethical and data bias concerns as well.
+
+== Enter Retrieval Augmented Generation (RAG)
+
+There's this thing that has started to become more standardized - which is Retrieval Augmented Generation (RAG). 
+Which many are probably familiar with.
+
+The idea behind RAG is that:
+
+* instead of a user or service communicating directly with a Language Model and getting a response back, it instead is going to communicate with this retriever - so sending a question to a retriever - 
+
+* and that retriever is going to query some external database (often proprietary data or some specific type of data) to bring back relevant info which then gets combined with the question in a prompt, and then the LLM can provide a more complete answer with deeper explainability, by using that retrieved relevant info.
+
+== What type of data source is ideal for RAG? 
+
+To think about that we have to think about different types of data sources / where our data comes from:
+
+*Unstructured data*: Oftentimes, we get a lot of unstructured data (so things like PDF documents, sometimes it’s multi-modal like images and stuff like that, in addition to text). 
+And there’s a couple of different ways we can deal with that. 
+We can vectorise that data - basically enabling us to do different forms of semantic search. 
+We can also extract structured information - different entities and relationships between different entities from that data.
+
+*Structured data*:
+
+* Like your operational store
+* Relational database, 
+* As well as from different flat files like CSV and tables.
+
+*Semi-structured data*: which is like the document that kind of sits in-between.
+
+When you think about the super set of this data:
+
+All these different types of data can be ingested inside of a knowledge graph. 
+Which makes a KG a wonderful representation for AI applications. 
+
+*And, we’ve seen in academic works and other external validations that knowledge graphs can help improve the accuracy of LLM responses - in this particular paper, looking at a 3x improvement from using SQL alone.*
+
+== How Neo4j Models Graph Data
+
+And so when we think about Neo4j and how our Graph Database is modeled, there’s really 3 important components:
+
+. There’s nodes that represent entities, people, places and things.
+. And then there's relationships which are those connections, or verbs or actions, between those people, places and things.
+. And both nodes & relationships can have properties. These properties can be strings, dates, long pieces of text, metadata about provenance and source lineage. We can also put embeddings on there, vectors, which can help us with search.
+
+And Neo4j allows for a lot of different types of indices to enable search on this data in addition to Cypher and some of the graph traversals that you will see later.
+
+* So that includes full text search - this is like your Lucene based sort of tokenised search.
+
+* Vector search with approximate nearest neighbour.
+
+* RANGE indices which allow for standard be tree and normal predicates you would use for equality and range, for numbers and dates.
+
+* Geopoint indices 
+
+* As well as text indices.
+
+So all of these we can use together with graph traversals to retrieve additional information.
+
+*And when we think about the value that comes with a Neo4j database for GraphRAG - it really breaks down into 3 high level things:*
+
+. One of them is *higher accuracy and relevance* by being able to provide additional context from a knowledge graph and the fact that Neo4j is an operational, transactional database - which means that you can update your data in real time and make that immediately available for AI models.
+. There’s also *explainability and governance*: Fine grained security controls that will allow different users to only traverse over different information - so the AI model can only access what’s appropriate. Explainability through the different knowledge graph relationships which allows for a very human readable lineage of where information came from and how the logic was derived to retrieve information.
+. As well as *accelerated development* (we have spoken in the past about the large amount of GenAI eco-system tools that we have created. And, we will focus on that a lot here with the Python package. Showing you more tools to help simplify your workflows.)
+
+And there’s a lot of different GraphRAG patterns that we will use to accomplish this.
+Everything from vector to hybrid search with additional graph traversals for context, that we will be focusing a lot on today.
+Other patterns including things like Text2Cypher - taking a user question and converting it over into a graph traversal basically.
+There’s Graph vectors - where we can create Graph Data Science to create vectors from structured data in the graph.
+
+Graph filtering - so different pre and post filtering patterns that we can use with graph. . . and of course all of this can be used in multi-step and agentic workflows as well.
+
+So let’s talk a little bit about what we’re here for today after that overview.
+
+== The Python Graph RAG Package
+
+The GraphRAG Python package offers an end-to-end workflow inside of Python, to make things a lot simpler to put together for GenAI and knowledge graph development.
+
+It’s supported by Neo4j and it basically accelerates going from your PDF document to building your knowledge graph. 
+Basically making it genAI ready with vectors and structured entities.
+Implementing a whole host of useful retrievers - that combine things like:
+
+* Vector search
+* Hybrid search
+* Text2Cypher
+* Different Cypher templates for graph traversals
+
+And then having classes where you can create the entire GraphRAG pipeline 
+Including providing prompt templates
+Leveraging a tonne of different language models and basically putting the whole thing together with much less code than before.
+
+And so to give you an idea of what this looks like, before we go into a demo:
+
+. First you can connect to Neo4j using a driver - it’s a pretty simple step once you have your Neo4j database created (link to docs)
+. Next, to build your knowledge graph - this is a minimal example - you can define your language model.
+We’ll be using GPT a lot but we’ll talk about how you can use virtually any language model for this.
+. Same with embeddings - we’re going to be using OpenAI default text embedding ADA, but you can use others.
+. And once you have defined those things - in addition to optional parameters such as different text splitters and stuff you could provide.
+. Instantiate this simple kg pipeline and then you run that pipeline.
+. And once you're able to ingest your documents, you can then create your retrievers.
+In this case, I’m using a vector retriever but we’ll see there’s other retrievers which are contained inside of the package.
+. And Then we create a GraphRAG object down here, providing an LLM in the retriever.
+. After that we can run it and can provide a question and it comes out with a response.
+. And you can integrate this into your knowledge assistant, or any other GenAI service that you like.
+
+== [demo] GraphRAG Python Package 
+=== How to go from PDF document to Q&A with your knowledge graph
+
+For this demo we are going to use a couple of papers about the disease Lupus. Don't worry you don't need to understand the field to understand the field to understand what’s coming in the webinar. We are making it very generic.
+Our goal for this first part is to build the knowledge graph so inject data into this Neo4j instance =which is empty.
+
+
