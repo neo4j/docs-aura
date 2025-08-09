@@ -24,17 +24,28 @@ image::breadcrumbs.png[Breadcrumb navigation]
 
 == Organizations
 
-Organizations are a layer in the Aura account hierarchy that sits above Projects.
+Organizations are a layer in the Aura account hierarchy that sits above projects.
 This allows you to organize and manage multiple projects under a single organization.
 
-Management at this level allows control over all Projects within an Organization and instances within Projects and lets `Organization owners` roll out Project-level settings for all Projects simultaneously.
+Management at this level allows `Organization owners` and `Organization admins` to roll out settings to all projects and instances within an organization.
+
+To access organization-level management, click the organization name at the top of the page. 
+
+.Organization navigation
+[.shadow]
+image::organizationnav.png[]
+
+From there, use the left-hand panel to navigate:
+
+* xref:visual-tour/index.adoc#_projects[Projects]: View projects within the organization.
+* Users: View users and their xref:user-management.adoc#_organization_level_roles[organization-level roles]
+* Security: Configure organization-level features such as SSO, IP filtering, and tool authentication with Aura user.
+* xref:visual-tour/index.adoc#org-settings[Settings]: Where you can manage an organization's general settings.
 
 [[org-settings]]
 === Organization settings
 
-Click on the organization name at the top of the page and click on *Settings* in the left menu.
-This is where you can manage your organization's settings, provided that you are an `Organization admin`.
-You can change the name of the organization, find your organization ID, and toggle organization-wide settings for preferences and feature access.
+You can edit the name of the organization, find your organization ID, enable Generative AI and Aura Graph Analytics.
 
 .Organization settings
 [.shadow]
