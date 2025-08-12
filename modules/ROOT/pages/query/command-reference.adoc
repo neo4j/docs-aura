@@ -39,7 +39,7 @@ m| :params
 a| Show all parameters.
 See xref:query/operations.adoc#query-parameters[Query parameters] for more information.
 
-m| +:params {}+
+m| +:params clear+
 a| Remove all parameters.
 
 m| +:params {<key-value pairs>}+
@@ -53,7 +53,7 @@ The key-value pairs can be specified as `+{x: 1, y: 2}+`.
 // ====
 
 m| :server connect
-a| Connect to a Neo4j instance.
+a| Connect to an instance.
 If already connected, this returns the instance you are connected to.
 
 m| :server disconnect
