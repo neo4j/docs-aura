@@ -5,7 +5,7 @@ Aura restricts access to certain administrative and custom capabilities due to i
 
 The full list of Neo4j procedures is available at link:https://neo4j.com/docs/operations-manual/current/procedures/[Procedures]
 
-To check which procedures are available in your Aura instance, run the following Cypher command in the query editor or Cypher shell:
+To check which procedures are available in your Aura instance, run the following Cypher command in Query or Cypher shell:
 
 .List available procedures with default output columns
 [source,cypher]
@@ -13,11 +13,6 @@ To check which procedures are available in your Aura instance, run the following
 SHOW PROCEDURES;
 ----
 
-.All procedures must be called with the CALL keyword, e.g.
-[source,cypher]
-----
-CALL db.labels();
-----
 
 == Supported built-in procedures
 
@@ -25,7 +20,7 @@ The following procedures are available in Aura:
 
 == Schema and metadata
 
-`CALL db.labels();`
+`db.labels();`
 List all labels used in the database.
 
 `CALL db.relationshipTypes();`
