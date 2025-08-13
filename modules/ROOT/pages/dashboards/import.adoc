@@ -1,0 +1,79 @@
+= Import
+:description: This page holds information about import options for dashboards.
+
+When you create a dashboard, you can choose to **Import**.
+
+In the **Import dashboard** dialog, you have several options to source the dashboard JSON for the import:
+
+* Browse for a JSON file on your machine.
+* Select a dashboard JSON that is stored in your database.
+* Drag and drop or paste a dashboard JSON to the editor.
+
+.Import dashboard dialog
+image::dashboards/import/import-dashboard-dialog.png[]
+
+[NOTE]
+====
+Note that you only have the option to select a stored dashboard JSON when there are stored dashboards in your database.
+
+It is not possible to delete stored dashboards from the database through the dashboard application.
+====
+
+If the dashboard JSON selected for the import is syntactically correct, the **Import dashboard** dialog displays a **Summary** and **Details** for the import.
+This means that the import can be run.
+
+
+== Supported reports
+
+[cols="9,^4",options="header",grid="cols"]
+|===
+| NeoDash                                      | Aura dashboards
+
+| Table                                        | ✅ 
+| Graph                                        | ✅ 
+| Bar chart                                    | ✅ 
+| Pie chart                                    | ✅ 
+| Line chart                                   | ✅ 
+| Map                                          | Converted to graph 
+| Single value                                 | ✅ 
+| Raw JSON                                     | ❌ 
+| Parameter select                             | Only node and relationship properties  
+| Form                                         | ❌
+| iFrame                                       | ❌ 
+| Markdown                                     | ✅ 
+
+|===
+
+Advanced NeoDash reports added via the Advanced visualization extension are not supported.
+
+
+== Summary
+
+Data fields relevant to the import are displayed under **Summary**.
+
+The latest version of both NeoDash Labs and NeoDash commercial are supported.
+However, the import procedure can always attempt to import a dashboard JSON, even if the version differs from those.
+
+The summary includes:
+
+* the number of imported pages, cards, parameters and filters.
+* the number of cards and filters that were _migrated_, _converted_ or _skipped_.
+** _Migrated_ cards and filters have a type that is supported by Aura dashboards.
+** _Converted_ cards and filters have a closest supported similar type available in Aura dashboards.
+  For example a NeoDash commercial map report is converted to an Aura dashboard graph visualization.
+** The import procedure _skips_ any types it can neither migrate nor convert.
+
+Note that not all settings from NeoDash reports have a counterpart in Aura dashboards.
+Any such settings do not affect the import and are not preserved by the import procedure.
+
+
+== Details
+
+Expand the **Details** to inspect incidents reported during the import.
+
+Entries include the location of the incident in the dashboard JSON, that is, the specific page and report, as well as a description what went wrong or is of note.
+
+Descriptions can be, for example:
+
+* Unsupported parameter select types, resulting in skipped filters.
+* Missing entity and/or property types, missing parameter names.

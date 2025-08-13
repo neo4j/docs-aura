@@ -22,7 +22,7 @@ m| `neo4j_aura_out_of_memory_errors_total`
 Consider increasing the size of the instance if any OOM errors.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| SUM
 |===
 
@@ -35,7 +35,7 @@ m| neo4j_aura_cpu_limit
 | The total CPU cores assigned to the instance nodes.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -50,7 +50,7 @@ CPU is used for planning and serving queries.
 If this metric is constantly spiking or at its limits, consider increasing the size of your instance.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -63,7 +63,7 @@ m| neo4j_aura_storage_limit
 | The total disk storage assigned to the instance.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -84,7 +84,7 @@ If the workload of Neo4j and performance of queries indicates that more heap spa
 This helps avoid unwanted pauses for garbage collection.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -100,7 +100,7 @@ If this value is consistently or significantly under 100%, check the page cache 
 A high amount of insert or update activity on a graph can also cause this value to change.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| AVG
 |===
 
@@ -114,7 +114,7 @@ m| neo4j_dbms_page_cache_usage_ratio
 If this is close to or at 100%, then it is likely that the hit ratio will start dropping, and you should consider increasing the size of your instance so that more memory is available for the page cache.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MIN
 |===
 
@@ -128,7 +128,7 @@ m| neo4j_dbms_bolt_connections_running
 This is a set of snapshots over time and may appear to spike if workloads are all completed quickly.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -141,7 +141,7 @@ m| neo4j_dbms_bolt_connections_idle
 | The total number of Bolt connections that are connected to the Aura database but not currently executing Cypher or returning results.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -156,7 +156,7 @@ This includes both properly and abnormally ended connections.
 This value may drop if background maintenance is performed by Aura.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -171,7 +171,7 @@ This includes both successful and failed connections.
 This value may drop if background maintenance is performed by Aura.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -186,7 +186,7 @@ Young garbage collections typically complete quickly, and the Aura instance wait
 High values indicate that the instance is running low on memory for the workload and you should consider increasing the size of your instance.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -201,7 +201,7 @@ Old garbage collections can take time to complete, and the Aura instance waits w
 High values indicate that there are long-running processes or queries that could be optimized, or that your instance is running low on CPU or memory for the workload and you should consider reviewing these metrics and possibly increasing the size of your instance.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -216,7 +216,7 @@ If this spikes or is increasing, check that the queries executed are using param
 This value may drop if background maintenance is performed by Aura.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -229,7 +229,7 @@ m| neo4j_database_transaction_active_read
 | The number of currently active read transactions.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -242,7 +242,7 @@ m| neo4j_database_transaction_active_write
 | The number of active write transactions.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -256,7 +256,7 @@ m| neo4j_database_transaction_committed_total
 This value may drop if background maintenance is performed by Aura.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -270,7 +270,7 @@ m| neo4j_database_transaction_peak_concurrent_total
 This value may drop if background maintenance is performed by Aura.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -284,7 +284,7 @@ m| neo4j_database_transaction_rollbacks_total
 This value may drop if background maintenance is performed by Aura.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -298,7 +298,7 @@ m| neo4j_database_check_point_events_total
 This value may drop if background maintenance is performed by Aura.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -312,7 +312,7 @@ m| neo4j_database_check_point_total_time_total
 This value may drop if background maintenance is performed by Aura.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -327,7 +327,7 @@ Checkpoints should typically take several seconds to several minutes.
 Values over 30 minutes warrant investigation.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -340,7 +340,7 @@ m| neo4j_database_count_relationship
 | The total number of relationships in the database.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -353,7 +353,7 @@ m| neo4j_database_count_node
 | The total number of nodes in the database.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -369,7 +369,7 @@ Keep an eye on this metric to make sure you have enough storage for today and fo
 Check this metric with page cache usage to see if the data is too large for the memory and consider increasing the size of your instance in this case.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -384,7 +384,7 @@ A spike can mean your workload is exceeding the instance's available memory, and
 Consider increasing the size of your instance to improve performance if this metric remains high.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -397,7 +397,7 @@ m| neo4j_db_query_execution_success_total
 | The total number of successful queries executed on this database.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| SUM
 |===
 
@@ -410,7 +410,7 @@ m| neo4j_db_query_execution_failure_total
 | The total number of failed queries executed on this database.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| SUM
 |===
 
@@ -423,7 +423,7 @@ m| neo4j_db_query_execution_internal_latency_q99
 | label:new[Introduced in 5.0] The query execution time in milliseconds where 99% of queries executed faster than the reported time.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -436,7 +436,7 @@ m| neo4j_db_query_execution_internal_latency_q75
 | label:new[Introduced in 5.0] The query execution time in milliseconds where 75% of queries executed faster than the reported time.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -450,7 +450,7 @@ m| neo4j_db_query_execution_internal_latency_q50
 This also corresponds to the median of the query execution time.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -465,7 +465,7 @@ Track this for primary cluster members of your Aura instance.
 It should show overlapping, ever-increasing lines and if one of the lines levels off or falls behind, it is clear that this cluster member is no longer replicating data, and action is needed to rectify the situation.
 | Metric type
 | _Counter_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
 
@@ -482,6 +482,6 @@ However, there are transient periods in which the sum can be more than 1 because
 Action may be needed if the metric shows 0 for more than 30 seconds.
 | Metric type
 | _Gauge_
-| Default aggregation
+| Aggregation method
 m| MAX
 |===
