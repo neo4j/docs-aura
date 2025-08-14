@@ -1,0 +1,200 @@
+= Aura built-in procedures reference
+
+This page provides a reference for built-in procedures supported in Neo4j Aura (including both AuraDB and AuraDS). 
+Aura restricts access to certain administrative and custom capabilities due to its fully managed, secure architecture. 
+
+The full list of Neo4j procedures is available at link:https://neo4j.com/docs/operations-manual/current/procedures/[Procedures]
+
+To check which procedures are available in your Aura instance, run the following Cypher command in Query or Cypher shell:
+
+.List available procedures with default output columns
+[source,cypher]
+----
+SHOW PROCEDURES;
+----
+
+== Supported built-in procedures
+
+The following procedures are available in Aura:
+
+== Schema and metadata
+
+[cols="1,1"]
+|===
+|Procedure name | Notes
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_labels[`db.labels();`]
+|List all labels used in the database.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_relationshipTypes[`db.relationshipTypes();`]
+|Show all relationship types.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_propertyKeys[`db.propertyKeys();`]
+|Returns all property keys in use.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[`db.schema.visualization();`]
+|Provides a visual representation of the database schema.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_nodeTypeProperties[`db.schema.nodeTypeProperties();`]
+|Lists properties by node type.
+|===
+
+== Index management
+
+[cols="1,1"]
+|===
+|Procedure name | Notes
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_awaitIndex[`db.awaitIndex('MyIndex', 300);`]
+|Wait for a specific index to come online. (I got this error message > 52N02: Procedure exception - procedure execution client error
+Execution of the procedure db.awaitIndexByName() failed due to a client error.
+Show less
+22N69: Data exception - index does not exist
+The index 'MyIndex' does not exist.)
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_awaitIndexes[`db.awaitIndexes(300);`]
+|Wait for all indexes to come online.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_awaitEventuallyConsistentIndexRefresh[`db.index.fulltext.awaitEventuallyConsistentIndexRefresh();`]
+|N/A
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_listAvailableAnalyzers[`db.index.fulltext.listAvailableAnalyzers();`]
+|N/A
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_queryNodes[`db.index.fulltext.queryNodes('index', 'query');`]
+|(requires 2+ parameters)
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_vector_queryRelationships[`db.index.fulltext.queryRelationships()`]
+|N/A
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_resampleIndex[`db.resampleIndex();`]
+|N/A
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_resampleOutdatedIndexes[`db.resampleOutdatedIndexes();`]
+|N/A
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_clearQueryCaches[`db.clearQueryCaches();`]
+|N/A
+|===
+
+== System and admin
+
+[cols="1,1"]
+|===
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_checkpoint[`db.checkpoint();`]
+|Triggers a manual checkpoint. Temporarily bypasses IOPS limit for faster completion.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_ping[`db.ping();`]
+|Ping the DB (for latency/debugging).
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`dbms.info();`]
+|Returns version and system metadata.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listCapabilities[`dbms.listCapabilities();`]
+|N/A
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listPools[`dbms.listPools();`]
+|N/A
+|===
+
+== CDC 
+
+[cols="1,1"]
+|===
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_current[`cdc.current();`]
+|Lists current change data capture state (if CDC is enabled).
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_earliest[`cdc.earliest();`]
+|Returns earliest CDC state (if enabled).
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_showCurrentUser[`dbms.showCurrentUser();`]
+|N/A
+|===
+
+== Restricted and partially supported procedures
+
+The following are restricted in Aura (e.g. due to permission, cluster, or filesystem constraints). 
+
+[cols="1,1"]
+|===
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`db.info()`]
+|Used for system-level diagnostics (❌ Not supported in Aura Free ✅ Supported in Aura Pro) label:
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_stats_status[`db.stats.status()`]
+|Restricted access.
+
+|`dbms.procedures()` / `dbms.functions()`  
+|Do not return full results - admin-level visibility is blocked.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listConfig[`dbms.listConfig()`]  
+|Forbidden  
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_checkConfigValue[`dbms.checkConfigValue()`]  
+|Permission denied.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_security_clearauthcache[`dbms.security.clearAuthCache()`]  
+|Not allowed for user-level roles.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_security_reloadTLS[`dbms.security.reloadTLS()`]  
+|Same as above - admin permissions required.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_failedJobs[`dbms.scheduler.failedJobs()`]  
+|Not supported - relates to job monitoring in cluster mode.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_groups[`dbms.scheduler.groups()`]  
+|Same - cluster job management only.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_jobs[`dbms.scheduler.jobs()`]  
+|Same - unavailable in single-instance deployments.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_cluster_checkConnectivity[`dbms.cluster.checkConnectivity()`]  
+|Requires clustered deployment - not available in AuraDB.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_setDefaultDatabase[`dbms.setDefaultDatabase()`]  
+|Requires elevated access - restricted in Aura.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_quarantineDatabase[`dbms.quarantineDatabase(databaseName, status)`]  
+|Requires at least 2 arguments. Not permitted in Aura.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_unquarantineDatabase[`dbms.unquarantineDatabase()`]
+|Same as above - forbidden in managed deployments.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_upgradeStatus[`dbms.upgrade()`]
+|Forbidden for client roles - handled by Neo4j infrastructure.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.upgradeStatus()`[dbms.upgradeStatus()]  
+|Forbidden for client roles - handled by Neo4j infrastructure.
+|===
+
+== Usable with caveats
+
+[cols="1,1"]
+|===
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listActiveLocks[`dbms.listActiveLocks('queryId')`]  
+|Requires a valid queryId. Will return syntax error if called without arguments.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_killConnection[`dbms.killConnection()`] 
+|Likely supported, but requires correct usage and roles. Syntax errors may occur if misused.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.killConnections[dbms.killConnections()`]  
+|Likely supported, but requires correct usage and roles. Syntax errors may occur if misused.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_routing_getRoutingTable[`dbms.routing.getRoutingTable({context})`]  
+|Requires a map input. Fails with 0 arguments. Used internally for routing in clustered setups.
+|===
+
+== Unsupported capabilities in Aura
+
+Neo4j Aura is a fully managed, cloud-hosted platform, and for security and stability reasons it does not support:
+
+* User-defined procedures  
+(i.e., uploading or registering your own Java procedures or extensions)
+
+* APOC Full  
+(such as apoc.trigger, apoc.load.jdbc, apoc.custom.*, etc.)
+The relevant Aura APOC docs are available at: https://neo4j.com/docs/aura/apoc/
+
+* in Aura we only support a sub section of APOC Core / OR? Aura supports all APOC core functions. 
+* We also do not have support for APOC Extended library in Aura `apoc.custom` falls under that category 
+* Filesystem-level access: Any procedure that attempts to read from or write to the local disk is restricted.
+
+* `dbms.security.procedures`  
+Generally locked down, especially those involving user auth, certificates, TLS reloads, or credential cache clearing.
