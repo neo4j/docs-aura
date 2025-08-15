@@ -9,10 +9,10 @@ The Aura API uses OAuth 2.0 for API authentication.
 label:AuraDB-Free[]
 label:AuraDB-Professional[]
 label:AuraDS-Enterprise[]
+label:AuraDB-Business-Critical[]
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-AuraDB Virtual Dedicated Cloud users, and AuraDS Enterprise users have unrestricted access to creating API credentials.
-However, users with Free and Professional instances must have entered billing information or be a member of a marketplace project before they can create API credentials.
+All tiers can create Aura API credentials.
 API credentials are linked to the user account, inheriting its capabilities and roles.
 The API credentials never expire unless you delete them.
 
@@ -28,6 +28,12 @@ To create credentials in the Aura console go to the https://console-preview.neo4
 ====
 You cannot retrieve your secret after you close the modal, so save it securely.
 ====
+
+== Rate limits
+
+* *Non-paying customers get a lower rate limit of 25 requests per minute:* This includes AuraDB Free, and AuraDB Professional trial users without a billing method attached to the account.
+
+* *Paying customers get a higher rate limit of 125 requests per minute:* This includes AuraDB Professional with a billing method attached to the account, AuraDB Virtual Dedicated Cloud, AuraDB Business Critical, and AuraDS Enterprise. 
 
 == Authenticating API requests
 
