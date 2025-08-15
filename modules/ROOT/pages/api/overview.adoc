@@ -53,10 +53,11 @@ An `X-Request-Id` response header is returned with each request and can be used 
 
 The value of this header contains a unique ID that can be used to track the journey of a request.
 
-If you run into any issues with a particular request, you can https://support.neo4j.com/[raise a support ticket] and provide the `X-Request-Id`.
+If you run into any issues with a particular request, you can link:https://support.neo4j.com/[raise a support ticket] and provide the `X-Request-Id`.
 
 == Rate limits
 
-*Non-paying customers get a lower rate limit of 25 requests per minute:* This includes AuraDB Free, and AuraDB Professional trial users without a billing method attached to the account.
+AuraDB Free, and AuraDB Professional trial users without a billing method attached to the account.
+Get a rate limit of 25 requests per minute.
 
-*Paying customers get a higher rate limit of 125 requests per minute:* This includes AuraDB Professional with a billing method attached to the account, AuraDB Virtual Dedicated Cloud, AuraDB Business Critical, and AuraDS Enterprise. 
+AuraDB Professional with a billing method attached to the account, AuraDB Virtual Dedicated Cloud, AuraDB Business Critical, and AuraDS Enterprise get a rate limit of 125 requests per minute.
