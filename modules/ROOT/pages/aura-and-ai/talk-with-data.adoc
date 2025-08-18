@@ -9,24 +9,40 @@ An example where GraphRAG is used integrated with LLMs and Cypher queries to ret
 
 == Key features
 
-*Fully managed infrastructure*: No manual setup or maintenance is required. Aura automatically handles scaling, backups, and security patches.
+* *Fully managed infrastructure*: No manual setup or maintenance is required. Aura automatically handles scaling, backups, and security patches.
+* *Always up to date*: Aura runs on the latest Neo4j version, with vector search, hybrid search, and other retrieval features available without manual upgrades.
+* *Integrated security*: Aura provides built-in authentication, role-based access control, and fine-grained security to ensure models can only access approved data.
+* *Pay-as-you-go pricing*: Scale compute and storage resources on demand. Aura is cost-effective for both experimentation and production workloads.
 
-*Always up to date*: Aura runs on the latest Neo4j version, with vector search, hybrid search, and other retrieval features available without manual upgrades.
+== Configure your environment
 
-*Integrated security*: Aura provides built-in authentication, role-based access control, and fine-grained security to ensure models can only access approved data.
+You can try this out with a free Aura instance.  
+When you create an instance, download the connection details from the console.  
 
-*Pay-as-you-go pricing*: Scale compute and storage resources on demand. Aura is cost-effective for both experimentation and production workloads.
+Create a `.env` file in your project root with the following format:
 
-== Aura `.env`
+[source,properties]
+----
+NEO4J_URI=neo4j+s://<dbid>.databases.neo4j.io
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=<password>
 
-*You can literally set up a Free instance and try this out* 
-*You just need to create a .env with your aura details and you can do that in this format:
+OPENAI_API_KEY=<your-api-key>
+----
 
+== GraphRAG Python package
 
+The GraphRAG Python package is a great way to start experimenting with knowledge graphs and AI.
+
+* Documentation: https://neo4j.com/developer/genai-ecosystem/graphrag-python/  
+* Walkthrough video: https://www.youtube.com/watch?v=hDJlruy60AM  
+* Example notebook: https://github.com/neo4j-product-examples/graphrag-python-examples/blob/main/end-to-end-lupus.ipynb  
+
+The example notebook demonstrates a meta-analysis of the disease Lupus, which is notoriously difficult to diagnose.
 
 == GraphRAG in Aura
 
-Viewing a document chunk in Aura
+You will see information from the PDFs populate your Aura instance.
+Once your data is ingested, you can explore the indexed document chunks directly in Aura and explore the knowledge graph:
 
-image::chunks_in_rag.png[View the chunks in Aura]
-
+image::chunks_in_rag.png[Viewing chunks in Aura]
