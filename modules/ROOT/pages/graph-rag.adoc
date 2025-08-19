@@ -1,8 +1,8 @@
 = GraphRAG
 
-== Talk with data
-
 * Make your LLMs smarter using knowledge graphs.
+
+== Talk with data
 
 * You could achieve cost savings. 
 Using GraphRAG means you could save money on your system, getting less token cost for better query results.
@@ -12,6 +12,8 @@ Using GraphRAG means you could save money on your system, getting less token cos
 Neo4j Aura provides a fully managed cloud service for building and running GraphRAG workloads and AI agents.
 
 Aura eliminates the operational overhead of deploying and maintaining a Neo4j cluster, letting you focus on model integration and retrieval accuracy.
+
+It's recommended you start out with a Free (it's good to try stuff out) or Professional instance (you can get a 2 week trial without adding card details).
 
 GraphRAG enables you to relationships and bring together diverse information sources, into one knowledge base.
 An example where GraphRAG is used integrated with LLMs and Cypher queries to retrieve and visualize relationships between data points *so you can talk with your data.*
@@ -38,25 +40,19 @@ link:graphrag.com[graphrag.com] Curated resources and background on GraphRAG.
 
 link:https://neo4j.com/developer/genai-ecosystem/[Neo4j GenAI ecosystem] Overview of how Neo4j integrates with the wider generative AI landscape.
 
-link:https://graphacademy.neo4j.com/courses/llm-chatbot-python/[Graph Academy] Build an LLM Chatbot with Python — free, hands-on training course.
+link:https://graphacademy.neo4j.com/courses/llm-chatbot-python/[Graph Academy] Build an LLM Chatbot with Python in this free, hands-on training course.
 
-== Open Source Tools
+== Open source tools
 
 https://llm-graph-builder.neo4jlabs.com[LLM Graph Builder demo] Hosted interface for experimenting without setup.
 
 https://github.com/neo4j-labs/llm-graph-builder/issues[LLM Graph Builder (GitHub)] Contribute or track development.
 
-== Key features
+== `.env` credentials
 
-* *Fully managed infrastructure*: No manual setup or maintenance is required. Aura automatically handles scaling, backups, and security patches.
-* *Always up to date*: Aura runs on the latest Neo4j version, with vector search, hybrid search, and other retrieval features available without manual upgrades.
-* *Integrated security*: Aura provides built-in authentication, role-based access control, and fine-grained security to ensure models can only access approved data.
-* *Pay-as-you-go pricing*: Scale compute and storage resources on demand. Aura is cost-effective for both experimentation and production workloads.
+When you create an instance, you'll download the connection details from the console.  
 
-== Configure your environment
-
-You can try this out with a free Aura instance.  
-When you create an instance, download the connection details from the console.  
+image::env.png[env example]
 
 Create a `.env` file in your project with the following format:
 
@@ -68,3 +64,5 @@ NEO4J_PASSWORD=<password>
 
 AI_API_KEY=<your-api-key>
 ----
+
+
