@@ -1,0 +1,70 @@
+= GraphRAG
+
+== Talk with data
+
+* Make your LLMs smarter using knowledge graphs.
+
+* You could achieve cost savings. 
+Using GraphRAG means you could save money on your system, getting less token cost for better query results.
+
+* Explainability is so important.
+
+Neo4j Aura provides a fully managed cloud service for building and running GraphRAG workloads and AI agents.
+
+Aura eliminates the operational overhead of deploying and maintaining a Neo4j cluster, letting you focus on model integration and retrieval accuracy.
+
+GraphRAG enables you to relationships and bring together diverse information sources, into one knowledge base.
+An example where GraphRAG is used integrated with LLMs and Cypher queries to retrieve and visualize relationships between data points *so you can talk with your data.*
+
+== GraphRAG Python Package
+
+Explore these resources to learn more and experiment with GraphRAG and related tools:
+
+link:https://neo4j.com/developer/genai-ecosystem/graphrag-python[GraphRAG Python Package] A library that allows building GenAI applications.
+
+link:https://www.youtube.com/watch?v=hDJlruy60AM[Walkthrough video] A guided demo of the workflow.
+
+https://github.com/neo4j-product-examples/graphrag-python-examples/blob/main/end-to-end-lupus.ipynb[Github - Example notebook] Step-by-step instructions for building with GraphRAG in Python that demonstrates a meta-analysis of Lupus, a disease that is notoriously difficult to diagnose.
+
+The GraphRAG Python package is a great way to start experimenting with knowledge graphs and AI.
+You will see information from the PDFs populate your Aura instance.
+Once your data is ingested, you can explore the indexed document chunks directly in Aura and explore the knowledge graph:
+
+image::chunks_in_rag.png[Viewing chunks in Aura]
+
+== Learning resources
+
+link:graphrag.com[graphrag.com] Curated resources and background on GraphRAG.
+
+link:https://neo4j.com/developer/genai-ecosystem/[Neo4j GenAI ecosystem] Overview of how Neo4j integrates with the wider generative AI landscape.
+
+link:https://graphacademy.neo4j.com/courses/llm-chatbot-python/[Graph Academy] Build an LLM Chatbot with Python — free, hands-on training course.
+
+== Open Source Tools
+
+https://llm-graph-builder.neo4jlabs.com[LLM Graph Builder demo] Hosted interface for experimenting without setup.
+
+https://github.com/neo4j-labs/llm-graph-builder/issues[LLM Graph Builder (GitHub)] Contribute or track development.
+
+== Key features
+
+* *Fully managed infrastructure*: No manual setup or maintenance is required. Aura automatically handles scaling, backups, and security patches.
+* *Always up to date*: Aura runs on the latest Neo4j version, with vector search, hybrid search, and other retrieval features available without manual upgrades.
+* *Integrated security*: Aura provides built-in authentication, role-based access control, and fine-grained security to ensure models can only access approved data.
+* *Pay-as-you-go pricing*: Scale compute and storage resources on demand. Aura is cost-effective for both experimentation and production workloads.
+
+== Configure your environment
+
+You can try this out with a free Aura instance.  
+When you create an instance, download the connection details from the console.  
+
+Create a `.env` file in your project with the following format:
+
+[source,properties]
+----
+NEO4J_URI=neo4j+s://<dbid>.databases.neo4j.io
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=<password>
+
+AI_API_KEY=<your-api-key>
+----
