@@ -3,7 +3,7 @@
 This page provides a reference for built-in procedures supported in Neo4j Aura (including both AuraDB and AuraDS). 
 Aura restricts access to certain administrative and custom capabilities due to its fully managed, secure architecture. 
 
-The full list of Neo4j procedures is available at link:https://neo4j.com/docs/operations-manual/current/procedures/[Procedures]
+The full list of Neo4j procedures is available at link:https://neo4j.com/docs/operations-manual/current/procedures/[Operations Manual → Procedures]
 
 To check which procedures are available in your Aura instance, run the following Cypher command in Query or Cypher shell:
 
@@ -44,11 +44,7 @@ The following procedures are available in Aura:
 |===
 |Procedure name | Notes
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_awaitIndex[`db.awaitIndex('MyIndex', 300);`]
-|Wait for a specific index to come online. (I got this error message > 52N02: Procedure exception - procedure execution client error
-Execution of the procedure db.awaitIndexByName() failed due to a client error.
-Show less
-22N69: Data exception - index does not exist
-The index 'MyIndex' does not exist.)
+|Wait for a specific index to come online. ❌ Error 52N02: Execution of the procedure db.awaitIndexByName() failed due to a client error.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_awaitIndexes[`db.awaitIndexes(300);`]
 |Wait for all indexes to come online.
@@ -57,16 +53,16 @@ The index 'MyIndex' does not exist.)
 |N/A
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_listAvailableAnalyzers[`db.index.fulltext.listAvailableAnalyzers();`]
-|N/A
+|List the available analyzers that the full-text indexes can be configured with.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_queryNodes[`db.index.fulltext.queryNodes('index', 'query');`]
-|(requires 2+ parameters)
+|Query the given full-text index. Returns the matching nodes and their Lucene query score, ordered by score. ❌ Error 52U00: Procedure exception - custom procedure execution error cause 
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_vector_queryRelationships[`db.index.fulltext.queryRelationships()`]
-|N/A
+|Query the given relationship vector index. ❌ Error 42I13: Syntax error or access rule violation - invalid number of procedure or function arguments 
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_resampleIndex[`db.resampleIndex();`]
-|N/A
+| ❌ Error 42I13: Syntax error or access rule violation - invalid number of procedure or function arguments
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_resampleOutdatedIndexes[`db.resampleOutdatedIndexes();`]
 |N/A
