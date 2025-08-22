@@ -1,75 +1,16 @@
 [[sm-deployment-details]]
 = Deployment details
-:description: This page describes the deployment details.
+:description: This page describes deployment details
 
 From the deployment card or deployment table, select the more menu *(…​)*.
-In the graph view, the same menu can be accessed by right-clicking the DBMS node. Then select *Inspect* from the menu options.
+In the graph view, the same menu can be accessed by right-clicking the DBMS node. Then select *Show details* from the menu options.
 
-== Overview
+On the right side of the header, the view selector allows you to choose between two views: *table* view or *graph* view (see xref:fleet-management/graph-view.adoc[Graph view]).
 
-Aside from the deployment name and status, the following information is displayed.
+== Table view
 
-[cols="1,2"]
-|===
-|Property |Description
+The table view shows topology data in a tabular format. Three different tables are selectable using the dropdown in the table header.
 
-|Version
-|The Neo4j version
-
-|Edition
-|The Neo4j edition
-
-|Packaging
-|The Neo4j packaging used for deploying this cluster
-
-|Servers
-|A list of servers in the cluster
-
-|Registered by
-|Email address of the user who originally registered this deployment
-
-|===
-
-== Token
-
-This section contains information and actions related to the token used to authenticate the deployment with Aura.
-
-[cols="1,2"]
-|===
-|Property |Description
-
-|Status
-|Whether the token is in use or not
-
-|Registered by
-|Email address of the user who originally registered this deployment
-
-|Creation time
-|The time and date when the token was created
-
-|Expires on
-|The time and date when the token expires
-
-|Auto-rotated
-|Whether the token is configured to be automatically rotated before its expiry
-
-|===
-
-To perform token related actions, select the token menu *(…​)*.
-
-* *Regenerate*—This will remove the current token and generate a new one. Any plugin using the previous token will be logged out.
-
-* *Release*—This option will delete the association between this deployment and the current Neo4j cluster. This allows another cluster to claim the deployment. This is especially useful when migrating to a new major Neo4j version. Note that existing topology data will be cleared.
-
-* *Delete*—Selecting this option will permanently invalidate and delete the token.
-
-== License
-
-This section contains information about Neo4j licenses detected on this cluster.
-Supported products are:
-
-* Neo4j
-* Graph Data Science
-* Bloom
-
-For each detected product, information displayed includes the *type* of license (free/trial/commercial), the *status* (valid/expired) and the *expiry date* if applicable.
+* Servers
+* Databases
+* Database instances
