@@ -58,6 +58,11 @@ If the procedure returns a result, the plugin is installed, and you can select *
 
 == Register the deployment
 
+[WARNING]
+====
+Registering a token will associate the cluster to the Aura project which was used to generate the token. *Never register a token obtained from a third party.*
+====
+
 In the next step of the wizard, choose an expiry time for the generated token and whether to enable automatic rotation.
 If auto-rotation is enabled, the plugin will automatically negotiate a new token before the current one is expired. Then select *Next*.
 

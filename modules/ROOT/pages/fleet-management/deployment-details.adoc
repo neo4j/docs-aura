@@ -14,3 +14,17 @@ The table view shows topology data in a tabular format. Three different tables a
 * Servers
 * Databases
 * Database instances
+
+=== Servers
+
+The *Servers* table shows all servers in the deployment.
+
+For more information, see the link:https://neo4j.com/docs/operations-manual/current/clustering/monitoring/show-servers-monitoring/[documentation] for instructions on how to install plugins. for the `SHOW SERVERS` procedure, which is called by the plugin to obtain the data.
+
+=== Databases and Database instances
+
+The *Databases* table shows all databases in the deployment.
+
+A *Database instance* in this context refers to an instance of a logical database running on a specific server.
+
+For more information, see the link:https://neo4j.com/docs/operations-manual/current/database-administration/standard-databases/listing-databases/[documentation] for instructions on how to install plugins. for the `SHOW DATABASES` procedure, which is called by the plugin to obtain the data.
