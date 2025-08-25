@@ -6,7 +6,7 @@ This page describes the data structures used in fleet management messages.
 
 Message sent from the plugin to the Fleet Management service to establish a connection.
 
-[options="header", cols="1,1,1"]
+[options="header", cols="2,1,2"]
 |===
 |Field |Type |Description
 | `server_id`
@@ -36,7 +36,7 @@ Message sent from the plugin to the Fleet Management service to establish a conn
 
 Message sent from the plugin to the Fleet Management service containing metrics data.
 
-[options="header", cols="1,1,1"]
+[options="header", cols="2,1,2"]
 |===
 |Field |Type |Description
 | `timestamp`
@@ -66,7 +66,7 @@ Message sent from the plugin to the Fleet Management service containing metrics 
 
 Message sent from the plugin to the Fleet Management service containing neo4j configuration data.
 
-[options="header", cols="1,1,1"]
+[options="header", cols="2,1,2"]
 |===
 |Field |Type |Description
 | `timestamp`
@@ -90,7 +90,7 @@ Message sent from the plugin to the Fleet Management service containing neo4j co
 
 Message sent from the plugin to the Fleet Management service to retrieve configuration updates.
 
-[options="header", cols="1,1,1"]
+[options="header", cols="2,1,2"]
 |===
 |Field |Type |Description
 | `server_id`
@@ -108,7 +108,7 @@ Message sent from the plugin to the Fleet Management service to retrieve configu
 
 Message sent from the plugin to the Fleet Management service containing reporting data.
 
-[options="header", cols="1,1,1"]
+[options="header", cols="2,1,2"]
 |===
 |Field |Type |Description
 | `timestamp`
