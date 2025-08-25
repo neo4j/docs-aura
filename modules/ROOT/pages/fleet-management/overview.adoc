@@ -11,6 +11,15 @@ Register self-managed Neo4j deployments directly in the Aura Console to:
 * Monitor health and performance metrics
 * Run Cypher queries, explore graphs, and view dashboards
 
+== *Security first*
+
+Fleet management is designed with security first.
+Your deployment will reach out to the Aura console to send carefully considered, non-sensitive data, but we purposely designed the system never to allow inbound connections to your self-managed deployment.
+
+And there is *no* capability for performing any write operations or other mutations remotely.
+
+We never read any data from your databases. A complete listing of the data sent to Aura is documented on the xref:fleet-management/data.adoc[Data transparency] page.
+
 == Features
 
 Fleet management offers a wealth of features to manage and monitor your self-managed Neo4j deployments:
