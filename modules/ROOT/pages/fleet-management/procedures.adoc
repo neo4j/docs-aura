@@ -6,28 +6,29 @@ The fleet management plugin provides a set of procedures to manage and monitor t
 |===
 |Procedure |Description |Arguments |Return
 
-|fleetManagement.status
-|Check the current status of the plugin and its connectivity to Aura.
-|-
-|Boolean active, Boolean connected, String statusMessage
+| `fleetManagement.status`
+| Check the current status of the plugin and its connectivity to Aura.
+| -
+| Boolean `active`, Boolean `connected`, String `statusMessage`
 
-|fleetManagement.registerToken
-|Register the deployment with Aura using the provided registration token and start reporting.
-|String token
-|String
+| `fleetManagement.registerToken`
+| Register the deployment with Aura using the provided registration token and start reporting.
+| String `token`
+| String
 
-|fleetManagement.disable
-|Disconnect from Aura, remove the existing token and disable the fleet management feature.
-|-
-|String
+| `fleetManagement.disable`
+| Disconnect from Aura, remove the existing token and disable the fleet management feature.
+| -
+| String
 
-|fleetManagement.reportedData
-|Obtain a complete listing of all data the plugin is reporting to Aura. A copy of this data can be found on the xref:fleet-management/data.adoc[Data transparency] page.
-|-
-|Array of (String messageType, String fieldPath, String description, String fieldType, String values)
+| `fleetManagement.reportedData`
+| Obtain a complete listing of all data the plugin is reporting to Aura. A copy of this data can be found on the xref:fleet-management/data.adoc[Data transparency] page.
+| -
+| Array of (String `messageType`, String `fieldPath`, String `description`, String `fieldType`, String `values`)
 
-|fleetManagement.debugLogging
-|Enable or disable debug and traffic logging
-|Boolean debugLogging, Boolean trafficLogging
-|String
+| `fleetManagement.debugLogging`
+| Enable or disable debug and traffic logging
+| Enable or disable debug and traffic logging
+| Boolean `debugLogging`, Boolean `trafficLogging`
+| String
 |===

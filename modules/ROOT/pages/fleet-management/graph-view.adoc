@@ -34,26 +34,26 @@ The following node labels are used in the graph view.
 |===
 |Label |Description
 
-|DBMS
-|Represents a Neo4j cluster
+| `DBMS`
+| Represents a Neo4j cluster
 
-|Server
-|A server belonging to a Neo4j cluster
+| `Server`
+| A server belonging to a Neo4j cluster
 
-|Database
-|A logical non-system database
+| `Database`
+| A logical non-system database
 
-|SystemDatabase
-|The special system database, used for internal settings
+| `SystemDatabase`
+| The special system database, used for internal settings
 
-|Online
-|A label which is used for a DBMS that is online. Nodes with this label are assigned a green color.
+| `Online`
+| A label which is used for a DBMS that is online. Nodes with this label are assigned a green color.
 
-|Offline
-|A label which is used for a DBMS that is offline. Nodes with this label are assigned a red color.
+| `Offline`
+| A label which is used for a DBMS that is offline. Nodes with this label are assigned a red color.
 
-|Degraded
-|A label which is used for a DBMS that has a degraded status (for example, some of the servers are offline). Nodes with this label are assigned a yellow color.
+| `Degraded`
+| A label which is used for a DBMS that has a degraded status (for example, some of the servers are offline). Nodes with this label are assigned a yellow color.
 
 |===
 
@@ -65,28 +65,28 @@ The following relationship types are used in the graph view.
 |===
 |Relationship type |Description
 
-|COMPRISES
-|Indicates that a DBMS comprises one or more servers
+| `COMPRISES`
+| Indicates that a DBMS comprises one or more servers
 
-|HAS_DATABASE
-|A DBMS has one or more databases
+| `HAS_DATABASE`
+| A DBMS has one or more databases
 
-|PRIMARY_FOR
-|Indicates that a server acts as a primary for a database
+| `PRIMARY_FOR`
+| Indicates that a server acts as a primary for a database
 
-|SECONDARY_FOR
-|Indicates that a server acts as a secondary for a database
+| `SECONDARY_FOR`
+| Indicates that a server acts as a secondary for a database
 
-|LEADER_FOR
-|Used for older Neo4j versions. Indicates that a server acts as a leader for a database
+| `LEADER_FOR`
+| Used for older Neo4j versions. Indicates that a server acts as a leader for a database
 
-|FOLLOWER_FOR
-|Used for older Neo4j versions. Indicates that a server acts as a follower for a database
+| `FOLLOWER_FOR`
+| Used for older Neo4j versions. Indicates that a server acts as a follower for a database
 
-|READ_REPLICA_FOR
-|Used for older Neo4j versions. Indicates that a server acts as a read replica for a database
+| `READ_REPLICA_FOR`
+| Used for older Neo4j versions. Indicates that a server acts as a read replica for a database
 
-|STANDALONE_FOR
-|Used for older Neo4j versions. Indicates that a server acts as a standalone replica for a database
+| `STANDALONE_FOR`
+| Used for older Neo4j versions. Indicates that a server acts as a standalone replica for a database
 
 |===
