@@ -2,29 +2,31 @@
 = Graph view
 :description: This page describes the deployment graph view
 
-In the graph view, the topology data is displayed as a graph. The graph shows the servers, databases and database instances in the deployment.
+In the graph view, the topology data is displayed as a graph. 
+The graph shows the servers, databases, and database instances in the deployment.
 
-Depending on whether the view is accessed from *Instances* or *Deployment details*, it will show either all deployments or just the selected deployment.
+Depending on whether the view is accessed from *Instances* or *Deployment details*, it shows either all deployments or just the selected deployment.
 
 [.shadow]
 image::deployment-graph.png[]
 
 == Legend
 
-To the right of the graph, there is a panel that enumerates the node labels and relationship types.
+In addition to the graph, this view also contains the *Results overview* panel that enumerates the node labels and relationship types.
 If an entity is selected, the panel displays the properties of that entity.
 
-The panel can be toggled by clicking the button in the top right corner of the graph view. The *Download* button is located to the left of that button and allows you to download the graph as a PNG image.
+The panel can be toggled with the button in the top right corner of the graph view. 
+The *Download* button is located to the left of that button and allows you to download the graph as a PNG image.
 
 In the bottom right corner of the graph view is a stack of buttons, from top to bottom:
 
-* *Hierarchy view*—Toggles between force-directed or hierarchical layouts of the graph.
+* *Hierarchy view* — Toggles between force-directed or hierarchical layouts of the graph.
 
-* *Expand all*—Expands all nodes in the graph, showing all relationships.
+* *Expand all* — Expands all nodes in the graph, showing all relationships.
 
-* *Collapse all*—Collapses all nodes in the graph, hiding relationships.
+* *Collapse all* — Collapses all nodes in the graph, hiding relationships.
 
-* *Fit to screen*—Fits the graph to the screen, adjusting the zoom level and centering the graph.
+* *Fit to screen* — Fits the graph to the screen, adjusting the zoom level and centering the graph.
 
 == Nodes
 
