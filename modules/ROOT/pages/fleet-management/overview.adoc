@@ -1,9 +1,18 @@
 = Overview
+:description: This page provides an overview of fleet management.
 
 Get an enterprise-wide view of all your Neo4j instances, both Aura instances and/or self-managed.
 
 For users operating in hybrid environments, it’s common to have a mix of Aura instances and self-managed Neo4j deployments. 
 Integrating self-managed deployment into the Aura console allows for a more centralized management.
+
+== Architecture
+
+Fleet management uses a plugin that you install on your self-managed Neo4j deployments.
+
+See xref:fleet-management/setup.adoc[Add a deployment] for instructions on how to set up the plugin.
+
+The plugin collects information from your deployment and securely transmits this data to Aura.
 
 == Security 
 
@@ -24,3 +33,8 @@ Fleet management offers various features to manage and monitor your self-managed
 * License status viewer
 
 In addition to these features, the user tools Query, Explore, and Dashboards (available in the Aura console) are also available for self-managed deployments.
+
+[NOTE]
+====
+User tools connect to your deployment using their own bolt connection, independent of the fleet management plugin.
+====
