@@ -2,12 +2,12 @@
 = Inspect deployment
 :description: This page describes inspecting the deployment.
 
-From the deployment card or deployment table, select the more menu *(…​)*.
-In the graph view, the same menu can be accessed by right-clicking the DBMS node. Then select *Inspect* from the menu options.
+To inspect a deployment, use the more menu *(…​)* from the deployment card or deployment table.
+In the graph view, the same menu can be accessed by right-clicking the DBMS node. 
 
 == Overview
 
-Aside from the deployment name and status, the following information is displayed.
+Aside from the deployment name and status, the following information is displayed:
 
 [cols="1,2"]
 |===
@@ -57,11 +57,14 @@ This section contains information and actions related to the token used to authe
 
 To perform token related actions, select the token menu *(…​)*.
 
-* *Regenerate*—This will remove the current token and generate a new one. Any plugin using the previous token will be logged out.
+* *Regenerate* — This removes the current token and generates a new one. 
+Any plugin using the previous token will be logged out.
 
-* *Release*—This option will delete the association between this deployment and the current Neo4j cluster. This allows another cluster to claim the deployment. This is especially useful when migrating to a new major Neo4j version. Note that existing topology data will be cleared.
+* *Release* — This deletes the association between this deployment and the current Neo4j cluster. 
+This allows another cluster to claim the deployment which can be especially useful when migrating to a new major Neo4j version. 
+Note that existing topology data will be cleared.
 
-* *Delete*—Selecting this option will permanently invalidate and delete the token.
+* *Delete* — Permanently invalidates and deletes the token.
 
 == License
 
