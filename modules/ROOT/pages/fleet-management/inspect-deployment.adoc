@@ -20,10 +20,10 @@ Aside from the deployment name and status, the following information is displaye
 |The Neo4j edition
 
 |Packaging
-|The Neo4j packaging used for deploying this cluster
+|The Neo4j packaging used for deploying the servers of this deployment
 
 |Servers
-|A list of servers in the cluster
+|A list of servers in the deployment
 
 |Registered by
 |Email address of the user who originally registered this deployment
@@ -55,20 +55,20 @@ This section contains information and actions related to the token used to authe
 
 |===
 
-To perform token related actions, select the token menu *(…​)*.
+To perform token-related actions, select the token menu *(…​)*.
 
 * *Regenerate* — This removes the current token and generates a new one. 
 Any plugin using the previous token will be logged out.
 
-* *Release* — This deletes the association between this deployment and the current Neo4j cluster. 
-This allows another cluster to claim the deployment which can be especially useful when migrating to a new major Neo4j version. 
+* *Release* — This deletes the association between this deployment and the running Neo4j installation.
+This allows another installation to claim the deployment, which can be especially useful when migrating to a new major Neo4j version.
 Note that existing topology data will be cleared.
 
 * *Delete* — Permanently invalidates and deletes the token.
 
 == License
 
-This section contains information about Neo4j licenses detected on this cluster.
+This section contains information about Neo4j licenses detected on this deployment.
 Supported products are:
 
 * Neo4j

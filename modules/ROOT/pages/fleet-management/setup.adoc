@@ -13,7 +13,7 @@ The wizard provides two top-level options.
 
 == Set up the plugin
 
-The next step of the wizard walks you through the process of adding the fleet management plugin to your Neo4j cluster.
+The next step of the wizard walks you through the process of adding the fleet management plugin to your Neo4j deployment.
 
 === Download the plugin
 
@@ -23,7 +23,7 @@ Choose the appropriate plugin for your Neo4j version.
 
 === Install plugin
 
-The plugin needs to be installed *on each server* of the cluster. See the link:https://neo4j.com/docs/operations-manual/current/configuration/plugins/[Neo4j documentation] for instructions on how to install plugins.
+The plugin needs to be installed *on each server* of the deployment. See the link:https://neo4j.com/docs/operations-manual/current/configuration/plugins/[Neo4j documentation] for instructions on how to install plugins.
 
 
 To allow the plugin procedures to run, you need to enable them in the configuration.
@@ -60,11 +60,11 @@ If the procedure returns a result, the plugin is installed, and you can select *
 
 [WARNING]
 ====
-Registering a token will associate the cluster to the Aura project which was used to generate the token. *Never register a token obtained from a third party.*
+Registering a token will associate the deployment with the Aura project which was used to generate the token. *Never register a token obtained from a third party.*
 ====
 
 In the next step of the wizard, choose an expiry time for the generated token and whether to enable automatic rotation.
 If auto-rotation is enabled, the plugin will automatically negotiate a new token before the current one is expired. Then select *Next*.
 
 In the final step, you will see the generated token. Save it in a secure location and then register it using the procedure `fleetManagement.registerToken`.
-It only needs to be registered once to take effect across the whole cluster.
+If your deployment is a cluster, the token only needs to be registered once to take effect across all servers.
