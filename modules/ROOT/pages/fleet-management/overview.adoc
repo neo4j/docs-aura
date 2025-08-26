@@ -6,24 +6,20 @@ For users operating in hybrid environments, it’s common to have a mix of Aura 
 Integrating self-managed deployment into the Aura console allows for a more centralized management.
 
 == Centralized management
-Register self-managed Neo4j deployments directly in the Aura Console to:
+Registering self-managed Neo4j deployments in the Aura Console allows you to monitor all your Neo4j databases in one place.
 
-* Monitor and manage all Neo4j databases across your organization in one place
-* Monitor health and performance metrics
-* Run Cypher queries, explore graphs, and view dashboards
 
-== *Security first*
+== Security 
 
-Fleet management is designed with security first.
-Your deployment will reach out to the Aura console to send carefully considered, non-sensitive data, but we purposely designed the system never to allow inbound connections to your self-managed deployment.
+Fleet management is designed to be secure, no inbound connections to your self-managed deployment are allowed.
+Further, there is no capability for performing any write operations or other mutations remotely.
 
-And there is *no* capability for performing any write operations or other mutations remotely.
-
-We never read any data from your databases. A complete listing of the data sent to Aura is documented on the xref:fleet-management/data.adoc[Data transparency] page.
+No data is read from your databases.
+See xref:fleet-management/data.adoc[Data transparency] for a complete list of the data sent to Aura from your self-managed deployment.
 
 == Features
 
-Fleet management offers a wealth of features to manage and monitor your self-managed Neo4j deployments:
+Fleet management offers various features to manage and monitor your self-managed Neo4j deployments:
 
 * Metrics
 * Topology views (graph and tabular format)
@@ -31,8 +27,4 @@ Fleet management offers a wealth of features to manage and monitor your self-man
 * Database metadata
 * License status viewer
 
-In addition to these features, the following user tools are available for self-managed deployments:
-
-* Query
-* Explore
-* Dashboards
+In addition to these features, the user tools Query, Explore, and Dashboards (available in the Aura console) are also available for self-managed deployments.
