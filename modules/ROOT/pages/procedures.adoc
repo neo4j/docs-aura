@@ -68,7 +68,7 @@ The following procedures are available in Aura:
 |N/A
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_clearQueryCaches[`db.clearQueryCaches();`]
-|N/A
+|❌ Error42NFF: Syntax error or access rule violation - permission/access denied - Access denied, see the security logs for details.
 |===
 
 == System and admin
@@ -88,7 +88,7 @@ The following procedures are available in Aura:
 |N/A
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listPools[`dbms.listPools();`]
-|N/A
+|List all memory pools, including sub pools, currently registered at this instance that are visible to the user.
 |===
 
 == CDC 
@@ -96,13 +96,13 @@ The following procedures are available in Aura:
 [cols="1,1"]
 |===
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_current[`cdc.current();`]
-|Lists current change data capture state (if CDC is enabled).
+|✅Lists current change data capture state (if CDC is enabled). ❌ (as expected) If CDC is disabled - throws error 51N68: System configuration or operation exception - CDC is disabled for this database
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_earliest[`cdc.earliest();`]
-|Returns earliest CDC state (if enabled).
+|✅Returns earliest CDC state (if enabled). ❌ (as expected) If CDC is disabled - throws error 51N68: System configuration or operation exception - CDC is disabled for this database
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_showCurrentUser[`dbms.showCurrentUser();`]
-|N/A
+|Show the current user.
 |===
 
 == Restricted and partially supported procedures
@@ -112,16 +112,14 @@ The following are restricted in Aura (e.g. due to permission, cluster, or filesy
 [cols="1,1"]
 |===
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`db.info()`]
-|Used for system-level diagnostics (❌ Not supported in Aura Free ✅ Supported in Aura Pro) label:
+|Used for system-level diagnostics (❌ Not supported in Aura Free - 42NFF: Syntax error or access rule violation - permission/access denied
+ ✅ Supported in Aura Pro)
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_stats_status[`db.stats.status()`]
-|Restricted access.
-
-|`dbms.procedures()` / `dbms.functions()`  
-|Do not return full results - admin-level visibility is blocked.
+|❌ Restricted access.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listConfig[`dbms.listConfig()`]  
-|Forbidden  
+|List the currently active configuration settings of Neo4j. ❌ (AuraDB Professional) Error 42NFF: Syntax error or access rule violation - permission/access denied
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_checkConfigValue[`dbms.checkConfigValue()`]  
 |Permission denied.
