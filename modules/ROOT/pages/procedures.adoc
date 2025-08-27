@@ -78,19 +78,19 @@ The following procedures are available or unavailable, as indicated, in Aura:
 [cols="1,1"]
 |===
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_checkpoint[`db.checkpoint();`]
-|Triggers a manual checkpoint. Temporarily bypasses IOPS limit for faster completion.
+|✅ Initiate and wait for a new check point, or wait any already on-going check point to complete. 
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_ping[`db.ping();`]
-|Ping the DB (for latency/debugging).
+|✅ This procedure can be used by client side tooling to test whether they are correctly connected to a database. The procedure is available in all databases and always returns true. A faulty connection can be detected by not being able to call this procedure.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`dbms.info();`]
-|Returns version and system metadata.
+|✅ Provides information regarding the DBMS.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listCapabilities[`dbms.listCapabilities();`]
-|N/A
+|✅ List capabilities.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listPools[`dbms.listPools();`]
-|List all memory pools, including sub pools, currently registered at this instance that are visible to the user.
+|✅ List all memory pools, including sub pools, currently registered at this instance that are visible to the user.
 |===
 
 == CDC 
