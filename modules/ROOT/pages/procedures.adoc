@@ -34,6 +34,17 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |✅ Show the current user.
 |===
 
+== Background job management
+
+[cols="1,1"]
+|===
+|Procedure name | Notes
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_failedJobs[`dbms.scheduler.failedJobs()`]  
+|❌ Query terminated
+
+|===
+
 == CDC 
 
 [cols="1,1"]
@@ -109,6 +120,10 @@ dbms.cluster.deallocateDatabaseFromServers()
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_ping[`db.ping();`]
 |✅ This procedure can be used by client side tooling to test whether they are correctly connected to a database. The procedure is available in all databases and always returns true. A faulty connection can be detected by not being able to call this procedure.
 
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`db.info()`]
+|Used for system-level diagnostics (❌ Not supported in Aura Free - 42NFF: Syntax error or access rule violation - permission/access denied
+ ✅ Supported in Aura Pro)
+
 |===
 
 == GenAI and vectors
@@ -174,6 +189,9 @@ dbms.cluster.deallocateDatabaseFromServers()
 
 == Statistics and query planning
 
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_stats_status[`db.stats.status()`]
+|❌ Restricted access.
+
 == Transaction management
 
 == Restricted and partially supported procedures
@@ -185,12 +203,6 @@ The following are restricted in Aura (e.g. due to permission, cluster, or filesy
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`db.info()`]
 |Used for system-level diagnostics (❌ Not supported in Aura Free - 42NFF: Syntax error or access rule violation - permission/access denied
  ✅ Supported in Aura Pro)
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_stats_status[`db.stats.status()`]
-|❌ Restricted access.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_failedJobs[`dbms.scheduler.failedJobs()`]  
-|❌ Query terminated
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_groups[`dbms.scheduler.groups()`]  
 |❌ Permission denied - cluster job management only.
