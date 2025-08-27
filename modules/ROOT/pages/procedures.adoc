@@ -1,11 +1,12 @@
 = Aura built-in procedures reference
 
 This page provides a reference for built-in procedures supported in Neo4j Aura (including both AuraDB and AuraDS). 
+
 Aura restricts access to certain administrative and custom capabilities due to its fully managed, secure architecture. 
 
 The full list of Neo4j procedures is available at link:https://neo4j.com/docs/operations-manual/current/procedures/[Operations Manual → Procedures]
 
-To check which procedures are available in your Aura instance, run the following Cypher command in Query or Cypher shell:
+To check which procedures are available in your Aura instance, run the following Cypher command in Query:
 
 .List available procedures with default output columns
 [source,cypher]
@@ -15,7 +16,7 @@ SHOW PROCEDURES;
 
 == Supported built-in procedures
 
-The following procedures are available in Aura:
+The following procedures are available or unavailable, as indicated, in Aura:
 
 == Schema and metadata
 
@@ -23,19 +24,19 @@ The following procedures are available in Aura:
 |===
 |Procedure name | Notes
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_labels[`db.labels();`]
-|List all labels used in the database.
+|✅List all labels used in the database.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_relationshipTypes[`db.relationshipTypes();`]
-|Show all relationship types.
+|✅Show all relationship types.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_propertyKeys[`db.propertyKeys();`]
-|Returns all property keys in use.
+|✅Returns all property keys in use.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[`db.schema.visualization();`]
-|Provides a visual representation of the database schema.
+|✅Provides a visual representation of the database schema.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_nodeTypeProperties[`db.schema.nodeTypeProperties();`]
-|Lists properties by node type.
+|✅Lists properties by node type.
 |===
 
 == Index management
@@ -43,32 +44,33 @@ The following procedures are available in Aura:
 [cols="1,1"]
 |===
 |Procedure name | Notes
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_awaitIndex[`db.awaitIndex('MyIndex', 300);`]
-|Wait for a specific index to come online. ❌ Error 52N02: Execution of the procedure db.awaitIndexByName() failed due to a client error.
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_awaitIndex[`db.awaitIndex`]
+|✅ Wait for an index to come online (for example: CALL db.awaitIndex("MyIndex", 300)).
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_awaitIndexes[`db.awaitIndexes(300);`]
-|Wait for all indexes to come online.
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_awaitIndexes[`db.awaitIndexes`]
+|✅ Wait for all indexes to come online (for example: CALL db.awaitIndexes(300)).
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_awaitEventuallyConsistentIndexRefresh[`db.index.fulltext.awaitEventuallyConsistentIndexRefresh();`]
-|N/A
+|✅ Wait for the updates from recently committed transactions to be applied to any eventually-consistent full-text indexes.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_listAvailableAnalyzers[`db.index.fulltext.listAvailableAnalyzers();`]
-|List the available analyzers that the full-text indexes can be configured with.
+|✅ List the available analyzers that the full-text indexes can be configured with.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_queryNodes[`db.index.fulltext.queryNodes('index', 'query');`]
-|Query the given full-text index. Returns the matching nodes and their Lucene query score, ordered by score. ❌ Error 52U00: Procedure exception - custom procedure execution error cause 
+|✅ Query the given full-text index. Returns the matching nodes and their Lucene query score, ordered by score. ❌ Error 52U00: Procedure exception - custom procedure execution error cause 
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_vector_queryRelationships[`db.index.fulltext.queryRelationships()`]
-|Query the given relationship vector index. ❌ Error 42I13: Syntax error or access rule violation - invalid number of procedure or function arguments 
+|✅ Query the given relationship vector index. Returns requested number of nearest neighbors to the provided query vector, and their similarity score to that query vector, based on the configured similarity function for the index. The similarity score is a value between [0, 1]; where 0 indicates least similar, 1 most similar.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_resampleIndex[`db.resampleIndex();`]
-| ❌ Error 42I13: Syntax error or access rule violation - invalid number of procedure or function arguments
+|✅ Schedule resampling of an index (for example: CALL db.resampleIndex("MyIndex")).
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_resampleOutdatedIndexes[`db.resampleOutdatedIndexes();`]
-|N/A
+|✅ Schedule resampling of all outdated indexes.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_clearQueryCaches[`db.clearQueryCaches();`]
-|❌ Error42NFF: Syntax error or access rule violation - permission/access denied - Access denied, see the security logs for details.
+|❌ Executing admin procedure 'db.clearQueryCaches' permission has not been granted for user
+
 |===
 
 == System and admin
@@ -125,25 +127,25 @@ The following are restricted in Aura (e.g. due to permission, cluster, or filesy
 |❌ Permission denied.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_security_clearauthcache[`dbms.security.clearAuthCache()`]  
-|Not allowed for user-level roles.
+|❌ Not allowed for user-level roles.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_security_reloadTLS[`dbms.security.reloadTLS()`]  
-|Same as above - admin permissions required.
+|❌ Same as above - admin permissions required.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_failedJobs[`dbms.scheduler.failedJobs()`]  
-|Not supported - relates to job monitoring in cluster mode.
+|❌ Query terminated
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_groups[`dbms.scheduler.groups()`]  
-|Same - cluster job management only.
+|❌ Permission denied - cluster job management only.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_jobs[`dbms.scheduler.jobs()`]  
-|Same - unavailable in single-instance deployments.
+|❌ Permission denied - unavailable in single-instance deployments.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_cluster_checkConnectivity[`dbms.cluster.checkConnectivity()`]  
-|Requires clustered deployment - not available in AuraDB.
+|❌ Requires clustered deployment - not available in AuraDB.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_setDefaultDatabase[`dbms.setDefaultDatabase()`]  
-|Requires elevated access - restricted in Aura.
+|❌ Requires elevated access - restricted in Aura [With Enterprise Edition - this is up to customer admin and their RBAC setup]
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_quarantineDatabase[`dbms.quarantineDatabase(databaseName, status)`]  
 |Requires at least 2 arguments. Not permitted in Aura.
@@ -152,10 +154,10 @@ The following are restricted in Aura (e.g. due to permission, cluster, or filesy
 |Same as above - forbidden in managed deployments.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_upgradeStatus[`dbms.upgrade()`]
-|Forbidden for client roles - handled by Neo4j infrastructure.
+|❌ Deprecated! Forbidden for client roles - handled by Neo4j infrastructure.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.upgradeStatus()`[dbms.upgradeStatus()]  
-|Forbidden for client roles - handled by Neo4j infrastructure.
+|❌ Deprecated! Forbidden for client roles - handled by Neo4j infrastructure.
 |===
 
 == Usable with caveats
