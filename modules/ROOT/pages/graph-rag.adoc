@@ -1,6 +1,7 @@
 = GraphRAG
 
-* Make your LLMs smarter using knowledge graphs.
+* Make your LLMs smarter using knowledge graphs 
+* This isn't easily achievable via traditional relational DBs, a graph database is required for this. Relationships change everything.
 
 == Talk with data
 
@@ -13,11 +14,14 @@ Using GraphRAG means you could save money on your system, getting less token cos
 
 Neo4j Aura provides a fully managed cloud service for building and running GraphRAG workloads and AI agents.
 
+* Why Aura?
+
 Aura eliminates the operational overhead of deploying and maintaining a Neo4j cluster, letting you focus on model integration and retrieval accuracy.
 
 It's recommended you start out with a Free (it's good to try stuff out) or Professional instance (you can get a 2 week trial without adding card details).
 
 GraphRAG enables you to relationships and bring together diverse information sources, into one knowledge base.
+
 An example where GraphRAG is used integrated with LLMs and Cypher queries to retrieve and visualize relationships between data points *so you can talk with your data.*
 
 == GraphRAG Python Package
