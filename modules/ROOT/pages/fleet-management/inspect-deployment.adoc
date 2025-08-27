@@ -30,7 +30,7 @@ Aside from the deployment name and status, the following information is displaye
 
 |===
 
-== Token
+=== Token
 
 This section contains information and actions related to the token used to authenticate the deployment with Aura.
 
@@ -66,7 +66,7 @@ Note that existing topology data will be cleared.
 
 * *Delete* — Permanently invalidates and deletes the token.
 
-== License
+=== License
 
 This section contains information about Neo4j licenses detected on this deployment.
 Supported products are:
@@ -76,3 +76,13 @@ Supported products are:
 * Bloom
 
 For each detected product, information displayed includes the *type* of license (free/trial/commercial), the *status* (valid/expired) and the *expiry date* if applicable.
+
+== Active configuration
+
+In the *Active configuration* tab, you can view the effective configuration of each server in the deployment.
+Refer to link:https://neo4j.com/docs/operations-manual/current/configuration/neo4j-conf/[Operations Manual ->The neo4j.conf file
+] for more information on the Neo4j configuration.
+
+The configuration for each server is presented as a list of key-value pairs in a collapsible expander.
+
+The search bar at the top of the page allows you to filter by configuration key across all servers in the deployment.
