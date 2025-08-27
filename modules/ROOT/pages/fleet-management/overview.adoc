@@ -12,6 +12,19 @@ See xref:fleet-management/setup.adoc[Add a deployment] for instructions on how t
 
 The plugin collects information from your deployment and securely transmits this data to Aura.
 
+== Compatibility
+
+Fleet management works with all self-managed Neo4j deployments running Neo4j 4.4 and later.
+
+Community Edition deployments are subject to some limitations due to the limited set of features, such as no metrics.
+
+All operating systems and deployment modalities supported by Neo4j are supported by fleet management.
+
+[NOTE]
+====
+Community Edition compatibility is offered on a best-effort basis. Neo4j does not offer any technical support for it.
+====
+
 == Security 
 
 Fleet management is designed to be secure, no inbound connections to your self-managed deployment are allowed.
