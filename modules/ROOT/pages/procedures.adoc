@@ -43,6 +43,12 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_failedJobs[`dbms.scheduler.failedJobs()`]  
 |❌ Query terminated
 
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_groups[`dbms.scheduler.groups()`]  
+|❌ Permission denied - cluster job management only.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_jobs[`dbms.scheduler.jobs()`]  
+|❌ Permission denied - unavailable in single-instance deployments.
+
 |===
 
 == CDC 
@@ -56,6 +62,22 @@ The following procedures are available or unavailable, as indicated, in Aura:
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_earliest[`cdc.earliest();`]
 |✅Returns earliest CDC state (if enabled). ❌ (as expected) If CDC is disabled - throws error 51N68: System configuration or operation exception - CDC is disabled for this database
+
+|cdc.query()
+|
+
+|db.cdc.current()
+|
+
+|db.cdc.earliest()
+|
+
+|db.cdc.query()
+|
+
+|db.cdc.translateId()
+|
+
 |===
 
 == Cluster management
@@ -66,13 +88,59 @@ The following procedures are available or unavailable, as indicated, in Aura:
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_cluster_checkConnectivity[`dbms.cluster.checkConnectivity()`]  
 |❌ Requires clustered deployment - not available in AuraDB.
+
+|dbms.cluster.cordonServer()
+|❌ Syntax error or access rule violation - invalid input
+
+|dbms.cluster.deallocateDatabaseFromServer()
+|❌ Syntax error or access rule violation - invalid number of procedure or function arguments
+
+|dbms.cluster.deallocateDatabaseFromServers()
+|❌ Syntax error or access rule violation - invalid number of procedure or function arguments
+
+|dbms.cluster.deallocateNumberOfDatabases()
+|
+
+|dbms.cluster.protocols()
+|
+
+|dbms.cluster.readReplicaToggle()
+|❌ Deprecated
+
+|dbms.cluster.reallocateDatabase()
+|
+
+|dbms.cluster.reallocateNumberOfDatabases()
+|
+
+|dbms.cluster.recreateDatabase()
+|
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_routing_getRoutingTable[`dbms.routing.getRoutingTable({context})`]  
+|Requires a map input. Fails with 0 arguments. Used internally for routing in clustered setups.
+
+|dbms.cluster.secondaryReplicationDisable()
+|
+
+|dbms.cluster.setAutomaticallyEnableFreeServers()
+|
+
+|dbms.cluster.statusCheck()
+|
+
+|dbms.cluster.uncordonServer()
+|
+
+|dbms.recreateDatabase()
+|
+
+|dbms.setDefaultAllocationNumbers()
+|
+
+|dbms.showTopologyGraphConfig()
+|
+
 |===
-
-dbms.cluster.cordonServer()
-
-dbms.cluster.deallocateDatabaseFromServer()
-
-dbms.cluster.deallocateDatabaseFromServers()
 
 == Configuration and DBMS info
 
@@ -87,7 +155,7 @@ dbms.cluster.deallocateDatabaseFromServers()
 |✅ List capabilities.
 
 |dbms.components()
-|
+|✅ List DBMS components and their versions.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`dbms.info();`]
 |✅ Provides information regarding the DBMS.
@@ -99,7 +167,7 @@ dbms.cluster.deallocateDatabaseFromServers()
 |List the currently active configuration settings of Neo4j. ❌ (AuraDB Professional) Error 42NFF: Syntax error or access rule violation - permission/access denied
 
 |dbms.setConfigValue()
-|
+|❌ Syntax error or access rule violation - invalid input
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listPools[`dbms.listPools();`]
 |✅ List all memory pools, including sub pools, currently registered at this instance that are visible to the user.
@@ -107,6 +175,21 @@ dbms.cluster.deallocateDatabaseFromServers()
 |===
 
 == Connection management
+
+[cols="1,1"]
+|===
+|Procedure name | Notes
+
+|dbms.listConnections()
+|✅ List all accepted network connections at this instance that are visible to the user.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_killConnection[`dbms.killConnection()`] 
+|Likely supported, but requires correct usage and roles. Syntax errors may occur if misused.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.killConnections[`dbms.killConnections()`]  
+|Likely supported, but requires correct usage and roles. Syntax errors may occur if misused.
+
+|===
 
 == Database management
 
@@ -117,16 +200,60 @@ dbms.cluster.deallocateDatabaseFromServers()
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_checkpoint[`db.checkpoint();`]
 |✅ Initiate and wait for a new check point, or wait any already on-going check point to complete. 
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_ping[`db.ping();`]
-|✅ This procedure can be used by client side tooling to test whether they are correctly connected to a database. The procedure is available in all databases and always returns true. A faulty connection can be detected by not being able to call this procedure.
-
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`db.info()`]
 |Used for system-level diagnostics (❌ Not supported in Aura Free - 42NFF: Syntax error or access rule violation - permission/access denied
  ✅ Supported in Aura Pro)
 
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listActiveLocks[`dbms.listActiveLocks('queryId')`]  
+|Requires a valid queryId. Will return syntax error if called without arguments.
+
+|db.listLocks()
+|
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_ping[`db.ping();`]
+|✅ This procedure can be used by client side tooling to test whether they are correctly connected to a database. The procedure is available in all databases and always returns true. A faulty connection can be detected by not being able to call this procedure.
+
+|dbms.setDefaultDatabase()
+|
+
+|dbms.quarantineDatabase
+|
+
+|dbms.unquarantineDatabase
+|
+
+|dbms.upgrade
+|
+
+|dbms.upgradeStatus
+|
+
 |===
 
 == GenAI and vectors
+
+[cols="1,1"]
+|===
+|Procedure name | Notes
+
+|db.create.setNodeVectorProperty
+|
+|db.create.setRelationshipVectorProperty
+|
+|db.create.setVectorProperty
+|
+|db.index.vector.createNodeIndex
+|
+|db.index.vector.queryNodes
+|
+|db.index.vector.queryRelationships
+|
+|genai.vector.encodeBatch
+|
+|genai.vector.listEncodingProviders
+|
+
+|===
 
 == Index management
 
@@ -165,11 +292,44 @@ dbms.cluster.deallocateDatabaseFromServers()
 
 == Metrics
 
+[cols="1,1"]
+|===
+|Procedure name | Notes
+
+|dbms.queryJmx
+|
+
+|===
+
 == Schema and metadata
 
 [cols="1,1"]
 |===
 |Procedure name | Notes
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_nodeTypeProperties[`db.schema.nodeTypeProperties();`]
+|✅Lists properties by node type.
+
+|db.schema.nodeTypeProperties()
+|
+
+|db.schema.relTypeProperties()
+|
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[`db.schema.visualization();`]
+|✅Provides a visual representation of the database schema.
+
+|db.schema.relTypeProperties
+|
+
+|db.createLabel
+|
+
+|db.createProperty
+|
+
+|db.createRelationshipType
+|
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_labels[`db.labels();`]
 |✅List all labels used in the database.
@@ -180,19 +340,32 @@ dbms.cluster.deallocateDatabaseFromServers()
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_propertyKeys[`db.propertyKeys();`]
 |✅Returns all property keys in use.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[`db.schema.visualization();`]
-|✅Provides a visual representation of the database schema.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_nodeTypeProperties[`db.schema.nodeTypeProperties();`]
-|✅Lists properties by node type.
 |===
 
 == Statistics and query planning
 
+[cols="1,1"]
+|===
+|Procedure name | Notes
+
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_stats_status[`db.stats.status()`]
 |❌ Restricted access.
 
+|===
+
 == Transaction management
+
+[cols="1,1"]
+|===
+|Procedure name | Notes
+
+|tx.getMetaData()
+|❌ Syntax error or access rule violation
+
+|tx.setMetaData()
+|❌
+
+|===
 
 == Restricted and partially supported procedures
 
@@ -203,12 +376,6 @@ The following are restricted in Aura (e.g. due to permission, cluster, or filesy
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`db.info()`]
 |Used for system-level diagnostics (❌ Not supported in Aura Free - 42NFF: Syntax error or access rule violation - permission/access denied
  ✅ Supported in Aura Pro)
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_groups[`dbms.scheduler.groups()`]  
-|❌ Permission denied - cluster job management only.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_jobs[`dbms.scheduler.jobs()`]  
-|❌ Permission denied - unavailable in single-instance deployments.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_setDefaultDatabase[`dbms.setDefaultDatabase()`]  
 |❌ Requires elevated access - restricted in Aura [With Enterprise Edition - this is up to customer admin and their RBAC setup]
@@ -224,23 +391,6 @@ The following are restricted in Aura (e.g. due to permission, cluster, or filesy
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.upgradeStatus()`[`dbms.upgradeStatus()`]  
 |❌ Deprecated! Forbidden for client roles - handled by Neo4j infrastructure.
-|===
-
-== Usable with caveats
-
-[cols="1,1"]
-|===
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listActiveLocks[`dbms.listActiveLocks('queryId')`]  
-|Requires a valid queryId. Will return syntax error if called without arguments.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_killConnection[`dbms.killConnection()`] 
-|Likely supported, but requires correct usage and roles. Syntax errors may occur if misused.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.killConnections[`dbms.killConnections()`]  
-|Likely supported, but requires correct usage and roles. Syntax errors may occur if misused.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_routing_getRoutingTable[`dbms.routing.getRoutingTable({context})`]  
-|Requires a map input. Fails with 0 arguments. Used internally for routing in clustered setups.
 |===
 
 == Unsupported capabilities in Aura
