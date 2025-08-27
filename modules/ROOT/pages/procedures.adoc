@@ -18,26 +18,75 @@ SHOW PROCEDURES;
 
 The following procedures are available or unavailable, as indicated, in Aura:
 
-== Schema and metadata
+== Authentication and authorization
 
 [cols="1,1"]
 |===
 |Procedure name | Notes
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_labels[`db.labels();`]
-|✅List all labels used in the database.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_relationshipTypes[`db.relationshipTypes();`]
-|✅Show all relationship types.
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_security_clearauthcache[`dbms.security.clearAuthCache()`]  
+|❌ Not allowed for user-level roles.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_propertyKeys[`db.propertyKeys();`]
-|✅Returns all property keys in use.
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_security_reloadTLS[`dbms.security.reloadTLS()`]  
+|❌ Same as above - admin permissions required.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[`db.schema.visualization();`]
-|✅Provides a visual representation of the database schema.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_nodeTypeProperties[`db.schema.nodeTypeProperties();`]
-|✅Lists properties by node type.
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_showCurrentUser[`dbms.showCurrentUser()`]
+|✅ Show the current user.
 |===
+
+== CDC 
+
+[cols="1,1"]
+|===
+|Procedure name | Notes
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_current[`cdc.current();`]
+|✅Lists current change data capture state (if CDC is enabled). ❌ (as expected) If CDC is disabled - throws error 51N68: System configuration or operation exception - CDC is disabled for this database
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_earliest[`cdc.earliest();`]
+|✅Returns earliest CDC state (if enabled). ❌ (as expected) If CDC is disabled - throws error 51N68: System configuration or operation exception - CDC is disabled for this database
+|===
+
+== Cluster management
+
+[cols="1,1"]
+|===
+|Procedure name | Notes
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_cluster_checkConnectivity[`dbms.cluster.checkConnectivity()`]  
+|❌ Requires clustered deployment - not available in AuraDB.
+|===
+
+dbms.cluster.cordonServer()
+
+dbms.cluster.deallocateDatabaseFromServer()
+
+dbms.cluster.deallocateDatabaseFromServers()
+
+argh! would any of these work ... i doubt it! 
+
+== Configuration and DBMS info
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_checkConfigValue[`dbms.checkConfigValue()`]  
+|❌ Permission denied.
+
+dbms.components()
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`dbms.info();`]
+|✅ Provides information regarding the DBMS.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listCapabilities[`dbms.listCapabilities();`]
+|✅ List capabilities.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listConfig[`dbms.listConfig()`]  
+|List the currently active configuration settings of Neo4j. ❌ (AuraDB Professional) Error 42NFF: Syntax error or access rule violation - permission/access denied
+
+
+== Connection management
+
+== Database management
+
+== GenAI and vectors
 
 == Index management
 
@@ -73,6 +122,30 @@ The following procedures are available or unavailable, as indicated, in Aura:
 
 |===
 
+== Metrics
+
+== Schema and metadata
+
+[cols="1,1"]
+|===
+|Procedure name | Notes
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_labels[`db.labels();`]
+|✅List all labels used in the database.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_relationshipTypes[`db.relationshipTypes();`]
+|✅Show all relationship types.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_propertyKeys[`db.propertyKeys();`]
+|✅Returns all property keys in use.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[`db.schema.visualization();`]
+|✅Provides a visual representation of the database schema.
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_nodeTypeProperties[`db.schema.nodeTypeProperties();`]
+|✅Lists properties by node type.
+|===
+
 == System and admin
 
 [cols="1,1"]
@@ -83,28 +156,11 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_ping[`db.ping();`]
 |✅ This procedure can be used by client side tooling to test whether they are correctly connected to a database. The procedure is available in all databases and always returns true. A faulty connection can be detected by not being able to call this procedure.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`dbms.info();`]
-|✅ Provides information regarding the DBMS.
-
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listCapabilities[`dbms.listCapabilities();`]
 |✅ List capabilities.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listPools[`dbms.listPools();`]
 |✅ List all memory pools, including sub pools, currently registered at this instance that are visible to the user.
-|===
-
-== CDC 
-
-[cols="1,1"]
-|===
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_current[`cdc.current();`]
-|✅Lists current change data capture state (if CDC is enabled). ❌ (as expected) If CDC is disabled - throws error 51N68: System configuration or operation exception - CDC is disabled for this database
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_earliest[`cdc.earliest();`]
-|✅Returns earliest CDC state (if enabled). ❌ (as expected) If CDC is disabled - throws error 51N68: System configuration or operation exception - CDC is disabled for this database
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_showCurrentUser[`dbms.showCurrentUser();`]
-|Show the current user.
 |===
 
 == Restricted and partially supported procedures
@@ -120,18 +176,6 @@ The following are restricted in Aura (e.g. due to permission, cluster, or filesy
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_stats_status[`db.stats.status()`]
 |❌ Restricted access.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listConfig[`dbms.listConfig()`]  
-|List the currently active configuration settings of Neo4j. ❌ (AuraDB Professional) Error 42NFF: Syntax error or access rule violation - permission/access denied
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_checkConfigValue[`dbms.checkConfigValue()`]  
-|❌ Permission denied.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_security_clearauthcache[`dbms.security.clearAuthCache()`]  
-|❌ Not allowed for user-level roles.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_security_reloadTLS[`dbms.security.reloadTLS()`]  
-|❌ Same as above - admin permissions required.
-
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_failedJobs[`dbms.scheduler.failedJobs()`]  
 |❌ Query terminated
 
@@ -141,22 +185,19 @@ The following are restricted in Aura (e.g. due to permission, cluster, or filesy
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_scheduler_jobs[`dbms.scheduler.jobs()`]  
 |❌ Permission denied - unavailable in single-instance deployments.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_cluster_checkConnectivity[`dbms.cluster.checkConnectivity()`]  
-|❌ Requires clustered deployment - not available in AuraDB.
-
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_setDefaultDatabase[`dbms.setDefaultDatabase()`]  
 |❌ Requires elevated access - restricted in Aura [With Enterprise Edition - this is up to customer admin and their RBAC setup]
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_quarantineDatabase[`dbms.quarantineDatabase(databaseName, status)`]  
-|Requires at least 2 arguments. Not permitted in Aura.
+|❌ Requires at least 2 arguments. Not permitted in Aura.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_unquarantineDatabase[`dbms.unquarantineDatabase()`]
-|Same as above - forbidden in managed deployments.
+|❌ Same as above - forbidden in managed deployments.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_upgradeStatus[`dbms.upgrade()`]
 |❌ Deprecated! Forbidden for client roles - handled by Neo4j infrastructure.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.upgradeStatus()`[dbms.upgradeStatus()]  
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.upgradeStatus()`[`dbms.upgradeStatus()`]  
 |❌ Deprecated! Forbidden for client roles - handled by Neo4j infrastructure.
 |===
 
@@ -170,7 +211,7 @@ The following are restricted in Aura (e.g. due to permission, cluster, or filesy
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_killConnection[`dbms.killConnection()`] 
 |Likely supported, but requires correct usage and roles. Syntax errors may occur if misused.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.killConnections[dbms.killConnections()`]  
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.killConnections[`dbms.killConnections()`]  
 |Likely supported, but requires correct usage and roles. Syntax errors may occur if misused.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_routing_getRoutingTable[`dbms.routing.getRoutingTable({context})`]  
