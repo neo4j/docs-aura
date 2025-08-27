@@ -63,14 +63,20 @@ dbms.cluster.deallocateDatabaseFromServer()
 
 dbms.cluster.deallocateDatabaseFromServers()
 
-argh! would any of these work ... i doubt it! 
-
 == Configuration and DBMS info
+
+[cols="1,1"]
+|===
+|Procedure name | Notes
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_checkConfigValue[`dbms.checkConfigValue()`]  
 |❌ Permission denied.
 
-dbms.components()
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listCapabilities[`dbms.listCapabilities();`]
+|✅ List capabilities.
+
+|dbms.components()
+|
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`dbms.info();`]
 |✅ Provides information regarding the DBMS.
@@ -81,10 +87,29 @@ dbms.components()
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listConfig[`dbms.listConfig()`]  
 |List the currently active configuration settings of Neo4j. ❌ (AuraDB Professional) Error 42NFF: Syntax error or access rule violation - permission/access denied
 
+|dbms.setConfigValue()
+|
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listPools[`dbms.listPools();`]
+|✅ List all memory pools, including sub pools, currently registered at this instance that are visible to the user.
+
+|===
 
 == Connection management
 
 == Database management
+
+[cols="1,1"]
+|===
+|Procedure name | Notes
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_checkpoint[`db.checkpoint();`]
+|✅ Initiate and wait for a new check point, or wait any already on-going check point to complete. 
+
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_ping[`db.ping();`]
+|✅ This procedure can be used by client side tooling to test whether they are correctly connected to a database. The procedure is available in all databases and always returns true. A faulty connection can be detected by not being able to call this procedure.
+
+|===
 
 == GenAI and vectors
 
@@ -93,6 +118,7 @@ dbms.components()
 [cols="1,1"]
 |===
 |Procedure name | Notes
+
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_awaitIndex[`db.awaitIndex`]
 |✅ Wait for an index to come online (for example: CALL db.awaitIndex("MyIndex", 300)).
 
@@ -146,22 +172,9 @@ dbms.components()
 |✅Lists properties by node type.
 |===
 
-== System and admin
+== Statistics and query planning
 
-[cols="1,1"]
-|===
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_checkpoint[`db.checkpoint();`]
-|✅ Initiate and wait for a new check point, or wait any already on-going check point to complete. 
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_ping[`db.ping();`]
-|✅ This procedure can be used by client side tooling to test whether they are correctly connected to a database. The procedure is available in all databases and always returns true. A faulty connection can be detected by not being able to call this procedure.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listCapabilities[`dbms.listCapabilities();`]
-|✅ List capabilities.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listPools[`dbms.listPools();`]
-|✅ List all memory pools, including sub pools, currently registered at this instance that are visible to the user.
-|===
+== Transaction management
 
 == Restricted and partially supported procedures
 
