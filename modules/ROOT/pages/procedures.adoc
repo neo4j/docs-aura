@@ -11,7 +11,7 @@ To check which procedures are available in your Aura instance, run the following
 .List available procedures with default output columns
 [source,cypher]
 ----
-SHOW PROCEDURES;
+SHOW PROCEDURES
 ----
 
 == Supported built-in procedures
@@ -57,10 +57,10 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |===
 |Procedure name | Notes
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_current[`cdc.current();`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_current[`cdc.current()`]
 |✅Lists current change data capture state (if CDC is enabled). ❌ (as expected) If CDC is disabled - throws error 51N68: System configuration or operation exception - CDC is disabled for this database
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_earliest[`cdc.earliest();`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_earliest[`cdc.earliest()`]
 |✅Returns earliest CDC state (if enabled). ❌ (as expected) If CDC is disabled - throws error 51N68: System configuration or operation exception - CDC is disabled for this database
 
 |cdc.query()
@@ -151,7 +151,7 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_checkConfigValue[`dbms.checkConfigValue()`]  
 |❌ Permission denied.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listCapabilities[`dbms.listCapabilities();`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listCapabilities[`dbms.listCapabilities()`]
 |✅ List capabilities.
 
 |dbms.components()
@@ -160,7 +160,7 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`dbms.info();`]
 |✅ Provides information regarding the DBMS.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listCapabilities[`dbms.listCapabilities();`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listCapabilities[`dbms.listCapabilities()`]
 |✅ List capabilities.
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listConfig[`dbms.listConfig()`]  
@@ -169,7 +169,7 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |dbms.setConfigValue()
 |❌ Syntax error or access rule violation - invalid input
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listPools[`dbms.listPools();`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listPools[`dbms.listPools()`]
 |✅ List all memory pools, including sub pools, currently registered at this instance that are visible to the user.
 
 |===
@@ -197,7 +197,7 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |===
 |Procedure name | Notes
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_checkpoint[`db.checkpoint();`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_checkpoint[`db.checkpoint()`]
 |✅ Initiate and wait for a new check point, or wait any already on-going check point to complete. 
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`db.info()`]
@@ -205,29 +205,28 @@ The following procedures are available or unavailable, as indicated, in Aura:
  ✅ Supported in Aura Pro)
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_listActiveLocks[`dbms.listActiveLocks('queryId')`]  
-|Requires a valid queryId. Will return syntax error if called without arguments.
+|✅ List all locks at this database. (Requires a valid queryId. Will return syntax error if called without arguments.)
 
 |db.listLocks()
-|
+|❌ Syntax error or access rule violation - permission/access denied
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_ping[`db.ping();`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_ping[`db.ping()`]
 |✅ This procedure can be used by client side tooling to test whether they are correctly connected to a database. The procedure is available in all databases and always returns true. A faulty connection can be detected by not being able to call this procedure.
 
-|dbms.setDefaultDatabase()
-|
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_setDefaultDatabase[`dbms.setDefaultDatabase()`]  
+|❌ Requires elevated access - restricted in Aura [With Enterprise Edition - this is up to customer admin and their RBAC setup]
 
-|dbms.quarantineDatabase
-|
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_quarantineDatabase[`dbms.quarantineDatabase(databaseName, status)`]  
+|❌ Requires at least 2 arguments. Not permitted in Aura.
 
-|dbms.unquarantineDatabase
-|
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_unquarantineDatabase[`dbms.unquarantineDatabase()`]
+|❌ Same as above - forbidden in managed deployments.
 
-|dbms.upgrade
-|
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_upgradeStatus[`dbms.upgrade()`]
+|❌ Deprecated! Forbidden for client roles - handled by Neo4j infrastructure.
 
-|dbms.upgradeStatus
-|
-
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.upgradeStatus()`[`dbms.upgradeStatus()`]  
+|❌ Deprecated! Forbidden for client roles - handled by Neo4j infrastructure.
 |===
 
 == GenAI and vectors
@@ -237,21 +236,28 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |Procedure name | Notes
 
 |db.create.setNodeVectorProperty
-|
+|❌
+
 |db.create.setRelationshipVectorProperty
-|
+|❌
+
 |db.create.setVectorProperty
-|
+|❌
+
 |db.index.vector.createNodeIndex
-|
+|❌
+
 |db.index.vector.queryNodes
-|
+|❌
+
 |db.index.vector.queryRelationships
-|
+|❌
+
 |genai.vector.encodeBatch
-|
+|❌
+
 |genai.vector.listEncodingProviders
-|
+|❌
 
 |===
 
@@ -267,26 +273,23 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_awaitIndexes[`db.awaitIndexes`]
 |✅ Wait for all indexes to come online (for example: CALL db.awaitIndexes(300)).
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_awaitEventuallyConsistentIndexRefresh[`db.index.fulltext.awaitEventuallyConsistentIndexRefresh();`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_awaitEventuallyConsistentIndexRefresh[`db.index.fulltext.awaitEventuallyConsistentIndexRefresh()`]
 |✅ Wait for the updates from recently committed transactions to be applied to any eventually-consistent full-text indexes.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_listAvailableAnalyzers[`db.index.fulltext.listAvailableAnalyzers();`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_listAvailableAnalyzers[`db.index.fulltext.listAvailableAnalyzers()`]
 |✅ List the available analyzers that the full-text indexes can be configured with.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_queryNodes[`db.index.fulltext.queryNodes('index', 'query');`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_fulltext_queryNodes[`db.index.fulltext.queryNodes('index', 'query')`]
 |✅ Query the given full-text index. Returns the matching nodes and their Lucene query score, ordered by score. ❌ Error 52U00: Procedure exception - custom procedure execution error cause 
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_index_vector_queryRelationships[`db.index.fulltext.queryRelationships()`]
 |✅ Query the given relationship vector index. Returns requested number of nearest neighbors to the provided query vector, and their similarity score to that query vector, based on the configured similarity function for the index. The similarity score is a value between [0, 1]; where 0 indicates least similar, 1 most similar.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_resampleIndex[`db.resampleIndex();`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_resampleIndex[`db.resampleIndex()`]
 |✅ Schedule resampling of an index (for example: CALL db.resampleIndex("MyIndex")).
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_resampleOutdatedIndexes[`db.resampleOutdatedIndexes();`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_resampleOutdatedIndexes[`db.resampleOutdatedIndexes()`]
 |✅ Schedule resampling of all outdated indexes.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_clearQueryCaches[`db.clearQueryCaches();`]
-|❌ Executing admin procedure 'db.clearQueryCaches' permission has not been granted for user
 
 |===
 
@@ -307,37 +310,34 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |===
 |Procedure name | Notes
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_nodeTypeProperties[`db.schema.nodeTypeProperties();`]
-|✅Lists properties by node type.
-
-|db.schema.nodeTypeProperties()
-|
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_nodeTypeProperties[`db.schema.nodeTypeProperties()`]
+|✅ Show the derived property schema of the nodes in tabular form.
 
 |db.schema.relTypeProperties()
-|
+|✅ Show the derived property schema of the relationships in tabular form.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[`db.schema.visualization();`]
-|✅Provides a visual representation of the database schema.
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[`db.schema.visualization()`]
+|✅ Provides a visual representation of the database schema.
 
 |db.schema.relTypeProperties
-|
+|✅ Show the derived property schema of the relationships in tabular form.
 
 |db.createLabel
-|
+|✅ Create a label
 
 |db.createProperty
-|
+|✅ Create a Property
 
 |db.createRelationshipType
-|
+|✅ Create a RelationshipType
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_labels[`db.labels();`]
 |✅List all labels used in the database.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_relationshipTypes[`db.relationshipTypes();`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_relationshipTypes[`db.relationshipTypes()`]
 |✅Show all relationship types.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_propertyKeys[`db.propertyKeys();`]
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_propertyKeys[`db.propertyKeys()`]
 |✅Returns all property keys in use.
 
 |===
@@ -348,8 +348,29 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |===
 |Procedure name | Notes
 
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_clearQueryCaches[`db.clearQueryCaches()`]
+|❌ Executing admin procedure 'db.clearQueryCaches' permission has not been granted for user
+
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_stats_status[`db.stats.status()`]
 |❌ Restricted access.
+
+|db.stats.clear
+|? ❌
+
+|db.stats.collect()
+|? ❌
+
+|db.stats.retrieve()
+|
+
+|db.stats.retrieveAllAnonymized()
+|
+
+|db.stats.status()
+|
+
+|db.stats.stop()
+|
 
 |===
 
@@ -366,47 +387,3 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |❌
 
 |===
-
-== Restricted and partially supported procedures
-
-The following are restricted in Aura (e.g. due to permission, cluster, or filesystem constraints). 
-
-[cols="1,1"]
-|===
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_info[`db.info()`]
-|Used for system-level diagnostics (❌ Not supported in Aura Free - 42NFF: Syntax error or access rule violation - permission/access denied
- ✅ Supported in Aura Pro)
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_setDefaultDatabase[`dbms.setDefaultDatabase()`]  
-|❌ Requires elevated access - restricted in Aura [With Enterprise Edition - this is up to customer admin and their RBAC setup]
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_quarantineDatabase[`dbms.quarantineDatabase(databaseName, status)`]  
-|❌ Requires at least 2 arguments. Not permitted in Aura.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_unquarantineDatabase[`dbms.unquarantineDatabase()`]
-|❌ Same as above - forbidden in managed deployments.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_upgradeStatus[`dbms.upgrade()`]
-|❌ Deprecated! Forbidden for client roles - handled by Neo4j infrastructure.
-
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.upgradeStatus()`[`dbms.upgradeStatus()`]  
-|❌ Deprecated! Forbidden for client roles - handled by Neo4j infrastructure.
-|===
-
-== Unsupported capabilities in Aura
-
-Neo4j Aura is a fully managed, cloud-hosted platform, and for security and stability reasons it does not support:
-
-* User-defined procedures  
-(i.e., uploading or registering your own Java procedures or extensions)
-
-* APOC Full  
-(such as apoc.trigger, apoc.load.jdbc, apoc.custom.*, etc.)
-The relevant Aura APOC docs are available at: https://neo4j.com/docs/aura/apoc/
-
-* in Aura we only support a sub section of APOC Core / OR? Aura supports all APOC core functions. 
-* We also do not have support for APOC Extended library in Aura `apoc.custom` falls under that category 
-* Filesystem-level access: Any procedure that attempts to read from or write to the local disk is restricted.
-
-* `dbms.security.procedures`  
-Generally locked down, especially those involving user auth, certificates, TLS reloads, or credential cache clearing.
