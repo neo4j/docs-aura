@@ -231,7 +231,9 @@ The following procedures are available or unavailable, as indicated, in Aura:
 
 == GenAI and vectors
 
-link:https://neo4j.com/docs/cypher-manual/current/genai-integrations/[The GenAI plugin is enabled by default in Neo4j Aura.]
+link:https://neo4j.com/docs/cypher-manual/current/genai-integrations/#_installation[The GenAI plugin is enabled by default in Neo4j Aura.]
+
+Must depend on *Vector optimization* plugin.
 
 [cols="1,1"]
 |===
@@ -247,7 +249,7 @@ link:https://neo4j.com/docs/cypher-manual/current/genai-integrations/[The GenAI 
 |
 
 |db.index.vector.createNodeIndex
-|
+|Deprecated! https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#create-vector-index[Prior to Neo4j 5.15, node vector indexes were created using the db.index.vector.createNodeIndex procedure.]
 
 |db.index.vector.queryNodes
 |
