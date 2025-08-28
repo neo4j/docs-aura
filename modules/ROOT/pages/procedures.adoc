@@ -64,19 +64,19 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |✅Returns earliest CDC state (if enabled). ❌ (as expected) If CDC is disabled - throws error 51N68: System configuration or operation exception - CDC is disabled for this database
 
 |cdc.query()
-|
+|❌ Syntax error or access rule violation - permission/access denied
 
 |db.cdc.current()
-|
+|✅
 
 |db.cdc.earliest()
-|
+|✅
 
 |db.cdc.query()
-|
+|❌ Syntax error or access rule violation - permission/access denied
 
 |db.cdc.translateId()
-|
+|✅
 
 |===
 
@@ -225,39 +225,41 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_upgradeStatus[`dbms.upgrade()`]
 |❌ Deprecated! Forbidden for client roles - handled by Neo4j infrastructure.
 
-|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.upgradeStatus()`[`dbms.upgradeStatus()`]  
+|https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms.upgradeStatus()[`dbms.upgradeStatus()`]  
 |❌ Deprecated! Forbidden for client roles - handled by Neo4j infrastructure.
 |===
 
 == GenAI and vectors
+
+link:https://neo4j.com/docs/cypher-manual/current/genai-integrations/[The GenAI plugin is enabled by default in Neo4j Aura.]
 
 [cols="1,1"]
 |===
 |Procedure name | Notes
 
 |db.create.setNodeVectorProperty
-|❌
+|
 
 |db.create.setRelationshipVectorProperty
-|❌
+|
 
 |db.create.setVectorProperty
-|❌
+|
 
 |db.index.vector.createNodeIndex
-|❌
+|
 
 |db.index.vector.queryNodes
-|❌
+|
 
 |db.index.vector.queryRelationships
-|❌
+|
 
 |genai.vector.encodeBatch
-|❌
+|
 
 |genai.vector.listEncodingProviders
-|❌
+|
 
 |===
 
