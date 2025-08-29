@@ -31,6 +31,87 @@ Further, there is no capability for performing any write operations or other mut
 No data is read from your databases.
 See xref:fleet-management/data.adoc[Data transparency] for a complete list of the data sent to Aura from your self-managed deployment.
 
+== Access permissions
+
+Aura project users have the following capabilities related to fleet management and self-managed deployments, depending on their project role.
+
+:check-mark: icon:check[]
+
+.Aura project roles and fleet management capabilities
+[opts="header",cols="3,1,1,1,1"]
+|===
+| Capability
+| Project Viewer
+| Metrics Reader
+| Member
+| Admin
+
+| View deployments
+| {check-mark}
+|
+| {check-mark}
+| {check-mark}
+
+| Create deployments
+|
+|
+|
+| {check-mark}
+
+| Rename deployments
+|
+|
+|
+| {check-mark}
+
+| Delete deployments
+|
+|
+|
+| {check-mark}
+
+| View connection URL
+| {check-mark}
+|
+| {check-mark}
+| {check-mark}
+
+| Add connection URL
+|
+|
+|
+| {check-mark}
+
+| Edit connection URL
+|
+|
+|
+| {check-mark}
+
+| View token info (existence, active)
+| {check-mark}
+|
+| {check-mark}
+| {check-mark}
+
+| Create token
+|
+|
+|
+| {check-mark}
+
+| Regenerate token
+|
+|
+|
+| {check-mark}
+
+| Delete token
+|
+|
+|
+| {check-mark}
+|===
 == Features
 
 Fleet management offers various features to manage and monitor your self-managed Neo4j deployments:
