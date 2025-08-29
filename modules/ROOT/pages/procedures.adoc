@@ -82,6 +82,8 @@ The following procedures are available or unavailable, as indicated, in Aura:
 
 == Cluster management
 
+Cluster members have procedures that are not available in standalone mode.
+
 [cols="1,1"]
 |===
 |Procedure name | Notes
@@ -233,35 +235,33 @@ The following procedures are available or unavailable, as indicated, in Aura:
 
 link:https://neo4j.com/docs/cypher-manual/current/genai-integrations/#_installation[The GenAI plugin is enabled by default in Neo4j Aura.]
 
-Must depend on *Vector optimization* plugin.
-
 [cols="1,1"]
 |===
 |Procedure name | Notes
 
 |db.create.setNodeVectorProperty
-|
+|✅
 
 |db.create.setRelationshipVectorProperty
-|
+|✅
 
 |db.create.setVectorProperty
-|
+|✅
 
 |db.index.vector.createNodeIndex
-|Deprecated! https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#create-vector-index[Prior to Neo4j 5.15, node vector indexes were created using the db.index.vector.createNodeIndex procedure.]
+|❌ Deprecated! https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#create-vector-index[Prior to Neo4j 5.15, node vector indexes were created using the db.index.vector.createNodeIndex procedure.]
 
 |db.index.vector.queryNodes
-|
+|✅
 
 |db.index.vector.queryRelationships
-|
+|✅
 
 |genai.vector.encodeBatch
-|
+|✅
 
 |genai.vector.listEncodingProviders
-|
+|✅
 
 |===
 
