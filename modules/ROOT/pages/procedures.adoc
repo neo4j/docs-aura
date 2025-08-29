@@ -1,9 +1,7 @@
 = Aura built-in procedures reference
 
 This page provides a reference for built-in procedures supported in Neo4j Aura (including both AuraDB and AuraDS). 
-
 Aura restricts access to certain administrative and custom capabilities due to its fully managed, secure architecture. 
-
 The full list of Neo4j procedures is available at link:https://neo4j.com/docs/operations-manual/current/procedures/[Operations Manual → Procedures]
 
 To check which procedures are available in your Aura instance, run the following Cypher command in Query:
@@ -14,8 +12,6 @@ To check which procedures are available in your Aura instance, run the following
 SHOW PROCEDURES
 ----
 
-== Supported built-in procedures
-
 The following procedures are available or unavailable, as indicated, in Aura:
 
 == Authentication and authorization
@@ -25,10 +21,10 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |Procedure name | Notes
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_security_clearauthcache[`dbms.security.clearAuthCache()`]  
-|❌ Not allowed for user-level roles.
+|❌ Syntax error or access rule violation - permission/access denied
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_security_reloadTLS[`dbms.security.reloadTLS()`]  
-|❌ Same as above - admin permissions required.
+|❌ Syntax error or access rule violation - permission/access denied
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_showCurrentUser[`dbms.showCurrentUser()`]
 |✅ Show the current user.
@@ -58,13 +54,13 @@ The following procedures are available or unavailable, as indicated, in Aura:
 |Procedure name | Notes
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_current[`cdc.current()`]
-|✅Lists current change data capture state (if CDC is enabled). ❌ (as expected) If CDC is disabled - throws error 51N68: System configuration or operation exception - CDC is disabled for this database
+|✅ Lists current change data capture state (if CDC is enabled).
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_cdc_earliest[`cdc.earliest()`]
-|✅Returns earliest CDC state (if enabled). ❌ (as expected) If CDC is disabled - throws error 51N68: System configuration or operation exception - CDC is disabled for this database
+|✅ Returns earliest CDC state (if CDC is enabled).
 
 |cdc.query()
-|❌ Syntax error or access rule violation - permission/access denied
+|❌ Deprecated!
 
 |db.cdc.current()
 |✅
@@ -89,16 +85,16 @@ Cluster members have procedures that are not available in standalone mode.
 |Procedure name | Notes
 
 |https://neo4j.com/docs/operations-manual/current/procedures/#procedure_dbms_cluster_checkConnectivity[`dbms.cluster.checkConnectivity()`]  
-|❌ Requires clustered deployment - not available in AuraDB.
+|
 
 |dbms.cluster.cordonServer()
-|❌ Syntax error or access rule violation - invalid input
+|
 
 |dbms.cluster.deallocateDatabaseFromServer()
-|❌ Syntax error or access rule violation - invalid number of procedure or function arguments
+|
 
 |dbms.cluster.deallocateDatabaseFromServers()
-|❌ Syntax error or access rule violation - invalid number of procedure or function arguments
+|
 
 |dbms.cluster.deallocateNumberOfDatabases()
 |
