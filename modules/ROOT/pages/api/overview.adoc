@@ -38,9 +38,7 @@ The following example shows how to use the base URL and versioning to make a req
 In the event of `5xx` server error responses, you may consider retrying the request after a delay if it is safe to do so.
 The response may include a `Retry-After` header with a suggestion of a suitable minimum delay before attempting to retry.
 
-The global rate limit for all requests is 125 requests per minute.
-
-You should consider your use of the rate limit before attempting to retry, and it is recommended that you use an exponential backoff delay with a limited number of retries before giving up.
+You should consider your use of the xref:api/overview.adoc#_rate_limits[rate limit] before attempting to retry, and it is recommended that you use an exponential backoff delay with a limited number of retries before giving up.
 
 A request is only guaranteed to be safe to retry if it uses an idempotent HTTP method, such as `GET`.
 If, for example, you retry a request for creating an instance, you may end up with duplicate instances and end up being charged extra as a result.
@@ -55,4 +53,27 @@ An `X-Request-Id` response header is returned with each request and can be used 
 
 The value of this header contains a unique ID that can be used to track the journey of a request.
 
-If you run into any issues with a particular request, you can https://support.neo4j.com/[raise a support ticket] and provide the `X-Request-Id`.
+If you run into any issues with a particular request, you can link:https://support.neo4j.com/[raise a support ticket] and provide the `X-Request-Id`.
+
+== Rate limits
+
+AuraDB Free and AuraDB Professional trial accounts without a billing method attached, get a rate limit of 25 requests per minute.
+
+AuraDB Professional accounts with a billing method attached, AuraDB Business Critical, and AuraDB Virtual Dedicated Cloud get a rate limit of 125 requests per minute.
+
+[cols="1,1"]
+|===
+|Tier |Rate Limit
+
+|AuraDB Free & Pro (Trial, No Billing) 
+|25 requests/minute
+
+|AuraDB Pro (With Billing) 
+|125 requests/minute
+
+|AuraDB Business Critical 
+|125 requests/minute
+
+|AuraDB Virtual Dedicated Cloud 
+|125 requests/minute
+|===
