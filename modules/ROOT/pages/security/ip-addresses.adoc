@@ -254,13 +254,15 @@ Not used for data communication.
 |EUROPE	
 |Paris, France	
 |francecentral	
-|51.103.49.175	
+|51.103.49.175 +
+4.233.58.237
 |80*,443,7474*,7687
 
 |USA	
 |Virginia, USA	
 |eastus	
-|20.124.3.249	
+|20.124.3.249 +
+20.163.143.142	
 |80*,443,7474*,7687
 
 |USA	
@@ -276,13 +278,27 @@ Not used for data communication.
 |80*,443,7474*,7687
 
 |ASIA
-|Seoul
+|Seoul, Korea
 |koreacentral
 |20.124.3.249
 |80*,443,7474*,7687
+
+|ASIA
+|India, Pune	
+|centralindia
+|4.247.161.0
+|80*,443,7474*,7687
+
+|EUROPE
+|UK, London	
+|uksouth
+|52.151.91.171	
+|80*,443,7474*,7687
+
 |===
 
-Port 80 and 7474 are optional and only ever used to redirect to HTTPS. Not used for data communication. 
+Port 80 and 7474 are optional and only ever used to redirect to HTTPS. 
+Not used for data communication. 
 
 == AuraDB Free tier (GCP ONLY)
 
@@ -321,14 +337,14 @@ Port 80 and 7474 are optional and only ever used to redirect to HTTPS. Not used 
 |80*,443,7474*,7687
 |===
 
-Port 80 and 7474 are optional and only ever used to redirect to HTTPS. Not used for data communication. 
+Port 80 and 7474 are optional and only ever used to redirect to HTTPS. 
+Not used for data communication. 
 
 == Notes
 
 Further details of the physical location can be found in Google's link:https://cloud.google.com/compute/docs/regions-zones#locations[Regions and zones documentation]
 
-To connect to Aura in your application, your URI will need to use the fully qualified domain name (FQDN) of your AuraDB Instance, and not just the IP address.
-
+To connect to Aura in your application, your URI will need to use the your AuraDB instance's fully qualified domain name (FQDN) - not just the IP address.
 For example, if your AuraDB Instance ID is `abcd1234`, then the URI to use would be `neo4j+s://abcd1234.databases.neo4j.io`
 
 Ports 80 and 7474 are redirected to 443 for convenience but communication remains encrypted.
