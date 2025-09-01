@@ -144,8 +144,6 @@ It is highly recommended to run a test migration before attempting the live migr
 It is also advisable to set up a custom endpoint before the migration to speed up the switch to the migrated instance in your application.
 For more information, see xref:managing-instances/custom-endpoints.adoc[Custom endpoints].
 
-At this time, neither the test nor the live migration will include changes to the store format like moving to block format.
-
 [NOTE]
 ====
 During the migration, the migration target instance may be shown with a few different statuses on the instance page, such as LOADING or OVERWRITING for example.
@@ -179,6 +177,10 @@ This means that if you select the second option, the instance you want to migrat
 Note that cloning into an existing instance overwrites all of its existing data and name.
 This action cannot be undone and may take longer than cloning to a new instance.
 If you still have data that you want to keep on the instance, it is advised to take a snapshot and download it before continuing.
+
+For both migration options you can also choose to include the migration of the store format to `block` storage.
+It is highly recommended to do this, as it enables you to make use of the newest features in Neo4j Aura as well as leverage its superior performance and scalability.
+More information on the `block` format can be found link:https://neo4j.com/docs/operations-manual/current/database-internals/store-formats/[here].
 
 [NOTE]
 ====
@@ -229,6 +231,10 @@ This means that if you select the second option, the instance you want to migrat
 Note that cloning into an existing instance overwrites all of its existing data and name.
 This action cannot be undone and may take longer than cloning to a new instance.
 If you still have data that you want to keep on the instance, it is advised to take a snapshot and download it before continuing.
+
+For both migration options you can also choose to include the migration of the store format to `block` storage.
+It is highly recommended to do this, as it enables you to make use of the newest features in Neo4j Aura as well as leverage its superior performance and scalability.
+More information on the `block` format can be found link:https://neo4j.com/docs/operations-manual/current/database-internals/store-formats/[here].
 
 Regardless of which option you select, the name of the migration target instance will be the same as the original instance.
 

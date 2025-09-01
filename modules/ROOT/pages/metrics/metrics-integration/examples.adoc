@@ -90,6 +90,7 @@ Replace the placeholders `<ENDPOINT_URL>`, `<AURA_CLIENT_ID>` and `<AURA_CLIENT_
 init_config:
 instances:
   - openmetrics_endpoint: <ENDPOINT_URL>
+    timeout: 30
     metrics:
       - neo4j_.*
     auth_token:

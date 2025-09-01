@@ -1,0 +1,46 @@
+= Table
+:description: The Neo4j dashboard table visualization.
+
+
+Neo4j dashboard tables can render all data returned by a Cypher query as a result table.
+
+Results are paginated and you can select the number of results per page. 
+Sort by a result column by clicking the column header. 
+
+When you hover over a table cell, a copy icon appears towards the end of the cell which lets you copy the content of the table cell to the clipboard.
+
+
+== Example
+
+//=== Basic table
+
+.Cypher query for a table which displays the number of products per category
+[source,cypher]
+----
+MATCH (p:Product)-[:PART_OF]->(c:Category)
+RETURN c.categoryName AS Category, count(p) AS Products LIMIT 20
+----
+
+.A table displaying the number of products per category
+image::dashboards/visualizations/visualization-table-basic.png[]
+
+
+
+////
+=== Table with nodes and collections
+
+.Cypher query for a table which displays the category nodes and collections of products
+[source,cypher]
+----
+MATCH (p:Product)-[:PART_OF]->(c:Category)
+RETURN c as CategoryNode, collect(p) AS Products LIMIT 20
+----
+
+.A table displaying the category nodes and collections of products
+image::dashboards/visualizations/visualization-table-nodes-and-collections.png[]
+
+////
+
+== Configuration
+
+You can toggle rich rendering of cells, which adds syntax highlight and makes the result data types clear. 

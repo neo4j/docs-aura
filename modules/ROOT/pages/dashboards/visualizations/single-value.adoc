@@ -1,0 +1,22 @@
+= Single value
+:description: The Neo4j dashboard single value visualization.
+
+You can display a single value in a card.
+
+
+== Example
+
+.Cypher query for a single value which displays the number of products
+[source,cypher]
+----
+MATCH (p:Product)
+RETURN count(p) AS productCount
+----
+
+.A single value displaying the number of products
+image::dashboards/visualizations/visualization-single-value.png[]
+
+== Configuration
+
+Select a **Size**, **Text position** and **Text color** for the single value.
+A **Size** of **Auto** will size the displayed value according to the card size.

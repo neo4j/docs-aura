@@ -11,39 +11,77 @@ const { NEO4J_URI,
     DOCS_VERSION,
 } = process.env
 
-const header = `[.procedures, opts=header, cols='5a,1a', separator=¦]
+const header = `[.procedures, opts=header, cols='5a,2a', separator=¦]
 |===
-¦ Qualified Name ¦ Type`
+¦ Qualified Name ¦ Type and language details`
 
 const footer = `|===`
+
+const apocHelpQuery = `
+    CALL apoc.help('')
+    YIELD name, text, type, isDeprecated
+    RETURN name, text, type, isDeprecated
+    ORDER BY CASE WHEN size(split(name, '.')) = 2 THEN [1] ELSE [2] END ASC, name ASC
+`
 
 const driver = new neo4j.driver(NEO4J_URI, neo4j.auth.basic(NEO4J_USERNAME, NEO4J_PASSWORD))
 
 const session = driver.session()
 
-session.readTransaction(tx => tx.run(`
-    CALL apoc.help('')
-    YIELD name, text, type, isDeprecated
-    RETURN name, text, type, isDeprecated
-    ORDER BY CASE WHEN size(split(name, '.')) = 2 THEN [1] ELSE [2] END ASC, name ASC
-`))
-    .then(res => res.records.map(row => {
-        const name = row.get('name')
-        const text = row.get('text')
-        const type = row.get('type')
-        const isDeprecated = row.get('isDeprecated')
+const runAPOCHelpQuery = async (version, query) =>
+    await driver.executeQuery('CYPHER ' + version + ' ' + query)
+        .then(res => res.records.map(row => {
+            const name = row.get('name');
+            const text = row.get('text');
+            const type = row.get('type');
+            const isDeprecatedCypher5 = version === 5 && row.get('isDeprecated');
+            const isDeprecatedCypher25 = version === 25 && row.get('isDeprecated');
+            const parts = name.split('.');
+            const cypherVersions = [version]
+            const namespace = parts.length === 2 ? 'apoc' : parts.slice(0, 2).join('.');
+            return {name, text, type, isDeprecatedCypher5, isDeprecatedCypher25, cypherVersions, namespace};
+        }));
 
-        const parts = name.split('.')
-        const namespace = parts.length == 2 ? 'apoc' : parts.slice(0, 2).join('.')
+function getDeprecationLabel(isDeprecatedCypher5, isDeprecatedCypher25) {
+    if (isDeprecatedCypher5 && isDeprecatedCypher25) {
+        return ' label:deprecated[]'
+    } else if (isDeprecatedCypher5) {
+        return ' label:deprecated[Deprecated in Cypher 5]'
+    } else if (isDeprecatedCypher25) {
+        return ' label:deprecated[Deprecated in Cypher 25]'
+    } else {
+        return ''
+    }
+} 
 
-        return {
-            name,
-            text,
-            type,
-            isDeprecated,
-            namespace,
-        }
-    }))
+function getExtraInfoLabel(versions) {
+    if (versions.length === 1 && versions[0] === 5) {
+        return ' label:removed[Removed in Cypher 25]'
+    } else if (versions.length === 1 && versions[0] === 25) {
+        return ' label:introduced[Introduced in Cypher 25]'
+    } else {
+        return ''
+    }
+}
+
+Promise.all([runAPOCHelpQuery(5, apocHelpQuery), runAPOCHelpQuery(25, apocHelpQuery)])
+    .then(res => {
+        const merged = [...res[0], ...res[1]];
+
+        // Merge by name/type and accumulate versions
+        const uniqueByName = merged.reduce((acc, proc) => {
+            if (!acc[proc.name + proc.type]) {
+                acc[proc.name + proc.type] = { ...proc };
+            } else {
+                acc[proc.name + proc.type].cypherVersions = Array.from(new Set([...acc[proc.name + proc.type].cypherVersions, ...proc.cypherVersions]));
+                acc[proc.name + proc.type].isDeprecatedCypher5 = acc[proc.name + proc.type].isDeprecatedCypher5 || proc.isDeprecatedCypher5
+                acc[proc.name + proc.type].isDeprecatedCypher25 = acc[proc.name + proc.type].isDeprecatedCypher25 || proc.isDeprecatedCypher25
+            }
+            return acc;
+        }, {});
+
+        return Object.values(uniqueByName);
+    })
     .then(procedures => procedures.reduce((acc, current) => {
         if ( !acc[current.namespace] ) {
             acc[current.namespace] = []
@@ -57,9 +95,9 @@ session.readTransaction(tx => tx.run(`
 == ${namespace}
 
 ${header}
-${procedures.map(({ name, text, type, isDeprecated }) => `¦ link:https://neo4j.com/docs/apoc/${DOCS_VERSION}/overview/${namespace}/${name}[${name} icon:book[] ^] +
+${procedures.map(({ name, text, type, isDeprecatedCypher5, isDeprecatedCypher25, cypherVersions }) => `¦ link:https://neo4j.com/docs/apoc/${DOCS_VERSION}/overview/${namespace}/${name}[${name} icon:book[] ^] +
 ${text || ''}
-¦ label:${type}[]${isDeprecated ? ' label:deprecated[]' : ''}`).join('')}
+¦ label:${type}[]${getDeprecationLabel(isDeprecatedCypher5, isDeprecatedCypher25)}${getExtraInfoLabel(cypherVersions)}`).join('')}
 ${footer}`).join('\n\n'))
     .then(adoc => {
         const dir = path.join(__dirname, '..', 'modules', 'root', 'partials', 'apoc-procedures.adoc')

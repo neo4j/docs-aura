@@ -31,6 +31,7 @@ Generic Start
 ** xref:managing-instances/regions.adoc[Regions]
 ** xref:managing-instances/backup-restore-export.adoc[Backup, export, and restore]
 ** xref:managing-instances/vector-optimization.adoc[Vector optimization]
+** xref:managing-instances/cypher-version.adoc[Cypher version]
 
 
 * Import data
@@ -76,6 +77,7 @@ Generic Start
 ** xref:query/introduction.adoc[What is Query?]
 ** xref:query/visual-tour.adoc[Visual tour]
 ** xref:query/operations.adoc[Query operations]
+** xref:query/command-reference.adoc[Command reference]
 
 * Fleet management
 ** xref:fleet-management/overview.adoc[Overview]
@@ -96,9 +98,26 @@ Generic Start
 ** xref:aura-cli/configuration.adoc[Configuration]
 ** xref:aura-cli/migration.adoc[Migration]
 
+* Dashboards
+** xref:dashboards/index.adoc[Overview]
+** xref:dashboards/getting-started.adoc[Getting started]
+** xref:dashboards/managing-dashboards.adoc[Managing dashboards]
+** xref:dashboards/import.adoc[Import]
+** xref:dashboards/ai-dashboards.adoc[AI dashboards]
+** xref:dashboards/parameters-and-filters.adoc[Parameters and filters]
+** xref:dashboards/sharing-dashboards.adoc[Sharing dashboards]
+** xref:dashboards/visualizations/index.adoc[Visualizations]
+*** xref:dashboards/visualizations/graph.adoc[Graph]
+*** xref:dashboards/visualizations/table.adoc[Table]
+*** xref:dashboards/visualizations/linechart.adoc[Line chart]
+*** xref:dashboards/visualizations/barchart.adoc[Bar chart]
+*** xref:dashboards/visualizations/piechart.adoc[Pie chart]
+*** xref:dashboards/visualizations/single-value.adoc[Single value]
+*** xref:dashboards/visualizations/text.adoc[Text]
+** xref:dashboards/faq-and-resources.adoc[FAQ and resources]
+
 * Metrics
 ** xref:metrics/view-metrics.adoc[View metrics]
-
 ** Metrics integration
 *** xref:metrics/metrics-integration/introduction.adoc[Introduction]
 *** xref:metrics/metrics-integration/process.adoc[Integration Process]
@@ -110,13 +129,17 @@ Generic Start
 // ** xref:logging/download-logs.adoc[Request and download logs]
 ** xref:logging/query-log-analyzer.adoc[Query log analyzer]
 ** xref:logging/security-log-analyzer.adoc[Security log analyzer]
-** xref:logging/log-forwarding.adoc[Security log forwarding]
+** xref:logging/log-forwarding.adoc[Log forwarding]
 ** xref:logging/log-downloads.adoc[Download logs]
 
 * Security
-** xref:security/secure-connections.adoc[Secure connections]
+** xref:security/mfa.adoc[Multi-factor authentication]
 ** xref:security/single-sign-on.adoc[Single sign-on]
+** xref:security/ip-filtering.adoc[IP filtering]
+** xref:security/secure-connections.adoc[Secure connections]
 ** xref:security/encryption.adoc[Encryption]
+** xref:security/tool-auth.adoc[Tool authentication with Aura user]
+
 
 * xref:user-management.adoc[User management]
 
