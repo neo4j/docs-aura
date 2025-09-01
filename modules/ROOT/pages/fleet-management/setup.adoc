@@ -2,7 +2,15 @@
 :description: This page describes how to add a self-managed deployment.
 
 Adding a self-managed deployment to fleet management is a straightforward process.
-Use the *Add deployment* button in the *Self-managed* tab under *Instances* to get started.
+First you add the deployment you want to monitor, then you set up the plugin, and finally you register your deployment.
+
+In *Instances*, navigate to *Self-managed* and use the *Add deployment* button to get started.
+
+[.shadow]
+.Add a new self-managed deployment
+image::new-self-managed.png[width=600]
+
+Then you need to decide what type of connection you want to create to the self-managed instance.
 
 [.shadow]
 image::add-sm-deployment.png[]
@@ -11,6 +19,7 @@ The wizard provides two top-level options.
 
 * *Monitor deployment* - this option allows you to set up fleet management.
 * *URL connection* - this option allows you to add an unmonitored deployment that can still be connected to using the provided connection URL.
+//add a link here to Manage instances and the new section about remote connections.
 
 == Set up the plugin
 
@@ -24,15 +33,16 @@ Select the appropriate plugin for your Neo4j version.
 
 === Install the plugin
 
-The plugin needs to be installed *on each server* of the deployment.
+If your self-managed deployment consists of multiple servers, the plugin needs to be installed *on each one*.
 See the link:https://neo4j.com/docs/operations-manual/current/configuration/plugins/[Operations Manual -> Configure plugins] for instructions on how to install plugins.
 
-To allow the plugin procedures to run, you need to enable them in the configuration.
+As mentioned, the plugin provides a number of procedures for connection management and monitoring.
+To allow these to run, you need to enable them in the configuration.
 Add `fleetManagement.*` to `dbms.security.procedures.unrestricted`.
 For example:
 
 =====
-[source]
+[source, conf]
 ----
 dbms.security.procedures.unrestricted=fleetManagement.*
 ----
@@ -41,7 +51,7 @@ dbms.security.procedures.unrestricted=fleetManagement.*
 If `dbms.security.procedures.allowlist` is set in your configuration, `fleetManagement.*` should also be added to this setting, otherwise no change is needed.
 
 =====
-[source]
+[source, conf]
 ----
 dbms.security.procedures.allowlist=<existing-value>,fleetManagement.*
 ----
@@ -59,6 +69,8 @@ If the procedure returns a result, the plugin is installed, and you can select *
 
 == Register the deployment
 
+You register your deployment by first requesting a token, then registering the generated token.
+
 [WARNING]
 ====
 Registering a token will associate the deployment with the Aura project which was used to generate the token. *Never register a token obtained from a third party.*
@@ -68,5 +80,5 @@ In the next step of the wizard, select an expiry time for the generated token an
 If auto-rotation is enabled, the plugin will automatically negotiate a new token before the current one is expired.
 
 In the final step, you will see the generated token.
-Save it in a secure location and then register it using the procedure `fleetManagement.registerToken`.
-If your deployment is a cluster, the token only needs to be registered once to take effect across all servers.
+Save it in a secure location and then register it using the procedure `fleetManagement.registerToken`, as described in the wizard.
+If your deployment is a cluster, the token *only needs to be registered once* to take effect across all servers.

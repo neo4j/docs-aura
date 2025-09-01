@@ -3,13 +3,13 @@
 :description: This page describes how to access deployment details
 
 To access deployment details, use the more menu *(…​)* from the deployment card or deployment table.
-In the graph view, the same menu can be accessed by right-clicking the DBMS node. 
+In the graph view, the same menu can be accessed by right-clicking the DBMS node.
 
-On the right side of the header, the view selector allows you to choose between two views: *table* view or *graph* view (see xref:fleet-management/graph-view.adoc[Graph view]).
+On the right side of the header, the view selector allows you to choose between two views: *table* view or *graph* view (see xref:fleet-management/deployment-details.adoc#_graph_view[Graph view]).
 
 == Table view
 
-The table view shows topology data in a tabular format. 
+The table view shows topology data in a tabular format.
 Three different tables are selectable using the dropdown in the table header.
 
 * Servers
@@ -29,3 +29,96 @@ The *Databases* table shows all databases in the deployment.
 A *Database instance* in this context refers to an instance of a logical database running on a specific server.
 
 For more information, refer to the link:https://neo4j.com/docs/operations-manual/current/database-administration/standard-databases/listing-databases/[Operations Manual -> List databases] for the `SHOW DATABASES` procedure, which is called by the plugin to obtain the data shown in the *Databases* and *Database instances* tables.
+
+== Graph view
+
+In the graph view, the topology data is displayed as a graph.
+The graph shows the servers, databases, and database instances in the deployment.
+
+Depending on whether the view is accessed from *Instances* or *Deployment details*, it shows either all deployments or just the selected deployment.
+
+[.shadow]
+image::deployment-graph.png[]
+
+=== Legend
+
+In addition to the graph, this view also contains the *Results overview* panel that enumerates the node labels and relationship types.
+If an entity is selected, the panel displays the properties of that entity.
+
+The panel can be toggled with the button in the top right corner of the graph view.
+The *Download* button is located to the left of that button and allows you to download the graph as a PNG image.
+
+In the bottom right corner of the graph view is a stack of buttons, from top to bottom:
+
+* *Hierarchy view* — Toggles between force-directed or hierarchical layouts of the graph.
+
+* *Expand all* — Expands all nodes in the graph, showing all relationships.
+
+* *Collapse all* — Collapses all nodes in the graph, hiding relationships.
+
+* *Fit to screen* — Fits the graph to the screen, adjusting the zoom level and centering the graph.
+
+=== Nodes
+
+The following node labels are used in the graph view.
+
+[cols="1,2"]
+|===
+|Label |Description
+
+| `DBMS`
+| Represents a Neo4j deployment
+
+| `Server`
+| A server belonging to a Neo4j deployment
+
+| `Database`
+| A logical non-system database
+
+| `SystemDatabase`
+| The special system database, used for internal settings
+
+| `Online`
+| A label which is used for a DBMS that is online. Nodes with this label are assigned a green color.
+
+| `Offline`
+| A label which is used for a DBMS that is offline. Nodes with this label are assigned a red color.
+
+| `Degraded`
+| A label which is used for a DBMS that has a degraded status (for example, some of the servers are offline). Nodes with this label are assigned a yellow color.
+
+|===
+
+=== Relationships
+
+The following relationship types are used in the graph view.
+
+[cols="1,2"]
+|===
+|Relationship type |Description
+
+| `COMPRISES`
+| Indicates that a DBMS comprises one or more servers
+
+| `HAS_DATABASE`
+| A DBMS has one or more databases
+
+| `PRIMARY_FOR`
+| Indicates that a server acts as a primary for a database
+
+| `SECONDARY_FOR`
+| Indicates that a server acts as a secondary for a database
+
+| `LEADER_FOR`
+| Used for older Neo4j versions. Indicates that a server acts as a leader for a database
+
+| `FOLLOWER_FOR`
+| Used for older Neo4j versions. Indicates that a server acts as a follower for a database
+
+| `READ_REPLICA_FOR`
+| Used for older Neo4j versions. Indicates that a server acts as a read replica for a database
+
+| `STANDALONE_FOR`
+| Used for older Neo4j versions. Indicates that a server acts as a standalone replica for a database
+
+|===
