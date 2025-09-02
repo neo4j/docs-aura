@@ -8,7 +8,7 @@ See xref:/dashboards/managing-dashboards.adoc#_exporting_the_dashboard_json_as_a
 In the **Import dashboard** dialog, you have several options to source the dashboard JSON for the import:
 
 * Browse for a JSON file on your machine.
-* Select a dashboard JSON that is stored in your database.
+* Select a NeoDash dashboard JSON that is stored in your database.
 * Drag and drop or paste a dashboard JSON to the editor.
 
 .Import dashboard dialog
@@ -16,16 +16,16 @@ image::dashboards/import/import-dashboard-dialog.png[]
 
 [NOTE]
 ====
-Note that you only have the option to select a stored dashboard JSON when there are stored dashboards in your database.
+Note that you only have the option to select a stored NeoDash dashboard JSON when there are stored dashboards in your database.
 
-It is not possible to delete stored dashboards from the database through the dashboard application.
+It is not possible to delete stored NeoDash dashboards from the database through the dashboard application.
 ====
 
 If the dashboard JSON selected for the import is syntactically correct, the **Import dashboard** dialog displays a **Summary** and **Details** for the import.
 This means that the import can be run.
 
 
-== Supported reports
+== Supported NeoDash reports
 
 [cols="9,^4",options="header",grid="cols"]
 |===
