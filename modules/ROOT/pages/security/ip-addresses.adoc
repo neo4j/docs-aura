@@ -1,5 +1,5 @@
 [[aura-ip-addresses]]
-= IP addresses
+= Firewall IP addresses and ports
 :description: How to configure your firewall to allow traffic to and from public IP addresses.
 
 label:Aura-DB-Professional[]
@@ -75,111 +75,135 @@ These are applicable to all Aura tiers.
  
 == Instance addresses
 
-The public IP address of your AuraDB or AuraDS instance depends on the region and Aura tier. 
+The public IP address of your AuraDB or AuraDS instance depends on both the cloud provider region and the Aura tier.
 
-=== AuraDB Professional
+AuraDB Professional and AuraDB Business Critical use a collection of public IP addresses which depends on the region where the instance is deployed and the cloud service provider (AWS, GCP, or Azure).
 
-AuraDB Professional uses a collection of public IP addresses depending on the instance's region and depending on the cloud service provider.
+AuraDB Free runs only on Google Cloud Platform (GCP) and uses public IP addresses allocated to GCP.
 
 === GCP 
 
 (for AuraDS also add port 8491)
 
-[cols="1,1,1,1,1"]
+[.tabbed-example]
+====
+
+[.include-with-AuraDB-Professional-and-AuraDB-Business-Critical]
+======
+
+[cols="1,1,1"]
 |===
-|Region |Location |Name |Aura Professional IPv4 Address |Ports (TCP)
+|Region |Aura Professional IPv4 Address |Ports (TCP)
 
-|EUROPE
-|Belgium
-| `europe-west1`
-|35.240.50.81
-35.187.55.46
+|`europe-west1`
+|35.240.86.240 +
+35.187.55.46 +
+35.240.50.81 +
+34.76.231.68 +
 |80*,443,7474*,7687
 
-|EUROPE
-|UK
-|europe-west2
-|34.105.131.232
+|`europe-west2`
+|34.39.90.176 +
+34.105.131.232
 |80*,443,7474*,7687
 
-|EUROPE
-|Germany
-|europe-west3
-|35.242.209.97
+|`europe-west3`
+|35.246.176.187 +
+35.242.209.97
 |80*,443,7474*,7687
 
-|USA
-|Iowa, USA	
-|us-central1
-|104.197.20.211
-35.226.25.193
+|`us-central1`
+|35.226.25.193 +
+35.223.36.122 +
+34.28.32.244 +
+104.197.20.211
 |80*,443,7474*,7687
 
-|USA
-|South Carolina, USA
-|us-east1	
-|104.196.181.95
-34.148.173.76
+|`us-east1`
+|104.196.181.95 +
+35.196.189.185 +
+34.148.173.76 +
+35.227.44.229 +
 |80*,443,7474*,7687
 
-|USA
-|Oregon, USA
-|us-west1
-|34.82.68.138
+|`us-west1`
+|34.82.68.138 +
 34.82.120.138
 |80*,443,7474*,7687
 
-|Canada	
-|Montreal, Canada	
-|northamerica-northeast1	
+|`northamerica-northeast1`	
 |35.203.43.56
 |80*,443,7474*,7687
 
-|ASIA
-|Hong Kong
-|asia-east2
+|`asia-east2`
 |34.96.218.41
 |80*,443,7474*,7687
 
-|ASIA
-|Taiwan
-|asia-east1
+|`asia-east1`
 |35.201.159.192	
 |80*,443,7474*,7687
 
-|ASIA
-|Singapore	
-|asia-southeast1	
+|`asia-southeast1`
 |34.142.144.246	
 |80*,443,7474*,7687
 
-|ASIA
-|Mumbai, India	
-|asia-south1	
+|`asia-south1`	
 |35.200.158.141	
 |80*,443,7474*,7687
 
-|OCEANIA
-|Australia
-|australia-southeast1
+|`australia-southeast1`
 |34.87.204.150
 |80*,443,7474*,7687
 |===
+======
 
-Port 80 and 7474 are optional and only ever used to redirect to HTTPS.
+[.include-with-AuraDB-Free]
+======
+
+[cols="1,1,1"]
+|===
+
+|Region |IPv4 Address	|Ports (TCP)
+
+|`europe-west1`
+|34.78.243.29 +
+34.76.245.87 +
+35.205.213.74 +
+35.189.250.174 +
+34.78.76.49 +
+35.241.237.34 +
+|80*,443,7474*,7687
+
+|`us-central1`
+|34.69.128.95 +
+34.66.78.163 +
+34.121.155.65 +
+34.31.169.230 +
+|80*,443,7474*,7687
+
+|`asia-southeast1`
+|34.126.64.110 +
+34.126.114.186 +
+34.126.171.25 +
+34.124.169.171 +
+|80*,443,7474*,7687
+|===
+
+======
+====
+
+Port 80 and 7474 are optional and only ever used to redirect to HTTPS. 
 Not used for data communication. 
 
 === AWS 
 
 (for AuraDS also add port 8491) 
 
-[cols="1,1,1,1,1"]
+[cols="1,1,1"]
 |===
-|Region |Location |Name |Aura Professional IPv4 Address |Ports (TCP)
+|Region |Aura Professional IPv4 Address |Ports (TCP)
 
-|EUROPE
-|Ireland
-|eu-west-1
+|`eu-west-1`
 |54.73.23.22 +
 63.32.207.218 +
 54.216.115.14 +
@@ -188,9 +212,25 @@ Not used for data communication.
 54.229.145.35
 |80*,443,7474*,7687
 
-|USA	
-|Oregon, USA
-|us-west-2
+|`eu-west-3`
+|35.181.111.79 +
+35.180.206.223 +
+13.37.152.206
+|
+
+|`eu-central-1`
+|3.72.152.128 +
+3.73.246.103 +
+52.28.151.226 
+|
+
+|`ap-south-1`
+|13.203.9.107 +
+13.202.38.79 + 
+13.200.133.251
+|
+
+|`us-west-2`
 |44.227.200.111 +
 52.88.247.84 +
 54.245.8.251 +
@@ -201,9 +241,7 @@ Not used for data communication.
 44.232.120.60 +
 |80*,443,7474*,7687
 
-|USA
-|North Virginia, USA
-|us-east-1
+|`us-east-1`
 |34.198.164.10 +
 54.85.127.23 + 
 54.205.24.25 +
@@ -226,17 +264,13 @@ Not used for data communication.
 34.238.12.219 +
 |80*,443,7474*,7687
 
-|SOUTH AMERICA
-|São Paulo, Brazil
-|sa-east-1	
+|`sa-east-1`	
 |54.232.153.180 +
 18.230.132.57 +
 54.207.37.117 +
 |80*,443,7474*,7687
 
-|ASIA
-|Singapore
-|ap-southeast-1
+|`ap-southeast-1`
 |52.74.5.242 +
 13.215.33.19 +
 54.179.248.226 +
@@ -250,94 +284,40 @@ Not used for data communication.
 
 (for AuraDS also add port 8491)
 
-[cols="1,1,1,1,1"]
+[cols="1,1,1"]
 |===
-|Region |Location |Name |Aura Professional IPv4 Address |Ports (TCP)
+|Region |Aura Professional IPv4 Address |Ports (TCP)
 
-|EUROPE	
-|Paris, France	
-|francecentral	
+|`francecentral`	
 |51.103.49.175 +
 4.233.58.237
 |80*,443,7474*,7687
 
-|USA	
-|Virginia, USA	
-|eastus	
+|`eastus`	
 |20.124.3.249 +
 20.163.143.142	
 |80*,443,7474*,7687
-
-|USA	
-|Arizona, USA	
-|westus3	
-|20.124.3.249	
+	
+|`westus3`	
+|20.168.56.165
+|80*,443,7474*,7687
+	
+|`brazilsouth`	
+|20.226.24.114
 |80*,443,7474*,7687
 
-|SOUTH AMERICA
-|São Paulo, Brazil	
-|brazilsouth	
-|20.124.3.249
+|`koreacentral`
+|20.196.204.230
 |80*,443,7474*,7687
 
-|ASIA
-|Seoul, Korea
-|koreacentral
-|20.124.3.249
-|80*,443,7474*,7687
-
-|ASIA
-|India, Pune	
-|centralindia
+|`centralindia`
 |4.247.161.0
 |80*,443,7474*,7687
 
-|EUROPE
-|UK, London	
-|uksouth
+|`uksouth`
 |52.151.91.171	
 |80*,443,7474*,7687
 
-|===
-
-Port 80 and 7474 are optional and only ever used to redirect to HTTPS. 
-Not used for data communication. 
-
-== AuraDB Free tier (GCP ONLY)
-
-[cols="1,1,1,1,1"]
-|===
-
-|Region |Location	|Name |IPv4 Address	|Ports (TCP)
-
-|EUROPE	
-|Belgium
-|europe-west1
-|34.78.243.29
-34.76.245.87
-35.205.213.74
-35.189.250.174
-34.78.76.49
-35.241.237.34	
-|80*,443,7474*,7687
-
-|USA
-|Iowa, USA
-|us-central1	
-|34.69.128.95
-34.66.78.163
-34.121.155.65
-34.31.169.230
-|80*,443,7474*,7687
-
-|ASIA
-|Singapore
-|asia-southeast1
-|34.126.64.110
-34.126.114.186
-34.126.171.25
-34.124.169.171	
-|80*,443,7474*,7687
 |===
 
 Port 80 and 7474 are optional and only ever used to redirect to HTTPS. 
