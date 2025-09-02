@@ -3,94 +3,16 @@
 :description: This page describes the following instance actions - rename, resest, upgrade, resize, pause, resume, clone to a new database, clone to an existing database, or delete and instance.
 :page-alisases: auradb/managing-databases/database-actions.adoc, aurads/managing-instances/instance-actions.adoc
 
-Perform multiple instance actions directly from an instance card: Pause/resume, develop, inspect and instance's details, clone to new instance/clone to existing instance, edit secondaries, delete, resize, view resources/view all metrics.
+Perform multiple instance actions directly from an instance card: connect to tools, pause/resume, inspect the instance's details, take a snapshot, restore a backup, clone to new instance/clone to existing instance, edit secondaries, delete, resize, view resources/view all metrics.
 
-== Inspect an instance's details
+== Connect to tools
 
-From the instance card, select the more menu (*...*) then select *instance details*.
-From the instance details you can rename an instance and view instance details.
-See xref:managing-instances/instance-details.adoc[Instance details] for more information.
-
-[.shadow]
-.The more [...] menu
-image::instanceactions.png[]
-
-// == Reset an instance
-
-// label:AuraDB-Free[]
-// label:AuraDB-Professional[]
-
-// You can clear all data in an instance using the *Reset to blank* action.
-
-// To reset an instance:
-
-// . Select the more actions (*...*) button on the instance you want to reset.
-// . Select *Reset to blank* from the resulting menu.
-// . Select *Reset*.
-
-// == Upgrade an instance
-
-// === Upgrade from Free to Professional
-
-// You can upgrade an AuraDB Free instance to an AuraDB Professional instance using the *Upgrade to Professional* action.
-
-// Upgrading your instance clones your Free instance data to a new Professional instance, leaving your existing Free instance untouched.
-
-// To upgrade a Free instance:
-
-// . Select the ellipsis (*...*) button on the free instance you want to upgrade.
-// . Select *Upgrade to Professional* from the resulting menu.
-// . Set your desired settings for the new instance. For more information on AuraDB instance creation settings, see xref:auradb/getting-started/create-instance.adoc[].
-// . Tick the *I understand* checkbox and select *Upgrade Instance*.
-
-// === Upgrade from Professional to Business Critical
-
-// You can upgrade an AuraDB Professional instance to an AuraDB Business Critical instance using the *Upgrade to Business Critical* action.
-
-// Upgrading your instance clones your Professional instance data to a new Business Critical instance, leaving your existing Professional instance untouched.
-
-// To upgrade a Business Critical instance:
-
-// . Select the ellipsis (*...*) button on the free instance you want to upgrade.
-// . Select *Upgrade to Business Critical*.
-// . Set your desired settings for the new instance.
-// For more information on AuraDB instance creation settings, see xref:auradb/getting-started/create-instance.adoc[].
-// . Tick the *I understand* checkbox and select *Upgrade Instance*.
-
-== Resize an instance
-// label:AuraDB-Professional[]
-// label:AuraDB-Enterprise[]
-// label:AuraDB-Business-Critical[]
-
-Resizing an instance means changing the memory, CPU and storage size.
-Note that this option is *not available* for *Free instances*.
-
-You can change the size of an existing instance using the *Configure* button on the instance you want to resize.
-An instance remains available during the resize operation.
-
-== Adjust storage
-
-[NOTE]
-====
-Available for AuraDB Professional, Business Critical & Virtual Dedicated Cloud deployments on AWS and GCP, with PAYG directly transacted with Neo4j or prepaid billing, Neo4j latest version.
-====
-
-Adjust the storage size of your instance at any time. 
-Each AuraDB instance includes a standard storage allocation and configuration; additional storage is chargeable. 
-For more information, refer to link:https://console-preview.neo4j.io/pricing[Aura Pricing]
-
-To select the storage size during instance creation, select the desired value in the *Storage (Adjustable)* column. 
-
-To adjust an existing instance's storage, use the *Configure* button on the instance card and select a new value for the storage size.
-
-You may reduce your storage allocation, provided the new size is equal to or greater than your current usage. 
-For example, if you are using 8GB of data, the minimum selectable option will be 8GB. 
-Selecting a size smaller than your current usage is not permitted. 
-This store size policy also applies to general instance downsizing.
+The *Connect* button allows you to connect your instance to one of the tools; Query, Explore, or Dashboards, or to the Developer hub.
+This is possible from both Aura instances as well as self-managed deployments (see xref:managing-instances/self-managed.adoc[Self-managed instances]), as long as the instance/deployment is running.
 
 [.shadow]
-.Adjust storage size
-image::adjust_storage.png[adjust storage screenshot,540,380]
+.Connect to tools
+image::connect-to-tools.png[]
 
 == Pause an instance
 
@@ -142,6 +64,22 @@ Aura Free instances do not automatically resume after 30 days.
 If an Aura Free instance remains paused for more than 30 days, Aura deletes the instance, and all information is lost.
 ====
 
+== Inspect an instance's details
+
+From the instance card, select the more menu (*...*) then select *instance details*.
+From the instance details you can rename an instance and view instance details.
+See xref:managing-instances/instance-details.adoc[Instance details] for more information.
+
+[.shadow]
+.The more (...) menu on an AuraDB Free instance
+image::instance-actions.png[]
+
+== Snapshots and backups
+
+Snapshots are taken at regular intervals and can be used to download or dump your data to a new instance.
+You can also restore backups of 4GB or less.
+See xref:manage-instances/backup-restore-export.adoc[Backup, export, restore, and upload] for more information
+
 == Clone an instance
 
 You can clone an existing instance to create a new instance with the same data.
@@ -158,6 +96,7 @@ You can access all the cloning options from the more menu (*...*) on the instanc
 ====
 You cannot clone from a Neo4j latest version instance to a Neo4j version 4 instance.
 ====
+
 === Clone to a new instance
 
 . From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *New instance* from the contextual menu.
@@ -191,16 +130,87 @@ Existing instances that are not large enough to clone into will not be available
 +
 . Check the *I understand the target instance will be overwritten* box and select *Clone*.
 
-== Delete an instance
 
-Delete an instance using the trashcan icon on the instance card.
+== Upgrade an instance
 
-Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
+AuraDB Free instances have an *Upgrade* button that you can use to upgrade to either Professional or Business Critical.
+You can upgrade an AuraDB Professional instance to an Business Critical instance using the *Upgrade* action from the *(...)* menu.
 
-[WARNING]
+.Upgrade your AuraDB Professional instance to AuraDB Business Critical
+[.shadow]
+image::upgradeprotobc.png[]
+
+This upgrade does not change the original DBID, so your application strings remain valid.
+
+*GDS plugin removal:*
+If your AuraDB Professional instance uses the GDS plugin, it is removed during the upgrade.
+The GDS plugin is not supported in AuraDB Business Critical.
+
+*Minimum instance size:*
+If you try to upgrade a 1GB Professional instance, you need to resize it to at least 2GB of storage, because this is the minimum supported size in AuraDB Business Critical.
+
+== Edit Secondary Count
+
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDB-Business-Critical[]
+
+Secondaries are read-only copies of your database used for scaling.
+You can edit the number of secondary copies on applicable instances.
+See xref:managing-instances/secondaries.adoc[Secondaries] for more information.
+
+== Reset an instance
+
+label:AuraDB-Professional[]
+label:AuraDB-Free[]
+
+You can clear all data in an instance using the *Reset to blank* action.
+
+Select *Reset to blank* from the *(...)* more menu on the instance card.
+You need to confirm your intention since this action cannot be undone.
+
+== Resize an instance
+// label:AuraDB-Professional[]
+// label:AuraDB-Enterprise[]
+// label:AuraDB-Business-Critical[]
+
+Resizing an instance means changing the memory, CPU and storage size.
+Note that this option is *not available* for *Free instances*.
+
+You can change the size of an existing instance using the *Configure* button on the instance you want to resize.
+An instance remains available during the resize operation.
+
+== Adjust storage
+
+[NOTE]
 ====
-There is no way to recover data from a deleted Aura instance.
+Available for AuraDB prepaid billing on GCP, Neo4j latest version.
 ====
+
+Adjust the storage size of your instance at any time.
+Each AuraDB instance includes a standard storage allocation and configuration; additional storage is chargeable.
+
+To select the storage size during instance creation, select the desired value in the *Storage (Adjustable)* column.
+
+To adjust an existing instance's storage, use the *Configure* button on the instance card and select a new value for the storage size.
+
+You may reduce your storage allocation, provided the new size is equal to or greater than your current usage.
+For example, if you are using 8GB of data, the minimum selectable option will be 8GB.
+Selecting a size smaller than your current usage is not permitted.
+This store size policy also applies to general instance downsizing.
+
+[.shadow]
+.Adjust storage size
+image::adjust_storage.png[adjust storage screenshot,540,380]
+
+== Manage custom endpoints
+
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDB-Business-Critical[]
+label:AuraDB-Professional[]
+
+Custom endpoints are used for database management and migration.
+You set up endpoints in the *Project settings*.
+See xref:managing-instances/custom-endpoints.adoc[Custom endpoints] for more information.
 
 == Mark an instance as `production`
 
@@ -224,19 +234,24 @@ image::mark-as-production.png[]
 .Instance marked as production
 image::marked-as-production.png[]
 
-== Upgrade AuraDB Professional to AuraDB Business Critical
 
-To upgrade your AuraDB Professional instance to AuraDB Business Critical, select the more menu (*…​*) on an instance card, then select *Upgrade*.
+== Delete an instance
 
-.Upgrade your AuraDB Professional instance to AuraDB Business Critical
-[.shadow]
-image::upgradeprotobc.png[]
+Delete an instance using the trashcan icon on the instance card.
 
-This upgrade does not change the original DBID, so your application strings remain valid.
+Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
 
-*GDS plugin removal:* 
-If your AuraDB Professional instance uses the GDS plugin, it is removed during the upgrade. 
-The GDS plugin is not supported in AuraDB Business Critical.
+[WARNING]
+====
+There is no way to recover data from a deleted Aura instance.
+====
 
-*Minimum instance size:* 
-If you try to upgrade a 1GB Professional instance, you need to resize it to at least 2GB of storage, because this is the minimum supported size in AuraDB Business Critical.
+== Metrics
+
+label:AuraDB-Virtual-Dedicated-Cloud[]
+label:AuraDB-Business-Critical[]
+label:AuraDB-Professional[]
+
+On the bottom of the instance card you can find a selection of collapsible metrics.
+Use the *View all metrics* button to see more.
+See xref:metrics/view-metrics.adoc[View metrics] for more information.
