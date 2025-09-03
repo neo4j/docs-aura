@@ -112,6 +112,7 @@ Aura project users have the following capabilities related to fleet management a
 |
 | {check-mark}
 |===
+
 == Features
 
 Fleet management offers various features to manage and monitor your self-managed Neo4j deployments:
@@ -121,3 +122,11 @@ Fleet management offers various features to manage and monitor your self-managed
 * Server configuration viewer
 * Database metadata
 * License status viewer
+
+In addition to these features, the user tools Query, Explore, and Dashboards (available in the Aura console) are also available for self-managed deployments.
+See xref:managing-instances/self-managed.adoc[Self-managed instances] for more information.
+
+[NOTE]
+====
+User tools connect to your deployment using their own bolt connection, independent of the fleet management plugin.
+====
