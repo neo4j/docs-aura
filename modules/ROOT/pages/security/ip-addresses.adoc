@@ -13,10 +13,10 @@ By specifying the exact IPs Aura uses, you can configure firewalls to allow only
 
 There are two groups of IP addresses used by Aura:
 
-*Global service IP addresses*: Common tools with common global addresses that use global services and are centrally hosted, such as the Aura console, for example.
+* *Global service IP addresses*: Common tools with common global addresses that use global services and are centrally hosted, such as the Aura console, for example.
 These IPs are the same regardless of the region a database is deployed.
 
-*Instances with specific cloud providers and regions:* Your Aura instances and their respective regions.
+* *Instances with specific cloud providers and regions:* Your Aura instances and their respective regions.
 
 == Common global addresses 
 
@@ -76,11 +76,11 @@ These are applicable to all Aura tiers.
  
 == Instance addresses
 
-The public IP address of your AuraDB or AuraDS instance depends on both the cloud provider region and the Aura tier.
+The public IP address of your instance depends on both the cloud provider region and the Aura tier.
 
-AuraDB Professional and AuraDB Business Critical use a collection of public IP addresses which depends on the region where the instance is deployed and the cloud service provider (AWS, GCP, or Azure).
+* AuraDB Free runs only on Google Cloud Platform (GCP) and uses public IP addresses allocated to GCP.
 
-AuraDB Free runs only on Google Cloud Platform (GCP) and uses public IP addresses allocated to GCP.
+* AuraDB Professional and AuraDB Business Critical use a collection of public IP addresses which depends on the region where the instance is deployed and the cloud service provider (AWS, GCP, or Azure).
 
 === GCP 
 
@@ -277,9 +277,6 @@ Not used for data communication.
 |80*,443,7474*,7687
 |===
 
-Port 80 and 7474 are optional and only ever used to redirect to HTTPS. 
-Not used for data communication.
- 
 === Azure 
 
 (for AuraDS also add port 8491)
@@ -320,14 +317,17 @@ Not used for data communication.
 
 |===
 
-Port 80 and 7474 are optional and only ever used to redirect to HTTPS. 
-Not used for data communication. 
+== Using FQDN not IP
 
-== Notes
+When connecting to an AuraDB instance, the Connection URI must use the fully qualified domain name (FQDN). 
+Using an IP address is not supported.
+For example, if your AuraDB instance ID is abcd1234, the correct URI is `neo4j+s://abcd1234.databases.neo4j.io`.
 
-Further details of the physical location can be found in Google's link:https://cloud.google.com/compute/docs/regions-zones#locations[Regions and zones documentation]
+Resolving the domain name (for example, `abcd1234.databases.neo4j.io` → `123.321.222.111`) and attempting to connect with the IP address, such as `neo4j+s://123.321.222.111` will cause connection issues.
 
-To connect to Aura in your application, your URI will need to use the your AuraDB instance's fully qualified domain name (FQDN) - not just the IP address.
-For example, if your AuraDB Instance ID is `abcd1234`, then the URI to use would be `neo4j+s://abcd1234.databases.neo4j.io`
+== Ports 80 and 7474
 
-Ports 80 and 7474 are redirected to 443 for convenience but communication remains encrypted.
+Port 80 and 7474 are optional and only ever used to redirect to HTTPS - they are are redirected to 443 for convenience but communication remains encrypted.
+They are not used for data communication.
+
+Port 7687 is not redirected and relies on encryption via TLS (through `neo4j+s`).
