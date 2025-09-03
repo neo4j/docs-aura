@@ -73,6 +73,8 @@ These are applicable to all Aura tiers.
 35.205.73.135
 
 |===
+
+Port 80 and 7474 are optional and only ever used to redirect to HTTPS and are not used for data communication.
  
 == Instance addresses
 
@@ -192,8 +194,7 @@ The public IP address of your instance depends on both the cloud provider region
 ======
 ====
 
-Port 80 and 7474 are optional and only ever used to redirect to HTTPS. 
-Not used for data communication. 
+Port 80 and 7474 are optional and only ever used to redirect to HTTPS and are not used for data communication.
 
 === AWS 
 
@@ -277,6 +278,8 @@ Not used for data communication.
 |80*,443,7474*,7687
 |===
 
+Port 80 and 7474 are optional and only ever used to redirect to HTTPS and are not used for data communication.
+
 === Azure 
 
 (for AuraDS also add port 8491)
@@ -317,17 +320,17 @@ Not used for data communication.
 
 |===
 
+Port 80 and 7474 are optional and only ever used to redirect to HTTPS and are not used for data communication.
+
 == Using FQDN not IP
 
 When connecting to an AuraDB instance, the Connection URI must use the fully qualified domain name (FQDN). 
 Using an IP address is not supported.
 For example, if your AuraDB instance ID is abcd1234, the correct URI is `neo4j+s://abcd1234.databases.neo4j.io`.
-
 Resolving the domain name (for example, `abcd1234.databases.neo4j.io` → `123.321.222.111`) and attempting to connect with the IP address, such as `neo4j+s://123.321.222.111` will cause connection issues.
 
 == Ports 80 and 7474
 
 Port 80 and 7474 are optional and only ever used to redirect to HTTPS - they are are redirected to 443 for convenience but communication remains encrypted.
 They are not used for data communication.
-
 Port 7687 is not redirected and relies on encryption via TLS (through `neo4j+s`).
