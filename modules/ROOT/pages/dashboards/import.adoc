@@ -1,7 +1,11 @@
-= Import
+= Import and export
 :description: This page holds information about import options for dashboards.
 
+
+== Importing a dashboard
+
 When you create a dashboard, you can choose to **Import**.
+You can import from NeoDash commercial and NeoDash Labs or from a previously exported dashboard JSON.
 
 In the **Import dashboard** dialog, you have several options to source the dashboard JSON for the import:
 
@@ -23,7 +27,7 @@ If the dashboard JSON selected for the import is syntactically correct, the **Im
 This means that the import can be run.
 
 
-== Supported reports
+=== Supported legacy NeoDash reports
 
 [cols="9,^4",options="header",grid="cols"]
 |===
@@ -47,7 +51,7 @@ This means that the import can be run.
 Advanced NeoDash reports added via the Advanced visualization extension are not supported.
 
 
-== Summary
+=== Summary
 
 Data fields relevant to the import are displayed under **Summary**.
 
@@ -67,7 +71,7 @@ Note that not all settings from NeoDash reports have a counterpart in Aura dashb
 Any such settings do not affect the import and are not preserved by the import procedure.
 
 
-== Details
+=== Details
 
 Expand the **Details** to inspect incidents reported during the import.
 
@@ -77,3 +81,9 @@ Descriptions can be, for example:
 
 * Unsupported parameter select types, resulting in skipped filters.
 * Missing entity and/or property types, missing parameter names.
+
+
+== Exporting a dashboard
+
+In the dashboards tile page, use the more menu *[...]* of a dashboard tile and select **Export file...**.
+Neo4j Aura creates a dashboard JSON file with the following format: `[dashboard title]_[current date as YYYY-MM-DD].json`.

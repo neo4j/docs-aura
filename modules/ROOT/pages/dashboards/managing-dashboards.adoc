@@ -15,19 +15,19 @@ The number of dashboards you can create depends on your Aura tier:
 
 == Creating a dashboard
 
-If you have no dashboards, select **Create dashboard** and either **Create from scratch** or **Import**.
-Alternatively, select **Create with AI**.
+If you have no dashboards, select **Create with AI**,  **Create from scratch** or **Import**.
 
 .Create your first dashboard
 image::dashboards/create-first-dashboard.png[]
 
-If you already have a dashboard and want to create another, use **Create Dashboard** at the top right, and select **Create from scratch**, **Import** or **Create with AI**.
+If you already have a dashboard and want to create another, use either **Import** or **Create** and then **Create from scratch**, or **Create with AI** at the top right.
+
+See xref::/dashboards/ai-dashboards.adoc[] for advice how to create a dashboard via prompt.
 
 **Create from scratch** takes you directly to a new and empty dashboard.
 
 See xref:/dashboards/import.adoc[] to learn more about importing dashboards.
 
-See xref::/dashboards/ai-dashboards.adoc[] for advice how to create a dashboard via prompt.
 
 
 == Editing a dashboard
@@ -58,3 +58,14 @@ Use the six dots at the top left of a card to drag and drop it within the grid o
 == Deleting a dashboard
 
 In the dashboards tile page, use the more menu *[...]* of a dashboard tile and select **Delete**, then confirm.
+
+
+== Exporting the dashboard JSON as a file
+
+In the dashboards tile page, use the more menu *[...]* of a dashboard tile and select **Export file...**.
+Neo4j Aura creates a dashboard JSON file with the following format: `[dashboard title]_[current date as YYYY-MM-DD].json`.
+
+
+== Copying the dashboard JSON to clipboard
+
+In the dashboards tile page, use the more menu *[...]* of a dashboard tile and select **Copy to clipboard**.
