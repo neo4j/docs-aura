@@ -2,7 +2,6 @@
 = Aura IP addresses and ports
 :description: How to configure your firewall to allow traffic to and from public IP addresses.
 
-
 For security reasons, enterprises typically only want their resources accessible by a selected range of IP addresses, not the public internet. 
 By specifying the exact IP addresses Aura uses, you can configure firewalls to allow only trusted inbound and outbound connections.
 
@@ -80,7 +79,10 @@ The public IP address of your instance depends on both the cloud provider region
 
 label:Aura-DB-Free[]
 
-Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication.
+Note that port 80 and 7474 are optional. 
+These are only used to redirect to HTTPS and are *not* used for data communication.
+They are are redirected to 443 for convenience but communication remains encrypted.
+Port 7687 *is not* redirected and relies on encryption via TLS (through `neo4j+s`).
 
 [cols="1,1,1"]
 |===
@@ -116,7 +118,10 @@ label:Aura-DB-Professional[]
 label:AuraDS-Enterprise[]
 label:AuraDB-Business-Critical[]
 
-Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication.
+Note that port 80 and 7474 are optional. 
+These are only used to redirect to HTTPS and are *not* used for data communication.
+They are are redirected to 443 for convenience but communication remains encrypted.
+Port 7687 is *not* redirected and relies on encryption via TLS (through `neo4j+s`).
 
 For AuraDS Enterprise also add port 8491.
 
@@ -191,7 +196,10 @@ label:Aura-DB-Professional[]
 label:AuraDS-Enterprise[]
 label:AuraDB-Business-Critical[]
 
-Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication.
+Note that port 80 and 7474 are optional. 
+These are only used to redirect to HTTPS and are *not* used for data communication.
+They are are redirected to 443 for convenience but communication remains encrypted.
+Port 7687 is *not* redirected and relies on encryption via TLS (through `neo4j+s`).
 
 For AuraDS Enterprise also add port 8491.
 
@@ -279,7 +287,10 @@ label:Aura-DB-Professional[]
 label:AuraDS-Enterprise[]
 label:AuraDB-Business-Critical[]
 
-Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication.
+Note that port 80 and 7474 are optional. 
+These are only used to redirect to HTTPS and are *not* used for data communication.
+They are are redirected to 443 for convenience but communication remains encrypted.
+Port 7687 is *not* redirected and relies on encryption via TLS (through `neo4j+s`).
 
 For AuraDS Enterprise also add port 8491.
 
@@ -326,10 +337,3 @@ For example, if your AuraDB Instance ID is `abcd1234`, then the URI to use is `n
 
 Using the IP address directly, e.g. `neo4j+s://34.78.243.29` does not work.
 
-== Note on ports
-
-Port 80 and 7474 are optional and only ever used to redirect to HTTPS. 
-They are not used for data communication.
-They are are redirected to 443 for convenience but communication remains encrypted.
-
-Port 7687 *is not* redirected and relies on encryption via TLS (through `neo4j+s`).
