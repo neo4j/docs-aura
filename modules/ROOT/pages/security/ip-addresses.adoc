@@ -8,7 +8,7 @@ By specifying the exact IP addresses Aura uses, you can configure firewalls to a
 There are two groups of IP addresses used by Aura:
 
 * *Global service IP addresses*: Common tools with common global addresses that use global services and are centrally hosted, such as the Aura console, for example.
-These IPs are the same regardless of the region a database is deployed.
+These IP addresses are the same regardless of the region a database is deployed.
 
 * *Instances with specific cloud providers and regions:* Your Aura instances and their respective regions.
 
@@ -220,19 +220,19 @@ For AuraDS Enterprise also add port 8491.
 |35.181.111.79 +
 35.180.206.223 +
 13.37.152.206
-|
+|80,443,7474,7687
 
 |`eu-central-1`
 |3.72.152.128 +
 3.73.246.103 +
 52.28.151.226 
-|
+|80,443,7474,7687
 
 |`ap-south-1`
 |13.203.9.107 +
 13.202.38.79 + 
 13.200.133.251
-|
+|80,443,7474,7687
 
 |`us-west-2`
 |44.227.200.111 +
