@@ -323,7 +323,7 @@ For AuraDS Enterprise also add port 8491.
 == Using FQDN not IP
 
 To connect to Aura in your application, your URI will need to use the your AuraDB instance's fully qualified domain name (FQDN) - not just the IP address.
-For example, if your AuraDB Instance ID is `abcd1234`, then the URI to use would be `neo4j+s://abcd1234.databases.neo4j.io`
+For example, if your AuraDB Instance ID is `abcd1234`, then the URI to use is `neo4j+s://abcd1234.databases.neo4j.io`
 
 For example, if you resolve the IP of `abcd1234.databases.neo4j.io` (e.g. `123.321.222.1111`) you could think that using `neo4j+s://123.321.222.111` was something reasonable to use.
 This is discouraged this because it will cause issues. 
