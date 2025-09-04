@@ -67,8 +67,6 @@ These are applicable to all Aura tiers.
 34.77.31.248 +
 35.205.73.135
 |===
-
-*Port 80 and 7474 are optional and only ever used to redirect to HTTPS and are not used for data communication.
  
 == Instance addresses
 
@@ -82,6 +80,8 @@ The public IP address of your instance depends on both the cloud provider region
 
 label:Aura-DB-Free[]
 
+Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication.
+
 [cols="1,1,1"]
 |===
 |Region |IPv4 Address |Ports (TCP)
@@ -93,21 +93,21 @@ label:Aura-DB-Free[]
 35.189.250.174 +
 34.78.76.49 +
 35.241.237.34 +
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`us-central1`
 |34.69.128.95 +
 34.66.78.163 +
 34.121.155.65 +
 34.31.169.230 +
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`asia-southeast1`
 |34.126.64.110 +
 34.126.114.186 +
 34.126.171.25 +
 34.124.169.171 +
-|80*,443,7474*,7687
+|80,443,7474,7687
 |===
 
 === GCP 
@@ -115,6 +115,8 @@ label:Aura-DB-Free[]
 label:Aura-DB-Professional[]
 label:AuraDS-Enterprise[]
 label:AuraDB-Business-Critical[]
+
+Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication.
 
 For AuraDS Enterprise also add port 8491.
 
@@ -127,69 +129,69 @@ For AuraDS Enterprise also add port 8491.
 35.187.55.46 +
 35.240.50.81 +
 34.76.231.68 +
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`europe-west2`
 |34.39.90.176 +
 34.105.131.232
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`europe-west3`
 |35.246.176.187 +
 35.242.209.97
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`us-central1`
 |35.226.25.193 +
 35.223.36.122 +
 34.28.32.244 +
 104.197.20.211
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`us-east1`
 |104.196.181.95 +
 35.196.189.185 +
 34.148.173.76 +
 35.227.44.229 +
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`us-west1`
 |34.82.68.138 +
 34.82.120.138
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`northamerica-northeast1`	
 |35.203.43.56
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`asia-east2`
 |34.96.218.41
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`asia-east1`
 |35.201.159.192	
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`asia-southeast1`
 |34.142.144.246	
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`asia-south1`	
 |35.200.158.141	
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`australia-southeast1`
 |34.87.204.150
-|80*,443,7474*,7687
+|80,443,7474,7687
 |===
-
-*Port 80 and 7474 are optional and only ever used to redirect to HTTPS and are not used for data communication.
 
 === AWS 
 
 label:Aura-DB-Professional[]
 label:AuraDS-Enterprise[]
 label:AuraDB-Business-Critical[]
+
+Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication.
 
 For AuraDS Enterprise also add port 8491.
 
@@ -204,7 +206,7 @@ For AuraDS Enterprise also add port 8491.
 54.78.119.210 +
 63.34.57.173 +
 54.229.145.35
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`eu-west-3`
 |35.181.111.79 +
@@ -233,7 +235,7 @@ For AuraDS Enterprise also add port 8491.
 44.231.11.143 +
 44.236.242.242 +
 44.232.120.60 +
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`us-east-1`
 |34.198.164.10 +
@@ -256,28 +258,28 @@ For AuraDS Enterprise also add port 8491.
 54.226.82.230 +
 44.210.31.186 +
 34.238.12.219 +
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`sa-east-1`	
 |54.232.153.180 +
 18.230.132.57 +
 54.207.37.117 +
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`ap-southeast-1`
 |52.74.5.242 +
 13.215.33.19 +
 54.179.248.226 +
-|80*,443,7474*,7687
+|80,443,7474,7687
 |===
-
-*Port 80 and 7474 are optional and only ever used to redirect to HTTPS and are not used for data communication.
 
 === Azure 
 
 label:Aura-DB-Professional[]
 label:AuraDS-Enterprise[]
 label:AuraDB-Business-Critical[]
+
+Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication.
 
 For AuraDS Enterprise also add port 8491.
 
@@ -288,36 +290,34 @@ For AuraDS Enterprise also add port 8491.
 |`francecentral`	
 |51.103.49.175 +
 4.233.58.237
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`eastus`	
 |20.124.3.249 +
 20.163.143.142	
-|80*,443,7474*,7687
+|80,443,7474,7687
 	
 |`westus3`	
 |20.168.56.165
-|80*,443,7474*,7687
+|80,443,7474,7687
 	
 |`brazilsouth`	
 |20.226.24.114
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`koreacentral`
 |20.196.204.230
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`centralindia`
 |4.247.161.0
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |`uksouth`
 |52.151.91.171	
-|80*,443,7474*,7687
+|80,443,7474,7687
 
 |===
-
-*Port 80 and 7474 are optional and only ever used to redirect to HTTPS and are not used for data communication.
 
 == Fully qualified domain name
 
