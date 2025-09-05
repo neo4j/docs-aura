@@ -75,6 +75,23 @@ If you set a limit in the context menu, this overrides any Node query limit set 
 [.shadow]
 image::advanced-expansion.png[width=500]
 
+== Group nodes and relationships
+
+Sometimes you may be interested in how a *group* of nodes relate to others, rather than how each individual node fits in.
+Explore offers an option to group selected nodes and have them represented as one visually distinct larger node.
+Any relationships between the grouped nodes other nodes are displayed individually.
+Once two or more nodes are selected, the context menu includes an option to group them.
+
+Similarly to how you group nodes, you can group relationships should you be more interested in that nodes *are* related and less in *how* they are.
+From the context menu available with a right-click from anywhere on the scene, without selecting any elements, you can group relationships provided that there exist two or more relationships between the same nodes.
+Once grouped, you can ungroup from the same menu.
+Note that both grouping and ungrouping relationships affect *all* applicable relationships present.
+Grouped relationships are represented with an arrow and a number that indicates how many relationships the group consists of.
+Double-click the relationship group to inspect it and display the relationship types present in the group.
+
+[.shadow]
+image::node-rel-group.png[width=400]
+
 == Shortest path
 
 A powerful feature of Neo4j graphs is to see how two entities may be connected without knowing the exact path of relationships between them.
