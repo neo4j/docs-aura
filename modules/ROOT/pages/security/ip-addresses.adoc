@@ -298,7 +298,7 @@ Port 7687 is *not* redirected and relies on encryption via TLS (through `neo4j+s
 For AuraDS Enterprise also add port 8491.
 ====
 
-[cols="1,1,1"]
+[options:"header", cols="1,1,1"]
 |===
 |Region |IPv4 Address |Ports (TCP) footnote:[Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication. They are are redirected to 443 for convenience but communication remains encrypted. Port 7687 *is not* redirected and relies on encryption via TLS (through `neo4j+s`).]
 
