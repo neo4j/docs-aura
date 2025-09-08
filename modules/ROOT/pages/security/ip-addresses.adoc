@@ -2,15 +2,14 @@
 = Aura IP addresses and ports
 :description: How to configure your firewall to allow traffic to and from public IP addresses.
 
-For security reasons, enterprises typically only want their resources accessible by a selected range of IP addresses, not the public internet. 
-By specifying the exact IP addresses Aura uses, you can configure firewalls to allow only trusted inbound and outbound connections.
+If you operate from a network with restrictions, such as firewalls or endpoint protections, you may need to authorize access to hosts and ports in order to use the full range of Aura services.
 
 There are two groups of IP addresses used by Aura:
 
-* *Global service IP addresses*: Common tools with common global addresses that use global services and are centrally hosted, such as the Aura console, for example.
+* *Common global addresses:* Global service IP addresses for centrally hosted tools with common global addresses, such as the Aura console.
 These IP addresses are the same regardless of the region a database is deployed.
 
-* *Instances with specific cloud providers and regions:* Your Aura instances and their respective regions.
+* *Instance addresses:* Your Aura instances with specific cloud providers and regions.
 
 == Common global addresses 
 
@@ -123,7 +122,10 @@ These are only used to redirect to HTTPS and are *not* used for data communicati
 They are are redirected to 443 for convenience but communication remains encrypted.
 Port 7687 is *not* redirected and relies on encryption via TLS (through `neo4j+s`).
 
+[NOTE]
+====
 For AuraDS Enterprise also add port 8491.
+====
 
 [cols="1,1,1"]
 |===
@@ -201,7 +203,10 @@ These are only used to redirect to HTTPS and are *not* used for data communicati
 They are are redirected to 443 for convenience but communication remains encrypted.
 Port 7687 is *not* redirected and relies on encryption via TLS (through `neo4j+s`).
 
+[NOTE]
+====
 For AuraDS Enterprise also add port 8491.
+====
 
 [cols="1,1,1"]
 |===
@@ -292,7 +297,10 @@ These are only used to redirect to HTTPS and are *not* used for data communicati
 They are are redirected to 443 for convenience but communication remains encrypted.
 Port 7687 is *not* redirected and relies on encryption via TLS (through `neo4j+s`).
 
+[NOTE]
+====
 For AuraDS Enterprise also add port 8491.
+====
 
 [cols="1,1,1"]
 |===
@@ -332,8 +340,7 @@ For AuraDS Enterprise also add port 8491.
 
 == Fully qualified domain name
 
-To connect to Aura in your application, your URI needs to use your AuraDB instance's fully qualified domain name (FQDN) - not just the IP address.
+To connect to Aura in your application, your URI needs to use your AuraDB instance's fully qualified domain name (FQDN) not just the IP address.
 For example, if your AuraDB Instance ID is `abcd1234`, then the URI to use is `neo4j+s://abcd1234.databases.neo4j.io`
 
 Using the IP address directly, e.g. `neo4j+s://34.78.243.29` does not work.
-
