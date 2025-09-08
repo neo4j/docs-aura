@@ -32,4 +32,14 @@ These procedures can be executed in Neo4j Browser or any other Neo4j client.
 | Enable or disable debug and traffic logging
 | Boolean `debugLogging`, Boolean `trafficLogging`
 | String
+
+| `fleetManagement.inspectToken`
+| Inspect the Neo4j Fleet Management token to validate the Aura project association and expiry.
+| String `token` (Optional)
+| Array of (String `projectId`, String `tokenExpires`, String `errorMessage`)
+
+| `fleetManagement.restart`
+| Restarts the plugin by resetting the state and reconnecting to the API.
+| -
+| String
 |===
