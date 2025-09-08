@@ -35,7 +35,7 @@ These procedures can be executed in Neo4j Browser or any other Neo4j client.
 
 | `fleetManagement.inspectToken`
 | Inspect the Neo4j Fleet Management token to validate the Aura project association and expiry.
-| String `token` (Optional)
+| String `token` (Optional, if omitted, the currently used token will be inspected)
 | Array of (String `projectId`, String `tokenExpires`, String `errorMessage`)
 
 | `fleetManagement.restart`
