@@ -1,0 +1,330 @@
+[[aura-ip-addresses]]
+= Aura IP addresses and ports
+:description: How to configure your firewall to allow traffic to and from public IP addresses.
+
+If you operate from a network with restrictions, such as firewalls or endpoint protections, you may need to authorize access to hosts and ports in order to use the full range of Aura services.
+
+There are two groups of IP addresses used by Aura:
+
+* *Common global addresses:* Global service IP addresses for centrally hosted tools with common global addresses, such as the Aura console.
+These IP addresses are the same regardless of the region a database is deployed.
+
+* *Instance addresses:* Your Aura instances with specific cloud providers and regions.
+
+== Common global addresses 
+
+These are applicable to all Aura tiers.
+
+[cols="1,1,1"]
+|===
+|Access point name |URL |IPv4 Address 
+
+|Aura Console
+|console.neo4j.io
+|35.241.228.234 +
+(for future use 34.110.249.124)
+
+|Aura Workspace
+|workspace-preview.neo4j.io	
+|34.160.183.136
+
+|Aura API
+|api.neo4j.io
+|34.36.216.162
+
+|Aura Support portal
+|support.neo4j.com	
+|link:https://help.salesforce.com/s/articleView?id=000384438&type=1[See full list]
+
+|Aura Bloom	
+|bloom.neo4j.io	
+|34.110.209.142 +
+35.244.155.41
+
+|Aura Browser
+|browser.neo4j.io	
+|34.102.158.61
+
+|Aura Data Importer
+|data-importer.neo4j.io	
+|107.178.242.111
+
+|Aura Ops Manager
+|ops-manager.neo4j.io
+|34.160.136.34
+
+|Aura Customer Metrics Integration
+|customer-metrics-api.neo4j.io
+|34.140.105.178
+
+|Aura Control Plane +
+(egress)	
+|Used when running `neo4j-admin database upload` (import)
+|34.22.239.54 +
+35.195.239.88 +
+34.77.31.248 +
+35.205.73.135
+|===
+ 
+== Instance addresses
+
+The public IP address of your instance depends on both the cloud provider region and the Aura tier.
+
+* AuraDB Free runs only on Google Cloud Platform (GCP) and uses public IP addresses allocated to GCP.
+
+* AuraDB Professional and AuraDB Business Critical use a collection of public IP addresses which depends on the region where the instance is deployed and the cloud service provider (AWS, GCP, or Azure).
+
+=== AuraDB Free (GCP)
+
+label:Aura-DB-Free[]
+
+
+[options:"header", cols="1,1,1"]
+|===
+|Region |IPv4 Address |Ports (TCP) footnote:[Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication. They are are redirected to 443 for convenience but communication remains encrypted. Port 7687 *is not* redirected and relies on encryption via TLS (through `neo4j+s`).]
+
+|`europe-west1`
+|34.78.243.29 +
+34.76.245.87 +
+35.205.213.74 +
+35.189.250.174 +
+34.78.76.49 +
+35.241.237.34 +
+|80,443,7474,7687
+
+|`us-central1`
+|34.69.128.95 +
+34.66.78.163 +
+34.121.155.65 +
+34.31.169.230 +
+|80,443,7474,7687
+
+|`asia-southeast1`
+|34.126.64.110 +
+34.126.114.186 +
+34.126.171.25 +
+34.124.169.171 +
+|80,443,7474,7687
+|===
+
+=== GCP 
+
+label:Aura-DB-Professional[]
+label:AuraDS-Enterprise[]
+label:AuraDB-Business-Critical[]
+
+
+[NOTE]
+====
+For AuraDS Enterprise also add port 8491.
+====
+
+[options:"header", cols="1,1,1"]
+|===
+|Region |IPv4 Address |Ports (TCP) footnote:[Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication. They are are redirected to 443 for convenience but communication remains encrypted. Port 7687 *is not* redirected and relies on encryption via TLS (through `neo4j+s`).]
+
+|`europe-west1`
+|35.240.86.240 +
+35.187.55.46 +
+35.240.50.81 +
+34.76.231.68 +
+|80,443,7474,7687
+
+|`europe-west2`
+|34.39.90.176 +
+34.105.131.232
+|80,443,7474,7687
+
+|`europe-west3`
+|35.246.176.187 +
+35.242.209.97
+|80,443,7474,7687
+
+|`us-central1`
+|35.226.25.193 +
+35.223.36.122 +
+34.28.32.244 +
+104.197.20.211
+|80,443,7474,7687
+
+|`us-east1`
+|104.196.181.95 +
+35.196.189.185 +
+34.148.173.76 +
+35.227.44.229 +
+|80,443,7474,7687
+
+|`us-west1`
+|34.82.68.138 +
+34.82.120.138
+|80,443,7474,7687
+
+|`northamerica-northeast1`	
+|35.203.43.56
+|80,443,7474,7687
+
+|`asia-east2`
+|34.96.218.41
+|80,443,7474,7687
+
+|`asia-east1`
+|35.201.159.192	
+|80,443,7474,7687
+
+|`asia-southeast1`
+|34.142.144.246	
+|80,443,7474,7687
+
+|`asia-south1`	
+|35.200.158.141	
+|80,443,7474,7687
+
+|`australia-southeast1`
+|34.87.204.150
+|80,443,7474,7687
+|===
+
+=== AWS 
+
+label:Aura-DB-Professional[]
+label:AuraDS-Enterprise[]
+label:AuraDB-Business-Critical[]
+
+
+[NOTE]
+====
+For AuraDS Enterprise also add port 8491.
+====
+
+[options:"header", cols="1,1,1"]
+|===
+|Region |IPv4 Address |Ports (TCP) footnote:[Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication. They are are redirected to 443 for convenience but communication remains encrypted. Port 7687 *is not* redirected and relies on encryption via TLS (through `neo4j+s`).]
+
+|`eu-west-1`
+|54.73.23.22 +
+63.32.207.218 +
+54.216.115.14 +
+54.78.119.210 +
+63.34.57.173 +
+54.229.145.35
+|80,443,7474,7687
+
+|`eu-west-3`
+|35.181.111.79 +
+35.180.206.223 +
+13.37.152.206
+|80,443,7474,7687
+
+|`eu-central-1`
+|3.72.152.128 +
+3.73.246.103 +
+52.28.151.226 
+|80,443,7474,7687
+
+|`ap-south-1`
+|13.203.9.107 +
+13.202.38.79 + 
+13.200.133.251
+|80,443,7474,7687
+
+|`us-west-2`
+|44.227.200.111 +
+52.88.247.84 +
+54.245.8.251 +
+35.80.189.146 +
+35.166.145.198 +
+44.231.11.143 +
+44.236.242.242 +
+44.232.120.60 +
+|80,443,7474,7687
+
+|`us-east-1`
+|34.198.164.10 +
+54.85.127.23 + 
+54.205.24.25 +
+34.235.84.108 +
+54.205.140.194 +
+54.146.202.10 +
+44.218.143.81 +
+34.237.189.213 +
+52.21.223.250 +
+54.160.21.207 +
+3.224.243.10 +
+23.23.29.38 +
+18.235.106.124 +
+44.222.56.18 +
+34.205.10.16 +
+52.73.189.221 +
+3.229.58.166 +
+54.226.82.230 +
+44.210.31.186 +
+34.238.12.219 +
+|80,443,7474,7687
+
+|`sa-east-1`	
+|54.232.153.180 +
+18.230.132.57 +
+54.207.37.117 +
+|80,443,7474,7687
+
+|`ap-southeast-1`
+|52.74.5.242 +
+13.215.33.19 +
+54.179.248.226 +
+|80,443,7474,7687
+|===
+
+=== Azure 
+
+label:Aura-DB-Professional[]
+label:AuraDS-Enterprise[]
+label:AuraDB-Business-Critical[]
+
+
+[NOTE]
+====
+For AuraDS Enterprise also add port 8491.
+====
+
+[options:"header", cols="1,1,1"]
+|===
+|Region |IPv4 Address |Ports (TCP) footnote:[Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication. They are are redirected to 443 for convenience but communication remains encrypted. Port 7687 *is not* redirected and relies on encryption via TLS (through `neo4j+s`).]
+
+|`francecentral`	
+|51.103.49.175 +
+4.233.58.237
+|80,443,7474,7687
+
+|`eastus`	
+|20.124.3.249 +
+20.163.143.142	
+|80,443,7474,7687
+	
+|`westus3`	
+|20.168.56.165
+|80,443,7474,7687
+	
+|`brazilsouth`	
+|20.226.24.114
+|80,443,7474,7687
+
+|`koreacentral`
+|20.196.204.230
+|80,443,7474,7687
+
+|`centralindia`
+|4.247.161.0
+|80,443,7474,7687
+
+|`uksouth`
+|52.151.91.171	
+|80,443,7474,7687
+
+|===
+
+== Fully qualified domain name
+
+To connect to Aura in your application, your URI needs to use your AuraDB instance's fully qualified domain name (FQDN) not just the IP address.
+For example, if your AuraDB Instance ID is `abcd1234`, then the URI to use is `neo4j+s://abcd1234.databases.neo4j.io`
+
+Using the IP address directly, e.g. `neo4j+s://34.78.243.29` does not work.
