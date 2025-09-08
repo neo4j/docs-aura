@@ -1,0 +1,88 @@
+[[sm-inspect-deployment]]
+= Inspect deployment
+:description: This page describes inspecting the deployment.
+
+To inspect a deployment, use the more menu *(…​)* from the deployment card or deployment table.
+In the graph view, the same menu can be accessed by right-clicking the DBMS node. 
+
+== Overview
+
+Aside from the deployment name and status, the following information is displayed:
+
+[cols="1,2"]
+|===
+|Property |Description
+
+|Version
+|The Neo4j version
+
+|Edition
+|The Neo4j edition
+
+|Packaging
+|The Neo4j packaging used for deploying the servers of this deployment
+
+|Servers
+|A list of servers in the deployment
+
+|Registered by
+|Email address of the user who originally registered this deployment
+
+|===
+
+=== Token
+
+This section contains information and actions related to the token used to authenticate the deployment with Aura.
+
+[cols="1,2"]
+|===
+|Property |Description
+
+|Status
+|Whether the token is in use or not
+
+|Registered by
+|Email address of the user who originally registered this deployment
+
+|Creation time
+|The time and date when the token was created
+
+|Expires on
+|The time and date when the token expires
+
+|Auto-rotated
+|Whether the token is configured to be automatically rotated before its expiry
+
+|===
+
+To perform token-related actions, select the token menu *(…​)*.
+
+* *Regenerate* — This removes the current token and generates a new one. 
+Any plugin using the previous token will be logged out.
+
+* *Release* — This deletes the association between this deployment and the running Neo4j installation.
+This allows another installation to claim the deployment, which can be especially useful when migrating to a new major Neo4j version.
+Note that existing topology data will be cleared.
+
+* *Delete* — Permanently invalidates and deletes the token.
+
+=== License
+
+This section contains information about Neo4j licenses detected on this deployment.
+Supported products are:
+
+* Neo4j
+* Graph Data Science
+* Bloom
+
+For each detected product, information displayed includes the *type* of license (free/trial/commercial), the *status* (valid/expired) and the *expiry date* if applicable.
+
+== Active configuration
+
+In the *Active configuration* tab, you can view the effective configuration of each server in the deployment.
+Refer to link:https://neo4j.com/docs/operations-manual/current/configuration/neo4j-conf/[Operations Manual ->The neo4j.conf file
+] for more information on the Neo4j configuration.
+
+The configuration for each server is presented as a list of key-value pairs in a collapsible expander.
+
+The search bar at the top of the page allows you to filter by configuration key across all servers in the deployment.

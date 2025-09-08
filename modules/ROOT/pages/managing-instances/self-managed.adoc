@@ -1,0 +1,54 @@
+[[self-managed-instances]]
+= Self-managed instances
+:description: This page describes the self-managed instance overview.
+
+From the *Self-managed* tab, you can add and monitor your self-managed Neo4j deployments.
+Even though these instances are *not* managed by Neo4j Aura, you can still connect to them from the Aura console.
+
+You do this by *registering* your self-managed deployment from the *Self-managed* tab under *Instances*.
+There are two options to do this, either you register to:
+
+* Monitor your deployment, which allows you to also use the tools available in the console (Query, Explore, and Dashboards).
+* Only use the tools and not monitor.
+
+Seee xref:fleet-management/overview.adoc[Fleet management] for more information about the monitoring functionality.
+
+== Overview
+
+In the *Self-managed* tab under *Instances*, you can see all self-managed Neo4j deployments that have been added to your Aura project.
+
+See xref:fleet-management/setup.adoc[Add a deployment in Fleet management] for more information on adding your deployments.
+
+[.shadow]
+image::sm-instances-header.png[]
+
+This view provides several ways to filter and display your deployments.
+
+The *search bar* allows you to search by name.
+
+Next to the search bar is a *filter button* that offers the following filters:
+
+.Filters
+[cols="1,1"]
+|===
+| Filter | Description
+
+|Status
+|The overall deployment state
+
+|Version
+|The version of Neo4j running on the deployment
+
+|Edition
+|The edition of Neo4j running on the deployment
+
+|Packaging
+|The packaging that was used to deploy Neo4j
+
+|State
+|State is a special category that allows you to quickly find deployments in a few key categories, such as whether a connection URL exists or whether there are problems with the plugin or licenses.
+|===
+
+=== Views
+
+On the right side of the header, the view selector allows you to choose between three views: *table* view, *graph* view or *card* view.

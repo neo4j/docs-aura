@@ -1,0 +1,132 @@
+= Overview
+:description: This page provides an overview of fleet management.
+
+Fleet management allows you to monitor *all* of your Neo4j instances, both Aura and self-managed, directly from the Aura console.
+You access Fleet management in *Instances* under the *Self-managed* tab.
+
+Fleet management uses a plugin that you install on your self-managed Neo4j deployments.
+The plugin collects information from your deployment and securely transmits this data to Aura.
+
+See xref:fleet-management/setup.adoc[Add a deployment] for instructions on how to set up the plugin.
+
+Additionally, the fleet management plugin provides a set of procedures to manage and monitor the connection to Aura.
+
+== Compatibility
+
+Fleet management works with all self-managed Neo4j deployments running Neo4j 4.4 and later.
+All operating systems and deployment modalities supported by Neo4j are also supported by fleet management.
+
+Neo4j Community Edition deployments are subject to some limitations due to the limited set of features, such as no metrics being available.
+
+[NOTE]
+====
+Community Edition compatibility is offered on a best-effort basis. Neo4j does not offer any technical support for it.
+====
+
+== Security
+
+Fleet management is designed to be secure, no inbound connections to your self-managed deployment are allowed.
+Further, there is no capability for performing any write operations or other mutations remotely.
+
+No data is read from your databases.
+See xref:fleet-management/data.adoc[Data transparency] for a complete list of the data sent to Aura from your self-managed deployment.
+
+== Access permissions
+
+Aura project users have the following capabilities related to fleet management and self-managed deployments, depending on their project role.
+
+:check-mark: icon:check[]
+
+.Aura project roles and fleet management capabilities
+[opts="header",cols="3,1,1,1,1"]
+|===
+| Capability
+| Project Viewer
+| Metrics Reader
+| Member
+| Admin
+
+| View deployments
+| {check-mark}
+|
+| {check-mark}
+| {check-mark}
+
+| Create deployments
+|
+|
+|
+| {check-mark}
+
+| Rename deployments
+|
+|
+|
+| {check-mark}
+
+| Delete deployments
+|
+|
+|
+| {check-mark}
+
+| View connection URL
+| {check-mark}
+|
+| {check-mark}
+| {check-mark}
+
+| Add connection URL
+|
+|
+|
+| {check-mark}
+
+| Edit connection URL
+|
+|
+|
+| {check-mark}
+
+| View token info (existence, active)
+| {check-mark}
+|
+| {check-mark}
+| {check-mark}
+
+| Create token
+|
+|
+|
+| {check-mark}
+
+| Regenerate token
+|
+|
+|
+| {check-mark}
+
+| Delete token
+|
+|
+|
+| {check-mark}
+|===
+
+== Features
+
+Fleet management offers various features to manage and monitor your self-managed Neo4j deployments:
+
+* Metrics
+* Topology views (graph and tabular format)
+* Server configuration viewer
+* Database metadata
+* License status viewer
+
+In addition to these features, the user tools Query, Explore, and Dashboards (available in the Aura console) are also available for self-managed deployments.
+See xref:managing-instances/self-managed.adoc[Self-managed instances] for more information.
+
+[NOTE]
+====
+Connecting to self-managed instances with user tools works independently of the fleet management plugin and is therefore available for unmonitored deployments as well.
+====
