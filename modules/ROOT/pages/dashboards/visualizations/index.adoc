@@ -2,14 +2,30 @@
 :description: The different visualization options in Neo4j dashboards.
 
 A visualization is embedded in a dashboard card.
-Visualizations have different types, each of which expect different types of data.
+Visualizations have different types, each of which expects different types of data.
 
 
-== Writing Cypher queries
+== Queries
 
-Each visualization uses a Cypher query specified in the dashboard card to retrieve data from your Neo4j database and display it.
-Edit the query associated with a dashboard card by using the more menu *[...]* at the top right of a card and then **Edit card**.
+Each visualization uses a Cypher query which is specified in the dashboard card to retrieve data from your Neo4j database and display it.
 
+Edit the card by using the more menu *[...]* at the top right of a card and then **Edit card**.
+
+In the **Query** tab of the card, you can either use **Natural language** to generate a query or write your own **Cypher** query.
+
+
+=== Natural language
+
+When using **Natural language**, you can either write your own statement or question, or select from a number of **Suggested prompts** or **Recent** prompts.
+
+.Using natural language to create a visualization
+image::dashboards/visualizations/visualization-natural-language.png[]
+
+
+=== Cypher
+
+.Using Cypher to create a visualization
+image::dashboards/visualizations/visualization-cypher.png[]
 
 Cypher syntax is generally supported, see link:https://neo4j.com/docs/cypher-manual/current/introduction/cypher-aura/[Cypher and Aura] and xref::/query/introduction.adoc[Query data].
 
@@ -17,6 +33,8 @@ Keep the following best practices in mind when writing your Cypher queries:
 
 . Use a `LIMIT` clause in your query to keep the result size manageable. 
 . Ensure that you return the correct data types for the correct visualization type.
+
+**Recent** lists your latest queries.
 
 //
 //  For example, a graph report expects nodes and relationships, whereas a line chart expects numbers.
