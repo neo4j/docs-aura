@@ -53,17 +53,20 @@ Download an AuraDS instance as a .tar file.
 
 * *Create instance from snapshot* - Create a new instance using the data from the snapshot.
 
-
 [NOTE]
 ====
-The ability to Export or Create an instance from a scheduled Virtual Dedicated Cloud snapshot is limited to 14 days for 4.x instances.
+Any backups exported from Aura will be unrecovered.
+For more information on how to recover a backup, see link:{neo4j-docs-base-uri}/operations-manual/current/backup-restore/aggregate/[Operations Manual -> Aggregate a backup chain].
+====
+
+Note that the ability to *Export or Create* an instance from a scheduled *Virtual Dedicated Cloud* snapshot is *limited to 14 days for 4.x instances*.
 For latest version instances, this is limited to 60 days for full scheduled backups.
 Differential backups are not restorable/exportable and cannot be used to create a new instances from.
 
 Additionally, for Virtual Dedicated Cloud instances running Neo4j latest version, the ability to export or create an instance from a scheduled snapshot is limited to one (full) snapshot per day.
 
 Use the toggle **Show exportable only** on top of the list of snapshots to filter by whether a snapshot is exportable or not.
-====
+
 
 [[restore-snapshot]]
 === Restore
