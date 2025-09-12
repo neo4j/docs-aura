@@ -1,0 +1,404 @@
+= REST API
+
+This document outlines the specifications for the REST API. 
+It details the available endpoints, request/response formats, and authentication methods.
+
+This API provides a programmatic interface to interact with our import jobs services as of version `v2beta1`. 
+It is designed to be RESTful, stateless, and resource-oriented.
+
+== Base URL
+The base URL for all API requests is: 
+
+[source, https]
+----
+https://api.neo4j.io/v2beta1/organizations/<organization-id>/projects/<project-id>/import/jobs
+----
+
+== Authentication
+
+All requests to the API must be authenticated using an API token provided in the Authorization header.
+
+[cols="1,1,1"]
+|===
+|Header |Description |Example
+
+|Authorization
+|Bearer token for authentication
+|Bearer `your_api_token_here`
+|===
+
+To fetch the API keys, first of all, you have to generate Aura API keys, which you can do via the new Aura Console. Then, you can fetch the API token via the following curl command (API call):
+
+[source, cURL]
+----
+curl 
+--request POST 'https://api.neo4j.io/oauth/token' 
+--user '<CLIENT>:<SECRET>' --header 'Content-Type: application/x-www-form-urlencoded'
+--data-urlencode 'grant_type=client_credentials'
+----
+
+== Endpoints
+
+=== Create a new job
+
+* Endpoint: `/`
+
+* Method: `POST`
+
+* Description: Create a new import job by the specified import model ID, Aura instance ID and optional Aura credentials.
+
+.Request
+[source, JSON]
+----
+{
+    "importModelId": "{{AURA_API_IMPORT_MODEL_ID}}",
+    "auraCredentials": {
+        "dbId": "{{AURA_API_DBID}}",
+	 "user": "{{AURA_API_DB_USER}}",
+	 "password": "{{AURA_API_DB_PASSWORD}}"
+    }
+}
+----
+
+[cols="1,1"]
+|===
+|Parameter |Explanation 
+
+|`importModelId` 
+|The unique identifier of an import model. This can be found via URL when you are in model view
+
+|`auraCredentials` 
+|Aura credentials for specifying target database id with corresponding parameters to import data to.
+
+|`dbId` 
+|Unique Aura DB ID.
+
+|`user`
+|(optional) Only for free or VDC DB instances. 
+Will be deprecated once we support service accounts for free and VDC instances.
+
+|`password`
+|(optional) Only for free or VDC DB instances. 
+Will be deprecated once we support service accounts for free and VDC instances.
+
+|===
+
+.Response
+[source, JSON]
+----
+{
+	"data":
+  {
+    "id": "{{AURA_API_CREATED_JOB_ID}}"
+  }
+}
+----
+
+=== Get Job by ID
+
+* Endpoint: `/{id}`
+
+* Method: `GET`
+
+* Description: Retrieves a single job details by their ID.
+
+* Request: No request body.
+
+[cols="1,1"]
+|===
+|Parameter |Explanation 
+
+|`progress`  Optional. 
+|Takes a boolean value true or false, to specify whether or not to show import details with fine granularity of each node label and relationship type.
+
+|===
+
+.Response without progress details
+
+[source, JSON]
+----
+{
+    "data": {
+        "id": "87d485b4-73fc-4a7f-bb03-720f4672947e",
+        "import_type": "cloud",
+        "info": {
+            "state": "Completed",
+            "start_time": "2025-08-15T13:12:51Z",
+            "completion_time": "2025-08-15T13:15:19Z",
+            "exit_status": {
+                "state": "Cancelled",
+                "message": "Cancelled"
+            },
+            "cancellation_requested_time": "2025-08-15T13:15:19.655209Z",
+            "submitted_time": "2025-08-15T13:12:50.499797Z",
+            "last_update_time": "2025-08-18T12:25:53.469873Z",
+            "percentage_complete": 95.23
+        },
+        "data_source": {
+            "id": "177216b3-49b9-4e24-a414-a9ecbb448c53",
+            "type": "postgresql",
+            "name": "AWS_POSTGRES_FLIGHTS"
+        },
+        "aura_target": {
+            "db_id": "07e49cf5",
+            "project_id": "f607bebe-0cc0-4166-b60c-b4eed69ee7ee"
+        },
+        "user_id": "f607bebe-0cc0-4166-b60c-b4eed69ee7ee"
+    }
+}
+----
+
+.Response with progress details 
+[source, JSON]
+----
+{
+    "data": {
+        "id": "87d485b4-73fc-4a7f-bb03-720f4672947e",
+        "import_type": "cloud",
+        "info": {
+            "state": "Completed",
+            "start_time": "2025-08-15T13:12:51Z",
+            "completion_time": "2025-08-15T13:15:19Z",
+            "exit_status": {
+                "state": "Cancelled",
+                "message": "Cancelled"
+            },
+            "cancellation_requested_time": "2025-08-15T13:15:19.655209Z",
+            "submitted_time": "2025-08-15T13:12:50.499797Z",
+            "last_update_time": "2025-08-18T12:25:53.469873Z",
+            "percentage_complete": 95.23,
+            "progress": { <1>
+                "nodes": [
+                    {
+                        "id": "n:1",
+                        "labels": [
+                            "AircraftData"
+                        ],
+                        "total_rows": 9,
+                        "processed_rows": 9,
+                        "created_nodes": 9,
+                        "created_constraints": 1,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "n:0",
+                        "labels": [
+                            "Aircraft"
+                        ],
+                        "total_rows": 9,
+                        "processed_rows": 9,
+                        "created_nodes": 9,
+                        "created_constraints": 1,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "n:3",
+                        "labels": [
+                            "AirportData"
+                        ],
+                        "total_rows": 104,
+                        "processed_rows": 104,
+                        "created_nodes": 104,
+                        "created_constraints": 1,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "n:2",
+                        "labels": [
+                            "Airport"
+                        ],
+                        "total_rows": 104,
+                        "processed_rows": 104,
+                        "created_nodes": 104,
+                        "created_constraints": 1,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "n:5",
+                        "labels": [
+                            "Flight"
+                        ],
+                        "total_rows": 33121,
+                        "processed_rows": 33121,
+                        "created_nodes": 33121,
+                        "created_constraints": 1,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "n:4",
+                        "labels": [
+                            "Booking"
+                        ],
+                        "total_rows": 262788,
+                        "processed_rows": 262788,
+                        "created_nodes": 262788,
+                        "created_constraints": 1,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "n:7",
+                        "labels": [
+                            "Ticket"
+                        ],
+                        "total_rows": 366733,
+                        "processed_rows": 366733,
+                        "created_nodes": 366733,
+                        "created_constraints": 1,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "n:6",
+                        "labels": [
+                            "FlightView"
+                        ],
+                        "total_rows": 33121,
+                        "processed_rows": 33121,
+                        "created_nodes": 33121,
+                        "created_constraints": 1,
+                        "created_indexes": 0
+                    }
+                ],
+                "relationships": [
+                    {
+                        "id": "r:8",
+                        "type": "TICKET_BELONGS_TO_BOOKING",
+                        "total_rows": 366733,
+                        "processed_rows": 255000,
+                        "created_relationships": 255000,
+                        "created_constraints": 0,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "r:1",
+                        "type": "FLIGHT_DEPARTS_FROM_AIRPORT",
+                        "total_rows": 33121,
+                        "processed_rows": 33121,
+                        "created_relationships": 33121,
+                        "created_constraints": 0,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "r:0",
+                        "type": "FLIGHT_USES_AIRCRAFT_DATA",
+                        "total_rows": 33121,
+                        "processed_rows": 33121,
+                        "created_relationships": 33121,
+                        "created_constraints": 0,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "r:3",
+                        "type": "FLIGHT_USES_AIRCRAFT",
+                        "total_rows": 33121,
+                        "processed_rows": 33121,
+                        "created_relationships": 33121,
+                        "created_constraints": 0,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "r:2",
+                        "type": "FLIGHT_ARRIVES_AT_AIRPORT",
+                        "total_rows": 33121,
+                        "processed_rows": 33121,
+                        "created_relationships": 33121,
+                        "created_constraints": 0,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "r:5",
+                        "type": "FLIGHT_VIEW_ARRIVES_AT_AIRPORT",
+                        "total_rows": 33121,
+                        "processed_rows": 33121,
+                        "created_relationships": 33121,
+                        "created_constraints": 0,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "r:4",
+                        "type": "FLIGHT_VIEW_DEPARTS_FROM_AIRPORT",
+                        "total_rows": 33121,
+                        "processed_rows": 33121,
+                        "created_relationships": 33121,
+                        "created_constraints": 0,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "r:7",
+                        "type": "FLIGHT_HAS_TICKET",
+                        "total_rows": 1045726,
+                        "processed_rows": 1045726,
+                        "created_relationships": 1045726,
+                        "created_constraints": 0,
+                        "created_indexes": 0
+                    },
+                    {
+                        "id": "r:6",
+                        "type": "FLIGHT_VIEW_USES_AIRCRAFT",
+                        "total_rows": 33121,
+                        "processed_rows": 33121,
+                        "created_relationships": 33121,
+                        "created_constraints": 0,
+                        "created_indexes": 0
+                    }
+                ]
+            }
+        },
+        "data_source": {
+            "id": "177216b3-49b9-4e24-a414-a9ecbb448c53",
+            "type": "postgresql",
+            "name": "AWS_POSTGRES_FLIGHTS"
+        },
+        "aura_target": {
+            "db_id": "07e49cf5",
+            "project_id": "f607bebe-0cc0-4166-b60c-b4eed69ee7ee"
+        },
+        "user_id": "f607bebe-0cc0-4166-b60c-b4eed69ee7ee"
+    }
+}
+----
+
+<1> see `progress` field for details
+
+=== Create New User
+
+* Endpoint: `/{id}/cancellation`
+
+* Method: `POST`
+
+* Description: Cancel an existing job.
+
+* Request: No request body.
+
+.Response
+[source, JSON]
+----
+{
+  "data": 
+        {
+	        "id": "{{AURA_API_CANCELLED_JOB_ID}}"
+        }
+}
+----
+
+== Error handling
+
+The API uses standard HTTP status codes to indicate the success or failure of a request.
+
+[cols="1,1"]
+|===
+|Status Code |Description
+
+|`200 OK`
+|The request was successful.
+|`201 Created`
+|The resource was successfully created.
+|`400 Bad Request`
+|The request was malformed or invalid.
+|`401 Unauthorized`
+|Authentication credentials were missing or invalid.
+|`404 Not Found`
+|The requested resource could not be found.
+|`500 Internal Server Error`
+|An unexpected error occurred on the server.
+
+|===
