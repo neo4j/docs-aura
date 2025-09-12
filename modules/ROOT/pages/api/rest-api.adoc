@@ -2,7 +2,6 @@
 
 This document outlines the specifications for the REST API. 
 It details the available endpoints, request/response formats, and authentication methods.
-
 This API provides a programmatic interface to interact with our import jobs services as of version `v2beta1`. 
 It is designed to be RESTful, stateless, and resource-oriented.
 
@@ -24,17 +23,17 @@ All requests to the API must be authenticated using an API token provided in the
 
 |Authorization
 |Bearer token for authentication
-|Bearer `your_api_token_here`
+|`Bearer` +
+`your_api_token_here`
 |===
 
 To fetch the API keys, first of all, you have to generate Aura API keys, which you can do via the new Aura Console. Then, you can fetch the API token via the following curl command (API call):
 
 [source, cURL]
 ----
-curl 
---request POST 'https://api.neo4j.io/oauth/token' 
---user '<CLIENT>:<SECRET>' --header 'Content-Type: application/x-www-form-urlencoded'
---data-urlencode 'grant_type=client_credentials'
+curl --request POST 'https://api.neo4j.io/oauth/token' 
+     --user '<CLIENT>:<SECRET>' --header 'Content-Type: application/x-www-form-urlencoded'
+     --data-urlencode 'grant_type=client_credentials'
 ----
 
 == Endpoints
@@ -47,43 +46,36 @@ curl
 
 * Description: Create a new import job by the specified import model ID, Aura instance ID and optional Aura credentials.
 
-.Request
+==== Request
+
 [source, JSON]
 ----
 {
-    "importModelId": "{{AURA_API_IMPORT_MODEL_ID}}",
-    "auraCredentials": {
-        "dbId": "{{AURA_API_DBID}}",
-	 "user": "{{AURA_API_DB_USER}}",
-	 "password": "{{AURA_API_DB_PASSWORD}}"
+    "importModelId": "{{AURA_API_IMPORT_MODEL_ID}}", <1>
+    "auraCredentials": { <2>
+        "dbId": "{{AURA_API_DBID}}", <3>
+	 "user": "{{AURA_API_DB_USER}}", <4>
+	 "password": "{{AURA_API_DB_PASSWORD}}" <5>
     }
 }
 ----
 
-[cols="1,1"]
-|===
-|Parameter |Explanation 
+[.shadow]
+.Import model ID in the URL
+image::import-model-id.png[The unique identifier of an import model. This can be found via URL when you are in model view, width=400]
 
-|`importModelId` 
-|The unique identifier of an import model. This can be found via URL when you are in model view
+<1> The `importModelId` is the unique identifier of an import model. This can be found via URL when you are in model view (see Figure 1)
 
-|`auraCredentials` 
-|Aura credentials for specifying target database id with corresponding parameters to import data to.
+<2> The `auraCredentials` for specifying target database id with corresponding parameters to import data to.
 
-|`dbId` 
-|Unique Aura DB ID.
+<3> The `dbId` is the unique Aura DB ID.
 
-|`user`
-|(optional) Only for free or VDC DB instances. 
-Will be deprecated once we support service accounts for free and VDC instances.
+<4> `user` parameter is *optional* and only for free or VDC DB instances and will be deprecated once we support service accounts for free and VDC instances.
 
-|`password`
-|(optional) Only for free or VDC DB instances. 
-Will be deprecated once we support service accounts for free and VDC instances.
+<5> `password` parameter is *optional* and only for free or VDC DB instances and will be deprecated once we support service accounts for free and VDC instances.
 
-|===
+==== Response body example
 
-.Response
 [source, JSON]
 ----
 {
@@ -113,7 +105,13 @@ Will be deprecated once we support service accounts for free and VDC instances.
 
 |===
 
-.Response without progress details
+==== Response body examples
+
+[.tabbed-example]
+====
+
+[.include-with-response-without-progress-details]
+======
 
 [source, JSON]
 ----
@@ -148,7 +146,11 @@ Will be deprecated once we support service accounts for free and VDC instances.
 }
 ----
 
-.Response with progress details 
+======
+
+[.include-with-Response-with-progress-details]
+======
+
 [source, JSON]
 ----
 {
@@ -356,6 +358,9 @@ Will be deprecated once we support service accounts for free and VDC instances.
     }
 }
 ----
+
+======
+====
 
 <1> see `progress` field for details
 
