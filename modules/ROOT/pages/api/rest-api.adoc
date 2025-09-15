@@ -106,6 +106,7 @@ image::import-model-id.png[The unique identifier of an import model. This can be
 |===
 
 [.shadow]
+.Screenshot from Aura console of import progress
 image::get-job-by-id-progress.png[Screenshot from Aura console of import progress, width=400]
 
 ==== Response body examples
@@ -153,6 +154,8 @@ image::get-job-by-id-progress.png[Screenshot from Aura console of import progres
 
 [.include-with-Response-with-progress-details]
 ======
+
+<1> see `progress` field for details
 
 [source, JSON]
 ----
@@ -364,8 +367,6 @@ image::get-job-by-id-progress.png[Screenshot from Aura console of import progres
 
 ======
 ====
-
-<1> see `progress` field for details
 
 === Create New User
 
