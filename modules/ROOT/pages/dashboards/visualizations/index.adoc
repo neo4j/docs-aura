@@ -32,7 +32,7 @@ It cannot read the actual data in your database.
 To create a bar chart which displays the number of orders per customer:
 
 . Use **Add card** at the bottom right of the page.
-. In the new card, select **Var chart** from the chart type drop-down at the top right.
+. In the new card, select **Bar chart** from the chart type drop-down at the top right.
 . Select the **Natural language** tab at the top and paste the following prompt, then **Generate**:
 
 [source,text]
@@ -52,6 +52,22 @@ In the dashboard page tab:
 ----
 Create a line chart which displays the number of product categories per order, by the order date. Limit the results to 20.
 ----
+
+
+==== Writing natural language instructions
+
+Here is what you can do to improve the results of natural language statements or questions:
+
+* Be explicit about nodes and relationships.
+  Use the exact node labels and relationship types you want to query.
+
+* State the direction of relationships.
+  "Orders ordering a product" is directional while "ordered products" is less so.
+
+* Specify properties and filters.
+  Mention the exact property and qualifier, such as "orders ordered after september 1996" or "... where the product caterogy is 'produce'".
+
+* Define return values: names, counts, relationships, or paths, such as "return the product name" or "return the product units in stock".
 
 
 === Cypher
