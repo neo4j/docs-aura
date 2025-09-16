@@ -21,6 +21,38 @@ When using **Natural language**, you can either write your own statement or ques
 .Using natural language to create a visualization
 image::dashboards/visualizations/visualization-natural-language.png[]
 
+[NOTE]
+====
+When creating a card with natural language, an AI analyzes your link:https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[database schema], that is, the node labels and relationship types of your database.
+It cannot read the actual data in your database.
+====
+
+==== Examples
+
+To create a bar chart which displays the number of orders per customer:
+
+. Use **Add card** at the bottom right of the page.
+. In the new card, select **Var chart** from the chart type drop-down at the top right.
+. Select the **Natural language** tab at the top and paste the following prompt, then **Generate**:
+
+[source,text]
+----
+Create a bar chart which displays the number of orders per customer. Use the contact name of the customer. Limit the results to 10.
+----
+
+To create a line chart which displays the number of product categories by order dates:
+
+In the dashboard page tab:
+
+. Use **Add card** at the bottom right of the page.
+. In the new card, select **Line chart** from the chart type drop-down at the top right.
+. Select the **Natural language** tab at the top and paste the following prompt, then **Generate**:
++
+[source,text]
+----
+Create a line chart which displays the number of product categories per order, by the order date. Limit the results to 20.
+----
+
 
 === Cypher
 

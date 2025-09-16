@@ -75,7 +75,7 @@ Alternatively, use xref:/dashboards/visualizations/index.adoc#_natural_language[
 
 ==== Add a card with a line chart
 
-Create a line chart which displays the number of products for each order ID.
+Create a line chart which displays the number of product categories by order dates.
 
 In the dashboard page tab:
 
@@ -85,9 +85,10 @@ In the dashboard page tab:
 +
 [source,cypher]
 ----
-MATCH (o:Order)-[:ORDERS]->(p:Product)
-RETURN datetime(replace(o.orderDate, " ", "T")) AS Date,
-       count(p) as Categories
+MATCH (o:Order)-[ORDERS]->(p:Product)-[:PART_OF]->(c:Category)
+    WITH o.orderDate AS orderDate, count(DISTINCT c) AS categoryCount
+RETURN orderDate, categoryCount
+ORDER BY orderDate
 LIMIT 20
 ----
 
