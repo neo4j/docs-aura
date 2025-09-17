@@ -94,7 +94,7 @@ With IP filtering:
 To use `neo4j-admin database upload` add the specific link:https://support.neo4j.com/s/article/360050504254-What-are-the-public-IP-addresses-to-provision-in-a-firewall-configuration-to-allow-Aura-use[Control Plane Egress] to your IP filter allow list. 
 This ensures the temporary connection needed to push data is permitted.
 
-== Aura API
+== IP filtering via API
 
 The link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1#/[Aura API `v2beta1`]:
 
