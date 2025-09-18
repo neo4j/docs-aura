@@ -24,7 +24,7 @@ Relationship properties can also be edited in its respective Inspector.
 [.shadow]
 image::edit-properties.png[width=300]
 
-* *Create new relationships* - New relationships can be created from the canvas directly.
+* *Create new relationships* - New relationships can be created from the scene directly.
 To create a new relationship, select the source and destination nodes taking care to select the source node first.
 The right-click context menu will show the `Create relationship` enabled with a sub-menu showing the available relationship types.
 Only relationship types available in the database can be added.
@@ -34,8 +34,8 @@ See the link:https://neo4j.com/docs/cypher-manual/current/constraints/[Cypher Ma
 [.shadow]
 image::create-relationship.png[width=300]
 
-* *Create new nodes* - New nodes can also be created from the canvas.
-To create an empty new node, use the canvas context menu and select an existing category to which the node should be assigned.
+* *Create new nodes* - New nodes can also be created from the scene.
+To create an empty new node, use the scene context menu and select an existing category to which the node should be assigned.
 Another option is to duplicate an existing node from its context menu.
 If you attempt to create a node of a particular label that has existence or uniqueness constraints for one or more properties, the Inspector shows which properties that require (unique) values before you can create the node.
 See the link:https://neo4j.com/docs/cypher-manual/current/constraints/[Cypher Manual -> Constraints] for more information on constraints.
@@ -43,14 +43,14 @@ See the link:https://neo4j.com/docs/cypher-manual/current/constraints/[Cypher Ma
 [.shadow]
 image::create-node.png[width=300]
 
-* *Delete a relationship* - A relationship can be deleted from the canvas as well.
+* *Delete a relationship* - A relationship can be deleted from the scene as well.
 With the desired relationship selected, the context menu includes an option to delete the relationship.
 If more than one relationship is selected, you can delete the selection.
 
 [.shadow]
 image::delete-relationship.png[width=300]
 
-* *Delete nodes* - Similarly, nodes can also be deleted directly from the canvas.
+* *Delete nodes* - Similarly, nodes can also be deleted directly from the scene.
 The context menu for nodes allows you to delete selected node(s) in the same way as for relationships.
 
 [.shadow]
@@ -64,6 +64,6 @@ See link:https://neo4j.com/docs/operations-manual/current/authentication-authori
 
 [WARNING]
 ====
-Deleting nodes and relationships from the canvas permanently deletes them from the database.
+Deleting nodes and relationships from the scene permanently deletes them from the database.
 Be careful with this option as it cannot be undone.
 ====
