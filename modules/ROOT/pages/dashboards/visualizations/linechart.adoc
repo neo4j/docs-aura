@@ -17,7 +17,7 @@ Select a horizontal segment of the line chart to zoom in.
 Use the reload button to reset the line chart zoom.
 ====
 
-== Examples
+== Cypher examples
 
 
 === Basic line chart
@@ -25,9 +25,10 @@ Use the reload button to reset the line chart zoom.
 .Cypher query for a line chart which displays the number of product categories by order dates
 [source,cypher]
 ----
-MATCH (o:Order)-[:ORDERS]->(p:Product)
-RETURN datetime(replace(o.orderDate, " ", "T")) AS Date,
-       count(p) as Categories
+MATCH (o:Order)-[ORDERS]->(p:Product)-[:PART_OF]->(c:Category)
+    WITH o.orderDate AS orderDate, count(DISTINCT c) AS categoryCount
+RETURN orderDate, categoryCount
+ORDER BY orderDate
 LIMIT 20
 ----
 
@@ -37,17 +38,17 @@ image::dashboards/visualizations/visualization-line-chart.png[]
 
 === Multi-line chart
 
-.Cypher query for a line chart which displays the number of product categories and the product count by order dates
+.Cypher query for a line chart which displays the number of product categories and the product quantity by order dates
 [source,cypher]
 ----
-MATCH (o:Order)-[or:ORDERS]->(p:Product)
-RETURN datetime(replace(o.orderDate, " ", "T")) AS Date,
-       count(p) as Categories,
-       sum(or.quantity) as Quantity
+MATCH (o:Order)-[or:ORDERS]->(p:Product)-[:PART_OF]->(c:Category)
+    WITH o.orderDate AS orderDate, count(DISTINCT c) AS categoryCount, sum(or.quantity) AS Quantity
+RETURN orderDate, categoryCount, Quantity
+ORDER BY orderDate
 LIMIT 20
 ----
 
-.A line chart displaying the number of product categories and the product count by order dates
+.A line chart displaying the number of product categories and the product quantity by order dates
 image::dashboards/visualizations/visualization-line-chart-multi.png[]
 
 == Configuration

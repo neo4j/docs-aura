@@ -16,7 +16,7 @@ See xref::/getting-started/create-account.adoc[Create an account] and xref::/get
 
 Import the Northwind dataset to your instance:
 
-* In Aura, find the **Learn** button at the top right.
+* In Aura, select **Learning** from the navigation.
 * In the **Beginner** page, select the **Learn the basics** guide.
 * When prompted to **Connect to instance**, select the instance where you would like to import sample data.
 * In step 4 of 11 of the guide, import via **Get the Northwind dataset**.
@@ -29,22 +29,33 @@ The examples on this page refer to the Northwind dataset.
 
 Create a new dashboard:
 
-. In the **Dashboards** page, create a new dashboard with **Create dashboard** at the top right.
+. In the **Dashboards** page, create a new dashboard, either with LLM assistance or from scratch.
 . If prompted to **Connect to instance**, select your instance.
+
+
+=== Creating a dashboard with LLM assistance
+
+See xref::/dashboards/ai-dashboards.adoc[] for details.
+
+
+=== Creating a dashboard from scratch
+
+To create a dashboard from scratch:
+
+. select **Create from scratch**.
 . The UI takes you directly to the new dashboard. To change the title, select the title text and edit it, then confirm.
 . Your dashboard has a single page titled "Main page". To change the name, hover it and then use the more menu *[...]* and **Edit page name**.
 . Use **Add card** to create cards which represent visualizations.
 
 
-=== Add a card with a bar chart
+==== Add a card with a bar chart
 
 Create a bar chart which displays the number of orders per customer.
 
 In the dashboard page tab:
 
 . Use **Add card** at the bottom right of the page.
-. Optionally change the title of the card by clicking and editing, then confirm.
-. In the new card, use the more menu *[...]* at the top right, then select **Bar chart** as the **Chart type**.
+. In the new card, select **Bar chart** from the chart type drop-down at the top right.
 . **Edit** the Cypher query of the card and paste the following Cypher query to the input field, then **Save**:
 +
 [source,cypher]
@@ -59,23 +70,25 @@ Your bar chart should look like this:
 .Example bar chart
 image::dashboards/visualizations/visualization-bar-chart.png[]
 
+Alternatively, use xref:/dashboards/visualizations/index.adoc#_natural_language[natural language] to create the query for your bar chart.
 
-=== Add a card with a line chart
 
-Create a line chart which displays the number of products for each order ID.
+==== Add a card with a line chart
+
+Create a line chart which displays the number of product categories by order dates.
 
 In the dashboard page tab:
 
 . Use **Add card** at the bottom right of the page.
-. Optionally change the title of the card by clicking and editing, then confirm.
-. In the new card, use the more menu *[...]* at the top right, then select **Line chart** as the **Chart type**.
+. In the new card, select **Line chart** from the chart type drop-down at the top right.
 . **Edit** the Cypher query of the card and paste the following Cypher query to the input field, then **Save**:
 +
 [source,cypher]
 ----
-MATCH (o:Order)-[:ORDERS]->(p:Product)
-RETURN datetime(replace(o.orderDate, " ", "T")) AS Date,
-       count(p) as Categories
+MATCH (o:Order)-[ORDERS]->(p:Product)-[:PART_OF]->(c:Category)
+    WITH o.orderDate AS orderDate, count(DISTINCT c) AS categoryCount
+RETURN orderDate, categoryCount
+ORDER BY orderDate
 LIMIT 20
 ----
 
@@ -83,6 +96,8 @@ Your line chart should look like this:
 
 .Example line chart
 image::dashboards/visualizations/visualization-line-chart.png[]
+
+Alternatively, use xref:/dashboards/visualizations/index.adoc#_natural_language[natural language] to create the query for your bar chart.
 
 
 == Next steps
