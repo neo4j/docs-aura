@@ -3,10 +3,18 @@
 [[scene-interactions]]
 = Scene interactions
 
-Several interactions are available from the canvas to help you explore your graph visualization.
+When you first open a new Perspective and have no data visualized in your scene, you are greeted with two options to get started; *Show a graph snippet* or *Search the graph*.
+
+[.shadow]
+image::empty-state.jpg[width=600]
+
+The first option returns a sample of your data and can help you get started with visualizing your database.
+The second option takes you directly to the xref:explore/explore-visual-tour/search-bar.adoc[search bar] to start retrieving specific elements from your data.
+
+Once you have data in your scene, several interactions are readily available to help you explore your graph visualization.
 Some of the commonly expected ones are:
 
-* Zoom in and out using your mouse or touchpad scroll functions, or use the buttons at the bottom right of the canvas.
+* Zoom in and out using your mouse or touchpad scroll functions, or use the buttons at the bottom right of the scene.
 The size of the text on nodes is dynamic in relation to the size of the node.
 * Hover over a node or a relationship to see its label and selected properties.
 For nodes, but _not_ relationships, you can control what properties to display.
@@ -20,14 +28,14 @@ image::hover.png[width=500]
 +
 * Left-click on a single node or relationship to select or deselect it. Multiple objects can be selected by holding the appropriate keyboard modifier key (Cmd or Ctrl key) before selecting.
 * Double-click on a node or relationship to open the Inspector to inspect the element’s details.
-* Left-click in an empty spot on the canvas and drag immediately to pan the visualization.
+* Left-click in an empty spot on the scene and drag immediately to pan the visualization.
 * Use the marquee tools to select multiple nodes and relationships.
 +
 [.shadow]
 image::marquee-tools.png[width=500]
 +
-* Right-click anywhere on the canvas to bring up context-sensitive menus for the object(s) clicked on.
-You can right-click on a single node or relationship, on a group of highlighted nodes and/or relationships, or on an empty spot on the canvas.
+* Right-click anywhere on the scene to bring up context-sensitive menus for the object(s) clicked on.
+You can right-click on a single node or relationship, on a group of highlighted nodes and/or relationships, or on an empty spot on the scene.
 +
 [.shadow]
 image::context-double.png[width=500]
@@ -113,14 +121,14 @@ Explore searches for shortest paths within 20 hops and shows the first shortest 
 In instances where you are interested in knowing more about _how_ various nodes are related in comparison to each other, Explore allows you to change the layout of your scene.
 By default, the nodes and relationships in a Scene are presented in a _force-based_ layout.
 
-The _hierarchical_-layout option from the layout menu located at the bottom right-hand corner of the canvas, presents the nodes in the Scene in an hierarchical order instead.
+The _hierarchical_-layout option from the layout menu located at the bottom right-hand corner of the scene, presents the nodes in the Scene in an hierarchical order instead.
 The nodes are then arranged by the directionality of their relationships, determined by the way relationship directions are set up in the database.
 When the hierarchical layout is activated, you can change the orientation with the edit-button directly to the right of the layout menu.
 
 [.shadow]
 image::layouts-hierarchy.png[width=800]
 
-The third option is the _coordinate layout_ and it arranges, and fixes, the nodes on the canvas by their `integer`, `float`, or `point` type properties (provided that the nodes have them) and is used for geographical entities for example.
+The third option is the _coordinate layout_ and it arranges, and fixes, the nodes on the scene by their `integer`, `float`, or `point` type properties (provided that the nodes have them) and is used for geographical entities for example.
 You can select which node property to use from the dropdown menu.
 
 If no property is selected for the x-axis, Explore automatically looks for any `point` property and if no such property exists, it looks for any property named _latitude_, then _lat_, and then _x_.
@@ -147,7 +155,7 @@ It can be disabled via the edit-button.
 
 == Map
 
-The map is located in the bottom right corner of the canvas and gives you an overview of the entire scene.
+The map is located in the bottom right corner of the scene and gives you an overview of the entire scene.
 It helps you navigate, especially when your graph is large and/or when your nodes contain a lot of information and you often need to zoom in and out to view.
 
 The map shows all the nodes present in the scene, as well as the currently visible selection and where this selection is located in relation to the whole scene.
