@@ -13,8 +13,10 @@ If you add a new model, you can either either *Connect to a data source* to sele
 
 Once you have defined your data source, you are taken to the *data model panel*.
 At this point, a *model ID* is generated and appended to the URL.
+
 For example, in the URL `console-preview.neo4j.io/tools/import/models/0952dbcf-bc71-4413-8575-f8ffd4551234`, the model ID is `0952dbcf-bc71-4413-8575-f8ffd4551234`.
-This ID is useful if you intend to import via the link:{neo4j-docs-base-uri}/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1#/[API], but doing so requires a complete model with data source and mapping.
+
+This ID is useful if you intend to import via the link:{neo4j-docs-base-uri}/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1#/[API], but note that doing so requires a complete model with data source and mapping.
 
 You have three options to create your model:
 
