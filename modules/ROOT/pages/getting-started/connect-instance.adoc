@@ -17,31 +17,12 @@ image::connectionbanner1.png[]
 .Connection modal
 image::connectionmodalnonremote.png[width=300]
 
-[cols="20%,80%"]
-|===
-| Field | Description
+== Connection 
 
-|Connection method
-|The protocol is used for the communication between the Neo4j database server and the client application or tool.
+Aura connection use an automated fail over, initially attempting to use *neo4j+s://* but switching to *https://* if we identify an issue.
+
+The protocol is used for the communication between the Neo4j database server and the client application or tool.
 The default is `neo4j+s//`.
-// For more information about connection schemes, see link:https://neo4j.com/docs/operations-manual/current/configuration/connectors/[Operations Manual -> Configure network connectors] and link:https://neo4j.com/docs/bolt/current/bolt/[Bolt Protocol].
-
-// |Connection URL
-// |You can get this from your instance details
-
-|Single sign-on
-|If this is set up, you can use SSO.
-
-|Database user
-|Neo4j by default
-
-|Password
-|You are given the password when you initially create the instance
-|===
-
-== Connection method
-
-To connect to an instance, select one of the following connection methods: *neo4j+s://* or *https://*
 
 The connection method protocol is used for the communication between the Neo4j database server and the client application or tool.
 For more information about connection schemes, see link:https://neo4j.com/docs/operations-manual/current/configuration/connectors/[Operations Manual -> Configure network connectors] and link:https://neo4j.com/docs/bolt/current/bolt/[Bolt Protocol].
@@ -58,6 +39,6 @@ Use in environments where port restrictions may prevent access to the Bolt port.
 
 == Errors 
 
-In an enterprise environment with restrictive networking, connection errors are sometimes caused because non-standard ports (like the Bolt protocol) are blocked by firewalls when using *neo4j+s://*.
+In an enterprise environment with restrictive networking, connection errors are sometimes caused because non-standard ports (like the Bolt protocol) are ignored, or blocked by firewalls when using *neo4j+s://*.
 
 Switching to *https://* can address connection issues and ensure seamless connectivity without extra configuration.
