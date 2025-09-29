@@ -1,16 +1,34 @@
 = Aura Documentation
 
-== Run Live Preview
 
-[source]
-npm install
-npm start
+This repository contains the source content published at neo4j.com/docs/aura.
+Lead writers are Jessica Wright and Ffion Quick.
+
+Documentation requests can be made in the following ways:
+
+* Via link:https://trello.com/b/GUoYB9pB/team-documentation[our Trello wall]
+* Via the #team-documentation Slack channel
+* By raising a PR in this repository
+
+This docset consists of `.adoc` files and is structured as described in the `content-nav.adoc` file.
+It contains *two* exceptions, *APOC* and the *API specification*.
 
 == Generate APOC Docs
 
 1. Copy .env.example to .env and update the credentials to a valid aura instance.
 
 2. Run `npm run apoc` to get a list of currently valid APOC functions/procedures and load them into `modules/ROOT/partials/apoc-procedures.adoc`.
+
+== API specification
+
+Info on how this works and where it lives.
+
+== Run Live Preview
+
+[source]
+npm install
+npm start
+
 
 == Create/Destroy an Aura instance
 
