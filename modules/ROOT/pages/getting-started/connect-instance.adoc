@@ -19,7 +19,7 @@ image::connectionmodalnonremote.png[width=300]
 
 == Connection 
 
-Aura connection use an automated fail over, initially attempting to use *neo4j+s://* but switching to *https://* if we identify an issue.
+Aura connection uses an automated fail over, initially attempting to use `neo4j+s://` but switching to `https://` if an issue is identified.
 
 The protocol is used for the communication between the Neo4j database server and the client application or tool.
 The default is `neo4j+s//`.
