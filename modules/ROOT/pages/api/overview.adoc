@@ -47,6 +47,10 @@ In the case of `429 Too Many Requests`, we would recommend slowing down the rate
 
 For other `4xx` client error responses, you should not resend such requests without first correcting them.
 
+== Timeouts
+
+Aura API requests have a timeout of 45 seconds.
+
 == Request tracing and troubleshooting
 
 An `X-Request-Id` response header is returned with each request and can be used for troubleshooting.
