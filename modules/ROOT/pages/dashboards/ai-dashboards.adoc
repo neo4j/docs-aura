@@ -9,6 +9,9 @@ When creating a dashboard with AI, the AI analyzes your link:https://neo4j.com/d
 It cannot read the actual data in your database.
 ====
 
+The intelligent prompting happens in the background. 
+AI is going to analyse the schema, and it will try to make up some questions, and then it will convert each of these questions into a chart.
+
 If you do not enter a prompt, Neo4j AI will still make use of your database schema and come up with a suitable dashboard.
 
 Note that the following examples might differ when you reproduce them.
