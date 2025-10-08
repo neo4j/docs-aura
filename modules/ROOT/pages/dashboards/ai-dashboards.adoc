@@ -1,6 +1,6 @@
 = Creating a dashboard with AI
 
-To access AI features, an xref:user-management.adoc#_organization_level_roles[Organization Admin] must enable Generative AI assistance in xref:visual-tour/index.adoc#org-settings[Organization Settings].
+For AI features to be accessible, an xref:user-management.adoc#_organization_level_roles[organization admin] must enable Generative AI assistance under xref:visual-tour/index.adoc#org-settings[organization settings].
 
 . In the **Create with AI** dialog, you can enter an optional natural language text prompt to let Neo4j create a customized dashboard.
 . Once you are happy with the prompt, **Create** the dashboard.
@@ -11,8 +11,9 @@ When creating a dashboard with AI, the AI analyzes your link:https://neo4j.com/d
 It cannot read the actual data in your database.
 ====
 
-The intelligent prompting happens in the background. 
-AI is going to analyse the schema, and it will try to make up some questions, and then it will convert each of these questions into a chart.
+The prompt is processed in the background. 
+The AI analyzes your database schema and tries to come up with useful queries about the data while taking your prompt into account.
+Then it creates a suitable visualization for each query.
 
 If you do not enter a prompt, Neo4j AI will still make use of your database schema and come up with a suitable dashboard.
 
@@ -85,14 +86,15 @@ image::dashboards/ai-dashboard-dual-focus-2.png[]
 == Quality of the data model
 
 AI provides a great starting point, but the quality of your underlying data model still matters. 
-A graph model that has been thought out well, leads to a dashboard that tells more meaningful stories.
-AI infers nodes and relationships, but you might like to refine the model based on your specific questions - that way you will be able to reference entities directly from your schema (like `Customer`, `Order`, or `Category`) to guide AI towards more relevant charts.
+A graph model that has been thought out well leads to a dashboard that yields more meaningful insights.
+AI infers nodes and relationships.
+You can leverage this by using the exact node and relationship identifiers from the schema in your promps to guide AI towards more relevant charts.
 
 == AI as a starting point
 
 Remember, you can always edit an AI-generated dashboard.
 Can AI be used to modify parts of the dashboard while leaving other parts unchanged.
 
-It's fun to use AI as a starting point, and then build on it by editing the output - and refining visualizations, colors, and layouts to match your needs.
+It is a valid workflow to use AI as a starting point, and then build on it by editing the output - and refining visualizations, colors, and layouts to match your needs.
 
 
