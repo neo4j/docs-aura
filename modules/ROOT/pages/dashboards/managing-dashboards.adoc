@@ -45,7 +45,6 @@ You can edit or duplicate the page via hovering the page name and using the more
 Add more pages via **+** next to the existing pages' names.
 Additional pages can also be deleted from the more menu *[...]*.
 
-
 === Dashboard cards
 
 A dashboard page can hold any number of cards.
@@ -54,6 +53,15 @@ To add a card, use **Add card** at the bottom right.
 Use the more menu *[...]* at the top right of a card to edit the card.
 Use the six dots at the top left of a card to drag and drop it within the grid of the page.
 
+== MultiDB icon
+
+_See which database a card's data is fetched from_
+
+Hover over the icon to see the database that specific card gets it's information from. 
+This is relevant when you have MultiDB (multi-database) instances (which we don't have yet in Aura) so then you can see for example, this card gets data from a marketing database and this card gets data from the sales database, *so you can have cross database dashboards*.
+
+.MultiDB database icon
+image::multidb-database-icon.png[]
 
 == Deleting a dashboard
 
@@ -69,3 +77,4 @@ Neo4j Aura creates a dashboard JSON file with the following format: `[dashboard 
 == Copying the dashboard JSON to clipboard
 
 In the dashboards tile page, use the more menu *[...]* of a dashboard tile and select **Copy to clipboard**.
+
