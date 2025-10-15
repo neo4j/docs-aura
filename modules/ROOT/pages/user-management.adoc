@@ -434,6 +434,68 @@ The predefined roles take the following format: `console_<role>_<dbid>`, for exa
 User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
 ====
 
+=== Graph Analytics roles
+
+The console roles map to the privileges on Graph Analytics sessions described below.
+
+.Predefined roles and database privileges
+[options="header", cols="3,^,^,^,^,^"]
+|===
+| Privilege
+| Viewer
+| Member
+3+| Admin
+
+|
+|
+|
+| Free
+| Professional
+| Business Critical
+
+| Create sessions
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| List own sessions
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| List other users' sessions
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Delete own sessions
+| {check-mark} footnote:role-change[Only possible if the user has previously created the session while having higher privileges.]
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Delete other users' sessions
+|
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+
+| Use open sessions (own only)
+| {check-mark} footnote:role-change[]
+| {check-mark}
+| {check-mark}
+| {check-mark}
+| {check-mark}
+|===
+
 === Invite users
 
 * As an _Admin_, go to *Users* from within a project, and select *Invite users*.
