@@ -440,30 +440,19 @@ User management within the Aura console does not replace built-in roles or fine-
 The console roles map to the privileges on Graph Analytics sessions described below.
 
 .Predefined roles and database privileges
-[options="header", cols="3,^,^,^,^,^"]
+[options="header", cols="3,^,^,^"]
 |===
 | Privilege
 | Viewer
 | Member
-3+| Admin
-
-|
-|
-|
-| Free
-| Professional
-| Business Critical
+| Admin
 
 | Create sessions
 |
 | {check-mark}
 | {check-mark}
-| {check-mark}
-| {check-mark}
 
 | List own sessions
-| {check-mark}
-| {check-mark}
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -472,13 +461,9 @@ The console roles map to the privileges on Graph Analytics sessions described be
 | {check-mark}
 | {check-mark}
 | {check-mark}
-| {check-mark}
-| {check-mark}
 
 | Delete own sessions
 | {check-mark} footnote:role-change[Only possible if the user has previously created the session while having higher privileges.]
-| {check-mark}
-| {check-mark}
 | {check-mark}
 | {check-mark}
 
@@ -486,13 +471,9 @@ The console roles map to the privileges on Graph Analytics sessions described be
 |
 | {check-mark}
 | {check-mark}
-| {check-mark}
-| {check-mark}
 
 | Use open sessions (own only)
 | {check-mark} footnote:role-change[]
-| {check-mark}
-| {check-mark}
 | {check-mark}
 | {check-mark}
 |===
