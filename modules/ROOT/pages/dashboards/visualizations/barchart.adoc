@@ -55,9 +55,9 @@ Select your **Category** for the x-axis and one or multiple **Value**s for the y
 
 You can also select:
 
-* The **Bar arrangement** (grouped or stacked).
-* The **Orientation** (vertical or horizontal).
-* The **Scale** (linear or logarithmic).
+* The **Bar arrangement** (grouped or stacked)
+* The **Orientation** (vertical or horizontal)
+* The **Scale** (linear or logarithmic)
 
 And whether or not to show:
 
@@ -69,33 +69,3 @@ And whether or not to show:
 ====
 If you are configuring a stacked bar chart, use the entries in the **Value** drop down to deselect and select your value axes to manipulate the order in which the corresponding bars are displayed.
 ====
-
-== Edit bar charts created with AI
-
-A bar chart created with AI immediately provides insight into your data.
-See the queries underneath the visuals (the Cypher that was generated) by clicking the more menu *[...]*, then *edit card*.
-
-If you click on *format query* you will access the screen where you can develop your own charts by writing Cypher. 
-You can also read the existing Cypher query to understand what the LLM generated.
-
-[.shadow]
-.Edit bar chart settings
-image::toptencustomers.png[]
-
-From this screen, customize your visualizations e.g. if you wanted to have a horizontal bar chart or a logarithmic scale, use the check boxes.
-There's a slider, so if you have lots of data you can hide and show different bars.
-And a legend, that you can choose to hide to make more space - essentially, you can customize your visualizations using these settings.
-
-If you want to tweak the query, write Cypher and select *preview*, or use the *AI sparkles* ✨ to access AI and write a natural language query, then press the arrow button.
-Then use *save* and your barchart is saved in the dashboard.
-
-== Change layout of cards
-
-You can resize cards, and drag them around the screen to change the layouts of your charts.
-
-* Use the *six dots* in the top left corner to drag and drop your cards around the screen.
-* Use the *arrow* at the bottom right corner to resize a card.
-
-[.shadow]
-.Customize a chart via the more menu, and resize or drag it around the dashboard
-image::barchartmoremenu.png[]
