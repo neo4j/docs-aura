@@ -1,0 +1,49 @@
+= Activity feed
+:description: This page describes the activity feed in the Neo4j Aura console.
+
+The activity feed allows organizations and especially administrators to track activities and events in the console.
+This feature provides a detailed audit log for all deployments that cannot be turned off.
+It helps teams detect unusual behavior in real time as well as aiding organizations in maintaining audit trails for regulatory compliance reasons.
+The audit logs follow a structured JSON format can be exported in both _.CSV_ and _JSON_ formats to allow integration with SIEM (Security Information and Event Management) solutions.
+
+
+The Activity feed tracks events on both Organization and Project level.
+
+== Activity feed levels
+
+The *Organization-level* activity feed is accessed via the top-level *Organization* menu.
+
+[.shadow]
+.Organization-level activity feed
+image::org-level-activity.jpg[width=600]
+
+This view is available to organization owners and admins and shows all activity across the entire organization.
+
+The *Project-level* activity feed is accessed via the *Project* menu from the sidebar.
+
+[.shadow]
+.Project-level activity feed
+image::project-level-activity.jpg[width=400]
+
+This view is available to project admins and shows logs specific to a project, which offers a more granular overview than the org-level.
+
+== Structure
+
+The exportable audit logs are structured in a _JSON_ format that is consistent with audit log standards and parsable programmatically and thus SIEM compatible.
+
+Each event record includes:
+
+* *Status*
+* *Timestamp* in UTC, both in Unix Epoch and ISO 8601-style
+* *Organization ID*
+* *Project ID*
+* *Project Name*
+* *Unique Event ID*
+* *Action ID* that maps to the type of action
+* *Action Name* that describes the type of action
+* *User ID*
+* *User Email*
+* *IP Address* where the action was initiated
+* *Payload*
+
+Note that not all items included in the _JSON_ file are surfaced in the UI.
