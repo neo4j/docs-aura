@@ -6,7 +6,10 @@ This feature provides a detailed record for all deployments that cannot be turne
 It helps teams detect unusual behavior in real time as well as aiding organizations in maintaining audit trails for regulatory compliance reasons.
 
 The activity feed follow a structured _JSON_ format can be exported in both _.CSV_ and _JSON_ formats to allow integration with SIEM (Security Information and Event Management) solutions.
+There are plans on adding an API interface in the future as well.
+
 The activity feed tracks events on both Organization and Project level.
+
 
 == Captured events
 
@@ -18,6 +21,7 @@ The events captured in the feed fall into the following categories:
 * *Configuration changes* - Inserts, updates, deletes.
 * *System events* - Database pause/resume, backup creation/restore.
 
+Note that the list of events that are captured will grow as more events are added in the future.
 
 == Structure
 
@@ -38,7 +42,14 @@ Each event record includes:
 * *IP Address* where the action was initiated
 * *Payload*
 
-Note that not all items included in the _JSON_ file are surfaced in the UI.
+Not all items included in the _JSON_ file are surfaced in the UI.
+
+[NOTE]
+====
+Always refer to the `action_id` for monitoring purposes as this is a static reference.
+When refering to the timestamp, always use the UTC timestamp in the ISO-8601 style.
+====
+
 
 == Access the activity feed
 
