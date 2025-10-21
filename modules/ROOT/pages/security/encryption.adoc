@@ -127,6 +127,12 @@ To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbo
 
 == Azure keys
 
+[IMPORTANT]
+====
+Aura supports Customer Managed Keys in the following regions:
+`Australia East`, `Southeast Asia`, `Canada Central`, `North Europe`, `Germany West Central`, `Korea Central`, `Sweden Central`, `UK South`, `West US`, `Central US`
+====
+
 === Create an Azure key vault
 
 Create a Key Vault in the Azure portal ensuring the region matches your Aura database instance region.
