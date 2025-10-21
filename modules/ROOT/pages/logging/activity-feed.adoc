@@ -3,7 +3,7 @@
 
 The activity feed allows organizations and especially administrators to track activities and events in the console.
 This feature provides a detailed record for all deployments that cannot be turned off.
-It helps teams detect unusual behavior in real time as well as aiding organizations in maintaining audit trails for regulatory compliance reasons.
+It helps teams detect unusual behavior as well as aiding organizations in maintaining audit trails for regulatory compliance reasons.
 
 The activity feed follow a structured _JSON_ format can be exported in both _.CSV_ and _JSON_ formats to allow integration with SIEM (Security Information and Event Management) solutions.
 There are plans on adding an API interface in the future as well.
@@ -16,7 +16,7 @@ The activity feed tracks events on both Organization and Project level.
 The events captured in the feed fall into the following categories:
 
 * *User account changes* - User invitations, removals, modifications.
-* *Privilige management* - Grants, revocations, role assignments.
+* *Privilege management* - Grants, revocations, role assignments.
 * *Instance actions* - Creation, alteration, deletion.
 * *Configuration changes* - Inserts, updates, deletes.
 * *System events* - Database pause/resume, backup creation/restore.
@@ -42,7 +42,7 @@ Each event record includes:
 * *IP Address* where the action was initiated
 * *Payload*
 
-Not all items included in the _JSON_ file are surfaced in the UI.
+Use the -> on an event to display all captured details.
 
 [NOTE]
 ====
@@ -73,7 +73,7 @@ This view is available to project admins and shows logs specific to a project, w
 
 You can filter the activity feed directly in the console and display the results.
 The results can be filtered by *date and time*, *status*, *user*, *action*, and *IP address*.
-Use the -> arrow to see the caputred details for the activity listed.
+Use the -> arrow to see the captured details for the activity listed.
 Additionally, you can control which columns that are displayed with the table symbol (all the way to the right in the table header).
 
 [.shadow]
@@ -86,7 +86,7 @@ Use the *Export* button to select which format and which filters (or none) you w
 
 == Action ID reference
 
-.Actiions in activity feed
+.Actions in activity feed
 [opts="header",cols="<,>,<,<"]
 |===
 a| `action_name`
