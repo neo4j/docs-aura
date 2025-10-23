@@ -122,14 +122,19 @@ You need to ensure that the marketplace organization is selected before you star
 ====
 
 label:AuraDB-Professional[]
-[[update-legacy]]
-=== Update your legacy subscriptions
+[[legacy-subscription]]
+=== Legacy pay-as-you-go subscriptions
 
 If you subscribed to Neo4j Aura on the Google Cloud marketplace prior to September 19, 2025, you are running on a legacy marketplace subscription.
 Legacy marketplace subscriptions only have Neo4j AuraDB Professional.
 AuraDB Business Critical, Aura Graph Analytics, and other features are unavailable until you subscribe to the new listing.
 
-To update your legacy subscription:
+You can still log into the link:https://console.neo4j.io[Neo4j Aura console] directly and connect to your GCP marketplace organization.
+Note that new users need to be added from the User Management settings within Aura console, and cannot be added directly with a punch-out from the legacy GCP marketplace listing.
+
+label:AuraDB-Professional[]
+[[update-legacy]]
+=== Update your legacy subscriptions
 
 . Subscribe to the new link:https://console.cloud.google.com/marketplace/product/neo4j-mp-public/neo4j-aura[Neo4j Aura marketplace listing on Google Cloud]
 +
