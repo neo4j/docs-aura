@@ -1,0 +1,67 @@
+= Create dashboards with AI (Aura only)
+
+label:Aura-DB[]
+
+Neo4j dashboards are a part of the Aura console experience and are stored automatically in the Neo4j cloud storage.
+
+== Prerequisites
+
+You need:
+
+. A Neo4j Aura account
+. A Neo4j Aura database instance
+
+See xref::/getting-started/create-account.adoc[Create an account] and xref::/getting-started/create-instance.adoc[Create an instance] for details.
+
+== Add a sample data set
+
+Import the Northwind dataset to your instance:
+
+* In Aura, select **Learning** from the navigation.
+* In the **Beginner** page, select the **Learn the basics** guide.
+* When prompted to **Connect to instance**, select the instance where you would like to import sample data.
+* In step 4 of 11 of the guide, import via **Get the Northwind dataset**.
+* Run the import from the **Import** page via **Run import**.
+
+The examples we use in the dashboard documentation refer to the Northwind dataset.
+
+[.shadow]
+.Northwind dataset 
+image::northwind-data-set.png[]
+
+== Create a dashboard
+
+Create a new dashboard:
+
+. In the **Dashboards** page, create a new dashboard, either with LLM assistance or from scratch.
+. If prompted to **Connect to instance**, select your instance.
+
+=== Creating a dashboard with LLM assistance
+
+See xref::/dashboards/ai-dashboards.adoc[] for details.
+
+[NOTE]
+====
+The number of dashboards you can create depends on your Aura tier:
+
+* AuraDB Free: three dashboards
+* AuraDB Professional: 25 dashboards
+* AuraDB Business Critical and Virtual Dedicated Cloud: unlimited dashboards
+====
+
+== Creating a dashboard
+
+If you have no dashboards, select **Create with AI**,  **Create from scratch** or **Import**.
+
+.Create your first dashboard
+image::dashboards/create-first-dashboard.png[]
+
+If you already have a dashboard and want to create another, use either **Import** or **Create** and then **Create from scratch**, or **Create with AI** at the top right.
+
+See xref::/dashboards/ai-dashboards.adoc[] for advice how to create a dashboard via prompt.
+
+**Create from scratch** takes you directly to a new and empty dashboard.
+
+See xref:/dashboards/import.adoc[] to learn more about importing dashboards.
+
+
