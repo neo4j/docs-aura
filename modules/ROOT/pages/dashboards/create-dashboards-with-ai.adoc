@@ -1,21 +1,29 @@
-= Create dashboards with AI (Aura only)
+= Creating a dashboard with AI
 
-label:Aura-DB[]
+For AI features to be accessible, an xref:user-management.adoc#_organization_level_roles[organization admin] must enable Generative AI assistance under xref:visual-tour/index.adoc#org-settings[organization settings].
 
-Neo4j dashboards are a part of the Aura console experience and are stored automatically in the Neo4j cloud storage.
+. In the **Create with AI** dialog, you can enter an optional natural language text prompt to let Neo4j create a customized dashboard.
+. Once you are happy with the prompt, **Create** the dashboard.
 
-== Prerequisites
+[NOTE]
+====
+When creating a dashboard with AI, the AI analyzes your link:https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[database schema], that is, the node labels and relationship types of your database.
+It cannot read the actual data in your database.
+====
 
-You need:
+The prompt is processed in the background. 
+The AI analyzes your database schema and tries to come up with useful queries about the data while taking your prompt into account.
+Then it creates a suitable visualization for each query.
 
-. A Neo4j Aura account
-. A Neo4j Aura database instance
+If you do not enter a prompt, Neo4j AI will still make use of your database schema and come up with a suitable dashboard.
 
-See xref::/getting-started/create-account.adoc[Create an account] and xref::/getting-started/create-instance.adoc[Create an instance] for details.
+Note that the following examples might differ when you reproduce them.
+This is due to the nature of how LLM processing works.
 
-== Add a sample data set
+== Sample dataset
 
-Import the Northwind dataset to your instance:
+The examples in the dashboard documentation refer to the Northwind dataset.
+To import the Northwind dataset to your instance:
 
 * In Aura, select **Learning** from the navigation.
 * In the **Beginner** page, select the **Learn the basics** guide.
@@ -23,10 +31,80 @@ Import the Northwind dataset to your instance:
 * In step 4 of 11 of the guide, import via **Get the Northwind dataset**.
 * Run the import from the **Import** page via **Run import**.
 
-The examples we use in the dashboard documentation refer to the Northwind dataset.
-
 [.shadow]
 .Northwind dataset 
-image::northwind-data-set.png[]
+image::northwind-data-set.png[width=600]
 
+== Creating a data-focused dashboard
+
+Copy the following prompt or create your own and use it to create a dashboard:
+
+.Prompt for a data-focused dashboard
+[source]
+----
+Create a dashboard on my retail database, giving me an overview over recent top customers, top selling products, currently available stock, a category overview and sales volume per quarter.
+----
+
+The more information you include, the better the result.
+This holds for information about the database itself as well as entities in the data model. 
+
+.Create a data-focused dashboard
+image::dashboards/ai-dashboard-prompt-data-focus.png[]
+
+Here is a sample result:
+
+.A data-focused dashboard
+image::dashboards/ai-dashboard-data-focus.png[]
+
+== Creating a visualization-focused dashboard
+
+Copy the following prompt or create your own and use it to create a dashboard:
+
+.Prompt for a visualization-focused dashboard
+[source]
+----
+Create a dashboard with only graph visualizations to analyze my graph.
+----
+
+.Create visualization-focused dashboard
+image::dashboards/ai-dashboard-prompt-visualization-focus.png[]
+
+Here is a sample result:
+
+.A visualization-focused dashboard
+image::dashboards/ai-dashboard-visualization-focus.png[]
+
+
+== Combining data- and visualization focus
+
+Copy the following prompt or create your own and use it to create a dashboard:
+
+.Prompt for a dashboard with both a data and a visualization focus
+[source]
+----
+Create a dashboard with 5 bar charts analyzing products for categories and 5 graph visualizations for these categories.
+----
+
+.Create a dashboard with both a data and a visualization focus
+image::dashboards/ai-dashboard-prompt-dual-focus.png[]
+
+Here is a sample result:
+
+.A dashboard with both a data and a visualization focus (1)
+image::dashboards/ai-dashboard-dual-focus-1.png[]
+
+.A dashboard with both a data and a visualization focus (2)
+image::dashboards/ai-dashboard-dual-focus-2.png[]
+
+== Quality of the data model
+
+AI provides a great starting point, but the quality of your underlying data model still matters. 
+A graph model that has been thought out well leads to a dashboard that yields more meaningful insights.
+AI infers nodes and relationships.
+You can leverage this by using the exact node and relationship identifiers from the schema in your prompts to guide AI towards more relevant charts.
+
+== AI as a starting point
+
+Remember, you can always edit an AI-generated dashboard.
+It is a valid workflow to use AI as a starting point, and then build on it by editing the output - and refining visualizations, colors, and layouts to match your needs.
 
