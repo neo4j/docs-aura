@@ -3,10 +3,9 @@
 :description: VPC boundaries enable you to operate within an isolated section of the service.
 :page-aliases: platform/security/secure-connections.adoc
 
-== VPC isolation
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Enterprise[]
+[role=label--aura-db-dedicated label--aura-ds-enterprise]
+== VPC isolation
 
 AuraDB Virtual Dedicated Cloud and AuraDS Enterprise run in a dedicated AWS cloud account, Azure subscription, or GCP project to achieve complete isolation for your deployment.
 Additional Virtual Private Cloud (VPC) boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
@@ -62,10 +61,9 @@ You can set up a second private link connection to applications that are hosted 
 * When activated, a Private Connection label, shield icon, and dedicated Private URI will appear on any instance tile using a private endpoint in the Aura console.
 * Connections using private endpoints are one-way. Aura VPCs can’t initiate connections back to your VPCs.
 
-=== AWS private endpoints
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Enterprise[]
+[role=label--aura-db-dedicated label--aura-ds-enterprise]
+=== AWS private endpoints
 
 Refer to link:https://aws.amazon.com/privatelink[AWS PrivateLink] documentation for IAM requirements.
 
@@ -97,10 +95,9 @@ It is different from the *Connection URI* you used before.
 .Accessing tools over a VPN
 image::privatelink_03_browser_bloom_over_vpn.png["Accessing tools over a VPN"]
 
-=== GCP private endpoints
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Enterprise[]
+[role=label--aura-db-dedicated label--aura-ds-enterprise]
+=== GCP private endpoints
 
 Refer to https://cloud.google.com/vpc/docs/private-service-connect[GCP Private Service Connect] documentation for required permissions.
 
@@ -127,10 +124,9 @@ It is different from the *Connection URI* you used before.
 .Accessing tools over a VPN
 image::privateserviceconnect_03_browser_bloom_over_vpn.png["Accessing tools over a VPN"]
 
-=== Azure private endpoints
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Enterprise[]
+[role=label--aura-db-dedicated label--aura-ds-enterprise]
+=== Azure private endpoints
 
 Refer to link:https://azure.microsoft.com/en-us/products/private-link/#overview[Azure Private Link] documentation to create an endpoint in your Virtual Network (VNet) that connects to Aura.
 
@@ -195,9 +191,9 @@ image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing tools over a V
 
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
 
-== Private links
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
+[role=label--aura-db-dedicated]
+== Private links
 
 This private link section is cloud-agnostic and therefore applicable to all clouds.
 A private link provides secure network connectivity between your application and AuraDB without exposing traffic to the public internet.
