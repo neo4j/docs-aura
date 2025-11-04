@@ -16,10 +16,9 @@ To rename an instance:
 . Enter a new name for the instance.
 . Select *Rename*.
 
-== Reset an instance
 
-label:AuraDB-Free[]
-label:AuraDB-Professional[]
+[role=label--aura-db-professional label--aura-db-free]
+== Reset an instance
 
 You can clear all data in an instance using the *Reset to blank* action.
 
@@ -59,11 +58,11 @@ To upgrade a Business Critical instance:
 For more information on AuraDB instance creation settings, see xref:auradb/getting-started/create-database.adoc[].
 . Tick the *I understand* checkbox and select *Upgrade Instance*.
 
+
+[role=label--aura-db-professional label--aura-db-dedicated label--aura-db-business-critical]
 == Resize an instance
 
-label:AuraDB-Professional[]
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDB-Business-Critical[]
+
 
 You can change the size of an existing instance using the *Resize* action.
 
@@ -78,11 +77,9 @@ An instance remains available during the resize operation.
 
 Downward resizing to any size is supported as long as the selected instance size has enough storage capacity for the data.
 
-== Pause an instance
 
-label:AuraDB-Professional[]
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDB-Business-Critical[]
+[role=label--aura-db-professional label--aura-db-dedicated label--aura-db-business-critical]
+== Pause an instance
 
 [NOTE]
 ====

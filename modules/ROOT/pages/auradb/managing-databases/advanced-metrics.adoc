@@ -2,10 +2,8 @@
 = Advanced metrics
 :description: This section describes advanced metrics.
 :page-aliases: all-metrics.adoc
+:page-role: aura-db-professional aura-db-business-critical aura-db-dedicated
 
-label:AuraDB-Professional[]
-label:AuraDB-Business-Critical[]
-label:AuraDB-Virtual-Dedicated-Cloud[]
 
 Advanced metrics is a feature that enables access to a broad range of different instance and database metrics.
 
@@ -39,11 +37,9 @@ When viewing metrics, you can select from the following time intervals:
 Memory and storage charts can be toggled between absolute and relative values using the *%* toggle.
 ====
 
-=== Toggle data series
 
-label:AuraDB-Professional[]
-label:AuraDB-Business-Critical[]
-label:AuraDB-Virtual-Dedicated-Cloud[]
+[role=label--aura-db-professional label--aura-db-business-critical label--aura-db-dedicated]
+=== Toggle data series
 
 To hide or show individual data series, select the corresponding data series in the legend below the chart.
 
@@ -68,10 +64,9 @@ For some metrics it also provides hints about possible actions to take if that m
 
 * *Reset zoom* - If the zoom level has been altered by selecting and dragging across a chart, *Reset zoom* resets the zoom back to the selected interval.
 
-== Aggregations
 
-label:AuraDB-Business-Critical[]
-label:AuraDB-Virtual-Dedicated-Cloud[]
+[role=label--aura-db-business-critical label--aura-db-dedicated]
+== Aggregations
 
 Most metrics will have several values for a given timestamp because of the following reasons:
 
@@ -88,11 +83,9 @@ The possible aggregations are:
 * *Average* - The average value of the metric across all cluster members.
 * *Sum* - The sum of the metric across all cluster members.
 
-== Detail view
 
-label:AuraDB-Professional[]
-label:AuraDB-Business-Critical[]
-label:AuraDB-Virtual-Dedicated-Cloud[]
+[role=label--aura-db-professional label--aura-db-business-critical label--aura-db-dedicated]
+== Detail view
 
 An Aura instance can run on multiple servers to achieve availability and workload scalability. 
 These servers are deployed across different Cloud Provider availability zones in the user-selected region. 

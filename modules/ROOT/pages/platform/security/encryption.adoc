@@ -17,10 +17,9 @@ This ensures all your data stored in any one of these cloud providers uses 256-b
 In addition to Aura’s default encryption for data at rest, Customer Managed Keys enable security-conscious enterprises to manage encryption keys through their Cloud Service Provider's Key Management Services (KMS) on Aura, granting control over data protection and access management, including the ability to revoke access from Neo4j.
 This allows adherence to strict security policies alongside Aura's default enterprise-grade security measures.
 
-== Customer Managed Keys
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Enterprise[]
+[role=label--aura-db-dedicated label--AuraDS-Enterprise]
+== Customer Managed Keys
 
 A Customer Managed Key (CMK) gives you more control over key operations than the standard Neo4j encryption.
 These are created and managed using a supported cloud key management service (KMS).
