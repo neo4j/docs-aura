@@ -74,10 +74,9 @@ The public IP address of your instance depends on both the cloud provider region
 
 * AuraDB Professional and AuraDB Business Critical use a collection of public IP addresses which depends on the region where the instance is deployed and the cloud service provider (AWS, GCP, or Azure).
 
+
+[role=label--aura-db-Free]
 === AuraDB Free (GCP)
-
-label:Aura-DB-Free[]
-
 
 [options:"header", cols="1,1,1"]
 |===
@@ -107,12 +106,9 @@ label:Aura-DB-Free[]
 |80,443,7474,7687
 |===
 
+
+[role=label--aura-db-professional label--aura-ds-enterprise label--aura-db-business-critical]
 === GCP
-
-label:Aura-DB-Professional[]
-label:AuraDS-Enterprise[]
-label:AuraDB-Business-Critical[]
-
 
 [NOTE]
 ====
@@ -165,7 +161,8 @@ For AuraDS Enterprise also add port 8491.
 |80,443,7474,7687
 
 |`asia-east2`
-|34.96.218.41
+|34.96.218.41 +
+35.220.238.105
 |80,443,7474,7687
 
 |`asia-east1`
@@ -186,12 +183,10 @@ For AuraDS Enterprise also add port 8491.
 |80,443,7474,7687
 |===
 
+
+
+[role=label--aura-db-professional label--aura-ds-enterprise label--aura-db-business-critical]
 === AWS
-
-label:Aura-DB-Professional[]
-label:AuraDS-Enterprise[]
-label:AuraDB-Business-Critical[]
-
 
 [NOTE]
 ====
@@ -276,12 +271,9 @@ For AuraDS Enterprise also add port 8491.
 |80,443,7474,7687
 |===
 
+
+[role=label--aura-db-professional label--aura-ds-enterprise label--aura-db-business-critical]
 === Azure
-
-label:Aura-DB-Professional[]
-label:AuraDS-Enterprise[]
-label:AuraDB-Business-Critical[]
-
 
 [NOTE]
 ====

@@ -1,10 +1,8 @@
 [[aura-query-logs]]
 = Log forwarding
 :page-aliases: platform/logging/log-forwarding.adoc
+:page-role: aura-db-business-critical aura-db-dedicated aura-ds-enterprise
 
-label:AuraDB-Business-Critical[]
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Enterprise[]
 
 With log forwarding, you can stream logs directly to a cloud project owned by your organization, in real time. 
 The following types of logs are available:
@@ -48,9 +46,9 @@ Exhaustive instructions are provided in the wizard which appears by following th
 
 . Navigate to the *Log forwarding* page as described above.
 . Use *Configure log forwarding* and select the scope for log forwarding.
-* label:AuraDB-Business-Critical[] A specific instance will have its logs forwarded.
-* label:AuraDB-Virtual-Dedicated-Cloud[] All instances in the selected region will have their logs forwarded.
-* label:AuraDS-Enterprise[] All instances in the selected region will have their logs forwarded.
+* label:AuraDB-business-critical[] A specific instance will have its logs forwarded.
+* label:AuraDB-virtual-dedicated-cloud[] All instances in the selected region will have their logs forwarded.
+* label:AuraDS-enterprise[] All instances in the selected region will have their logs forwarded.
 . Select the type of logs to forward: *Security logs* or *Query logs*.
 * For query logs, it is possible to apply certain filters to decrease the volume of forwarded data.
 . Follow the instructions specific to your cloud provider.
