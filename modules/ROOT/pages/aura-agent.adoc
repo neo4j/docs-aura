@@ -42,8 +42,9 @@ The tools are described in detail in the following section.
 Aura Agent has three tools available:
 
 * *Cypher Template*
-* *Text2Cypher*
 * *Similarity Search*
+* *Text2Cypher*
+
 
 Consider your dataset and its underlying datamodel when you configure the tools to ensure your agent has access to the right ways of retrieving *only* the right information.
 
@@ -70,13 +71,48 @@ image::cypher-template.jpg[width=400]
 
 For best performance, make sure that the query:
 
-* returns only relevant information
-* returns only select node and relationship properties
-* does not return embeddings or graph elements like node/relationship/paths
-* does not return duplicates
+* Returns only relevant information
+* Returns only select node and relationship properties
+* Does not return embeddings or graph elements like node/relationship/paths
+* Does not return duplicates
 
 Additionally, it is advisable to limit the results to 10-50 rows to keep the results relevant.
 Also, always test the Cypher statement to make sure they work as expected.
+
+=== Similarity Search
+
+=== Text2Cypher
+
+This tool transforms natural language questions into Cypher queries and allows the agent to retrieve data dynamically.
+In essence, the tool takes the question, adds the database schema and the Text2Cypher system prompt to it, and presents these to a fine-tuned model.
+The model then generates a Cypher query for the tool to execute.
+
+The Text2Cypher tool is best for:
+
+* Questions that can't be predicted in advance
+* Structural queries like aggregations
+
+[.shadow]
+.Text2Cypher tool
+image::text2cypher.jpg[width=400]
+
+You need to give the tool a name and a description.
+To improve reliability of its answers, it is important that both name and description are as clear as possible to constrain the tool's usage.
+
+The instructions should include:
+
+* When to use the Text2Cypher tool (and when not)
+* Specific aspects about your database and domain
+* Relevant entities and especially information about searchable categorical properties, e.g. shape of identifiers.
+* Which attributes are suitable for aggregation
+
+As a best practice, make sure the description explicitly instructs the agent to use this tool only when no other option applies.
+
+[NOTE]
+====
+The Text2Cypher tool relies on an LLM and this can potentially result in queries that contain inconsistencies or logical errors.
+Therefore, use caution when deploying Text2Cypher in production.
+====
 
 
 
