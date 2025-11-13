@@ -11,13 +11,13 @@ These IP addresses are the same regardless of the region a database is deployed.
 
 * *Instance addresses:* Your Aura instances with specific cloud providers and regions.
 
-== Common global addresses 
+== Common global addresses
 
 These are applicable to all Aura tiers.
 
 [cols="1,1,1"]
 |===
-|Access point name |URL |IPv4 Address 
+|Access point name |URL |IPv4 Address
 
 |Aura Console
 |console.neo4j.io
@@ -25,7 +25,7 @@ These are applicable to all Aura tiers.
 (for future use 34.110.249.124)
 
 |Aura Workspace
-|workspace-preview.neo4j.io	
+|workspace-preview.neo4j.io
 |34.160.183.136
 
 |Aura API
@@ -33,20 +33,20 @@ These are applicable to all Aura tiers.
 |34.36.216.162
 
 |Aura Support portal
-|support.neo4j.com	
+|support.neo4j.com
 |link:https://help.salesforce.com/s/articleView?id=000384438&type=1[See full list]
 
-|Aura Bloom	
-|bloom.neo4j.io	
+|Aura Bloom
+|bloom.neo4j.io
 |34.110.209.142 +
 35.244.155.41
 
 |Aura Browser
-|browser.neo4j.io	
+|browser.neo4j.io
 |34.102.158.61
 
 |Aura Data Importer
-|data-importer.neo4j.io	
+|data-importer.neo4j.io
 |107.178.242.111
 
 |Aura Ops Manager
@@ -58,14 +58,14 @@ These are applicable to all Aura tiers.
 |34.140.105.178
 
 |Aura Control Plane +
-(egress)	
+(egress)
 |Used when running `neo4j-admin database upload` (import)
 |34.22.239.54 +
 35.195.239.88 +
 34.77.31.248 +
 35.205.73.135
 |===
- 
+
 == Instance addresses
 
 The public IP address of your instance depends on both the cloud provider region and the Aura tier.
@@ -74,10 +74,9 @@ The public IP address of your instance depends on both the cloud provider region
 
 * AuraDB Professional and AuraDB Business Critical use a collection of public IP addresses which depends on the region where the instance is deployed and the cloud service provider (AWS, GCP, or Azure).
 
+
+[role=label--aura-db-Free]
 === AuraDB Free (GCP)
-
-label:Aura-DB-Free[]
-
 
 [options:"header", cols="1,1,1"]
 |===
@@ -107,12 +106,9 @@ label:Aura-DB-Free[]
 |80,443,7474,7687
 |===
 
-=== GCP 
 
-label:Aura-DB-Professional[]
-label:AuraDS-Enterprise[]
-label:AuraDB-Business-Critical[]
-
+[role=label--aura-db-professional label--aura-ds-enterprise label--aura-db-business-critical]
+=== GCP
 
 [NOTE]
 ====
@@ -160,24 +156,26 @@ For AuraDS Enterprise also add port 8491.
 34.82.120.138
 |80,443,7474,7687
 
-|`northamerica-northeast1`	
+|`northamerica-northeast1`
 |35.203.43.56
 |80,443,7474,7687
 
 |`asia-east2`
-|34.96.218.41
+|34.96.218.41 +
+35.220.238.105
 |80,443,7474,7687
 
 |`asia-east1`
-|35.201.159.192	
+|35.201.159.192
 |80,443,7474,7687
 
 |`asia-southeast1`
-|34.142.144.246	
+|34.142.144.246
 |80,443,7474,7687
 
-|`asia-south1`	
-|35.200.158.141	
+|`asia-south1`
+|35.200.158.141 +
+34.47.152.14
 |80,443,7474,7687
 
 |`australia-southeast1`
@@ -185,12 +183,10 @@ For AuraDS Enterprise also add port 8491.
 |80,443,7474,7687
 |===
 
-=== AWS 
 
-label:Aura-DB-Professional[]
-label:AuraDS-Enterprise[]
-label:AuraDB-Business-Critical[]
 
+[role=label--aura-db-professional label--aura-ds-enterprise label--aura-db-business-critical]
+=== AWS
 
 [NOTE]
 ====
@@ -219,12 +215,12 @@ For AuraDS Enterprise also add port 8491.
 |`eu-central-1`
 |3.72.152.128 +
 3.73.246.103 +
-52.28.151.226 
+52.28.151.226
 |80,443,7474,7687
 
 |`ap-south-1`
 |13.203.9.107 +
-13.202.38.79 + 
+13.202.38.79 +
 13.200.133.251
 |80,443,7474,7687
 
@@ -241,7 +237,7 @@ For AuraDS Enterprise also add port 8491.
 
 |`us-east-1`
 |34.198.164.10 +
-54.85.127.23 + 
+54.85.127.23 +
 54.205.24.25 +
 34.235.84.108 +
 54.205.140.194 +
@@ -262,7 +258,7 @@ For AuraDS Enterprise also add port 8491.
 34.238.12.219 +
 |80,443,7474,7687
 
-|`sa-east-1`	
+|`sa-east-1`
 |54.232.153.180 +
 18.230.132.57 +
 54.207.37.117 +
@@ -275,12 +271,9 @@ For AuraDS Enterprise also add port 8491.
 |80,443,7474,7687
 |===
 
-=== Azure 
 
-label:Aura-DB-Professional[]
-label:AuraDS-Enterprise[]
-label:AuraDB-Business-Critical[]
-
+[role=label--aura-db-professional label--aura-ds-enterprise label--aura-db-business-critical]
+=== Azure
 
 [NOTE]
 ====
@@ -291,21 +284,21 @@ For AuraDS Enterprise also add port 8491.
 |===
 |Region |IPv4 Address |Ports (TCP) footnote:[Note that port 80 and 7474 are optional. These are only used to redirect to HTTPS and are *not* used for data communication. They are are redirected to 443 for convenience but communication remains encrypted. Port 7687 *is not* redirected and relies on encryption via TLS (through `neo4j+s`).]
 
-|`francecentral`	
+|`francecentral`
 |51.103.49.175 +
 4.233.58.237
 |80,443,7474,7687
 
-|`eastus`	
+|`eastus`
 |20.124.3.249 +
-20.163.143.142	
+20.163.143.142
 |80,443,7474,7687
-	
-|`westus3`	
+
+|`westus3`
 |20.168.56.165
 |80,443,7474,7687
-	
-|`brazilsouth`	
+
+|`brazilsouth`
 |20.226.24.114
 |80,443,7474,7687
 
@@ -318,7 +311,11 @@ For AuraDS Enterprise also add port 8491.
 |80,443,7474,7687
 
 |`uksouth`
-|52.151.91.171	
+|52.151.91.171
+|80,443,7474,7687
+
+|`westeurope`
+|128.251.205.62
 |80,443,7474,7687
 
 |===

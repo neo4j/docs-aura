@@ -1,5 +1,7 @@
 = Creating a dashboard with AI
 
+For AI features to be accessible, an xref:user-management.adoc#_organization_level_roles[organization admin] must enable Generative AI assistance under xref:visual-tour/index.adoc#org-settings[organization settings].
+
 . In the **Create with AI** dialog, you can enter an optional natural language text prompt to let Neo4j create a customized dashboard.
 . Once you are happy with the prompt, **Create** the dashboard.
 
@@ -8,6 +10,10 @@
 When creating a dashboard with AI, the AI analyzes your link:https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[database schema], that is, the node labels and relationship types of your database.
 It cannot read the actual data in your database.
 ====
+
+The prompt is processed in the background. 
+The AI analyzes your database schema and tries to come up with useful queries about the data while taking your prompt into account.
+Then it creates a suitable visualization for each query.
 
 If you do not enter a prompt, Neo4j AI will still make use of your database schema and come up with a suitable dashboard.
 
@@ -77,4 +83,15 @@ image::dashboards/ai-dashboard-dual-focus-1.png[]
 .A dashboard with both a data and a visualization focus (2)
 image::dashboards/ai-dashboard-dual-focus-2.png[]
 
+== Quality of the data model
+
+AI provides a great starting point, but the quality of your underlying data model still matters. 
+A graph model that has been thought out well leads to a dashboard that yields more meaningful insights.
+AI infers nodes and relationships.
+You can leverage this by using the exact node and relationship identifiers from the schema in your prompts to guide AI towards more relevant charts.
+
+== AI as a starting point
+
+Remember, you can always edit an AI-generated dashboard.
+It is a valid workflow to use AI as a starting point, and then build on it by editing the output - and refining visualizations, colors, and layouts to match your needs.
 
