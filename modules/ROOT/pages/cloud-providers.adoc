@@ -22,7 +22,7 @@ Credits from cloud marketplace providers cannot be used for payment towards Neo4
 ====
 
 
-[role=label--aura-db-professional]
+[role=label--aura-db-professional label--aura-db-business-critical]
 == AWS Marketplace
 
 === Pay-as-you-go
@@ -51,6 +51,37 @@ Once logged in to the Aura Console, the AWS Marketplace order is confirmed, and 
 After signing up to Neo4j Aura, two organizations are provisioned for you: a marketplace organization and a personal organization.
 You need to ensure that the marketplace organization is selected before you start to deploy Neo4j.
 ====
+
+[[legacy-subscription-aws]]
+[role=label--aura-db-professional]
+=== Legacy pay-as-you-go subscriptions
+
+If you subscribed to Neo4j Aura on the AWS marketplace prior to November 17th, 2025, you are running on a legacy marketplace subscription.
+Legacy marketplace subscriptions only have Neo4j AuraDB Professional.
+AuraDB Business Critical, Aura Graph Analytics, and other features are unavailable until you subscribe to the new listing.
+
+To update your legacy marketplace subscription:
+
+. Subscribe to the new link:https://aws.amazon.com/marketplace/pp/prodview-xd42uzj2v7dae[Neo4j Aura marketplace listing on AWS]
+
+
+. Set up your Neo4j Aura account
++
+After creating the marketplace subscription, select *Sign up with Neo4j* and you will be directed to the Aura Console.
+From here you can either log in with an existing Neo4j Aura account or create a new one.
++
+Once logged in to the Aura Console, the AWS Marketplace order will be confirmed and you can begin to consume Neo4j Aura.
++
+[NOTE]
+====
+After signing up to Neo4j Aura, two organizations are provisioned for you: a marketplace organization and a personal organization.
+You need to ensure that the marketplace organization is selected before you start to deploy Neo4j.
+====
+
+. Move legacy instances
++
+Any instances still running in your legacy Neo4j marketplace organization should be moved to your new Neo4j marketplace organization that was newly created as part of Step 2. Instructions on how to move instances to a new organization are available xref:managing-instances/backup-restore-export.adoc[here].
+
 
 === Prepaid commitment
 
@@ -85,34 +116,6 @@ After signing up to Neo4j Aura, two organizations are provisioned for you: a mar
 You need to ensure that the marketplace organization is selected before you start to deploy Neo4j.
 ====
 
-[[legacy-subscription-aws]]
-[role=label--aura-db-professional]
-=== Legacy pay-as-you-go subscriptions
-
-If you subscribed to Neo4j Aura on the AWS marketplace prior to November 13th, 2025, you are running on a legacy marketplace subscription.
-Legacy marketplace subscriptions only have Neo4j AuraDB Professional.
-AuraDB Business Critical, Aura Graph Analytics, and other features are unavailable until you subscribe to the new listing.
-
-To update your legacy marketplace subscription:
-
-. Subscribe to the new link:https://aws.amazon.com/marketplace/pp/prodview-xd42uzj2v7dae[Neo4j Aura marketplace listing on AWS]
-
-. Set up your Neo4j Aura account
-+
-After creating the marketplace subscription, select *Sign up with Neo4j* and you will be directed to the Aura Console.
-From here you can either log in with an existing Neo4j Aura account or create a new one.
-+
-Once logged in to the Aura Console, the AWS Marketplace order will be confirmed and you can begin to consume Neo4j Aura.
-+
-[NOTE]
-====
-After signing up to Neo4j Aura, two organizations are provisioned for you: a marketplace organization and a personal organization.
-You need to ensure that the marketplace organization is selected before you start to deploy Neo4j.
-====
-
-. Move legacy instances
-+
-Any instances still running in your legacy Neo4j marketplace organization should be moved to your new Neo4j marketplace organization that was newly created as part of Step 2. Instructions on how to move instances to a new organization are available xref:managing-instances/backup-restore-export.adoc[here].
 
 === Prepaid commitment
 
