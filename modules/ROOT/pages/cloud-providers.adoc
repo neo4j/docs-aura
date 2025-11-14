@@ -27,15 +27,15 @@ Credits from cloud marketplace providers cannot be used for payment towards Neo4
 
 === Pay-as-you-go
 
-You can subscribe to Neo4j Aura via the link:https://aws.amazon.com/marketplace/pp/prodview-2t3o7mnw5ypee?trk=176b570f-20dd-4b84-aa7e-cae53990fe91&sc_channel=el&source=neo4j[AWS marketplace].
+You can subscribe to Neo4j Aura via the link:https://aws.amazon.com/marketplace/pp/prodview-xd42uzj2v7dae[AWS marketplace].
 Currently this marketplace subscription only provides access to AuraDB Professional.
 Support for additional Neo4j products such as AuraDB Business Critical, Aura Graph Analytics, and more will be added.
 
 . *Subscribe to Neo4j Aura*
 +
-To get started, visit link:https://aws.amazon.com/marketplace/pp/prodview-2t3o7mnw5ypee?trk=176b570f-20dd-4b84-aa7e-cae53990fe91&sc_channel=el&source=neo4j[Neo4j Aura on the AWS Marketplace] and select *View purchase options*.
+To get started, visit link:https://aws.amazon.com/marketplace/pp/prodview-xd42uzj2v7dae[Neo4j Aura on the AWS Marketplace] and select *View purchase options*.
 +
-From here, ensure auto-renewal is set to automatic to avoid service disruptions.
+From here, ensure *auto-renewal* is set to automatic to avoid service disruptions.
 Then select *Create contract* and *Pay now* to continue.
 Note that while you are shown a $0 yearly contract option, pricing is *pay-as-you-go* based on usage and not a fixed subscription service.
 
@@ -85,6 +85,35 @@ After signing up to Neo4j Aura, two organizations are provisioned for you: a mar
 You need to ensure that the marketplace organization is selected before you start to deploy Neo4j.
 ====
 
+[[legacy-subscription-aws]]
+[role=label--aura-db-professional]
+=== Legacy pay-as-you-go subscriptions
+
+If you subscribed to Neo4j Aura on the AWS marketplace prior to November 13th, 2025, you are running on a legacy marketplace subscription.
+Legacy marketplace subscriptions only have Neo4j AuraDB Professional.
+AuraDB Business Critical, Aura Graph Analytics, and other features are unavailable until you subscribe to the new listing.
+
+To update your legacy marketplace subscription:
+
+. Subscribe to the new link:https://aws.amazon.com/marketplace/pp/prodview-xd42uzj2v7dae[Neo4j Aura marketplace listing on AWS]
+
+. Set up your Neo4j Aura account
++
+After creating the marketplace subscription, select *Sign up with Neo4j* and you will be directed to the Aura Console.
+From here you can either log in with an existing Neo4j Aura account or create a new one.
++
+Once logged in to the Aura Console, the AWS Marketplace order will be confirmed and you can begin to consume Neo4j Aura.
++
+[NOTE]
+====
+After signing up to Neo4j Aura, two organizations are provisioned for you: a marketplace organization and a personal organization.
+You need to ensure that the marketplace organization is selected before you start to deploy Neo4j.
+====
+
+. Move legacy instances
++
+Any instances still running in your legacy Neo4j marketplace organization should be moved to your new Neo4j marketplace organization that was newly created as part of Step 2. Instructions on how to move instances to a new organization are available xref:managing-instances/backup-restore-export.adoc[here].
+
 === Prepaid commitment
 
 mailto:marketplace-sales@neo4j.com[Contact us] to discuss private offers.
@@ -115,7 +144,7 @@ After signing up to Neo4j Aura, two organizations are provisioned for you: a mar
 You need to ensure that the marketplace organization is selected before you start to deploy Neo4j.
 ====
 
-[[legacy-subscription]]
+[[legacy-subscription-gcp]]
 [role=label--aura-db-professional]
 === Legacy pay-as-you-go subscriptions
 
@@ -149,8 +178,6 @@ You need to ensure that the marketplace organization is selected before you star
 ====
 
 . Move legacy instances
-+
-Move instances from your legacy Neo4j marketplace organization into your new Neo4j marketplace organization.
 +
 Any instances still running in your legacy Neo4j marketplace organization should be moved to your new Neo4j marketplace organization that was newly created as part of Step 2. Instructions on how to move instances to a new organization are available xref:managing-instances/backup-restore-export.adoc[here].
 
