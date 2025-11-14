@@ -82,10 +82,16 @@ Also, always test the Cypher statement to make sure they work as expected.
 === Similarity Search
 
 This tool uses vector similarity to do a semantic search and is a great complement to the Cypher template tool.
-The similarity search finds the semantically similar entities and the Cypher Template can find connections between these, which provides relevant context for the agent.
+The similarity search finds the semantically similar entities and the Cypher template can find connections between these, which provides relevant context for the agent.
 
-The Similarity Search requires text embeddings and the presence of a vector index in your database.
+This tool is best for:
 
+* Document search
+* Content discovery
+* Finding similar clauses or terms
+* Semantic matching
+
+Note that the similarity search requires *text embeddings* and the presence of a *vector index* in your database.
 Aura Agent currently supports embeddings generated with the following text embedding providers and models:
 
 * OpenAI: `text-embedding-3-small`, `text-embedding-3-large`, and `text-embedding-ada-002`.
@@ -96,7 +102,7 @@ For more information about vectors and embeddings, see the link:{neo4j-docs-base
 You need to provide
 
 [.shadow]
-.Similarity Search tool
+.Similarity search tool
 image::similarity-search.jpg[width=400]
 
 
