@@ -1,0 +1,79 @@
+= Billing dimensions
+:description: An overview of the usage based billing model, how the metrics are tracked and implemented based on billing dimensions, and a description of the billing dimensions with examples of calculations for different uses.
+
+[NOTE]
+====
+This section is currently a work in progress.
+It’s an initial idea of what might go here - content and structure may change as feedback comes in.
+====
+
+Aura has a *usage-based billing model* (also known as consumption-based billing or metered billing).
+Customers pay for the actual amount of a product or service consumed, rather than a fixed fee. 
+
+=== AuraDB
+
+For AuraDB, we track *compute* and *storage*.
+
+. *Compute*: measured in GB-hours, based on RAM capacity. 
+For example, if your AuraDB instance has 4GB of RAM, and runs for 1 hour, you’ll be charged for 4 GB-hours of compute usage.
+
+* Compute is billed both in a running state and a paused state.
+
+* Compute is billed for the primary database and for any secondary databases. 
+For secondary databases, the total running capacity is the number of secondaries multiplied by the primary DB capacity.
+
+. *Storage*: each AuraDB instance has a free storage quota of twice the RAM capacity. 
+You can purchase additional storage beyond the quota, and it will be billed the same as compute in GB-hours.
+
+* Each secondary DB benefits from the same free storage quota as the primary DB.
+
+=== Example: 
+
+Example: 
+
+You have set up a 4GB AuraDB instance, with 2 secondaries, and a primary DB storage of 32GB.
+Every hour the primary DB and its secondaries are running, you will be charged for:
+
+4 GB-hours (primary DB)
+2 (secondaries) x 4 GB-hours = 8 GB-hours (secondary DB)
+3 (1 primary + 2 secondaries) x (32GB - 2 x 4GB) = 72 GB-hours (storage)
+
+== AuraDS
+
+For AuraDS, we track *compute*:
+
+* Measured in GB-hours, based on RAM capacity.
+* Billed both in a running state and in a paused state
+* AuraDS includes a free quota of twice the RAM capacity for storage, without the possibility to purchase more storage
+* Secondaries are not available for AuraDS
+
+== Aura Graph Analytics
+
+Aura Graph Analytics does not require a persistent instance run at all times. 
+
+Users can start Graph Analytics sessions execute graph algorithms in-memory. 
+They specify the allocated memory size when the session is launched. 
+
+The billing dimension for Aura Graph Analytics sessions is compute. 
+We calculate the duration of a session in minutes and multiply by the RAM capacity used by the session.
+
+Example: You launched a session with a size of 4GB of RAM, and it ran for 25 minutes. 
+We bill 25 minutes x 4GB = 100 GB-minutes of usage.
+
+Note: The minimum billed duration of a session is 10 minutes. 
+So in our example, if the session ran for 8 minutes and had a 4GB size, we would bill 10 minutes x 4GB = 40 GB-minutes.
+
+== GraphQL API
+
+Data APIs like GraphQL run on top of an existing AuraDB instance but consume additional memory. 
+We bill for compute, measured in MB-hours, based on the RAM capacity of the GraphQL additional memory. 
+
+Example: if you set up a GraphQL API with 256MB of RAM, every hour the database is running will trigger a usage record of 256 MB-hours.
+
+== Query log forwarding
+
+With log forwarding, you can stream logs directly to a cloud project owned by your organization. 
+For query log forwarding, we bill for *data egress*. 
+Egress is measured in GB, and is added to the customer usage periodically.
+
+

@@ -1,6 +1,22 @@
 = Parameters and filters
 :description: Use parameters in your dashboards to further customize queries or use them in filters for node and relationship properties.
 
+Use parameters in your dashboards to further customize queries or use them in filters for node and relationship properties.
+
+Use parameters to make views more interactive.
+
+Parameters are useful when you want to add interactivity and flexibility to a report, or to experiment with what-if scenarios.
+Suppose you are unsure which fields to include in your view or which layout would work best for your viewers. 
+You can incorporate parameters into your view to let viewers choose how they want to look at the data.
+
+When you use parameters, you need to tie them to the view in some way:
+
+You can use parameters in calculations and calculated fields that are used in the view.
+You can display the parameter control in the view for users to select parameters.
+You can reference parameters in parameter actions.
+Before you begin, decide which fields you want to make interactive. 
+For example, you could allow users to view the categories within a dimension by color, or to view sales data over a period of time that they choose, and so on. 
+The example described here sets up a table for which users can select the dimensions to display in the columns and rows.
 
 == Parameters
 
@@ -27,13 +43,6 @@ Each parameter has an icon next to it hinting at its data type:
 . From the **Parameters** drawer, use the **Add** button.
 . In the dialog, enter a parameter name, select a data type and optionally an initial value for the parameter, then **Save**.
 
-
-=== Editing a parameter
-
-. From the **Parameters** drawer, hover over the parameter you wish to edit.
-. In the dialog, edit the parameter name, data type and/or initial value, then **Save**.
-
-
 === Using a parameter in a query
 
 To use a parameter in a query, prefix the parameter name with `$`.
@@ -51,6 +60,10 @@ RETURN p.productName as product, p.unitsInStock AS units
 .Using a parameter in a query to display products with a certain number of units in stock
 image::dashboards/parameters-and-filters/parameter-in-query.png[]
 
+=== Editing a parameter
+
+. From the **Parameters** drawer, hover over the parameter you wish to edit.
+. In the dialog, edit the parameter name, data type and/or initial value, then **Save**.
 
 === Deleting a parameter
 
@@ -82,24 +95,11 @@ image::dashboards/parameters-and-filters/filter-units-in-stock.png[]
 Making filters dependent on a node or relationship property is necessary to let the dashboard infer values for the filter card to chose from.
 ====
 
-
-=== Editing a filter
-
-. In the **Dashboards** page, use the more menu *[...]* of the filter you wish to edit and select **Edit filter**.
-. Edit your filter and **Save**.
-
-
-=== Deleting a filter
-
-In the **Dashboards** page, use the more menu *[...]* of the filter you wish to edit and select **Delete**, then confirm.
-
-
 //=== Highlight all cards using a filter
 //
 //In the **Dashboards** page, use the target icon of a filter to highlight all cards that make use of this particular filter.
 
 // screenshot
-
 
 === Using a filter in a card
 
@@ -112,3 +112,12 @@ You can select a value from the filter card drop down to let the dashboard assig
 image::dashboards/parameters-and-filters/filter-and-card.gif[]
 
 All cards which make use of the parameter are updated with the new value.
+
+=== Editing a filter
+
+. In the **Dashboards** page, use the more menu *[...]* of the filter you wish to edit and select **Edit filter**.
+. Edit your filter and **Save**.
+
+=== Deleting a filter
+
+In the **Dashboards** page, use the more menu *[...]* of the filter you wish to edit and select **Delete**, then confirm.
