@@ -1,11 +1,11 @@
 = Parameters and filters
 :description: Use parameters in your dashboards to further customize queries or use them in filters for node and relationship properties.
 
-Create a filter and link it to a card manually with a parameter - this is the main way that you can make cards no longer static, but make them interactive.
+Add a filter and link it to a card manually, with a parameter - this is the main way that you can make dashboard cards/charts no longer static, but make them interactive.
 
-You might want to do different kinds of filtering e.g. filter by date, to select a number value, or select a free text value. 
+You might want to do different kinds of filtering e.g. filter by date, select a number value, or select a free text value. 
 
-What we see people do, for example, is they want to create a kind of mini search engine, like an experimental search engine, where they have a free text filter - where they can enter any any words and then in the visualizations they will filter out based on that set that was filtered. 
+What we see people do, for example, is they want to create a _kind of_ mini search engine, _like an experimental search engine_, where they have a free text filter - where they can enter any words and then in the visualizations they will filter out based on that set that was filtered. 
 
 Even with AI, people could use a free text filter to write, let's say, a prompt that they will then encode into an embedding and then use that embedding to do vector search. 
 So, people will do all kinds of mini app development with filters as well.
@@ -18,7 +18,7 @@ A parameter won't do anything until it's linked to a Cypher query via a card.
 Parameters are associated with a specific dashboard.
 Each parameter has a value and type both of which you can set initially. 
 
-Display the parameters of a dashboard by using the parentheses button to show the **Parameters** drawer.
+Display the parameters of a dashboard by using the '{}' parentheses button to show the **Parameters** drawer.
 
 .The parameters drawer
 [.shadow]
@@ -34,7 +34,7 @@ Each parameter has an icon next to it hinting at its data type:
 
 === Creating a parameter
 
-. You'll see the parameter icon '{}' at the top right of the screen and when you select it, it opens the **Parameters** drawer.
+. Use the parameter icon '{}' at the top right of the screen and when you select it, it opens the **Parameters** drawer.
 . From the **Parameters** drawer, use the **Add** button.
 . In the dialog, enter a parameter name, select a data type and optionally an initial value for the parameter, then **Save**.
 
