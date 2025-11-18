@@ -1,15 +1,15 @@
 = Parameters and filters
 :description: Use parameters in your dashboards to further customize queries or use them in filters for node and relationship properties.
 
-You have to create a filter and you have to link it to a card manually with a parameter and this is the main way that you can make cards kind of no longer static but make them interactive.
+Create a filter and link it to a card manually with a parameter - this is the main way that you can make cards no longer static, but make them interactive.
 
-People want to do different kinds of filterings. 
-They might want to filter by a date. 
-They might want to select a a number value. 
-They might want to select a free text value. 
-So what what we see people do, for example, is they want to create a kind of mini search engine like a experimental search engine where they have a free text filter where they can enter any any words and then in the visualizations they will filter out based on on that set that was filtered. 
-Even with AI, people could use a free text filter to write, let's say, a a prompt that they will then encode into an embedding and then use that embedding to do vector search. 
-So, people will do all kinds of mini app development with with filters as well.
+People want to do different kinds of filtering.
+They might want to filter by a date, to select a number value, or select a free text value. 
+
+What we see people do, for example, is they want to create a kind of mini search engine, like an experimental search engine, where they have a free text filter - where they can enter any any words and then in the visualizations they will filter out based on that set that was filtered. 
+
+Even with AI, people could use a free text filter to write, let's say, a prompt that they will then encode into an embedding and then use that embedding to do vector search. 
+So, people will do all kinds of mini app development with filters as well.
 
 == Parameters
 
@@ -94,10 +94,13 @@ It must exist in both and this is very special special for Neo4j because nothing
 So the one who creates the dashboard really needs this level of understanding. 
 They need to understand how to write queries - and to understand the concept of parameters.
 
-
 . In the **Dashboards** page, use **Add filter** at the bottom right.
-. In the **Add filter** dialog, select a filter type: a node or relationship type, and a property.
-. Use either an existing parameter or create a new one, then **Save**.
+. In the **Add filter** dialog, select a filter type: Node Property, Relationship Property, Date, DateTime
+. When you have set all of those initial fields up, you see the option to either add a *New parameter* or an *Existing param*
+This is basically how you link your filter into a Cypher query.
+. Use either use an *existing parameter* or *create a new one*:
+. We'd recommend setting a default value.
+. Then **Save**.
 
 .Creating a filter for the product node property `unitsInStock`
 image::dashboards/parameters-and-filters/filter-units-in-stock.png[]
