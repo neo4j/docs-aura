@@ -1,8 +1,20 @@
 = Parameters and filters
 :description: Use parameters in your dashboards to further customize queries or use them in filters for node and relationship properties.
 
+You have to create a filter and you have to link it to a card manually with a parameter and this is the main way that you can make cards kind of no longer static but make them interactive.
+
+People want to do different kinds of filterings. 
+They might want to filter by a date. 
+They might want to select a a number value. 
+They might want to select a free text value. 
+So what what we see people do, for example, is they want to create a kind of mini search engine like a experimental search engine where they have a free text filter where they can enter any any words and then in the visualizations they will filter out based on on that set that was filtered. 
+Even with AI, people could use a free text filter to write, let's say, a a prompt that they will then encode into an embedding and then use that embedding to do vector search. 
+So, people will do all kinds of mini app development with with filters as well.
 
 == Parameters
+
+A parameter is like a dynamic variable, meaning it can change.
+A parameter won't do anything until it's linked to a Cypher query / card in the visualization.
 
 Parameters are associated with a specific dashboard.
 Each parameter has a value and type both of which you can set initially. 
@@ -59,6 +71,14 @@ From the **Parameters** drawer, hover over the parameter you wish to edit and us
 
 == Filters
 
+[NOTE]
+====
+I think the the challenge here will be that people have certain assumptions about how filters work based on what they know from other data visualization tools.
+I think that's going to be the most important thing to clear up that filters are slightly different from what they might be used to when they work with graphs.
+====
+
+We call it a "filter card", well because it acts like a chart visualisation card, and you can drag it around your dashboard, but it's like a "filter widget" that gets added and you can use the dropdown to choose the value you want to insert into the parameter.
+
 Filters are special dashboard xref:dashboards/managing-dashboards.adoc#_dashboard_cards[cards].
 
 .A filter card for the product node property `unitsInStock`
@@ -67,8 +87,13 @@ image::dashboards/parameters-and-filters/filter-units-in-stock-card.png[]
 You can add them to your dashboards in a similar fashion.
 You can use a filter to dynamically set parameter values inside queries.
 
-
 === Adding a filter
+
+You have to create a filter which in also creates a parameter and then you have to use that parameter in a query for a card. 
+It must exist in both and this is very special special for Neo4j because nothing of that is done automatically.
+So the one who creates the dashboard really needs this level of understanding. 
+They need to understand how to write queries - and to understand the concept of parameters.
+
 
 . In the **Dashboards** page, use **Add filter** at the bottom right.
 . In the **Add filter** dialog, select a filter type: a node or relationship type, and a property.
