@@ -1,13 +1,13 @@
 = Parameters and filters
 :description: Use parameters in your dashboards to further customize queries or use them in filters for node and relationship properties.
-
+The main way to make dashboard charts interactive is to add a filter and link it to a card using a parameter.
 
 == Parameters
 
 Parameters are associated with a specific dashboard.
 Each parameter has a value and type both of which you can set initially. 
 
-Display the parameters of a dashboard by using the parentheses button to show the **Parameters** drawer.
+Display the parameters of a dashboard by using the parentheses button `{}` to show the **Parameters** drawer.
 
 .The parameters drawer
 [.shadow]
@@ -71,11 +71,56 @@ You can use a filter to dynamically set parameter values inside queries.
 === Adding a filter
 
 . In the **Dashboards** page, use **Add filter** at the bottom right.
-. In the **Add filter** dialog, select a filter type: a node or relationship type, and a property.
-. Use either an existing parameter or create a new one, then **Save**.
+. In the **Add filter** dialog, select a filter type: a node or relationship property, date or datetime.
+. Link to an existing parameter or create a new one.
 
-.Creating a filter for the product node property `unitsInStock`
-image::dashboards/parameters-and-filters/filter-units-in-stock.png[]
+. On the right side of the dialog, there's a preview of the filter card that will be added to the dashboard - it's dynamic so you can use the dropdown too.
+. Then **Save**.
+. Then the next step is to take that parameter use it in a Cypher query.
+((the name is auto generated for us, but we can always change it later in the "manage parameters" section.)
+. Create a card.
+
+.Example: Filter by customer city
+image::dashboards/parameters-and-filters/filter-by-customer-city.png[]
+
+=== Example 
+
+We'll make a filter by city to see which companies are based in that city. 
+
+==== Define the filter: 
+
+. In the **Dashboards** page, use **Add filter** at the bottom right.
+. Select the filter type `Node property`
+. Select the label `Customer`
+. Select the propery `City`
+
+==== Link the parameter:
+
+. A parameter called `$customer_city` will be created automatically
+. Set the default value to `London`
+. **Save**
+
+==== Add a card:
+
+In the Cypher input - use the following Cypher query:
+
+.Cypher query for a table which displays customers within a city 
+[source,cypher]
+----
+MATCH (n:Customer)
+WHERE n.city = $customer_city
+RETURN n.companyName
+----
+
+Like this:
+
+.Cypher query for a table which displays customers within a city 
+image::dashboards/parameters-and-filters/london-cypher-query-example.png[]
+
+Then, in your dashboard, you'll have cards with both your filter and the table - and you can use the filter to change cities, and you'll see the info in the customer name table change too.
+
+.Filter and table showing customers located at selected city
+image::dashboards/parameters-and-filters/customers-located-at-selected-city.png[]
 
 [NOTE]
 ====
