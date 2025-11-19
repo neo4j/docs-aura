@@ -7,6 +7,10 @@ The main way to make dashboard charts interactive is to add a filter and link it
 Parameters are associated with a specific dashboard.
 Each parameter has a value and type both of which you can set initially. 
 
+.How to access the parameters drawer
+[.shadow]
+image::dashboards/parameters-and-filters/access-parameters-drawer.png[]
+
 Display the parameters of a dashboard by using the parentheses button `{}` to show the **Parameters** drawer.
 
 .The parameters drawer
@@ -85,7 +89,7 @@ image::dashboards/parameters-and-filters/filter-by-customer-city.png[]
 
 === Example 
 
-We'll make a filter by city to see which companies are based in that city. 
+We'll make a filter to see which companies are based in a city. 
 
 ==== Define the filter: 
 
@@ -102,7 +106,7 @@ We'll make a filter by city to see which companies are based in that city.
 
 ==== Add a card:
 
-In the Cypher input - use the following Cypher query:
+In the Cypher input, use the following Cypher query:
 
 .Cypher query for a table which displays customers within a city 
 [source,cypher]
@@ -117,7 +121,7 @@ Like this:
 .Cypher query for a table which displays customers within a city 
 image::dashboards/parameters-and-filters/london-cypher-query-example.png[]
 
-Then, in your dashboard, you'll have cards with both your filter and the table - and you can use the filter to change cities, and you'll see the info in the customer name table change too.
+Then, in your dashboard, you'll have cards with the filter and the table - use the filter to change cities, and you'll see the info in the customer name table change too.
 
 .Filter and table showing customers located at selected city
 image::dashboards/parameters-and-filters/customers-located-at-selected-city.png[]
