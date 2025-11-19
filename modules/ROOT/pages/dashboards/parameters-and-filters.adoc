@@ -40,6 +40,10 @@ Each parameter has an icon next to it hinting at its data type:
 
 === Using a parameter in a query
 
+.How to set up a parameter with a number value of 4 and the name "unit_param"
+[.shadow]
+image::dashboards/parameters-and-filters/dashboard-unit-param-4.png[width=500]
+
 To use a parameter in a query, prefix the parameter name with `$`.
 For example, to use a parameter with a number value of 4 and the name "unit_param", use `$unit_param` in your query:
 
