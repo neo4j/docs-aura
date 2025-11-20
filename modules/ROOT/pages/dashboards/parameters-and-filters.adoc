@@ -1,15 +1,15 @@
 = Parameters and filters
 :description: Use parameters in your dashboards to further customize queries or use them in filters for node and relationship properties.
+
+Use a dashboard to see the stats you need, or filter your data.
+
+Parameters let a dashboard pass dynamic values into Cypher queries.
 The main way to make dashboard charts interactive is to add a filter and link it to a card using a parameter.
 
 == Parameters
 
 Parameters are associated with a specific dashboard.
 Each parameter has a value and type both of which you can set initially. 
-
-.How to access the parameters drawer
-[.shadow]
-image::dashboards/parameters-and-filters/access-parameters-drawer.png[]
 
 Display the parameters of a dashboard by using the parentheses button `{}` to show the **Parameters** drawer.
 
@@ -25,22 +25,23 @@ Each parameter has an icon next to it hinting at its data type:
 * A calendar icon for dates.
 * A filter icon for unspecified data types. 
 
+Parameters can be created in two ways:
 
-=== Creating a parameter
+. Create a parameter from the parameter drawer
+. Create a parameter when you add a filter
+
+=== Add a parameter from the parameter drawer:
 
 . From the **Parameters** drawer, use the **Add** button.
 . In the dialog, enter a parameter name, select a data type and optionally an initial value for the parameter, then **Save**.
 
+=== Example 1
 
-=== Editing a parameter
+.How to access the parameters drawer
+[.shadow]
+image::dashboards/parameters-and-filters/access-parameters-drawer.png[]
 
-. From the **Parameters** drawer, hover over the parameter you wish to edit.
-. In the dialog, edit the parameter name, data type and/or initial value, then **Save**.
-
-
-=== Using a parameter in a query
-
-.How to set up a parameter with a number value of 4 and the name "unit_param"
+.How to set up a parameter with a number value of 4 named "unit_param"
 [.shadow]
 image::dashboards/parameters-and-filters/dashboard-unit-param-4.png[width=500]
 
@@ -59,12 +60,6 @@ RETURN p.productName as product, p.unitsInStock AS units
 .Using a parameter in a query to display products with a certain number of units in stock
 image::dashboards/parameters-and-filters/parameter-in-query.png[]
 
-
-=== Deleting a parameter
-
-From the **Parameters** drawer, hover over the parameter you wish to edit and use the trash bin button.
-
-
 == Filters
 
 Filters are special dashboard xref:dashboards/managing-dashboards.adoc#_dashboard_cards[cards].
@@ -74,7 +69,6 @@ image::dashboards/parameters-and-filters/filter-units-in-stock-card.png[]
 
 You can add them to your dashboards in a similar fashion.
 You can use a filter to dynamically set parameter values inside queries.
-
 
 === Adding a filter
 
@@ -87,12 +81,13 @@ You can use a filter to dynamically set parameter values inside queries.
 . Then the next step is to take that parameter use it in a Cypher query.
 . Create a card.
 
-.Example: Filter by customer city
+=== Example - create a filter and a new parameter
+
+We'll make a filter to see which companies are based in a city with the default showing London.
+
+.Example: Filter to see which companies are based in a city with the default showing London.
 image::dashboards/parameters-and-filters/filter-by-customer-city.png[]
 
-=== Example 
-
-We'll make a filter to see which companies are based in a city. 
 
 ==== Define the filter: 
 
@@ -109,7 +104,7 @@ We'll make a filter to see which companies are based in a city.
 
 ==== Add a card:
 
-In the Cypher input, use the following Cypher query:
+Add a card, and in the Cypher input, use the following Cypher query:
 
 .Cypher query for a table which displays customers within a city 
 [source,cypher]
@@ -134,24 +129,24 @@ image::dashboards/parameters-and-filters/customers-located-at-selected-city.png[
 Making filters dependent on a node or relationship property is necessary to let the dashboard infer values for the filter card to chose from.
 ====
 
+=== Example - create a filter and use an existing parameter
 
-=== Editing a filter
+Let's take the parameter we created in Example 1
+If we take the existing $unit_param we made earlier.
 
-. In the **Dashboards** page, use the more menu *[...]* of the filter you wish to edit and select **Edit filter**.
-. Edit your filter and **Save**.
-
-
-=== Deleting a filter
-
-In the **Dashboards** page, use the more menu *[...]* of the filter you wish to edit and select **Delete**, then confirm.
-
-
-//=== Highlight all cards using a filter
 //
-//In the **Dashboards** page, use the target icon of a filter to highlight all cards that make use of this particular filter.
 
-// screenshot
+==== Define the filter: 
 
+. Select the filter type `Node property`
+. Select the label ``
+. Select the propery ``
+
+==== Link the existing parameter:
+
+. Select *existing parameter* then select $unit_param
+. Set the default value to ``
+. **Save**
 
 === Using a filter in a card
 
@@ -164,3 +159,30 @@ You can select a value from the filter card drop down to let the dashboard assig
 image::dashboards/parameters-and-filters/filter-and-card.gif[]
 
 All cards which make use of the parameter are updated with the new value.
+
+=== How to Edit/Delete Filters or Parameters 
+
+=== Editing a parameter
+
+. From the **Parameters** drawer, hover over the parameter you wish to edit.
+. In the dialog, edit the parameter name, data type and/or initial value, then **Save**.
+
+=== Deleting a parameter
+
+From the **Parameters** drawer, hover over the parameter you wish to edit and use the trash bin button.
+
+=== Editing a filter
+
+. In the **Dashboards** page, use the more menu *[...]* of the filter you wish to edit and select **Edit filter**.
+. Edit your filter and **Save**.
+
+=== Deleting a filter
+
+In the **Dashboards** page, use the more menu *[...]* of the filter you wish to edit and select **Delete**, then confirm.
+
+
+//=== Highlight all cards using a filter
+//
+//In the **Dashboards** page, use the target icon of a filter to highlight all cards that make use of this particular filter.
+
+// screenshot
