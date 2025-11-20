@@ -13,6 +13,16 @@ module.exports.register = function ({ config }) {
 
     /* ****************** */
     //
+    // by default we'll use the file at the URL
+    // and attempt to fall back to a local file if the remote is not available
+    //
+    const regionsJSONUrl = 'https://example.com/regions.json'
+    const regionsJSONLocal = path.join(__dirname, 'regions.json')
+    //
+    /* ****************** */
+
+    /* ****************** */
+    //
     // define properties of the file to add to contentCatalog
     // can we make any of this smarter? aura is the only component here
     // filename (and other vars) could be a var that can be defined, and the extension added to the playbook
@@ -21,47 +31,64 @@ module.exports.register = function ({ config }) {
     const componentVersion = ''; // Must match a component Antora collected
     const moduleName = 'ROOT';
     const family = 'partial';
-    const filename = 'scp-regions-generated.adoc';
+    const regionsPartialFilename = 'scp-regions-generated.adoc';
     //
     /* ****************** */
 
     this.on('contentClassified', async ({ contentCatalog }) => {
+
+        let regionsData
     
-        /* ****************** */
-        //
-        // for prod we want to fetch a remote file from a URL
-        //
-        // const regionsJSONUrl = 'https://raw.githubusercontent.com/neo4j/aura-regions/main/regions.json'
+        try {
     
-        // const regionsJSON = await new Promise((resolve, reject) => {
-        // const buffer = []
-        // https
-        //     .get(regionsJSONUrl, (response) => {
-        //     response.on('data', (chunk) => buffer.push(chunk.toString()))
-        //     response.on('end', () => resolve(buffer.join('').trim()))
-        //     })
-        //     .on('error', reject)
-        // })
+            const regionsJSON = await new Promise((resolve, reject) => {
+            const buffer = []
+            https
+                .get(regionsJSONUrl, (response) => {
+                response.on('data', (chunk) => buffer.push(chunk.toString()))
+                response.on('end', () => resolve(buffer.join('').trim()))
+                })
+                .on('error', reject)
+            })
 
-        // const regionsData = JSON.parse(regionsJSON)
+            regionsData = JSON.parse(regionsJSON)
+
+            } catch (err) {
+                logger.info({ }, 'Error fetching remote regions.json file from %s', regionsJSONUrl)
+                // throw err
+            }
+
         //
         /* ****************** */
 
 
         /* ****************** */
         //
-        // test by using a local file
+        // fallback to a local file
         //
-        const regionsData = require('./regions.json')
+        if (!regionsData) {
+            try {
+                regionsData = JSON.parse(fs.readFileSync(regionsJSONLocal, 'utf8'))    
+            } catch (err) {
+                logger.info({ }, 'Could not parse local JSON file %s', regionsJSONLocal)
+                // throw err
+            }
+        }
         //
         /* ****************** */
+
+        // exit if no regionsData
+        if (!regionsData) {
+            logger.error('No regions data available, cannot generate regions partial')
+            return
+        }
 
         // call the function to process the json into asciidoc
         const regionsAsciidoc = regionsDataToAsciidoc(regionsData)
 
         const file = new Vinyl({
             contents: Buffer.from(regionsAsciidoc),
-            path: filename,
+            path: regionsPartialFilename,
             stat: {},
         });
 
@@ -70,38 +97,25 @@ module.exports.register = function ({ config }) {
             version: componentVersion,
             module: moduleName,
             family: family,
-            relative: filename,
+            relative: regionsPartialFilename,
             origin: null,
-            basename: filename,
+            basename: regionsPartialFilename,
             extname: '.adoc',
         };
 
         file.out = {
-            path: `${componentName}/${componentVersion}/${moduleName}/${filename.replace('.adoc', '.html')}`,
-            url: `${componentName}/${componentVersion}/${moduleName}/${filename.replace('.adoc', '.html')}`,
+            path: `${componentName}/${componentVersion}/${moduleName}/${regionsPartialFilename.replace('.adoc', '.html')}`,
+            url: `${componentName}/${componentVersion}/${moduleName}/${regionsPartialFilename.replace('.adoc', '.html')}`,
         };
   
         file.family = family;
 
+        // remove the placeholder partial from the contentCatalog
+        contentCatalog.removeFile(file)
+        // add the generated file to replace it
         contentCatalog.addFile(file)
 
-    })
-
-    // log a message after the documents have been conveted
-    // we are adding a partial, so I guess we don't get a lot of contentCatalog information from this
-    // it is not a page, so no out info etc.
-
-    this.on('documentsConverted', async ({ contentCatalog }) => {
-
-        const generated = contentCatalog.findBy({ family: 'partial'}).filter(f => f.src.relative === filename)
-
-        // for (const file of generated) {
-        //     console.log(file.src)
-        // }
-
-        // log an info message about adding the file
-        // this is not a good way to do it though
-        logger.info({  }, 'Generated %s and added to the contentCatalog', generated[0].src.relative)
+        logger.info({  }, 'Generated %s and added to the contentCatalog', file.src.relative)
 
     })
 
