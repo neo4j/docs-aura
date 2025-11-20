@@ -5,11 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "npm run regions",
     "start": "nodemon -e adoc -w modules --exec \"npm run build && npm run serve\"",
     "serve": "node server.js",
     "build": "antora preview.yml --stacktrace --log-format=pretty",
-    "regions": "node scripts/regions.js",
     "build-verify": "antora --stacktrace --fetch preview.yml --log-format=json --log-level=info --log-file ./build/log/log.json",
     "lint": "node scripts/lint-links.js",
     "apoc": "node scripts/apoc"
