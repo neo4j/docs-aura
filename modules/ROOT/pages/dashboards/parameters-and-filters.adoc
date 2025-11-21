@@ -1,113 +1,98 @@
 = Filters
-
-(how to use parameters in a filter)
-
 :description: Use parameters in your dashboards to further customize queries or use them in filters for node and relationship properties.
 
-See the stats you need, or filter your data.
-Parameters let a dashboard pass dynamic values into Cypher queries.
-To use a parameter in a query, prefix the parameter name with `$`.
 The main way to make dashboard charts interactive is to add a filter and link it to a card using a parameter.
 
 Filters can be created in two ways:
 
+. By adding a filter
 . From the parameter drawer
-. Via adding a filter
 
 == From the parameter drawer
 
-1. Go to the **Parameters** drawer `{}`
+=== Step 1: Open the parameters drawer
 
+. Go to the **Parameters** drawer `{}`
++
 .How to access the parameters drawer
 [.shadow]
 image::dashboards/parameters-and-filters/drawer.png[]
 
-2. Use the **Add** button.
+=== Step 2: Add a parameter
 
-3. In the dialog, enter a parameter name `unit_param`, select a default value type `integer` with a default value of `4`, then **Save**.
-
+. Select **Add**.
++
+. In the dialog, enter a parameter name `unit_param`, select the value type `integer`, set the default value to `4`, then select **Save**.
++
 .How to set up a parameter with a number value of 4 named "unit_param"
 [.shadow]
 image::dashboards/parameters-and-filters/add-parameter.png[width=500]
 
-4.Add a card
+=== Step 3: Add a card 
 
-5.To use `$unit_param` in your query, paste this Cypher query into the card, then **Save**:
+. Add a card.
++
+. Paste the following Cypher into the card, then select **Save**:
 
 .Cypher query for a table which displays products with a certain number of units in stock
 [source,cypher]
 ----
 MATCH (p:Product)
 WHERE p.unitsInStock = $unit_param
-RETURN p.productName as product, p.unitsInStock AS units
-  LIMIT 10
+RETURN p.productName AS product, p.unitsInStock AS units
+LIMIT 10
 ----
 
 .Using a parameter in a query to display products with a certain number of units in stock
 image::dashboards/parameters-and-filters/inquery.png[]
 
-Once the parameter is defined, you can use it in a filter.
 
-6.Add filter 
+=== Step 4: Define the filter
 
-==== Define the filter: 
+. Add a filter.
+. Select the filter type `Node property`.
+. Select the label `Product`.
+. Select the property `unitsInStock`.
 
-. Select the filter type `Node property`
-. Select the label `Product`
-. Select the property `unitsInStock`
+=== Step 5: Link the existing parameter
 
-==== Link the existing parameter:
+. Select **existing parameter**, then select `$unit_param`.
+. The default value is `4` (changing it overrides the parameter default).
+. Select **Save**.
 
-. Select *existing parameter* then select `$unit_param`
-. The default value is `4` (if you change the default value it overrides the existing value in the parameter)
-. **Save**
+=== Step 6: Use the filter in a card
 
-=== Use a filter in a card
+The parameter and filter are now connected.
 
-The parameter and the filter are now connected.
-
-You can select a value from the drop down to let the dashboard assign this value to the parameter `$unit_param` and dynamically update the table:
+Selecting a value from the dropdown updates the parameter `$unit_param` and dynamically updates the table.
 
 .Selecting a new value for the unitsInStock filter
 image::dashboards/parameters-and-filters/filter-and-card.gif[]
 
-Example 2
+== By adding a filter
 
-=== Add a filter and create a new parameter
+Create a filter to see which companies are based in a city, with the default set to London.
 
-. In the **Dashboards** page, use **Add filter** at the bottom right.
-. In the **Add filter** dialog, select a filter type: a node or relationship property, date or datetime.
-. Link to an existing parameter or create a new one.
-
-. On the right side of the dialog, there's a preview of the filter card that will be added to the dashboard - it's dynamic so you can use the dropdown too.
-. Then **Save**.
-. Then the next step is to take that parameter use it in a Cypher query.
-. Create a card.
-
-== Via adding a filter
-
-Create a filter to see which companies are based in a city with the default showing London.
-
-.Example: Filter to see which companies are based in a city with the default showing London.
+.Example: Filter to see which companies are based in a city with the default showing London
 image::dashboards/parameters-and-filters/filter-by-customer-city.png[]
 
+=== Step 1: Define the filter
 
-==== Define the filter: 
+. On the **Dashboards** page, select **Add filter**.
+. Choose filter type `Node property`.
+. Select the label `Customer`.
+. Select the property `City`.
 
-. In the **Dashboards** page, use **Add filter** at the bottom right.
-. Select the filter type `Node property`
-. Select the label `Customer`
-. Select the property `City`
+=== Step 2: Link the parameter
 
-==== Link the parameter:
+. A parameter named `$customer_city` is created automatically.
+. Set the default value to `London`.
+. Select **Save**.
 
-. A parameter called `$customer_city` will be created automatically
-. Set the default value to `London`
-. **Save**
 
-Add a card and in the Cypher input use the following query:
+Paste the following query into the Cypher input:
 
-.Cypher query for a table which displays customers within a city 
+.Cypher query for a table which displays customers within a city
 [source,cypher]
 ----
 MATCH (n:Customer)
@@ -115,12 +100,11 @@ WHERE n.city = $customer_city
 RETURN n.companyName
 ----
 
-.Cypher query for a table which displays customers within a city 
+.Cypher query for a table which displays customers within a city
 image::dashboards/parameters-and-filters/london-cypher-query-example.png[]
 
-In your dashboard, there is a card with the filter and the table - use the filter to change cities and the info in the company name table changes too.
+In your dashboard, the filter and the resulting table appear together. Changing the city in the filter updates the table dynamically.
 
-.Filter and table showing customers located at selected city
+.Filter and table showing customers located at the selected city
 image::dashboards/parameters-and-filters/customers-located-at-selected-city.png[]
 
-You can edit/delete filters or parameters in the UI. 
