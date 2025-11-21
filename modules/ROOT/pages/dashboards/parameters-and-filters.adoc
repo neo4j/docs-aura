@@ -1,39 +1,22 @@
 = Parameters and filters
 :description: Use parameters in your dashboards to further customize queries or use them in filters for node and relationship properties.
 
-Use a dashboard to see the stats you need, or filter your data.
+See the stats you need, or filter your data.
 
 Parameters let a dashboard pass dynamic values into Cypher queries.
+To use a parameter in a query, prefix the parameter name with `$`.
 The main way to make dashboard charts interactive is to add a filter and link it to a card using a parameter.
 
-== Parameters
-
-Parameters are associated with a specific dashboard.
-Each parameter has a value and type both of which you can set initially. 
-
-Display the parameters of a dashboard by using the parentheses button `{}` to show the **Parameters** drawer.
-
-.The parameters drawer
-[.shadow]
-image::dashboards/parameters-and-filters/parameters-drawer.png[]
-
-The drawer shows the dashboard parameters in alphabetical order.
-Each parameter has an icon next to it hinting at its data type:
-
-* A text icon for strings.
-* A hashtag icon for numbers.
-* A calendar icon for dates.
-* A filter icon for unspecified data types. 
 
 Parameters can be created in two ways:
 
-. Create a parameter from the parameter drawer
-. Create a parameter when you add a filter
+. From the parameter drawer
+. When you add a filter
 
 === Add a parameter from the parameter drawer:
 
 . From the **Parameters** drawer, use the **Add** button.
-. In the dialog, enter a parameter name, select a data type and optionally an initial value for the parameter, then **Save**.
+. In the dialog, enter a parameter name `unit_param`, select a default value type `integer` with a default value of `4`, then **Save**.
 
 === Example 1
 
@@ -45,8 +28,12 @@ image::dashboards/parameters-and-filters/access-parameters-drawer.png[]
 [.shadow]
 image::dashboards/parameters-and-filters/dashboard-unit-param-4.png[width=500]
 
-To use a parameter in a query, prefix the parameter name with `$`.
-For example, to use a parameter with a number value of 4 and the name "unit_param", use `$unit_param` in your query:
+=== Add a card, with a query using the parameter
+
+.Add a card
+image::dashboards/parameters-and-filters/add-a-card.png[]
+
+So, to use `$unit_param` in your query, paste this Cypher query into the card:
 
 .Cypher query for a table which displays products with a certain number of units in stock
 [source,cypher]
@@ -69,6 +56,35 @@ image::dashboards/parameters-and-filters/filter-units-in-stock-card.png[]
 
 You can add them to your dashboards in a similar fashion.
 You can use a filter to dynamically set parameter values inside queries.
+
+=== Example - create a filter and use an existing parameter
+
+Let's take the `$unit_param` parameter we created in Example 1.
+
+//
+
+==== Define the filter: 
+
+. Select the filter type `Node property`
+. Select the label `Product`
+. Select the property `unitsInStock`
+
+==== Link the existing parameter:
+
+. Select *existing parameter* then select `$unit_param`
+. The default value is `4` (you could change the default value here and it would override the existing value in the parameter)
+. **Save**
+
+=== Using a filter in a card
+
+Now, the table from x xref:#_using_a_parameter_in_a_query[] and the parameter from xref:#_adding_a_filter[] are connected.
+
+You can select a value from the filter card drop down to let the dashboard assign this value to the parameter `$example_number_param` and dynamically update the table:
+
+.Selecting a new value for the unitsInStock filter
+image::dashboards/parameters-and-filters/filter-and-card.gif[]
+
+All cards which make use of the parameter are updated with the new value.
 
 === Adding a filter
 
@@ -94,7 +110,7 @@ image::dashboards/parameters-and-filters/filter-by-customer-city.png[]
 . In the **Dashboards** page, use **Add filter** at the bottom right.
 . Select the filter type `Node property`
 . Select the label `Customer`
-. Select the propery `City`
+. Select the property `City`
 
 ==== Link the parameter:
 
@@ -128,37 +144,6 @@ image::dashboards/parameters-and-filters/customers-located-at-selected-city.png[
 ====
 Making filters dependent on a node or relationship property is necessary to let the dashboard infer values for the filter card to chose from.
 ====
-
-=== Example - create a filter and use an existing parameter
-
-Let's take the parameter we created in Example 1
-If we take the existing $unit_param we made earlier.
-
-//
-
-==== Define the filter: 
-
-. Select the filter type `Node property`
-. Select the label ``
-. Select the propery ``
-
-==== Link the existing parameter:
-
-. Select *existing parameter* then select $unit_param
-. Set the default value to ``
-. **Save**
-
-=== Using a filter in a card
-
-Use the filter parameter as you normally would in the query of the card.
-
-For example, the table from xref:#_using_a_parameter_in_a_query[] and the parameter from xref:#_adding_a_filter[] are connected.
-You can select a value from the filter card drop down to let the dashboard assign this value to the parameter `$example_number_param` and dynamically update the table:
-
-.Selecting a new value for the unitsInStock filter
-image::dashboards/parameters-and-filters/filter-and-card.gif[]
-
-All cards which make use of the parameter are updated with the new value.
 
 === How to Edit/Delete Filters or Parameters 
 
