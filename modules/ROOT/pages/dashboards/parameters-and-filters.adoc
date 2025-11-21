@@ -8,12 +8,51 @@ Filters can be created in two ways:
 . By adding a filter
 . From the parameter drawer
 
+== By adding a filter
+
+Create a filter to see which companies are based in a city, with the default set to London.
+
+.Example: Filter to see which companies are based in a city with the default showing London
+image::dashboards/parameters-and-filters/filter-by-customer-city.png[]
+
+=== Step 1: Define the filter
+
+. On the **Dashboards** page, select **Add filter**.
+. Choose filter type `Node property`.
+. Select the label `Customer`.
+. Select the property `City`.
+
+=== Step 2: Link the parameter
+
+. A parameter named `$customer_city` is created automatically.
+. Set the default value to `London`.
+. Select **Save**.
+
+
+Paste the following query into the Cypher input:
+
+.Cypher query for a table which displays customers within a city
+[source,cypher]
+----
+MATCH (n:Customer)
+WHERE n.city = $customer_city
+RETURN n.companyName
+----
+
+.Cypher query for a table which displays customers within a city
+image::dashboards/parameters-and-filters/london-cypher-query-example.png[]
+
+In your dashboard, the filter and the resulting table appear together. Changing the city in the filter updates the table dynamically.
+
+.Filter and table showing customers located at the selected city
+image::dashboards/parameters-and-filters/customers-located-at-selected-city.png[]
+
+
+
 == From the parameter drawer
 
-=== Step 1: Open the parameters drawer
+=== Step 1: Open the parameters drawer `{}`
 
-. Go to the **Parameters** drawer `{}`
-+
 .How to access the parameters drawer
 [.shadow]
 image::dashboards/parameters-and-filters/drawer.png[]
@@ -68,43 +107,4 @@ Selecting a value from the dropdown updates the parameter `$unit_param` and dyna
 
 .Selecting a new value for the unitsInStock filter
 image::dashboards/parameters-and-filters/filter-and-card.gif[]
-
-== By adding a filter
-
-Create a filter to see which companies are based in a city, with the default set to London.
-
-.Example: Filter to see which companies are based in a city with the default showing London
-image::dashboards/parameters-and-filters/filter-by-customer-city.png[]
-
-=== Step 1: Define the filter
-
-. On the **Dashboards** page, select **Add filter**.
-. Choose filter type `Node property`.
-. Select the label `Customer`.
-. Select the property `City`.
-
-=== Step 2: Link the parameter
-
-. A parameter named `$customer_city` is created automatically.
-. Set the default value to `London`.
-. Select **Save**.
-
-
-Paste the following query into the Cypher input:
-
-.Cypher query for a table which displays customers within a city
-[source,cypher]
-----
-MATCH (n:Customer)
-WHERE n.city = $customer_city
-RETURN n.companyName
-----
-
-.Cypher query for a table which displays customers within a city
-image::dashboards/parameters-and-filters/london-cypher-query-example.png[]
-
-In your dashboard, the filter and the resulting table appear together. Changing the city in the filter updates the table dynamically.
-
-.Filter and table showing customers located at the selected city
-image::dashboards/parameters-and-filters/customers-located-at-selected-city.png[]
 
