@@ -28,8 +28,9 @@ image::dashboards/parameters-and-filters/filter-by-customer-city.png[]
 . Set the default value to `London`.
 . Select **Save**.
 
+=== Step 3: Add a card
 
-Paste the following query into the Cypher input:
+Paste the following query into the Cypher input, then select *Save*:
 
 .Cypher query for a table which displays customers within a city
 [source,cypher]
@@ -42,7 +43,7 @@ RETURN n.companyName
 .Cypher query for a table which displays customers within a city
 image::dashboards/parameters-and-filters/london-cypher-query-example.png[]
 
-In your dashboard, the filter and the resulting table appear together. Changing the city in the filter updates the table dynamically.
+Changing the city in the filter updates the table dynamically.
 
 .Filter and table showing customers located at the selected city
 image::dashboards/parameters-and-filters/customers-located-at-selected-city.png[]
@@ -99,12 +100,10 @@ image::dashboards/parameters-and-filters/inquery.png[]
 . The default value is `4` (changing it overrides the parameter default).
 . Select **Save**.
 
-=== Step 6: Use the filter in a card
 
 The parameter and filter are now connected.
 
-Selecting a value from the dropdown updates the parameter `$unit_param` and dynamically updates the table.
+Selecting a value from the dropdown updates the parameter `$unit_param` and updates the table.
 
 .Selecting a new value for the unitsInStock filter
 image::dashboards/parameters-and-filters/filter-and-card.gif[]
-
