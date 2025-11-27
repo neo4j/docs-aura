@@ -8,11 +8,11 @@ label:AuraDB-Business-Critical[]
 
 Aura Agent is a no/low-code agent-creation platform that allows you to build, test, and deploy GraphRAG agents contextualized by your own knowledge graph in AuraDB.
 
-Aura takes care of the orchestration layer as well as the integration with GenAI model/LLMs and provides different iterative tools that allows your agent to provide the right context to the LLM.
+Aura provides the orchestration layer as well as the integration with GenAI models/LLMs and offers different iterative tools that allow your agent to provide the right context to the LLM.
 
 You can test the agent and iterate on it directly in the UI.
 
-Once you are satisfied with your agent, you can either share it internally with other members of your Aura project, or you can make it available externally via an Aura API endpoint and thus integrate it into your system.
+Once you are satisfied with your agent, you can either share it internally with other members of your Aura project, or you can make it available externally via an Aura API endpoint and thus integrate it into your GenAI application.
 
 To get started you need a knowledge graph in a running AuraDB instance and you need to enable *Generative AI assistance* in the xref:visual-tour/index.adoc#org-settings[Organization settings].
 
@@ -33,9 +33,8 @@ Keep in mind that the selected instance *must* be running.
 You can make the agent externally available right away, but it is recommended to keep it internal while testing it.
 You can change the agent's availability at any time.
 
-Then you can start adding the tools that will allow your agent to retrieve specific data from your graph, or to convert questions to Cypher queries.
+Then you can start adding the tools that will allow your agent to retrieve specific data from your graph.
 Keep in mind that currently the agent only supports *read only* queries against the database.
-The tools are described in detail in the following section.
 
 == Tools
 
@@ -45,14 +44,13 @@ Aura Agent has three tools available:
 * *Similarity Search*
 * *Text2Cypher*
 
-
 Consider your dataset and its underlying datamodel when you configure the tools to ensure your agent has access to the right ways of retrieving *only* the right information.
 
 === Cypher Template
 
 This tool executes pre-defined, parameterized Cypher queries against the database and returns the results to the agent.
 The values for the parameters are provided by the user.
-It works in the same way as other Cypher queries you write but are reusable by the agent.
+It works in the same way as other Cypher queries you write but is reusable by the agent.
 
 This tool is best for:
 
@@ -77,7 +75,7 @@ For best performance, make sure that the query:
 * Does not return duplicates
 
 Additionally, it is advisable to limit the results to 10-50 rows to keep the results relevant.
-Also, always test the Cypher statement to make sure they work as expected.
+Also, always test the Cypher statement to make sure it works as expected.
 
 === Similarity Search
 
@@ -99,18 +97,23 @@ Aura Agent currently supports embeddings generated with the following text embed
 
 For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{{neo4j-docs-base-uri}}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
 
-You need to provide
+You need to provide the name of your vector index and a value for *Top K*, i.e. the number of results you want the search to return.
 
 [.shadow]
 .Similarity search tool
 image::similarity-search.jpg[width=400]
-
 
 === Text2Cypher
 
 This tool transforms natural language questions into Cypher queries and allows the agent to retrieve data dynamically.
 In essence, the tool takes the question, adds the database schema and the Text2Cypher system prompt to it, and presents these to a fine-tuned model.
 The model then generates a Cypher query for the tool to execute.
+
+[NOTE]
+====
+The Text2Cypher tool relies on an LLM and this can potentially result in queries that contain inconsistencies or logical errors.
+Therefore, use caution when deploying Text2Cypher in production.
+====
 
 The Text2Cypher tool is best for:
 
@@ -131,22 +134,74 @@ The instructions should include:
 * Relevant entities and especially information about searchable categorical properties, e.g. shape of identifiers.
 * Which attributes are suitable for aggregation
 
-As a best practice, make sure the description explicitly instructs the agent to use this tool only when no other option applies.
-
-[NOTE]
-====
-The Text2Cypher tool relies on an LLM and this can potentially result in queries that contain inconsistencies or logical errors.
-Therefore, use caution when deploying Text2Cypher in production.
-====
+As a best practice, this tool should only be used when none of the other tools meet your needs, so make sure the description explicitly instructs the agent to use this tool only when no other option applies.
 
 
+== Test the agent
 
+Before you make your agent public or share it with internal users, you can test it to make sure it works as intended.
+Once you are satisified with your tools, you can start asking your agents questions.
 
+To verify that your agent operates the way you want, give it a prompt, and once it responds, use the dropdown to see how it reasons.
 
+[.shadow]
+.Expand to see how the agent reasons
+image::agent-reasoning.jpg[width=400]
 
+The agent tells you how it interpreted the prompt and which tool(s) it used.
+If more than one tool was used, the agent shows the first tool, its input and its output, and then what the next step was and then the process is iterated until the agent had collected enough information to return an answer.
 
+This way, the reasoning is transparent and if your agent is not acting to your expectations, consider changing the tool descriptions to make sure the right tool is used in the right situation.
 
+Save your agent once you are happy with it.
+A saved agent can then be used internally, i.e. by other users in your Aura project.
 
+== Make your agent public
 
+If you want to integrate your agent into your GenAI application, the next step is to make it publicly available via REST API from an endpoint.
 
+Edit your agent from the *[...]* menu, and select *External*.
+Once you save it, the endpoint can be copied from the same *[...]* menu.
+
+[.shadow]
+.Copy endpoint from *[...]* menu
+image::agent-endpoint.jpg[width=400]
+
+To access the endpoint externally, you need to have an xref:aura-cli/initial-configuration.adoc#_obtain_an_aura_api_key[Aura API Key] to generate a client ID and secret.
+Once you have these, verify them in the terminal:
+
+[source,shell]
+----
+export CLIENT_ID=<enter your Client ID here>
+export CLIENT_SECRET=<enter your Client Secret here>
+export ENDPOINT_URL=<enter your agent endpoint URL>
+----
+
+The next step is to obtain a bearer token:
+
+[source,shell]
+----
+export BEARER_TOKEN=$(curl -s --request POST 'https://api.neo4j.io/oauth/token' \
+    --user "$CLIENT_ID:$CLIENT_SECRET" \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'grant_type=client_credentials' | jq -r .access_token)
+----
+
+Then use the bearer token to ask your agent a question:
+
+[source,shell]
+----
+url --request POST "$ENDPOINT_URL" \
+ -H 'Content-Type: application/json' \
+ -H 'Accept: application/json' \
+ -H "Authorization: Bearer $BEARER_TOKEN" \
+ -d '{"input": "<YOUR AGENT QUESTION>"}' \
+ --max-time 60 | jq .
+----
+
+The agent's response is returned as a structured JSON message.
+
+Note that this example uses link:https://jqlang.org/[jq] for command line JSON processing.
+
+You can change an agent's availability at any time.
 
