@@ -13,7 +13,7 @@ Filters can be created in two ways:
 Create a filter to see which companies are based in a city, with the default set to London.
 
 .Example: Filter to see which companies are based in a city with the default showing London
-image::dashboards/parameters-and-filters/filter-by-customer-city.png[]
+image::dashboards/parameters-and-filters/filterexample.png[]
 
 === Step 1: Define the filter
 
@@ -21,6 +21,8 @@ image::dashboards/parameters-and-filters/filter-by-customer-city.png[]
 . Choose filter type `Node property`.
 . Select the label `Customer`.
 . Select the property `City`.
+
+In the right pane, you can see a preview of how your filter will look and also interact with it.
 
 === Step 2: Link the parameter
 
@@ -37,7 +39,7 @@ Paste the following query into the Cypher input, then select *Save*:
 ----
 MATCH (n:Customer)
 WHERE n.city = $customer_city
-RETURN n.companyName
+RETURN n.companyName AS `Company name`
 ----
 
 .Cypher query for a table which displays customers within a city
