@@ -13,6 +13,7 @@ Filters can be created in two ways:
 Create a filter to see which companies are based in a city, with the default set to London.
 
 .Example: Filter to see which companies are based in a city with the default showing London
+[.shadow]
 image::dashboards/parameters-and-filters/filterexample.png[]
 
 === Step 1: Define the filter
@@ -43,11 +44,13 @@ RETURN n.companyName AS `Company name`
 ----
 
 .Cypher query for a table which displays customers within a city
+[.shadow]
 image::dashboards/parameters-and-filters/london-cypher-query-example.png[]
 
 Changing the city in the filter updates the table dynamically.
 
 .Filter and table showing customers located at the selected city
+[.shadow]
 image::dashboards/parameters-and-filters/customers-located-at-selected-city.png[]
 
 
@@ -86,6 +89,7 @@ LIMIT 10
 ----
 
 .Using a parameter in a query to display products with a certain number of units in stock
+[.shadow]
 image::dashboards/parameters-and-filters/inquery.png[]
 
 
@@ -108,4 +112,5 @@ The parameter and filter are now connected.
 Selecting a value from the dropdown updates the parameter `$unit_param` and updates the table.
 
 .Selecting a new value for the unitsInStock filter
+[.shadow]
 image::dashboards/parameters-and-filters/filter-and-card.gif[]
