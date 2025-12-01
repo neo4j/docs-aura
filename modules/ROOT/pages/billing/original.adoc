@@ -1,28 +1,33 @@
 [[aura-Billing]]
-= Billing
+= Usage report
 :description: usage reporting allows customers to monitor their billing and credit consumption.
 
 label:Aura-DB-Professional[]
 label:AuraDB-Business-Critical[]
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-== Usage report
-
 The usage report gives real-time insights into resource usage for the current project, including both running and paused states.
-You can also Export a CSV file containing usage in a selected period.
 
 The default time frame is month-to-date.
 The usage report is updated hourly.
 
-=== Filters
+=== Usage tab
+
+Within a project, a usage tab is available to see the instance, ID, product name, pricing plan, billing status, usage, units of measure, and the unit price. 
+
+=== Export 
+
+You can Export a CSV file containing usage in a selected period.
+
+=== Filters by time range
 
 * Filter the usage data by predefined and custom date intervals.
 * Look back for a period of up to 180 days.
 * Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days` or a `Custom range`.
 
-=== Instances and Sessions
+==== Filter instances and sessions
 
-There are two tabs for reviewing consumption by type:
+There are two filters for reviewing consumption by type:
 
 * The *Instances* tab includes a billing summary for database instances. 
 * The *Sessions* tab includes a billing summary for any Graph Analytics sessions
@@ -56,8 +61,3 @@ GB-hours usage is calculated by multiplying the number of hours a database is ru
 == Organization billing
 
 An 'Organization admin' can see an overview of all project's billing info.
-
-=== Usage tab
-
-=== Payment methods
-
