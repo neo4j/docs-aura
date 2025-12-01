@@ -13,11 +13,14 @@ module.exports.register = function ({ config }) {
 
     /* ****************** */
     //
-    // by default we'll use the file at the URL
-    // and attempt to fall back to a local file if the remote is not available
+    // by default we'll use the local file
+    // and attempt to fall back to a URL if the local file is not available
     //
+    const regionsJSONLocal = path.join(__dirname, '..', 'data', 'regions.json')
     const regionsJSONUrl = 'https://example.com/regions.json'
-    const regionsJSONLocal = path.join(__dirname, 'regions.json')
+
+    let regionsSource
+    
     //
     /* ****************** */
 
@@ -38,48 +41,59 @@ module.exports.register = function ({ config }) {
     this.on('contentClassified', async ({ contentCatalog }) => {
 
         let regionsData
-    
-        try {
-    
-            const regionsJSON = await new Promise((resolve, reject) => {
-            const buffer = []
-            https
-                .get(regionsJSONUrl, (response) => {
-                response.on('data', (chunk) => buffer.push(chunk.toString()))
-                response.on('end', () => resolve(buffer.join('').trim()))
-                })
-                .on('error', reject)
-            })
 
-            regionsData = JSON.parse(regionsJSON)
+        /* ****************** */
+        //
+        // try to load a local file
+        try {
+            regionsData = fs.readFileSync(regionsJSONLocal, 'utf8')
+            regionsSource = 'local'
+        } catch (err) {
+            logger.info({ }, 'No local JSON file %s', regionsJSONLocal)
+        }
+
+
+        /* ****************** */
+        //
+        // fallback to a file from a URL
+        //
+        if (!regionsData) {
+
+            try {
+    
+                const regionsJSON = await new Promise((resolve, reject) => {
+                const buffer = []
+                https
+                    .get(regionsJSONUrl, (response) => {
+                    response.on('data', (chunk) => buffer.push(chunk.toString()))
+                    response.on('end', () => resolve(buffer.join('').trim()))
+                    })
+                    .on('error', reject)
+                })
+
+                regionsSource = 'remote'
 
             } catch (err) {
                 logger.info({ }, 'Error fetching remote regions.json file from %s', regionsJSONUrl)
                 // throw err
             }
 
-        //
-        /* ****************** */
-
-
-        /* ****************** */
-        //
-        // fallback to a local file
-        //
-        if (!regionsData) {
-            try {
-                regionsData = JSON.parse(fs.readFileSync(regionsJSONLocal, 'utf8'))    
-            } catch (err) {
-                logger.info({ }, 'Could not parse local JSON file %s', regionsJSONLocal)
-                // throw err
-            }
         }
         //
         /* ****************** */
 
         // exit if no regionsData
         if (!regionsData) {
-            logger.error('No regions data available, cannot generate regions partial')
+            logger.error('No regions data source, cannot generate regions partial')
+            return
+        } else {
+            logger.info({ }, 'Using %s regions data source to generate regions partial', regionsSource)
+        }
+
+        try {
+            regionsData = JSON.parse(regionsData)
+        } catch (err) {
+            logger.error({ }, 'Error parsing regions data JSON')
             return
         }
 
