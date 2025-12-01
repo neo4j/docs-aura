@@ -1,0 +1,90 @@
+= How to pay
+:description: Neo4j offers cloud services through two billing models.
+Pay-as-you-go, where usage is invoiced and charged on your credit card monthly in arrears.
+Prepaid, where credits are deducted from the available balance each month. 
+
+[NOTE]
+====
+This section is currently a work in progress.
+It’s an initial idea of what might go here — content and structure may change as feedback comes in.
+====
+
+Aura usage is metered and aggregated based on billing dimensions, the result is priced according to Aura pricing plans.
+
+=== Pay as you go
+
+* Get started by creating an Aura account. No sales team needed.
+* Cancel at any time, no extra charge.
+* No expiration date. Continues as long as you use Aura.
+* Usage billed monthly, for the previous month. At every billing cycle, usage from the previous month is priced, invoiced and then charged to the customer’s payment method.
+* Get billed directly with Neo4j using a credit card as a payment method. 
+* Or, get billed through GCP, AWS or Azure Marketplace where usage is reported hourly to the marketplace. At the marketplace’s billing cycle, Aura usage is aggregated and charged as part of the customer’s cloud bill.
+
+=== Prepaid billing
+
+* Commit to using Aura for a minimum of one year.
+* Buy Aura Consumption Units (ACUs)
+
+* Does not renew automatically.
+* Signing up requires the sales team.
+
+* There's two separate procurement channels for purchasing ACUs:
+* Direct invoicing with Neo4j
+* Purchase ACUs through marketplace private offers (GCP, AWS or Azure).
+
+There is no billing integration with marketplaces for prepaid contracts. 
+The contract is executed as a private offer. 
+Neo4j instructs the marketplace to invoice the customer for a number of ACUs and nothing else. 
+Neo4j does not provision an Aura environment automatically in this case, does not report usage to the marketplace for these deals, and the marketplace does not keep track of the remaining balance.
+
+=== Aura Consumption Unit (ACU)
+
+// explain a bit more
+
+To aggregate and then pay for usage across different dimensions, we use ACUs.
+All Aura resources are priced in ACUs.
+Customers purchase ACUs as part of their prepaid contract, and then use them to cover for the usage that is also expressed in ACU.
+
+* The nominal value of an ACU is $1 (excluding any discounts at the point of credits purchase). If a customer runs out of ACUs and needs to pay the overage in dollars, the exchange rate of ACU usage to dollars is 1 ACU = $1.
+* ACUs have a start date and an expiration date. ACUs need to be used before their expiration date, or they are forfeited.
+
+=== Contract lifecycle
+
+. The customer signs a contract with Neo4j for a given period (one or more contract terms) and buys a number of ACUs to be used in each yearly contract term.
+. The customer uses Aura resources priced in ACUs.
+. The usage (priced in ACU) is deducted from the ACU balance throughout the month.
+. If the customer runs out of ACUs before their expiration date, they will be invoiced for the overage, at a conversion rate of 1 ACU = $1.
+. At expiration date, all ACUs remaining are forfeited. If the current term is part of a multi-year contract, some of the remaining balance can be rolled over to the next term, if one exists. This has to be documented in the initial contract.
+
+= Availability matrix
+
+[.tabbed-example]
+====
+
+[.include-with-AuraDB]
+=====
+
+Free, Professional, Business Critical, and Virtual Dedicated Cloud plans
+
+[cols="1,1,1,1", options="header"]
+|===
+|Pricing Plan |Billing model |Payment method |Billing processor
+|Free |N/A |N/A |Direct through Neo4j
+|Professional |Pay-as-you-go |Credit card |Direct through Neo4j
+|Professional |Pay-as-you-go |Marketplace |GCP Marketplace, AWS Marketplace, Azure Marketplace
+|Business Critical |Pay-as-you-go |Credit card |Direct through Neo4j
+|Business Critical |Pay-as-you-go |Marketplace |GCP Marketplace
+|Professional |Prepaid |Credit balance + invoicing |Direct through Neo4j
+|Professional |Prepaid |Credit balance + invoicing |Private offers through GCP Marketplace, AWS Marketplace, Azure Marketplace
+|Business Critical |Prepaid |Credit balance + invoicing |Direct through Neo4j
+|Business Critical |Prepaid |Credit balance + invoicing |Private offers through GCP Marketplace, AWS Marketplace, Azure Marketplace
+|Virtual Dedicated Cloud |Prepaid |Credit balance + invoicing |Direct through Neo4j
+|Virtual Dedicated Cloud |Prepaid |Credit balance + invoicing |Private offers through GCP Marketplace, AWS Marketplace, Azure Marketplace
+|===
+
+=====
+
+[.include-with-AuraDB-additional-storage]
+=====
+
+Extra storage and secondaries are available for all tiers except free
