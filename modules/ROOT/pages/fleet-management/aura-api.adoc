@@ -14,6 +14,11 @@ The Aura API allows for the creation and deletion of deployments, fetching infor
 
 All steps in the document assume that you already have a running Neo4j database that you want to manage through Fleet Manager.
 
+Documentation for setting up your Neo4j database with the Fleet Manager plugin can be found from the following pages:
+
+** Documentation for installing a Neo4j database can be found at: link:https://neo4j.com/docs/deployment-options/[Deployment Options]
+** Documentation for installing the Fleet Manager plugin in your database: xref:./setup.adoc#_set_up_the_plugin[Plugin setup]
+
 All endpoints start with /organizations/:organization_id/projects/:project_id/, this will be left out for clarity and brevity. 
 
 Creating and registering a Fleet Manager deployment is done in three parts. 
