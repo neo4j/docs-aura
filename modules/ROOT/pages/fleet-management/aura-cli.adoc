@@ -29,7 +29,7 @@ Registering a new deployment happens in three steps. The guide assumes that you 
 * List all deployments
 ** `aura-cli deployment list --organization-id $YOUR_ORG_ID --project-id $YOUR_PROJECT_ID`
 
-* Get one deployment
+* Get details of a deployment
 ** `aura-cli deployment get $DEPLOYMENT_ID --organization-id $YOUR_ORG_ID --project-id $YOUR_PROJECT_ID`
 
 * Get all databases for a deployment
