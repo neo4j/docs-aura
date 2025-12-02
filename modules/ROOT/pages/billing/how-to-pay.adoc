@@ -39,8 +39,6 @@ Neo4j does not provision an Aura environment automatically in this case, does no
 
 == Aura Consumption Unit (ACU)
 
-// explain a bit more
-
 To aggregate and then pay for usage across different dimensions, we use ACUs.
 All Aura resources are priced in ACUs.
 Customers purchase ACUs as part of their prepaid contract, and then use them to cover for the usage that is also expressed in ACU.
@@ -142,7 +140,8 @@ Inherits the plan of the AuraDB instance it runs on: Professional or Business Cr
 
 [cols="1,1,1,1", options="header"]
 |===
-|Billing model |Payment method |Billing processor
+
+|Pricing plan |Billing model |Payment method |Billing processor
 |Professional, Business Critical |Pay-as-you-go |Credit card |Direct through Neo4j
 |Professional, Business Critical |Pay-as-you-go |Marketplace |GCP Marketplace
 |Professional, Business Critical |Prepaid |Credit balance + invoicing |Direct through Neo4j
@@ -156,10 +155,10 @@ Inherits the plan of the AuraDB instance it runs on: Professional or Business Cr
 [cols="1,1,1,1", options="header"]
 |===
 |Pricing Plan |Billing Model |Payment Method |Billing Processor (Procurement Channel)
-|Query log forwarding |Business Critical |Pay-as-you-go |Credit card |Direct through Neo4j
-|Query log forwarding |Business Critical |Pay-as-you-go |Marketplace |GCP Marketplace
-|Query log forwarding |Business Critical, Virtual Dedicated Cloud, AuraDS Enterprise |Prepaid |Credit balance + invoicing |Direct through Neo4j
-|Query log forwarding |Business Critical, Virtual Dedicated Cloud, AuraDS Enterprise |Prepaid |Credit balance + invoicing |Private offers through GCP, AWS, Azure Marketplace
+|Business Critical |Pay-as-you-go |Credit card |Direct through Neo4j
+|Business Critical |Pay-as-you-go |Marketplace |GCP Marketplace
+|Business Critical, Virtual Dedicated Cloud, AuraDS Enterprise |Prepaid |Credit balance + invoicing |Direct through Neo4j
+|Business Critical, Virtual Dedicated Cloud, AuraDS Enterprise |Prepaid |Credit balance + invoicing |Private offers through GCP, AWS, Azure Marketplace
 |===
 
 =====

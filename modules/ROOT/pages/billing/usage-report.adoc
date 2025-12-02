@@ -7,21 +7,21 @@ The usage report gives real-time insights into resource usage for the current pr
 The default time frame is month-to-date.
 The usage report is updated hourly.
 
-=== Usage tab
+== Usage tab
 
 Within a project, a usage tab is available to see the instance, ID, product name, pricing plan, billing status, usage, units of measure, and the unit price. 
 
-=== Export 
+== Export 
 
 You can Export a CSV file containing usage in a selected period.
 
-=== Filters by time range
+== Filters by time range
 
 * Filter the usage data by predefined and custom date intervals.
 * Look back for a period of up to 180 days.
 * Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days` or a `Custom range`.
 
-==== Filter instances and sessions
+=== Filter instances and sessions
 
 There are two filters for reviewing consumption by type:
 
@@ -33,23 +33,23 @@ There are two filters for reviewing consumption by type:
 At the top-right corner of the Billing page, there's a summary of the total amount due for the current month.
 This value is shown in Aura Credits (ACU), providing a real-time estimate of your projected billing.
 
-=== Required roles
+== Required roles
 
 The report is available to the following roles: `Organization Owner`, `Organization Admin`, and `Project Admin`.
 
 To view the report, a payment method must be attached to the account.
 If there's no billing method attached, in a project, on the *Billing* page there's a button to *Add new payment information*.
 
-=== Product name and pricing
+== Product name and pricing
 
 For more information, refer to link:https://console-preview.neo4j.io/pricing[Aura Pricing] for the specific product names and their prices. 
 If a database is paused, its charge is reduced to 20% of the standard hourly rate.
 
-=== Billing status
+== Billing status
 
 Can be `ongoing` (currently being billed) or `ended` (historical usage).
 
-==== Units of measure
+== Units of measure
 
 Usage is displayed in the specified unit of measure.
 GB-hours usage is calculated by multiplying the number of hours a database is running (whether actively used or not) by the memory size in gigabytes (GB).
