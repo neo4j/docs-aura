@@ -26,14 +26,18 @@ The wizard provides two top-level options.
 
 The next step of the wizard walks you through the process of adding the fleet management plugin to your Neo4j deployment.
 
-=== Download the plugin
+=== Get the plugin
 
+Neo4j *2025.09+* comes bundled with the fleet management plugin in the _products_ folder.
+
+For earlier versions of Neo4j, you need to download the plugin.
 Follow the link in the wizard to download the plugin or download it directly from the link:https://neo4j.com/deployment-center/#tools-tab[Deployment Center].
 Neo4j Fleet management plugin has the name format `neo4j-fleet-management-plugin-VERSION-NEO4J_VERSION.jar`.
 Select the appropriate plugin for your Neo4j version.
 
 === Install the plugin
 
+Take the fleet management plugin file, obtained in the previous step, and place it in the _plugins_ folder.
 If your self-managed deployment consists of multiple servers, the plugin needs to be installed *on each one*.
 See the link:https://neo4j.com/docs/operations-manual/current/configuration/plugins/[Operations Manual -> Configure plugins] for instructions on how to install plugins.
 
