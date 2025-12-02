@@ -2,7 +2,7 @@
 
 This page describes how to use the Aura API to manage Fleet Manager resources programatically.
 
-For instructions on how to use the Aura API, please reade the documentation at xref:api/overview.adoc[API Documentation]
+For instructions on how to use the Aura API, please read the documentation at xref:api/overview.adoc[API Documentation]
 
 The docs for the Aura API specs can be found at link:{neo4j-docs-base-uri}/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[API Specification]
 
@@ -10,11 +10,11 @@ If you would rather manage the Fleet Manager resources through the Aura CLI, you
 
 == Managing deploymments
 
-The Aura API allows for the creation and deletion of deployments, fetching information about deployments and managing tokens for the deployments.
+The Aura API allows for the creation and deletion of deployments, fetching information about deployments and managing tokens for deployments.
 
 All steps in the document assume that you already have a running Neo4j database that you want to manage through Fleet Manager.
 
-All endpoints start with a /organizations/:organization_id/projects/:project_id/, this will be left out for clarity and brevity. 
+All endpoints start with /organizations/:organization_id/projects/:project_id/, this will be left out for clarity and brevity. 
 
 Creating and registering a Fleet Manager deployment is done in three parts. 
 
