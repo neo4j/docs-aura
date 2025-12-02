@@ -21,6 +21,9 @@ Registering a new deployment happens in three steps. The guide assumes that you 
 * Register the deployment
 ** Connect to your Neo4j database and register the newly created token to the database with `call fleetManagement.registerToken('$TOKEN');`
 
+*** Register a docker container from a cli: `docker exec -it $CONTAINER_NAME ./bin/cypher-shell -a $SERVICE_NAME:$PORT -d system -u $NEO4J_USERNAME -p$NEO4J_PASSWORD "call fleetManagement.registerToken('"$TOKEN"');"`
+
+
 == Fetching deployments
 
 * List all deployments
