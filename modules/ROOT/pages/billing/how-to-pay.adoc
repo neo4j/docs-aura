@@ -1,7 +1,5 @@
-= How to pay
-:description: Neo4j offers cloud services through two billing models.
-Pay-as-you-go, where usage is invoiced and charged on your credit card monthly in arrears.
-Prepaid, where credits are deducted from the available balance each month. 
+= Payment options
+:description: This page describes the different payment options for Neo4j Aura.
 
 Aura usage is metered and aggregated based on billing dimensions, the result is priced according to Aura pricing plans.
 
@@ -33,7 +31,8 @@ Neo4j does not provision an Aura environment automatically in this case, does no
 
 == Aura Consumption Unit (ACU)
 
-To aggregate and then pay for usage across different dimensions, we use ACUs.
+Each billing dimension has its own unit of measure, GB-hours, GB-minutes, MB-hours, GB etc.
+To aggregate and then pay for usage across different dimensions, Aura Consumption Units (ACUs) are used.
 All Aura resources are priced in ACUs.
 Customers purchase ACUs as part of their prepaid contract, and then use them to cover for the usage that is also expressed in ACU.
 
@@ -45,7 +44,7 @@ Customers purchase ACUs as part of their prepaid contract, and then use them to 
 . The customer signs a contract with Neo4j for a given period (one or more contract terms) and buys a number of ACUs to be used in each yearly contract term.
 . The customer uses Aura resources priced in ACUs.
 . The usage (priced in ACU) is deducted from the ACU balance throughout the month.
-. If the customer runs out of ACUs before their expiration date, they will be invoiced for the overage, at a conversion rate of 1 ACU = $1.
+. If the customer runs out of ACUs before their expiration date, they are be invoiced for the overage.
 . At expiration date, all ACUs remaining are forfeited. If the current term is part of a multi-year contract, some of the remaining balance can be rolled over to the next term, if one exists. This has to be documented in the initial contract.
 
 == Availability matrix
@@ -79,7 +78,7 @@ Free, Professional, Business Critical, and Virtual Dedicated Cloud plans
 [.include-with-AuraDB-additional-storage]
 =====
 
-Extra storage and secondaries are available for all tiers except free
+Extra storage and secondaries are available for all tiers except Aura Free
 
 [cols="1,1,1,1", options="header"]
 |===
