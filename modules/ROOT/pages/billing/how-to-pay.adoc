@@ -5,11 +5,12 @@ Aura usage is metered and aggregated based on billing dimensions, the result is 
 
 == Pay as you go
 
-Get started by creating an Aura account, no sales team is needed.
-Cancel at any time, with no extra charge.
+Get started by creating an Aura account.
+You can cancel the account at any time.
 Pay as you go has no expiration date, it continues as long as you use Aura.
 
-Usage is billed monthly for the previous month. At every billing cycle, usage from the previous month is priced, invoiced and then charged to the customer’s payment method.
+Usage is billed monthly for the previous month. 
+At every billing cycle, usage from the previous month is priced, invoiced and then charged to your payment method.
 
 Get billed directly with Neo4j using a credit card as a payment method. 
 Or, get billed through GCP, AWS or Azure Marketplace where usage is reported hourly to the marketplace. At the marketplace’s billing cycle, Aura usage is aggregated and charged as part of the customer’s cloud bill.
@@ -20,7 +21,7 @@ Commit to using Aura for a minimum of one year and buy Aura Consumption Units (A
 
 Signing up requires the sales team, and prepaid does not renew automatically. 
 
-There's two separate channels for purchasing ACUs:
+There are two separate channels for purchasing ACUs:
 * Direct invoicing with Neo4j
 * Purchasing ACUs through marketplace private offers (GCP, AWS or Azure).
 
@@ -42,8 +43,10 @@ Customers purchase ACUs as part of their prepaid contract, and then use them to 
 . The customer signs a contract with Neo4j for a given period (one or more contract terms) and buys a number of ACUs to be used in each yearly contract term.
 . The customer uses Aura resources priced in ACUs.
 . The usage (priced in ACU) is deducted from the ACU balance throughout the month.
-. If the customer runs out of ACUs before their expiration date, they are be invoiced for the overage.
-. At expiration date, all ACUs remaining are forfeited. If the current term is part of a multi-year contract, some of the remaining balance can be rolled over to the next term, if one exists. This has to be documented in the initial contract.
+. If the user runs out of ACUs before their expiration date, they are invoiced for the overage.
+. At expiration date, all ACUs remaining are forfeited. 
+If the current term is part of a multi-year contract, some of the remaining balance can be rolled over to the next term, if one exists. 
+This has to be documented in the initial contract.
 
 == Availability matrix
 

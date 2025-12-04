@@ -65,13 +65,13 @@ You specify the allocated memory size when the session is launched.
 The billing dimension for Graph Analytics sessions is compute and it is measured in GB-minutes.
 The duration of a session is calculated in minutes and multiplied by the RAM capacity used by the session.
 
-=== Graph Analytics Example
+=== Graph Analytics example
 
 You launch a session with a size of 4GB of RAM, and it runs for 25 minutes. 
 You are then billed 25 minutes x 4GB = 100 GB-minutes of usage.
 
 Note: The minimum billed duration of a session is 10 minutes. 
-So in our example, if the session ran for 8 minutes and had a 4GB size, we would bill 10 minutes x 4GB = 40 GB-minutes.
+In the example, if the session ran for 8 minutes and had a 4GB size, you are billed for 10 minutes x 4GB = 40 GB-minutes.
 
 == GraphQL API
 
@@ -79,7 +79,8 @@ Data APIs like GraphQL run on top of an existing AuraDB instance but consume add
 You are billed for compute, measured in MB-hours, based on the RAM capacity of the GraphQL additional memory. 
 
 === GraphQL example: 
-You set up a GraphQL API with 256MB of RAM, every hour the database is running will trigger a usage record of 256 MB-hours.
+
+You set up a GraphQL API with 256MB of RAM, every hour the database is running triggers a usage record of 256 MB-hours.
 
 == Query log forwarding
 
