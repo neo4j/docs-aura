@@ -1,2 +1,33 @@
 = Map
 
+:description: 
+
+The map report will render all returned nodes, relationships and paths on a geographical map. 
+
+The visualization uses map tiles from 
+link:https://www.openstreetmap.org/#map=6/53.83/-0.35[Open Street Map].
+
+.Map visualization example
+[.shadow]
+image::dashboards/visualizations/borisbikes.png[]
+
+Node positions are detected in the following order:
+
+. `Point` property
++
+Any property of type `Point` containing a valid geographic coordinate (WGS-84 2D or 3D). 
+The property can be named anything as long as the value is of type `Point`.
+
+. Fallback `latitude` / `longitude` 
++
+If no `Point` property is found, the visualization looks for properties named exactly `latitude` and `longitude`. Both must exist.
+
+. Fallback properties: `lat` / `long` 
+If the above are not found, properties named exactly `lat` / `long`. Both must exist.
++
+If more than one spatial property is detected, the property for node placement can be changed in **Settings**.
+
+Fallback properties `latitude` / `longitude` and `lat` / `long` are not configurable.
+
+If a node has no detectable spatial properties it's not displayed on the map. 
+A `Not detected` label appears in **Settings**, and a warning message is shown in the preview.
