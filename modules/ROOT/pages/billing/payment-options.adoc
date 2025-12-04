@@ -28,7 +28,7 @@ There are two separate channels for purchasing ACUs:
 * Purchasing ACUs through marketplace private offers (GCP, AWS or Azure).
 
 There is no billing integration with marketplaces for prepaid contracts. 
-The contract is executed as a private offer, Neo4j instructs the marketplace to invoice the customer for a number of ACUs and nothing else. 
+The contract is executed as a private offer, Neo4j instructs the marketplace to invoice the user for a number of ACUs and nothing else. 
 Neo4j does not provision an Aura environment automatically in this case, does not report usage to the marketplace for these deals, and the marketplace does not keep track of the remaining balance.
 
 == Aura Consumption Unit (ACU)
