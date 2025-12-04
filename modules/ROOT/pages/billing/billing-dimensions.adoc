@@ -21,7 +21,7 @@ You can purchase additional storage beyond the quota, which is billed the same a
 
 * Each secondary DB benefits from the same free storage quota as the primary DB.
 
-=== Aura DB Examples
+=== AuraDB examples
 
 .Primary database only
 
@@ -55,14 +55,14 @@ For AuraDS, only *compute* is tracked:
 * AuraDS includes a free quota of twice the RAM capacity for storage, without the possibility to purchase more storage.
 * Secondaries are not available for AuraDS
 
-== Graph Analytics
+== Aura Graph Analytics
 
-Graph Analytics does not require a persistent instance run at all times. 
+Aura Graph Analytics does not require a persistent instance run at all times. 
 
 You can start Graph Analytics sessions that execute graph algorithms in-memory. 
 You specify the allocated memory size when the session is launched. 
 
-The billing dimension for Aura Graph Analytics sessions is compute and it is measured in GB-minutes.
+The billing dimension for Graph Analytics sessions is compute and it is measured in GB-minutes.
 The duration of a session is calculated in minutes and multiplied by the RAM capacity used by the session.
 
 === Graph Analytics Example
