@@ -23,6 +23,13 @@ For prepaid, you can see:
 
 For credit cards, you can see the last 4 digits, the expiration date and the billing address.
 
+== Required roles
+
+The report is available to the following roles: `Organization Owner`, `Organization Admin`, and `Project Admin`.
+
+To view the report, a payment method must be attached to the account.
+If there's no billing method attached, in a project, on the *Billing* page there's a button to *Add new payment information*.
+
 == Export 
 
 You can Export a CSV file containing usage in a selected period.
@@ -44,13 +51,6 @@ There are two filters for reviewing consumption by type:
 
 At the top-right corner of the Billing page, there's a summary of the total amount due for the current month.
 This value is shown in Aura Credits (ACU), providing a real-time estimate of your projected billing.
-
-== Required roles
-
-The report is available to the following roles: `Organization Owner`, `Organization Admin`, and `Project Admin`.
-
-To view the report, a payment method must be attached to the account.
-If there's no billing method attached, in a project, on the *Billing* page there's a button to *Add new payment information*.
 
 == Product name and pricing
 
