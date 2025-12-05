@@ -5,6 +5,7 @@ The map will render all returned nodes, relationships and paths on a geographica
 
 The visualization uses map tiles from 
 link:https://www.openstreetmap.org/#map=6/53.83/-0.35[Open Street Map].
+The tiles are hosted by Neo4j (not using public Open Street Map tiles).
 
 [.shadow]
 .Map visualization example
@@ -16,6 +17,7 @@ Node positions are detected in the following order:
 +
 Any property of type `Point` containing a valid geographic coordinate (WGS-84 2D or 3D). 
 The property can be named anything as long as the value is of type `Point`.
+Note that we do not we do not support 3D points.
 
 . Fallback `latitude` / `longitude` 
 +
