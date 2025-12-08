@@ -7,11 +7,36 @@ The usage report gives real-time insights into resource usage for the current pr
 The default time frame is month-to-date.
 The usage report is updated hourly.
 
-== Usage tab
+* The usage report can be obtained from the Organization-level (all projects) or the Project-level (that project only).
+* Billing related infomation is available at the Organization-level in the console.
 
-You can see the instance ID, product name, pricing plan, billing status, usage, units of measure, and the unit price in the usage tab of the Project in the left-hand navigation of the console. 
+== Required roles
 
-== Payment methods tab
+* The billing report is available to `Organization Owner`.
+* The usage report is available to `Organization Owner`, `Organization Admin`, and `Project Admin`.
+
+== Usage report
+
+You can see the instance ID, product name, pricing plan, billing status, usage, units of measure, and the unit price in the usage tab of the Project in the left-hand navigation of the console.
+
+=== Export 
+
+You can Export a CSV file containing usage in a selected period.
+
+=== Filters by time range 
+
+* Filter the usage data by predefined and custom date intervals.
+* Look back for a period of up to 180 days.
+* Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days` or a `Custom range`.
+
+=== Filter instances and sessions 
+
+There are two filters for reviewing consumption by type:
+
+* The *Instances* tab includes a billing summary for database instances. 
+* The *Sessions* tab includes a billing summary for any Graph Analytics sessions.
+
+=== Payment methods 
 
 Within the payment methods tab are the different payment methods configured for your organization.
 
@@ -23,50 +48,28 @@ For prepaid, you can see:
 
 For credit cards, you can see the last 4 digits, the expiration date and the billing address.
 
-== Required roles
-
-The report is available to the following roles: `Organization Owner`, `Organization Admin`, and `Project Admin`.
-
-To view the report, a payment method must be attached to the account.
-If there's no billing method attached, in a project, on the *Billing* page there's a button to *Add new payment information*.
-
-== Export 
-
-You can Export a CSV file containing usage in a selected period.
-
-== Filters by time range
-
-* Filter the usage data by predefined and custom date intervals.
-* Look back for a period of up to 180 days.
-* Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days` or a `Custom range`.
-
-=== Filter instances and sessions
-
-There are two filters for reviewing consumption by type:
-
-* The *Instances* tab includes a billing summary for database instances. 
-* The *Sessions* tab includes a billing summary for any Graph Analytics sessions
-
-== Project billing 
+== Billing
 
 At the top-right corner of the Billing page, there's a summary of the total amount due for the current month.
 This value is shown in Aura Credits (ACU), providing a real-time estimate of your projected billing.
 
-== Product name and pricing
+=== Product name and pricing
 
 For more information, refer to link:https://console-preview.neo4j.io/pricing[Aura Pricing] for the specific product names and their prices. 
 If a database is paused, its charge is reduced to 20% of the standard hourly rate.
 
-== Billing status
+=== Billing status
 
 Can be `ongoing` (currently being billed) or `ended` (historical usage).
 
-== Units of measure
+=== Units of measure
 
 Usage is displayed in the specified unit of measure.
 GB-hours usage is calculated by multiplying the number of hours a database is running (whether actively used or not) by the memory size in gigabytes (GB).
 
-== Organization billing
+== Invoices
 
-An `Organization admin` can see an overview of all projects' billing info.
+Invoices that have been paid appear in the invoices tab.
+e.g. Stripe issues an invoice.
+This tab only appears for credit card customers, so prerepaid customers won't see anything here.
 
