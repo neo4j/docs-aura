@@ -7,8 +7,8 @@ The usage report gives real-time insights into resource usage for the current pr
 The default time frame is month-to-date.
 The usage report is updated hourly.
 
-* The usage report can be obtained from the Organization-level (all projects) or the Project-level (that project only).
-* Billing related infomation is available at the Organization-level in the console.
+* The usage report can be obtained from the Organization-level (view all project usage) or the Project-level (that project only).
+* Billing related information is available at the Organization-level in the console.
 
 == Required roles
 
@@ -17,17 +17,27 @@ The usage report is updated hourly.
 
 == Usage report
 
-You can see the instance ID, product name, pricing plan, billing status, usage, units of measure, and the unit price in the usage tab of the Project in the left-hand navigation of the console.
+You can see the instance ID, product name, pricing plan, billing status, usage, units of measure, and the unit price in the usage tab.
+
+When you are within a project, from the the left-hand navigation of the console go to **Project** > **Usage**. 
+
+.Project usage navigation
+[.shadow]
+image::projectusage.png[width=500]
 
 === Export 
 
 You can Export a CSV file containing usage in a selected period.
 
-=== Filters by time range 
+=== Filter by time range 
 
 * Filter the usage data by predefined and custom date intervals.
 * Look back for a period of up to 180 days.
 * Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days` or a `Custom range`.
+
+.Icon to filter by time range
+[.shadow]
+image::usagefilters.png[]
 
 === Filter instances and sessions 
 
@@ -50,6 +60,10 @@ For credit cards, you can see the last 4 digits, the expiration date and the bil
 
 == Billing
 
+.Access billing from the organization-level
+[.shadow]
+image::organizationbilling.png[width=500]
+
 At the top-right corner of the Billing page, there's a summary of the total amount due for the current month.
 This value is shown in Aura Credits (ACU), providing a real-time estimate of your projected billing.
 
@@ -70,6 +84,4 @@ GB-hours usage is calculated by multiplying the number of hours a database is ru
 == Invoices
 
 Invoices that have been paid appear in the invoices tab.
-e.g. Stripe issues an invoice.
-This tab only appears for credit card customers, so prerepaid customers won't see anything here.
-
+This tab only appears when credit cards are used.
