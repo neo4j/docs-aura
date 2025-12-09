@@ -2,24 +2,22 @@
 :description: usage reporting allows customers to monitor their billing and credit consumption.
 :page-role: aura-db-professional aura-db-business-critical aura-db-dedicated
 
-The usage report gives real-time insights into resource usage for the current project, including both running and paused states.
+== Required roles
+
+* The usage report is available to `Organization Owner`, `Organization Admin`, and `Project Admin`. The usage report can be viewed at either the organization-level (all projects) or the project-level (a single project). 
+* Billing is available to `Organization Owner`. 
+Billing information is only available at the organization-level.
+
+== Usage report
+
+The usage report gives real-time insights into resource usage.
+It is aggregated on the organization-level and project-level and includes *all* instances on the preferred level, both running and paused.
 
 The default time frame is month-to-date.
 The usage report is updated hourly.
 
-* The usage report can be obtained from the Organization-level (view all project usage) or the Project-level (that project only).
-* Billing information is only available at the organization level.
-
-== Required roles
-
-* The billing report is available to `Organization Owner`.
-* The usage report is available to `Organization Owner`, `Organization Admin`, and `Project Admin`.
-
-== Usage report
-
-You can see the instance ID, product name, pricing plan, billing status, usage, units of measure, and the unit price in the usage tab.
-
-When you are within a project, from the the left-hand navigation of the console go to **Project** > **Usage**. 
+On the organization level, the usage report is available under *Billing* in the left-hand navigation.
+Within a project, you can find the report in *Project -> Usage*.
 
 .Project usage navigation
 [.shadow]
@@ -35,20 +33,23 @@ You can Export a CSV file containing usage in a selected period.
 * Look back for a period of up to 180 days.
 * Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days` or a `Custom range`.
 
+Destroyed instances also appear. 
+If an instance had usage in the selected interval, it will show up in the usage report.
+
 .Icon to filter by time range
 [.shadow]
 image::usagefilters.png[]
 
-=== Filter instances and sessions 
+=== View instances or sessions usage
 
-There are two filters for reviewing consumption by type:
+There are two options for viewing consumption:
 
-* The *Instances* tab includes a billing summary for database instances. 
-* The *Sessions* tab includes a billing summary for any Graph Analytics sessions.
+* *Instances* includes a usage summary for database instances. 
+* *Sessions* includes a usage summary for any Graph Analytics sessions.
 
-=== Payment methods 
+== Payment methods 
 
-Within the payment methods tab are the different payment methods configured for your organization.
+On the organization level, you can see the different payment methods configured for your organization.
 
 For prepaid, you can see:
 
