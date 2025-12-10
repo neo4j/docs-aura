@@ -17,7 +17,7 @@ module.exports.register = function ({ config }) {
     // and attempt to fall back to a URL if the local file is not available
     //
     const regionsJSONLocal = path.join(__dirname, '..', 'data', 'regions.json')
-    const regionsJSONUrl = 'https://example.com/regions.json'
+    // const regionsJSONUrl = 'https://example.com/regions.json'
 
     let regionsSource
     
@@ -57,28 +57,28 @@ module.exports.register = function ({ config }) {
         //
         // fallback to a file from a URL
         //
-        if (!regionsData) {
+        // if (!regionsData) {
 
-            try {
+        //     try {
     
-                const regionsJSON = await new Promise((resolve, reject) => {
-                const buffer = []
-                https
-                    .get(regionsJSONUrl, (response) => {
-                    response.on('data', (chunk) => buffer.push(chunk.toString()))
-                    response.on('end', () => resolve(buffer.join('').trim()))
-                    })
-                    .on('error', reject)
-                })
+        //         const regionsJSON = await new Promise((resolve, reject) => {
+        //         const buffer = []
+        //         https
+        //             .get(regionsJSONUrl, (response) => {
+        //             response.on('data', (chunk) => buffer.push(chunk.toString()))
+        //             response.on('end', () => resolve(buffer.join('').trim()))
+        //             })
+        //             .on('error', reject)
+        //         })
 
-                regionsSource = 'remote'
+        //         regionsSource = 'remote'
 
-            } catch (err) {
-                logger.info({ }, 'Error fetching remote regions.json file from %s', regionsJSONUrl)
-                // throw err
-            }
+        //     } catch (err) {
+        //         logger.info({ }, 'Error fetching remote regions.json file from %s', regionsJSONUrl)
+        //         // throw err
+        //     }
 
-        }
+        // }
         //
         /* ****************** */
 
