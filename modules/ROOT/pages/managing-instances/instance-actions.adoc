@@ -172,10 +172,16 @@ You need to confirm your intention since this action cannot be undone.
 // label:AuraDB-business-critical[]
 
 Resizing an instance means changing the memory, CPU and storage size.
+
+An instance remains available during the resize operation.
+
 Note that this option is *not available* for *Free instances*.
 
 You can change the size of an existing instance using the *Configure* button on the instance you want to resize.
-An instance remains available during the resize operation.
+
+When you're in the *Configure Instance* settings, go to **Sizing** and then select the preferred sizes from the dropdown.
+
+*Memory and CPU* are configured together, since each instance size pairs a specific amount of memory with a corresponding number of CPUs.
 
 == Adjust storage
 
@@ -196,11 +202,6 @@ You may reduce your storage allocation, provided the new size is equal to or gre
 For example, if you are using 8GB of data, the minimum selectable option will be 8GB.
 Selecting a size smaller than your current usage is not permitted.
 This store size policy also applies to general instance downsizing.
-
-[.shadow]
-.Adjust storage size
-image::adjust_storage.png[adjust storage screenshot,540,380]
-
 
 [role=label--aura-db-dedicated label--aura-db-business-critical label--aura-db-professional]
 == Manage custom endpoints
