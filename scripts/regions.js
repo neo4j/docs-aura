@@ -186,8 +186,7 @@ function regionsDataToAsciidoc(regionsJSON) {
         // for every tier in region.tiers, if the value is true, add the region.id to output[csp][tier]
         for (const [key, value] of Object.entries(region.tiers)) {
             if (value === true) {
-                output[region.csp].tiers[key].regions.push(region.display_name)
-                output[region.csp].tiers[key].asciidocContent += `${listItemSymbol}${region.display_name}${newLine}`
+                output[region.csp].tiers[key].regions.push(region.display_name)                
             }
         }
 
@@ -195,11 +194,25 @@ function regionsDataToAsciidoc(regionsJSON) {
 
     let adoc = ''
 
+    function regionsToAsciidoc(regionsArray) {
+        let adoc = ''
+        const upperTest = (item) => /^[A-Z]/.test(item);
+        const uppers = regionsArray.filter(upperTest).sort();
+        const lowers = regionsArray.filter(item => !upperTest(item)).sort();
+        regionsArray = lowers.concat(uppers);
+
+        for (const region of regionsArray) {
+            adoc += `${listItemSymbol}\`${region}\`${newLine}`
+        }
+
+        return adoc
+    }
+
     cspSet.forEach(csp => {
         adoc += (output[csp].header)
         adoc += tabbedHeader
         for (const tier of tierSet) {
-            adoc += output[csp].tiers[tier].asciidocRole + listDelimiter + newLine + output[csp].tiers[tier].asciidocContent + listDelimiter + newLine + newLine
+            adoc += output[csp].tiers[tier].asciidocRole + listDelimiter + newLine + regionsToAsciidoc(output[csp].tiers[tier].regions) + listDelimiter + newLine + newLine
         }
         adoc += tabbedEnd
     })
