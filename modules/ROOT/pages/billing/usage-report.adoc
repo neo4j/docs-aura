@@ -4,8 +4,8 @@
 
 == Required roles
 
-* The usage report is available to `Organization Owner`, `Organization Admin`, and `Project Admin`. The usage report can be viewed at either the organization-level (all projects) or the project-level (a single project). 
-* Billing is available to `Organization Owner`. 
+The usage report is available to `Organization Owner`, `Organization Admin`, and `Project Admin`. The usage report can be viewed at either the organization-level (all projects) or the project-level (a single project). 
+Billing is available to `Organization Owner`. 
 Billing information is only available at the organization-level.
 
 == Usage report
@@ -33,8 +33,7 @@ You can Export a CSV file containing usage in a selected period.
 * Look back for a period of up to 180 days.
 * Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days`, `Last 180 days`  or a `Custom range`.
 
-Destroyed instances also appear. 
-If an instance had usage in the selected interval, it will show up in the usage report.
+All instances with usage in the selected interval are listed, including destroyed instances.
 
 .Filter by time range
 [.shadow]
@@ -53,7 +52,7 @@ There are two options for viewing consumption:
 [.shadow]
 image::organizationbilling.png[width=500]
 
-At the top-right corner of the Billing page, there's a summary of the total amount due for the current month.
+At the top-right corner of the Billing page is a summary of the total amount due for the current month.
 This value is shown in Aura Credits (ACU), providing a real-time estimate of your projected billing.
 
 == Payment methods 
