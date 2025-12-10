@@ -10,11 +10,11 @@ Billing information is only available at the organization-level.
 
 == Usage report
 
-The usage report gives real-time insights into resource usage.
-It is aggregated on the organization-level and project-level and includes *all* instances on the preferred level, both running and paused.
+The usage report gives real-time insights into resource usage. 
 
-The default time frame is month-to-date.
-The usage report is updated hourly.
+* Usage is reported for both running and paused instances.
+* The default time frame is month-to-date.
+* The usage report is updated hourly.
 
 On the organization level, the usage report is available under *Billing* in the left-hand navigation.
 Within a project, you can find the report in *Project -> Usage*.
@@ -31,7 +31,7 @@ You can Export a CSV file containing usage in a selected period.
 
 * Filter the usage data by predefined and custom date intervals.
 * Look back for a period of up to 180 days.
-* Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days` or a `Custom range`.
+* Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days`, `Last 180 days`  or a `Custom range`.
 
 Destroyed instances also appear. 
 If an instance had usage in the selected interval, it will show up in the usage report.
@@ -47,6 +47,15 @@ There are two options for viewing consumption:
 * *Instances* includes a usage summary for database instances. 
 * *Sessions* includes a usage summary for any Graph Analytics sessions.
 
+== Billing
+
+.Access billing from the organization-level
+[.shadow]
+image::organizationbilling.png[width=500]
+
+At the top-right corner of the Billing page, there's a summary of the total amount due for the current month.
+This value is shown in Aura Credits (ACU), providing a real-time estimate of your projected billing.
+
 == Payment methods 
 
 On the organization level, you can see the different payment methods configured for your organization.
@@ -58,15 +67,6 @@ For prepaid, you can see:
 * Remaining credits: remaining balance in the current contract period.
 
 For credit cards, you can see the last 4 digits, the expiration date and the billing address.
-
-== Billing
-
-.Access billing from the organization-level
-[.shadow]
-image::organizationbilling.png[width=500]
-
-At the top-right corner of the Billing page, there's a summary of the total amount due for the current month.
-This value is shown in Aura Credits (ACU), providing a real-time estimate of your projected billing.
 
 === Product name and pricing
 
