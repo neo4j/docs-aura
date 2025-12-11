@@ -10,12 +10,14 @@ The top level command for accessing Fleet Manager resources through the CLI is `
 
 == Registering a new deployment
 
-Registering a new deployment happens in three steps. The guide assumes that you already have a running Neo4j database that you want to register with Fleet Manager.
+The guide assumes that you already have a running Neo4j database that you want to register with Fleet Manager.
 
-Documentation for setting up your Neo4j database with the Fleet Manager plugin can be found from the following pages:
+If not, documentation for setting up your Neo4j database with the Fleet Manager plugin can be found from the following pages:
 
 ** Documentation for installing a Neo4j database can be found at: link:https://neo4j.com/docs/operations-manual/current/installation/[Installation]
 ** Documentation for installing the Fleet Manager plugin in your database: xref:./setup.adoc#_set_up_the_plugin[Plugin setup]
+
+Registering a new deployment happens in three steps.
 
 * Create a new deployment
 ** `aura-cli deployment create --name $DEPLOYMENT_NAME --connection_url $OPTIONAL_CONNECTION_URL --organization-id $YOUR_ORG_ID --project-id $YOUR_PROJECT_ID`
