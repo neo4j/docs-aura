@@ -19,7 +19,7 @@ Documentation for setting up your Neo4j database with the Fleet Manager plugin c
 ** Documentation for installing a Neo4j database can be found at: link:https://neo4j.com/docs/operations-manual/current/installation/[Installation]
 ** Documentation for installing the Fleet Manager plugin in your database: xref:./setup.adoc#_set_up_the_plugin[Plugin setup]
 
-All endpoints start with /organizations/:organization_id/projects/:project_id/, this will be left out for clarity and brevity. 
+All endpoints start with /organizations/:organization_id/projects/:project_id/fleet-manager, this will be left out for clarity and brevity. 
 
 Creating and registering a Fleet Manager deployment is done in three parts. 
 
@@ -28,7 +28,7 @@ Creating and registering a Fleet Manager deployment is done in three parts.
 
 [source, shell]
 ----
-curl --request 'POST' https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/projects/$YOUR_PROJECT_ID/deployments \
+curl --request 'POST' https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/projects/$YOUR_PROJECT_ID/fleet-manager/deployments \
   --header 'accept: application/json' \
   --header 'Content-Type: application/json' \
   --header "Authorization: Bearer $YOUR_AURA_API_TOKEN" \
@@ -40,7 +40,7 @@ curl --request 'POST' https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/pr
 
 [source, shell]
 ----
-curl --request 'POST' https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/projects/$YOUR_PROJECT_ID/deployments/$DEPLOYMENT_ID/token \
+curl --request 'POST' https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/projects/$YOUR_PROJECT_ID/fleet-manager/deployments/$DEPLOYMENT_ID/token \
   --header 'accept: application/json' \
   --header 'Content-Type: application/json' \
   --header "Authorization: Bearer $YOUR_AURA_API_TOKEN"
