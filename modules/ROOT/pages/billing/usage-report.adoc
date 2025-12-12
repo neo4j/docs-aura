@@ -2,31 +2,29 @@
 :description: usage reporting allows customers to monitor their billing and credit consumption.
 :page-role: aura-db-professional aura-db-business-critical aura-db-dedicated
 
-The billing and usage report at the organization level gives you a view of how all your Aura instances are using resources across every project.
+The billing and usage report at the organization-level gives you a view of how all your Aura instances are using resources across every project.
 From the billing screen, you can track usage and payment methods.
-
 You can also view a usage report at the project-level that only includes usage information about that single project. 
-
-== Required roles
-
-At the organization level, the billing and usage report is available to `Organization Owner` and `Organization Admin`.
-
-At the project level, a usage report is available to `Organization Owner`, `Organization Admin`, and `Project Admin`. 
 
 == Usage report
 
-The usage report gives real-time insights into resource usage. 
+On the organization-level, the usage report is available under *Billing* in the left-hand navigation.
 
-* Usage is reported for both running and paused instances.
-* The default time frame is month-to-date.
-* The usage report is updated hourly.
+.Organization-level billing
+[.shadow]
+image::organizationbilling.png[width=500]
 
-On the organization level, the usage report is available under *Billing* in the left-hand navigation.
 Within a project, you can find the report in *Project -> Usage*.
 
 .Project-level usage
 [.shadow]
 image::projectusage.png[width=500]
+
+=== Required roles
+
+At the organization level, the billing and usage report is available to `Organization Owner` and `Organization Admin`.
+
+At the project level, a usage report is available to `Organization Owner`, `Organization Admin`, and `Project Admin`. 
 
 === Export 
 
@@ -52,10 +50,6 @@ There are two options for viewing consumption:
 * *Sessions* includes a usage summary for any Graph Analytics sessions.
 
 == Billing
-
-.Organization-level billing
-[.shadow]
-image::organizationbilling.png[width=500]
 
 At the top-right corner of the Billing page is a summary of the total amount due for the current month.
 This value is shown in Aura Credits (ACU), providing a real-time estimate of your projected billing.
