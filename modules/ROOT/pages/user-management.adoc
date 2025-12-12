@@ -100,6 +100,11 @@ The following roles are available at the org level:
 | {check-mark} footnote:[An admin can only list members of projects the admin is also a member of.]
 |
 
+| View and edit billing information
+| {check-mark}
+| {check-mark}
+|
+
 // | Add customer information for a trial within org
 // | {check-mark}
 // | {check-mark}
@@ -155,15 +160,6 @@ Users within a project can be assigned one of the following roles:
 ====
 Each project must have at least one Project Admin, but it is also possible for projects to have multiple Project Admins.
 ====
-
-=== Metrics reader role
-
-The `METRICS_READER` role can be assigned to any user or service account.
-It has the same permissions as the `PROJECT_VIEWER` role, but with some extra permissions specifically for reading metrics via an API endpoint.
-The role allows access to metrics for all instances in a project.
-Accessing metric endpoints requires xref:/api/authentication.adoc[Aura API Credentials] and the `METRICS_READER` role enables the creation of these credentials.
-
-The `METRICS_READER` role can view and open instances in the console, however, login to the instance is required to interact with it, with access to Explore and Query defined by the instance’s RBAC settings.
 
 :check-mark: icon:check[]
 
@@ -237,12 +233,6 @@ The `METRICS_READER` role can view and open instances in the console, however, l
 | {check-mark}
 
 | Delete existing users from the project
-|
-|
-|
-| {check-mark}
-
-| View and edit billing information
 |
 |
 |
@@ -439,6 +429,15 @@ The predefined roles take the following format: `console_<role>_<dbid>`, for exa
 ====
 User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
 ====
+
+=== Metrics reader role
+
+The `METRICS_READER` role can be assigned to any user or service account.
+It has the same permissions as the `PROJECT_VIEWER` role, but with some extra permissions specifically for reading metrics via an API endpoint.
+The role allows access to metrics for all instances in a project.
+Accessing metric endpoints requires xref:/api/authentication.adoc[Aura API Credentials] and the `METRICS_READER` role enables the creation of these credentials.
+
+The `METRICS_READER` role can view and open instances in the console, however, login to the instance is required to interact with it, with access to Explore and Query defined by the instance’s RBAC settings.
 
 [[graph-analytics-roles]]
 === Graph Analytics roles

@@ -1,16 +1,22 @@
 [[aura-migrate-metadata]]
-= Migrate metadata from Workspace
-:description: This describes how to migrate metadata from Neo4j Workspace to the new Neo4j Aura Console.
+= Migrate metadata from Workspace and Neo4j Desktop
+:description: This describes how to migrate metadata from Neo4j Workspace or Neo4j Desktop to the new Neo4j Aura Console.
 
 If you have an Aura instance created in the classic Aura console (refer to xref:new-console.adoc[New Neo4j Aura console] for comparison), you can migrate the metadata from Workspace to the new console and continue working with your data in the new experience.
 The metadata includes the data model and saved Cypher queries.
 
+If you are using Neo4j Desktop with a local installation of Neo4j and want to move your database to Aura, you can migrate your metadata in the same way as from Workspace.
+
+
 == Data model
 
-From the *Import* tab in Workspace, open the more menu (*...*) and download the model, with or without data.
+From the *Import* tab in Workspace, open the more menu *[...]* and download the model, with or without data.
 
 [.shadow]
 image::export-model.png[width=300]
+
+From Desktop, you can find the same menu in the *Import* service, which you access from the sidebar.
+The *[...]* menu is located in the model panel.
 
 Then navigate to the new console and select *Import* -> *Graph models*.
 Once you select *New graph model*, you access the more menu (*...*), similar to Workspace, and select *Open model* with or without data.
@@ -29,6 +35,8 @@ From the Saved Cypher drawer, use the *Export* button to download selected queri
 [.shadow]
 image::export-saved-cypher.png[width=300]
 
+In Desktop, the Saved Cypher drawer is located in the *Query tool*, which you access from the sidebar.
+
 In the new console, navigate to the *Query* tab and open the  *Saved Cypher* drawer.
 Use the *Import* button and select the _.csv_ file you downloaded from Workspace.
 
@@ -44,8 +52,13 @@ It is exported as a _.json_ file.
 [.shadow]
 image::export-perspective.png[width=300]
 
+In Desktop, the export button is located in the top right of the Perspective designer.
+
+[.shadow]
+image::desktop-perspective.jpg[width=800]
+
 In the new console, navigate to the *Explore* tab and open the *Perspective* drawer.
 Use the *Import* option and select the _.json_ file you downloaded from Workspace.
 
 [.shadow]
-image::import-perspective.png[width=600]
+image::import-perspective.jpg[width=600]
