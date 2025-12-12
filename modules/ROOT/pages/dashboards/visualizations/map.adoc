@@ -3,8 +3,7 @@
 
 A map renders all returned nodes, relationships and paths on a geographical map. 
 
-The visualization uses map tiles from link:https://www.openstreetmap.org/about[Open Street Map].
-The tiles are hosted by Neo4j (not using public Open Street Map tiles).
+The visualization uses map tiles from link:https://www.openstreetmap.org/about[Open Street Map] but they are served through Neo4j’s own tile service rather than public Open Street Map APIs, so no data is sent to external services.
 
 [.shadow]
 .Map visualization example
