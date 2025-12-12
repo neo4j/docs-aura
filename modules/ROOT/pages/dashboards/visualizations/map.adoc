@@ -31,3 +31,78 @@ Fallback properties `latitude` / `longitude` and `lat` / `long` are not configur
 
 If a node has no detectable spatial properties it's not displayed on the map. 
 A `Not detected` label appears in **Settings**, and a warning message is shown in the preview.
+
+== Cypher examples
+
+This graph models a small Nordic geography using a few cities, landmarks, transportation hubs, and one organization.
+
+[[download the data]]
+[[paste this model into the query]]
+
+=== Cities on a map
+
+This example shows how connected geospatial entities (cities → airports) appear on the map.
+
+An example of a natural language prompt:
+
+.Prompt for a data-focused dashboard
+[source]
+----
+Show me all city nodes, and airport nodes, and the relationship between them.
+----
+
+A corresponding Cypher query:
+
+.Cities on a map
+[source,cypher]
+----
+MATCH (c:City)-[r]-(a:Airport)
+RETURN c, r, a
+LIMIT 100
+----
+
+.Example: City nodes, and airport nodes, and the relationship between them
+[.shadow]
+image::dashboards/visualizations/examplemap.png[]
+
+== Configuration
+
+[NOTE]
+====
+Styling changes currently apply across all cards.
+====
+
+=== Map style
+
+* Minimal 
+* Detailed 
+
+=== Geospatial properties
+
+Choose which property defines the location for each label type. For example:
+
+* City: `position2`
+* Airport: `coordinates`
+
+This lets you use different coordinate fields for different labels, depending on your graph's schema.
+For example, you might place the City node for Stockholm directly at the city center, or slightly offset if you want visual spacing.
+
+=== Styling
+
+Adjust how your map looks by editing a few visual properties:
+
+* *Color:* Choose a color for each node label or relationship type.
+
+* *Size:* Set the size of your nodes, or the width of relationship lines. 
+Larger node sizes help captions show up more clearly.
+
+* *Caption*: Choose which property to display as the label for nodes or relationships.
+Relationship captions appear along the connecting line.
+Node captions appear only when there is enough space. 
+If the node is too small, the label will not render.
+The default node size is the fourth item in the size selector.
+
+[.shadow]
+.Map captions
+image::dashboards/visualizations/mapcaptions.png[]
+
