@@ -114,21 +114,29 @@ Select the two nodes of interest, right-click on one of the nodes to bring up th
 image::shortest-path.png[width=500]
 
 [NOTE]
+====
 Explore searches for shortest paths within 20 hops and shows the first shortest path found by the database.
+====
 
 == Layouts
 
 In instances where you are interested in knowing more about _how_ various nodes are related in comparison to each other, Explore allows you to change the layout of your scene.
-By default, the nodes and relationships in a Scene are presented in a _force-based_ layout.
+By default, the nodes and relationships in a scene are presented in a *force-based* layout.
+There are two different force-based layouts available:
 
-The _hierarchical_-layout option from the layout menu located at the bottom right-hand corner of the scene, presents the nodes in the Scene in an hierarchical order instead.
+* *Force-based layout 1* - GPU accelerated layout that is fast and renders a quite dense and compact graph
+* *Force-based layout 2* - not accelerated by GPU so is slower but renders a more spread-out graph
+
+The difference between the two force-based layouts is most apparent when working with larger graphs.
+
+The *hierarchical* layout option from the layout menu located at the bottom right-hand corner of the scene, presents the nodes in the Scene in an hierarchical order instead.
 The nodes are then arranged by the directionality of their relationships, determined by the way relationship directions are set up in the database.
 When the hierarchical layout is activated, you can change the orientation with the edit-button directly to the right of the layout menu.
 
 [.shadow]
 image::layouts-hierarchy.png[width=800]
 
-The third option is the _coordinate layout_ and it arranges, and fixes, the nodes on the scene by their `integer`, `float`, or `point` type properties (provided that the nodes have them) and is used for geographical entities for example.
+The third option is the *coordinate* layout and it arranges, and fixes, the nodes on the scene by their `integer`, `float`, or `point` type properties (provided that the nodes have them) and is used for geographical entities for example.
 You can select which node property to use from the dropdown menu.
 
 If no property is selected for the x-axis, Explore automatically looks for any `point` property and if no such property exists, it looks for any property named _latitude_, then _lat_, and then _x_.
@@ -146,11 +154,6 @@ You can scale both axes to find the right level of granularity for your dataset.
 image::coordinate-layout.png[width=800]
 
 If you want to go back to the force-directed layout, just select the force-based layout from the layout menu.
-
-When using the force-based layout, Cytoscape is enabled by default.
-This means that smaller graphs are laid out using a Cytoscape layout which is faster and makes the elements in the scene more readable, and it applies to graphs of <100 nodes and <300 relationships.
-It can be disabled via the edit-button.
-
 
 
 == Map
@@ -181,7 +184,9 @@ You can also completely remove the filtered elements from the Scene, by using th
 image::filtering-dismiss.png[width=800]
 
 Filters can be accessed from the Filter drawer and are created based on the elements present in your scene, their categories, types, and properties.
-The filter can be as coarse or as fine as you like.
+The filter can be as coarse or as fine as you like and applies to affected elements in your scene.
+Filters are *not* saved, so when the scene is cleared so is the filter panel.
+If you want to save the results of a filter, you can export the scene instead.
 
 To start, you select the node category or relationship type to base the filter on.
 At that point, you have the option to filter out all other categories present in the Scene.

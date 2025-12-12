@@ -95,167 +95,237 @@ a| `action_id`
 | Description
 
 | INSTANCE_CREATE
-| 1
+| 0001
 | Instance Actions
 | A new instance has been created
 
 | INSTANCE_PAUSE
-| 2
+| 0002
 | Instance Actions
 | A running instance has been paused
 
 | INSTANCE_RESUME
-| 3
+| 0003
 | Instance Actions
 | A paused instance has been resumed
 
 | INSTANCE_CLONE_TO_EXISTING
-| 4
+| 0004
 | Instance Actions
 | An instance has been cloned to an existing one
 
 | INSTANCE_DELETE
-| 5
+| 0005
 | Instance Actions
 | An instance has been permanently deleted
 
 | INSTANCE_UPDATE
-| 6
+| 0006
 | Instance Actions
 | An instance's configuration has been updated
 
 | INSTANCE_MARK_AS_PRODUCTION
-| 7
+| 0007
 | Instance Actions
 | An instance has been marked as a production environment
 
 | INSTANCE_FORCE_DELETE
-| 8
+| 0008
 | Instance Actions
 | An instance has been force-deleted
 
 | INSTANCE_INTERNAL_UPDATE
-| 9
+| 0009
 | Instance Actions
 | An internal database update operation
 
 | INSTANCE_INTERNAL_PAUSE
-| 10
+| 0010
 | Instance Actions
 | An internal pause operation
 
 | DATA_SNAPSHOT_CREATE_ON_DEMAND
-| 101
+| 0101
 | Data Management
 | An on-demand snapshot operation
 
 | DATA_SNAPSHOT_EXPORT
-| 102
+| 0102
 | Data Management
 | A snapshot has been exported
 
 | DATA_SNAPSHOT_RESTORE
-| 103
+| 0103
 | Data Management
 | A snapshot has been restored
 
 | DATA_BACKUP_RESTORE
-| 104
+| 0104
 | Data Management
 | A backup has been restored
 
 | INVITE_CREATE
-| 201
+| 0201
 | User Management
 | A new user invitation has been sent
 
 | INVITE_ACCEPTED
-| 202
+| 0202
 | User Management
 | A user has accepted an invitation
 
 | INVITE_DECLINE
-| 203
+| 0203
 | User Management
 | A user has declined an invitation
 
 | INVITE_UPDATE
-| 204
+| 0204
 | User Management
 | An existing invite has been updated
 
 | INVITE_REVOKE
-| 205
+| 0205
 | User Management
 | An invitation has been revoked
 
 | ROLE_UPDATE
-| 206
+| 0206
 | User Management
 | A user's role has been updated
 
 | SSO_CREATE
-| 301
+| 0301
 | Security
 | A new Single-Sign On has been configured
 
 | SSO_UPDATE
-| 302
+| 0302
 | Security
-| An existing SSO configuration has been  updated
+| An existing SSO configuration has been updated
 
 | SSO_DELETE
-| 303
+| 0303
 | Security
 | An SSO configuration has been deleted
 
 | SSO_INTERNAL_CREATE
-| 304
+| 0304
 | Security
-| Internal SSO configuration
+| Internal SSO creation
 
 | SSO_INTERNAL_UPDATE
-| 305
+| 0305
 | Security
 | Internal SSO update
 
 | IP_FILTER_CREATE
-| 306
+| 0306
 | Security
 | A new IP filter rule has been created
 
 | IP_FILTER_UPDATE
-| 307
+| 0307
 | Security
 | An existing IP filter rule has been updated
 
 | IP_FILTER_DELETE
-| 308
+| 0308
 | Security
 | An IP filter rule has been deleted
 
 | USER_CMK_CREATE
-| 309
+| 0309
 | Security
 | A User Customer Managed Key has been created
 
 | USER_CMK_DELETE
-| 310
+| 0310
 | Security
 | A User Customer Managed Key has been deleted
 
 | PROJECT_CMK_CREATE
-| 311
+| 0311
 | Security
 | A Project Customer Managed Key has been created
 
 | PROJECT_CMK_DELETE
-| 312
+| 0312
 | Security
 | A Project Customer Managed Key has been deleted
 
 | PRIVATE_ENDPOINTS_UPDATE
-| 313
+| 0313
 | Security
 | A private endpoint configuration has been updated
+
+| PROJECT_CREATE
+| 0314
+| Organization Management
+| A new project in an organization has been created
+
+| FLEET_MANAGER_CREATE
+| 0401
+| Fleet Manager
+| A new deployment has been created
+
+| FLEET_MANAGER_DELETE
+| 0402
+| Fleet Manager
+| A deployment has been deleted
+
+| FLEET_MANAGER_RENAME
+| 0403
+| Fleet Manager
+| A deployment has been renamed
+
+| FLEET_MANAGER_CONNECTION_URL_UPDATE
+| 0404
+| Fleet Manager
+| A deployment connection URL has been updated
+
+| FLEET_MANAGER_TOKEN_GENERATE
+| 0410
+| Fleet Manager
+| A deployment token has been generated
+
+| FLEET_MANAGER_TOKEN_RELEASE
+| 0411
+| Fleet Manager
+| A deployment token has been released
+
+| FLEET_MANAGER_TOKEN_REGENERATE
+| 0412
+| Fleet Manager
+| A deployment token has been regenerated
+
+| FLEET_MANAGER_TOKEN_DELETE
+| 0413
+| Fleet Manager
+| A deployment token has been deleted
+
+| LOG_DOWNLOAD
+| 0501
+| Operations
+| A generated log report has been downloaded
+
+| METRICS_INTEGRATION_CONFIG_CHANGE
+| 0502
+| Operations
+| The metrics integration configuration has been changed
+
+| LOG_FORWARDING_CREATE
+| 0510
+| Operations
+| A log forwarding configuration has been created
+
+| LOG_FORWARDING_UPDATE
+| 0511
+| Operations
+| A log forwarding configuration has been updated
+
+| LOG_FORWARDING_DELETE
+| 0512
+| Operations
+| A log forwarding configuration has been deleted
 |===
