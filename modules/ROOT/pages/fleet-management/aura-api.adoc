@@ -2,11 +2,11 @@
 
 This page describes how to use the Aura API to manage Fleet Manager resources programatically.
 
-For instructions on how to use the Aura API, please read the documentation at xref:api/overview.adoc[API Documentation]
+For instructions on how to use the Aura API, see the xref:api/overview.adoc[API Documentation]
 
 The docs for the Aura API specs can be found at link:{neo4j-docs-base-uri}/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[API Specification]
 
-If you would rather manage the Fleet Manager resources through the Aura CLI, you can find instructions for that here xref:./aura-cli.adoc[Aura CLI documentation]
+If you would rather manage the Fleet Manager resources through the Aura CLI, see the xref:./aura-cli.adoc[Aura CLI documentation]
 
 == Managing deployments
 
@@ -19,12 +19,13 @@ Documentation for setting up your Neo4j database with the Fleet Manager plugin c
 ** Documentation for installing a Neo4j database can be found at: link:https://neo4j.com/docs/operations-manual/current/installation/[Installation]
 ** Documentation for installing the Fleet Manager plugin in your database: xref:./setup.adoc#_set_up_the_plugin[Plugin setup]
 
-All endpoints start with /organizations/:organization_id/projects/:project_id/fleet-manager, this will be left out for clarity and brevity. 
+All endpoints start with /organizations/:organization_id/projects/:project_id/fleet-manager, this is left out for clarity and brevity. 
 
 Creating and registering a Fleet Manager deployment is done in three parts. 
 
 * Create a deployment.
-** Send a post request to the `/deployments` endpoint supplying a `name` and an optional `connection_url` in the body. The response will hold the created deployment ID that will then be used when creating a token for the deployment.
+** Send a post request to the `/deployments` endpoint supplying a `name` and an optional `connection_url` in the body.
+The response holds the created deployment ID that is then used when creating a token for the deployment.
 
 [source, shell]
 ----
@@ -36,7 +37,8 @@ curl --request 'POST' https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/pr
 ----
 
 * Create a token for the deployment.
-** Send a post request to the `/deployments/:deployment_id/token` endpoint. The token will be created as an auto rotating token with a three month rotation interval.
+** Send a post request to the `/deployments/:deployment_id/token` endpoint.
+The token is created as an auto rotating token with a three month rotation interval.
 
 [source, shell]
 ----
