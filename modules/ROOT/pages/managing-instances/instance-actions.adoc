@@ -171,19 +171,39 @@ You need to confirm your intention since this action cannot be undone.
 // label:AuraDB-enterprise[]
 // label:AuraDB-business-critical[]
 
-Resizing an instance means changing the memory, CPU and storage size.
+Resizing an instance means adjusting memory, CPU, and storage size.
+*Memory and CPU* are configured together, since each instance size pairs a specific amount of memory with a corresponding number of CPUs.
+If you change the memory and CPU, the storage allowance also changes.
+However, you can also change the storage size independently.
+
+An instance remains available during the resize operation.
+
 Note that this option is *not available* for *Free instances*.
 
 You can change the size of an existing instance using the *Configure* button on the instance you want to resize.
-An instance remains available during the resize operation.
-
-== Adjust storage
+From the *Configure Instance* settings, go to **Sizing** and then select the preferred sizes from the dropdown.
 
 [NOTE]
 ====
 Available for all AuraDB tiers on the latest Neo4j version — with PAYG (direct) or Prepaid on AWS, Azure and GCP.
 Available as PAYG on GCP Marketplace for new subscriptions after September 19, 2025, and on AWS Marketplace for new subscriptions after November 19, 2025.
 ====
+
+== Adjust memory and CPU
+
+You select the amount of resources you need when you create your AuraDB instance, but this can be adjusted at any time if your needs change.
+
+To adjust memory and CPU, use the *Configure* button on the instance card and select a new value.
+Note that the included storage value changes automatically when you change the memory and CPU value, but this can be adjusted (see below).
+
+You may *reduce* your memory and CPU, provided that the new value is *equal to or greater* than your current usage.
+
+[.shadow]
+.Adjust memeory and CPU
+image::adjust-memory-cpu.jpg[width=600]
+
+
+== Adjust storage
 
 Adjust the storage size of your instance at any time.
 Each AuraDB instance includes a standard storage allocation and configuration; additional storage is chargeable.
@@ -199,7 +219,8 @@ This store size policy also applies to general instance downsizing.
 
 [.shadow]
 .Adjust storage size
-image::adjust_storage.png[adjust storage screenshot,540,380]
+image::adjust-storage1.jpg[width=600]
+
 
 
 [role=label--aura-db-dedicated label--aura-db-business-critical label--aura-db-professional]
