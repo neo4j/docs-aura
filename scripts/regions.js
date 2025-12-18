@@ -117,10 +117,10 @@ module.exports.register = function ({ config }) {
             extname: '.adoc',
         };
 
-        file.out = {
-            path: `${componentName}/${componentVersion}/${moduleName}/${regionsPartialFilename.replace('.adoc', '.html')}`,
-            url: `${componentName}/${componentVersion}/${moduleName}/${regionsPartialFilename.replace('.adoc', '.html')}`,
-        };
+        // file.out = {
+        //     path: `${componentName}/${componentVersion}/${moduleName}/${regionsPartialFilename.replace('.adoc', '.html')}`,
+        //     url: `${componentName}/${componentVersion}/${moduleName}/${regionsPartialFilename.replace('.adoc', '.html')}`,
+        // };
   
         file.family = family;
 
