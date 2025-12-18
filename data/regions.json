@@ -1,0 +1,1154 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2025-10-10T13:38:20Z",
+  "regions": [
+       {
+      "id": "aws-ap-southeast-2",
+      "csp": "AWS",
+      "provider_code": "ap-southeast-2",
+      "display_name": "ap-southeast-2",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": false
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-ap-south-1",
+      "csp": "AWS",
+      "provider_code": "ap-south-1",
+      "display_name": "ap-south-1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-ap-southeast-1",
+      "csp": "AWS",
+      "provider_code": "ap-southeast-1",
+      "display_name": "ap-southeast-1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-eu-central-1",
+      "csp": "AWS",
+      "provider_code": "eu-central-1",
+      "display_name": "eu-central-1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-eu-west-1",
+      "csp": "AWS",
+      "provider_code": "eu-west-1",
+      "display_name": "eu-west-1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-eu-west-3",
+      "csp": "AWS",
+      "provider_code": "eu-west-3",
+      "display_name": "eu-west-3",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-sa-east-1",
+      "csp": "AWS",
+      "provider_code": "sa-east-1",
+      "display_name": "sa-east-1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-us-east-1",
+      "csp": "AWS",
+      "provider_code": "us-east-1",
+      "display_name": "us-east-1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-us-west-2",
+      "csp": "AWS",
+      "provider_code": "us-west-2",
+      "display_name": "us-west-2",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-us-east-2",
+      "csp": "AWS",
+      "provider_code": "us-east-2",
+      "display_name": "us-east-2",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-ap-southeast-2",
+      "csp": "AWS",
+      "provider_code": "ap-southeast-2",
+      "display_name": "ap-southeast-2",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-ap-northeast-1",
+      "csp": "AWS",
+      "provider_code": "ap-northeast-1",
+      "display_name": "ap-northeast-1",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-ap-northeast-2",
+      "csp": "AWS",
+      "provider_code": "ap-northeast-2",
+      "display_name": "ap-northeast-2",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-ap-northeast-3",
+      "csp": "AWS",
+      "provider_code": "ap-northeast-3",
+      "display_name": "ap-northeast-3",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-ca-central-1",
+      "csp": "AWS",
+      "provider_code": "ca-central-1",
+      "display_name": "ca-central-1",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-eu-north-1",
+      "csp": "AWS",
+      "provider_code": "eu-north-1",
+      "display_name": "eu-north-1",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-eu-south-1",
+      "csp": "AWS",
+      "provider_code": "eu-south-1",
+      "display_name": "eu-south-1",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-eu-west-2",
+      "csp": "AWS",
+      "provider_code": "eu-west-2",
+      "display_name": "eu-west-2",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-il-central-1",
+      "csp": "AWS",
+      "provider_code": "il-central-1",
+      "display_name": "il-central-1",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-brazilsouth",
+      "csp": "Azure",
+      "provider_code": "brazilsouth",
+      "display_name": "brazilsouth",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-centralindia",
+      "csp": "Azure",
+      "provider_code": "centralindia",
+      "display_name": "centralindia",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-eastus",
+      "csp": "Azure",
+      "provider_code": "eastus",
+      "display_name": "eastus",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-francecentral",
+      "csp": "Azure",
+      "provider_code": "francecentral",
+      "display_name": "francecentral",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-koreacentral",
+      "csp": "Azure",
+      "provider_code": "koreacentral",
+      "display_name": "koreacentral",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-uksouth",
+      "csp": "Azure",
+      "provider_code": "uksouth",
+      "display_name": "uksouth",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-westus3",
+      "csp": "Azure",
+      "provider_code": "westus3",
+      "display_name": "westus3",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-australiaeast",
+      "csp": "Azure",
+      "provider_code": "australiaeast",
+      "display_name": "australiaeast",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-centralus",
+      "csp": "Azure",
+      "provider_code": "centralus",
+      "display_name": "centralus",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-eastus2",
+      "csp": "Azure",
+      "provider_code": "eastus2",
+      "display_name": "eastus2",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-germanywestcentral",
+      "csp": "Azure",
+      "provider_code": "germanywestcentral",
+      "display_name": "germanywestcentral",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-northeurope",
+      "csp": "Azure",
+      "provider_code": "northeurope",
+      "display_name": "northeurope",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-southcentralus",
+      "csp": "Azure",
+      "provider_code": "southcentralus",
+      "display_name": "southcentralus",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-southeastasia",
+      "csp": "Azure",
+      "provider_code": "southeastasia",
+      "display_name": "southeastasia",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-westeurope",
+      "csp": "Azure",
+      "provider_code": "westeurope",
+      "display_name": "westeurope",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-canadacentral",
+      "csp": "Azure",
+      "provider_code": "canadacentral",
+      "display_name": "canadacentral",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-southafricanorth",
+      "csp": "Azure",
+      "provider_code": "southafricanorth",
+      "display_name": "southafricanorth",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-switzerlandnorth",
+      "csp": "Azure",
+      "provider_code": "switzerlandnorth",
+      "display_name": "switzerlandnorth",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-uaenorth",
+      "csp": "Azure",
+      "provider_code": "uaenorth",
+      "display_name": "uaenorth",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-asia-east1",
+      "csp": "GCP",
+      "provider_code": "asia-east1",
+      "display_name": "asia-east1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-asia-east2",
+      "csp": "GCP",
+      "provider_code": "asia-east2",
+      "display_name": "asia-east2",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-asia-south1",
+      "csp": "GCP",
+      "provider_code": "asia-south1",
+      "display_name": "asia-south1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-asia-southeast1",
+      "csp": "GCP",
+      "provider_code": "asia-southeast1",
+      "display_name": "asia-southeast1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-australia-southeast1",
+      "csp": "GCP",
+      "provider_code": "australia-southeast1",
+      "display_name": "australia-southeast1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-europe-west1",
+      "csp": "GCP",
+      "provider_code": "europe-west1",
+      "display_name": "europe-west1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-europe-west2",
+      "csp": "GCP",
+      "provider_code": "europe-west2",
+      "display_name": "europe-west2",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-europe-west3",
+      "csp": "GCP",
+      "provider_code": "europe-west3",
+      "display_name": "europe-west3",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-northamerica-northeast1",
+      "csp": "GCP",
+      "provider_code": "northamerica-northeast1",
+      "display_name": "northamerica-northeast1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-us-central1",
+      "csp": "GCP",
+      "provider_code": "us-central1",
+      "display_name": "us-central1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-us-east1",
+      "csp": "GCP",
+      "provider_code": "us-east1",
+      "display_name": "us-east1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-us-west1",
+      "csp": "GCP",
+      "provider_code": "us-west1",
+      "display_name": "us-west1",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-asia-south2",
+      "csp": "GCP",
+      "provider_code": "asia-south2",
+      "display_name": "asia-south2",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-australia-southeast2",
+      "csp": "GCP",
+      "provider_code": "australia-southeast2",
+      "display_name": "australia-southeast2",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-europe-southwest1",
+      "csp": "GCP",
+      "provider_code": "europe-southwest1",
+      "display_name": "europe-southwest1",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-europe-west4",
+      "csp": "GCP",
+      "provider_code": "europe-west4",
+      "display_name": "europe-west4",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-southamerica-east1",
+      "csp": "GCP",
+      "provider_code": "southamerica-east1",
+      "display_name": "southamerica-east1",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-us-east4",
+      "csp": "GCP",
+      "provider_code": "us-east4",
+      "display_name": "us-east4",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-us-south1",
+      "csp": "GCP",
+      "provider_code": "us-south1",
+      "display_name": "us-south1",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-us-west2",
+      "csp": "GCP",
+      "provider_code": "us-west2",
+      "display_name": "us-west2",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-asia-northeast1",
+      "csp": "GCP",
+      "provider_code": "asia-northeast1",
+      "display_name": "asia-northeast1",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-asia-northeast2",
+      "csp": "GCP",
+      "provider_code": "asia-northeast2",
+      "display_name": "asia-northeast2",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-asia-northeast3",
+      "csp": "GCP",
+      "provider_code": "asia-northeast3",
+      "display_name": "asia-northeast3",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-asia-southeast2",
+      "csp": "GCP",
+      "provider_code": "asia-southeast2",
+      "display_name": "asia-southeast2",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-europe-central2",
+      "csp": "GCP",
+      "provider_code": "europe-central2",
+      "display_name": "europe-central2",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-europe-north1",
+      "csp": "GCP",
+      "provider_code": "europe-north1",
+      "display_name": "europe-north1",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-europe-west6",
+      "csp": "GCP",
+      "provider_code": "europe-west6",
+      "display_name": "europe-west6",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-europe-west8",
+      "csp": "GCP",
+      "provider_code": "europe-west8",
+      "display_name": "europe-west8",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-europe-west9",
+      "csp": "GCP",
+      "provider_code": "europe-west9",
+      "display_name": "europe-west9",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-europe-west12",
+      "csp": "GCP",
+      "provider_code": "europe-west12",
+      "display_name": "europe-west12",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-northamerica-northeast2",
+      "csp": "GCP",
+      "provider_code": "northamerica-northeast2",
+      "display_name": "northamerica-northeast2",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-us-east5",
+      "csp": "GCP",
+      "provider_code": "us-east5",
+      "display_name": "us-east5",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-us-west3",
+      "csp": "GCP",
+      "provider_code": "us-west3",
+      "display_name": "us-west3",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-us-west4",
+      "csp": "GCP",
+      "provider_code": "us-west4",
+      "display_name": "us-west4",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-me-central1",
+      "csp": "GCP",
+      "provider_code": "me-central1",
+      "display_name": "me-central1",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-me-west1",
+      "csp": "GCP",
+      "provider_code": "me-west1",
+      "display_name": "me-west1",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-me-central2",
+      "csp": "GCP",
+      "provider_code": "me-central2",
+      "display_name": "Dammam, Saudi Arabia, Middle East",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "gcp-southamerica-west1",
+      "csp": "GCP",
+      "provider_code": "southamerica-west1",
+      "display_name": "Santiago, Chile, South America",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-japaneast",
+      "csp": "Azure",
+      "provider_code": "japaneast",
+      "display_name": "Tokyo, Saitama",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-norwaywest",
+      "csp": "Azure",
+      "provider_code": "norwaywest",
+      "display_name": "Norway",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "azure-westus2",
+      "csp": "Azure",
+      "provider_code": "westus2",
+      "display_name": "Washington",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-ap-east-1",
+      "csp": "AWS",
+      "provider_code": "ap-east-1",
+      "display_name": "Asia Pacific (Hong Kong)",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-me-central-1",
+      "csp": "AWS",
+      "provider_code": "me-central-1",
+      "display_name": "Middle East (UAE)",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-mx-central-1",
+      "csp": "AWS",
+      "provider_code": "mx-central-1",
+      "display_name": "Mexico (Central)",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    }
+  ]
+}
