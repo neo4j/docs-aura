@@ -6,13 +6,13 @@
       "id": "aws-ap-southeast-2",
       "csp": "AWS",
       "provider_code": "ap-southeast-2",
-      "display_name": "ap-southeast-2",
+      "display_name": "ap-southeast-2 | Australia (Sydney)",
       "tiers": {
         "AuraDB_Professional": true,
         "AuraDS_Professional": true,
         "AuraDB_BusinessCritical": true,
-        "AuraDS_Enterprise": false,
-        "AuraDB_VirtualDedicatedCloud": false
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
       },
       "status": "GA"
     },
@@ -20,7 +20,7 @@
       "id": "aws-ap-south-1",
       "csp": "AWS",
       "provider_code": "ap-south-1",
-      "display_name": "ap-south-1",
+      "display_name": "ap-south-1 | India (Mumbai)",
       "tiers": {
         "AuraDB_Professional": true,
         "AuraDS_Professional": true,
@@ -34,7 +34,7 @@
       "id": "aws-ap-southeast-1",
       "csp": "AWS",
       "provider_code": "ap-southeast-1",
-      "display_name": "ap-southeast-1",
+      "display_name": "ap-southeast-1 | Singapore",
       "tiers": {
         "AuraDB_Professional": true,
         "AuraDS_Professional": true,
@@ -48,7 +48,7 @@
       "id": "aws-eu-central-1",
       "csp": "AWS",
       "provider_code": "eu-central-1",
-      "display_name": "eu-central-1",
+      "display_name": "eu-central-1 | Germany (Frankfurt)",
       "tiers": {
         "AuraDB_Professional": true,
         "AuraDS_Professional": true,
@@ -62,7 +62,7 @@
       "id": "aws-eu-west-1",
       "csp": "AWS",
       "provider_code": "eu-west-1",
-      "display_name": "eu-west-1",
+      "display_name": "eu-west-1 | Ireland",
       "tiers": {
         "AuraDB_Professional": true,
         "AuraDS_Professional": true,
@@ -76,7 +76,7 @@
       "id": "aws-eu-west-3",
       "csp": "AWS",
       "provider_code": "eu-west-3",
-      "display_name": "eu-west-3",
+      "display_name": "eu-west-3 | France (Paris)",
       "tiers": {
         "AuraDB_Professional": true,
         "AuraDS_Professional": true,
@@ -90,7 +90,7 @@
       "id": "aws-sa-east-1",
       "csp": "AWS",
       "provider_code": "sa-east-1",
-      "display_name": "sa-east-1",
+      "display_name": "sa-east-1 | Brazil (São Paulo)",
       "tiers": {
         "AuraDB_Professional": true,
         "AuraDS_Professional": true,
@@ -104,7 +104,7 @@
       "id": "aws-us-east-1",
       "csp": "AWS",
       "provider_code": "us-east-1",
-      "display_name": "us-east-1",
+      "display_name": "us-east-1 | United States (North Virginia)",
       "tiers": {
         "AuraDB_Professional": true,
         "AuraDS_Professional": true,
@@ -118,7 +118,7 @@
       "id": "aws-us-west-2",
       "csp": "AWS",
       "provider_code": "us-west-2",
-      "display_name": "us-west-2",
+      "display_name": "us-west-2 | United States (Oregon)",
       "tiers": {
         "AuraDB_Professional": true,
         "AuraDS_Professional": true,
@@ -132,7 +132,7 @@
       "id": "aws-us-east-2",
       "csp": "AWS",
       "provider_code": "us-east-2",
-      "display_name": "us-east-2",
+      "display_name": "us-east-2 | United States (Ohio)",
       "tiers": {
         "AuraDB_Professional": true,
         "AuraDS_Professional": true,
@@ -143,24 +143,10 @@
       "status": "GA"
     },
     {
-      "id": "aws-ap-southeast-2",
-      "csp": "AWS",
-      "provider_code": "ap-southeast-2",
-      "display_name": "ap-southeast-2",
-      "tiers": {
-        "AuraDB_Professional": false,
-        "AuraDS_Professional": false,
-        "AuraDB_BusinessCritical": false,
-        "AuraDS_Enterprise": true,
-        "AuraDB_VirtualDedicatedCloud": true
-      },
-      "status": "GA"
-    },
-    {
       "id": "aws-ap-northeast-1",
       "csp": "AWS",
       "provider_code": "ap-northeast-1",
-      "display_name": "ap-northeast-1 | Asia Pacific (Tokyo)",
+      "display_name": "ap-northeast-1 | Japan (Tokyo)",
       "tiers": {
         "AuraDB_Professional": false,
         "AuraDS_Professional": false,
@@ -174,7 +160,7 @@
       "id": "aws-ap-northeast-2",
       "csp": "AWS",
       "provider_code": "ap-northeast-2",
-      "display_name": "ap-northeast-2 | Asia Pacific (Seoul)",
+      "display_name": "ap-northeast-2 | South Korea (Seoul)",
       "tiers": {
         "AuraDB_Professional": false,
         "AuraDS_Professional": false,
@@ -188,7 +174,7 @@
       "id": "aws-ap-northeast-3",
       "csp": "AWS",
       "provider_code": "ap-northeast-3",
-      "display_name": "ap-northeast-3 | Asia Pacific (Osaka)",
+      "display_name": "ap-northeast-3 | Japan (Osaka)",
       "tiers": {
         "AuraDB_Professional": false,
         "AuraDS_Professional": false,
@@ -216,7 +202,7 @@
       "id": "aws-eu-north-1",
       "csp": "AWS",
       "provider_code": "eu-north-1",
-      "display_name": "eu-north-1 | Europe (Stockholm)",
+      "display_name": "eu-north-1 | Sweden (Stockholm)",
       "tiers": {
         "AuraDB_Professional": false,
         "AuraDS_Professional": false,
@@ -230,7 +216,7 @@
       "id": "aws-eu-south-1",
       "csp": "AWS",
       "provider_code": "eu-south-1",
-      "display_name": "eu-south-1 | Europe (Milan)",
+      "display_name": "eu-south-1 | Italy (Milan)",
       "tiers": {
         "AuraDB_Professional": false,
         "AuraDS_Professional": false,
@@ -244,7 +230,7 @@
       "id": "aws-eu-west-2",
       "csp": "AWS",
       "provider_code": "eu-west-2",
-      "display_name": "eu-west-2 | Europe (London)",
+      "display_name": "eu-west-2 | United Kingdom (London)",
       "tiers": {
         "AuraDB_Professional": false,
         "AuraDS_Professional": false,
@@ -426,7 +412,7 @@
       "id": "azure-northeurope",
       "csp": "Azure",
       "provider_code": "northeurope",
-      "display_name": "northeurope | Europe (Ireland)",
+      "display_name": "northeurope | Ireland",
       "tiers": {
         "AuraDB_Professional": false,
         "AuraDS_Professional": false,
@@ -454,7 +440,7 @@
       "id": "azure-southeastasia",
       "csp": "Azure",
       "provider_code": "southeastasia",
-      "display_name": "southeastasia | Asia Pacific (Singapore)",
+      "display_name": "southeastasia | Singapore",
       "tiers": {
         "AuraDB_Professional": false,
         "AuraDS_Professional": false,
@@ -468,7 +454,7 @@
       "id": "azure-westeurope",
       "csp": "Azure",
       "provider_code": "westeurope",
-      "display_name": "westeurope | Europe (Netherlands)",
+      "display_name": "westeurope | Netherlands",
       "tiers": {
         "AuraDB_Professional": false,
         "AuraDS_Professional": false,
@@ -748,7 +734,7 @@
       "id": "gcp-europe-west4",
       "csp": "GCP",
       "provider_code": "europe-west4",
-      "display_name": "europe-west4 | Netherlands (Eemshaven) ",
+      "display_name": "europe-west4 | Netherlands (Eemshaven)",
       "tiers": {
         "AuraDB_Professional": false,
         "AuraDS_Professional": false,
