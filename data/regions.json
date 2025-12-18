@@ -3,6 +3,34 @@
   "generated_at": "2025-10-10T13:38:20Z",
   "regions": [
     {
+      "id": "aws-us-east-2",
+      "csp": "AWS",
+      "provider_code": "us-east-2",
+      "display_name": "us-east-2",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": false
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-ap-southeast-2",
+      "csp": "AWS",
+      "provider_code": "ap-southeast-2",
+      "display_name": "ap-southeast-2",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": false,
+        "AuraDB_VirtualDedicatedCloud": false
+      },
+      "status": "GA"
+    },
+    {
       "id": "aws-ap-south-1",
       "csp": "AWS",
       "provider_code": "ap-south-1",
