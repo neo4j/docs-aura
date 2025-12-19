@@ -23,10 +23,7 @@ urls:
 
 antora:
   extensions:
-  - require: "@neo4j-antora/antora-modify-sitemaps"
-    sitemap_version: '~'
-    move_sitemaps_to_components: true
-  - "@neo4j-antora/roles-labels"
+  - ./scripts/regions.js
 
 asciidoc:
   extensions:
