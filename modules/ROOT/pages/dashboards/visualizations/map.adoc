@@ -70,32 +70,42 @@ CREATE (upp:City {
     location2: point({latitude: 59.8650, longitude: 17.6500})
 });
 
-// 3. Create Airports (Using 'latitude' and 'longitude' properties)
+// 3. Create Airports (Using 'latitude' and 'longitude')
 CREATE (arn:Airport {name: "Arlanda Airport", iata: "ARN", latitude: 59.6498, longitude: 17.9237})
 CREATE (land:Airport {name: "Landvetter Airport", iata: "GOT", latitude: 57.6628, longitude: 12.2798})
 CREATE (mmx:Airport {name: "Malmö Airport", iata: "MMX", latitude: 55.5395, longitude: 13.3649});
 
-// 4. Create Places (Using 'lat' and 'long' properties)
+// 4. Create Places (Using shorthand 'lat' and 'long')
 CREATE (sh:Place {name: "Stadshuset", kind: "Landmark", lat: 59.3275, long: 18.0543})
 CREATE (tt:Place {name: "Turning Torso", kind: "Building", lat: 55.6132, long: 12.9767})
 CREATE (sk:Place {name: "Slottsskogen", kind: "Park", lat: 57.6826, long: 11.9405});
 
-// 5. Create Relationships
+// 5. Create Relationships (Place/Airport -> City)
 MATCH (a:Airport {name: "Arlanda Airport"}), (c:City {name: "Stockholm"}) MERGE (a)-[:IN_CITY]->(c);
 MATCH (a:Airport {name: "Landvetter Airport"}), (c:City {name: "Göteborg"}) MERGE (a)-[:IN_CITY]->(c);
 MATCH (a:Airport {name: "Malmö Airport"}), (c:City {name: "Malmö"}) MERGE (a)-[:IN_CITY]->(c);
-
 MATCH (p:Place {name: "Stadshuset"}), (c:City {name: "Stockholm"}) MERGE (p)-[:IN_CITY]->(c);
 MATCH (p:Place {name: "Slottsskogen"}), (c:City {name: "Göteborg"}) MERGE (p)-[:IN_CITY]->(c);
 MATCH (p:Place {name: "Turning Torso"}), (c:City {name: "Malmö"}) MERGE (p)-[:IN_CITY]->(c);
 
-// 6. Create Bidirectional Connections between Cities
-MATCH (sto:City {name: "Stockholm"}), (got:City {name: "Göteborg"}) MERGE (sto)-[:CONNECTED_TO]-(got);
-MATCH (sto:City {name: "Stockholm"}), (upp:City {name: "Uppsala"})   MERGE (sto)-[:CONNECTED_TO]-(upp);
-MATCH (mal:City {name: "Malmö"}),     (got:City {name: "Göteborg"}) MERGE (mal)-[:CONNECTED_TO]-(got);
+// 6. Add Flight Paths between Airports
+MATCH (arn:Airport {iata: "ARN"}), (land:Airport {iata: "GOT"})
+MERGE (arn)-[:FLIGHT_PATH {distance_km: 395}]->(land);
+
+MATCH (arn:Airport {iata: "ARN"}), (mmx:Airport {iata: "MMX"})
+MERGE (arn)-[:FLIGHT_PATH {distance_km: 530}]->(mmx);
+
+MATCH (land:Airport {iata: "GOT"}), (mmx:Airport {iata: "MMX"})
+MERGE (land)-[:FLIGHT_PATH {distance_km: 235}]->(mmx);
 ----
 
-You should now have a graph with 171 nodes and 253 relationships.
+You should now have a graph with 10 nodes and 9 relationships:
+
+* 4 `City` nodes (Stockholm, Göteborg, Malmö, Uppsala)
+
+* 3 `Airport` nodes (Arlanda Airport, Landvetter Airport, Malmö Airport)
+
+* 3 `Place` nodes - (Stadshuset, Turning Torso, Slottsskogen)
 
 == Cypher examples
 
@@ -127,11 +137,6 @@ image::dashboards/visualizations/examplemap.png[]
 
 == Configuration
 
-[NOTE]
-====
-Styling changes currently apply across all cards.
-====
-
 === Map style
 
 * Minimal 
@@ -148,6 +153,11 @@ This lets you use different coordinate fields for different labels, depending on
 For example, you might place the City node for Stockholm directly at the city center, or slightly offset if you want visual spacing.
 
 === Styling
+
+[NOTE]
+====
+Styling changes apply across all cards.
+====
 
 Adjust how your map looks by editing a few visual properties:
 
