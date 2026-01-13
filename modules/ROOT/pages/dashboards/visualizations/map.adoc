@@ -89,12 +89,12 @@ CREATE (tt:Place {name: "Turning Torso", kind: "Building", lat: 55.6132, long: 1
 CREATE (sk:Place {name: "Slottsskogen", kind: "Park", lat: 57.6826, long: 11.9405});
 
 // 5. Create Relationships (Place/Airport -> City)
-MATCH (a:Airport {name: "Arlanda Airport"}), (c:City {name: "Stockholm"}) MERGE (a)-[:IN_CITY]->(c);
-MATCH (a:Airport {name: "Landvetter Airport"}), (c:City {name: "Göteborg"}) MERGE (a)-[:IN_CITY]->(c);
-MATCH (a:Airport {name: "Malmö Airport"}), (c:City {name: "Malmö"}) MERGE (a)-[:IN_CITY]->(c);
-MATCH (p:Place {name: "Stadshuset"}), (c:City {name: "Stockholm"}) MERGE (p)-[:IN_CITY]->(c);
-MATCH (p:Place {name: "Slottsskogen"}), (c:City {name: "Göteborg"}) MERGE (p)-[:IN_CITY]->(c);
-MATCH (p:Place {name: "Turning Torso"}), (c:City {name: "Malmö"}) MERGE (p)-[:IN_CITY]->(c);
+MATCH (a:Airport {name: "Arlanda Airport"}), (c:City {name: "Stockholm"}) MERGE (a)-[:SERVES_CITY]->(c);
+MATCH (a:Airport {name: "Landvetter Airport"}), (c:City {name: "Göteborg"}) MERGE (a)-[:SERVES_CITY]->(c);
+MATCH (a:Airport {name: "Malmö Airport"}), (c:City {name: "Malmö"}) MERGE (a)-[:SERVES_CITY]->(c);
+MATCH (p:Place {name: "Stadshuset"}), (c:City {name: "Stockholm"}) MERGE (p)-[:SERVES_CITY]->(c);
+MATCH (p:Place {name: "Slottsskogen"}), (c:City {name: "Göteborg"}) MERGE (p)-[:SERVES_CITY]->(c);
+MATCH (p:Place {name: "Turning Torso"}), (c:City {name: "Malmö"}) MERGE (p)-[:SERVES_CITY]->(c);
 
 // 6. Add Flight Paths between Airports
 MATCH (arn:Airport {iata: "ARN"}), (land:Airport {iata: "GOT"})
