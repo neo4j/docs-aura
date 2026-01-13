@@ -36,10 +36,18 @@ If the query returns a relationship whose connected nodes lack spatial propertie
 
 == Create the map graph
 
-After you create a free Aura instance, use the "Connect" button and select "Query". 
-In the Cypher editor, copy and paste the following Cypher and execute the query:
+This graph models a Nordic geography using a few cities, airports and places.
 
-This graph models a small Nordic geography using a few cities, landmarks, transportation hubs, and one organization.
+We will use Cypher to create a graph with 10 nodes and 9 relationships:
+
+* 4 `City` nodes (Stockholm, Göteborg, Malmö, Uppsala)
+
+* 3 `Airport` nodes (Arlanda Airport, Landvetter Airport, Malmö Airport)
+
+* 3 `Place` nodes (Stadshuset, Turning Torso, Slottsskogen)
+
+Create an Aura instance, then go to "Query".
+In the Cypher editor, copy and paste the following Cypher and execute the query:
 
 [source,cypher]
 ----
@@ -98,14 +106,6 @@ MERGE (arn)-[:FLIGHT_PATH {distance_km: 530}]->(mmx);
 MATCH (land:Airport {iata: "GOT"}), (mmx:Airport {iata: "MMX"})
 MERGE (land)-[:FLIGHT_PATH {distance_km: 235}]->(mmx);
 ----
-
-You should now have a graph with 10 nodes and 9 relationships:
-
-* 4 `City` nodes (Stockholm, Göteborg, Malmö, Uppsala)
-
-* 3 `Airport` nodes (Arlanda Airport, Landvetter Airport, Malmö Airport)
-
-* 3 `Place` nodes - (Stadshuset, Turning Torso, Slottsskogen)
 
 == Cypher examples
 
