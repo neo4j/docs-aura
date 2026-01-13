@@ -134,7 +134,7 @@ To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbo
 [IMPORTANT]
 ====
 Aura supports Customer Managed Keys in the following regions:
-`Australia East`, `Southeast Asia`, `Canada Central`, `North Europe`, `Germany West Central`, `Korea Central`, `Sweden Central`, `UK South`, `West US`, `Central US`
+`Southeast Asia`, `North Europe`, `Germany West Central`, `UK South`, `Central US`
 ====
 
 === Create an Azure key vault
@@ -186,7 +186,7 @@ For more information about the Azure CLI, see link:https://learn.microsoft.com/e
 === Grant key permissions
 
 . To add role assignment to the Azure key, inside the key, go to *Access control (IAM)* and add *role assignment*.
-. In the *Role* tab, select *Key Vault Crypto Officer*.
+. In the *Role* tab, select *Key Vault Crypto Service Encryption User*.
 . In the *Member* tab, select *User, group, or service principal*.
 . In *Select members*, paste the *Neo4j CMK Application name* that is displayed in the Aura Console.
 . The *Neo4j CMK Application* should appear, select this application then *Review + Assign*.
