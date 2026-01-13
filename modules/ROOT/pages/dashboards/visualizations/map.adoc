@@ -15,7 +15,8 @@ Node positions are detected in the following order:
 +
 Any property of type `Point` containing a valid geographic coordinate (WGS 84 2D or 3D). 
 The property can be named anything as long as the value is of type `Point`.
-Note: While 3D points are accepted, the height/z value is ignored and not rendered.
+Note: While 3D points are accepted, the `height`/`z` value is ignored and not rendered.
+For more info, see https://neo4j.com/docs/cypher-manual/current/values-and-types/spatial/#spatial-values-point-type[Spatial values > Point documentation]
 
 . Fallback `latitude` / `longitude` 
 +
@@ -33,12 +34,70 @@ A `Not detected` label appears in **Settings**, and a warning message is shown i
 
 If the query returns a relationship whose connected nodes lack spatial properties, the relationship will not be shown on the map.
 
-== Cypher examples
+== Create the map graph
+
+After you create a free Aura instance, use the "Connect" button and select "Query". 
+In the Cypher editor, copy and paste the following Cypher and execute the query:
 
 This graph models a small Nordic geography using a few cities, landmarks, transportation hubs, and one organization.
 
-[[download the data]]
-[[paste this model into the query]]
+[source,cypher]
+----
+// 1. Setup Constraints
+CREATE CONSTRAINT city_name IF NOT EXISTS FOR (c:City) REQUIRE c.name IS UNIQUE;
+CREATE CONSTRAINT airport_name IF NOT EXISTS FOR (a:Airport) REQUIRE a.name IS UNIQUE;
+CREATE CONSTRAINT place_name IF NOT EXISTS FOR (p:Place) REQUIRE p.name IS UNIQUE;
+
+// 2. Create Cities (With dual native Point properties)
+CREATE (sto:City {
+    name: "Stockholm", 
+    location: point({latitude: 59.3293, longitude: 18.0686}),
+    location2: point({latitude: 59.3400, longitude: 18.0800})
+})
+CREATE (got:City {
+    name: "Göteborg",  
+    location: point({latitude: 57.7089, longitude: 11.9746}),
+    location2: point({latitude: 57.7150, longitude: 11.9900})
+})
+CREATE (mal:City {
+    name: "Malmö",     
+    location: point({latitude: 55.6059, longitude: 13.0008}),
+    location2: point({latitude: 55.5900, longitude: 13.0100})
+})
+CREATE (upp:City {
+    name: "Uppsala",   
+    location: point({latitude: 59.8586, longitude: 17.6389}),
+    location2: point({latitude: 59.8650, longitude: 17.6500})
+});
+
+// 3. Create Airports (Using 'latitude' and 'longitude' properties)
+CREATE (arn:Airport {name: "Arlanda Airport", iata: "ARN", latitude: 59.6498, longitude: 17.9237})
+CREATE (land:Airport {name: "Landvetter Airport", iata: "GOT", latitude: 57.6628, longitude: 12.2798})
+CREATE (mmx:Airport {name: "Malmö Airport", iata: "MMX", latitude: 55.5395, longitude: 13.3649});
+
+// 4. Create Places (Using 'lat' and 'long' properties)
+CREATE (sh:Place {name: "Stadshuset", kind: "Landmark", lat: 59.3275, long: 18.0543})
+CREATE (tt:Place {name: "Turning Torso", kind: "Building", lat: 55.6132, long: 12.9767})
+CREATE (sk:Place {name: "Slottsskogen", kind: "Park", lat: 57.6826, long: 11.9405});
+
+// 5. Create Relationships
+MATCH (a:Airport {name: "Arlanda Airport"}), (c:City {name: "Stockholm"}) MERGE (a)-[:IN_CITY]->(c);
+MATCH (a:Airport {name: "Landvetter Airport"}), (c:City {name: "Göteborg"}) MERGE (a)-[:IN_CITY]->(c);
+MATCH (a:Airport {name: "Malmö Airport"}), (c:City {name: "Malmö"}) MERGE (a)-[:IN_CITY]->(c);
+
+MATCH (p:Place {name: "Stadshuset"}), (c:City {name: "Stockholm"}) MERGE (p)-[:IN_CITY]->(c);
+MATCH (p:Place {name: "Slottsskogen"}), (c:City {name: "Göteborg"}) MERGE (p)-[:IN_CITY]->(c);
+MATCH (p:Place {name: "Turning Torso"}), (c:City {name: "Malmö"}) MERGE (p)-[:IN_CITY]->(c);
+
+// 6. Create Bidirectional Connections between Cities
+MATCH (sto:City {name: "Stockholm"}), (got:City {name: "Göteborg"}) MERGE (sto)-[:CONNECTED_TO]-(got);
+MATCH (sto:City {name: "Stockholm"}), (upp:City {name: "Uppsala"})   MERGE (sto)-[:CONNECTED_TO]-(upp);
+MATCH (mal:City {name: "Malmö"}),     (got:City {name: "Göteborg"}) MERGE (mal)-[:CONNECTED_TO]-(got);
+----
+
+You should now have a graph with 171 nodes and 253 relationships.
+
+== Cypher examples
 
 === Cities on a map
 
