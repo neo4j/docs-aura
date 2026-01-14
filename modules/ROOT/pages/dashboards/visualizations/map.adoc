@@ -34,7 +34,7 @@ A `Not detected` label appears in **Settings**, and a warning message is shown i
 
 If the query returns a relationship whose connected nodes lack spatial properties, the relationship will not be shown on the map.
 
-== Create the map graph
+== Example map graph
 
 This graph models a Nordic geography using a few cities, airports and places.
 
@@ -46,8 +46,8 @@ This example uses Cypher to create a graph with 10 nodes and 9 relationships:
 
 * 3 `Place` nodes (Stadshuset, Turning Torso, Slottsskogen)
 
-First, create an Aura instance, then go to "Query".
-Next, in the Cypher editor, copy and paste the following Cypher and execute the query:
+Create an Aura instance, then go to "Query".
+In the Cypher editor, copy and paste the following Cypher and execute the query:
 
 [source,cypher]
 ----
@@ -109,7 +109,7 @@ MERGE (land)-[:FLIGHT_PATH {distance_km: 235}]->(mmx);
 
 == Cypher examples
 
-=== Cities on a map
+=== Airports serving cities
 
 This example shows how connected airports and cities appear on the map.
 
@@ -139,13 +139,7 @@ Zooming in on the map, shows that Arlanda Airport serves Stockholm.
 
 .Example: Zoom in of airport serving a city nodes
 [.shadow]
-image::dashboards/visualizations/servescity.png[]
-
-After editing the styling to add name captions, it's now clear that Arlanda Airport serves Stockholm.
-
-.Example: Arlanda airport
-[.shadow]
-image::dashboards/visualizations/arlandaairport.png[]
+image::dashboards/visualizations/servescity.png[width=700]
 
 == Configuration
 
