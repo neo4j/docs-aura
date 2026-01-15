@@ -6,7 +6,7 @@ label:AuraDB-Free[]
 label:AuraDB-Professional[]
 label:AuraDB-Business-Critical[]
 
-Aura Agent is a no/low-code agent-creation platform that allows you to build, test, and deploy GraphRAG agents contextualized by your own knowledge graph in AuraDB.
+Aura Agent is a no/low-code agent platform that allows you to build, test, and deploy GraphRAG agents contextualized by your own knowledge graph in AuraDB.
 
 Aura provides the orchestration layer as well as the integration with GenAI models/LLMs and offers different iterative tools that allow your agent to provide the right context to the LLM.
 
@@ -35,6 +35,10 @@ You can change the agent's availability at any time.
 
 Then you can start adding the tools that will allow your agent to retrieve specific data from your graph.
 Keep in mind that currently the agent only supports *read only* queries against the database.
+
+Once you are satisfied with your agent, you need to *save* it or else it is not persisted if you navigate away.
+
+Note also that the conversation history is not currently stored anywhere.
 
 == Tools
 
