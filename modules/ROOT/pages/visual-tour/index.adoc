@@ -88,15 +88,21 @@ See the xref:import/introduction.adoc[What is Import?] for more information abou
 [[graph-analytics-page]]
 === Graph Analytics
 
-This page lists the link:{gds-sessions-page}[Aura Graph Analytics] sessions running within a project (if any).
+This page lists the link:{gds-sessions-page}[Aura Graph Analytics] sessions associated with a project.
 
-The list shows session details and a **Delete** button for each session.
-Session details include:
+By default, the list displays active sessions. You can view past sessions by switching on the "**Include deleted sessions**" toggle.
 
-* The Neo4j database instance containing the data projected in the session
-* The memory allocated to the session (configurable in the <<org-settings>> page)
-* The user who created the session
-* The time remaining to the session configured time limit
+For each session, the following details are available:
+
+* *Session Identity:* Creation time, session name, and session ID.
+* *Resources:* The Aura instance containing the data projected in the session (if any) and the memory allocated to the session (configurable in the <<org-settings>> page).
+* *Ownership:* The user who created the session.
+* *State:* The current session status and the time remaining to its configured time limit (for running sessions).
+
+You can also perform the following **actions** via this page:
+
+* You can terminate an active session using the **Delete** button.
+* You can download the entire list in CSV format using the **Export** button. This export is useful for offline processing, such as combining session information with billing data for detailed consumption analysis.
 
 === Data APIs
 
