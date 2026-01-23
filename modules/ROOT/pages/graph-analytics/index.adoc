@@ -104,6 +104,47 @@ Graphs and models created or updated _after_ the instance update/upgrade process
 [[comparison]]
 == Comparison
 
+.Business comparison
+[opts="header", cols="1s,1,1,1"]
+|===
+|
+|Aura Graph Analytics (Recommended)
+|AuraDS
+|AuraDB Pro Analytics Plugin
+
+|Primary use cases
+|Data science, ETL, running algorithms, ephemeral workloads
+|Persistent model serving, collaborative workspaces
+|Lightweight exploration, simple queries
+
+|Compute architecture
+|Serverless / On-demand (Spin up, run, spin down)
+|Dedicated instance (always on, pausing possible)
+|Shared resources (runs on the same resources as the DB)
+
+|Billing
+|Pay-as-you-go (per session minute)
+|Flat hourly rate (per instance size)
+|Included in the AuraDB cost
+
+|Data sources
+|AuraDB, self-managed Neo4j, Snowflake, Pandas DataFrames
+|AuraDS (integrated storage)
+|AuraDB (integrated storage)
+
+|Isolation
+|Full isolation (no impact on DB performance)
+|Full isolation
+|Shared (can slow down transactional DB)
+
+|Machine learning
+|Train and predict (session-scoped)
+|Train, store and serve models
+|Limited
+
+|===
+
+.Technical comparison
 [opts="header", cols="1s,1,1,1,1"]
 |===
 |
