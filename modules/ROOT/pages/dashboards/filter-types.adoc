@@ -1,0 +1,250 @@
+= Filter types
+
+//Simply put, a parameter select report lets users set a Neo4j query parameter dynamically.
+//This means that your reports can be created to show different data depending on the value of a parameter.
+
+There's 7 different filter types to make dashboards more interactive. 
+You can filter using free text, numbers or dates, or go fully custom with the custom query type. 
+The filter creation experience has a live preview to help you create filters.
+Examples used here use the Northwind dataset as outlined in http://localhost:8000/aura/dashboards/getting-started/#_add_a_sample_data_set[add a sample dataset] and you can recreate them in your own dashboard.
+
+== Node property 
+
+Filters nodes based on their properties.
+//A node property selector lets users choose a property from a node with a given label, to be used as a parameter in the dashboard.
+
+This example uses a filter to select specific products. 
+We will create a product name picker where a user selection from the dropdown writes to the parameter input $productname, so the user input can be used on a card to show if products are in stock.
+// This populates a dropdown from  :Product(productName) values and stores the selection in the linked $productname parameter.
+
+1) Create the filter by selecting *New Filter*
+
+* Set *Filter type* to `Node property`
+* Choose Label: `Product`
+* Choose Property: `productName`
+* Link parameter, use a new or existing parameter, (for example: `$productname`)
+* (Optional) Set a default value (for example, `Alice Mutton`)
+
+Next, we'll create a card that uses the filter value and use the linked parameter in the query.
+
+2) Select *New card* and select *Cypher*.
+
+[source,cypher]
+----
+MATCH (p:Product)-[:PART_OF]->(c:Category)
+WHERE p.productName = $product_productname
+RETURN
+  p.productName AS product,
+  c.categoryName AS category,
+  p.unitPrice AS unit_price,
+  p.unitsInStock AS units_in_stock,
+  CASE
+    WHEN p.unitsInStock = 0 THEN "out of stock"
+    WHEN p.unitsInStock < 10 THEN "low stock"
+    ELSE "in stock"
+  END AS stock_status
+----
+
+== Relationship property 
+
+Use this filter when the value you want to filter by properties on a relationship rather than on the nodes themselves.
+// A relationship property selector lets users choose a property from a relationship with a given type, to be used as a parameter in the dashboard.
+
+This example uses a relationship property filter to select a discount value from the ORDERS relationship and store it in the $orders_discount parameter.
+// This example uses a relationship property filter to select an order discount and apply it to a card query.
+The filter gives discount values (for example 0.10 would be 10% discount).
+
+1) Create the node relationship filter
+
+* Select *New Filter*
+* Filter type: `Relationship property`
+* Relationship type: `ORDERS`
+* Property: `discount`
+* Linked parameter: `$orders_discount` ***
+
+2) Create a card that uses the filter value
+
+* Select *New card* and select *Cypher*.
+* Use the linked parameter in the query, for example:
+
+This one just searches for price of the item
+[source,cypher]
+----
+MATCH (p:Product)
+WHERE p.productName = $product_productname
+RETURN p.unitPrice AS unit_price
+----
+
+OR
+
+[source,cypher]
+----
+MATCH ()-[o:ORDERS]->(p:Product)
+WHERE o.discount = $orders_discount
+RETURN
+  o.discount,
+  p.productName,
+  count(*) AS n
+ORDER BY n DESC
+LIMIT 20
+----
+
+When a person selects a discount value in the filter, the card reruns using that value and updates the results automatically.
+
+== Free text filter
+
+// A free text selectors lets users enter any string value, which can then be used as a parameter inside dashboard queries.
+A Free text filter is essentially a text field that is commonly used for search. 
+It sends whatever the person types into a parameter. 
+
+This example filters orders by shipping postcode.
+
+//For example, I can have a Free text filter that is tied to a parameter called `$text`. 
+//I can then have a table card listing all products names that contains this search.
+//This is accomplished by adding that parameter into the table card's Cypher query such as:
+
+1) Create the filter
+
+* Filter type: `Free text`
+* Linked parameter: `$text`
+
+2) Create a card that uses the filter value
+
+* Select *New card* and select *Cypher*.
+* Use the linked parameter in the query, for example:
+
+[source,cypher]
+----
+MATCH (o:Order)
+WHERE o.shipPostalCode CONTAINS $text
+RETURN
+o.shipCity AS city,
+o.orderID AS order
+ORDER BY city, order
+----
+
+As the person types a postcode, the card updates automatically to show matching orders.
+
+== Custom query filter
+
+// A custom query selectors lets you specify a custom selector widget, where user suggestions are populated based on an $input variable that is passed down into your custom query.
+
+Use a custom query filter for full control over a query - otherwise use the existing Node property or node relationship filters. 
+For large datasets, you may want to tailor the query for performance optimization and use a specific cypher syntax.
+
+This filter shows a *Select component* for the user.
+Write the query to populate the values for the dropdown of the *Select component*.
+
+The query can return data even though the user hasn't typed in a search phrase. 
+But when the user types in a search phrase, it will be available to the query as a parameter called $input. 
+And that can be used to filter the returned data.
+
+You can list any kind of things here, like movie titles from a specific movie, or any custom thing you want. 
+For example:
+
+[source,cypher]
+----
+example
+----
+
+=== Date filter
+
+A Date filter lets people filter data based on dates or date ranges.
+
+// A date selector lets users specify dates using a calendar widget, or by entering a date format.
+// It’s commonly used for things like order dates, creation dates, or event timelines.
+// When a date (or range) is selected, the value is stored in a linked parameter and used in card queries.
+
+1) Create the filter
+
+* Filter type: `Date`
+* Linked parameter: `$order_date`
+
+Use the parameter in a card query:
+
+2) Create a card that uses the filter value
+
+[source,cypher]
+----
+MATCH (o:Order)
+WHERE date(o.orderDate) = date($order_date)
+RETURN o.orderID, o.orderDate
+----
+
+=== Number filter
+
+//Integer - whole teaspoons of matcha only
+//ceremonial pecision e.g. a scoop and a half
+
+*Integer vs Float*
+
+A Number filter lets people filter data using numeric values or ranges.
+It’s useful for prices, quantities, counts, scores, or thresholds.
+How the filter works: whatever number the person enters gets passed into the query as $number, and the query uses it to include or exclude results.
+
+* Example: filter products by unit price.
+* Filter type: `Number`
+* Linked parameter: `$unit_price`
+
+Use the parameter in a card query:
+
+[source,cypher]
+----
+MATCH (p:Product)
+WHERE p.unitPrice = $unit_price
+RETURN p.productName, p.unitPrice
+----
+
+OR
+
+[source,cypher]
+----
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)
+WITH c, count(o) AS orders
+WHERE orders >= $number
+RETURN count(c) AS customers
+----
+
+=== Number ranges
+
+For ranges, you can link multiple parameters (for example $min_price and $max_price) and use them together in a query.
+You create two number filters (say $min_price and $max_price), then let Cypher hold the range gently.
+Example with Northwind order totals:
+
+[source,cypher]
+----
+MATCH (o:Order)-[:CONTAINS]->(od:OrderDetail)
+WITH o, sum(od.unitPrice * od.quantity) AS total
+WHERE total >= $min_price
+  AND total <= $max_price
+RETURN count(o) AS orders, sum(total) AS revenue
+----
+
+* $min_price sets the floor
+* $max_price sets the ceiling
+the card responds as you slide the range, like adjusting water temp, not force
+
+=== Boolean filter
+
+A Boolean filter is a simple on/off toggle.
+It stores either true or false in a linked parameter. 
+
+You can rename 
+Default value Yes / No - and then you get toggle you can select the button 
+You can rename True / False to Yes/No for example 
+
+Boolean filters are useful for including or excluding data — for example, “in stock only” or “active customers only”.
+
+
+Example: show only products that are in stock.
+
+* Filter type: Boolean
+* Linked parameter: $in_stock_only
+
+Use it in a card query like this:
+
+MATCH (p:Product)
+WHERE ($in_stock_only = false OR p.unitsInStock > 0)
+RETURN p.productName, p.unitsInStock
+
+This pattern keeps queries flexible while letting people control the results with a single toggle.

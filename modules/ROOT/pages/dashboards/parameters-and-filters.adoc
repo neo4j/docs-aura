@@ -115,56 +115,6 @@ Selecting a value from the dropdown updates the parameter `$unit_param` and upda
 [.shadow]
 image::dashboards/parameters-and-filters/filter-and-card.gif[]
 
-== Filter types
-
-We support 7 different filter types to make dashboards more interactive. 
-You can filter using free text, numbers or dates, or go fully custom with the “custom query” type. 
-The filter creation experience has a live preview to help you create filters.
-
-* Node property (Filters nodes based on their properties, so the filter answers: "Show me nodes with these properties.”)
-* Relationship property (Filters nodes based on properties and their connected relationships? So the filter answers: “Show me nodes that are connected via relationships with these properties.”)
-
-=== Free text filter
-
-A Free text filter is basically just a text field, and whatever the user types in there is sent to a parameter. 
-It is commonly used as a search field.
-
-For example, I can have a Free text filter that is tied to a parameter called `$free_text_search`. 
-I can then have a table card listing all movies that contains this search phrase in their title. 
-This is accomplished by adding that parameter into the table card's cypher query such as:
-
-[source,cypher]
-----
-MATCH (m:Movie) 
-WHERE m.title CONTAINS $free_text_search 
-return m.title
-----
-
-Note that you don't write any query to create a free text filter.
-
-=== Custom query filter
-
-You have to write a query for a custom query filter. 
-This filter is showing a *Select component* for the user (not a text field). 
-And you write the query to populate the values for the dropdown of the *Select component*.
-
-?**The query can return data even though the user hasn't typed in a search phrase. But when the user types in a search phrase, it will be available to the query as a parameter called $input. And that can be used to filter the returned data.
-This is more descriptive in my opinion that the word "search the graph".**?
-
-You can basically list any kind of things here, like movie titles from a specific movie, or any custom thing you want. 
-For example:
-
-[source,cypher]
-----
-MATCH (n:Movie) //looks for Movie nodes
-WHERE n.title 
-CONTAINS $input //Checks whether n.title contains what the person typed
-RETURN n.title //Returns matching titles
-LIMIT 10 //Caps the list at 10 so it stays light and responsive
-----
-
-Customers sometimes use it when they want to have full control over their query. Otherwise they can use our existing Node filters. But for customers with large datasets, they want to tailor their query for performance optimization. So they may want to use some specific cypher syntax
-
 == Parameters drawer
 
 .The parameters drawer
