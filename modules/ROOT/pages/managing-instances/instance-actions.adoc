@@ -184,11 +184,6 @@ Note that this option is *not available* for *Free instances*.
 You can change the size of an existing instance using the *Configure* button on the instance you want to resize.
 From the *Configure Instance* settings, go to **Sizing** and then select the preferred sizes from the dropdown.
 
-[NOTE]
-====
-Available for all AuraDB tiers on the latest Neo4j version — with PAYG (direct) or Prepaid on AWS, Azure and GCP.
-Available as PAYG on GCP Marketplace for new subscriptions after September 19, 2025, and on AWS Marketplace for new subscriptions after November 19, 2025.
-====
 
 == Adjust memory and CPU
 
@@ -222,7 +217,11 @@ This store size policy also applies to general instance downsizing.
 .Adjust storage size
 image::adjust-storage1.jpg[width=600]
 
-
+[NOTE]
+====
+Available for all AuraDB tiers on the latest Neo4j version — with PAYG (direct) or Prepaid on AWS, Azure and GCP.
+Available as PAYG on GCP Marketplace for new subscriptions after September 19, 2025, and on AWS Marketplace for new subscriptions after November 19, 2025, and on Azure Marketplace for new subscriptions after January 13, 2026.
+====
 
 [role=label--aura-db-dedicated label--aura-db-business-critical label--aura-db-professional]
 == Manage custom endpoints
