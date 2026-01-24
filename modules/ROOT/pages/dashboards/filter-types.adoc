@@ -144,10 +144,10 @@ But when the user selects and option or types in a search phrase, it will be ava
 Use a custom query filter for full control over a query (otherwise use the existing node property or node relationship filters). 
 For large datasets, you may want to tailor the query for performance optimization and use a specific cypher syntax.
 
+1) Create the filter by selecting *New Filter*
 
-For example:
-
-1) Create the parameter $custom
+* Filter type: `Custom query`
+* Enter the custom query: 
 
 [source,cypher]
 ----
@@ -158,7 +158,12 @@ ORDER BY orders DESC //It sorts the results in descending order based on the cou
 LIMIT 3 //Finally, it limits the results to the top 3 companies with the highest order counts.
 ----
 
+* Linked parameter: `$custom`
+
+
 So, the output will be the names of the three companies that have made the most purchases.
+
+image::dashboards/filters/customqueryfilter.png[Custom query filter]
 
 2) Create the card 
 
