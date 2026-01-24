@@ -1,4 +1,7 @@
 = Filter types
+:description: Examples of how to filter data using Aura Dashboards, with complete Cypher examples to set up filters and cards. Simply put, a parameter select report lets users set a Neo4j query parameter (e.g. $neodash_person_name) dynamically. This means that your reports can be created to show different data depending on the value of a parameter.
+
+// In Neodash this was called "Parameter Select" https://neo4j.com/labs/neodash/2.3/user-guide/reports/parameter-select/
 
 // you can type or write into the *Select component*
 
@@ -54,7 +57,7 @@ image::dashboards/filters/nodeproperty.png[Node property]
 Use this filter when the value you want to filter by properties on a relationship rather than on the nodes themselves.
 // A relationship property selector lets users choose a property from a relationship with a given type, to be used as a parameter in the dashboard.
 
-This example uses a relationship property filter to select a discount value from the ORDERS relationship and store it in the $orders_discount parameter.
+This example uses a relationship property filter to select a discount value from the ORDERS relationship and store it in the `$orders_discount` parameter.
 // This example uses a relationship property filter to select an order discount and apply it to a card query.
 The filter gives discount values (for example selecting 0.1 would be 10% discount).
 
