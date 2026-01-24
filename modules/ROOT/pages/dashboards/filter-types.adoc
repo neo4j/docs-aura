@@ -109,15 +109,20 @@ This example filters orders by shipping postcode.
 
 [source,cypher]
 ----
+WITH trim(coalesce($text,"")) AS q
 MATCH (o:Order)
-WHERE o.shipPostalCode CONTAINS $text
-RETURN
-o.shipCity AS city,
-o.orderID AS order
-ORDER BY city, order
+WHERE q = ""
+   OR replace(toUpper(o.shipPostalCode)," ","")
+      CONTAINS replace(toUpper(q)," ","")
+RETURN DISTINCT
+  o.shipCity AS city,
+  o.shipPostalCode AS postcode
+ORDER BY city, postcode
 ----
 
 As the person types a postcode, the card updates automatically to show matching orders.
+
+image::dashboards/filters/freetext.png[Free text]
 
 == Custom query
 
@@ -192,6 +197,10 @@ MATCH (o:Order)
 WHERE date(o.orderDate) = date($order_date)
 RETURN o.orderID, o.orderDate
 ----
+
+=== Datetime
+
+Essentially the same for date time but much easier because the Northwind dataset orders are actually in Datetime format
 
 === Number
 
