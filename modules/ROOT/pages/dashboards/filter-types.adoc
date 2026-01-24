@@ -1,5 +1,7 @@
 = Filter types
 
+// you can type or write into the *Select component*
+
 //Simply put, a parameter select report lets users set a Neo4j query parameter dynamically.
 //This means that your reports can be created to show different data depending on the value of a parameter.
 
@@ -109,16 +111,18 @@ This example filters orders by shipping postcode.
 
 [source,cypher]
 ----
-WITH trim(coalesce($text,"")) AS q
-MATCH (o:Order)
-WHERE q = ""
+WITH trim(coalesce($text,"")) AS q //This line begins by defining a variable q. It uses the coalesce function to return the value of $text if it's not null; otherwise, it returns an empty string "". The trim function is then applied to remove any leading or trailing whitespace from the result. Essentially, q will be a cleaned-up version of the input text.
+MATCH (o:Order) //This line matches all nodes labeled as Order in the database and binds them to the variable o. This is the starting point for the query.
+WHERE q = "" //The WHERE clause filters the results based on the conditions specified. The first condition q = "" checks if q is an empty string, which would effectively return all orders. The second condition replaces spaces in both o.shipPostalCode and q with empty strings, converts them to uppercase, and checks if the cleaned-up postal code contains the value of q. This allows for a case-insensitive match that ignores spaces.
    OR replace(toUpper(o.shipPostalCode)," ","")
       CONTAINS replace(toUpper(q)," ","")
 RETURN DISTINCT
   o.shipCity AS city,
-  o.shipPostalCode AS postcode
-ORDER BY city, postcode
+  o.shipPostalCode AS postcode //This line returns distinct results for o.shipCity (renamed as city) and o.shipPostalCode (renamed as postcode). The use of DISTINCT ensures that duplicate city and postal code pairs are not included in the result set.
+ORDER BY city, postcode //Finally, this line orders the results first by city and then by postcode, ensuring that the output is sorted in a readable format.
 ----
+
+// In summary, this query retrieves unique combinations of shipping cities and postal codes for orders, filtering based on whether the input text matches the postal code (ignoring case and spaces) or if no input is provided.
 
 As the person types a postcode, the card updates automatically to show matching orders.
 
@@ -126,21 +130,18 @@ image::dashboards/filters/freetext.png[Free text]
 
 == Custom query
 
-*WRITE A QUERY TO POPULATE THE DROPDOWN AND THAT SELECTION FEEDS THE CARD, WE USE THAT PARAMETER IN THE CARD QUERY*
 
-A custom query selectors lets you specify a custom selector widget, where user suggestions are populated based on an $input variable that is passed down into your custom query.
-
-This filter shows a *Select component* for the user.
-Write the query to populate the values for the dropdown of the *Select component*.
-
-Use a custom query filter for full control over a query (otherwise use the existing Node property or node relationship filters). 
-For large datasets, you may want to tailor the query for performance optimization and use a specific cypher syntax.
+Use a Cypher query to populate the select component.
+When someone chooses an option or enters a phrase, that value is passed as a parameter to the card’s Cypher query.
 
 The query can return data even though the user hasn't typed in a search phrase. 
-But when the user types in a search phrase, it will be available to the query as a parameter called $input. 
-And that can be used to filter the returned data.
+But when the user selects and option or types in a search phrase, it will be available to the query as a parameter, and that can be used to filter the returned data.
 
-You can list any kind of things here, like movie titles from a specific movie, or any custom thing you want. 
+
+Use a custom query filter for full control over a query (otherwise use the existing node property or node relationship filters). 
+For large datasets, you may want to tailor the query for performance optimization and use a specific cypher syntax.
+
+
 For example:
 
 1) Create the parameter $custom
