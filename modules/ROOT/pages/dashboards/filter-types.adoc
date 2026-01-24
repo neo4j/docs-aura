@@ -22,7 +22,7 @@ We will create a product name picker where a user selection from the dropdown wr
 * Set *Filter type* to `Node property`
 * Choose Label: `Product`
 * Choose Property: `productName`
-* Link parameter, use a new or existing parameter, (for example: `$productname`)
+* Link parameter, use a new or existing parameter, (for example: `$product_productname`)
 * (Optional) Set a default value (for example, `Alice Mutton`)
 
 Next, we'll create a card that uses the filter value and use the linked parameter in the query.
@@ -45,6 +45,8 @@ RETURN
   END AS stock_status
 ----
 
+image::dashboards/filters/nodeproperty.png[Node property]
+
 == Relationship property 
 
 Use this filter when the value you want to filter by properties on a relationship rather than on the nodes themselves.
@@ -52,7 +54,7 @@ Use this filter when the value you want to filter by properties on a relationshi
 
 This example uses a relationship property filter to select a discount value from the ORDERS relationship and store it in the $orders_discount parameter.
 // This example uses a relationship property filter to select an order discount and apply it to a card query.
-The filter gives discount values (for example 0.10 would be 10% discount).
+The filter gives discount values (for example selecting 0.1 would be 10% discount).
 
 1) Create the node relationship filter
 
@@ -60,22 +62,12 @@ The filter gives discount values (for example 0.10 would be 10% discount).
 * Filter type: `Relationship property`
 * Relationship type: `ORDERS`
 * Property: `discount`
-* Linked parameter: `$orders_discount` ***
+* Linked parameter: `$orders_discount`
 
 2) Create a card that uses the filter value
 
 * Select *New card* and select *Cypher*.
 * Use the linked parameter in the query, for example:
-
-This one just searches for price of the item
-[source,cypher]
-----
-MATCH (p:Product)
-WHERE p.productName = $product_productname
-RETURN p.unitPrice AS unit_price
-----
-
-OR
 
 [source,cypher]
 ----
@@ -91,7 +83,9 @@ LIMIT 20
 
 When a person selects a discount value in the filter, the card reruns using that value and updates the results automatically.
 
-== Free text filter
+image::dashboards/filters/relationshipproperty.png[Relationship property]
+
+== Free text
 
 // A free text selectors lets users enter any string value, which can then be used as a parameter inside dashboard queries.
 A Free text filter is essentially a text field that is commonly used for search. 
@@ -125,15 +119,17 @@ ORDER BY city, order
 
 As the person types a postcode, the card updates automatically to show matching orders.
 
-== Custom query filter
+== Custom query
 
-// A custom query selectors lets you specify a custom selector widget, where user suggestions are populated based on an $input variable that is passed down into your custom query.
+*WRITE A QUERY TO POPULATE THE DROPDOWN AND THAT SELECTION FEEDS THE CARD, WE USE THAT PARAMETER IN THE CARD QUERY*
 
-Use a custom query filter for full control over a query - otherwise use the existing Node property or node relationship filters. 
-For large datasets, you may want to tailor the query for performance optimization and use a specific cypher syntax.
+A custom query selectors lets you specify a custom selector widget, where user suggestions are populated based on an $input variable that is passed down into your custom query.
 
 This filter shows a *Select component* for the user.
 Write the query to populate the values for the dropdown of the *Select component*.
+
+Use a custom query filter for full control over a query (otherwise use the existing Node property or node relationship filters). 
+For large datasets, you may want to tailor the query for performance optimization and use a specific cypher syntax.
 
 The query can return data even though the user hasn't typed in a search phrase. 
 But when the user types in a search phrase, it will be available to the query as a parameter called $input. 
@@ -142,12 +138,38 @@ And that can be used to filter the returned data.
 You can list any kind of things here, like movie titles from a specific movie, or any custom thing you want. 
 For example:
 
+1) Create the parameter $custom
+
 [source,cypher]
 ----
-example
+MATCH (c:Customer)-[:PURCHASED]->(o:Order) //Finds all `Customer` nodes that have a `PURCHASED` relationship with `Order` nodes.
+WITH c.companyName AS value, count(o) AS orders //It collects the company name of each customer and counts the number of orders associated with each customer.
+RETURN value //This returns the company names as value.
+ORDER BY orders DESC //It sorts the results in descending order based on the count of orders. 
+LIMIT 3 //Finally, it limits the results to the top 3 companies with the highest order counts.
 ----
 
-=== Date filter
+So, the output will be the names of the three companies that have made the most purchases.
+
+2) Create the card 
+
+[source,cypher]
+----
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)-[op:ORDERS]->(p:Product) //This part matches `Customer` nodes that have made `PURCHASED `relationships to `Order` nodes, which in turn have `ORDERS` relationships to `Product` nodes. 
+WHERE $custom IS NULL OR c.companyName = $custom //This condition filters the results to either include all customers if $custom is null or only those customers whose company name matches the value of $custom.
+RETURN 
+  p.productName AS product,
+  sum(op.quantity) AS units,
+  round(sum(op.unitPrice * op.quantity), 2) AS revenue //This returns the product name, the total quantity of units sold, and the total revenue (calculated by multiplying the quantity by the unit price, rounded to two decimal places).
+ORDER BY revenue DESC //The results are ordered by the calculated revenue in descending order.
+LIMIT 10
+----
+
+The output will provide insights into which products are generating the most revenue from purchases, optionally filtered by a specific company name.
+
+image::dashboards/filters/customquery.png[Custom query]
+
+=== Date
 
 A Date filter lets people filter data based on dates or date ranges.
 
@@ -171,10 +193,10 @@ WHERE date(o.orderDate) = date($order_date)
 RETURN o.orderID, o.orderDate
 ----
 
-=== Number filter
+=== Number
 
 //Integer - whole teaspoons of matcha only
-//ceremonial pecision e.g. a scoop and a half
+//Float - ceremonial pecision e.g. a scoop and a half
 
 *Integer vs Float*
 
