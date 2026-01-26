@@ -12,10 +12,10 @@ If your data is in Aura or you plan to move it to Aura, you have several options
 
 If your data is in a self-managed Neo4j DBMS or a non-Neo4j data source, you can still use <<aura-gds-serverless, Aura Graph Analytics>>.
 
-[[aura-gds-plugin]]
-== Graph Analytics plugin
 
-label:AuraDB-Professional[]
+[[aura-gds-plugin]]
+[role=label--aura-db-professional]
+== Graph Analytics plugin
 
 The Graph Analytics plugin allows you to use the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library] in any AuraDB Professional instance with the following requirements:
 
@@ -28,6 +28,7 @@ It can also be changed with the link:https://neo4j.com/docs/aura/platform/api/sp
 
 The plugin shares compute and memory resources with the AuraDB server, so you do not incur any additional costs when you enable it.
 
+
 [[get-started-plugin]]
 === Getting started
 
@@ -35,6 +36,7 @@ With the Graph Analytics plugin enabled:
 
 * If you use the Neo4j Browser or run Cypher queries through a Neo4j driver, start with the link:{neo4j-docs-base-uri}/graph-data-science/current/getting-started/[Graph Data Science] tutorials.
 * If you use Python, start with the link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/tutorials/[Python client tutorials].
+
 
 [[aura-gds-serverless]]
 == Aura Graph Analytics
@@ -45,14 +47,9 @@ It runs in Aura as a link:{gds-sessions-page}[dedicated service] optimised for a
 You can enable, disable, and configure Aura Graph Analytics on the organization level in the xref:visual-tour/index.adoc#graph-analytics-org-settings[organization settings].
 The details on any running sessions are available in the xref:visual-tour/index.adoc#graph-analytics-page[Graph Analytics] page.
 
+
+[role=label--aura-db-professional label--aura-db-business-critical label--aura-db-dedicated]
 === From an AuraDB instance
-
-label:AuraDB-Professional[] label:AuraDB-Business-Critical[] label:AuraDB-Virtual-Dedicated-Cloud[]
-
-[IMPORTANT]
-====
-Aura Graph Analytics is available via the GCP marketplace and for pay-as-you-go customers, but is currently *not* available via either the AWS or the Azure xref:cloud-providers.adoc[marketplaces].
-====
 
 You can use Aura Graph Analytics from any AuraDB Professional, Business Critical, or Virtual Dedicated Cloud instance with the following requirements:
 
@@ -68,12 +65,12 @@ With the Aura API credentials available:
 
 * If you use the Neo4j Browser or run Cypher queries through a Neo4j driver, start with the link:{neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/quickstart/[examples] in the Graph Data Science documentation.
 * If you use Python, start with one of the Python client tutorials depending on whether your data is in
-link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless/[AuraDB], in a link:{neo4j-docs-base-uri}//graph-data-science-client/current/tutorials/graph-analytics-serverless-self-managed/[self-managed Neo4j database], or a link:{neo4j-docs-base-uri}//graph-data-science-client/current/tutorials/graph-analytics-serverless-standalone/[non-Neo4j data source].
+link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless/[AuraDB], in a link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-self-managed/[self-managed Neo4j database], or a link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-standalone/[non-Neo4j data source].
+
 
 [[aura-ds]]
+[role=label--aura-ds-professional label--aura-ds-enterprise]
 == AuraDS
-
-label:AuraDS-Professional[] label:AuraDS-Enterprise[]
 
 AuraDS is the fully managed version of the Graph Data Science library where the <<aura-gds-plugin>> is deployed by default.
 

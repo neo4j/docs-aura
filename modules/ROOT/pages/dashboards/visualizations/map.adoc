@@ -1,0 +1,180 @@
+= Map
+:description: Maps show data on a geomap.
+
+A map renders all returned nodes, relationships and paths on a geographical map. 
+
+The visualization uses map tiles from link:https://www.openstreetmap.org/about[OpenStreetMap] but they are served through Neo4j’s own tile service rather than public OpenStreetMap APIs, so no data is sent to external services.
+
+[.shadow]
+.Map visualization example
+image::dashboards/visualizations/visualization-map.png[]
+
+Node positions are detected in the following order:
+
+. `Point` property
++
+Any property of type `Point` containing a valid geographic coordinate (WGS 84 2D or 3D). 
+The property can be named anything as long as the value is of type `Point`.
+Note: While 3D points are accepted, the `height`/`z` value is ignored and not rendered.
+For more info, see https://neo4j.com/docs/cypher-manual/current/values-and-types/spatial/#spatial-values-point-type[Spatial values > Point documentation]
+
+. Fallback `latitude` / `longitude` 
++
+If no `Point` property is found, the visualization looks for properties named exactly `latitude` and `longitude`. Both must exist.
+
+. Fallback properties: `lat` / `long` 
++
+If the above are not found, properties named exactly `lat` and `long` are used. Again, both must exist.
+
+If more than one spatial property is detected, the property for node placement can be changed in **Settings**.
+Fallback properties (`latitude` / `longitude` and `lat` / `long`) are not configurable.
+
+If a node has no detectable spatial properties it's not displayed on the map. 
+A `Not detected` label appears in **Settings**, and a warning message is shown in the preview.
+
+If the query returns a relationship whose connected nodes lack spatial properties, the relationship will not be shown on the map.
+
+== Example map graph
+
+This graph models a Nordic geography using a few cities, airports and places.
+
+This example uses Cypher to create a graph with 10 nodes and 9 relationships:
+
+* 4 `City` nodes (Stockholm, Göteborg, Malmö, Uppsala)
+
+* 3 `Airport` nodes (Arlanda Airport, Landvetter Airport, Malmö Airport)
+
+* 3 `Place` nodes (Stadshuset, Turning Torso, Slottsskogen)
+
+Create an Aura instance, then go to "Query".
+In the Cypher editor, copy and paste the following Cypher and execute the query:
+
+[source,cypher]
+----
+// 1. Setup Constraints
+CREATE CONSTRAINT city_name IF NOT EXISTS FOR (c:City) REQUIRE c.name IS UNIQUE;
+CREATE CONSTRAINT airport_name IF NOT EXISTS FOR (a:Airport) REQUIRE a.name IS UNIQUE;
+CREATE CONSTRAINT place_name IF NOT EXISTS FOR (p:Place) REQUIRE p.name IS UNIQUE;
+
+// 2. Create Cities (With dual native Point properties)
+CREATE (sto:City {
+    name: "Stockholm", 
+    location: point({latitude: 59.3293, longitude: 18.0686}),
+    location2: point({latitude: 59.3400, longitude: 18.0800})
+})
+CREATE (got:City {
+    name: "Göteborg",  
+    location: point({latitude: 57.7089, longitude: 11.9746}),
+    location2: point({latitude: 57.7150, longitude: 11.9900})
+})
+CREATE (mal:City {
+    name: "Malmö",     
+    location: point({latitude: 55.6059, longitude: 13.0008}),
+    location2: point({latitude: 55.5900, longitude: 13.0100})
+})
+CREATE (upp:City {
+    name: "Uppsala",   
+    location: point({latitude: 59.8586, longitude: 17.6389}),
+    location2: point({latitude: 59.8650, longitude: 17.6500})
+});
+
+// 3. Create Airports (Using 'latitude' and 'longitude')
+CREATE (arn:Airport {name: "Arlanda Airport", iata: "ARN", latitude: 59.6498, longitude: 17.9237})
+CREATE (land:Airport {name: "Landvetter Airport", iata: "GOT", latitude: 57.6628, longitude: 12.2798})
+CREATE (mmx:Airport {name: "Malmö Airport", iata: "MMX", latitude: 55.5395, longitude: 13.3649});
+
+// 4. Create Places (Using shorthand 'lat' and 'long')
+CREATE (sh:Place {name: "Stadshuset", kind: "Landmark", lat: 59.3275, long: 18.0543})
+CREATE (tt:Place {name: "Turning Torso", kind: "Building", lat: 55.6132, long: 12.9767})
+CREATE (sk:Place {name: "Slottsskogen", kind: "Park", lat: 57.6826, long: 11.9405});
+
+// 5. Create Relationships (Place/Airport -> City)
+MATCH (a:Airport {name: "Arlanda Airport"}), (c:City {name: "Stockholm"}) MERGE (a)-[:SERVES_CITY]->(c);
+MATCH (a:Airport {name: "Landvetter Airport"}), (c:City {name: "Göteborg"}) MERGE (a)-[:SERVES_CITY]->(c);
+MATCH (a:Airport {name: "Malmö Airport"}), (c:City {name: "Malmö"}) MERGE (a)-[:SERVES_CITY]->(c);
+MATCH (p:Place {name: "Stadshuset"}), (c:City {name: "Stockholm"}) MERGE (p)-[:SERVES_CITY]->(c);
+MATCH (p:Place {name: "Slottsskogen"}), (c:City {name: "Göteborg"}) MERGE (p)-[:SERVES_CITY]->(c);
+MATCH (p:Place {name: "Turning Torso"}), (c:City {name: "Malmö"}) MERGE (p)-[:SERVES_CITY]->(c);
+
+// 6. Add Flight Paths between Airports
+MATCH (arn:Airport {iata: "ARN"}), (land:Airport {iata: "GOT"})
+MERGE (arn)-[:FLIGHT_PATH {distance_km: 395}]->(land);
+
+MATCH (arn:Airport {iata: "ARN"}), (mmx:Airport {iata: "MMX"})
+MERGE (arn)-[:FLIGHT_PATH {distance_km: 530}]->(mmx);
+
+MATCH (land:Airport {iata: "GOT"}), (mmx:Airport {iata: "MMX"})
+MERGE (land)-[:FLIGHT_PATH {distance_km: 235}]->(mmx);
+----
+
+== Cypher examples
+
+=== Airports serving cities
+
+This example shows how connected airports and cities appear on the map.
+
+An example of a natural language prompt:
+
+.Prompt for a data-focused dashboard
+[source]
+----
+Show me all city nodes, and airport nodes, and the relationship between them.
+----
+
+A corresponding Cypher query:
+
+.Cities on a map
+[source,cypher]
+----
+MATCH (c:City)-[r]-(a:Airport)
+RETURN c, r, a
+LIMIT 100
+----
+
+.Example: City nodes, and airport nodes, and the relationship between them
+[.shadow]
+image::dashboards/visualizations/examplemap.png[]
+
+Zooming in on the map shows that Arlanda Airport serves Stockholm.
+
+.Example: Zoom in of airport serving a city nodes
+[.shadow]
+image::dashboards/visualizations/servescity.png[width=700]
+
+== Configuration
+
+=== Map style
+
+* Minimal 
+* Detailed 
+
+=== Geospatial properties
+
+Choose which property defines the location for each label type. For example:
+
+* City: `position2`
+* Airport: `coordinates`
+
+This lets you use different coordinate fields for different labels, depending on your graph's schema.
+For example, you might place the City node for Stockholm directly at the city center, or slightly offset if you want visual spacing.
+
+=== Styling
+
+[NOTE]
+====
+Styling changes apply across all cards.
+====
+
+Adjust how your map looks by editing a few visual properties:
+
+* *Color:* Choose a color for each node label or relationship type.
+
+* *Size:* Set the size of your nodes, or the width of relationship lines. 
+Larger node sizes help captions show up more clearly.
+
+* *Caption*: Choose which property to display as the label for nodes or relationships.
+Relationship captions appear along the connecting line.
+Node captions appear only when there is enough space. 
+If the node is too small, the label will not render.
+The default node size is the fourth item in the size selector.
+

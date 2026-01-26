@@ -1,0 +1,51 @@
+[[aura-create-project]]
+= Create a project
+
+A project in Neo4j Aura is a logical container for Aura resources such as instances, graph analytics sessions, agents, and dashboards.
+
+A default project is created for you when you sign up to Aura, but you can also add more projects if needed (provided you have the right permissions).
+
+To create a new project, you need to have either the `Organization Owner` or the `Organization Admin` role.
+Navigate to your organization in the top-right corner of the console.
+
+[.shadow]
+.Organization menu
+image::org-menu.jpg[width=400]
+
+This takes you directly into the *Projects* page, but this is also accessible from the sidebar in the *Organization menu*.
+Use the *Create project* button to get started.
+Name the project and select a xref:billing/payment-options.adoc[payment method].
+Optionally, you can add an SSO profile, see xref:security/single-sign-on.adoc[SSO] for more information.
+
+Once the project is created, you are taken to the *Get started* screen.
+From here, you can add members to the project and assign them an organization role and a project role, see xref:user-management.adoc[User management] for more information about roles and levels.
+
+[NOTE]
+====
+It is *not* possible to create a project using legacy marketplace payment methods.
+All new marketplace intergations will receive project creation functionality in early Q1 2026.
+====
+
+== Edit a project
+
+To edit project details and settings, you need to have the `Project Admin` role.
+From within a project, navigate to *Project -> Settings* in the sidebar (*not* the Organization menu).
+
+[.shadow]
+.Project settings
+image::project-settings.jpg[width=400]
+
+Here you can edit the project name, view the payment method attached to the project, and manage settings, including:
+
+* xref:metrics/metrics-integration/introduction.adoc[Metrics integration]
+* xref:logging/log-forwarding.adoc[Log forwarding]
+* xref:managing-instances/custom-endpoints.adoc[Custom endpoints]
+* xref:security/ip-filtering.adoc[IP Filtering]
+* xref:security/secure-connections.adoc#_private_endpoints[Private endpoints] label:AuraDB-virtual-dedicated-cloud[]
+
+== Delete a project
+
+It is currently not possible to delete a project.
+You can remove other users and delete resources, but the project will remain.
+
+

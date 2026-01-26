@@ -28,7 +28,7 @@ Organizations are a layer in the Aura account hierarchy that sit above projects.
 This allows you to organize and manage multiple projects under a single organization.
 Management at this level allows `Organization owners` and `Organization admins` to roll out settings to all projects and instances within an organization.
 
-To access organization-level management, click the organization name at the top of the page. 
+To access organization-level management, click the organization name at the top of the page.
 
 .Organization navigation
 [.shadow]
@@ -44,11 +44,11 @@ From there, use the left-hand panel to access:
 [[org-settings]]
 === Organization settings
 
-You can edit the name of the organization, find your organization ID, enable Generative AI and Aura Graph Analytics.
+You can edit the name of the organization, find your organization ID, change your Organization default Cypher version, enable Generative AI and Aura Graph Analytics.
 
 .Organization settings
 [.shadow]
-image::organizationsettings.png[]
+image::organizationsettings.jpg[]
 
 === Generative AI assistance
 
@@ -88,15 +88,22 @@ See the xref:import/introduction.adoc[What is Import?] for more information abou
 [[graph-analytics-page]]
 === Graph Analytics
 
-This page lists the link:{gds-sessions-page}[Aura Graph Analytics] sessions running within a project (if any).
+This page lists the link:{gds-sessions-page}[Aura Graph Analytics] sessions associated with a project.
 
-The list shows session details and a **Delete** button for each session.
-Session details include:
+By default, the list displays active sessions.
+You can view past sessions by switching on the **Include deleted sessions** toggle.
 
-* The Neo4j database instance containing the data projected in the session
-* The memory allocated to the session (configurable in the <<org-settings>> page)
-* The user who created the session
-* The time remaining to the session configured time limit
+For each session, the following details are available:
+
+* *Session Identity:* Creation time, session name, and session ID.
+* *Resources:* The Aura instance containing the data projected in the session (if any) and the memory allocated to the session (configurable in the <<org-settings>> page).
+* *Ownership:* The user who created the session.
+* *State:* The current session status and the time remaining to its configured time limit (for running sessions).
+
+You can also perform the following actions via this page:
+
+* You can terminate an active session using the **Delete** button.
+* You can download the entire list in CSV format using the **Export** button. This export is useful for offline processing, such as combining session information with billing data for detailed consumption analysis.
 
 === Data APIs
 
@@ -176,7 +183,7 @@ See xref:user-management.adoc[User management] for more information.
 === Billing
 
 View and export real-time credit consumption reports by instance or session, add payment info, and track usage with filtering options.
-See xref:billing.adoc[Billing] for more information.
+See xref:billing/usage-report.adoc[Billing] for more information.
 
 // === Roles
 

@@ -70,7 +70,9 @@ Within a Perspective, a category defines each business entity – Person, Place 
 Typically, a single graph label maps to a particular category, but multiple labels may also be mapped to a single category.
 
 When you create a category, Explore analyzes the graph to find the related properties and other labels that occur on nodes that have the category-defining label.
-If desired, you can select which properties to exclude from the visualization.
+The list of property keys include their data type and an option to exclude them from the visualization.
+By default, any properties indexed by a *vector* index are automatically excluded.
+
 Explore assigns a default color for the category, but you can change the default color and node sizes from the xref:explore/explore-visual-tour/legend-panel.adoc[Legend panel].
 You can also give the category an icon from an extensive library of searchable icons.
 Rule-based styling can also be applied at any stage.
@@ -82,13 +84,10 @@ The category labels above take precedence over the ones below.
 A new category is by default added to the top of the list, but the list can be rearranged by dragging the categories up or down, allowing you to control the order of importance.
 ====
 
-[NOTE]
-====
 If a node has multiple labels, and the labels are mapped to different categories, the category which is defined first in the Perspective definition is used by Explore for that node.
 Hence the styling of the node is driven by the first category to which any of its labels are mapped.
 For example, if _Tom Hanks_ has the `Person` and `Actor` labels, and there are two respective categories defined for `Actor` and `Person` in that order, the styling for the _Tom Hanks_ node will be derived from the `Actor` category.
 However, when searching for all `Person` nodes, _Tom Hanks_ will still be returned in the query results since it has a `Person` label on it.
-====
 
 [discrete]
 === Relationships
