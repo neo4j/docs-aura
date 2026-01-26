@@ -1,12 +1,14 @@
 = Filter types
-:description: Examples of how to filter data using Aura Dashboards, with complete Cypher examples to set up filters and cards. Simply put, a parameter select report lets users set a Neo4j query parameter (e.g. $neodash_person_name) dynamically. This means that your reports can be created to show different data depending on the value of a parameter.
+:description: Examples of how to filter data using Aura Dashboards, with complete Cypher examples to set up filters and cards. This means that your dashboard reports can be created to show different data depending on the value of a parameter.
 
 // In Neodash this was called "Parameter Select" https://neo4j.com/labs/neodash/2.3/user-guide/reports/parameter-select/
 
-// you can type or write into the *Select component*
+You can type or write into a filter *Select component* which is a selectable or writable field, with dropdowns of the options. 
+Simply put, a parameter select report lets users set a Neo4j query parameter dynamically (e.g. `$supplier`).
+This means that your reports can be created to show different data depending on the value of a parameter.
 
-//Simply put, a parameter select report lets users set a Neo4j query parameter dynamically.
-//This means that your reports can be created to show different data depending on the value of a parameter.
+.Select component
+image::dashboards/filters/selectcomponent.png[width=400]
 
 There's 7 different filter types to make dashboards more interactive. 
 You can filter using free text, numbers or dates, or go fully custom with the custom query type. 
@@ -67,7 +69,7 @@ The filter gives discount values (for example selecting 0.1 would be 10% discoun
 * Filter type: `Relationship property`
 * Relationship type: `ORDERS`
 * Property: `discount`
-* Linked parameter: `$orders_discount`
+* Link parameter: `$orders_discount`
 
 2) Create a card that uses the filter value
 
@@ -105,7 +107,7 @@ This example filters orders by shipping postcode.
 1) Create the filter
 
 * Filter type: `Free text`
-* Linked parameter: `$text`
+* Link parameter: `$text`
 
 2) Create a card that uses the filter value
 
@@ -158,8 +160,7 @@ ORDER BY orders DESC //It sorts the results in descending order based on the cou
 LIMIT 3 //Finally, it limits the results to the top 3 companies with the highest order counts.
 ----
 
-* Linked parameter: `$custom`
-
+* Link parameter: `$custom`
 
 So, the output will be the names of the three companies that have made the most purchases.
 
@@ -194,7 +195,7 @@ A Date filter lets people filter data based on dates or date ranges.
 1) Create the filter
 
 * Filter type: `Date`
-* Linked parameter: `$order_date`
+* Link parameter: `$order_date`
 
 Use the parameter in a card query:
 
@@ -209,22 +210,20 @@ RETURN o.orderID, o.orderDate
 
 === Datetime
 
-Essentially the same for date time but much easier because the Northwind dataset orders are actually in Datetime format
+[Add example here]
 
-=== Number
+== Number
 
-//Integer - whole teaspoons of matcha only
-//Float - ceremonial pecision e.g. a scoop and a half
+*Integer*: A Number filter lets people filter data using numeric values or ranges.
+It's whole numbers.
+*Float*: It’s useful for prices, quantities, counts, scores, or thresholds.
+It can be a number with a decimal point. 
 
-*Integer vs Float*
-
-A Number filter lets people filter data using numeric values or ranges.
-It’s useful for prices, quantities, counts, scores, or thresholds.
 How the filter works: whatever number the person enters gets passed into the query as $number, and the query uses it to include or exclude results.
 
 * Example: filter products by unit price.
 * Filter type: `Number`
-* Linked parameter: `$unit_price`
+* Link parameter: `$unit_price`
 
 Use the parameter in a card query:
 
@@ -235,56 +234,32 @@ WHERE p.unitPrice = $unit_price
 RETURN p.productName, p.unitPrice
 ----
 
-OR
+image::dashboards/filters/number.png[Number]
 
-[source,cypher]
-----
-MATCH (c:Customer)-[:PURCHASED]->(o:Order)
-WITH c, count(o) AS orders
-WHERE orders >= $number
-RETURN count(c) AS customers
-----
+== Boolean filter
 
-=== Number ranges
+A Boolean filter stores either true or false in a linked parameter. 
+You can rename the values e.g. to "Yes / No" - and switch between them by selecting one of the two options.
 
-For ranges, you can link multiple parameters (for example $min_price and $max_price) and use them together in a query.
-You create two number filters (say $min_price and $max_price), then let Cypher hold the range gently.
-Example with Northwind order totals:
-
-[source,cypher]
-----
-MATCH (o:Order)-[:CONTAINS]->(od:OrderDetail)
-WITH o, sum(od.unitPrice * od.quantity) AS total
-WHERE total >= $min_price
-  AND total <= $max_price
-RETURN count(o) AS orders, sum(total) AS revenue
-----
-
-* $min_price sets the floor
-* $max_price sets the ceiling
-the card responds as you slide the range, like adjusting water temp, not force
-
-=== Boolean filter
-
-A Boolean filter is a simple on/off toggle.
-It stores either true or false in a linked parameter. 
-
-You can rename 
-Default value Yes / No - and then you get toggle you can select the button 
-You can rename True / False to Yes/No for example 
-
-Boolean filters are useful for including or excluding data — for example, “in stock only” or “active customers only”.
-
-
-Example: show only products that are in stock.
+Example: show products that are in stock (true), or not in stock (false).
 
 * Filter type: Boolean
-* Linked parameter: $in_stock_only
+* Link parameter: `$in_stock`
+* (Optional) Set the default value to *True*
 
 Use it in a card query like this:
 
+[source,cypher]
+----
 MATCH (p:Product)
-WHERE ($in_stock_only = false OR p.unitsInStock > 0)
+WHERE ($boolean = true AND p.unitsInStock > 0)
+   OR ($boolean = false AND p.unitsInStock = 0)
 RETURN p.productName, p.unitsInStock
+ORDER BY p.productName;
+----
 
-This pattern keeps queries flexible while letting people control the results with a single toggle.
+.Boolean true, so we can see all products that are in stock
+image::dashboards/filters/booleantrue.png[Boolean true]
+
+.Boolean false, so we can see all products that are out of stock
+image::dashboards/filters/booleanfalse.png[Boolean false]
