@@ -1,18 +1,20 @@
 = Filter types
-:description: Examples of how to filter data using Aura Dashboards, with complete Cypher examples to set up filters and cards. This means that your dashboard reports can be created to show different data depending on the value of a parameter.
+:description: Examples of how to filter data using Aura Dashboards, with complete Cypher examples to set up filters and cards. This means that your dashboard reports can show different data depending on the value of a parameter.
 
 // In Neodash this was called "Parameter Select" https://neo4j.com/labs/neodash/2.3/user-guide/reports/parameter-select/
 
+
+Use filters to make dashboards more interactive, with node properties, relationship properties, free text, custom queries, and date, datetime, number, and boolean filters.
+
+The filter creation experience has a live preview to help you create filters.
+
 You can type or write into a filter *Select component* which is a selectable or writable field, with dropdowns of the options. 
-Simply put, a parameter select report lets users set a Neo4j query parameter dynamically (e.g. `$supplier`).
-This means that your reports can be created to show different data depending on the value of a parameter.
+Simply put, a parameter select component lets users set a query parameter dynamically (e.g. `$supplier`).
+This means that your reports can show different data depending on the value of a parameter.
 
 .Select component
 image::dashboards/filters/selectcomponent.png[width=400]
 
-There's 7 different filter types to make dashboards more interactive. 
-You can filter using free text, numbers or dates, or go fully custom with the custom query type. 
-The filter creation experience has a live preview to help you create filters.
 Examples used here use the Northwind dataset as outlined in http://localhost:8000/aura/dashboards/getting-started/#_add_a_sample_data_set[add a sample dataset] and you can recreate them in your own dashboard.
 
 == Node property 
@@ -24,7 +26,7 @@ This example uses a filter to select specific products.
 We will create a product name picker where a user selection from the dropdown writes to the parameter input $productname, so the user input can be used on a card to show if products are in stock.
 // This populates a dropdown from  :Product(productName) values and stores the selection in the linked $productname parameter.
 
-1) Create the filter by selecting *New Filter*
+1) Add a filter
 
 * Set *Filter type* to `Node property`
 * Choose Label: `Product`
@@ -32,9 +34,9 @@ We will create a product name picker where a user selection from the dropdown wr
 * Link parameter, use a new or existing parameter, (for example: `$product_productname`)
 * (Optional) Set a default value (for example, `Alice Mutton`)
 
-Next, we'll create a card that uses the filter value and use the linked parameter in the query.
+2) Add a card
 
-2) Select *New card* and select *Cypher*.
+* Use the linked parameter in the query, for example:
 
 [source,cypher]
 ----
@@ -52,6 +54,7 @@ RETURN
   END AS stock_status
 ----
 
+.Node property
 image::dashboards/filters/nodeproperty.png[Node property]
 
 == Relationship property 
@@ -63,7 +66,7 @@ This example uses a relationship property filter to select a discount value from
 // This example uses a relationship property filter to select an order discount and apply it to a card query.
 The filter gives discount values (for example selecting 0.1 would be 10% discount).
 
-1) Create the node relationship filter
+1) Add a filter
 
 * Select *New Filter*
 * Filter type: `Relationship property`
@@ -71,9 +74,8 @@ The filter gives discount values (for example selecting 0.1 would be 10% discoun
 * Property: `discount`
 * Link parameter: `$orders_discount`
 
-2) Create a card that uses the filter value
+2) Add a card
 
-* Select *New card* and select *Cypher*.
 * Use the linked parameter in the query, for example:
 
 [source,cypher]
@@ -90,6 +92,7 @@ LIMIT 20
 
 When a person selects a discount value in the filter, the card reruns using that value and updates the results automatically.
 
+.Relationship property
 image::dashboards/filters/relationshipproperty.png[Relationship property]
 
 == Free text
@@ -101,14 +104,13 @@ This example filters orders by shipping postcode.
 A free text filter is tied to a parameter called `$text`. 
 The card then lists all products names that contains the search.
 
-1) Create the filter
+1) Add a filter
 
 * Filter type: `Free text`
 * Link parameter: `$text`
 
-2) Create a card that uses the filter value
+2) Add a card
 
-* Select *New card* and select *Cypher*.
 * Use the linked parameter in the query, for example:
 
 [source,cypher]
@@ -120,18 +122,18 @@ WHERE q = "" //The WHERE clause filters the results based on the conditions spec
       CONTAINS replace(toUpper(q)," ","")
 RETURN DISTINCT
   o.shipCity AS city,
-  o.shipPostalCode AS postcode //This line returns distinct results for o.shipCity (renamed as city) and o.shipPostalCode (renamed as postcode). The use of DISTINCT ensures that duplicate city and postal code pairs are not included in the result set.
-ORDER BY city, postcode //Finally, this line orders the results first by city and then by postcode, ensuring that the output is sorted in a readable format.
+  o.shipPostalCode AS postcode //Returns distinct results for o.shipCity (renamed as city) and o.shipPostalCode (renamed as postcode). The use of DISTINCT ensures that duplicate city and postal code pairs are not included in the result set.
+ORDER BY city, postcode //Orders results by city and by postcode, so the output is sorted in a readable format.
 ----
 
 // In summary, this query retrieves unique combinations of shipping cities and postal codes for orders, filtering based on whether the input text matches the postal code (ignoring case and spaces) or if no input is provided.
 
 As the person types a postcode, the card updates automatically to show matching orders.
 
+.Free text
 image::dashboards/filters/freetext.png[Free text]
 
 == Custom query
-
 
 Use a Cypher query to populate the select component.
 When someone chooses an option or enters a phrase, that value is passed as a parameter to the card’s Cypher query.
@@ -139,11 +141,10 @@ When someone chooses an option or enters a phrase, that value is passed as a par
 The query can return data even though the user hasn't typed in a search phrase. 
 But when the user selects and option or types in a search phrase, it will be available to the query as a parameter, and that can be used to filter the returned data.
 
-
 Use a custom query filter for full control over a query (otherwise use the existing node property or node relationship filters). 
 For large datasets, you may want to tailor the query for performance optimization and use a specific cypher syntax.
 
-1) Create the filter by selecting *New Filter*
+1) Add a filter
 
 * Filter type: `Custom query`
 * Enter the custom query: 
@@ -159,11 +160,14 @@ LIMIT 3 //Finally, it limits the results to the top 3 companies with the highest
 
 * Link parameter: `$custom`
 
-So, the output will be the names of the three companies that have made the most purchases.
+The output of this filter will be the names of the three companies that have made the most purchases.
 
+.Custom query filter
 image::dashboards/filters/customqueryfilter.png[Custom query filter]
 
-2) Create the card 
+2) Add a card 
+
+* Use the linked parameter in the query, for example:
 
 [source,cypher]
 ----
@@ -179,6 +183,7 @@ LIMIT 10
 
 The output will provide insights into which products are generating the most revenue from purchases, optionally filtered by a specific company name.
 
+.Custom query filter and card
 image::dashboards/filters/customquery.png[Custom query]
 
 === Date
@@ -189,14 +194,15 @@ A Date filter lets people filter data based on dates or date ranges.
 // It’s commonly used for things like order dates, creation dates, or event timelines.
 // When a date (or range) is selected, the value is stored in a linked parameter and used in card queries.
 
-1) Create the filter
+1) Add a filter
 
 * Filter type: `Date`
 * Link parameter: `$order_date`
 
-Use the parameter in a card query:
+2) Add a card
 
-2) Create a card that uses the filter value
+* Use the linked parameter in the query, for example:
+
 
 [source,cypher]
 ----
@@ -218,11 +224,13 @@ It can be a number with a decimal point.
 
 How the filter works: whatever number the person enters gets passed into the query as $number, and the query uses it to include or exclude results.
 
+1) Add a filter
+
 * Example: filter products by unit price.
 * Filter type: `Number`
 * Link parameter: `$unit_price`
 
-Use the parameter in a card query:
+2) Add a card
 
 [source,cypher]
 ----
@@ -231,20 +239,25 @@ WHERE p.unitPrice = $unit_price
 RETURN p.productName, p.unitPrice
 ----
 
+.Number
 image::dashboards/filters/number.png[Number]
 
 == Boolean
 
 A Boolean filter stores either true or false in a linked parameter. 
-You can rename the values e.g. to "Yes / No" - and switch between them by selecting one of the two options.
+You can rename the values and switch between them by selecting one of the two options (e.g. to `Yes` or `No`)
 
 Example: show products that are in stock (true), or not in stock (false).
 
+1) Add a filter
+
 * Filter type: Boolean
 * Link parameter: `$in_stock`
+* Label for true: `In stock`
+* Label for false: `Out of stock`
 * (Optional) Set the default value to *True*
 
-Use it in a card query like this:
+2) Add a card
 
 [source,cypher]
 ----
@@ -255,8 +268,8 @@ RETURN p.productName, p.unitsInStock
 ORDER BY p.productName;
 ----
 
-.Boolean true, so we can see all products that are in stock
-image::dashboards/filters/booleantrue.png[Boolean true]
+.Boolean true, to view products in stock
+image::dashboards/filters/booleantrue.png[]
 
-.Boolean false, so we can see all products that are out of stock
-image::dashboards/filters/booleanfalse.png[Boolean false]
+.Boolean false, to view products out of stock
+image::dashboards/filters/booleanfalse.png[]
