@@ -1,0 +1,63 @@
+= Aura CLI
+
+This page describes how to manage Fleet Manager deployments through the Aura CLI. For general instructions on how to use the CLI, see the xref:aura-cli/index.adoc[Aura CLI documentation].
+
+The CLI has access to all of the same functionalities as the Aura API and requires you to have a valid Aura API key configured in the CLI.
+
+Currently all Fleet Manager commands are still under the Aura API v2 beta branch so you need to set the CLI into beta mode with the following command `aura-cli config set beta-enabled true`.
+
+The top level command for accessing Fleet Manager resources through the CLI is `deployment`.
+All commands have a help function to list all of the mandatory and optional flags as well as all of the required arguments.
+
+== Registering a new deployment
+
+The guide assumes that you already have a running Neo4j database that you want to register with Fleet Manager.
+
+If not, documentation for setting up your Neo4j database with the Fleet Manager plugin can be found from the following pages:
+
+** Documentation for installing a Neo4j database can be found at: link:https://neo4j.com/docs/operations-manual/current/installation/[Installation]
+** Documentation for installing the Fleet Manager plugin in your database: xref:./setup.adoc#_set_up_the_plugin[Plugin setup]
+
+Registering a new deployment happens in three steps.
+
+* Create a new deployment
+** `aura-cli deployment create --name $DEPLOYMENT_NAME --connection_url $OPTIONAL_CONNECTION_URL --organization-id $YOUR_ORG_ID --project-id $YOUR_PROJECT_ID`
+
+* Create a new token for the deployment.
+The token will be an auto rotating token with a three month rotation interval.
+** `aura-cli deployment token create --deployment-id $DEPLOYMENT_ID --organization-id $YOUR_ORG_ID --project-id $YOUR_PROJECT_ID`
+
+* Register the deployment
+** Connect to your Neo4j database and register the newly created token to the database with `call fleetManagement.registerToken('$TOKEN');`
+
+*** Register a docker container from a CLI: `docker exec -it $CONTAINER_NAME ./bin/cypher-shell -a $SERVICE_NAME:$PORT -d system -u $NEO4J_USERNAME -p$NEO4J_PASSWORD "call fleetManagement.registerToken('"$TOKEN"');"`
+
+
+== Fetching deployments
+
+* List all deployments
+** `aura-cli deployment list --organization-id $YOUR_ORG_ID --project-id $YOUR_PROJECT_ID`
+
+* Get details of a deployment
+** `aura-cli deployment get $DEPLOYMENT_ID --organization-id $YOUR_ORG_ID --project-id $YOUR_PROJECT_ID`
+
+* Get all databases for a deployment
+** `aura-cli deployment database list --deployment-id $DEPLOYMENT_ID --organization-id $YOUR_ORG_ID --project-id $YOUR_PROJECT_ID`
+
+* Get all servers for a deployment
+** `aura-cli deployment server list --deployment-id $DEPLOYMENT_ID --organization-id $YOUR_ORG_ID --project-id $YOUR_PROJECT_ID`
+
+* Get all databases for a deployment server
+** `aura-cli deployment server database list --deployment-id $DEPLOYMENT_ID --server-id $SERVER_ID --organization-id $YOUR_ORG_ID --project-id $YOUR_PROJECT_ID`
+
+== Other useful commands
+
+* Delete a deployment
+** `aura-cli deployment delete $DEPLOYMENT_ID --organization-id $YOUR_ORG_ID --project-id $YOUR_PROJECT_ID`
+
+* Delete a deployment token
+** `aura-cli deployment token delete --deployment-id $DEPLOYMENT_ID --organization-id $YOUR_ORG_ID --project-id $YOUR_PROJECT_ID`
+
+* Refresh a deployment token
+** `aura-cli deployment token update --deployment-id $DEPLOYMENT_ID --organization-id $YOUR_ORG_ID --project-id $YOUR_PROJECT_ID`
+** After creating the new deployment token, register it into the same database with the `registerToken` call.

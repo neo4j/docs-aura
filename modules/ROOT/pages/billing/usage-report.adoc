@@ -1,0 +1,82 @@
+= Billing and usage report
+:description: usage reporting allows customers to monitor their billing and credit consumption.
+:page-role: aura-db-professional aura-db-business-critical aura-db-dedicated
+
+The billing screen at the organization-level gives you a view of how all your instances are using resources across every project.
+From the billing screen, you can also see payment methods.
+You can also view a usage report at the project-level that only includes usage information about instances in that project. 
+
+== Usage report
+
+On the organization-level, the usage report is available under *Billing* in the left-hand navigation.
+
+.Organization-level billing
+[.shadow]
+image::organizationbilling.png[width=500]
+
+Within a project, you can find the report in *Project -> Usage*.
+
+.Project-level usage
+[.shadow]
+image::projectusage.png[width=500]
+
+=== Required roles
+
+At the organization-level, the billing and usage report is available to `Organization Owner` and `Organization Admin`.
+
+At the project-level, a usage report is available to `Organization Owner`, `Organization Admin`, and `Project Admin`. 
+
+=== Export 
+
+You can Export a CSV file containing usage in a selected period.
+
+=== Filter by time range 
+
+* Filter the usage data by predefined and custom date intervals.
+* Look back for a period of up to 180 days.
+* Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days`, `Last 180 days`  or a `Custom range`.
+
+All instances with usage in the selected interval are listed, including destroyed instances.
+
+.Filter by time range
+[.shadow]
+image::usagefilters.png[]
+
+=== View instances, sessions, or egress usage
+
+There are three options for viewing consumption:
+
+* *Instances* includes a usage summary for database instances. 
+* *Sessions* includes a usage summary for any Graph Analytics sessions.
+* *Egress* includes a usage summary for any data egress from Aura (e.g. Log Forwarding usage).
+
+== Payment methods 
+
+On the organization-level, you can see the different payment methods configured for your organization.
+
+For prepaid, you can see:
+
+* Contracted credits: the initial credit balance for the current contract period.
+* Consumed credits: total usage so far in the current contract period.
+* Remaining credits: remaining balance in the current contract period.
+
+For credit cards, you can see the last 4 digits, the expiration date and the billing address.
+
+=== Product name and pricing
+
+For more information, refer to link:https://console.neo4j.io/pricing[Aura Pricing] for the specific product names and their prices. 
+If a database is paused, its charge is reduced to 20% of the standard hourly rate.
+
+=== Billing status
+
+The billing status can be `ongoing` (currently being billed) or `ended` (historical usage).
+
+=== Units of measure
+
+Usage is displayed in the specified unit of measure.
+GB-hours usage is calculated by multiplying the number of hours a database is running (whether actively used or not) by the memory size in gigabytes (GB).
+
+== Invoices
+
+Invoices that have been paid appear in the invoices tab.
+This tab only appears when credit cards are used.

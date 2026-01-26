@@ -29,9 +29,9 @@ When you resume the instance, you can pick up right where you left off.
 
 Pausing is putting the database on hold without shutting it down completely, so you can restart it quickly when needed.
 
-// label:AuraDB-Professional[]
+// label:AuraDB-professional[]
 // label:AuraDB-Enterprise[]
-// label:AuraDB-Business-Critical[]
+// label:AuraDB-business-critical[]
 
 [NOTE]
 ====
@@ -149,19 +149,17 @@ The GDS plugin is not supported in AuraDB Business Critical.
 *Minimum instance size:*
 If you try to upgrade a 1GB Professional instance, you need to resize it to at least 2GB of storage, because this is the minimum supported size in AuraDB Business Critical.
 
-== Edit Secondary Count
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDB-Business-Critical[]
+[role=label--aura-db-dedicated label--aura-db-business-critical]
+== Edit Secondary Count
 
 Secondaries are read-only copies of your database used for scaling.
 You can edit the number of secondary copies on applicable instances.
 See xref:managing-instances/secondaries.adoc[Secondaries] for more information.
 
-== Reset an instance
 
-label:AuraDB-Professional[]
-label:AuraDB-Free[]
+[role=label--aura-db-professional label--AuraDB-Free]
+== Reset an instance
 
 You can clear all data in an instance using the *Reset to blank* action.
 
@@ -169,22 +167,39 @@ Select *Reset to blank* from the *(...)* more menu on the instance card.
 You need to confirm your intention since this action cannot be undone.
 
 == Resize an instance
-// label:AuraDB-Professional[]
-// label:AuraDB-Enterprise[]
-// label:AuraDB-Business-Critical[]
+// label:AuraDB-professional[]
+// label:AuraDB-enterprise[]
+// label:AuraDB-business-critical[]
 
-Resizing an instance means changing the memory, CPU and storage size.
+Resizing an instance means adjusting memory, CPU, and storage size.
+*Memory and CPU* are configured together, since each instance size pairs a specific amount of memory with a corresponding number of CPUs.
+A base allocation of storage is also included with each configuration.
+If you change the memory and CPU, the storage allowance also changes.
+However, you can also change the storage size independently.
+
+An instance remains available during the resize operation.
+
 Note that this option is *not available* for *Free instances*.
 
 You can change the size of an existing instance using the *Configure* button on the instance you want to resize.
-An instance remains available during the resize operation.
+From the *Configure Instance* settings, go to **Sizing** and then select the preferred sizes from the dropdown.
+
+
+== Adjust memory and CPU
+
+You select the amount of resources you need when you create your AuraDB instance, but this can be adjusted at any time if your needs change.
+
+To adjust memory and CPU, use the *Configure* button on the instance card and select a new value.
+Note that the included storage value changes automatically when you change the memory and CPU value, but this can be adjusted (see below).
+
+You may *reduce* your memory and CPU, provided that the new value is *equal to or greater* than your current usage.
+
+[.shadow]
+.Adjust memeory and CPU
+image::adjust-memory-cpu.jpg[width=600]
+
 
 == Adjust storage
-
-[NOTE]
-====
-Available for AuraDB prepaid billing on GCP, Neo4j latest version.
-====
 
 Adjust the storage size of your instance at any time.
 Each AuraDB instance includes a standard storage allocation and configuration; additional storage is chargeable.
@@ -200,22 +215,24 @@ This store size policy also applies to general instance downsizing.
 
 [.shadow]
 .Adjust storage size
-image::adjust_storage.png[adjust storage screenshot,540,380]
+image::adjust-storage1.jpg[width=600]
 
+[NOTE]
+====
+Available for all AuraDB tiers on the latest Neo4j version — with PAYG (direct) or Prepaid on AWS, Azure and GCP.
+Available as PAYG on GCP Marketplace for new subscriptions after September 19, 2025, and on AWS Marketplace for new subscriptions after November 19, 2025, and on Azure Marketplace for new subscriptions after January 13, 2026.
+====
+
+[role=label--aura-db-dedicated label--aura-db-business-critical label--aura-db-professional]
 == Manage custom endpoints
-
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDB-Business-Critical[]
-label:AuraDB-Professional[]
 
 Custom endpoints are used for database management and migration.
 You set up endpoints in the *Project settings*.
 See xref:managing-instances/custom-endpoints.adoc[Custom endpoints] for more information.
 
-== Mark an instance as `production`
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDB-Business-Critical[]
+[role=label--aura-db-dedicated label--aura-db-business-critical]
+== Mark an instance as `production`
 
 Admins can mark a database instance as `production` in AuraDB Virtual Dedicated Cloud and AuraDB Business Critical.
 
@@ -246,11 +263,9 @@ Type the exact name of the instance (as instructed) to confirm your decision, an
 There is no way to recover data from a deleted Aura instance.
 ====
 
-== Metrics
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDB-Business-Critical[]
-label:AuraDB-Professional[]
+[role=label--aura-db-dedicated label--aura-db-business-critical label--aura-db-professional]
+== Metrics
 
 On the bottom of the instance card you can find a selection of collapsible metrics.
 Use the *View all metrics* button to see more.

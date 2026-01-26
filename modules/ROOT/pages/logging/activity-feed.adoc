@@ -1,0 +1,331 @@
+= Activity feed
+:description: This page describes the activity feed in the Neo4j Aura console.
+
+The activity feed allows organizations and especially administrators to track activities and events in the console.
+This feature provides a detailed record for all deployments that cannot be turned off.
+It helps teams detect unusual behavior as well as aiding organizations in maintaining audit trails for regulatory compliance reasons.
+
+The activity feed follow a structured _JSON_ format can be exported in both _CSV_ and _JSON_ formats to allow integration with SIEM (Security Information and Event Management) solutions.
+There are plans on adding an API interface in the future as well.
+
+The activity feed tracks events on both Organization and Project level.
+
+
+== Captured events
+
+The events captured in the feed fall into the following categories:
+
+* *User account changes* - User invitations, removals, modifications.
+* *Privilege management* - Grants, revocations, role assignments.
+* *Instance actions* - Creation, alteration, deletion.
+* *Configuration changes* - Inserts, updates, deletes.
+* *System events* - Database pause/resume, backup creation/restore.
+
+Note that the list of events that are captured will grow as more events are added in the future.
+
+== Structure
+
+The exportable activity logs are structured in a _JSON_ format that is consistent with audit log standards and parsable programmatically and thus SIEM compatible.
+
+Each event record includes:
+
+* *Unique Event ID*
+* *Organization ID*
+* *Timestamp* in UTC, both in Unix Epoch and ISO 8601-style
+* *Project ID*
+* *Project Name*
+* *User ID*
+* *User Email*
+* *Status*
+* *Action ID* that maps to the type of action
+* *Action Name* that describes the type of action
+* *IP Address* where the action was initiated
+* *Payload*
+
+Use the -> on an event to display all captured details.
+
+[NOTE]
+====
+Always refer to the `action_id` for monitoring purposes as this is a static reference.
+When refering to the timestamp, always use the UTC timestamp in the ISO-8601 style.
+====
+
+
+== Access the activity feed
+
+The *Organization-level* activity feed is accessed via the top-level *Organization* menu.
+
+[.shadow]
+.Organization-level activity feed
+image::org-level-activity.jpg[width=600]
+
+This view is available to organization owners and admins and shows all activity across the entire organization.
+
+The *Project-level* activity feed is accessed via the *Project* menu from the sidebar.
+
+[.shadow]
+.Project-level activity feed
+image::project-level-activity.jpg[width=400]
+
+This view is available to project admins and shows logs specific to a project, which offers a more granular overview than the org-level.
+
+== Filter and export
+
+You can filter the activity feed directly in the console and display the results.
+The results can be filtered by *date and time*, *status*, *user*, *action*, and *IP address*.
+Use the -> arrow to see the captured details for the activity listed.
+Additionally, you can control which columns that are displayed with the table symbol (all the way to the right in the table header).
+
+[.shadow]
+.Filter activity feed
+image::activity-feed.jpg[width=full]
+
+The activity feed can be exported either in a _JSON_ format or as _CSV_.
+This feature allows up to the last 30 days of activity to be exported and offers the same filtering options.
+Use the *Export* button to select which format and which filters (or none) you want to apply for your export.
+
+== Action ID reference
+
+.Actions in activity feed
+[opts="header",cols="<,>,<,<"]
+|===
+a| `action_name`
+a| `action_id`
+| Category
+| Description
+
+| INSTANCE_CREATE
+| 0001
+| Instance Actions
+| A new instance has been created
+
+| INSTANCE_PAUSE
+| 0002
+| Instance Actions
+| A running instance has been paused
+
+| INSTANCE_RESUME
+| 0003
+| Instance Actions
+| A paused instance has been resumed
+
+| INSTANCE_CLONE_TO_EXISTING
+| 0004
+| Instance Actions
+| An instance has been cloned to an existing one
+
+| INSTANCE_DELETE
+| 0005
+| Instance Actions
+| An instance has been permanently deleted
+
+| INSTANCE_UPDATE
+| 0006
+| Instance Actions
+| An instance's configuration has been updated
+
+| INSTANCE_MARK_AS_PRODUCTION
+| 0007
+| Instance Actions
+| An instance has been marked as a production environment
+
+| INSTANCE_FORCE_DELETE
+| 0008
+| Instance Actions
+| An instance has been force-deleted
+
+| INSTANCE_INTERNAL_UPDATE
+| 0009
+| Instance Actions
+| An internal database update operation
+
+| INSTANCE_INTERNAL_PAUSE
+| 0010
+| Instance Actions
+| An internal pause operation
+
+| DATA_SNAPSHOT_CREATE_ON_DEMAND
+| 0101
+| Data Management
+| An on-demand snapshot operation
+
+| DATA_SNAPSHOT_EXPORT
+| 0102
+| Data Management
+| A snapshot has been exported
+
+| DATA_SNAPSHOT_RESTORE
+| 0103
+| Data Management
+| A snapshot has been restored
+
+| DATA_BACKUP_RESTORE
+| 0104
+| Data Management
+| A backup has been restored
+
+| INVITE_CREATE
+| 0201
+| User Management
+| A new user invitation has been sent
+
+| INVITE_ACCEPTED
+| 0202
+| User Management
+| A user has accepted an invitation
+
+| INVITE_DECLINE
+| 0203
+| User Management
+| A user has declined an invitation
+
+| INVITE_UPDATE
+| 0204
+| User Management
+| An existing invite has been updated
+
+| INVITE_REVOKE
+| 0205
+| User Management
+| An invitation has been revoked
+
+| ROLE_UPDATE
+| 0206
+| User Management
+| A user's role has been updated
+
+| SSO_CREATE
+| 0301
+| Security
+| A new Single-Sign On has been configured
+
+| SSO_UPDATE
+| 0302
+| Security
+| An existing SSO configuration has been updated
+
+| SSO_DELETE
+| 0303
+| Security
+| An SSO configuration has been deleted
+
+| SSO_INTERNAL_CREATE
+| 0304
+| Security
+| Internal SSO creation
+
+| SSO_INTERNAL_UPDATE
+| 0305
+| Security
+| Internal SSO update
+
+| IP_FILTER_CREATE
+| 0306
+| Security
+| A new IP filter rule has been created
+
+| IP_FILTER_UPDATE
+| 0307
+| Security
+| An existing IP filter rule has been updated
+
+| IP_FILTER_DELETE
+| 0308
+| Security
+| An IP filter rule has been deleted
+
+| USER_CMK_CREATE
+| 0309
+| Security
+| A User Customer Managed Key has been created
+
+| USER_CMK_DELETE
+| 0310
+| Security
+| A User Customer Managed Key has been deleted
+
+| PROJECT_CMK_CREATE
+| 0311
+| Security
+| A Project Customer Managed Key has been created
+
+| PROJECT_CMK_DELETE
+| 0312
+| Security
+| A Project Customer Managed Key has been deleted
+
+| PRIVATE_ENDPOINTS_UPDATE
+| 0313
+| Security
+| A private endpoint configuration has been updated
+
+| PROJECT_CREATE
+| 0314
+| Organization Management
+| A new project in an organization has been created
+
+| FLEET_MANAGER_CREATE
+| 0401
+| Fleet Manager
+| A new deployment has been created
+
+| FLEET_MANAGER_DELETE
+| 0402
+| Fleet Manager
+| A deployment has been deleted
+
+| FLEET_MANAGER_RENAME
+| 0403
+| Fleet Manager
+| A deployment has been renamed
+
+| FLEET_MANAGER_CONNECTION_URL_UPDATE
+| 0404
+| Fleet Manager
+| A deployment connection URL has been updated
+
+| FLEET_MANAGER_TOKEN_GENERATE
+| 0410
+| Fleet Manager
+| A deployment token has been generated
+
+| FLEET_MANAGER_TOKEN_RELEASE
+| 0411
+| Fleet Manager
+| A deployment token has been released
+
+| FLEET_MANAGER_TOKEN_REGENERATE
+| 0412
+| Fleet Manager
+| A deployment token has been regenerated
+
+| FLEET_MANAGER_TOKEN_DELETE
+| 0413
+| Fleet Manager
+| A deployment token has been deleted
+
+| LOG_DOWNLOAD
+| 0501
+| Operations
+| A generated log report has been downloaded
+
+| METRICS_INTEGRATION_CONFIG_CHANGE
+| 0502
+| Operations
+| The metrics integration configuration has been changed
+
+| LOG_FORWARDING_CREATE
+| 0510
+| Operations
+| A log forwarding configuration has been created
+
+| LOG_FORWARDING_UPDATE
+| 0511
+| Operations
+| A log forwarding configuration has been updated
+
+| LOG_FORWARDING_DELETE
+| 0512
+| Operations
+| A log forwarding configuration has been deleted
+|===
