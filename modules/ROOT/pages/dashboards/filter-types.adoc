@@ -94,15 +94,12 @@ image::dashboards/filters/relationshipproperty.png[Relationship property]
 
 == Free text
 
-// A free text selectors lets users enter any string value, which can then be used as a parameter inside dashboard queries.
-A Free text filter is essentially a text field that is commonly used for search. 
-It sends whatever the person types into a parameter. 
+A free text filter is essentially a text field that is commonly used for search. 
+Type any string value, and it sends what is typed into a parameter, which can then be used as a parameter inside dashboard queries.
 
 This example filters orders by shipping postcode.
-
-//For example, I can have a Free text filter that is tied to a parameter called `$text`. 
-//I can then have a table card listing all products names that contains this search.
-//This is accomplished by adding that parameter into the table card's Cypher query such as:
+A free text filter is tied to a parameter called `$text`. 
+The card then lists all products names that contains the search.
 
 1) Create the filter
 
@@ -116,10 +113,10 @@ This example filters orders by shipping postcode.
 
 [source,cypher]
 ----
-WITH trim(coalesce($text,"")) AS q //This line begins by defining a variable q. It uses the coalesce function to return the value of $text if it's not null; otherwise, it returns an empty string "". The trim function is then applied to remove any leading or trailing whitespace from the result. Essentially, q will be a cleaned-up version of the input text.
-MATCH (o:Order) //This line matches all nodes labeled as Order in the database and binds them to the variable o. This is the starting point for the query.
-WHERE q = "" //The WHERE clause filters the results based on the conditions specified. The first condition q = "" checks if q is an empty string, which would effectively return all orders. The second condition replaces spaces in both o.shipPostalCode and q with empty strings, converts them to uppercase, and checks if the cleaned-up postal code contains the value of q. This allows for a case-insensitive match that ignores spaces.
-   OR replace(toUpper(o.shipPostalCode)," ","")
+WITH trim(coalesce($text,"")) AS q //Defines var q. Uses the coalesce function to return the value of $text if it's not null; otherwise, returns an empty string "". The trim function is then applied to remove any leading or trailing spaces from the result. Essentially, q will be a cleaned-up version of the input text.
+MATCH (o:Order) //Match all nodes labeled as Order in the database and binds them to the variable o. This is the starting point for the query.
+WHERE q = "" //The WHERE clause filters the results based on the conditions specified. The first condition q = "" checks if q is an empty string, which would effectively return all orders.
+   OR replace(toUpper(o.shipPostalCode)," ","") // The second condition replaces spaces in both o.shipPostalCode and q with empty strings, converts them to uppercase, and checks if the cleaned-up postal code contains the value of q. This allows for a case-insensitive match that ignores spaces.
       CONTAINS replace(toUpper(q)," ","")
 RETURN DISTINCT
   o.shipCity AS city,
@@ -236,7 +233,7 @@ RETURN p.productName, p.unitPrice
 
 image::dashboards/filters/number.png[Number]
 
-== Boolean filter
+== Boolean
 
 A Boolean filter stores either true or false in a linked parameter. 
 You can rename the values e.g. to "Yes / No" - and switch between them by selecting one of the two options.
