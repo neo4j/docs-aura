@@ -94,6 +94,21 @@ The documentation for the Aura API specification can be found at link:{neo4j-doc
 
 The API has two endpoints for accessing the activity feed, one for the organization level feed and one for project level feeds.
 
+=== Organization activity feed
+
+[source, shell]
+----
+https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed
+----
+
+=== Project activity feed
+
+[source, shell]
+----
+https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/projects/$YOUR_PROJECT_ID/activity-feed
+----
+
+
 === Request structure
 
 The request for both endpoints is identical aside from the URL. This section documents the general usage of the endpoints and the specific URLs are documented after this section.
@@ -139,22 +154,6 @@ curl https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed?page_
   --header 'accept: application/json' \
   --header 'Content-Type: application/json' \
   --header "Authorization: Bearer $YOUR_AURA_API_TOKEN"
-----
-
-
-
-==== Organization activity feed
-
-[source, shell]
-----
-https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed
-----
-
-==== Project activity feed
-
-[source, shell]
-----
-https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/projects/$YOUR_PROJECT_ID/activity-feed
 ----
 
 == Action ID reference
