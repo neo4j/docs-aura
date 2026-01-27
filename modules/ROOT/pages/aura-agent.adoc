@@ -12,16 +12,50 @@ Aura provides the orchestration layer as well as the integration with GenAI mode
 
 You can test the agent and iterate on it directly in the UI.
 
-Once you are satisfied with your agent, you can either share it internally with other members of your Aura project, or you can make it available externally via an Aura API endpoint and thus integrate it into your GenAI application.
+Once you are satisfied with your agent, you can either share it internally with other members of your Aura project, or you can make it available externally via either an Aura API endpoint or an MCP server endpoint and thus integrate it into your GenAI application or model.
 
 To get started you need a knowledge graph in a running AuraDB instance and you need to enable *Generative AI assistance* in the xref:visual-tour/index.adoc#org-settings[Organization settings].
 
-== Creating an Agent
+Keep in mind that all Aura agents are located in Belgium, in GCP's `europe-west1` region.
+This means that *all* interactions with agents go via Belgium, regardless of whether the agent is internal or external.
+
+
+== Create an agent
 
 Navigate to *Agents* in the left-hand menu and use the *Create* button to start creating your agent.
+You can either use AI to create the agent and generate the tools, or you can do it from scratch.
+
+=== Create with AI
 
 [.shadow]
-.Create an Agent
+.Create an agent with AI
+image::create-with-ai.jpg[width=400]
+
+If you can describe exactly what your use case is and what you want the agent to do, Neo4j AI can generate an agent for you.
+The agent is based on your prompt and the schema of your database.
+
+Start by selecting which instance you want to connect to, keep in mind that the instance *must* be running.
+
+If you want your agent to use the <<Similarity Search>> tool, your database needs to have *vector embeddings*.
+If it does, select the embedding provider and model for your database.
+For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{{neo4j-docs-base-uri}}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
+
+Then you need to add a prompt that contains a detailed use-case or context, a description of what you want the agent to be able to do, and any other preferences.
+The more details you provide, the more accurate the generation will be.
+Once you are satisified, use *Create* to start generating your agent.
+
+When the agent has been created you should test it to make sure it behaves as expected.
+See <<test-agent>> for guidance and the <<tools>> section for more information on available tools.
+
+If you are not happy with the agent, you can iterate on the agent manually or you can regenerate it by editing the prompt via the *Regenerate with AI* button.
+Note that this action *overwrites* the current configuration.
+
+Once you are satisfied, you need to *save* your agent or else it is not persisted if you navigate away.
+
+=== Create from scratch
+
+[.shadow]
+.Create an agent from scratch
 image::agent.jpg[width=300]
 
 You need to give the agent a name (it is advisable to use a descriptive name), a description, and prompt instructions.
@@ -40,6 +74,7 @@ Once you are satisfied with your agent, you need to *save* it or else it is not 
 
 Note also that the conversation history is not currently stored anywhere.
 
+[[tools]]
 == Tools
 
 Aura Agent has three tools available:
@@ -48,7 +83,7 @@ Aura Agent has three tools available:
 * *Similarity Search*
 * *Text2Cypher*
 
-Consider your dataset and its underlying datamodel when you configure the tools to ensure your agent has access to the right ways of retrieving *only* the right information.
+Consider your dataset and its underlying data model when you configure the tools to ensure your agent has access to the right ways of retrieving *only* the right information.
 
 === Cypher Template
 
@@ -64,7 +99,7 @@ This tool is best for:
 * Well-defined business logic patterns
 
 You need to provide a *name* and a *description* for the tool.
-Again, the better the description, the better your agent will perform.
+The better the description, the better your agent will perform.
 If your query contains *parameters*, these need to be defined with a *name*, *data type*, and *description*.
 
 [.shadow]
@@ -75,12 +110,13 @@ For best performance, make sure that the query:
 
 * Returns only relevant information
 * Returns only select node and relationship properties
-* Does not return embeddings or graph elements like node/relationship/paths
+* Does not return embeddings or graph elements like nodes, relationships, or paths.
 * Does not return duplicates
 
 Additionally, it is advisable to limit the results to 10-50 rows to keep the results relevant.
 Also, always test the Cypher statement to make sure it works as expected.
 
+[[similarity-search]]
 === Similarity Search
 
 This tool uses vector similarity to do a semantic search and is a great complement to the Cypher template tool.
@@ -140,7 +176,7 @@ The instructions should include:
 
 As a best practice, this tool should only be used when none of the other tools meet your needs, so make sure the description explicitly instructs the agent to use this tool only when no other option applies.
 
-
+[[test-agent]]
 == Test the agent
 
 Before you make your agent public or share it with internal users, you can test it to make sure it works as intended.
@@ -162,7 +198,10 @@ A saved agent can then be used internally, i.e. by other users in your Aura proj
 
 == Make your agent public
 
-If you want to integrate your agent into your GenAI application, the next step is to make it publicly available via REST API from an endpoint.
+There are two differentways to interact with your agent externally.
+You can integrate your agent into your GenAI application by making it publicly available via REST API from an endpoint, or you can make it available to an MCP client via an MCP server endpoint.
+
+=== REST API
 
 Edit your agent from the *[...]* menu, and select *External*.
 Once you save it, the endpoint can be copied from the same *[...]* menu.
@@ -207,5 +246,15 @@ The agent's response is returned as a structured JSON message.
 
 Note that this example uses link:https://jqlang.org/[jq] for command line JSON processing.
 
+=== MCP server
+
+The other option is to make your agent available to an MCP client such as Claude Code or VSCode MCP.
+In this setup, your agent acts as an read-only MCP server that allows an external agent to use the agent's tools and its target instance's data to answer inquiries.
+
+More to come...
+
 You can change an agent's availability at any time.
 
+== Learn more
+
+For worked examples, see the link:https://github.com/neo4j-product-examples/knowledge-graph-agent/tree/main[knowledge-graph-agents] repository on GitHub.
