@@ -83,10 +83,10 @@ The filter gives discount values (for example selecting 0.1 would be 10% discoun
 MATCH ()-[o:ORDERS]->(p:Product)
 WHERE o.discount = $orders_discount
 RETURN
-  o.discount,
-  p.productName,
-  count(*) AS n
-ORDER BY n DESC
+  toString(toInteger(o.discount * 100)) + "%" AS discount,
+  p.productName AS name,
+  count(*) AS total_products
+ORDER BY total_products DESC
 LIMIT 20
 ----
 
@@ -115,15 +115,11 @@ The card then lists all products names that contains the search.
 
 [source,cypher]
 ----
-WITH trim(coalesce($text,"")) AS q //Defines var q. Uses the coalesce function to return the value of $text if it's not null; otherwise, returns an empty string "". The trim function is then applied to remove any leading or trailing spaces from the result. Essentially, q will be a cleaned-up version of the input text.
-MATCH (o:Order) //Match all nodes labeled as Order in the database and binds them to the variable o. This is the starting point for the query.
-WHERE q = "" //The WHERE clause filters the results based on the conditions specified. The first condition q = "" checks if q is an empty string, which would effectively return all orders.
-   OR replace(toUpper(o.shipPostalCode)," ","") // The second condition replaces spaces in both o.shipPostalCode and q with empty strings, converts them to uppercase, and checks if the cleaned-up postal code contains the value of q. This allows for a case-insensitive match that ignores spaces.
-      CONTAINS replace(toUpper(q)," ","")
+MATCH (o:Order) 
+WHERE o.shipPostalCode CONTAINS toUpper($text)
 RETURN DISTINCT
-  o.shipCity AS city,
-  o.shipPostalCode AS postcode //Returns distinct results for o.shipCity (renamed as city) and o.shipPostalCode (renamed as postcode). The use of DISTINCT ensures that duplicate city and postal code pairs are not included in the result set.
-ORDER BY city, postcode //Orders results by city and by postcode, so the output is sorted in a readable format.
+  o.shipPostalCode AS postcode,
+  o.shipCity AS city
 ----
 
 // In summary, this query retrieves unique combinations of shipping cities and postal codes for orders, filtering based on whether the input text matches the postal code (ignoring case and spaces) or if no input is provided.
@@ -186,34 +182,36 @@ The output will provide insights into which products are generating the most rev
 .Custom query filter and card
 image::dashboards/filters/customquery.png[Custom query]
 
-=== Date
+== Date / Datetime
 
-A Date filter lets people filter data based on dates or date ranges.
+[NOTE]
+====
+This example was trickier to make with Northwind dataset because of how the Northwind dataset is constructed. `1996-07-04 00:00:00.000` is not a valid datetime string, the correct one would be `1996-07-04T00:00:00.000`.
+====
 
-// A date selector lets users specify dates using a calendar widget, or by entering a date format.
-// It’s commonly used for things like order dates, creation dates, or event timelines.
-// When a date (or range) is selected, the value is stored in a linked parameter and used in card queries.
+A date / datetime filter lets people filter based on dates by using a calendar, or by typing a date format.
 
 1) Add a filter
 
-* Filter type: `Date`
-* Link parameter: `$order_date`
+* Filter type: `Datetime`
+* Link parameter: `$datetime`
+* Important here is that the filter must have *Enable time zone selection* selected because the dates use time zone
 
 2) Add a card
 
 * Use the linked parameter in the query, for example:
 
-
 [source,cypher]
 ----
 MATCH (o:Order)
-WHERE date(o.orderDate) = date($order_date)
-RETURN o.orderID, o.orderDate
+WHERE $datetime < datetime(replace(o.orderDate," ","T"))
+RETURN o.orderDate, o.orderID, o.shipCountry
 ----
 
-=== Datetime
+Use the calendar or type `07/04/1996, 00:00  UTC` and the card will update with order date, order ID and ship country. 
 
-[Add example here]
+.Datetime
+image::dashboards/filters/datetime.png[Date time]
 
 == Number
 
