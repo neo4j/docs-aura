@@ -5,10 +5,11 @@ The activity feed allows organizations and especially administrators to track ac
 This feature provides a detailed record for all deployments that cannot be turned off.
 It helps teams detect unusual behavior as well as aiding organizations in maintaining audit trails for regulatory compliance reasons.
 
-The activity feed follow a structured _JSON_ format can be exported in both _CSV_ and _JSON_ formats to allow integration with SIEM (Security Information and Event Management) solutions.
-There are plans on adding an API interface in the future as well.
+The activity feed follows a structured _JSON_ format that can be exported in both _CSV_ and _JSON_ formats to allow integration with SIEM (Security Information and Event Management) solutions.
 
 The activity feed tracks events on both Organization and Project level.
+
+The activity feed can also be accessed through the Aura API, see xref:logging/activity-feed.adoc#_access_the_activity_feed_through_aura_api[API]
 
 
 == Captured events
@@ -108,7 +109,7 @@ https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed
 * start
 * end
 * page_limit
-* page_token (cannot be used simultaneously with the other optional parameters, see more at xref:logging/activity-feed.adoc#pagination[Pagination])
+* page_token (cannot be used simultaneously with the other optional parameters, see more at xref:logging/activity-feed.adoc#_pagination[Pagination])
 
 === Project activity feed
 
@@ -125,7 +126,7 @@ https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/projects/$YOUR_PROJECT_I
 * start
 * end
 * page_limit
-* page_token (cannot be used simultaneously with the other optional parameters, see more at xref:logging/activity-feed.adoc#pagination[Pagination])
+* page_token (cannot be used simultaneously with the other optional parameters, see more at xref:logging/activity-feed.adoc#_pagination[Pagination])
 
 
 === Request structure
