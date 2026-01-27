@@ -46,12 +46,7 @@ RETURN
   p.productName AS product,
   c.categoryName AS category,
   p.unitPrice AS unit_price,
-  p.unitsInStock AS units_in_stock,
-  CASE
-    WHEN p.unitsInStock = 0 THEN "out of stock"
-    WHEN p.unitsInStock < 10 THEN "low stock"
-    ELSE "in stock"
-  END AS stock_status
+  p.unitsInStock AS units_in_stock
 ----
 
 .Node property
@@ -90,7 +85,7 @@ ORDER BY total_products DESC
 LIMIT 20
 ----
 
-When a person selects a discount value in the filter, the card reruns using that value and updates the results automatically.
+When a a discount value is selected in the filter, the card reruns using that value and updates the results automatically.
 
 .Relationship property
 image::dashboards/filters/relationshipproperty.png[Relationship property]
@@ -147,11 +142,10 @@ For large datasets, you may want to tailor the query for performance optimizatio
 
 [source,cypher]
 ----
-MATCH (c:Customer)-[:PURCHASED]->(o:Order) //Finds all `Customer` nodes that have a `PURCHASED` relationship with `Order` nodes.
-WITH c.companyName AS value, count(o) AS orders //It collects the company name of each customer and counts the number of orders associated with each customer.
-RETURN value //This returns the company names as value.
-ORDER BY orders DESC //It sorts the results in descending order based on the count of orders. 
-LIMIT 3 //Finally, it limits the results to the top 3 companies with the highest order counts.
+MATCH (c:Customer)-[:PURCHASED]->(o:Order) 
+WITH c.companyName AS value, count(o) AS orders 
+ORDER BY orders DESC 
+LIMIT 3 
 ----
 
 * Link parameter: `$custom`
@@ -167,13 +161,13 @@ image::dashboards/filters/customqueryfilter.png[Custom query filter]
 
 [source,cypher]
 ----
-MATCH (c:Customer)-[:PURCHASED]->(o:Order)-[op:ORDERS]->(p:Product) //This part matches `Customer` nodes that have made `PURCHASED `relationships to `Order` nodes, which in turn have `ORDERS` relationships to `Product` nodes. 
-WHERE $custom IS NULL OR c.companyName = $custom //This condition filters the results to either include all customers if $custom is null or only those customers whose company name matches the value of $custom.
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)-[op:ORDERS]->(p:Product) 
+WHERE $custom IS NULL OR c.companyName = $custom 
 RETURN 
   p.productName AS product,
   sum(op.quantity) AS units,
-  round(sum(op.unitPrice * op.quantity), 2) AS revenue //This returns the product name, the total quantity of units sold, and the total revenue (calculated by multiplying the quantity by the unit price, rounded to two decimal places).
-ORDER BY revenue DESC //The results are ordered by the calculated revenue in descending order.
+  round(sum(op.unitPrice * op.quantity), 2) AS revenue 
+ORDER BY revenue DESC 
 LIMIT 10
 ----
 
@@ -194,8 +188,8 @@ A date / datetime filter lets people filter based on dates by using a calendar, 
 1) Add a filter
 
 * Filter type: `Datetime`
+* Important! The filter must have *Enable time zone selection* selected because the Northwind dates use time zone
 * Link parameter: `$datetime`
-* Important here is that the filter must have *Enable time zone selection* selected because the dates use time zone
 
 2) Add a card
 
