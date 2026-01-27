@@ -101,6 +101,15 @@ The API has two endpoints for accessing the activity feed, one for the organizat
 https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed
 ----
 
+==== Mandatory path parameters:
+* organization_id
+
+==== Optional path parameters:
+* start
+* end
+* page_limit
+* page_token (cannot be used simultaneously with the other optional parameters, see more at xref:logging/activity-feed.adoc#pagination[Pagination])
+
 === Project activity feed
 
 [source, shell]
@@ -108,10 +117,20 @@ https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed
 https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/projects/$YOUR_PROJECT_ID/activity-feed
 ----
 
+==== Mandatory path parameters:
+* organization_id
+* project_id
+
+==== Optional path parameters:
+* start
+* end
+* page_limit
+* page_token (cannot be used simultaneously with the other optional parameters, see more at xref:logging/activity-feed.adoc#pagination[Pagination])
+
 
 === Request structure
 
-The request for both endpoints is identical aside from the URL. This section documents the general usage of the endpoints and the specific URLs are documented after this section.
+This section documents the general usage of the endpoints as they are identical aside from the base URL.
 
 A successful request will respond with a http code of 200 and a data object with two fields in it. One named logs, containing all the activity feed information and one called links containing pagination URLs.
 
