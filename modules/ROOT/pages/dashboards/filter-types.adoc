@@ -142,10 +142,11 @@ For large datasets, you may want to tailor the query for performance optimizatio
 
 [source,cypher]
 ----
-MATCH (c:Customer)-[:PURCHASED]->(o:Order) 
-WITH c.companyName AS value, count(o) AS orders 
-ORDER BY orders DESC 
-LIMIT 3 
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)
+WITH c.companyName AS value, count(o) AS orders
+RETURN value
+ORDER BY orders DESC
+LIMIT 3
 ----
 
 * Link parameter: `$custom`
@@ -161,13 +162,13 @@ image::dashboards/filters/customqueryfilter.png[Custom query filter]
 
 [source,cypher]
 ----
-MATCH (c:Customer)-[:PURCHASED]->(o:Order)-[op:ORDERS]->(p:Product) 
-WHERE $custom IS NULL OR c.companyName = $custom 
-RETURN 
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)-[op:ORDERS]->(p:Product)
+WHERE $custom IS NULL OR c.companyName = $custom
+RETURN
   p.productName AS product,
   sum(op.quantity) AS units,
-  round(sum(op.unitPrice * op.quantity), 2) AS revenue 
-ORDER BY revenue DESC 
+  round(sum(op.unitPrice * op.quantity), 2) AS revenue
+ORDER BY revenue DESC
 LIMIT 10
 ----
 
