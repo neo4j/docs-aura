@@ -145,7 +145,9 @@ WHERE toUpper(p.productName) CONTAINS toUpper($input)
 RETURN p.productName
 ----
 
-This passes the user selection from the filter into the $input parameter.
+This query will list all product names in the filter dropdown as suggestions. 
+If the user types in a search text, it will be passed to the query as a parameter named $input. 
+We use this parameter to filter the list of product names.
 
 * Link parameter: `$custom`
 
