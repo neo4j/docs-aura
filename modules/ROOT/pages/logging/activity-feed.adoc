@@ -135,7 +135,7 @@ This section documents the general usage of the endpoints as they are identical 
 
 A successful request will respond with a http code of 200 and a data object with two fields in it. One named logs, containing all the activity feed information and one called links containing pagination URLs.
 
-Example request with no filtering using the organization URL
+Example request with no filtering using the organization URL:
 [source, shell]
 ----
 curl https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed \
@@ -146,7 +146,7 @@ curl https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed \
 
 The acitivy feed can be filtered with three different values, the start time, the end time and the page limit. The start time is limited to a maximum of 30 days from the current date which is also the default value if no filter options are given.
 
-Example request with filtering using the organization URL
+Example request with filtering using the organization URL:
 [source, shell]
 ----
 curl https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed?start=2026-01-01T00:00:00Z&end=2026-01-15T23:59:59Z&page_limit=10 \
