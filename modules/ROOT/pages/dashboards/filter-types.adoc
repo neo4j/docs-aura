@@ -126,14 +126,7 @@ image::dashboards/filters/freetext.png[Free text]
 
 == Custom query
 
-Use a Cypher query to populate the select component.
-When someone chooses an option or enters a phrase, that value is passed as a parameter to the card’s Cypher query.
-
-The query can return data even though the user hasn't typed in a search phrase. 
-But when the user selects and option or types in a search phrase, it will be available to the query as a parameter, and that can be used to filter the returned data.
-
-Use a custom query filter for full control over a query (otherwise use the existing node property or node relationship filters). 
-For large datasets, you may want to tailor the query for performance optimization and use a specific cypher syntax.
+=== Example 1
 
 1) Add a filter
 
@@ -142,19 +135,19 @@ For large datasets, you may want to tailor the query for performance optimizatio
 
 [source,cypher]
 ----
-MATCH (c:Customer)-[:PURCHASED]->(o:Order)
-WITH c.companyName AS value, count(o) AS orders
-RETURN value
-ORDER BY orders DESC
-LIMIT 3
+MATCH (p:Product)
+WHERE toUpper(p.productName) CONTAINS toUpper($input)
+RETURN p.productName
 ----
+
+This passes the user selection from the filter into the $input parameter.
 
 * Link parameter: `$custom`
 
-The output of this filter will be the names of the three companies that have made the most purchases.
+This links the selected value of the filter to a parameter for reuse in other queries
 
-.Custom query filter
-image::dashboards/filters/customqueryfilter.png[Custom query filter]
+.Example 1 Custom query filter
+image::dashboards/filters/customquerysearchforproduct.png[]
 
 2) Add a card 
 
@@ -162,20 +155,17 @@ image::dashboards/filters/customqueryfilter.png[Custom query filter]
 
 [source,cypher]
 ----
-MATCH (c:Customer)-[:PURCHASED]->(o:Order)-[op:ORDERS]->(p:Product)
-WHERE $custom IS NULL OR c.companyName = $custom
-RETURN
-  p.productName AS product,
-  sum(op.quantity) AS units,
-  round(sum(op.unitPrice * op.quantity), 2) AS revenue
-ORDER BY revenue DESC
-LIMIT 10
+MATCH (p:Product)
+WHERE p.productName = $custom
+RETURN p.productName, p.unitPrice
 ----
 
-The output will provide insights into which products are generating the most revenue from purchases, optionally filtered by a specific company name.
+.Example 1 Card that shows price of Aniseed Syrup
+image::dashboards/filters/customqueryaniseed.png[]
 
-.Custom query filter and card
-image::dashboards/filters/customquery.png[Custom query]
+
+=== Example 2
+
 
 == Date / Datetime
 
