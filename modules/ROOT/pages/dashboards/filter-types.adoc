@@ -85,7 +85,7 @@ ORDER BY total_products DESC
 LIMIT 20
 ----
 
-When a a discount value is selected in the filter, the card reruns using that value and updates the results automatically.
+When a discount value is selected in the filter, the card reruns using that value and updates the results automatically.
 
 .Relationship property
 image::dashboards/filters/relationshipproperty.png[Relationship property]
@@ -168,7 +168,6 @@ image::dashboards/filters/customqueryaniseed.png[]
 1) Add the first filter (we're using a node property filter here)
 
 * Filter type: `Node property`
-* Enter the custom query: 
 * Choose Label: `Category`
 * Choose Property: `categoryName`
 * Link parameter e.g. `$category_categoryname`
@@ -185,16 +184,18 @@ WHERE c.categoryName = $category_categoryname AND p.productName CONTAINS $input
 RETURN p.productName
 ----
 
-* Link parameter: `$custom_2`
+* Link parameter: `$custom_1`
 
 3) Add a card
 
 [source,cypher]
 ----
 MATCH (p:Product)
-WHERE p.productName = $custom_2
+WHERE p.productName = $custom_1
 RETURN p.productName, p.unitPrice
 ----
+
+When a category, and a product is selected, the price of the item is shown.
 
 .Example 2 Card that shows price of Gravad lax
 image::dashboards/filters/customquerylax.png[]
