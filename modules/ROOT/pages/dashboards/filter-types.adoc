@@ -126,6 +126,11 @@ image::dashboards/filters/freetext.png[Free text]
 
 == Custom query
 
+Use a special parameter called `$input` in a query. 
+This filters the values in the dropdown when text is entered in the filter. 
+Note: The selected value of the filter to be stored somewhere. 
+This is where the "Linked parameter" comes in.
+
 === Example 1
 
 1) Add a filter
