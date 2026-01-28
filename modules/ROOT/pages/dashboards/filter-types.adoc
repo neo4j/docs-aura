@@ -163,9 +163,41 @@ RETURN p.productName, p.unitPrice
 .Example 1 Card that shows price of Aniseed Syrup
 image::dashboards/filters/customqueryaniseed.png[]
 
-
 === Example 2
 
+1) Add the first filter (we're using a node property filter here)
+
+* Filter type: `Node property`
+* Enter the custom query: 
+* Choose Label: `Category`
+* Choose Property: `categoryName`
+* Link parameter e.g. `$category_categoryname`
+
+2) Add the second filter (this is a custom query filter)
+
+* Filter type: `Custom query`
+* Enter the custom query: 
+
+[source,cypher]
+----
+MATCH (c:Category)<-[:PART_OF]-(p:Product)
+WHERE c.categoryName = $category_categoryname AND p.productName CONTAINS $input
+RETURN p.productName
+----
+
+* Link parameter: `$custom_2`
+
+3) Add a card
+
+[source,cypher]
+----
+MATCH (p:Product)
+WHERE p.productName = $custom_2
+RETURN p.productName, p.unitPrice
+----
+
+.Example 2 Card that shows price of Gravad lax
+image::dashboards/filters/customquerylax.png[]
 
 == Date / Datetime
 
