@@ -14,10 +14,22 @@ You can test the agent and iterate on it directly in the UI.
 
 Once you are satisfied with your agent, you can either share it internally with other members of your Aura project, or you can make it available externally via either an Aura API endpoint or an MCP server endpoint and thus integrate it into your GenAI application or model.
 
-To get started you need a knowledge graph in a running AuraDB instance and you need to enable *Generative AI assistance* in the xref:visual-tour/index.adoc#org-settings[Organization settings].
+Internal agents are free to use, but once you make an agent external, it incurs charges per link:https://neo4j.com/pricing/[Neo4j pricing].
+See also xref:billing/billing-dimensions/[Billing dimensions] for more information on how billing works.
 
+To get started you need a knowledge graph in a running AuraDB instance and you need to make sure *Generative AI assistance* as well as *Aura Agent* are both enabled in the xref:visual-tour/index.adoc#org-settings[Organization settings].
+When *Generative AI Assistance* is enabled, *Aura Agent* can be toggled on and off, but if you disable *Generative AI assistance*, *Aura Agent* is automatically disabled.
+
+
+[NOTE]
+====
 Keep in mind that all Aura agents are located in Belgium, in GCP's `europe-west1` region.
 This means that *all* interactions with agents go via Belgium, regardless of whether the agent is internal or external.
+====
+
+Aura Agent uses a curated set of AI models to deliver advanced planning, reasoning, retrieval, and explainability.
+For more information on how Aura Agent uses AI models, see link:https://neo4j.com/docs/reference/license/<Aura agent and AI models>[License and Disclaimers -> How Aura Agent uses AI models].
+
 
 
 == Create an agent
@@ -100,7 +112,7 @@ This tool is best for:
 
 You need to provide a *name* and a *description* for the tool.
 The better the description, the better your agent will perform.
-If your query contains *parameters*, these need to be defined with a *name*, *data type*, and *description*.
+If your query contains *parameters*, they need to be defined with a *name*, *data type*, and *description*.
 
 [.shadow]
 .Cypher Template tool
@@ -132,7 +144,8 @@ This tool is best for:
 Note that the similarity search requires *text embeddings* and the presence of a *vector index* in your database.
 Aura Agent currently supports embeddings generated with the following text embedding providers and models:
 
-* OpenAI: `text-embedding-3-small`, `text-embedding-3-large`, and `text-embedding-ada-002`.
+* Microsoft OpenAI: `text-embedding-3-small`, `text-embedding-3-large`, and `text-embedding-ada-002`.
+Note that this provider is in
 * Vertex AI: `gemini-embedding-001`, `text-embedding-005`, and `text-multi-lingual-embedding-00`.
 
 For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{{neo4j-docs-base-uri}}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
@@ -142,6 +155,13 @@ You need to provide the name of your vector index and a value for *Top K*, i.e. 
 [.shadow]
 .Similarity search tool
 image::similarity-search.jpg[width=400]
+
+[NOTE]
+====
+Aura Agent performs vector similarity search using the same embedding model used to generate your stored embeddings.
+This ensures aligned vector spaces.
+For more information on Aura Agent and AI models, see link:{neo4j-docs-base-uri}/reference/license/agent-ai-model/[License and disclaimers -> How Aura Agent uses AI models].
+====
 
 === Text2Cypher
 
@@ -182,11 +202,7 @@ As a best practice, this tool should only be used when none of the other tools m
 Before you make your agent public or share it with internal users, you can test it to make sure it works as intended.
 Once you are satisified with your tools, you can start asking your agents questions.
 
-To verify that your agent operates the way you want, give it a prompt, and once it responds, use the dropdown to see how it reasons.
-
-[.shadow]
-.Expand to see how the agent reasons
-image::agent-reasoning.jpg[width=400]
+To verify that your agent operates the way you want, ask it a question, and once it responds, use the dropdown to see how it reasons.
 
 The agent tells you how it interpreted the prompt and which tool(s) it used.
 If more than one tool was used, the agent shows the first tool, its input and its output, and then what the next step was and then the process is iterated until the agent had collected enough information to return an answer.
@@ -200,6 +216,13 @@ A saved agent can then be used internally, i.e. by other users in your Aura proj
 
 There are two differentways to interact with your agent externally.
 You can integrate your agent into your GenAI application by making it publicly available via REST API from an endpoint, or you can make it available to an MCP client via an MCP server endpoint.
+
+[NOTE]
+====
+Once you make your agent public, it starts to incur charges.
+See link:https://neo4j.com/pricing/[Neo4j pricing] for more information.
+You can change an agent's availability at any time.
+====
 
 === REST API
 
@@ -248,12 +271,97 @@ Note that this example uses link:https://jqlang.org/[jq] for command line JSON p
 
 === MCP server
 
-The other option is to make your agent available to an MCP client such as Claude Code or VSCode MCP.
-In this setup, your agent acts as an read-only MCP server that allows an external agent to use the agent's tools and its target instance's data to answer inquiries.
+The other option is to make your agent available to an MCP client such as Claude Desktop or VSCode MCP.
+In this setup, your agent acts as an read-only MCP server that allows an external agent to use your agent's tools and its target instance's data to answer inquiries.
 
-More to come...
+Once you are satisfied with your agent, make it *external* and *enable MCP server* before saving it.
 
-You can change an agent's availability at any time.
+[.shadow]
+.Make the agent external and enable MCP-server
+image::enable-mcp.jpg[width=300]
+
+Next you need to copy find the MCP server endpoint.
+It can be found from the *[...]* menu on the agent.
+
+[.shadow]
+.Copy endpoint from *[...]* menu
+image::agent-endpoint.jpg[width=400]
+
+Then you go to your MCP client of choice and add a local MCP entry with the MCP server endopint for your agent.
+You may need to restart the client after.
+
+Once your MCP server has been attached to the client, you need to authorize it to access your aura-mcp account.
+Use the same credentials you use to log in to the Aura Console.
+You may need to enable the newly added MCP server in the client before the client can invoke it.
+
+==== Set up with Claude Desktop
+
+This example uses Claude Desktop v1.1.1200 for MacOS.
+
+Start by making your agent public and enable MCP server, as described above, and copy the MCP server endpoint accordingly.
+You have two options to connect your Aura Agent to Claude Desktop:
+
+* Add a local MCP server
+* Add a custom connector
+
+**Add a local MCP server**
+
+Note that you need to have link:https://nodejs.org/en[node.js] v >=24.13 installed to add a local MCP server.
+
+. Locate the `claude_desktop_config` JSON file.
+You can find this from the desktop via Settings/Developer:
++
+image::claude-config.jpg[width=400]
++
+Add a local MCP server:
++
+[source,json]
+----
+{
+  "mcpServers": {
+    "neo4j-contract-agent": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote@latest", "<your_aura_agent_mcp_endpoint>"]
+    }
+  }
+}
+----
+
+. Restart Claude Desktop
+
+. Log in with Aura credentials
++
+Use the same credentials you use to log into the Aura console.
+
+. Verify your MCP server
++
+Create a new chat in Claude Desktop and verify that your agent is enabled.
++
+image::claude-desktop.jpg[width=400]
++
+When enabled, Claude will use your Aura Agent when appropriate.
+The first time the agent is invoked, Claude asks for permission to use the agent.
+
+**Add a custom connector**
+
+Note that you may need to ask your Claude Administrator to grant permission to add connectors.
+
+. From *Settings*/*Connectors* use *Add custom connector*
++
+Give the connector an appropriate name and add the copied endpoint in the _Remote MCP server URL_ field and *Add*.
+
+. Log in with Aura credentials
++
+Use the same credentials you use to log into the Aura console.
+
+. Verify your MCP server
++
+Create a new chat in Claude Desktop and verify that your agent is enabled.
++
+When enabled, Claude will use your Aura Agent when appropriate.
+The first time the agent is invoked, Claude asks for permission to use the agent.
+
+
 
 == Learn more
 
