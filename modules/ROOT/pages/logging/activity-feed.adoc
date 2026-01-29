@@ -5,10 +5,11 @@ The activity feed allows organizations and especially administrators to track ac
 This feature provides a detailed record for all deployments that cannot be turned off.
 It helps teams detect unusual behavior as well as aiding organizations in maintaining audit trails for regulatory compliance reasons.
 
-The activity feed follow a structured _JSON_ format can be exported in both _CSV_ and _JSON_ formats to allow integration with SIEM (Security Information and Event Management) solutions.
-There are plans on adding an API interface in the future as well.
+The activity feed follows a structured _JSON_ format that can be exported in both _CSV_ and _JSON_ formats to allow integration with SIEM (Security Information and Event Management) solutions.
 
 The activity feed tracks events on both Organization and Project level.
+
+The activity feed can also be accessed through the Aura API, see xref:logging/activity-feed.adoc#_access_the_activity_feed_through_aura_api[API]
 
 
 == Captured events
@@ -83,6 +84,97 @@ image::activity-feed.jpg[width=full]
 The activity feed can be exported either in a _JSON_ format or as _CSV_.
 This feature allows up to the last 30 days of activity to be exported and offers the same filtering options.
 Use the *Export* button to select which format and which filters (or none) you want to apply for your export.
+
+== Access the activity feed through Aura API
+
+The activity feed can be accessed via the Aura API v2 beta.
+
+For instructions on how to use the Aura API, see the xref:api/overview.adoc[API Documentation]
+
+The documentation for the Aura API specification can be found at link:{neo4j-docs-base-uri}/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[API Specification]
+
+The API has two endpoints for accessing the activity feed, one for the organization level feed and one for project level feeds.
+
+=== Organization activity feed
+
+[source, shell]
+----
+https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed
+----
+
+==== Mandatory path parameters:
+* organization_id
+
+==== Optional path parameters:
+* start
+* end
+* page_limit
+* page_token (cannot be used simultaneously with the other optional parameters, see more at xref:logging/activity-feed.adoc#_pagination[Pagination])
+
+=== Project activity feed
+
+[source, shell]
+----
+https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/projects/$YOUR_PROJECT_ID/activity-feed
+----
+
+==== Mandatory path parameters:
+* organization_id
+* project_id
+
+==== Optional path parameters:
+* start
+* end
+* page_limit
+* page_token (cannot be used simultaneously with the other optional parameters, see more at xref:logging/activity-feed.adoc#_pagination[Pagination])
+
+
+=== Request structure
+
+This section documents the general usage of the endpoints as they are identical aside from the base URL.
+
+A successful request will respond with a http code of 200 and a data object with two fields in it. One named logs, containing all the activity feed information and one called links containing pagination URLs.
+
+Example request with no filtering using the organization URL:
+[source, shell]
+----
+curl https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed \
+  --header 'accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header "Authorization: Bearer $YOUR_AURA_API_TOKEN"
+----
+
+The acitivy feed can be filtered with three different values, the start time, the end time and the page limit. The start time is limited to a maximum of 30 days from the current date which is also the default value if no filter options are given.
+
+Example request with filtering using the organization URL:
+[source, shell]
+----
+curl https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed?start=2026-01-01T00:00:00Z&end=2026-01-15T23:59:59Z&page_limit=10 \
+  --header 'accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header "Authorization: Bearer $YOUR_AURA_API_TOKEN"
+----
+
+==== Pagination
+
+The requests follow the API standard way of doing pagination with the exception that only the first request should define the filtering query parameters and all subsequent requests should use the URL given in the links.next response field.
+
+Example request flow
+
+[source, shell]
+----
+First request to fetch the first page of the activity feed with the given filters
+curl https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed?start=2026-01-01T00:00:00Z&end=2026-01-15T23:59:59Z&page_limit=10 \
+  --header 'accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header "Authorization: Bearer $YOUR_AURA_API_TOKEN"
+
+Next request to get the next page of the feed.
+curl https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed?page_token=$PAGE_TOKEN \
+  --header 'accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header "Authorization: Bearer $YOUR_AURA_API_TOKEN"
+----
 
 == Action ID reference
 
