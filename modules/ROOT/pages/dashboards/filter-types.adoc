@@ -1,0 +1,301 @@
+= Filter types
+:description: Examples of how to filter data using Aura Dashboards, with complete Cypher examples to set up filters and cards. This means that your dashboard reports can show different data depending on the value of a parameter.
+
+// In Neodash this was called "Parameter Select" https://neo4j.com/labs/neodash/2.3/user-guide/reports/parameter-select/
+
+
+Use filters to make dashboards more interactive, with node property filters, relationship property, free text, custom query, date, datetime, number, and boolean filters. 
+The filter creation experience has a live preview to help you set them up.
+
+You can type or enter text into a filter *Select component* field, and get dropdowns of options. 
+Simply put, a select component lets users set a query parameter dynamically (e.g. `$supplier`).
+This means that your reports can show different data depending on the value of a parameter.
+
+.Select component
+image::dashboards/filters/selectcomponent.png[width=400]
+
+Examples used here use the Northwind dataset as outlined in http://localhost:8000/aura/dashboards/getting-started/#_add_a_sample_data_set[add a sample dataset] and you can recreate them in your own dashboard.
+
+== Node property 
+
+Filters nodes based on their properties.
+
+This example uses a filter to select specific products. 
+We will create a product name picker where a user selection from the dropdown writes to the parameter input $productname, so the user input can be used on a card to show if products are in stock.
+
+1) Add a filter
+
+* Set *Filter type* to `Node property`
+* Label: `Product`
+* Property: `productName`
+* Link parameter: use a new or existing parameter (e.g. `$product_productname`)
+* (Optional) Set a default value (e.g. `Alice Mutton`)
+
+2) Add a card
+
+* Use the linked parameter in the query, for example:
+
+[source,cypher]
+----
+MATCH (p:Product)-[:PART_OF]->(c:Category)
+WHERE p.productName = $product_productname
+RETURN
+  p.productName AS product,
+  c.categoryName AS category,
+  p.unitPrice AS unit_price,
+  p.unitsInStock AS units_in_stock
+----
+
+.Node property filter
+image::dashboards/filters/nodeproperty.png[Node property]
+
+== Relationship property 
+
+Use this filter when the value you want to filter by properties on a relationship rather than on the nodes themselves.
+// A relationship property selector lets users choose a property from a relationship with a given type, to be used as a parameter in the dashboard.
+
+This example uses a relationship property filter to select a discount value from the ORDERS relationship and store it in the `$orders_discount` parameter.
+// This example uses a relationship property filter to select an order discount and apply it to a card query.
+The filter gives discount values (for example selecting 0.1 would be 10% discount).
+
+1) Add a filter
+
+* Select *New Filter*
+* Filter type: `Relationship property`
+* Relationship type: `ORDERS`
+* Property: `discount`
+* Link parameter: `$orders_discount`
+
+2) Add a card
+
+* Use the linked parameter in the query, for example:
+
+[source,cypher]
+----
+MATCH ()-[o:ORDERS]->(p:Product)
+WHERE o.discount = $orders_discount
+RETURN
+  toString(toInteger(o.discount * 100)) + "%" AS discount,
+  p.productName AS name,
+  count(*) AS total_products
+ORDER BY total_products DESC
+LIMIT 20
+----
+
+[NOTE]
+====
+It's a good idea to use a LIMIT at the end of custom queries, otherwise it will grab all values in the database and list them (which in some databases could be millions) which may cause performance issues in large databases.
+====
+
+When a discount value is selected in the filter, the card's query reruns using that value and updates the results automatically. 
+
+.Relationship property filter
+image::dashboards/filters/relationshipproperty.png[Relationship property]
+
+== Free text
+
+A free text filter is essentially a text field that is commonly used for search. 
+Type any string value, and it sends what is typed into a parameter, which can then be used as a parameter inside dashboard queries.
+
+This example filters orders by shipping postcode.
+A free text filter is tied to a parameter called `$text`. 
+The card then lists all products names that contains the search.
+
+1) Add a filter
+
+* Filter type: `Free text`
+* Link parameter: `$text`
+
+2) Add a card
+
+* Use the linked parameter in the query, for example:
+
+[source,cypher]
+----
+MATCH (o:Order) 
+WHERE o.shipPostalCode CONTAINS toUpper($text)
+RETURN DISTINCT
+  o.shipPostalCode AS postcode,
+  o.shipCity AS city
+----
+
+// In summary, this query retrieves unique combinations of shipping cities and postal codes for orders, filtering based on whether the input text matches the postal code (ignoring case and spaces) or if no input is provided.
+
+As the person types a postcode, the card updates automatically to show matching orders.
+
+.Free text filter
+image::dashboards/filters/freetext.png[Free text]
+
+== Custom query
+
+Use a special parameter called `$input` in a query. 
+
+$input filters the values in the dropdown when text is entered in the filter. 
+*Note the selected value of the filter needs to be stored somewhere.*
+This is where the "Linked parameter" comes in (e.g. $custom) which is only set after one of those results is selected and that value is passed on to cards or other filters ($input helps find options, $custom is the chosen option).
+
+=== Example 1
+
+1) Add a filter
+
+* Filter type: `Custom query`
+* Enter the custom query: 
+
+[source,cypher]
+----
+MATCH (p:Product)
+WHERE toUpper(p.productName) CONTAINS toUpper($input)
+RETURN p.productName
+LIMIT 10
+----
+
+This query will list all product names in the filter dropdown as suggestions. 
+If the user types in a search text, it will be passed to the query as a parameter named $input. 
+We use this parameter to filter the list of product names.
+
+* Link parameter: `$custom`
+
+This links the selected value of the filter to a parameter for reuse in other queries
+
+.Example 1 - Custom query filter
+image::dashboards/filters/customquerysearchforproduct.png[]
+
+2) Add a card 
+
+* Use the linked parameter in the query, for example:
+
+[source,cypher]
+----
+MATCH (p:Product)
+WHERE p.productName = $custom
+RETURN p.productName, p.unitPrice
+----
+
+.Example 1 - Custom query search for Aniseed Syrup
+image::dashboards/filters/customqueryaniseed.png[]
+
+=== Example 2
+
+This example shows how to make one filter depend on another filter.
+
+1) Add the first filter which is for selecting a category (this example uses a node property filter)
+
+* Filter type: `Node property`
+* Label: `Category`
+* Property: `categoryName`
+* Link parameter e.g. `$category_categoryname`
+
+2) Add the second filter for selecting a product from the selected category (this is a custom query filter)
+
+* Filter type: `Custom query`
+* Enter the custom query: 
+
+[source,cypher]
+----
+MATCH (c:Category)<-[:PART_OF]-(p:Product)
+WHERE c.categoryName = $category_categoryname AND p.productName CONTAINS $input
+RETURN p.productName
+----
+
+* Link parameter: `$custom_1`
+
+3) Add a card (this example lists details of the selected product)
+
+[source,cypher]
+----
+MATCH (p:Product)
+WHERE p.productName = $custom_1
+RETURN p.productName, p.unitPrice
+----
+
+When a category, and a product is selected, the price of the item is shown.
+
+.Example 2 - Select or type Seafood, then select Gravad lax 
+image::dashboards/filters/customquerylax.png[]
+
+== Date / Datetime
+
+[NOTE]
+====
+This example was trickier to make with Northwind dataset because of how the Northwind dataset is constructed. `1996-07-04 00:00:00.000` is not a valid datetime string, the correct one would be `1996-07-04T00:00:00.000`.
+====
+
+A date / datetime filter lets people filter based on dates by using a calendar, or by typing a date format.
+
+1) Add a filter
+
+* Filter type: `Datetime`
+* Important! The filter must have *Enable time zone selection* selected because the Northwind dates use time zone
+* Link parameter: `$datetime`
+
+2) Add a card
+
+* Use the linked parameter in the query, for example:
+
+[source,cypher]
+----
+MATCH (o:Order)
+WHERE $datetime < datetime(replace(o.orderDate," ","T"))
+RETURN o.orderDate, o.orderID, o.shipCountry
+----
+
+Use the calendar or type `07/04/1996, 00:00  UTC` and the card will update with order date, order ID and ship country. 
+
+.Datetime filter
+image::dashboards/filters/datetime.png[Date time]
+
+== Number
+
+Use integers or floats.
+
+The number entered gets passed into the query as $number, and the query uses it to include or exclude results.
+
+1) Add a filter
+
+* Example: filter products by unit price.
+* Filter type: `Number`
+* Link parameter: `$unit_price`
+
+2) Add a card
+
+[source,cypher]
+----
+MATCH (p:Product)
+WHERE p.unitPrice = $unit_price
+RETURN p.productName, p.unitPrice
+----
+
+.Number filter
+image::dashboards/filters/number.png[Number]
+
+== Boolean
+
+A Boolean filter stores either true or false in a linked parameter. 
+You can rename the values and switch between them by selecting one of the two options (e.g. to `Yes` or `No`)
+
+Example: show products that are in stock (true), or not in stock (false).
+
+1) Add a filter
+
+* Filter type: Boolean
+* Link parameter: `$in_stock`
+* Label for true: `In stock`
+* Label for false: `Out of stock`
+* (Optional) Set the default value to *True*
+
+2) Add a card
+
+[source,cypher]
+----
+MATCH (p:Product)
+WHERE ($boolean = true AND p.unitsInStock > 0)
+   OR ($boolean = false AND p.unitsInStock = 0)
+RETURN p.productName, p.unitsInStock
+ORDER BY p.productName;
+----
+
+.Boolean true, to view products in stock
+image::dashboards/filters/booleantrue.png[]
+
+.Boolean false, to view products out of stock
+image::dashboards/filters/booleanfalse.png[]
