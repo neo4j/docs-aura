@@ -26,9 +26,9 @@ We will create a product name picker where a user selection from the dropdown wr
 1) Add a filter
 
 * Set *Filter type* to `Node property`
-* Choose Label: `Product`
-* Choose Property: `productName`
-* Link parameter, use a new or existing parameter, (for example: `$product_productname`)
+* Label: `Product`
+* Property: `productName`
+* Link parameter: use a new or existing parameter (e.g. `$product_productname`)
 * (Optional) Set a default value (for example, `Alice Mutton`)
 
 2) Add a card
@@ -181,8 +181,8 @@ This example shows how to make one filter depend on another filter.
 1) Add the first filter which is for selecting a category (this example uses a node property filter)
 
 * Filter type: `Node property`
-* Choose Label: `Category`
-* Choose Property: `categoryName`
+* Label: `Category`
+* Property: `categoryName`
 * Link parameter e.g. `$category_categoryname`
 
 2) Add the second filter for selecting a product from the selected category (this is a custom query filter)
