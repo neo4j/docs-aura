@@ -5,10 +5,10 @@
 
 
 Use filters to make dashboards more interactive, with node property filters, relationship property, free text, custom query, date, datetime, number, and boolean filters. 
-The filter creation experience has a live preview to help you create filters.
+The filter creation experience has a live preview to help you set them up.
 
-You can type or write into a filter *Select component* which is a selectable or writable field, with dropdowns of the options. 
-Simply put, a parameter select component lets users set a query parameter dynamically (e.g. `$supplier`).
+You can type or enter text into a filter *Select component* field, and get dropdowns of options. 
+Simply put, a select component lets users set a query parameter dynamically (e.g. `$supplier`).
 This means that your reports can show different data depending on the value of a parameter.
 
 .Select component
@@ -19,11 +19,9 @@ Examples used here use the Northwind dataset as outlined in http://localhost:800
 == Node property 
 
 Filters nodes based on their properties.
-//A node property selector lets users choose a property from a node with a given label, to be used as a parameter in the dashboard.
 
 This example uses a filter to select specific products. 
 We will create a product name picker where a user selection from the dropdown writes to the parameter input $productname, so the user input can be used on a card to show if products are in stock.
-// This populates a dropdown from  :Product(productName) values and stores the selection in the linked $productname parameter.
 
 1) Add a filter
 
@@ -84,7 +82,12 @@ ORDER BY total_products DESC
 LIMIT 20
 ----
 
-When a discount value is selected in the filter, the card reruns using that value and updates the results automatically. 
+[NOTE]
+====
+It's a good idea to use a LIMIT at the end of custom queries, otherwise it will grab all values in the database and list them (which in some databases could be millions) which may cause performance issues in large databases.
+====
+
+When a discount value is selected in the filter, the card's query reruns using that value and updates the results automatically. 
 
 .Relationship property filter
 image::dashboards/filters/relationshipproperty.png[Relationship property]
@@ -126,9 +129,10 @@ image::dashboards/filters/freetext.png[Free text]
 == Custom query
 
 Use a special parameter called `$input` in a query. 
-This filters the values in the dropdown when text is entered in the filter. 
-Note: The selected value of the filter needs to be stored somewhere. 
-This is where the "Linked parameter" comes in.
+
+$input filters the values in the dropdown when text is entered in the filter. 
+*Note the selected value of the filter needs to be stored somewhere.*
+This is where the "Linked parameter" comes in (e.g. $custom) which is only set after one of those results is selected and that value is passed on to cards or other filters ($input helps find options, $custom is the chosen option).
 
 === Example 1
 
