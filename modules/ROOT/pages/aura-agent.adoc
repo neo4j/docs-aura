@@ -306,12 +306,12 @@ You have two options to connect your Aura Agent to Claude Desktop:
 
 **Add a local MCP server**
 
-Note that you need to have link:https://nodejs.org/en[node.js] v >=24.13 installed to add a local MCP server.
+Note that you need to have link:https://nodejs.org/en[node.js] v24.13 or latern installed to add a local MCP server.
 
 . Locate the `claude_desktop_config` JSON file.
 You can find this from the desktop via Settings/Developer:
 +
-image::claude-config.jpg[width=400]
+image::claude-config.jpg[width=600]
 +
 Add a local MCP server:
 +
@@ -331,13 +331,14 @@ Add a local MCP server:
 
 . Log in with Aura credentials
 +
+Claude Desktop opens a pop-up asking you to log in to aura-mcp, *Continue*, and *Accept* to get to the log in page.
 Use the same credentials you use to log into the Aura console.
 
 . Verify your MCP server
 +
 Create a new chat in Claude Desktop and verify that your agent is enabled.
 +
-image::claude-desktop.jpg[width=400]
+image::claude-desktop.jpg[width=600]
 +
 When enabled, Claude will use your Aura Agent when appropriate.
 The first time the agent is invoked, Claude asks for permission to use the agent.
