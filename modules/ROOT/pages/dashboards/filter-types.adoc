@@ -4,8 +4,7 @@
 // In Neodash this was called "Parameter Select" https://neo4j.com/labs/neodash/2.3/user-guide/reports/parameter-select/
 
 
-Use filters to make dashboards more interactive, with node properties, relationship properties, free text, custom queries, and date, datetime, number, and boolean filters.
-
+Use filters to make dashboards more interactive, with node property filters, relationship property, free text, custom query, date, datetime, number, and boolean filters. 
 The filter creation experience has a live preview to help you create filters.
 
 You can type or write into a filter *Select component* which is a selectable or writable field, with dropdowns of the options. 
@@ -49,7 +48,7 @@ RETURN
   p.unitsInStock AS units_in_stock
 ----
 
-.Node property
+.Node property filter
 image::dashboards/filters/nodeproperty.png[Node property]
 
 == Relationship property 
@@ -85,9 +84,9 @@ ORDER BY total_products DESC
 LIMIT 20
 ----
 
-When a discount value is selected in the filter, the card reruns using that value and updates the results automatically.
+When a discount value is selected in the filter, the card reruns using that value and updates the results automatically. 
 
-.Relationship property
+.Relationship property filter
 image::dashboards/filters/relationshipproperty.png[Relationship property]
 
 == Free text
@@ -121,7 +120,7 @@ RETURN DISTINCT
 
 As the person types a postcode, the card updates automatically to show matching orders.
 
-.Free text
+.Free text filter
 image::dashboards/filters/freetext.png[Free text]
 
 == Custom query
@@ -154,7 +153,7 @@ We use this parameter to filter the list of product names.
 
 This links the selected value of the filter to a parameter for reuse in other queries
 
-.Example 1 Custom query filter
+.Example 1 - Custom query filter
 image::dashboards/filters/customquerysearchforproduct.png[]
 
 2) Add a card 
@@ -168,7 +167,7 @@ WHERE p.productName = $custom
 RETURN p.productName, p.unitPrice
 ----
 
-.Example 1 Card that shows price of Aniseed Syrup
+.Example 1 - Custom query search for Aniseed Syrup
 image::dashboards/filters/customqueryaniseed.png[]
 
 === Example 2
@@ -207,7 +206,7 @@ RETURN p.productName, p.unitPrice
 
 When a category, and a product is selected, the price of the item is shown.
 
-.Example 2 Card that shows price of Gravad lax
+.Example 2 - Select or type Seafood, then select Gravad lax 
 image::dashboards/filters/customquerylax.png[]
 
 == Date / Datetime
@@ -238,7 +237,7 @@ RETURN o.orderDate, o.orderID, o.shipCountry
 
 Use the calendar or type `07/04/1996, 00:00  UTC` and the card will update with order date, order ID and ship country. 
 
-.Datetime
+.Datetime filter
 image::dashboards/filters/datetime.png[Date time]
 
 == Number
@@ -262,7 +261,7 @@ WHERE p.unitPrice = $unit_price
 RETURN p.productName, p.unitPrice
 ----
 
-.Number
+.Number filter
 image::dashboards/filters/number.png[Number]
 
 == Boolean
