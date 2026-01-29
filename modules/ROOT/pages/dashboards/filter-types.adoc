@@ -128,7 +128,7 @@ image::dashboards/filters/freetext.png[Free text]
 
 Use a special parameter called `$input` in a query. 
 This filters the values in the dropdown when text is entered in the filter. 
-Note: The selected value of the filter to be stored somewhere. 
+Note: The selected value of the filter needs to be stored somewhere. 
 This is where the "Linked parameter" comes in.
 
 === Example 1
@@ -143,6 +143,7 @@ This is where the "Linked parameter" comes in.
 MATCH (p:Product)
 WHERE toUpper(p.productName) CONTAINS toUpper($input)
 RETURN p.productName
+LIMIT 10
 ----
 
 This query will list all product names in the filter dropdown as suggestions. 
@@ -172,14 +173,16 @@ image::dashboards/filters/customqueryaniseed.png[]
 
 === Example 2
 
-1) Add the first filter (we're using a node property filter here)
+This example shows how to make one filter depend on another filter.
+
+1) Add the first filter which is for selecting a category (this example uses a node property filter)
 
 * Filter type: `Node property`
 * Choose Label: `Category`
 * Choose Property: `categoryName`
 * Link parameter e.g. `$category_categoryname`
 
-2) Add the second filter (this is a custom query filter)
+2) Add the second filter for selecting a product from the selected category (this is a custom query filter)
 
 * Filter type: `Custom query`
 * Enter the custom query: 
@@ -193,7 +196,7 @@ RETURN p.productName
 
 * Link parameter: `$custom_1`
 
-3) Add a card
+3) Add a card (this example lists details of the selected product)
 
 [source,cypher]
 ----
@@ -240,12 +243,9 @@ image::dashboards/filters/datetime.png[Date time]
 
 == Number
 
-*Integer*: A Number filter lets people filter data using numeric values or ranges.
-It's whole numbers.
-*Float*: It’s useful for prices, quantities, counts, scores, or thresholds.
-It can be a number with a decimal point. 
+Use integers or floats.
 
-How the filter works: whatever number the person enters gets passed into the query as $number, and the query uses it to include or exclude results.
+The number entered gets passed into the query as $number, and the query uses it to include or exclude results.
 
 1) Add a filter
 
