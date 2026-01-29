@@ -276,9 +276,8 @@ The resultant output will default all users passwords to `newpassword` and the u
 SHOW USERS yield user where user<>'neo4j' return 'CREATE USER '+ user +' SET PASSWORD \'newpassword\' CHANGE REQUIRED;' as output;
 ----
 
-Sample output is as follows:
-
-image::user-migration-recreation/showusers.png[Show users]
+//Sample output is as follows:
+//image::user-migration-recreation/showusers.png[Show users]
 
 You can export the output as CSV using `Export CSV`. 
 Copy the scripts from csv and execute them on the cloned Aura Instance . 
@@ -299,9 +298,8 @@ This script will generate the cypher for roles that need to be created if they d
 SHOW ROLES yield role return 'CREATE ROLE ' + role + ' IF NOT EXISTS;' as output;
 ----
 
-Sample output is as follows:
-
-image::user-migration-recreation/showroles.png[Show roles]
+//Sample output is as follows:
+//image::user-migration-recreation/showroles.png[Show roles]
 
 You can verify the created roles using below command
 
@@ -324,9 +322,8 @@ This returns the privileges as the commands that are granted or denied.
 You can now execute these commands directly to cloned Aura instance. 
 Make sure to use a semicolon(;) at the end of every statement if you are getting errors in the syntax.
 
-Sample output is as follows:
-
-image::user-migration-recreation/showprivileges.png[Show privileges]
+//Sample output is as follows:
+//image::user-migration-recreation/showprivileges.png[Show privileges]
 
 === Generate User Role Mapping Cypher
 
@@ -341,9 +338,8 @@ SHOW ROLES WITH USERS yield member,role where role<>"PUBLIC" and member is not n
 This will generate cypher scripts to map users to roles. 
 Copy and execute these on the cloned instance to create user role mappings.
 
-Sample output is as follows:
-
-image::user-migration-recreation/showroleswithusers.png[Show roles with users]
+//Sample output is as follows:
+//image::user-migration-recreation/showroleswithusers.png[Show roles with users]
 
 You can verify the mapping by using the command:
 
@@ -352,8 +348,7 @@ You can verify the mapping by using the command:
 SHOW ROLES WITH USERS;
 ----
 
-Please make sure you export the output of all of the above cypher queries and run every query to avoid any mismatch in the roles and mappings. 
-To get help in case of an error, please open a support ticket.
+Please make sure you export the output of all of the above cypher queries and run every query to avoid any mismatch in the roles and mappings.
 
 
 
