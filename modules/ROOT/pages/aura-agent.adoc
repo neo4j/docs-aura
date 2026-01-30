@@ -215,7 +215,7 @@ If more than one tool was used, the agent shows the first tool, its input and it
 This way, the reasoning is transparent and if your agent is not acting to your expectations, consider changing the tool descriptions to make sure the right tool is used in the right situation.
 
 Save your agent once you are happy with it.
-A saved agent can then be used internally, i.e. by other users in your Aura project.
+A saved agent can then be used internally, i.e. by other users in your Aura project, but only project admins can create, edit, or delete agents.
 
 == Make your agent public
 
@@ -277,7 +277,7 @@ Note that this example uses link:https://jqlang.org/[jq] for command line JSON p
 === MCP server
 
 The other option is to make your agent available to an MCP client such as Claude Desktop or VSCode MCP.
-In this setup, your agent acts as an read-only MCP server that allows an external agent to use your agent's tools and its target instance's data to answer inquiries.
+In this setup, your agent acts as an read-only MCP server that allows an external agent to use your agent and its target instance as a tool to answer inquiries.
 
 Once you are satisfied with your agent, make it *external* and *enable MCP server* before saving it.
 
@@ -292,7 +292,7 @@ It can be found from the *[...]* menu on the agent.
 .Copy MCP server endpoint from *[...]* menu
 image::agent-endpoint.jpg[width=400]
 
-Then you go to your MCP client of choice and add a local MCP entry with the MCP server endopint for your agent.
+Then you go to your MCP client of choice and add a remote MCP entry with the MCP server endopint for your agent.
 You may need to restart the client after.
 
 Once your MCP server has been attached to the client, you need to authorize it to access your account.
