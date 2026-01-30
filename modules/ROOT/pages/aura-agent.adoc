@@ -219,7 +219,7 @@ A saved agent can then be used internally, i.e. by other users in your Aura proj
 
 == Make your agent public
 
-There are two differentways to interact with your agent externally.
+There are two different ways to interact with your agent externally.
 You can integrate your agent into your GenAI application by making it publicly available via REST API from an endpoint, or you can make it available to an MCP client via an MCP server endpoint.
 
 [NOTE]
@@ -231,8 +231,8 @@ You can change an agent's availability at any time.
 
 === REST API
 
-Edit your agent from the *[...]* menu, and select *External*.
-Once you save it, the endpoint can be copied from the same *[...]* menu.
+Use *Configure* to edit your agent from the *[...]* menu, and select *External* access.
+Once you *Update agent*, the endpoint can be copied from the same *[...]* menu.
 
 [.shadow]
 .Copy endpoint from *[...]* menu
@@ -285,7 +285,7 @@ Once you are satisfied with your agent, make it *external* and *enable MCP serve
 .Make the agent external and enable MCP-server
 image::enable-mcp.jpg[width=300]
 
-Next you need to copy find the MCP server endpoint.
+Next you need to copy the MCP server endpoint.
 It can be found from the *[...]* menu on the agent.
 
 [.shadow]
