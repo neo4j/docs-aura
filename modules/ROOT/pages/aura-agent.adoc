@@ -33,7 +33,7 @@ For more information on how Aura Agent uses AI models, see link:{neo4j-docs-base
 
 == Create an agent
 
-Navigate to *Agents* in the left-hand menu and use the *Create* button to start creating your agent.
+Navigate to *Agents* in the left-hand menu and use the *Create Agent* button to start creating your agent.
 You can either create an agent from scratch, or use AI to create the agent and generate the tools.
 
 === Create from scratch
@@ -49,9 +49,6 @@ The agent's location (as mentioned in the introduction) is listed but *cannot* b
 
 You need to give the agent a name (it is advisable to use a descriptive name), a description, and optionally prompt instructions.
 The more detailed you are in the description and prompt instructions, the better your agent will operate.
-
-Then you need to specify which AuraDB instance the agent should target.
-Keep in mind that the selected instance *must* be running.
 
 You can make the agent externally available right away, but it is recommended to keep it internal while testing it.
 You can change the agent's availability at any time.
@@ -174,7 +171,7 @@ This tool transforms natural language questions into Cypher queries and allows t
 In essence, the tool takes the question, adds the database schema and the Text2Cypher system prompt to it, and presents these to a fine-tuned model.
 The model then generates a Cypher query for the tool to execute.
 
-[NOTE]
+[CAUTION]
 ====
 The Text2Cypher tool relies on an LLM and this can potentially result in queries that contain inconsistencies or logical errors.
 Therefore, use caution when deploying Text2Cypher in production.
