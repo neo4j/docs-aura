@@ -28,23 +28,50 @@ This means that *all* interactions with agents go via Belgium, regardless of whe
 ====
 
 Aura Agent uses a curated set of AI models to deliver advanced planning, reasoning, retrieval, and explainability.
-For more information on how Aura Agent uses AI models, see link:https://neo4j.com/docs/reference/license/<Aura agent and AI models>[License and Disclaimers -> How Aura Agent uses AI models].
+For more information on how Aura Agent uses AI models, see link:{neo4j-docs-base-uri}/reference/license/agent-ai-model/[License and disclaimers -> How Aura Agent uses AI models].
 
 
 
 == Create an agent
 
 Navigate to *Agents* in the left-hand menu and use the *Create* button to start creating your agent.
-You can either use AI to create the agent and generate the tools, or you can do it from scratch.
+You can either create an agent from scratch, or use AI to create the agent and generate the tools.
+
+=== Create from scratch
+
+First you select which instance the agent should target.
+The instance doesn't have to be running when you configure the agent, but you can't test the agent unless the instance is running.
+
+[.shadow]
+.Create an agent from scratch
+image::agent.jpg[width=300]
+
+The agent's location (as mentioned in the introduction) is listed but *cannot* be changed.
+
+You need to give the agent a name (it is advisable to use a descriptive name), a description, and prompt instructions.
+The more detailed you are in the description and prompt instructions, the better your agent will operate.
+
+Then you need to specify which AuraDB instance the agent should target.
+Keep in mind that the selected instance *must* be running.
+
+You can make the agent externally available right away, but it is recommended to keep it internal while testing it.
+You can change the agent's availability at any time.
+
+Then you can start adding the tools that will allow your agent to retrieve specific data from your graph.
+Keep in mind that currently the agent only supports *read only* queries against the database.
+
+Once you are satisfied with your agent, use *Create agent* to persist it.
+
+Note also that the conversation history is not currently stored anywhere.
 
 === Create with AI
+
+If you can describe exactly what your use case is and what you want the agent to do, Neo4j AI can generate an agent for you.
+The agent is based on your prompt and the schema of your database.
 
 [.shadow]
 .Create an agent with AI
 image::create-with-ai.jpg[width=400]
-
-If you can describe exactly what your use case is and what you want the agent to do, Neo4j AI can generate an agent for you.
-The agent is based on your prompt and the schema of your database.
 
 Start by selecting which instance you want to connect to, keep in mind that the instance *must* be running.
 
@@ -62,29 +89,8 @@ See <<test-agent>> for guidance and the <<tools>> section for more information o
 If you are not happy with the agent, you can iterate on the agent manually or you can regenerate it by editing the prompt via the *Regenerate with AI* button.
 Note that this action *overwrites* the current configuration.
 
-Once you are satisfied, you need to *save* your agent or else it is not persisted if you navigate away.
+Once you are satisfied with your agent, use *Create agent* to persist it.
 
-=== Create from scratch
-
-[.shadow]
-.Create an agent from scratch
-image::agent.jpg[width=300]
-
-You need to give the agent a name (it is advisable to use a descriptive name), a description, and prompt instructions.
-The more detailed you are in the description and prompt instructions, the better your agent will operate.
-
-Then you need to specify which AuraDB instance the agent should target.
-Keep in mind that the selected instance *must* be running.
-
-You can make the agent externally available right away, but it is recommended to keep it internal while testing it.
-You can change the agent's availability at any time.
-
-Then you can start adding the tools that will allow your agent to retrieve specific data from your graph.
-Keep in mind that currently the agent only supports *read only* queries against the database.
-
-Once you are satisfied with your agent, you need to *save* it or else it is not persisted if you navigate away.
-
-Note also that the conversation history is not currently stored anywhere.
 
 [[tools]]
 == Tools
@@ -284,7 +290,7 @@ Next you need to copy find the MCP server endpoint.
 It can be found from the *[...]* menu on the agent.
 
 [.shadow]
-.Copy endpoint from *[...]* menu
+.Copy MCP server endpoint from *[...]* menu
 image::agent-endpoint.jpg[width=400]
 
 Then you go to your MCP client of choice and add a local MCP entry with the MCP server endopint for your agent.
