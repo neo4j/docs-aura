@@ -305,7 +305,7 @@ You can verify the created roles using below command
 
 [source,cypher]
 ----
-SHOW ROLES ;
+SHOW ROLES;
 ----
 
 === Assign privileges
@@ -319,7 +319,7 @@ SHOW PRIVILEGES AS COMMANDS;
 ----
 
 This returns the privileges as the commands that are granted or denied. 
-You can now execute these commands directly to cloned Aura instance. 
+You can now execute these commands directly to the cloned Aura instance. 
 Make sure to use a semicolon(;) at the end of every statement if you are getting errors in the syntax.
 
 //Sample output is as follows:
