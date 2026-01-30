@@ -144,7 +144,7 @@ This tool is best for:
 Note that the similarity search requires *text embeddings* and the presence of a *vector index* in your database.
 Aura Agent currently supports embeddings generated with the following text embedding providers and models:
 
-* Microsoft OpenAI: `text-embedding-3-small`, `text-embedding-3-large`, and `text-embedding-ada-002`.
+* OpenAI: `text-embedding-3-small`, `text-embedding-3-large`, and `text-embedding-ada-002`.
 Note that this provider is in
 * Vertex AI: `gemini-embedding-001`, `text-embedding-005`, and `text-multi-lingual-embedding-00`.
 
@@ -290,44 +290,20 @@ image::agent-endpoint.jpg[width=400]
 Then you go to your MCP client of choice and add a local MCP entry with the MCP server endopint for your agent.
 You may need to restart the client after.
 
-Once your MCP server has been attached to the client, you need to authorize it to access your aura-mcp account.
+Once your MCP server has been attached to the client, you need to authorize it to access your account.
 Use the same credentials you use to log in to the Aura Console.
 You may need to enable the newly added MCP server in the client before the client can invoke it.
 
 ==== Set up with Claude Desktop
 
-This example uses Claude Desktop v1.1.1200 for MacOS.
-
 Start by making your agent public and enable MCP server, as described above, and copy the MCP server endpoint accordingly.
-You have two options to connect your Aura Agent to Claude Desktop:
+Then you add this as a custom connector in Claude Desktop.
 
-* Add a local MCP server
-* Add a custom connector
+Note that if you are not a Claude Administrator you need permission to add connectors.
 
-**Add a local MCP server**
-
-Note that you need to have link:https://nodejs.org/en[node.js] v24.13 or latern installed to add a local MCP server.
-
-. Locate the `claude_desktop_config` JSON file.
-You can find this from the desktop via Settings/Developer:
+. From *Settings*/*Connectors* use *Add custom connector*
 +
-image::claude-config.jpg[width=600]
-+
-Add a local MCP server:
-+
-[source,json]
-----
-{
-  "mcpServers": {
-    "neo4j-contract-agent": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote@latest", "<your_aura_agent_mcp_endpoint>"]
-    }
-  }
-}
-----
-
-. Restart Claude Desktop
+Give the connector an appropriate name and add the copied endpoint in the _Remote MCP server URL_ field and *Add*.
 
 . Log in with Aura credentials
 +
@@ -339,25 +315,6 @@ Use the same credentials you use to log into the Aura console.
 Create a new chat in Claude Desktop and verify that your agent is enabled.
 +
 image::claude-desktop.jpg[width=600]
-+
-When enabled, Claude will use your Aura Agent when appropriate.
-The first time the agent is invoked, Claude asks for permission to use the agent.
-
-**Add a custom connector**
-
-Note that you may need to ask your Claude Administrator to grant permission to add connectors.
-
-. From *Settings*/*Connectors* use *Add custom connector*
-+
-Give the connector an appropriate name and add the copied endpoint in the _Remote MCP server URL_ field and *Add*.
-
-. Log in with Aura credentials
-+
-Use the same credentials you use to log into the Aura console.
-
-. Verify your MCP server
-+
-Create a new chat in Claude Desktop and verify that your agent is enabled.
 +
 When enabled, Claude will use your Aura Agent when appropriate.
 The first time the agent is invoked, Claude asks for permission to use the agent.
