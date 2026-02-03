@@ -114,3 +114,39 @@ Selecting a value from the dropdown updates the parameter `$unit_param` and upda
 .Selecting a new value for the unitsInStock filter
 [.shadow]
 image::dashboards/parameters-and-filters/filter-and-card.gif[]
+
+== Parameters drawer
+
+.The parameters drawer
+[.shadow]
+image::dashboards/parameters-and-filters/parameters-drawer.png[]
+
+The drawer shows the dashboard parameters in alphabetical order.
+Each parameter has an icon next to it hinting at its data type:
+
+* A text icon for strings.
+* A hashtag icon for numbers.
+* A calendar icon for dates.
+* A filter icon for unspecified data types. 
+
+=== Creating a parameter in the parameter drawer
+
+. From the **Parameters** drawer, use the **Add** button.
+. In the dialog, enter a parameter name, select a data type and optionally an initial value for the parameter, then **Save**.
+
+=== Editing a parameter
+
+. From the **Parameters** drawer, hover over the parameter you wish to edit.
+. In the dialog, edit the parameter name, data type and/or initial value, then **Save**.
+
+=== Using a parameter in a query
+
+To use a parameter in a query, prefix the parameter name with `$`.
+For example, to use a parameter with a number value of 4 and the name "unit_param", use `$unit_param` in your query:
+
+// .Cypher query for a table which displays products with a certain number of units in stock
+
+// MATCH (p:Product)
+// WHERE p.unitsInStock = $unit_param
+// RETURN p.productName as product, p.unitsInStock AS units
+// LIMIT 10
