@@ -4,23 +4,22 @@
 :page-aliases: aurads/index.adoc
 :gds-sessions-page: {neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/
 
-If your data is in Aura or you plan to move it to Aura, you have several options to run graph analytics:
+Graph analytics uses graph algorithms to uncover patterns, detect anomalies, and predict behavior within connected data.
+Typical use cases include:
 
-* Enable the <<aura-gds-plugin,Graph Analytics plugin>> on an existing AuraDB instance (Professional).
-* Use <<aura-gds-serverless,Aura Graph Analytics>> from an existing AuraDB Professional, Business Critical, or Virtual Dedicated Cloud instance.
-* Create an <<aura-ds,AuraDS instance>> (Professional, Enterprise).
+* Fraud detection
+* Supply chain optimization
+* Recommendation engine development
 
-If your data is in a self-managed Neo4j DBMS or a non-Neo4j data source, you can still use <<aura-gds-serverless, Aura Graph Analytics>>.
+Aura provides the compute power to run complex graph algorithms at scale with the link:https://neo4j.com/docs/graph-data-science/current/[Neo4j Graph Data Science] (GDS) library.
 
 [[aura-gds-serverless]]
 == Aura Graph Analytics
 
-Aura Graph Analytics allows you to use the Graph Data Science library regardless of where your source data is stored.
-It runs in Aura as a link:{gds-sessions-page}[dedicated service] optimised for analytics workloads, with no memory or compute resources shared with your data store.
+Aura Graph Analytics is an ephemeral, elastic environment to run graph analytics on data stored anywhere, from AuraDB and self-managed Neo4j instances to non-Neo4j data sources.
 
-You can enable, disable, and configure Aura Graph Analytics on the organization level in the xref:visual-tour/index.adoc#graph-analytics-org-settings[organization settings].
-The details on any running sessions are available in the xref:visual-tour/index.adoc#graph-analytics-page[Graph Analytics] page.
-
+Aura Graph Analytics runs in Aura as an on-demand dedicated service optimised for analytics workloads, with no memory or compute resources shared with your data store.
+This makes it cost-effective (pay-for-what-you-use), flexible (spin up/down), and isolated (doesn't impact your transactional DB).
 
 [role=label--aura-db-professional label--aura-db-business-critical label--aura-db-dedicated]
 === From an AuraDB instance
@@ -35,13 +34,27 @@ You can use Aura Graph Analytics from any AuraDB Professional, Business Critical
 
 With Aura Graph Analytics enabled in your organization, you only need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] before you can get started.
 
+[NOTE]
+====
+No API credentials required if you run it from within an Aura environment.
+====
+
 With the Aura API credentials available:
 
 * If you use the Neo4j Browser or run Cypher queries through a Neo4j driver, start with the link:{neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/quickstart/[examples] in the Graph Data Science documentation.
 * If you use Python, start with one of the Python client tutorials depending on whether your data is in
 link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless/[AuraDB], in a link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-self-managed/[self-managed Neo4j database], or a link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-standalone/[non-Neo4j data source].
 
-== Other deployments
+You can enable, disable, and configure Aura Graph Analytics on the organization level in the xref:visual-tour/index.adoc#graph-analytics-org-settings[organization settings].
+The details on any running sessions are available in the xref:visual-tour/index.adoc#graph-analytics-page[Graph Analytics] page.
+
+
+== Alternative deployment options
+
+If your data is in Aura or you plan to move it to Aura, you have two more options to run graph analytics:
+
+* Enable the <<aura-gds-plugin,Graph Analytics plugin>> on an existing AuraDB instance (Professional)for lightweight/non-prod exploration where performance isolation is not critical.
+* Create an <<aura-ds,AuraDS instance>> (Professional, Enterprise) when you need a long-running, persistent environment for deep collaboration or massive model hosting.
 
 [[aura-gds-plugin]]
 [role=label--aura-db-professional]
@@ -57,6 +70,7 @@ You can enable or disable Graph Analytics when necessary, both during xref:getti
 It can also be changed with the link:https://neo4j.com/docs/aura/platform/api/specification/#/instances/patch-instance-id[Aura API].
 
 The plugin shares compute and memory resources with the AuraDB server, so you do not incur any additional costs when you enable it.
+This also means that using the plugin can disrupt transactional queries and can impact the instance.
 
 
 [[get-started-plugin]]
@@ -71,7 +85,7 @@ With the Graph Analytics plugin enabled:
 [role=label--aura-ds-professional label--aura-ds-enterprise]
 === AuraDS
 
-AuraDS is the fully managed version of the Graph Data Science library where the <<aura-gds-plugin>> is deployed by default.
+AuraDS is the fully managed version of the Graph Data Science library, where the <<aura-gds-plugin>> is deployed by default and optimized for analytical use cases.
 
 In an AuraDS instance, Graph Analytics is always on.
 The plugin shares compute and memory resources with the AuraDS server.
@@ -114,7 +128,7 @@ Graphs and models created or updated _after_ the instance update/upgrade process
 |Primary use cases
 |Data science, ETL, running algorithms, ephemeral workloads
 |Persistent model serving, collaborative workspaces
-|Lightweight exploration, simple queries
+|Lightweight exploration
 
 |Compute architecture
 |Serverless / On-demand (Spin up, run, spin down)
@@ -127,7 +141,7 @@ Graphs and models created or updated _after_ the instance update/upgrade process
 |Included in the AuraDB cost
 
 |Data sources
-|AuraDB, self-managed Neo4j, Snowflake, Pandas DataFrames
+|AuraDB, self-managed Neo4j, Pandas DataFrames
 |AuraDS (integrated storage)
 |AuraDB (integrated storage)
 
