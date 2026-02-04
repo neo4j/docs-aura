@@ -325,7 +325,7 @@ Make sure to use a semicolon(;) at the end of every statement if you are getting
 //Sample output is as follows:
 //image::user-migration-recreation/showprivileges.png[Show privileges]
 
-=== Generate User Role Mapping Cypher
+=== Generate user role mapping Cypher
 
 When we created the users in the first step, by default all users will get the `PUBLIC` role which provides access to the default database and allows the execution of all procedures and user-defined functions. 
 Therefore in the below script we will be excluding the PUBLIC role and roles having no users mapped.
