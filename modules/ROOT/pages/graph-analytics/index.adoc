@@ -11,149 +11,74 @@ Typical use cases include:
 * Supply chain optimization
 * Recommendation engine development
 
-Aura provides the compute power to run complex graph algorithms at scale with the link:https://neo4j.com/docs/graph-data-science/current/[Neo4j Graph Data Science] (GDS) library.
+Aura provides the cloud infrastructure to run complex graph algorithms at scale with the link:https://neo4j.com/docs/graph-data-science/current/[Neo4j Graph Data Science] (GDS) library.
 
 [[aura-gds-serverless]]
 == Aura Graph Analytics
 
 Aura Graph Analytics is an ephemeral, elastic environment to run graph analytics on data stored anywhere, from AuraDB and self-managed Neo4j instances to non-Neo4j data sources.
 
-Aura Graph Analytics runs in Aura as an on-demand dedicated service optimised for analytics workloads, with no memory or compute resources shared with your data store.
-This makes it cost-effective (pay-for-what-you-use), flexible (spin up/down), and isolated (doesn't impact your transactional DB).
+With Aura Graph Analytics, you can create and delete _sessions_ according to your needs.
+Each session runs as an isolated Aura instance, with no memory or compute resources shared with your data store.
 
-[role=label--aura-db-professional label--aura-db-business-critical label--aura-db-dedicated]
-=== From an AuraDB instance
+[[get-started-serverless]] See the xref:graph-analytics/aga.adoc#get-started-serverless[Getting started] page.
 
-You can use Aura Graph Analytics from any AuraDB Professional, Business Critical, or Virtual Dedicated Cloud instance with the following requirements:
-
-* Neo4j version 5 or later
-* All supported cloud providers and regions
-
-[[get-started-serverless]]
-=== Getting started
-
-With Aura Graph Analytics enabled in your organization, you only need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] before you can get started.
-
-[NOTE]
+[IMPORTANT]
 ====
-No API credentials required if you run it from within an Aura environment.
+If you plan to use Aura Graph Analytics from AuraDB, verify the following requirements:
+
+* **AuraDB tier:** AuraDB Professional, Business Critical, or Virtual Dedicated Cloud
+* **Neo4j version:** 5 or later
 ====
 
-With the Aura API credentials available:
-
-* If you use the Neo4j Browser or run Cypher queries through a Neo4j driver, start with the link:{neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/quickstart/[examples] in the Graph Data Science documentation.
-* If you use Python, start with one of the Python client tutorials depending on whether your data is in
-link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless/[AuraDB], in a link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-self-managed/[self-managed Neo4j database], or a link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-standalone/[non-Neo4j data source].
-
-You can enable, disable, and configure Aura Graph Analytics on the organization level in the xref:visual-tour/index.adoc#graph-analytics-org-settings[organization settings].
-The details on any running sessions are available in the xref:visual-tour/index.adoc#graph-analytics-page[Graph Analytics] page.
-
-
+[[alternative-deployments]]
 == Alternative deployment options
 
 If your data is in Aura or you plan to move it to Aura, you have two more options to run graph analytics:
 
-* Enable the <<aura-gds-plugin,Graph Analytics plugin>> on an existing AuraDB instance (Professional)for lightweight/non-prod exploration where performance isolation is not critical.
-* Create an <<aura-ds,AuraDS instance>> (Professional, Enterprise) when you need a long-running, persistent environment for deep collaboration or massive model hosting.
-
-[[aura-gds-plugin]]
-[role=label--aura-db-professional]
-=== Graph Analytics plugin
-
-The Graph Analytics plugin allows you to use the link:https://neo4j.com/docs/graph-data-science/current/introduction/[Graph Data Science library] in any AuraDB Professional instance with the following requirements:
-
-* Neo4j version 5 or later
-* 4 GB of memory or more
-* All supported cloud providers and regions
-
-You can enable or disable Graph Analytics when necessary, both during xref:getting-started/create-instance.adoc[instance creation] and on an xref:managing-instances/instance-details.adoc[existing instance].
-It can also be changed with the link:https://neo4j.com/docs/aura/platform/api/specification/#/instances/patch-instance-id[Aura API].
-
-The plugin shares compute and memory resources with the AuraDB server, so you do not incur any additional costs when you enable it.
-This also means that using the plugin can disrupt transactional queries and can impact the instance.
-
-
-[[get-started-plugin]]
-==== Getting started
-
-With the Graph Analytics plugin enabled:
-
-* If you use the Neo4j Browser or run Cypher queries through a Neo4j driver, start with the link:{neo4j-docs-base-uri}/graph-data-science/current/getting-started/[Graph Data Science] tutorials.
-* If you use Python, start with the link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/tutorials/[Python client tutorials].
-
-[[aura-ds]]
-[role=label--aura-ds-professional label--aura-ds-enterprise]
-=== AuraDS
-
-AuraDS is the fully managed version of the Graph Data Science library, where the <<aura-gds-plugin>> is deployed by default and optimized for analytical use cases.
-
-In an AuraDS instance, Graph Analytics is always on.
-The plugin shares compute and memory resources with the AuraDS server.
-
-AuraDS instances have the following features:
-
-* Upgrades and patches are automatically applied.
-* Can be seamlessly scaled up or down.
-* Can be paused to reduce costs.
-
-==== Plans
-
-AuraDS offers the AuraDS Professional and AuraDS Enterprise subscription plans.
-The full list of features for each plan is available on the link:https://neo4j.com/pricing/#graph-data-science[Neo4j Pricing page].
-
-==== Updates and upgrades
-
-AuraDS updates and upgrades are handled by the platform, and as such do not require user intervention.
-Security patches and new versions of GDS and Neo4j are installed within short time windows during which the affected instances are unavailable.
-
-The operations are non-destructive, so graph projections, models, and data present on an instance are not affected.
-No operation is applied until all the running GDS algorithms have completed.
-
-[IMPORTANT]
-====
-Graphs and models created or updated _after_ the instance update/upgrade process has started are *not guaranteed* to be restored upon restart.
-====
+* [[aura-gds-plugin]] Enable the xref:graph-analytics/alternative-deployments.adoc#aura-gds-plugin[Graph Analytics plugin] on an existing AuraDB instance (Professional) for lightweight data exploration where performance isolation is not critical.
+* [[aura-ds]] Create an xref:graph-analytics/alternative-deployments.adoc#aura-ds[AuraDS instance] (Professional, Enterprise) when you need a long-running, persistent environment for deep collaboration or massive model hosting.
 
 [[comparison]]
-== Comparison
+== Aura deployment comparison
 
-.Business comparison
 [opts="header", cols="1s,1,1,1"]
 |===
 |
 |Aura Graph Analytics (Recommended)
+|Graph Analytics plugin +
+(AuraDB Pro)
 |AuraDS
-|AuraDB Pro Analytics Plugin
 
 |Primary use cases
 |Data science, ETL, running algorithms, ephemeral workloads
-|Persistent model serving, collaborative workspaces
 |Lightweight exploration
+|Persistent model serving, collaborative workspaces
 
 |Compute architecture
-|Serverless / On-demand (Spin up, run, spin down)
+|Serverless / On-demand (spin up, run, spin down)
+|Shared instance (runs on the same resources as the database)
 |Dedicated instance (always on, pausing possible)
-|Shared resources (runs on the same resources as the DB)
 
 |Billing
 |Pay-as-you-go (per session minute)
-|Flat hourly rate (per instance size)
 |Included in the AuraDB cost
+|Flat hourly rate (per instance size)
 
 |Data sources
 |AuraDB, self-managed Neo4j, Pandas DataFrames
-|AuraDS (integrated storage)
 |AuraDB (integrated storage)
+|AuraDS (integrated storage), Pandas DataFrames
 
-|Isolation
-|Full isolation (no impact on DB performance)
-|Full isolation
-|Shared (can slow down transactional DB)
+|Resources for analytics
+|Full isolation (no impact on database performance)
+|Shared (can slow down transactional database)
+|Full isolation or shared footnote:[If the source transactional database is used on the same AuraDS instance, graph analytics can impact its performance.]
 
 |Machine learning
 |Train and predict (session-scoped)
-|Train, store and serve models
 |Limited
+|Train, store and serve models
 
 |===
 
@@ -163,39 +88,39 @@ Graphs and models created or updated _after_ the instance update/upgrade process
 |
 |Graph Data Science +
 on-premisesfootnote:[Assuming use of the link:{neo4j-docs-base-uri}/graph-data-science/current/installation/installation-enterprise-edition/[GDS Enterprise Edition].]
+|Aura Graph Analytics +
+(Recommended)
 |Graph Analytics plugin +
 (AuraDB Pro)
-|Aura Graph Analytics +
-(AuraDB Pro, BC, VDC)
 |AuraDS
+
+|Data sources
+|Same server
+|AuraDB (same tier); self-managed Neo4j DBMS; custom
+|Same server
+|Same server; custom
+
+|Resources for analytics
+|Shared with database +
+(user-configured)
+|Dedicated
+|Shared with database +
+(optimized for database)
+|Shared with database +
+(optimized for analytics)
 
 |Maximum memory
 |No upper limit +
 (contract-dependent)
-|Up to 128 GB
 |Up to 128 GB (Pro, BC) or 512 GB (VDC)
+|Up to 128 GB
 |Up to 384 GB
-
-|Resources for analytics
-|Shared with DB +
-(user-configured)
-|Shared with DB +
-(optimized for DB)
-|Dedicated
-|Shared with DB +
-(optimized for analytics)
 
 |Number of concurrent GDS sessions
 |-
-|-
 |Up to 10 (Pro, BC) or 100 (VDC)
 |-
-
-|Data sources
-|Same server
-|Same server
-|AuraDB (same tier); self-managed Neo4j DBMS; custom
-|Same server; custom
+|-
 
 |Restart behavior
 4+|
@@ -208,14 +133,14 @@ on-premisesfootnote:[Assuming use of the link:{neo4j-docs-base-uri}/graph-data-s
 
 >|_Projected graphs_
 |Must be backed up and restored manually
-|Not retained
 |Unaffected
+|Not retained
 |Restored automaticallyfootnote:createdafter[Graphs and models created or updated _after_ the instance update/upgrade process has started are *not guaranteed* to be restored upon restart.]
 
 >|_Trained models_
 |Must be backed up and restored manually
-|Not retained
 |Unaffected
+|Not retained
 |Restored automaticallyfootnote:createdafter[]
 
 |===
