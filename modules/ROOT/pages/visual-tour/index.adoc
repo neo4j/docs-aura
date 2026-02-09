@@ -48,12 +48,20 @@ You can edit the name of the organization, find your organization ID, change you
 
 .Organization settings
 [.shadow]
-image::organizationsettings.jpg[]
+image::organization-settings.jpg[]
 
 === Generative AI assistance
 
 When enabled, Generative AI assistance is available in a number of places, including the xref:query/visual-tour.adoc#copilot[Query copilot] and xref:explore/explore-visual-tour/search-bar.adoc#copilot[Explore copilot].
 These features are always identified with a ✨ and your use is subject to the link:{neo4j-docs-base-uri}/reference/license/#_genai_outputs[GenAI outputs] disclaimer.
+
+=== Aura Agent
+
+When enabled, you can create and deploy AI agents from the console.
+Aura Agent requires Generative AI assistance to be enabled, if it is disabled, Aura Agent will also be disabled.
+Aura Agent makes use of third-party AI models for planning, reasoning, retrieval, and explainability purposes as outlined in link:{neo4j-docs-base-uri}/reference/license/agent-ai-model/[License and disclaimers -> How Aura Agent uses AI models].
+See xref:aura-agent.adoc[Aura Agent] for more information about agents.
+
 
 // TO-DO: When section exists for Import GenAI feature, add link to it.
 
@@ -88,15 +96,22 @@ See the xref:import/introduction.adoc[What is Import?] for more information abou
 [[graph-analytics-page]]
 === Graph Analytics
 
-This page lists the link:{gds-sessions-page}[Aura Graph Analytics] sessions running within a project (if any).
+This page lists the link:{gds-sessions-page}[Aura Graph Analytics] sessions associated with a project.
 
-The list shows session details and a **Delete** button for each session.
-Session details include:
+By default, the list displays active sessions.
+You can view past sessions by switching on the **Include deleted sessions** toggle.
 
-* The Neo4j database instance containing the data projected in the session
-* The memory allocated to the session (configurable in the <<org-settings>> page)
-* The user who created the session
-* The time remaining to the session configured time limit
+For each session, the following details are available:
+
+* *Session Identity:* Creation time, session name, and session ID.
+* *Resources:* The Aura instance containing the data projected in the session (if any) and the memory allocated to the session (configurable in the <<org-settings>> page).
+* *Ownership:* The user who created the session.
+* *State:* The current session status and the time remaining to its configured time limit (for running sessions).
+
+You can also perform the following actions via this page:
+
+* You can terminate an active session using the **Delete** button.
+* You can download the entire list in CSV format using the **Export** button. This export is useful for offline processing, such as combining session information with billing data for detailed consumption analysis.
 
 === Data APIs
 

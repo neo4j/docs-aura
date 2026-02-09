@@ -2,21 +2,7 @@
   "version": "1.0.0",
   "generated_at": "2025-10-10T13:38:20Z",
   "regions": [
-       {
-      "id": "aws-ap-southeast-2",
-      "csp": "AWS",
-      "provider_code": "ap-southeast-2",
-      "display_name": "ap-southeast-2 | Australia (Sydney)",
-      "tiers": {
-        "AuraDB_Professional": true,
-        "AuraDS_Professional": true,
-        "AuraDB_BusinessCritical": true,
-        "AuraDS_Enterprise": true,
-        "AuraDB_VirtualDedicatedCloud": true
-      },
-      "status": "GA"
-    },
-    {
+   {
       "id": "aws-ap-south-1",
       "csp": "AWS",
       "provider_code": "ap-south-1",
@@ -40,6 +26,34 @@
         "AuraDS_Professional": true,
         "AuraDB_BusinessCritical": true,
         "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-ap-southeast-2",
+      "csp": "AWS",
+      "provider_code": "ap-southeast-2",
+      "display_name": "ap-southeast-2 | Australia (Sydney)",
+      "tiers": {
+        "AuraDB_Professional": true,
+        "AuraDS_Professional": true,
+        "AuraDB_BusinessCritical": true,
+        "AuraDS_Enterprise": true,
+        "AuraDB_VirtualDedicatedCloud": true
+      },
+      "status": "GA"
+    },
+    {
+      "id": "aws-ap-southeast-7",
+      "csp": "AWS",
+      "provider_code": "ap-southeast-7",
+      "display_name": "ap-southeast-7 | Thailand",
+      "tiers": {
+        "AuraDB_Professional": false,
+        "AuraDS_Professional": false,
+        "AuraDB_BusinessCritical": false,
+        "AuraDS_Enterprise": false,
         "AuraDB_VirtualDedicatedCloud": true
       },
       "status": "GA"
