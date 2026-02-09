@@ -256,3 +256,108 @@ You can also postpone this step and keep the original instance e.g. as a rollbac
 Be mindful that this means you have the running costs for both the migrated and the original instance.
 If you wish to remove the original instance later, you can revisit this step or remove it via the Aura console.
 
+== Recreate users and roles in Neo4j Aura
+
+Recreating users and roles is recommended step after cloning your database from one instance to a new Aura instance as metadata will not get copied with cloning.
+
+=== Prerequisites
+
+* Sign into your source database because you will run the Cypher queries on it.
+* Ensure you are using the system database with the `:use system` command
+* The output of the Cypher queries below can be played back on the cloned instance.
+
+=== Export users
+
+The first step is to export the scripts for user creation. 
+The output will default all user passwords to `newpassword` and the users are required to change their password on initial log-in. 
+
+[source,cypher]
+----
+SHOW USERS yield user where user<>'neo4j' return 'CREATE USER '+ user +' SET PASSWORD \'newpassword\' CHANGE REQUIRED;' as output;
+----
+
+Sample output is as follows:
+
+[.shadow]
+.Export users
+image::user-migration-recreation/showusers.png[Show users sample output]
+
+Export the output as CSV using `Download CSV`. 
+Copy the scripts from CSV (but do not take the word `output`) and execute them on the cloned instance. 
+You can verify the users are created successfully using the command:
+
+[source,cypher]
+----
+SHOW USERS; 
+----
+
+=== Export roles
+
+The next step is to create roles. 
+This script will generate Cypher for roles that need to be created if they do not exist already.
+
+[source,cypher]
+----
+SHOW ROLES yield role return 'CREATE ROLE ' + role + ' IF NOT EXISTS;' as output;
+----
+
+Sample output is as follows:
+
+[.shadow]
+.Export roles
+image::user-migration-recreation/exportroles.png[Show roles]
+
+You can verify the roles created using the command:
+
+[source,cypher]
+----
+SHOW ROLES;
+----
+
+=== Assign privileges
+
+Privileges control access rights to graph elements using a combined allowlist/denylist mechanism. 
+The user will be able to access the resource if their roles have a `GRANT` (allowlist) and do not have a `DENY` (denylist) relevant to that resource.
+
+[source,cypher]
+----
+SHOW PRIVILEGES AS COMMANDS;
+----
+
+This returns the privileges as the commands that are granted or denied. 
+You can now execute these commands directly to the cloned Aura instance. 
+Make sure to use a semicolon `;` at the end of every statement if you are getting errors in the syntax.
+
+Sample output is as follows:
+
+[.shadow]
+.Show privileges as commands
+image::user-migration-recreation/showprivilegesascommands.png[Show privileges as commands]
+
+=== Generate user role mapping Cypher
+
+When we created users in the first step, by default all users got the `PUBLIC` role which provides access to the default database and allows the execution of all procedures and user-defined functions. 
+Therefore the script below will exclude the `PUBLIC` role and roles with no users mapped.
+
+[source,cypher]
+----
+SHOW ROLES WITH USERS yield member,role where role<>"PUBLIC" and member is not null RETURN 'GRANT ROLE ' + role + ' TO USER ' + member + '' AS OUTPUT;
+----
+
+This will generate Cypher scripts to map users to roles. 
+Copy and execute these on the cloned instance to create user role mappings.
+
+Sample output is as follows:
+
+[.shadow]
+.Generate user role mapping Cypher
+image::user-migration-recreation/generateuserroles.png[Generate roles]
+
+You can verify the mapping by using the command:
+
+[source,cypher]
+----
+SHOW ROLES WITH USERS;
+----
+
+Make sure you export the output of all of the above Cypher queries and run every query to avoid any mismatch in the roles and mappings.
