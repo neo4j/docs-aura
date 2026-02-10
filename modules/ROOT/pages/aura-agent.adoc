@@ -147,7 +147,7 @@ Note that the similarity search requires *text embeddings* and the presence of a
 Aura Agent currently supports embeddings generated with the following text embedding providers and models:
 
 * OpenAI: `text-embedding-3-small`, `text-embedding-3-large`, and `text-embedding-ada-002`.
-Note that this provider is in
+Note that this provider is currently in preview.
 * Vertex AI: `gemini-embedding-001`, `text-embedding-005`, and `text-multi-lingual-embedding-00`.
 
 For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{{neo4j-docs-base-uri}}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
