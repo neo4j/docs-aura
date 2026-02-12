@@ -48,12 +48,20 @@ You can edit the name of the organization, find your organization ID, change you
 
 .Organization settings
 [.shadow]
-image::organizationsettings.jpg[]
+image::organization-settings.jpg[]
 
 === Generative AI assistance
 
 When enabled, Generative AI assistance is available in a number of places, including the xref:query/visual-tour.adoc#copilot[Query copilot] and xref:explore/explore-visual-tour/search-bar.adoc#copilot[Explore copilot].
 These features are always identified with a ✨ and your use is subject to the link:{neo4j-docs-base-uri}/reference/license/#_genai_outputs[GenAI outputs] disclaimer.
+
+=== Aura Agent
+
+When enabled, you can create and deploy AI agents from the console.
+Aura Agent requires Generative AI assistance to be enabled, if it is disabled, Aura Agent will also be disabled.
+Aura Agent makes use of third-party AI models for planning, reasoning, retrieval, and explainability purposes as outlined in link:{neo4j-docs-base-uri}/reference/license/agent-ai-model/[License and disclaimers -> How Aura Agent uses AI models].
+See xref:aura-agent.adoc[Aura Agent] for more information about agents.
+
 
 // TO-DO: When section exists for Import GenAI feature, add link to it.
 
