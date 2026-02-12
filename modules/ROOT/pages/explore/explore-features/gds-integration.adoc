@@ -1,0 +1,116 @@
+:description: This section provides an overview of the GDS integration with Explore.
+
+[[explore-gds]]
+= Graph Data Science integration
+
+Neo4j Graph Data Science algorithms can help you find new insights in your data, both into the nodes themselves as well as into how they are connected.
+See link:https://neo4j.com/docs/graph-data-science/current/[The Neo4j Graph Data Science Library Manual] for more information on graph algorithms.
+
+[NOTE]
+====
+Running Graph Data Science algorithms on elements in your Scene does *not* alter the underlying data.
+The scores only exist temporarily in Explore.
+====
+
+The algorithms are described briefly below, but refer to link:https://neo4j.com/docs/graph-data-science/current/[The Neo4j Graph Data Science Library Manual] for their full descriptions.
+
+== Using GDS algorithms in Explore
+
+When you run graph algorithms in Explore, these either run in a seprate compute environment via the serverless option, or they run in your instance using the Graph Analytics plugin, sharing both memory and compute with your database.
+This is determined by which option you chose when you created the instance, as described in xref:getting-started/create-instance.adoc[Create instance] and cannot be manually selected from Explore.
+
+See xref:graph-analytics/index.adoc[Graph analytics in Aura] for more information about the differences between the two options.
+
+[[algorithms]]
+== Available GDS algorithms in Explore
+
+The available algortihms can be divided into two categories, _centrality_ and _community detection_.
+Centrality algorithms are used to measure the importance of particular nodes in a network and to discover the roles individual nodes play.
+A node's _importance_ can mean that it has a lot of connections or that it is transitively connected to other important nodes.
+It can also mean that another node can be reached in few hops or that it sits on the shortest path of multiple pairs of nodes.
+The following centrality algorithms are available in Explore:
+
+* Betweenness Centrality
+* Degree Centrality
+* Eigenvector Centrality
+* PageRank
+
+Community detection algorithms on the other hand, are used to find sub-groups within the data and can give insight to whether networks are likely to break apart.
+Community detection is useful in a variety of graphs, from social media networks to machine learning.
+The following community detection algorithms are available in Explore:
+
+* Louvain
+* Label propagation
+* Weakly connected components
+
+
+[[gds-centrality]]
+=== Degree Centrality
+
+The link:https://neo4j.com/docs/graph-data-science/current/algorithms/degree-centrality/[Degree Centrality algorithm] measures the relationships connected to a node, either incoming, outgoing, or both, to find the most connected nodes in a graph.
+
+[[gds-betweenness]]
+=== Betweenness Centrality
+
+The link:https://neo4j.com/docs/graph-data-science/current/algorithms/betweenness-centrality/[Betweenness Centrality algorithm] finds influential nodes, that is, nodes that are thoroughfares for the most shortest-paths in the scene.
+Nodes with a high degree of betweenness centrality are nodes that connect different sub-parts of a graph.
+
+[[gds-eigenvector]]
+=== Eigenvector Centrality
+
+The link:https://neo4j.com/docs/graph-data-science/current/algorithms/eigenvector-centrality/[Eigenvector Centrality algorithm] is used to measure _transitive_ influence of nodes.
+That means that for a node to score a high eigenvector centrality, it needs to be connected to other nodes which in turn are well-connected.
+The difference between the eigenvector and the betweenness centrality is that the eigenvector is not only based on a node's direct relationships with other nodes, but on the relationships of the related nodes as well.
+
+[[gds-pagerank]]
+=== PageRank
+
+The link:https://neo4j.com/docs/graph-data-science/current/algorithms/page-rank/[PageRank alggorithm] is a way to measure the relevance of each node in a graph.
+The relevance of a node is based on how many incoming relationships from other nodes it has and how important the source nodes are.
+
+
+[[gds-louvain]]
+=== Louvain
+
+The link:https://neo4j.com/docs/graph-data-science/current/algorithms/louvain/[Louvain algorithm] aims to find clusters of highly connected nodes within a larger network.
+It can be useful for product recommendations, for example.
+If you know a customer bought one product from an identified cluster, they are likely to be interested in another product from that cluster.
+
+[[gds-label-propagation]]
+=== Label Propagation
+
+The link:https://neo4j.com/docs/graph-data-science/current/algorithms/label-propagation/[Label Propagation algorithm] is another way to find communities in a graph.
+One difference between Label Propagation and Louvain, both community detection algorithms, is that this one allows for some supervision, i.e. it is possible to set certain prerequisites that allows for a degree of control of the outcome.
+This can be useful when you already have some knowledge of the intrinsic structure of your data.
+
+// [[gds-triangle-count]] not available as of 2.6
+// === Triangle Count
+
+// The link:https://neo4j.com/docs/graph-data-science/current/algorithms/triangle-count/[Triangle count algorithm] counts the number of triangles in the graph.
+// A triangle consists of three nodes where each node has a relationship to the other two, regardless of direction of the relationship.
+
+
+[[gds-weakly-connected-components]]
+=== Weakly Connected Components
+
+The link:https://neo4j.com/docs/graph-data-science/current/algorithms/wcc/[Weakly Connected Components algorithm] finds subgraphs that are unreachable from other parts of the graph.
+It can be used to determine whether your network is fully connected or not and also to find vulnerable parts in supply chains, for example.
+
+
+[.shadow]
+image::louvain.png[width=800]
+
+=== Running the algorithms
+
+The GDS algorithms are accessed via the GDS button in the upper-left corner of the Scene.
+When you have selected an appropriate algorithm, you have the option to run it on _all_ elements in the Scene, or specify which node categories and/or relationship types.
+Additionally, you can also select the orientation of the relationships to be traversed.
+The options are accessed via the Settings button in the GDS drawer.
+
+Applying your selected algorithm does not immediately change anything in the Scene.
+You can inspect each node to see its score, but to make the results easily visible, apply rule-based styling.
+This is done directly in the GDS drawer.
+The centrality algorithms are based on a range of values and can be either size-scaled or color gradient, while the community detection algorithms use unique values and offer unique colors to style the nodes.
+
+[.shadow]
+image::eigenvector.jpg[width=800]
