@@ -247,8 +247,10 @@ When the status is "Running" the overwrite is completed.
 
 Encryption of data at REST is a standard feature of AuraDB and uses keys from a supported cloud key management service (KMS).
 AuraDB Virtual Dedicated Cloud customers may wish to use their own encryption keys, a capability that is referred to as Customer-Managed Encryption Keys (CMEK).
-For more information about Customer Managed Keys, see xref:security/encryption.adoc#customer-managed-keys/[Encryption].
+
+For more information about Customer Managed Keys, see xref:security/encryption.adoc#_customer_managed_keys[Encryption].
 It is recommended to familiarize yourself with this before proceeding.
+
 The Aura CLI allows management of this feature with these commands:
 
 * `create` - allows Aura to use the key defined in your Cloud Key Management System.
