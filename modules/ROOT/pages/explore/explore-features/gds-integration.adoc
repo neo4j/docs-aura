@@ -21,6 +21,9 @@ This is determined by which option you chose when you created the instance, as d
 
 See xref:graph-analytics/index.adoc[Graph analytics in Aura] for more information about the differences between the two options.
 
+[.shadow]
+image::louvain.jpg[width=800]
+
 [[algorithms]]
 == Available GDS algorithms in Explore
 
@@ -96,9 +99,6 @@ This can be useful when you already have some knowledge of the intrinsic structu
 The link:https://neo4j.com/docs/graph-data-science/current/algorithms/wcc/[Weakly Connected Components algorithm] finds subgraphs that are unreachable from other parts of the graph.
 It can be used to determine whether your network is fully connected or not and also to find vulnerable parts in supply chains, for example.
 
-
-[.shadow]
-image::louvain.png[width=800]
 
 === Running the algorithms
 
