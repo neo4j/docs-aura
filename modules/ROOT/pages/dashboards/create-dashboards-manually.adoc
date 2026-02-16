@@ -1,23 +1,10 @@
 = Create dashboards with Cypher
 :description: This page contains a working example of Neo4j dashboards.
 
-Set up a working example of Neo4j dashboards.
+To create a dashboard from scratch, you need an instance and data.
+The examples on this page use the xref::/dashboards/index.adoc#_sample_dataset[Northwind sample dataset] which you can also use.
 
-== Prerequisites
-
-You need:
-
-. A database instance
-
-== Add a sample data set
-
-Import the Northwind dataset to your instance - the instructions are included in https://neo4j.com/docs/getting-started/appendix/example-data/
-
-== Create a dashboard from scratch
-
-To create a dashboard from scratch:
-
-. select **Create from scratch**.
+. Select **Create from scratch**.
 . The UI takes you directly to the new dashboard. To change the title, select the title text and edit it, then confirm.
 . Your dashboard has a single page titled "Main page". To change the name, hover it and then use the more menu *[...]* and **Edit page name**.
 . Use **Add card** to create cards which represent visualizations.
