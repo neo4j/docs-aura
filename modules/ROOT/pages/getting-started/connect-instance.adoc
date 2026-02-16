@@ -3,21 +3,28 @@
 :description: This page describes how to connect to an instance in the new Neo4j Aura console.
 :page-aliases: auradb/getting-started/connect-database.adoc, aurads/connecting/index.adoc
 
-To interact with a database in an instance, you need to establish a connection.
+To interact with a database in an instance within the console, you need to establish a connection.
 
-. Go to *Import*, *Explore* or *Query*.
-. Select *Status* and from there you can connect to an instance.
+. Go to *Import*, *Explore*, *Query*, or *Dashboards*.
+. From the connection status bar, use the dropdown to connect to an instance.
 . You may need your *Username* and *Password* credentials.
 
 [.shadow]
-.Connection banner
-image::connectionbanner1.png[]
+.Connection status bar
+image::connection-bar.jpg[]
 
 [.shadow]
 .Connection modal
 image::connectionmodalnonremote.png[width=300]
 
-== Connection 
+== Connect from external sources
+
+Additionally, you can connect to your instance from various external sources, such as link:https://neo4j.com/docs/create-applications/[Drivers], link:https://neo4j.com/docs/query-api/current/[Query API], link:https://neo4j.com/docs/operations-manual/current/cypher-shell/[Cypher Shell CLI], link:https://neo4j.com/docs/connectors/[Connectors], and other tools.
+These sources typically require a connection URI, instance user name, and instance password.
+The URI and credentials can be found in the instance credentials file that you downloaded from the Aura console when your instance was created, as described below.
+
+
+== Connection
 
 Aura connection uses an automated fail over, initially attempting to use `neo4j+s://` but switching to `https://` if an issue is identified.
 
@@ -29,21 +36,54 @@ For more information about connection schemes, see link:https://neo4j.com/docs/o
 
 === *neo4j+s://*
 
-Establishes a TLS-encrypted connection to Neo4j using the Bolt protocol over WebSockets, with full certificate validation. 
+Establishes a TLS-encrypted connection to Neo4j using the Bolt protocol over WebSockets, with full certificate validation.
 Use for optimal performance.
 
 === *https://*
 
-TLS encrypted connection to Neo4j over HTTPS (Query API), with full certificate validation. 
+TLS encrypted connection to Neo4j over HTTPS (Query API), with full certificate validation.
 Use in environments where port restrictions may prevent access to the Bolt port.
 
-== Errors 
+== Connection errors
 
 In an enterprise environment with restrictive networking, connection errors are sometimes caused because non-standard ports (like the Bolt protocol) are ignored, or blocked by firewalls when using *neo4j+s://*.
 
 Switching to *https://* can address connection issues and ensure seamless connectivity without extra configuration.
 
-== Database credentials
+== Instance credentials
 
-The database user name is Neo4j by default.
+When you create an instance in the Aura console, you have the option to download a credential file that contains:
 
+* Connection URI
+* User name - `neo4j` by default
+* Password
+* Database name - `neo4j` by default
+* Instance ID
+* Instance name
+
+You can opt to not download this and just make note of the instance user name and password.
+However, if you lose this information altogether, there are still options to connect to your instance.
+
+*Option 1 - Create a new user via the Aura console*
+
+This option requires that you are able to connect to the instance as a different user with sufficient permissions to create new users on the instance (see xref:user-management.adoc[User management] for more information).
+
+. Log into the Aura Console as user with `admin` privileges.
+. Go to *Query* and connect to the instance, as described above.
+. Use Cypher to create a new user, for example as follows:
++
+[source,Cypher]
+----
+CREATE USER myNewUsername SET PASSWORD 'mySecurePassword' CHANGE NOT REQUIRED
+----
+
+. You can now use the new instance username and password to connect to your instance.
+
+*Option 2 - Clone to a new instance*
+
+This option provides you with a new instance which includes a new connection URI, username, and password.
+
+. Log into the Aura Console
+. From your existing instance, use the *[...]* to *Clone to* a new instance.
+Ensure you save the new credentials file that contains the username and password for your new instance.
+. Once the new instance is successfully created, use your new credentials to connext to it.
