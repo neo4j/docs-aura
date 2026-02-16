@@ -18,10 +18,9 @@ This ensures all your data stored in any one of these cloud providers uses 256-b
 In addition to Aura’s default encryption for data at rest, Customer Managed Keys enable security-conscious enterprises to manage encryption keys through their Cloud Service Provider's Key Management Services (KMS) on Aura, granting control over data protection and access management, including the ability to revoke access from Neo4j.
 This allows adherence to strict security policies alongside Aura's default enterprise-grade security measures.
 
-== Customer Managed Keys
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Enterprise[]
+[role=label--aura-db-dedicated label--aura-ds-enterprise]
+== Customer Managed Keys
 
 A Customer Managed Key (CMK) gives you more control over key operations than the standard Neo4j encryption.
 These are created and managed using a supported cloud key management service (KMS).
@@ -54,8 +53,13 @@ Manual key rotation is **not** recommended.
 
 You can upload a database to instances encrypted with Customer Managed Keys in Neo4j 5 directly from the console or by using `neo4j-admin database upload`.
 If the database is larger than 4 GB, you have to use `neo4j-admin database upload`.
-Note that the `neo4j-admin push-to-cloud` command in Neo4j v4.4 and earlier is **not** supported for instances encrypted with Customer Managed Keys.
-For more information see the link:https://neo4j.com/docs/aura/classic/auradb/importing/import-database/#_neo4j_admin_database_upload[Neo4j Admin `database upload`] documentation.
+
+[NOTE]
+====
+The `neo4j-admin push-to-cloud` command in Neo4j v4.4 and earlier is **not** supported for instances encrypted with Customer Managed Keys.
+For more information, see xref:managing-instances/backup-restore-export.adoc#neo4j-admin-upload[Upload an existing Neo4j database].
+====
+
 
 === Clone an instance protected by CMK
 
@@ -84,6 +88,11 @@ Below are the details and possible errors that you may encounter depending on th
 When using a Customer Managed Key within Aura to encrypt one or more Aura database instances, it cannot be removed from Aura.
 If you no longer need to use this Customer Managed Key to encrypt Aura databases, first delete the Aura database instances that are encrypted with the key, then you can remove the key from Aura.
 Keep in mind that this process only breaks the link between the key and Aura - it does not delete the actual key from the Cloud KMS.
+
+== Region requirements
+
+The Customer Managed Key must be created in the same region as your Aura instance. 
+This applies to AWS, Azure, and GCP.
 
 == AWS keys
 
@@ -130,7 +139,7 @@ To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbo
 [IMPORTANT]
 ====
 Aura supports Customer Managed Keys in the following regions:
-`Australia East`, `Southeast Asia`, `Canada Central`, `North Europe`, `Germany West Central`, `Korea Central`, `Sweden Central`, `UK South`, `West US`, `Central US`
+`Australia Southeast`, `Southeast Asia`, `North Europe`, `Germany West Central`, `UK South`, `Central US`, `UAE North`.
 ====
 
 === Create an Azure key vault
@@ -182,12 +191,17 @@ For more information about the Azure CLI, see link:https://learn.microsoft.com/e
 === Grant key permissions
 
 . To add role assignment to the Azure key, inside the key, go to *Access control (IAM)* and add *role assignment*.
-. In the *Role* tab, select *Key Vault Crypto Officer*.
+. In the *Role* tab, select *Key Vault Crypto Service Encryption User*.
 . In the *Member* tab, select *User, group, or service principal*.
 . In *Select members*, paste the *Neo4j CMK Application name* that is displayed in the Aura Console.
 . The *Neo4j CMK Application* should appear, select this application then *Review + Assign*.
 
 === Azure key rotation
+
+[IMPORTANT]
+====
+Wait at least 24 hours after rotating a key before disabling the old version to allow the change to take effect in Azure.
+====
 
 If you immediately disable the old key version after the Azure key is rotated, the connection status in Aura changes from "Ready" to "Pending".
 This happens because Azure Storage checks for key updates once every 24 hours, as outlined in link:https://learn.microsoft.com/en-gb/azure/storage/common/customer-managed-keys-configure-new-account?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&bc=%2Fazure%2Fstorage%2Fblobs%2Fbreadcrumb%2Ftoc.json&tabs=azure-portal#configure-encryption-for-automatic-updating-of-key-versions[Microsoft Azure documentation].

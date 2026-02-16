@@ -2,10 +2,8 @@
 = Single Sign-On (SSO)
 :description: SSO allows you to log in to the Aura Console using their company IdP credentials.
 :page-aliases: platform/security/single-sign-on.adoc
+:page-role: aura-db-dedicated aura-db-business-critical aura-ds-enterprise
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDB-Business-Critical[]
-label:AuraDS-Enterprise[]
 
 [NOTE]
 ====
@@ -136,7 +134,7 @@ If yes: [Insert details]
 ----
 
 Instance ID (also known as DBID) can be found at xref:managing-instances/instance-details.adoc[instance details].
-Project ID can be found at xref:visual-tour/index.adoc#_settings[project settings].
+Project ID can be found at xref:visual-tour/index.adoc#_project_settings[project settings].
 
 == Microsoft Entra ID SSO
 

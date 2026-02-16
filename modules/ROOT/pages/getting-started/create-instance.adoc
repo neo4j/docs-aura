@@ -13,10 +13,14 @@ Select the type of instance using the switch on the top right, then choose the t
 For AuraDB, you can upgrade your tier, and resize your instance's memory and storage later if your needs change.
 For pre-paid AuraDB instances on GCP, adjustable storage independent of memory is available, see xref:managing-instances/instance-actions.adoc#_adjust_storage[Adjust storage] for more information.
 
-You can optionally enable additional features:
+For AuraDB, you need to select an option for xref:graph-analytics/index.adoc[Graph Analytics]:
 
-* xref:graph-analytics/index.adoc#aura-gds-plugin[Graph Analytics plugin] to add graph analytics capabilities (**AuraDB Professional only**)
-* xref:managing-instances/instance-details.adoc#aura-vector-optimization[Vector optimization] to enhance performance for vector-based operations
+* *Serverless* - default and recommended, allows graph algorithms to run in a separate compute environment.
+* *Plugin* - allows graph algorithms to run in the same instance as the database, sharing resources.
+
+Once the instances is created, you *cannot* change this.
+
+You can optionally enable xref:managing-instances/instance-details.adoc[Vector optimization] to enhance performance for vector-based operations.
 
 After selecting **Next**, your instance is created.
 A password is generated for the instance, ensure to either copy or download it, as it will **not** be recoverable after.
