@@ -7,7 +7,6 @@ Neo4j dashboards let you compose different visualizations such as tables and gra
 .A sample dashboard
 image::dashboards/dashboard-full.png[]
 
-
 Neo4j dashboards' main features include:
 
 * Neo4j dashboards operate directly on your graph data via Cypher queries.
@@ -21,12 +20,12 @@ Neo4j dashboards' main features include:
 
 You can create dashboards in two ways:
 
-* *Create with AI (Aura only)*: Use natural language to generate Cypher queries and visualizations automatically. 
+* *Create with AI*: Use natural language to generate Cypher queries and visualizations automatically. 
 
 // === Creating a dashboard with LLM assistance
 // See xref::/dashboards/ai-dashboards.adoc[] for details.
 
-* *Create with Cypher (Desktop or Aura)*: Write your own Cypher queries to define charts and data relationships.
+* *Create with Cypher*: Write your own Cypher queries to define charts and data relationships.
 
 [NOTE]
 ====
@@ -36,3 +35,23 @@ The number of dashboards you can create depends on your Aura tier:
 * AuraDB Professional: 25 dashboards
 * AuraDB Business Critical and Virtual Dedicated Cloud: unlimited dashboards
 ====
+
+== Sample dataset
+:description: How to access the Northwind dataset in the Aura console to use for dashboard Cypher examples.
+
+To create a dashboard you need an instance with some data in it. 
+
+The examples in the dashboard documentation refer to the Northwind dataset.
+To import the Northwind dataset to your instance:
+
+* In Aura, select **Learning** from the navigation.
+* In the **Beginner** page, select the **Learn the basics** guide.
+* When prompted to **Connect to instance**, select the instance where you would like to import sample data.
+* In step 4 of 11 of the guide, import via **Get the Northwind dataset**.
+* Run the import from the **Import** page via **Run import**.
+
+[.shadow]
+.Northwind dataset 
+image::northwind-data-set.png[width=600]
+
+
