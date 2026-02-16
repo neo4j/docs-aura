@@ -198,7 +198,7 @@ image::user-migration-recreation/showprivilegesascommands.png[Show privileges as
 
 === Generate user role mapping Cypher
 
-When we created users in the first step, by default all users got the `PUBLIC` role which provides access to the default database and allows the execution of all procedures and user-defined functions. 
+When creating users in the first step, by default all users got the `PUBLIC` role which provides access to the default database and allows the execution of all procedures and user-defined functions. 
 Therefore the script below will exclude the `PUBLIC` role and roles with no users mapped.
 
 [source,cypher]
