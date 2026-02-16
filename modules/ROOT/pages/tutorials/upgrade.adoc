@@ -117,7 +117,7 @@ If you do not have an existing Neo4j latest version instance, you can use the *C
 
 Alternatively, you can xref:managing-instances/backup-restore-export.adoc#export-create[export a snapshot dump file] from your Neo4j 4 AuraDB instance, create a new Neo4j latest version instance manually, and then xref:managing-instances/backup-restore-export.adoc#restore-backup[import the dump file] into your new Neo4j latest version instance.
 
-== Recreate users and roles
+== Recreate users and roles in Neo4j Aura
 
 When migrating to a new Aura instance, users and passwords, custom roles and privileges are not copied as part of cloning or dump/restore.
 To ensure they remain the same, recreate them in the target instance.
