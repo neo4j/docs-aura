@@ -122,7 +122,7 @@ Alternatively, you can xref:managing-instances/backup-restore-export.adoc#export
 When migrating to a new Aura instance, users and passwords, custom roles and privileges are not copied as part of cloning or dump/restore.
 To ensure they remain the same, recreate them in the target instance.
 
-Make sure you export the output of all of the Cypher queries detailed in this section, and run every query to avoid any mismatch in the roles and mappings.
+Make sure you export the output of all of the Cypher queries detailed in this section, and run every query in the target instance.
 
 === Prerequisites
 
