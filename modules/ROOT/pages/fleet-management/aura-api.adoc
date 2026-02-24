@@ -1,0 +1,55 @@
+= Aura API
+
+This page describes how to use the Aura API to manage Fleet Manager resources programatically.
+
+For instructions on how to use the Aura API, see the xref:api/overview.adoc[API Documentation]
+
+The documentation for the Aura API specification can be found at link:{neo4j-docs-base-uri}/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[API Specification]
+
+If you would rather manage the Fleet Manager resources through the Aura CLI, see the xref:./aura-cli.adoc[Aura CLI documentation]
+
+== Managing deployments
+
+The Aura API allows for the creation and deletion of deployments, fetching information about deployments and managing tokens for deployments.
+
+All steps in the document assume that you already have a running Neo4j database that you want to manage through Fleet Manager.
+
+Documentation for setting up your Neo4j database with the Fleet Manager plugin can be found from the following pages:
+
+** Documentation for installing a Neo4j database can be found at: link:https://neo4j.com/docs/operations-manual/current/installation/[Installation]
+** Documentation for installing the Fleet Manager plugin in your database: xref:./setup.adoc#_set_up_the_plugin[Plugin setup]
+
+All endpoints start with /organizations/:organization_id/projects/:project_id/fleet-manager, this is left out for clarity and brevity. 
+
+Creating and registering a Fleet Manager deployment is done in three parts. 
+
+* Create a deployment.
+** Send a post request to the `/deployments` endpoint supplying a `name` and an optional `connection_url` in the body.
+The response holds the created deployment ID that is then used when creating a token for the deployment.
+
+[source, shell]
+----
+curl --request 'POST' https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/projects/$YOUR_PROJECT_ID/fleet-manager/deployments \
+  --header 'accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header "Authorization: Bearer $YOUR_AURA_API_TOKEN" \
+  --data '{"connection_url": "$OPTIONAL_CONNECTION_URL", "name": "$DEPLOYMENT_NAME"}'
+----
+
+* Create a token for the deployment.
+** Send a post request to the `/deployments/:deployment_id/token` endpoint.
+The token is created as an auto rotating token with a three month rotation interval.
+
+[source, shell]
+----
+curl --request 'POST' https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/projects/$YOUR_PROJECT_ID/fleet-manager/deployments/$DEPLOYMENT_ID/token \
+  --header 'accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header "Authorization: Bearer $YOUR_AURA_API_TOKEN"
+----
+
+* Register the token to your Neo4j database.
+** Connect to your Neo4j database and register the newly created token to the database with `call fleetManagement.registerToken('$TOKEN');`
+
+* Refresh token
+** If you need to rotate a token before the token rotates automatically, you can refresh the token by sending a PATCH request to the `/deployments/:deployment_id/token` endpoint.

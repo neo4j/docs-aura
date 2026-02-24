@@ -1,6 +1,9 @@
-= Creating a dashboard with AI
+= Create a dashboard with AI
 
 For AI features to be accessible, an xref:user-management.adoc#_organization_level_roles[organization admin] must enable Generative AI assistance under xref:visual-tour/index.adoc#org-settings[organization settings].
+
+To create a dashboard, you need an instance and data.
+The examples on this page use the xref::/dashboards/index.adoc#_sample_dataset[Northwind sample dataset] which you can also use.
 
 . In the **Create with AI** dialog, you can enter an optional natural language text prompt to let Neo4j create a customized dashboard.
 . Once you are happy with the prompt, **Create** the dashboard.
@@ -20,7 +23,6 @@ If you do not enter a prompt, Neo4j AI will still make use of your database sche
 Note that the following examples might differ when you reproduce them.
 This is due to the nature of how LLM processing works.
 
-
 == Creating a data-focused dashboard
 
 Copy the following prompt or create your own and use it to create a dashboard:
@@ -39,9 +41,9 @@ image::dashboards/ai-dashboard-prompt-data-focus.png[]
 
 Here is a sample result:
 
+[.shadow]
 .A data-focused dashboard
 image::dashboards/ai-dashboard-data-focus.png[]
-
 
 == Creating a visualization-focused dashboard
 

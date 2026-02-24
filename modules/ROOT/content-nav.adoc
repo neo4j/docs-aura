@@ -8,13 +8,12 @@ Generic Start
 ** xref:new-console.adoc[New Neo4j Aura console]
 ** xref:visual-tour/index.adoc[Visual tour]
 
-* xref:graph-analytics/index.adoc[]
-
 * Quick start
 ** xref:getting-started/create-account.adoc[Create an account]
+** xref:getting-started/create-project.adoc[Create a project]
 ** xref:getting-started/create-instance.adoc[Create an instance]
 ** xref:getting-started/connect-instance.adoc[Connect to an instance]
-** xref:getting-started/migrate-metadata.adoc[Migrate metadata from Workspace]
+** xref:getting-started/migrate-metadata.adoc[Migrate metadata]
 
 * xref:cloud-providers.adoc[Cloud provider marketplaces]
 
@@ -43,6 +42,10 @@ Generic Start
 ** xref:import/indexes-and-constraints.adoc[Indexes and constraints]
 ** xref:import/import.adoc[Run the import]
 
+* xref:graph-analytics/index.adoc[]
+
+* xref:aura-agent.adoc[Aura Agent]
+
 
 * Explore data
 ** xref:explore/introduction.adoc[What is Explore?]
@@ -69,6 +72,7 @@ Generic Start
 *** xref:explore/explore-features/scene-actions.adoc[Scene actions]
 *** xref:explore/explore-features/full-text-search.adoc[Full-text search]
 *** xref:explore/explore-features/edit-graph-data.adoc[Edit graph data]
+*** xref:explore/explore-features/gds-integration.adoc[Graph Data Science integration]
 *** xref:explore/explore-features/slicer.adoc[Slicer]
 ** xref:explore/explore-default-actions.adoc[Default actions and shortcuts]
 
@@ -85,6 +89,8 @@ Generic Start
 ** xref:fleet-management/deployment-details.adoc[Deployment details]
 ** xref:fleet-management/procedures.adoc[Plugin procedures]
 ** xref:fleet-management/data.adoc[Data transparency]
+** xref:fleet-management/aura-api.adoc[Aura API]
+** xref:fleet-management/aura-cli.adoc[Aura CLI]
 
 * xref:apoc.adoc[APOC support]
 
@@ -99,11 +105,12 @@ Generic Start
 
 * Dashboards
 ** xref:dashboards/index.adoc[Overview]
-** xref:dashboards/getting-started.adoc[Getting started]
+** xref:dashboards/create-dashboards-with-ai.adoc[Create dashboards with AI]
+** xref:dashboards/create-dashboards-manually.adoc[Create dashboards with Cypher]
 ** xref:dashboards/managing-dashboards.adoc[Managing dashboards]
 ** xref:dashboards/import.adoc[Import and export]
-** xref:dashboards/ai-dashboards.adoc[AI dashboards]
 ** xref:dashboards/parameters-and-filters.adoc[Parameters and filters]
+** xref:dashboards/filter-types.adoc[Filter types]
 ** xref:dashboards/sharing-dashboards.adoc[Sharing dashboards]
 ** xref:dashboards/visualizations/index.adoc[Visualizations]
 *** xref:dashboards/visualizations/graph.adoc[Graph]
@@ -113,6 +120,7 @@ Generic Start
 *** xref:dashboards/visualizations/piechart.adoc[Pie chart]
 *** xref:dashboards/visualizations/single-value.adoc[Single value]
 *** xref:dashboards/visualizations/text.adoc[Text]
+*** xref:dashboards/visualizations/map.adoc[Map]
 ** xref:dashboards/faq-and-resources.adoc[FAQ and resources]
 
 * Metrics
@@ -143,7 +151,10 @@ Generic Start
 
 * xref:user-management.adoc[User management]
 
-* xref:billing.adoc[Billing]
+* Billing and usage
+** xref:billing/usage-report.adoc[Billing and usage report]
+** xref:billing/billing-dimensions.adoc[Billing dimensions]
+** xref:billing/payment-options.adoc[Payment options]
 
 * Connecting applications
 ** xref:connecting-applications/overview.adoc[Drivers and libraries]
