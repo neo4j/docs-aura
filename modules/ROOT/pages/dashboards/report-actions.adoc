@@ -10,7 +10,7 @@ Any card with a Cypher query that includes that parameter responds immediately, 
 Use actions to:
 
 * *Set parameter*: Send a value to a parameter, which can filter the rest of the dashboard so visualizations respond to the selection.
-* *Navigate*: On click redirect to an external URL, a Bloom scene, another dashboard.
+* *Navigate*: On click navigate to an external URL, a Bloom scene, another dashboard.
 Or a specific dashboard page within the same dashboard, optionally passing a parameter into that dashboard page's visualizations too, creating a drill-down into another page (the following example demonstrates this). 
 
 == Example
@@ -59,3 +59,15 @@ RETURN
   $employeename AS employeename,
   e.notes AS EmployeeDescription
 ----
+
+4) Click on a name on the `Main page`
+
+.Top employees on the Main page with hover over the filter icon
+[.shadow]
+image::dashboards/report-actions/top-employees.png[width=400]
+
+5) This navigates you to the `Employee info` page and updates the visualization based on the value that was selected
+
+.Employee info
+[.shadow]
+image::dashboards/report-actions/employee-info.png[width=600]
