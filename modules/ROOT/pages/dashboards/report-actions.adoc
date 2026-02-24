@@ -4,24 +4,23 @@
 == Overview
 
 An action is event-driven. 
-When a value is selected in the dashboard (e.g. by clicking a value in a table) an *Action* sets it as the `$input` parameter.
-Any card with a Cypher query that includes that parameter responds immediately - so visualizations update dynamically based on the selection.
+When a value is clicked on an *action* sets it as a parameter value.
+Any card with a Cypher query that includes that parameter responds immediately, so visualizations update dynamically based on the selection.
 
 Use actions to:
 
-* Set a parameter (takes a value from the chart and sends it to a parameter - e.g. a click on a value can filter the rest of the dashboard.)
-* Set a parameter and navigate to a URL (navigation action - e.g. on click redirects to an external URL, Bloom scene or another dashboard)
-* Set a parameter and navigate to a page within the dashboard (navigation action e.g. - switches to a predefined page and can be combined with set parameter to create a drill down on another page which is what we will explain in the example on this page)
+* *Set parameter*: Send a value to a parameter, which can filter the rest of the dashboard so visualizations respond to the selection.
+* *Navigate*: On click redirect to an external URL, a Bloom scene, another dashboard.
+Or a specific dashboard page within the same dashboard, optionally passing a parameter into that dashboard page's visualizations too, creating a drill-down into another page (the following example demonstrates this). 
 
 == Example
 
 This example uses the Northwind dataset.
+Clicking on an employee name who are top orderers/revenue generators in the Nortwhind dataset, will switch to a new dashboard page and drill-down into with information about that employee. 
 
 * The example starts with the default *Main page*.
 * Add a second page called *Employee info*.
-* Use an Action on the *Main page* to set a parameter and navigate to *Employee info*.
-
-Create the *Employee info* page first, because the Action will navigate there.
+* Use an action on the *Main page* to set a parameter and navigate to *Employee info*.
 
 1) On the *Main page*, create a Cypher card that returns each employee’s name, number of orders, and total revenue.
 
@@ -39,7 +38,7 @@ RETURN
 ORDER BY Revenue DESC
 ----
 
-2) Add an Action to the EmployeeName column
+2) Add an action to the `EmployeeName` column's values
 
 . In the report actions panel:
 
@@ -48,9 +47,9 @@ ORDER BY Revenue DESC
 . Set the *EmployeeName* parameter to *EmployeeName*.
 . Set *Navigate to page* to *Employee info*.
 
-3) Use the parameter on the Employee info page
+3) Use the `$EmployeeName` parameter on the `Employee info` page's visualizations
 
-On the *Employee info* page, add a Cypher card that reads the parameter and returns details for the selected employee.
+On the *Employee info* page, add a Cypher query to a card that reads the parameter and returns details for the selected employee.
 
 [source,cypher]
 ----
