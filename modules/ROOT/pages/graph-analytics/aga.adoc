@@ -7,14 +7,7 @@ image::aga-architecture.svg[]
 [[get-started-serverless]]
 == Getting started
 
-With Aura Graph Analytics enabled in your organization, you only need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] before you can get started.
-
-[NOTE]
-====
-No API credentials required if you run it from within an Aura environment.
-====
-
-With the Aura API credentials available:
+With Aura Graph Analytics enabled in your organization:
 
 * If you use the Neo4j Browser or run Cypher queries through a Neo4j driver, start with the link:{neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/quickstart/[examples] in the Graph Data Science documentation.
 * If you use Python, start with one of the Python client tutorials depending on whether your data is in
@@ -22,6 +15,11 @@ link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-ana
 
 You can enable, disable, and configure Aura Graph Analytics on the organization level in the xref:visual-tour/index.adoc#graph-analytics-org-settings[organization settings].
 The details on any running sessions are available in the xref:visual-tour/index.adoc#graph-analytics-page[Graph Analytics] page.
+
+[NOTE]
+====
+You need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] if you use Aura Graph Analytics outside of an Aura environment (for example via the Python client).
+====
 
 == TODO: More from GDS/client pages
 
