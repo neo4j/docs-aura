@@ -16,12 +16,13 @@ Aura provides the cloud infrastructure to run complex graph algorithms at scale 
 [[aura-gds-serverless]]
 == Aura Graph Analytics
 
-Aura Graph Analytics is an ephemeral, elastic environment to run graph analytics on data stored anywhere, from AuraDB and self-managed Neo4j instances to non-Neo4j data sources.
+Aura Graph Analytics is an on-demand ephemeral environment to run graph analytics on data stored anywhere, from AuraDB and self-managed Neo4j instances to non-Neo4j data sources.
 
-With Aura Graph Analytics, you can create and delete _sessions_ according to your needs.
-Each session runs as an isolated Aura instance, with no memory or compute resources shared with your data store.
+With Aura Graph Analytics, you can create and delete _sessions_ on demand.
+Sessions run as isolated Aura instances, with no memory or compute resources shared with your data store.
 
-[[get-started-serverless]] See the xref:graph-analytics/aga.adoc#get-started-serverless[Getting started] page.
+You can configure parameters like memory size and Time-To-Live (TTL) for each session according to your workload.
+[[get-started-serverless]] See the xref:graph-analytics/aga.adoc#get-started-serverless[Getting started] page for a full example.
 
 [IMPORTANT]
 ====
