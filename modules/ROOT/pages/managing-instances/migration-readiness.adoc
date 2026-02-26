@@ -15,7 +15,7 @@ You can access the report for any version 4 instance via the link through the "M
 
 This tool advises how to prepare an AuraDB v4 instance for migration to AuraDB latest.
 It reports current application queries, drivers, and database objects that would prevent you from migrating to AuraDB latest by providing information based on your recent usage history.
-In addition, you can also see link:https://neo4j.com/docs/aura/tutorials/upgrade/[Upgrade to Neo4j 5 within Aura] for details on each identified issue and how to address it.
+In addition, you can also see xref:tutorials/upgrade.adoc[Upgrade to Neo4j 5 within Aura] for details on each identified issue and how to address it.
 
 The main categories of issues that the Migration Readiness Report deals with are:
 
@@ -256,3 +256,4 @@ You can also postpone this step and keep the original instance e.g. as a rollbac
 Be mindful that this means you have the running costs for both the migrated and the original instance.
 If you wish to remove the original instance later, you can revisit this step or remove it via the Aura console.
 
+After completing the migration, make sure to recreate users, roles, and privileges in the new instance. For detailed steps, see xref:tutorials/upgrade.adoc#_recreate_users_and_roles_in_neo4j_aura[Recreate users and roles in Aura].

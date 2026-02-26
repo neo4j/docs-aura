@@ -351,11 +351,6 @@ a| `action_id`
 | Security
 | A private endpoint configuration has been updated
 
-| PROJECT_CREATE
-| 0314
-| Organization Management
-| A new project in an organization has been created
-
 | FLEET_MANAGER_CREATE
 | 0401
 | Fleet Manager
@@ -420,4 +415,19 @@ a| `action_id`
 | 0512
 | Operations
 | A log forwarding configuration has been deleted
+
+| PROJECT_CREATE
+| 0601
+| Organization Management
+| A new project in an organization has been created
+
+| BILLING_ACCOUNT_CREATE
+| 0701
+| Billing Account Management
+| A new billing account in an organization has been created
+
+| BILLING_ACCOUNT_LINK_PROJECT
+| 0702
+| Billing Account Management
+| Project is linked to a billing account
 |===
