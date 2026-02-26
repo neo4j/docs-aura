@@ -52,14 +52,18 @@ RETURN
 ORDER BY Revenue DESC
 ----
 
+.Add action
+[.shadow]
+image::dashboards/report-actions/add-action.png[width=900]
+
 2) Add an action to the `EmployeeName` column's values
 
-In the report actions panel:
+In the report actions panel set:
 
-. Set *When* to *Cell click*.
-. Set *On* to *EmployeeName*.
-. Set the *EmployeeName* parameter to *EmployeeName*.
-. Set *Navigate to page* to *Employee info*.
+. *When* to *Cell click*.
+. *On* to *EmployeeName*.
+. *EmployeeName* parameter to *EmployeeName* value.
+. *Navigate to page* to *Employee info*.
 
 3) Use the `$EmployeeName` parameter on the `Employee info` page's visualizations
 
