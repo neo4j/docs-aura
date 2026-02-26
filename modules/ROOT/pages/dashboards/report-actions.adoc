@@ -1,28 +1,42 @@
 = Report actions
 :description: Use dashboard actions to connect cards, set parameters, and navigate between pages or external link URLS in a Neo4j dashboard report. User-defined interactivity plays a big role in dashboarding. This type of interactivity allows dashboard builders to link charts together, turning them from read-only views to control elements, just like filters. We introduce actions as a way to enable this type of interactivity. Actions extend dashboards to become rapid prototypes, allowing for the interactivity that is present in a rudimentary graph app. In addition, actions provide data-driven interactivity, allowing query output to be used as input for other queries. For many applications (such as proof-of-concepts), this level of interactivity significantly upgrades the potential of dashboards.
 
-== Overview
-
 An action is event-driven. 
-When a value is clicked on an *action* sets it as a parameter value.
+When a value is clicked an *action* sets it as a parameter value.
 Any card with a Cypher query that includes that parameter responds immediately, so visualizations update dynamically based on the selection.
 
 Use actions to:
 
-* *Set parameter*: Send a value to a parameter, which can filter the rest of the dashboard so visualizations respond to the selection.
+* *Set parameter*: Send a value to a parameter, which can update the rest of the dashboard so visualizations respond to the selection.
 * *Navigate*: On click navigate to an external URL, a Bloom scene, another dashboard.
 Or a specific dashboard page within the same dashboard, optionally passing a parameter into that dashboard page's visualizations too, creating a drill-down into another page (the following example demonstrates this). 
+
+== Action icons
+
+Action icons appear next to values that have an action attached.
+
+[cols="1,20", frame="none", grid="none"]
+|===
+|image:dashboards/report-actions/filter.svg[] 
+|Set parameter
+
+|image:dashboards/report-actions/navigate-url.svg[] 
+|Set parameter and navigate to URL
+
+|image:dashboards/report-actions/navigate-dashboard.svg[] 
+|Set parameter and navigate to dashboard page
+|===
 
 == Example
 
 This example uses the Northwind dataset.
-Clicking on an employee name who are top orderers/revenue generators in the Nortwhind dataset, will switch to a new dashboard page and drill-down into with information about that employee. 
+Clicking on an employee name who are top orderers/revenue generators in the Nortwhind dataset, will switch to a new dashboard page and drill-down into a dashboard page with information about that employee. 
 
 * The example starts with the default *Main page*.
 * Add a second page called *Employee info*.
 * Use an action on the *Main page* to set a parameter and navigate to *Employee info*.
 
-1) On the *Main page*, create a Cypher card that returns each employee’s name, number of orders, and total revenue.
+1) On the *Main page*, add a card with a Cypher query that returns each employee’s name, number of orders, and total revenue.
 
 [source,cypher]
 ----
@@ -38,14 +52,18 @@ RETURN
 ORDER BY Revenue DESC
 ----
 
+[ADD SCREENSHOT]
+
 2) Add an action to the `EmployeeName` column's values
 
-. In the report actions panel:
+In the report actions panel:
 
 . Set *When* to *Cell click*.
 . Set *On* to *EmployeeName*.
 . Set the *EmployeeName* parameter to *EmployeeName*.
 . Set *Navigate to page* to *Employee info*.
+
+[ADD SCREENSHOT]
 
 3) Use the `$EmployeeName` parameter on the `Employee info` page's visualizations
 
@@ -71,3 +89,4 @@ image::dashboards/report-actions/top-employees.png[width=400]
 .Employee info
 [.shadow]
 image::dashboards/report-actions/employee-info.png[width=600]
+
