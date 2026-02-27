@@ -5,7 +5,7 @@ This page describes the data structures used in Fleet Manager messages.
 
 == `ConnectMessage`
 
-Message sent from the plugin to the Fleet Manager service to establish a connection.
+Message sent from the server to the Fleet Manager service to establish a connection.
 
 [options="header", cols="2,1,2"]
 |===
@@ -27,15 +27,15 @@ Message sent from the plugin to the Fleet Manager service to establish a connect
 | Identifier for the project
 | `plugin_version`
 | String
-| Version of the plugin
+| Version of the fleet manager module
 | `build_profile`
 | String
-| Build profile of the plugin
+| Build profile of the fleet manager module
 |===
 
 == `MetricsMessage`
 
-Message sent from the plugin to the Fleet Manager service containing metrics data.
+Message sent from the server to the Fleet Manager service containing metrics data.
 
 [options="header", cols="2,1,2"]
 |===
@@ -53,8 +53,8 @@ Message sent from the plugin to the Fleet Manager service containing metrics dat
 | String
 | Unique identifier for the server
 | `metrics`
-| Map<String, List<DataPoint>>
-| Map of metric names to lists of DataPoint objects. Values are dynamically populated from the Fleet Manager server.
+| Map<String, Collection<DataPoint>>
+| Map of metric names to lists of DataPoint objects. Values are dynamically populated from the Fleet Management server.
 | `metrics<>[].tags`
 | Map<String, String>
 | Map of string key-value pairs providing additional context for the metric
@@ -65,7 +65,7 @@ Message sent from the plugin to the Fleet Manager service containing metrics dat
 
 == `Neo4jConfigMessage`
 
-Message sent from the plugin to the Fleet Manager service containing neo4j configuration data.
+Message sent from the server to the Fleet Manager service containing neo4j configuration data.
 
 [options="header", cols="2,1,2"]
 |===
@@ -84,12 +84,12 @@ Message sent from the plugin to the Fleet Manager service containing neo4j confi
 | Unique identifier for the server
 | `neo4j_config`
 | Map<String, Object>
-| Map of neo4j config names to config values. Values are dynamically populated from the Fleet Manager server.
+| Map of neo4j config names to config values. Values are dynamically populated from the Fleet Management server.
 |===
 
 == `PingMessage`
 
-Message sent from the plugin to the Fleet Manager service to retrieve configuration updates.
+Message sent from the server to the Fleet Manager service to retrieve configuration updates.
 
 [options="header", cols="2,1,2"]
 |===
@@ -105,9 +105,105 @@ Message sent from the plugin to the Fleet Manager service to retrieve configurat
 | Identifier for the project
 |===
 
+== `QueryReportMessage`
+
+Message sent from the server to the Fleet Manager service containing aggregated query data. Only sent if query logging is enabled explicitly through Aura Console.
+
+[options="header", cols="2,1,2"]
+|===
+|Field |Type |Description
+| `fromTimestamp`
+| long
+| Unix timestamp in milliseconds from the first query in the set
+| `toTimestamp`
+| long
+| Unix timestamp in milliseconds to the last query in the set
+| `project_id`
+| String
+| Identifier for the project
+| `dbms_id`
+| String
+| Unique identifier for the DBMS
+| `server_id`
+| String
+| Unique identifier for the server
+| `queries`
+| Collection<AggregatedQueryData>
+| Aggregated query data
+| `queries[]`
+| AggregatedQueryData
+| A specific query in the set
+| `queries[].query`
+| String
+| Obfuscated query text
+| `queries[].success`
+| boolean
+| Whether the query was successful
+| `queries[].gqlError`
+| SimplifiedGqlError
+| GQL error object (if query failed)
+| `queries[].gqlError.cause`
+| SimplifiedGqlError (recursive)
+| Nested error (if any)
+| `queries[].gqlError.classification`
+| String
+| Error classification
+| `queries[].gqlError.statusDescription`
+| String
+| Error message description
+| `queries[].gqlError.gqlStatus`
+| String
+| GQL status code
+| `queries[].queryLanguage`
+| String
+| Language of the query
+| `queries[].meta`
+| QueryAggregationMeta
+| Metadata representing the aggregated executions of this query
+| `queries[].meta.count`
+| long
+| The number of recorded executions of the query
+| `queries[].meta.minElapsedMs`
+| long
+| The fastest execution of the query
+| `queries[].meta.maxElapsedMs`
+| long
+| The slowest execution of the query
+| `queries[].meta.minTimestamp`
+| long
+| The earliest execution of the query within this report
+| `queries[].meta.maxTimestamp`
+| long
+| The latest execution of the query within this report
+| `queries[].meta.databases`
+| Collection<String>
+| List of databases this query was executed on
+| `queries[].meta.applications`
+| Collection<String>
+| List of applications from which the query originated
+| `queries[].meta.types`
+| Collection<String>
+| List of initiation types of the query
+| `queries[].meta.avgPageHits`
+| double
+| The average number of page hits
+| `queries[].meta.avgElapsedMs`
+| double
+| The average duration
+| `queries[].meta.avgWaitTimeMs`
+| double
+| The average wait time
+| `queries[].meta.avgPageFaults`
+| double
+| The average number of page faults
+| `queries[].meta.avgAllocatedBytes`
+| double
+| The average number of allocated bytes
+|===
+
 == `ReportingMessage`
 
-Message sent from the plugin to the Fleet Manager service containing reporting data.
+Message sent from the server to the Fleet Manager service containing reporting data.
 
 [options="header", cols="2,1,2"]
 |===
@@ -128,7 +224,7 @@ Message sent from the plugin to the Fleet Manager service containing reporting d
 | String
 | Unique identifier for the server
 | `dbms.databases`
-| List<String>
+| Collection<String>
 | List of database names
 | `dbms.edition`
 | String
@@ -137,7 +233,7 @@ Message sent from the plugin to the Fleet Manager service containing reporting d
 | String
 | Packaging of DBMS installation
 | `dbms.servers`
-| List<Server>
+| Collection<Server>
 | List of servers in the DBMS cluster
 | `dbms.servers[].serverId`
 | String
@@ -161,7 +257,7 @@ Message sent from the plugin to the Fleet Manager service containing reporting d
 | String
 | Neo4j version of the server
 | `dbms.servers[].databases`
-| List<Database>
+| Collection<Database>
 | List of databases hosted on this server
 | `dbms.servers[].databases[].name`
 | String
@@ -173,7 +269,7 @@ Message sent from the plugin to the Fleet Manager service containing reporting d
 | String
 | Type of the database in the cluster
 | `dbms.servers[].databases[].aliases`
-| List<String>
+| Collection<String>
 | List of database aliases
 | `dbms.servers[].databases[].access`
 | String
@@ -236,10 +332,10 @@ Message sent from the plugin to the Fleet Manager service containing reporting d
 | Long
 | Number of relationships in the graph
 | `dbms.servers[].databases[].graphShards`
-| List<String>
+| Collection<String>
 | List of graph shards of this database
 | `dbms.servers[].databases[].propertyShards`
-| List<String>
+| Collection<String>
 | List of property shards of this database
 | `dbms.servers[].license`
 | License
@@ -287,7 +383,7 @@ Message sent from the plugin to the Fleet Manager service containing reporting d
 | Integer
 | Total number of days in trial period
 | `dbms.servers[].plugins`
-| List<Plugin>
+| Collection<Plugin>
 | List of plugins installed on the server
 | `dbms.servers[].plugins[].filename`
 | String
@@ -303,7 +399,7 @@ Message sent from the plugin to the Fleet Manager service containing reporting d
 | Manifest vendor of the plugin, if available
 | `pluginVersion`
 | String
-| Version of the fleet management plugin
+| Version of the fleet manager
 | `osName`
 | String
 | Operating system name
