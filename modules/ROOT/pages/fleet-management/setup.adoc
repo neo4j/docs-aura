@@ -23,7 +23,7 @@ The wizard provides two top-level options.
 
 == One-step setup (Neo4j 2026.03.0 and newer)
 
-For Neo4j version 2026.03.0 and newer, fleet manager is built-in and can be enabled in one step.
+For Neo4j version 2026.03.0 and newer, Fleet Manager is built-in and can be enabled in one step.
 
 Select *Monitored* and click the *Connect...* button to connect to your instance. In the dialog that appears, input the URL and credentials to your deployment and connect.
 
@@ -34,12 +34,12 @@ image::connectionmodalnonremote.png[]
 After connecting, we will run a procedure call to check whether your deployment meets the requirements for Fleet Manager. The results are clearly communicated using a banner.
 
 [.shadow]
-.Ready for fleet manager
+.Ready for Fleet Manager
 image::fm-connectionsuccess.png[]
 
 Finally, select *Next* to have Aura automatically generate and add an access token to your deployment.
 
-Your deployment is now ready to use with fleet manager!
+Your deployment is now ready to use with Fleet Manager!
 
 == Setup using plugin (Neo4j 4.4.x, 5.26.x, <2026.03.0)
 
