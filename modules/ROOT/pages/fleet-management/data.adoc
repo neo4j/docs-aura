@@ -1,11 +1,11 @@
 = Data transparency
-:description: This page documents the payloads used in fleet management messages.
+:description: This page documents the payloads used in Fleet Manager messages.
 
-This page describes the data structures used in fleet management messages.
+This page describes the data structures used in Fleet Manager messages.
 
 == `ConnectMessage`
 
-Message sent from the plugin to the Fleet Management service to establish a connection.
+Message sent from the plugin to the Fleet Manager service to establish a connection.
 
 [options="header", cols="2,1,2"]
 |===
@@ -35,7 +35,7 @@ Message sent from the plugin to the Fleet Management service to establish a conn
 
 == `MetricsMessage`
 
-Message sent from the plugin to the Fleet Management service containing metrics data.
+Message sent from the plugin to the Fleet Manager service containing metrics data.
 
 [options="header", cols="2,1,2"]
 |===
@@ -54,7 +54,7 @@ Message sent from the plugin to the Fleet Management service containing metrics 
 | Unique identifier for the server
 | `metrics`
 | Map<String, List<DataPoint>>
-| Map of metric names to lists of DataPoint objects. Values are dynamically populated from the Fleet Management server.
+| Map of metric names to lists of DataPoint objects. Values are dynamically populated from the Fleet Manager server.
 | `metrics<>[].tags`
 | Map<String, String>
 | Map of string key-value pairs providing additional context for the metric
@@ -65,7 +65,7 @@ Message sent from the plugin to the Fleet Management service containing metrics 
 
 == `Neo4jConfigMessage`
 
-Message sent from the plugin to the Fleet Management service containing neo4j configuration data.
+Message sent from the plugin to the Fleet Manager service containing neo4j configuration data.
 
 [options="header", cols="2,1,2"]
 |===
@@ -84,12 +84,12 @@ Message sent from the plugin to the Fleet Management service containing neo4j co
 | Unique identifier for the server
 | `neo4j_config`
 | Map<String, Object>
-| Map of neo4j config names to config values. Values are dynamically populated from the Fleet Management server.
+| Map of neo4j config names to config values. Values are dynamically populated from the Fleet Manager server.
 |===
 
 == `PingMessage`
 
-Message sent from the plugin to the Fleet Management service to retrieve configuration updates.
+Message sent from the plugin to the Fleet Manager service to retrieve configuration updates.
 
 [options="header", cols="2,1,2"]
 |===
@@ -107,7 +107,7 @@ Message sent from the plugin to the Fleet Management service to retrieve configu
 
 == `ReportingMessage`
 
-Message sent from the plugin to the Fleet Management service containing reporting data.
+Message sent from the plugin to the Fleet Manager service containing reporting data.
 
 [options="header", cols="2,1,2"]
 |===
