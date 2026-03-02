@@ -4,42 +4,120 @@
 Fleet Manager provides a set of procedures to manage and monitor the connection to Aura.
 These procedures can be executed in Neo4j Browser or any other Neo4j client.
 
-[cols="1,3,1,1"]
+[role=label--admin-only]
+[[procedure_fleetManagement_debugLogging]]
+== fleetManagement.debugLogging()
+
+
+.Details
 |===
-|Procedure |Description |Arguments |Return
+| *Syntax* 3+m| fleetManagement.debugLogging(debugLoggingEnabled, payloadLoggingEnabled) :: (result)
+| *Description* 3+a| Enable debug or payload logging for Fleet Manager
+.3+| *Input arguments* | *Name* | *Type* | *Description*
+| `debugLoggingEnabled` | `BOOLEAN` | Enable debug logging for fleet manager on this server
+| `payloadLoggingEnabled` | `BOOLEAN` | Enable payload logging for fleet manager on this server
+.2+| *Return arguments* | *Name* | *Type* | *Description*
+| `result` | `STRING` | A message indicating the result of the operation
+| *Mode* 3+| DBMS
+|===
 
-| `fleetManagement.status`
-| Check the current status of the plugin and its connectivity to Aura.
-| -
-| Boolean `active`, Boolean `connected`, String `statusMessage`
 
-| `fleetManagement.registerToken`
-| Register the deployment with Aura using the provided registration token and start reporting.
-| String `token`
-| String
+[role=label--admin-only]
+[[procedure_fleetManagement_disable]]
+== fleetManagement.disable()
 
-| `fleetManagement.disable`
-| Disconnect from Aura, remove the existing token and disable the fleet management feature.
-| -
-| String
 
-| `fleetManagement.reportedData`
-| Obtain a complete listing of all data the plugin is reporting to Aura. A copy of this data can be found on the xref:fleet-management/data.adoc[Data transparency] page.
-| -
-| Array of (String `messageType`, String `fieldPath`, String `description`, String `fieldType`, String `values`)
+.Details
+|===
+| *Syntax* 3+m| fleetManagement.disable() :: (result)
+| *Description* 3+a| Disable Fleet Manager
+.2+| *Return arguments* | *Name* | *Type* | *Description*
+| `result` | `STRING` | A message indicating the result of the operation
+| *Mode* 3+| DBMS
+|===
 
-| `fleetManagement.debugLogging`
-| Enable or disable debug and traffic logging
-| Boolean `debugLogging`, Boolean `trafficLogging`
-| String
 
-| `fleetManagement.inspectToken`
-| Inspect the Neo4j Fleet Management token to validate the Aura project association and expiry.
-| String `token` (Optional, if omitted, the currently used token will be inspected)
-| Array of (String `projectId`, String `tokenExpires`, String `errorMessage`)
+[role=label--admin-only]
+[[procedure_fleetManagement_inspectToken]]
+== fleetManagement.inspectToken()
 
-| `fleetManagement.restart`
-| Restarts the plugin by resetting the state and reconnecting to the API.
-| -
-| String
+
+.Details
+|===
+| *Syntax* 3+m| fleetManagement.inspectToken([ token ]) :: (projectId, tokenExpires, errorMessage)
+| *Description* 3+a| Inspect a Fleet Manager access token
+.2+| *Input arguments* | *Name* | *Type* | *Description*
+| `token` | `STRING` | (optional) A token obtained from Neo4j Aura. Will use the currently registered token, if not provided.
+.4+| *Return arguments* | *Name* | *Type* | *Description*
+| `projectId` | `STRING` | ID of the Aura project the Deployment token belongs to
+| `tokenExpires` | `STRING` | Token expiry
+| `errorMessage` | `STRING` | Error message if token inspection fails
+| *Mode* 3+| DBMS
+|===
+
+
+[role=label--admin-only]
+[[procedure_fleetManagement_registerToken]]
+== fleetManagement.registerToken()
+
+
+.Details
+|===
+| *Syntax* 3+m| fleetManagement.registerToken(token) :: (result)
+| *Description* 3+a| Add a token for authenticating to Fleet Manager
+.2+| *Input arguments* | *Name* | *Type* | *Description*
+| `token` | `STRING` | A token obtained from Neo4j Aura
+.2+| *Return arguments* | *Name* | *Type* | *Description*
+| `result` | `STRING` | A message indicating the result of the operation
+| *Mode* 3+| DBMS
+|===
+
+
+[[procedure_fleetManagement_reportedData]]
+== fleetManagement.reportedData()
+
+
+.Details
+|===
+| *Syntax* 3+m| fleetManagement.reportedData() :: (messageType, fieldPath, description, fieldType, values)
+| *Description* 3+a| Generate documentation for the data structures used in Fleet Manager messages
+.6+| *Return arguments* | *Name* | *Type* | *Description*
+| `messageType` | `STRING` | Name of the message in which the current field appears
+| `fieldPath` | `STRING` | The path to the field
+| `description` | `STRING` | Description of the field
+| `fieldType` | `STRING` | The data type of this field
+| `values` | `LIST<STRING>` | The current values of fields which are dynamically determined on connection
+| *Mode* 3+| READ
+|===
+
+
+[role=label--admin-only]
+[[procedure_fleetManagement_restart]]
+== fleetManagement.restart()
+
+
+.Details
+|===
+| *Syntax* 3+m| fleetManagement.restart() :: (result)
+| *Description* 3+a| Restart Fleet Manager
+.2+| *Return arguments* | *Name* | *Type* | *Description*
+| `result` | `STRING` | A message indicating the result of the operation
+| *Mode* 3+| DBMS
+|===
+
+
+[role=label--admin-only]
+[[procedure_fleetManagement_status]]
+== fleetManagement.status()
+
+
+.Details
+|===
+| *Syntax* 3+m| fleetManagement.status() :: (active, connected, statusMessage)
+| *Description* 3+a| Check the status of Fleet Manager
+.4+| *Return arguments* | *Name* | *Type* | *Description*
+| `active` | `BOOLEAN` | Is Fleet Manager active?
+| `connected` | `BOOLEAN` | Is Fleet Manager connected?
+| `statusMessage` | `STRING` | Error message if Fleet Manager is not connected
+| *Mode* 3+| READ
 |===
