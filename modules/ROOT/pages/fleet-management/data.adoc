@@ -27,10 +27,10 @@ Message sent from the server to the Fleet Manager service to establish a connect
 | Identifier for the project
 | `plugin_version`
 | String
-| Version of the fleet manager module
+| Version of the Fleet Manager module
 | `build_profile`
 | String
-| Build profile of the fleet manager module
+| Build profile of the Fleet Manager module
 |===
 
 == `MetricsMessage`
@@ -107,7 +107,8 @@ Message sent from the server to the Fleet Manager service to retrieve configurat
 
 == `QueryReportMessage`
 
-Message sent from the server to the Fleet Manager service containing aggregated query data. Only sent if query logging is enabled explicitly through Aura Console.
+Message sent from the server to the Fleet Manager service containing aggregated query data.
+Only sent if query logging is enabled explicitly through Aura Console.
 
 [options="header", cols="2,1,2"]
 |===
@@ -399,7 +400,7 @@ Message sent from the server to the Fleet Manager service containing reporting d
 | Manifest vendor of the plugin, if available
 | `pluginVersion`
 | String
-| Version of the fleet manager
+| Version of the Fleet Manager
 | `osName`
 | String
 | Operating system name
