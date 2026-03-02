@@ -1,7 +1,8 @@
 = Add a deployment
 :description: This page describes how to add a self-managed deployment.
 
-Adding a self-managed deployment to Fleet Manager is a straightforward process. With newer versions of Neo4j, connect to your deployment from the wizard, and we will take care of the rest.
+Adding a self-managed deployment to Fleet Manager is a straightforward process. 
+With newer versions of Neo4j, all you need to do is connect to your deployment from the wizard and the rest is done for you.
 
 In *Instances*, navigate to *Self-managed* and use the *Add deployment* button to get started.
 
@@ -31,7 +32,8 @@ Select *Monitored* and click the *Connect...* button to connect to your instance
 .Connect to your deployment
 image::connectionmodalnonremote.png[]
 
-After connecting, we will run a procedure call to check whether your deployment meets the requirements for Fleet Manager. The results are clearly communicated using a banner.
+After connecting, a procedure call runs to check whether your deployment meets the requirements for Fleet Manager. 
+The results are clearly communicated using a banner.
 
 [.shadow]
 .Ready for Fleet Manager
@@ -39,7 +41,7 @@ image::fm-connectionsuccess.png[]
 
 Finally, select *Next* to have Aura automatically generate and add an access token to your deployment.
 
-Your deployment is now ready to use with Fleet Manager!
+Your deployment is now ready to use with Fleet Manager.
 
 == Setup using plugin (Neo4j 4.4.x, 5.26.x, <2026.03.0)
 
