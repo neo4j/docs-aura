@@ -10,9 +10,22 @@ While an Aura Graph Analytics session is ephemeral, the results of the computati
 [[administration]]
 == Administration
 
+=== Organization settings
+
 You can enable, disable, and configure Aura Graph Analytics on the organization level in the xref:visual-tour/index.adoc#graph-analytics-org-settings[organization settings].
 
-The details on any running sessions are available in the xref:visual-tour/index.adoc#graph-analytics-page[_Graph Analytics_] page of the Aura console.
+Here you can also configure:
+
+* The maximum available memory for each session
+* The maximum number of concurrent sessions within the organization
+
+=== User management
+
+Aura Console roles map to user privileges in Aura Graph Analytics sessions as described xref:user-management.adoc#graph-analytics-roles[here].
+
+=== Running sessions
+
+The details on any running sessions are available in the xref:visual-tour/index.adoc#graph-analytics-page[_Graph Analytics_] page of the Aura Console.
 
 [[workflow]]
 == Workflow
