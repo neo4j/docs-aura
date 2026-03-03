@@ -83,65 +83,30 @@ If the on-demand ephemeral architecture of Aura Graph Analytics is not suitable 
 |Limited
 |Train, store and serve models
 
-|===
-
-.Technical comparison
-[opts="header", cols="1s,1,1,1,1"]
-|===
-|
-|Graph Data Science +
-on-premisesfootnote:[Assuming use of the link:{neo4j-docs-base-uri}/graph-data-science/current/installation/installation-enterprise-edition/[GDS Enterprise Edition].]
-|Aura Graph Analytics +
-(Recommended)
-|Graph Analytics plugin +
-(AuraDB Pro)
-|AuraDS
-
-|Data sources
-|Same server
-|AuraDB (same tier); self-managed Neo4j DBMS; custom
-|Same server
-|Same server; custom
-
-|Resources for analytics
-|Shared with database +
-(user-configured)
-|Dedicated
-|Shared with database +
-(optimized for database)
-|Shared with database +
-(optimized for analytics)
-
 |Maximum memory
-|No upper limit +
-(contract-dependent)
 |Up to 128 GB (Pro, BC) or 512 GB (VDC)
 |Up to 128 GB
 |Up to 384 GB
 
 |Number of concurrent GDS sessions
-|-
 |Up to 10 (Pro, BC) or 100 (VDC)
 |-
 |-
 
 |Restart behavior
-4+|
+3+|
 
 >|_Downtime_
-|Short
 |No
 |No
 |Short
 
 >|_Projected graphs_
-|Must be backed up and restored manually
 |Unaffected
 |Not retained
 |Restored automaticallyfootnote:createdafter[Graphs and models created or updated _after_ the instance update/upgrade process has started are *not guaranteed* to be restored upon restart.]
 
 >|_Trained models_
-|Must be backed up and restored manually
 |Unaffected
 |Not retained
 |Restored automaticallyfootnote:createdafter[]
