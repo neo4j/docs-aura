@@ -12,11 +12,6 @@ While an Aura Graph Analytics session is ephemeral, the results of the computati
 
 You can enable, disable, and configure Aura Graph Analytics on the organization level in the xref:visual-tour/index.adoc#graph-analytics-org-settings[organization settings].
 
-[IMPORTANT]
-====
-If you plan to use Aura Graph Analytics outside of an Aura environment (for example via the Python client), you need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] too.
-====
-
 The details on any running sessions are available in the xref:visual-tour/index.adoc#graph-analytics-page[_Graph Analytics_] page of the Aura console.
 
 [[workflow]]
@@ -68,6 +63,11 @@ Implicit sessions can still be listed and dropped via the corresponding link:{ne
 The Python client is the Python interface to the GDS library.
 
 In the Python client docs you can find tutorials on how to use sessions from link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless/[AuraDB], a link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-self-managed/[self-managed Neo4j database], and a link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-standalone/[non-Neo4j data source].
+
+[NOTE]
+====
+You will need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] to run the Python tutorials.
+====
 
 [[configuration]]
 == Configuration
