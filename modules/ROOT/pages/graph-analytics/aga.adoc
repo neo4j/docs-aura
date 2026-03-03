@@ -2,29 +2,10 @@
 :max-lifetime: 7 days
 
 Aura Graph Analytics is an on-demand ephemeral compute environment for running graph analytics within independent _sessions_.
+
 Each session is a standalone Neo4j Aura compute environment that is created when needed and deleted when no longer usefulfootnote:[Or when the <<max-lifetime, maximum session lifetime>> is reached.], all without any instance management operations.
 
-[[workflow]]
-== Workflow
-
-The typical workflow with Aura Graph Analytics is:
-
-. Create a session.
-. Load your data into a session via a _remote projection_.
-. Run graph algorithms or train machine learning models on the data.
-. Write the results back to the original data source using _remote write-back_ (for attached and self-managed sessions) or a custom method (for standalone sessions).
-. Delete the session.
-
-.Architecture diagram for Aura Graph Analytics
-image::aga-architecture.svg["Architecture diagram for Aura Graph Analytics",width=600]
-
-Depending on where your data is, you can use three types of session:
-
-* *Attached*, when the data source is a Neo4j AuraDB instance.
-* *Self-managed*, when the data source is a self-managed Neo4j DBMS.
-* *Standalone*, when the data source is not based on Neo4j.
-
-While an Aura Graph Analytics session is ephemeral, the results of computations are stored by writing back to the database or exporting to a file.
+While an Aura Graph Analytics session is ephemeral, the results of the computation can be stored by writing back to the database or exporting to a file.
 
 [[administration]]
 == Administration
@@ -37,6 +18,20 @@ If you plan to use Aura Graph Analytics outside of an Aura environment (for exam
 ====
 
 The details on any running sessions are available in the xref:visual-tour/index.adoc#graph-analytics-page[_Graph Analytics_] page of the Aura console.
+
+[[workflow]]
+== Workflow
+
+The typical workflow with Aura Graph Analytics is:
+
+. Create a session.
+. Load your data into a session via a _remote projection_.
+. Run graph algorithms or train machine learning models on the data.
+. Write the results back to the original data source using _remote write-back_ (to an AuraDB instance or a self-managed Neo4j DBMS) or a custom method (for a non-Neo4j data source).
+. Delete the session.
+
+.Architecture diagram for Aura Graph Analytics
+image::aga-architecture.svg["Architecture diagram for Aura Graph Analytics",width=600]
 
 [[interfaces]]
 == Interfaces
