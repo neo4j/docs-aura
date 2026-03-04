@@ -96,14 +96,13 @@ The configuration parameters for a session are the same regardless of the interf
 
 When creating a session (either explicitly or via a remote graph projection), you must set the `memory` parameter to specify the amount of memory allocated to the session.
 
+The supported values are `2GB`, `4GB`, `8GB`, `16GB`, `24GB`, `32GB`, `48GB`, `64GB`, `96GB`, `128GB`, `192GB`, `256GB`, `384GB`, and `512GB`.
+
 A larger size means faster runtime and the ability to process larger volumes of data, but also increased cost.
 See link:https://neo4j.com/pricing/#graph-analytics[Neo4j Pricing] for more information.
 
-The supported values are `2GB`, `4GB`, `8GB`, `16GB`, `24GB`, `32GB`, `48GB`, `64GB`, `96GB`, `128GB`, `192GB`, `256GB`, `384GB`, and `512GB`.
-
 [NOTE]
-The session maximum size can be configured for your whole Aura organization.
-Check with your organization administrator what your maximum size is.
+The session maximum size can be configured for your whole xref:visual-tour/index.adoc#graph-analytics-org-settings[Aura organization].
 
 [[session-expiration]]
 === Session expiration
