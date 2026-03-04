@@ -2,6 +2,7 @@
 :description: This page describes the different payment options for Neo4j Aura.
 
 Aura usage is metered and aggregated based on billing dimensions, the result is priced according to Aura pricing plans.
+For information on pricing, refer to link:https://console.neo4j.io/pricing[Aura Pricing].
 
 == Pay as you go
 
@@ -9,11 +10,11 @@ Get started by creating an Aura account.
 You can cancel the account at any time.
 Pay as you go (PAYG) has no expiration date, it continues as long as you use Aura.
 
-Usage is billed monthly for the previous month. 
+Usage is billed monthly for the previous month.
 At every billing cycle, usage from the previous month is priced, invoiced and then charged to your payment method.
 
-You can get billed directly with Neo4j using a credit card as a payment method. 
-Or, you can get billed through GCP, AWS or Azure Marketplace where usage is reported hourly to the marketplace. 
+You can get billed directly with Neo4j using a credit card as a payment method.
+Or, you can get billed through GCP, AWS or Azure Marketplace where usage is reported hourly to the marketplace.
 At the marketplace’s billing cycle, Aura usage is aggregated and charged as part of your cloud bill.
 
 == Prepaid
@@ -21,15 +22,15 @@ At the marketplace’s billing cycle, Aura usage is aggregated and charged as pa
 You can commit to using Aura for a minimum of one year and purchase Aura Consumption Units (ACUs).
 
 This requires the Neo4j Sales team.
-The prepaid option does not renew automatically. 
+The prepaid option does not renew automatically.
 
 There are two separate channels for purchasing ACUs:
 
 * Direct invoicing with Neo4j
 * Purchasing ACUs through marketplace private offers (GCP, AWS or Azure).
 
-There is no billing integration with marketplaces for prepaid contracts. 
-The contract is executed as a private offer, Neo4j instructs the marketplace to invoice the user for a number of ACUs and nothing else. 
+There is no billing integration with marketplaces for prepaid contracts.
+The contract is executed as a private offer, Neo4j instructs the marketplace to invoice the user for a number of ACUs and nothing else.
 Neo4j does not provision an Aura environment automatically in this case, does not report usage to the marketplace for these deals, and the marketplace does not keep track of the remaining balance.
 
 == Aura Consumption Unit (ACU)
@@ -39,7 +40,7 @@ To aggregate and then pay for usage across different dimensions, Aura Consumptio
 All Aura resources are priced in ACUs.
 Users purchase ACUs as part of their prepaid contract, and then use them to cover for the usage that is also expressed in ACU.
 
-Keep in mind that ACUs have a start date and an expiration date. 
+Keep in mind that ACUs have a start date and an expiration date.
 They need to be used before their expiration date, or they are forfeited.
 
 == Contract lifecycle
@@ -48,8 +49,8 @@ They need to be used before their expiration date, or they are forfeited.
 . The user consumes Aura resources priced in ACUs.
 . The usage (priced in ACU) is deducted from the ACU balance throughout the month.
 . If the user runs out of ACUs before their expiration date, they are invoiced for the overage.
-. At expiration date, all ACUs remaining are forfeited. 
-If the current term is part of a multi-year contract, some of the remaining balance can be rolled over to the next term, if one exists. 
+. At expiration date, all ACUs remaining are forfeited.
+If the current term is part of a multi-year contract, some of the remaining balance can be rolled over to the next term, if one exists.
 This has to be documented in the initial contract.
 
 == Availability matrix
@@ -152,7 +153,7 @@ Inherits the plan of the AuraDB instance it runs on: Professional or Business Cr
 =====
 [cols="1,1,1,1", options="header"]
 |===
-|Pricing Plan |Billing Model |Payment Method |Billing Processor 
+|Pricing Plan |Billing Model |Payment Method |Billing Processor
 |Business Critical |Pay-as-you-go |Credit card |Direct through Neo4j
 |Business Critical |Pay-as-you-go |Marketplace |GCP, AWS, Azure Marketplace footnote:1[Only for new subscriptions created after September 19, 2025 (GCP), November 17th, 2025 (AWS) and January 13th, 2026 (Azure)]
 |Business Critical, Virtual Dedicated Cloud, AuraDS Enterprise |Prepaid |Credit balance + invoicing |Direct through Neo4j
