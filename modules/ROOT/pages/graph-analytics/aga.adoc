@@ -90,7 +90,7 @@ The configuration parameters for a session are the same regardless of the interf
 [[session-size]]
 === Session size
 
-When creating a session (either explicitly or via a remote graph projection), you must set the `memory` parameter to specify the maximum amount of memory allocated to the process.
+When creating a session (either explicitly or via a remote graph projection), you must set the `memory` parameter to specify the amount of memory allocated to the session.
 A larger size means faster runtime and the ability to process larger volumes of data, but also increased link:https://neo4j.com/pricing/#graph-analytics[cost].
 
 The supported values are `2GB`, `4GB`, `8GB`, `16GB`, `24GB`, `32GB`, `48GB`, `64GB`, `96GB`, `128GB`, `192GB`, `256GB`, `384GB`, and `512GB`.
