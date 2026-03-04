@@ -1,35 +1,44 @@
-= Report actions
+= Actions
 :description: Use dashboard actions to connect cards, set parameters, and navigate between pages or external link URLS in a Neo4j dashboard report. User-defined interactivity plays a big role in dashboarding. This type of interactivity allows dashboard builders to link charts together, turning them from read-only views to control elements, just like filters. We introduce actions as a way to enable this type of interactivity. Actions extend dashboards to become rapid prototypes, allowing for the interactivity that is present in a rudimentary graph app. In addition, actions provide data-driven interactivity, allowing query output to be used as input for other queries. For many applications (such as proof-of-concepts), this level of interactivity significantly upgrades the potential of dashboards.
 
 An action is event-driven. 
-When a value is clicked an *action* sets it as a parameter value.
+When an action icon within a visualization is clicked, it assigns a value to a parameter.
 Any card with a Cypher query that includes that parameter responds immediately, so visualizations update dynamically based on the selection.
 
 Use actions to:
 
-* *Set parameter*: Send a value to a parameter, which can update the rest of the dashboard so visualizations respond to the selection.
-* *Navigate*: On click navigate to an external URL, a Bloom scene, another dashboard.
-Or a specific dashboard page within the same dashboard, optionally passing a parameter into that dashboard page's visualizations too, creating a drill-down into another page (the following example demonstrates this). 
+* *Set a parameter*: Send a value to a parameter, which can update the rest of the dashboard so visualizations respond to the selection.
+
+* *Navigate to a dashboard page*: Opens a specific page within the current dashboard. 
+This is typically used to create a drill-down effect, where the *Set parameter* action filters the visualizations on the destination page.
+
+* *Navigate to an external URL*: The *Set parameter* value can be embedded directly into a URL string to pass the parameter value to the external target.
+
+Note: A navigation action cannot be configured without also defining a parameter value to be set.
+
+//On click navigate to an external URL, a Bloom scene, another dashboard.
+//Or a specific dashboard page within the same dashboard, optionally passing a parameter into that dashboard page's visualizations too, creating a drill-down into another page (the following example demonstrates this). 
 
 == Action icons
 
-Action icons appear next to values that have an action attached.
+Action icons appear next to values that can be set as a parameter.
 
 [cols="1,20", frame="none", grid="none"]
 |===
-|image:dashboards/report-actions/filter.svg[] 
+|image:dashboards/actions/filter.svg[] 
 |Set parameter
 
-|image:dashboards/report-actions/navigate-url.svg[] 
+|image:dashboards/actions/navigate-url.svg[] 
 |Set parameter and navigate to URL
 
-|image:dashboards/report-actions/navigate-dashboard.svg[] 
+|image:dashboards/actions/navigate-dashboard.svg[] 
 |Set parameter and navigate to dashboard page
 |===
 
 == Example
 
-This example uses the Northwind dataset.
+The following example uses the Northwind dataset to show how to *set a parameter* and *navigate to a dashboard page*.
+
 Clicking on an employee name who are top orderers/revenue generators in the Nortwhind dataset, will switch to a new dashboard page and drill-down into a dashboard page with information about that employee. 
 
 * The example starts with the default *Main page*.
@@ -54,7 +63,7 @@ ORDER BY Revenue DESC
 
 .Add action
 [.shadow]
-image::dashboards/report-actions/add-action.png[width=900]
+image::dashboards/actions/add-action.png[width=900]
 
 2) Add an action to the `EmployeeName` column's values
 
@@ -82,11 +91,11 @@ RETURN
 
 .Top employees on the Main page with hover over the filter icon
 [.shadow]
-image::dashboards/report-actions/top-employees.png[width=400]
+image::dashboards/actions/top-employees.png[width=400]
 
 5) This navigates you to the `Employee info` page and updates the visualization based on the value that was selected
 
 .Employee info
 [.shadow]
-image::dashboards/report-actions/employee-info.png[width=600]
+image::dashboards/actions/employee-info.png[width=600]
 
