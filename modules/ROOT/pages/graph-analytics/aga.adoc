@@ -51,7 +51,7 @@ You can create and use sessions either with the GDS Cypher API or with the GDS P
 
 The Cypher API is a collection of Cypher procedures to interact with Aura Graph Analytics sessions from a Cypher environment like the xref:query/introduction.adoc[Aura Query tool].
 
-The Graph Data Science documentation provides a quickstart, see link:{neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/quickstart[Graph Data Science -> Quickstart] and the complete API documentation as described in  link:{neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/cypher[Graph Data Science -> Cypher API].
+The Graph Data Science documentation provides a quickstart, see link:{neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/quickstart[Graph Data Science -> Quickstart] and the complete API documentation as described in link:{neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/cypher[Graph Data Science -> Cypher API].
 
 [IMPORTANT]
 ====
@@ -66,20 +66,24 @@ See the xref:graph-analytics/index.adoc#comparison[Aura deployment comparison] f
 If you use the Cypher API, you can skip the first and last steps in the workflow by creating a session automatically with the first remote projection.
 
 In this case, the session is deleted when the projected graph is dropped.
-If additional graphs are projected into the same session, for example via link:{neo4j-docs-base-uri}/graph-data-science/current/management-ops/graph-creation/graph-filter[graph filtering], the session is deleted only after all graphs are dropped.
+If additional graphs are projected into the same session, for example via link:{neo4j-docs-base-uri}/graph-data-science/current/management-ops/graph-creation/graph-filter[Graph Data Science -> Graph filtering], the session is deleted only after all graphs are dropped.
 
-Implicit sessions can still be listed and dropped via the corresponding link:{neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/cypher#session-management[session management procedures].
+Implicit sessions can still be listed and dropped via the corresponding link:{neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/cypher#session-management[Graph Data Science -> Session management procedures].
 
 [[python-client]]
 === Python client
 
 The Python client is the Python interface to the GDS library.
 
-In the Python client docs you can find tutorials on how to use sessions from link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless/[AuraDB], a link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-self-managed/[self-managed Neo4j database], and a link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-standalone/[non-Neo4j data source].
+You can find tutorials on how to use sessions in the Python documentation:
+
+* link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless/[Graph Data Science client -> Aura Graph Analytics for AuraDB]
+* link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-self-managed/[Graph Data Science client -> Self-managed Neo4j database]
+* link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-standalone/[Graph Data Science client -> Non-Neo4j data source]
 
 [NOTE]
 ====
-You will need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] to run the Python tutorials.
+You need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] to run the Python tutorials.
 ====
 
 [[configuration]]
@@ -91,7 +95,9 @@ The configuration parameters for a session are the same regardless of the interf
 === Session size
 
 When creating a session (either explicitly or via a remote graph projection), you must set the `memory` parameter to specify the amount of memory allocated to the session.
-A larger size means faster runtime and the ability to process larger volumes of data, but also increased link:https://neo4j.com/pricing/#graph-analytics[cost].
+
+A larger size means faster runtime and the ability to process larger volumes of data, but also increased cost.
+See link:https://neo4j.com/pricing/#graph-analytics[Neo4j Pricing] for more information.
 
 The supported values are `2GB`, `4GB`, `8GB`, `16GB`, `24GB`, `32GB`, `48GB`, `64GB`, `96GB`, `128GB`, `192GB`, `256GB`, `384GB`, and `512GB`.
 
