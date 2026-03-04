@@ -5,7 +5,7 @@ Aura Graph Analytics is an on-demand ephemeral compute environment for running g
 
 Each session is a standalone Neo4j Aura compute environment that is created when needed and deleted when no longer usefulfootnote:[Or when the <<max-lifetime, maximum session lifetime>> is reached.], all without any instance management operations.
 
-While an Aura Graph Analytics session is ephemeral, the results of the computation can be stored by writing back to the database or exporting to a file.
+While an Aura Graph Analytics session is ephemeral, the results of the computation can be stored by writing back to the database or exporting to an external system.
 
 [[administration]]
 == Administration
