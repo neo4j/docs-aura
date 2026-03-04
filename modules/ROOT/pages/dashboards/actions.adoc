@@ -10,11 +10,14 @@ Use actions to:
 * *Set a parameter*: Send a value to a parameter, which can update the rest of the dashboard so visualizations respond to the selection.
 
 * *Navigate to a dashboard page*: Opens a specific page within the current dashboard. 
-This is typically used to create a drill-down effect, where the *Set parameter* action filters the visualizations on the destination page.
+This is typically used to create a drill-down effect, where the *set parameter* action filters the visualizations on the destination page.
 
-* *Navigate to an external URL*: The *Set parameter* value can be embedded directly into a URL string to pass the parameter value to the external target.
+* *Navigate to an external URL*: The *set parameter* value can be embedded directly into a URL string to pass the parameter value to the external target.
 
-Note: A navigation action cannot be configured without also defining a parameter value to be set.
+[NOTE]
+====
+An action will always set a parameter and optionally navigate to a dashboard page or an external URL.
+====
 
 //On click navigate to an external URL, a Bloom scene, another dashboard.
 //Or a specific dashboard page within the same dashboard, optionally passing a parameter into that dashboard page's visualizations too, creating a drill-down into another page (the following example demonstrates this). 
@@ -65,6 +68,15 @@ ORDER BY Revenue DESC
 [.shadow]
 image::dashboards/actions/add-action.png[width=900]
 
+Once the action is configured, the action preview shows its structure.
+Each action consists of three parts:
+
+*action trigger → parameter action → optional navigation action*
+
+.Action preview
+[.shadow]
+image::dashboards/actions/action-preview.png[width=900]
+
 2) Add an action to the `EmployeeName` column's values
 
 In the report actions panel set:
@@ -98,4 +110,5 @@ image::dashboards/actions/top-employees.png[width=400]
 .Employee info
 [.shadow]
 image::dashboards/actions/employee-info.png[width=600]
+
 
