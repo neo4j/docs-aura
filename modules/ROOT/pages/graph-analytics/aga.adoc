@@ -110,8 +110,8 @@ The session maximum size can be configured for your whole xref:visual-tour/index
 When creating a session (either explicitly or via a remote graph projection), you can set an optional `ttl` parameter to specify how quickly an inactive session will expire.
 The default value for `ttl` is 1 hour and the maximum allowed value is {max-lifetime}.
 
-An expired session cannot be used to run workloads, does not incur any cost, and will be deleted automatically after {max-lifetime}.
-It can also be deleted through the Aura Console UI.
+An expired session cannot be used to run workloads, does not incur any cost, and is deleted automatically after the same amount of time specified by the `ttl` parameter.
+Expired sessions can also be deleted through the Aura Console UI.
 
 [[max-lifetime]]
 ==== Maximum lifetime

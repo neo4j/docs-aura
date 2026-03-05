@@ -56,7 +56,7 @@ If the on-demand ephemeral architecture of Aura Graph Analytics is not suitable 
 |Primary use cases
 |Analytical data pipelines (ETL), ephemeral workloads, interactive experimentation
 |Lightweight exploration
-|Persistent model serving, collaborative workspaces
+|Persistent model serving, concurrent experiments on shared physical resources
 
 |Compute architecture
 |Ephemeral / On-demand (spin up, run, spin down)
@@ -70,11 +70,11 @@ If the on-demand ephemeral architecture of Aura Graph Analytics is not suitable 
 
 |Data sources
 |AuraDB, self-managed Neo4j, Pandas DataFrames
-|AuraDB (integrated storage)
+|AuraDB (integrated storage), Pandas DataFrames
 |AuraDS (integrated storage), Pandas DataFrames
 
 |Resources for analytics
-|Full isolation (no impact on database performance)
+|Full isolation (no impact on database performancefootnote:[The graph projection and result write-back can impact the source database. In a cluster environment, for example, these operations should not be performed on the cluster leader.])
 |Shared (can slow down transactional database)
 |Full isolation or shared footnote:[If the source transactional database is used on the same AuraDS instance, graph analytics can impact its performance.]
 
@@ -89,7 +89,7 @@ If the on-demand ephemeral architecture of Aura Graph Analytics is not suitable 
 |Up to 384 GB
 
 |Number of concurrent GDS sessions
-|Up to 10 (Pro, BC) or 100 (VDC)
+|Up to 3 (Pro trial), 10 (Pro, BC), or 100 (VDC)
 |-
 |-
 
