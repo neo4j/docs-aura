@@ -53,23 +53,27 @@ Clicking on an employee name who are top orderers/revenue generators in the Nort
 [source,cypher]
 ----
 MATCH (e:Employee)-[:SOLD]->(o:Order)-[orders:ORDERS]->(:Product)
-WITH
-  e,
-  sum(coalesce(orders.quantity,0) * coalesce(orders.unitPrice,0)) AS revenue,
-  count(DISTINCT o) AS ordersCount
 RETURN
-  e.firstName AS EmployeeName,
-  ordersCount AS Orders,
-  round(revenue * 100) / 100.0 AS Revenue
-ORDER BY Revenue DESC
+  e.firstName AS employee,
+  count(DISTINCT o) AS orders,
+  round(sum(orders.quantity * orders.unitPrice), 2) AS revenue
+ORDER BY revenue DESC
 ----
+
+2) Add an action to the `employee` column's values
+
+In the report actions panel set:
+
+. *WHEN* to *Cell click*
+. *ON* to *employee*
+. *SET PARAMETER* to *employee*
+. *NAVIGATE TO PAGE* to *Employee info*
 
 .Add action
 [.shadow]
 image::dashboards/actions/add-action.png[width=900]
 
-Once the action is configured, the action preview shows its structure.
-Each action consists of three parts:
+Once the action is configured, the action preview shows its structure
 
 *action trigger → parameter action → optional navigation action*
 
@@ -77,26 +81,18 @@ Each action consists of three parts:
 [.shadow]
 image::dashboards/actions/action-preview.png[width=900]
 
-2) Add an action to the `EmployeeName` column's values
 
-In the report actions panel set:
-
-. *When* to *Cell click*.
-. *On* to *EmployeeName*.
-. *EmployeeName* parameter to *EmployeeName* value.
-. *Navigate to page* to *Employee info*.
-
-3) Use the `$EmployeeName` parameter on the `Employee info` page's visualizations
+3) Use the `$employee` parameter on the `Employee info` page's visualizations
 
 On the *Employee info* page, add a Cypher query to a card that reads the parameter and returns details for the selected employee.
 
 [source,cypher]
 ----
 MATCH (e:Employee)
-WHERE e.firstName = $employeename
-RETURN 
-  $employeename AS employeename,
-  e.notes AS EmployeeDescription
+WHERE e.firstName = $employee
+RETURN
+  $employee AS employee,
+  e.notes AS notes
 ----
 
 4) Click on a name on the `Main page`
