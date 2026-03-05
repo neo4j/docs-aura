@@ -1,0 +1,69 @@
+= Scenes and sharing data
+:description: This section describes Scenes and how to export data from Explore in the Neo4j Aura console
+
+When you are working with a dataset, sometimes you may need more than one Scene to achieve your objective.
+By using the *Scene* button, you can expand the Scene panel from which you can add a new Scene, or rename, duplicate, or delete your existing Scene(s).
+The Scene panel is also where you switch between your Scenes, including any Scenes shared with you.
+If you have multiple Scenes saved, the search box allows you to filter through them.
+
+The number of available Scenes is determined by the tier of the connected instance.
+For Aura Free, you can have *three* Scenes per user, Aura Professional can have *five* Scenes per user, and Aura Business Critical as well as Virtual Dedicated Cloud can have *unlimited* Scenes.
+
+[.shadow]
+image::explore-scenes.jpg[width=400]
+
+Whenever you make any changes to a Scene, i.e. any changes to filters, the graph, the visualization, or the style, the Scene is automatically saved.
+If you switch Scene, the Scene you left is the same when you return to it.
+
+Style settings for a Scene is determined by the Perspective by default.
+If you change the styling, the changes only affect the current Scene and any new Scenes you create follow the Perspective styling.
+If you have write permission on the Perspective, you can choose to save the styling to the Perspective.
+This affects any new Scenes created, but not already existing Scenes.
+
+[.shadow]
+image::styling-perspective.jpg[width=300]
+
+[WARNING]
+====
+Scenes rely on node and relationship IDs in Neo4j.
+Changes to this underlying data can cause data in saved Scenes to appear incorrectly if IDs are reused by the database.
+====
+
+== Sharing options
+
+Explore allows you to share your insights.
+When you find an interesting Scene, you have different options to share it, depending on who you want to share it with.
+The options are accessed with the *Export* button in the top right corner of your Scene.
+
+[.shadow]
+image::share-options.jpg[width=400]
+
+=== CSV files
+
+The first option is to extract your results as CSV files.
+First you select what data in the Scene to capture.
+By default *everything* is selected, but you can refine as you like by enable/disable node labels, relationship types, and/or properties on both nodes and relationships.
+
+When you have done so, you need to decide in what form to export.
+You can export *all* the data in your Scene in one single CSV file, `graph-export.csv`, by leaving that box checked.
+This file contains *all* the data for every relationship, i.e. start node info, end node info, as well as relationship info.
+Additionally, you can add separate CSV files for nodes (`node-export.csv`) and relationships (`relationship-export.csv`), respectively, by leaving those boxes checked as well.
+
+[.shadow]
+image::export-options.jpg[width=600]
+
+[NOTE]
+====
+If the Scene only contains nodes and no relationships, both the `graph-export.csv` and `relationship-export.csv` options are disabled.
+====
+
+Exporting data in a Scene as CSV files allows you to use your results in other applications.
+
+=== Screenshot
+
+If you want to share your Scene with someone without access to the database, you can take a screenshot to export.
+This lets you to share your insights *without allowing outside interaction* with the elements in your Scene.
+
+The screenshot can be saved as either a .png file or .svg file, select the option suitable for your use case.
+Regardless of file format, he screenshot is captured and saved to your _Downloads_ folder.
+

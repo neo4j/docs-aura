@@ -3,6 +3,10 @@
 [[perspective-creation]]
 = Creation and use
 
+The number of Perspectives you can create (or generate) depends on the tier of the connected database.
+For Aura Free instances, only the Default Perspective is available.
+Aura Professional instances can have up to five Perspectives per user, and Business Critical and Virtual Dedicated Cloud instances can have unlimited Perspectives.
+
 == Default Perspective
 
 When you connect Explore for the first time to a non-empty database, a Perspective is automatically created for you (see *Generate Perspective* below for details on how this is done.).
@@ -10,7 +14,7 @@ This is called *Default Perspective* and it cannot be modified from the UI.
 However, if there are changes to the database, Explore updates the Default Perspective accordingly.
 If you want to customize the view, you can create a new Perspective.
 
-== Creating a Perspective
+== Create a Perspective
 
 [.shadow]
 image::perspective-creation.png[width=800,align="center"]
@@ -54,6 +58,7 @@ If you have multiple Perspectives, you can filter them by typing in the search b
 
 [.shadow]
 image::perspective-export-import.png[width=800]
+
 
 == Components of a Perspective
 
