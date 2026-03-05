@@ -185,6 +185,9 @@ Only sent if query logging is enabled explicitly through Aura Console.
 | `queries[].meta.types`
 | Collection<String>
 | List of initiation types of the query
+| `queries[].meta.users`
+| Collection<String>
+| List of users that executed the query
 | `queries[].meta.avgPageHits`
 | double
 | The average number of page hits
