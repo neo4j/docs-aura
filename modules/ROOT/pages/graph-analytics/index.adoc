@@ -74,7 +74,7 @@ If the on-demand ephemeral architecture of Aura Graph Analytics is not suitable 
 |AuraDS (integrated storage), Pandas DataFrames
 
 |Resources for analytics
-|Full isolation (no impact on database performancefootnote:[The graph projection and result write-back can impact the source database. In a cluster environment, for example, these operations should not be performed on the cluster leader.])
+|Full isolation (no impact on database performancefootnote:[The graph projection and result write-back can impact the source database. In a cluster environment, for example, graph projections should not be performed on the cluster leader.])
 |Shared (can slow down transactional database)
 |Full isolation or shared footnote:[If the source transactional database is used on the same AuraDS instance, graph analytics can impact its performance.]
 
