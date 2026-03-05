@@ -12,7 +12,8 @@ Use actions to:
 * *Navigate to a dashboard page*: Opens a specific page within the current dashboard. 
 This is typically used to create a drill-down effect, where the *set parameter* action filters the visualizations on the destination page.
 
-* *Navigate to an external URL*: The *set parameter* value can be embedded directly into a URL string to pass the parameter value to the external target.
+* *Navigate to an external URL*: The *set parameter* value can be embedded directly into a URL string to pass the parameter value to the external target. 
+For example, insert the `$employee` parameter value into the URL e.g. `www.neo4j.com/name={employee}`
 
 [NOTE]
 ====
