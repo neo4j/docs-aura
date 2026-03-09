@@ -6,16 +6,19 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 
 It's possible to create multiple databases within an instance using the Aura console UI or with the Aura API.
 You can do this if you want to have less administrative overhead compared to running multiple instances, and also it's a good idea if you want to reduce your costs. 
-Now let's dig into the technicalities of multiple databases. 
 
-First, make sure you have Toggled on multiple databases when you are setting up your instance for the first time - this is a prerequisite because you cannot enable multiple databases retroactively. 
+You must enable multiple databases during instance creation. 
+This setting cannot be changed later.
 
-To create a database, first connect to your instance as usual. [see link]
-Then under the three dots where you can inspect the instance's details, go to the databases tab. 
+[.shadow]
+.Multiple databases toggle
+image::multiple-databases/multiple-databases-toggle.png[]
+
+To create a database, connect to your instance, then from the more menu (three dots) where you can inspect the instance's details, go to the databases tab. 
 
 Use the *Create Database* to add a new database to the instance. 
-At the moment, it will automatically get a default database name such as `293fd870`.
-It's not yet possible to change that name. 
+It will automatically get a default database name such as `293fd870`.
+Renaming is not currently supported.
 
 [.shadow]
 .Create database
@@ -27,8 +30,7 @@ You can access all database details from *Inspect > Databases* within a running 
 
 The table lists all databases in the instance and shows:
 
-* Database name
-* Whether it is the default
+* Database names (the default database is labeled) 
 * Number of nodes and relationships
 * Status (e.g. `CREATING` or `RUNNING`)
 
@@ -57,9 +59,9 @@ Aura automatically handles the system database and administrative routing for yo
 //All multi-database administrative commands must be run against the system database. 
 //These administrative commands are automatically routed to the system database when connected to the DBMS over Bolt.
 
-== Explore & Query
+== Explore and Query
 
-Switch databases via the https://neo4j.com/docs/aura/query/visual-tour/#_connection_bar[connection bar].
+In Explore and Query, switch databases via the https://neo4j.com/docs/aura/query/visual-tour/#_connection_bar[connection bar].
 
 //The dropdown lets you choose which database your Explore session connects to.
 //Each item is a database within the same instance.
