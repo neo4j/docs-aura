@@ -20,6 +20,10 @@ See also xref:billing/billing-dimensions.adoc[Billing dimensions] for more infor
 To get started you need a knowledge graph in a running AuraDB instance and you need to make sure *Generative AI assistance* as well as *Aura Agent* are both enabled in the xref:visual-tour/index.adoc#org-settings[Organization settings].
 When *Generative AI Assistance* is enabled, *Aura Agent* can be toggled on and off, but if you disable *Generative AI assistance*, *Aura Agent* is automatically disabled.
 
+Additionally, you need to enable *Tool authentication* for the project in which you create the agent.
+This is done from *Security* on the organization level.
+See xref:security/tool-auth.adoc[Tool authentication with Aura user] for more information.
+
 
 [NOTE]
 ====
