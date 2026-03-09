@@ -11,11 +11,17 @@ To interact with a database in an instance within the console, you need to estab
 
 [.shadow]
 .Connection status bar
-image::connection-bar.jpg[]
+image::connection-bar.jpg[width=600]
 
 [.shadow]
 .Connection modal
-image::connectionmodalnonremote.png[width=300]
+image::connectionmodalnonremote.png[width=400]
+
+== Connect to a database
+
+If multiple databases are available, use the Database dropdown to select the database you want to work with.
+The selected database becomes the active context for your session. 
+All queries and explore actions run against that database.
 
 == Connect from external sources
 
