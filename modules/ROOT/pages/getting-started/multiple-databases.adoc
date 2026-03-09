@@ -46,18 +46,22 @@ Choose which database inside the instance you want to view or back up.
 .Backups
 image::multiple-databases/backups.png[]
 
-== System database
+== Database administration
 
-The system database is included for administrative tasks, but it is not used for exploring graph data.
+Aura automatically handles the system database and administrative routing for you.
 
-Neo4j supports the management of multiple databases within the same DBMS. 
-The metadata for these databases, including the associated security model, is maintained in a special database called the system database. 
-All multi-database administrative commands must be run against the system database. 
-These administrative commands are automatically routed to the system database when connected to the DBMS over Bolt.
+// The system database is included for administrative tasks, but it is not used for exploring graph data.
 
-== Explore
+// Neo4j supports the management of multiple databases within the same DBMS. 
+//The metadata for these databases, including the associated security model, is maintained in a special database called the system database. 
+//All multi-database administrative commands must be run against the system database. 
+//These administrative commands are automatically routed to the system database when connected to the DBMS over Bolt.
 
-The dropdown lets you choose which database your Explore session connects to.
-Each item is a database within the same instance.
-The checked database is the one you’re currently connected to.
-When you switch it, Explore runs queries against that selected database only.
+== Explore & Query
+
+Switch databases via the https://neo4j.com/docs/aura/query/visual-tour/#_connection_bar[connection bar].
+
+//The dropdown lets you choose which database your Explore session connects to.
+//Each item is a database within the same instance.
+//The checked database is the one you’re currently connected to.
+//When you switch it, Explore runs queries against that selected database only.
