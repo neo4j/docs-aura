@@ -43,6 +43,52 @@ Users purchase ACUs as part of their prepaid contract, and then use them to cove
 Keep in mind that ACUs have a start date and an expiration date.
 They need to be used before their expiration date, or they are forfeited.
 
+== Applying Aura credits to your account
+
+Aura pay-as-you-go customers can receive a credit allowance expressed as a number of Aura Consumption Units (ACU), usually as part of a promotional marketing program.
+
+These credits are then used to offset your Aura usage bill. 
+When all credits are depleted, the remaining usage that was not covered by credits will be invoiced and charged to your payment method.
+
+Credits have a start date and an expiration date. 
+Usage that occurs before the start date will not be covered by credits. 
+If not used by the expiration date, credits are forfeited.
+
+To redeem the credits: 
+
+* You will receive an email from Neo4j containing an activation code.
+* Log into the Aura console, and choose the organization where you want to redeem the credits. *Note:* You need to be an organization owner or admin to redeem the credits.
+* Navigate to *Billing - Payment methods.*
+* Click *Redeem credits* [See Figure 1]
+
+.Redeem credits
+[.shadow]
+image::redeem-credits.png[width=900]
+
+* Type in the activation code, and click *Apply*. You should see the amount of ACUs that will be granted. [See Figure 2]
+
+.ACU credit entitlement
+[.shadow]
+image::acu-credit-entitlement.png[width=500]
+
+* If necessary, select a billing account that you want to apply the credits to.
+* Confirm the operation.
+
+You will see the credit balance on the billing account tile that you applied the credits to. [See Figure 3]
+
+.Voucher credit balance 
+[.shadow]
+image::billing-voucher-complete.png[width=900]
+
+[IMPORTANT]
+====
+You cannot redeem credits before their start date.
+====
+	
+Credit allowances generally require you to have a valid credit card on file.
+
+We do not currently support redeeming credits for Aura subscriptions created through a marketplace (AWS, GCP or Azure Marketplace).
+
 == Contract lifecycle
 
 . The user signs a contract with Neo4j for a given period (one or more contract terms) and buys a number of ACUs to be used in each yearly contract term.
