@@ -31,3 +31,12 @@ Overlays provide supplemental views for working with the graph scene.
 This panel also lets you define the style for categories and relationship types using default or rule-based styles.
 * *Search bar* - accepts a near-natural language search query input and offers suggestions on graph patterns that match the input.
 * *Card list* - shows details about the nodes and relationships in the scene.
+
+== Multiple databases
+
+The dropdown lets you choose which database your Explore session connects to.
+Each item is a database within the same instance.
+The checked database is the one you’re currently connected to.
+When you switch it, Explore runs queries against that selected database only.
+The IDs (like 293fd870) are the database names.
+The system database is included for administrative tasks, but it’s not where you explore graph data.

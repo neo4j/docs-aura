@@ -77,6 +77,19 @@ These snapshots can be used to restore data to a different Neo4j instance.
 
 For more information, see xref:managing-instances/backup-restore-export.adoc[Backup, export, and restore].
 
+== Multiple databases
+
+If your instance supports multiple databases, you can create additional databases here (available with AuraDB Business Critical and AuraDB Virtual Dedicated Cloud).
+
+Access the details of multiple databases from the databases tab inside a running AuraDB instance.
+Access it from *Inspect* > *Databases*.
+
+The *Create database* button lets you add a new database to the instance.
+The list displays all available databases in that instance.
+Each row shows the database name, whether it is the default, the number of nodes, the number of relationships, and its status.
+The status RUNNING means the database is online and ready to accept connections.
+The three-dot menu at the end of each row provides database-specific management actions.
+The search bar lets you filter databases by name.
 
 == Restore from backup file
 

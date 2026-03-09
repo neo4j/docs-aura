@@ -209,3 +209,13 @@ To enable *Public traffic* on a network access configuration:
 
 You can now use the `database upload` command on the instances within that region.
 Once the command has completed, you can disable *Public traffic* again by following the same steps and re-selecting the *Disable public* traffic checkbox.
+
+== Multiple databases
+
+Snapshot and backup actions are not supported for instances with multiple databases enabled.
+
+=== Import data into a database with `push-to-cloud`
+
+For multiple databases in an instance, import data individually into a database in an instance using the `neo4j admin database upload` command and specify which database the file is uploaded to.
+
+It already prompts you to specify the database name in database upload today.
