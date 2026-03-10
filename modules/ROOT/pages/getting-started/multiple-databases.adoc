@@ -67,3 +67,16 @@ In Explore and Query, switch databases via the https://neo4j.com/docs/aura/query
 //Each item is a database within the same instance.
 //The checked database is the one you’re currently connected to.
 //When you switch it, Explore runs queries against that selected database only.
+
+== Metrics
+
+== Current limitations
+
+The following features are coming soon:
+* Custom database naming
+* Pause/resume multi-db instances 
+* Pause Resume individual databases
+* Backup and restore multi-db enabled Instances
+* Resource allocations are pre-tuned for multi-db enabled instances during early preview.
+
+* Tool authentication is not yet possible with mutliple databases, meaning Aura Agents are not supported yet for multidb instances.
