@@ -36,6 +36,16 @@ The number of dashboards you can create depends on your Aura tier:
 * AuraDB Business Critical and Virtual Dedicated Cloud: unlimited dashboards
 ====
 
+== Dashboards, instances, and databases
+
+A dashboard belongs to an instance.
+When you create a dashboard, it is saved under the instance you are currently connected to.
+
+A widget belongs to a database.
+When you create a card with a visualization or a filter, it is associated with the database you are currently connected to. However, you can select a different database when editing a visualization from its *Settings*.
+
+This means a single dashboard can include widgets that display data from different databases within the same instance.
+
 == Sample dataset
 :description: How to access the Northwind dataset in the Aura console to use for dashboard Cypher examples.
 
