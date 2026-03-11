@@ -2,21 +2,22 @@
 :description: An overview of the usage based billing model, how the metrics are tracked and implemented based on billing dimensions, and a description of the billing dimensions with examples of calculations for different uses.
 
 Aura has a *usage-based billing model* (also known as consumption-based billing or metered billing).
-Users pay for the actual amount of a product or service consumed, rather than a fixed fee. 
+Users pay for the actual amount of a product or service consumed, rather than a fixed fee.
+For more information about pricing for different tiers, refer to link:https://neo4j.com/pricing[Aura Pricing].
 
 == AuraDB
 
 For AuraDB, *compute* and *storage* are tracked.
 
-. *Compute*: measured in GB-hours, based on RAM capacity. 
+. *Compute*: measured in GB-hours, based on RAM capacity.
 For example, if your AuraDB instance has 4GB of RAM, and runs for 1 hour, you are charged for 4 GB-hours of compute usage.
 
 * Compute is billed both in a running state and a paused state.
 
-* Compute is billed for the primary database and for any secondary databases. 
+* Compute is billed for the primary database and for any secondary databases.
 For secondary databases, the total running capacity is the number of secondaries multiplied by the primary DB capacity.
 
-. *Storage*: each AuraDB instance has a free storage quota of twice the RAM capacity. 
+. *Storage*: each AuraDB instance has a free storage quota of twice the RAM capacity.
 You can purchase additional storage beyond the quota, which is billed the same as compute in GB-hours.
 
 * Each secondary DB benefits from the same free storage quota as the primary DB.
@@ -25,7 +26,7 @@ You can purchase additional storage beyond the quota, which is billed the same a
 
 .Primary database only
 
-You have set up an 8GB AuraDB Business Critical instance. 
+You have set up an 8GB AuraDB Business Critical instance.
 Every hour the primary database is charged for *8 GB-hours* of usage, at the Business Critical hourly price.
 
 .Primary and secondary databases
@@ -39,7 +40,7 @@ Every hour the primary DB and its secondaries are running, you consume:
 
 .Primary database and additional storage
 
-You have set up a 4GB AuraDB Business Critical instance, and requested a total of 32 GB of storage. 
+You have set up a 4GB AuraDB Business Critical instance, and requested a total of 32 GB of storage.
 This includes a free storage quota of twice the RAM size, so 2 x 4 GB = 8 GB. This means, every hour you consume:
 
 * 4 GB-hours of primary database compute
@@ -57,33 +58,33 @@ For AuraDS, only *compute* is tracked:
 
 == Aura Graph Analytics
 
-Aura Graph Analytics does not require a persistent instance run at all times. 
+Aura Graph Analytics does not require a persistent instance run at all times.
 
-You can start Graph Analytics sessions that execute graph algorithms in-memory. 
-You specify the allocated memory size when the session is launched. 
+You can start Graph Analytics sessions that execute graph algorithms in-memory.
+You specify the allocated memory size when the session is launched.
 
 The billing dimension for Graph Analytics sessions is compute and it is measured in GB-minutes.
 The duration of a session is calculated in minutes and multiplied by the RAM capacity used by the session.
 
 === Graph Analytics example
 
-You launch a session with a size of 4GB of RAM, and it runs for 25 minutes. 
+You launch a session with a size of 4GB of RAM, and it runs for 25 minutes.
 You are then billed 25 minutes x 4GB = 100 GB-minutes of usage.
 
-Note: The minimum billed duration of a session is 10 minutes. 
+Note: The minimum billed duration of a session is 10 minutes.
 In the example, if the session ran for 8 minutes and had a 4GB size, you are billed for 10 minutes x 4GB = 40 GB-minutes.
 
 == GraphQL API
 
-Data APIs like GraphQL run on top of an existing AuraDB instance but consume additional memory. 
-You are billed for compute, measured in MB-hours, based on the RAM capacity of the GraphQL additional memory. 
+Data APIs like GraphQL run on top of an existing AuraDB instance but consume additional memory.
+You are billed for compute, measured in MB-hours, based on the RAM capacity of the GraphQL additional memory.
 
-=== GraphQL example: 
+=== GraphQL example:
 
 You set up a GraphQL API with 256MB of RAM, every hour the database is running triggers a usage record of 256 MB-hours.
 
 == Query log forwarding
 
-With log forwarding, you can stream logs directly to a cloud project owned by your organization. 
-For query log forwarding, you are billed for *data egress*. 
+With log forwarding, you can stream logs directly to a cloud project owned by your organization.
+For query log forwarding, you are billed for *data egress*.
 Egress is measured in GB, and is added to the customer usage periodically.

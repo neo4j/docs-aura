@@ -20,6 +20,10 @@ See also xref:billing/billing-dimensions.adoc[Billing dimensions] for more infor
 To get started you need a knowledge graph in a running AuraDB instance and you need to make sure *Generative AI assistance* as well as *Aura Agent* are both enabled in the xref:visual-tour/index.adoc#org-settings[Organization settings].
 When *Generative AI Assistance* is enabled, *Aura Agent* can be toggled on and off, but if you disable *Generative AI assistance*, *Aura Agent* is automatically disabled.
 
+Additionally, you need to enable *Tool authentication* for the project in which you create the agent.
+This is done from *Security* on the organization level.
+See xref:security/tool-auth.adoc[Tool authentication with Aura user] for more information.
+
 
 [NOTE]
 ====
@@ -73,7 +77,7 @@ Start by selecting which instance you want to connect to, keep in mind that the 
 
 If you want your agent to use the <<Similarity Search>> tool, your database needs to have *vector embeddings*.
 If it does, select the embedding provider and model for your database.
-For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{{neo4j-docs-base-uri}}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
+For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
 
 Then you need to add a prompt that contains a detailed use-case or context, a description of what you want the agent to be able to do, and any other preferences.
 The more details you provide, the more accurate the generation will be.
@@ -146,11 +150,11 @@ This tool is best for:
 Note that the similarity search requires *text embeddings* and the presence of a *vector index* in your database.
 Aura Agent currently supports embeddings generated with the following text embedding providers and models:
 
-* OpenAI: `text-embedding-3-small`, `text-embedding-3-large`, and `text-embedding-ada-002`.
-Note that this provider is currently in preview.
+* OpenAI (via Azure OpenAI): `text-embedding-3-small`, `text-embedding-3-large`, and `text-embedding-ada-002`.
+
 * Vertex AI: `gemini-embedding-001`, `text-embedding-005`, and `text-multi-lingual-embedding-00`.
 
-For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{{neo4j-docs-base-uri}}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
+For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
 
 You need to provide the name of your vector index and a value for *Top K*, i.e. the number of results you want the search to return.
 
