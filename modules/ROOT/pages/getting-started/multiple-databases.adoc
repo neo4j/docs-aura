@@ -4,7 +4,7 @@
 label:AuraDB-Business-Critical[]
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-You can create multiple databases within a single Aura instance using the Aura Console or the Aura API.
+Create multiple databases within a single Aura instance using the Aura Console or the Aura API.
 
 == Use cases
 
@@ -15,10 +15,10 @@ Use multiple databases when you want clear separation inside a single Aura insta
 * Different teams or features working in the same instance
 
 This approach keeps things organised without the overhead of running multiple instances, which can also help reduce costs.
-All databases share the same compute and memory resources, so this works best when you don’t need dedicated resources for each database.
 
 == Max number of databases
 
+Resource allocations are pre-tuned during EAP.
 All databases share the instance’s compute and memory resources.
 The max number of databases is tied directly to the memory (RAM) of your instance.
 e.g. 4GB instance supports up to 4 databases.
@@ -68,23 +68,13 @@ image::multiple-databases/backups.png[]
 
 == Database administration
 
-Aura manages the system database and handles administrative routing automatically, so you don’t need to manage this yourself.
-
-// The system database is included for administrative tasks, but it is not used for exploring graph data.
-
-// Neo4j supports the management of multiple databases within the same DBMS. 
-//The metadata for these databases, including the associated security model, is maintained in a special database called the system database. 
-//All multi-database administrative commands must be run against the system database. 
-//These administrative commands are automatically routed to the system database when connected to the DBMS over Bolt.
+Aura manages the `system` database and handles administrative routing automatically.
+The system database is used internally for role-based access control (RBAC) and SSO configuration.
+You do not need to interact with the system database in Aura.
 
 == Explore and Query
 
 In Explore and Query, use the https://neo4j.com/docs/aura/query/visual-tour/#_connection_bar[connection bar] to select the database you want to work with.
-
-//The dropdown lets you choose which database your Explore session connects to.
-//Each item is a database within the same instance.
-//The checked database is the one you’re currently connected to.
-//When you switch it, Explore runs queries against that selected database only.
 
 == Metrics
 
@@ -92,14 +82,15 @@ In *Metrics > Database tab*, use the dropdown to switch between databases in the
 
 == Import
 
-You are prompted to choose an instance, and a database to run your import.
+You are prompted to choose an instance and a database to run an import.
 
 == Current limitations
 
+Initially the features are quite restrictive in general.
 These features are not yet available for multi-database instances:
 
+* Databases cannot be created using Cypher database management commands
 * Custom database naming or renaming
 * Pause and resume for instances or individual databases
 * Backup and restore for multi-database-enabled instances
 * Aura Agents (tool authentication is not supported)
-* Resource allocations are pre-tuned during early preview
