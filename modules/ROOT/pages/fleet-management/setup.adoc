@@ -20,8 +20,9 @@ image::add-sm-deployment.png[]
 
 == Set up a connection without monitoring
 
-To set up a connection without monitoring, select the *Unmonitored* option and provide the connection URL to your deployment.
-This allows you to use the user tools Query, Explore, and Dashboards for your self-managed deployment, but no monitoring data will be reported to Aura.
+To set up a connection without monitoring, select the *Unmonitored* option, provide the connection URL to your deployment, your credentials.
+Click *Connect* and then *Add* to add your deployment to Aura.
+Adding your self-managed deployment to Aura allows you to use the graph tools Query, Explore, and Dashboards to run queries, explore the graph, and create dashboards.
 See xref:managing-instances/self-managed.adoc[Self-managed instances] for more information.
 
 == Set up a connection with monitoring
@@ -56,10 +57,11 @@ In versions Neo4j 4.4.45+, 5.26.12+, and versions between 2025.08.0 and 2026.02.
 . In Neo4j Browser or any other Neo4j client, run the procedure `CALL fleetManagement.status()` to check if the plugin is installed and working correctly.
 If the procedure returns a result, the plugin is installed.
 . Click *Next*.
-. On the *Request a token* page, select the desired expiry time for the token and whether to enable auto-rotation.
+. On the *Request token* page, select the desired expiry time for the token and whether to enable auto-rotation.
 If auto-rotation is enabled, the plugin automatically negotiates a new token before the current one expires.
-. On the *Register Token* page, you will see the generated token.
-Save it in a secure location and then register it using the procedure `fleetManagement.registerToken()`, as described in the wizard.
+. On the *Register token* page, you will see the generated token.
+.. Save it in a secure location.
+.. Register your saved token using the procedure `fleetManagement.registerToken()`, as described in the wizard.
 If your deployment is a cluster, the token *must be registered only once* to take effect across all servers.
 +
 [WARNING]
