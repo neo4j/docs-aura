@@ -51,7 +51,7 @@ If the check is successful, you will see a success message and can select *Next*
 
 === Set up a connection with monitoring in versions before 2026.03
 
-In versions Neo4j 4.4.45+, 5.26.12+, and versions between 2025.08.0 and 2026.02.2 inclusive, Fleet Manager is available as a plugin that you can install in your self-managed deployment.
+In versions Neo4j 4.4.45+, 5.26.12+, and versions between 2025.08.0 and 2026.02.2 inclusive, Fleet Manager is available as a plugin that you need to install in your self-managed deployment.
 
 . Install the Fleet management plugin following the instructions on the wizard or, alternatively, see link:https://neo4j.com/docs/operations-manual/current/plugins/#install-and-configure-plugins[Operations Manual -> Install and configure plugins].
 . In Neo4j Browser or any other Neo4j client, run the procedure `CALL fleetManagement.status()` to check if the plugin is installed and working correctly.
