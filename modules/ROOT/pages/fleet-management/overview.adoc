@@ -1,20 +1,35 @@
 = Overview
 :description: This page provides an overview of fleet management.
 
-Fleet management allows you to monitor *all* of your Neo4j instances, both Aura and self-managed, directly from the Aura console.
-You access Fleet management in *Instances* under the *Self-managed* tab.
+Fleet Manager allows you to monitor *all* of your Neo4j instances, both Aura and self-managed, directly from the Aura console.
+It collects the following information from your deployment and securely transmits it to Aura:
 
-Fleet management uses a plugin that you install on your self-managed Neo4j deployments.
-The plugin collects information from your deployment and securely transmits this data to Aura.
+* Metrics
+* Topology information (graph and tabular format)
+* Server configuration
+* Database metadata
+* License status
 
-See xref:fleet-management/setup.adoc[Add a deployment] for instructions on how to set up the plugin.
+You can also use the Fleet Manager procedures to manage and monitor the connection to Aura.
+See xref:fleet-management/procedures.adoc[Fleet Manager procedures] for more information.
 
-Additionally, the fleet management plugin provides a set of procedures to manage and monitor the connection to Aura.
+In addition to these features, the user tools Query, Explore, and Dashboards (available in the Aura console) are also available for self-managed deployments.
+See xref:managing-instances/self-managed.adoc[Self-managed instances] for more information.
+
+[NOTE]
+====
+Connecting to self-managed instances with user tools works independently of the Fleet Manager and is therefore available for unmonitored deployments as well.
+====
 
 == Compatibility
 
-Fleet management works with all self-managed Neo4j deployments running Neo4j 4.4 and later.
-All operating systems and deployment modalities supported by Neo4j are also supported by fleet management.
+In versions 2026.03 and later, Fleet Manager is enabled by default and can be used without any additional setup.
+
+In earlier versions, it is available as a plugin that you can install in your self-managed deployment.
+These includes versions Neo4j 4.4.45+, 5.26.12+, and versions between 2025.08.0 and 2026.02.2 inclusive.
+For details on how to enable the Fleet management plugin in those versions, see link:https://neo4j.com/docs/operations-manual/current/plugins/#install-and-configure-plugins[Operations Manual -> Install and configure plugins].
+
+All operating systems and deployment modalities supported by Neo4j are also supported by Fleet Manager.
 
 [NOTE]
 ====
@@ -117,21 +132,3 @@ Aura project users have the following capabilities related to fleet management a
 |
 | {check-mark}
 |===
-
-== Features
-
-Fleet management offers various features to manage and monitor your self-managed Neo4j deployments:
-
-* Metrics
-* Topology views (graph and tabular format)
-* Server configuration viewer
-* Database metadata
-* License status viewer
-
-In addition to these features, the user tools Query, Explore, and Dashboards (available in the Aura console) are also available for self-managed deployments.
-See xref:managing-instances/self-managed.adoc[Self-managed instances] for more information.
-
-[NOTE]
-====
-Connecting to self-managed instances with user tools works independently of the fleet management plugin and is therefore available for unmonitored deployments as well.
-====

@@ -1,10 +1,12 @@
 = Add a deployment
 :description: This page describes how to add a self-managed deployment.
 
-Adding a self-managed deployment to fleet management is a straightforward process.
-First you add the deployment you want to monitor, then you set up the plugin, and finally you register your deployment.
-
 In *Instances*, navigate to *Self-managed* and use the *Add deployment* button to get started.
+
+In versions 2026.03 and later, Fleet Manager is enabled by default, so you can add a deployment from the wizard and start monitoring it without any additional setup.
+
+In earlier versions, it is available as a plugin that you can install in your self-managed deployment.
+These includes versions Neo4j 4.4.45+, 5.26.12+, and versions between 2025.08.0 and 2026.02.2 inclusive.
 
 [.shadow]
 .Add a new self-managed deployment
@@ -18,72 +20,40 @@ image::add-sm-deployment.png[]
 
 The wizard provides two top-level options.
 
-* *Monitor deployment* - this option allows you to set up fleet management.
-* *URL connection* - this option allows you to add an unmonitored deployment that can still be connected to using the provided connection URL.
-//add a link here to Manage instances and the new section about remote connections.
+* *Monitored* - this option allows you to set up Fleet Manager.
+* *Unmonitored* - this option allows you to add an unmonitored deployment that can still be connected to using the provided connection URL.
 
-== Set up the plugin
+== Set up a connection without monitoring
 
-The next step of the wizard walks you through the process of adding the fleet management plugin to your Neo4j deployment.
+To set up a connection without monitoring, select the *Unmonitored* option and provide the connection URL to your deployment.
+This allows you to use the user tools Query, Explore, and Dashboards for your self-managed deployment, but no monitoring data will be reported to Aura.
+See xref:managing-instances/self-managed.adoc[Self-managed instances] for more information.
 
-=== Get the plugin
+== Set up a connection with monitoring
 
-Neo4j *2025.09+* comes bundled with the fleet management plugin in the _products_ folder.
+To set up a connection with monitoring, select the *Monitored* option and provide the connection URL to your deployment.
+After connecting, Aura runs the `fleetManagement.registerToken()` procedure to check whether your deployment meets the requirements for Fleet Manager.
+If the check is successful, you will see a success message and can select *Next* to have Aura automatically generate and add an access token to your deployment.
 
-For earlier versions of Neo4j, you need to download the plugin.
-Follow the link in the wizard to download the plugin or download it directly from the link:https://neo4j.com/deployment-center/#tools-tab[Deployment Center].
-Neo4j Fleet management plugin has the name format `neo4j-fleet-management-plugin-VERSION-NEO4J_VERSION.jar`.
-Select the appropriate plugin for your Neo4j version.
+Starting with Neo4j 2026.03, Fleet Manager is enabled by default, therefore, you can skip the following steps.
 
-=== Install the plugin
-
-Take the fleet management plugin file, obtained in the previous step, and place it in the _plugins_ folder.
-If your self-managed deployment consists of multiple servers, the plugin needs to be installed *on each one*.
-See the link:https://neo4j.com/docs/operations-manual/current/configuration/plugins/[Operations Manual -> Configure plugins] for instructions on how to install plugins.
-
-As mentioned, the plugin provides a number of procedures for connection management and monitoring.
-To allow these to run, you need to enable them in the configuration.
-Add `fleetManagement.*` to `dbms.security.procedures.unrestricted`.
-For example:
-
-=====
-[source, conf]
-----
-dbms.security.procedures.unrestricted=fleetManagement.*
-----
-=====
-
-If `dbms.security.procedures.allowlist` is set in your configuration, `fleetManagement.*` should also be added to this setting, otherwise no change is needed.
-
-=====
-[source, conf]
-----
-dbms.security.procedures.allowlist=<existing-value>,fleetManagement.*
-----
-=====
-
-=== Restart Neo4j
-
-Once the plugin is installed and configured, restart Neo4j to load the plugin.
-
-=== Verify the plugin is installed correctly
-
-By calling the procedure `CALL fleetManagement.status()`, for example in Neo4j Browser, you can verify that the plugin is installed correctly.
-
-If the procedure returns a result, the plugin is installed, and you can select *Next* in the wizard.
-
-== Register the deployment
-
-You register your deployment by first requesting a token, then registering the generated token.
-
+. Install the Fleet management plugin.
++
+In versions Neo4j 4.4.45+, 5.26.12+, and versions between 2025.08.0 and 2026.02.2 inclusive, Fleet Manager is available as a plugin that you can install in your self-managed deployment.
+For details on how to enable the Fleet management plugin in those versions, see link:https://neo4j.com/docs/operations-manual/current/plugins/#install-and-configure-plugins[Operations Manual -> Install and configure plugins] or follow the instructions in the wizard.
+. Verify the plugin installation by running the procedure `CALL fleetManagement.status()`, for example in Neo4j Browser or any other Neo4j client.
+If the procedure returns a result, the plugin is installed.
+. Click *Next* in the wizard.
+. On the Request a token page, select the desired expiry time for the token and whether to enable auto-rotation.
+If auto-rotation is enabled, the plugin will automatically negotiate a new token before the current one is expired.
+. In the final step, you will see the generated token.
+Save it in a secure location and then register it using the procedure `fleetManagement.registerToken()`, as described in the wizard.
+If your deployment is a cluster, the token *must be registered only once* to take effect across all servers.
++
 [WARNING]
 ====
-Registering a token will associate the deployment with the Aura project which was used to generate the token. *Never register a token obtained from a third party.*
+Registering a token associates the deployment with the Aura project used to generate the token.
+*Never register a token obtained from a third party.*
 ====
 
-In the next step of the wizard, select an expiry time for the generated token and whether to enable automatic rotation.
-If auto-rotation is enabled, the plugin will automatically negotiate a new token before the current one is expired.
 
-In the final step, you will see the generated token.
-Save it in a secure location and then register it using the procedure `fleetManagement.registerToken`, as described in the wizard.
-If your deployment is a cluster, the token *only needs to be registered once* to take effect across all servers.

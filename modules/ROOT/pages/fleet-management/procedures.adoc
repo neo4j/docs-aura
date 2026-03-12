@@ -1,7 +1,7 @@
-= Plugin procedures
-:description: This page describes the procedures provided by the fleet management plugin.
+= Fleet Manager procedures
+:description: This page describes the procedures provided by the Fleet Manager.
 
-The fleet management plugin provides a set of procedures to manage and monitor the connection to Aura. 
+Fleet Manager provides a set of procedures to manage and monitor the connection to Aura.
 These procedures can be executed in Neo4j Browser or any other Neo4j client.
 
 [cols="1,3,1,1"]
@@ -9,7 +9,7 @@ These procedures can be executed in Neo4j Browser or any other Neo4j client.
 |Procedure |Description |Arguments |Return
 
 | `fleetManagement.status`
-| Check the current status of the plugin and its connectivity to Aura.
+| Check the current status of the Fleet Manager and its connectivity to Aura.
 | -
 | Boolean `active`, Boolean `connected`, String `statusMessage`
 
@@ -24,7 +24,7 @@ These procedures can be executed in Neo4j Browser or any other Neo4j client.
 | String
 
 | `fleetManagement.reportedData`
-| Obtain a complete listing of all data the plugin is reporting to Aura. A copy of this data can be found on the xref:fleet-management/data.adoc[Data transparency] page.
+| Obtain a complete listing of all data Fleet Manager is reporting to Aura. A copy of this data can be found on the xref:fleet-management/data.adoc[Data transparency] page.
 | -
 | Array of (String `messageType`, String `fieldPath`, String `description`, String `fieldType`, String `values`)
 
@@ -34,12 +34,12 @@ These procedures can be executed in Neo4j Browser or any other Neo4j client.
 | String
 
 | `fleetManagement.inspectToken`
-| Inspect the Neo4j Fleet Management token to validate the Aura project association and expiry.
+| Inspect the Fleet Manager token to validate the Aura project association and expiry.
 | String `token` (Optional, if omitted, the currently used token will be inspected)
 | Array of (String `projectId`, String `tokenExpires`, String `errorMessage`)
 
 | `fleetManagement.restart`
-| Restarts the plugin by resetting the state and reconnecting to the API.
+| Restarts the Fleet Manager by resetting the state and reconnecting to the API.
 | -
 | String
 |===
