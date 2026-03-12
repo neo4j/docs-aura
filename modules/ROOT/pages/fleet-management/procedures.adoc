@@ -11,12 +11,12 @@ These procedures can be executed in Neo4j Browser or any other Neo4j client.
 .Details
 |===
 | *Syntax* 3+m| fleetManagement.debugLogging(debugLoggingEnabled, payloadLoggingEnabled) :: (result)
-| *Description* 3+a| Enable debug or payload logging for Fleet Manager
+| *Description* 3+a| Enable debug or payload logging for Fleet Manager.
 .3+| *Input arguments* | *Name* | *Type* | *Description*
-| `debugLoggingEnabled` | `BOOLEAN` | Enable debug logging for fleet manager on this server
-| `payloadLoggingEnabled` | `BOOLEAN` | Enable payload logging for fleet manager on this server
+| `debugLoggingEnabled` | `BOOLEAN` | Enable debug logging for fleet manager on this server.
+| `payloadLoggingEnabled` | `BOOLEAN` | Enable payload logging for fleet manager on this server.
 .2+| *Return arguments* | *Name* | *Type* | *Description*
-| `result` | `STRING` | A message indicating the result of the operation
+| `result` | `STRING` | A message indicating the result of the operation.
 | *Mode* 3+| DBMS
 |===
 
@@ -29,7 +29,7 @@ These procedures can be executed in Neo4j Browser or any other Neo4j client.
 | *Syntax* 3+m| fleetManagement.disable() :: (result)
 | *Description* 3+a| Disable Fleet Manager
 .2+| *Return arguments* | *Name* | *Type* | *Description*
-| `result` | `STRING` | A message indicating the result of the operation
+| `result` | `STRING` | A message indicating the result of the operation.
 | *Mode* 3+| DBMS
 |===
 
@@ -40,13 +40,13 @@ These procedures can be executed in Neo4j Browser or any other Neo4j client.
 .Details
 |===
 | *Syntax* 3+m| fleetManagement.inspectToken([ token ]) :: (projectId, tokenExpires, errorMessage)
-| *Description* 3+a| Inspect a Fleet Manager access token
+| *Description* 3+a| Inspect a Fleet Manager access token.
 .2+| *Input arguments* | *Name* | *Type* | *Description*
 | `token` | `STRING` | (optional) A token obtained from Neo4j Aura. Will use the currently registered token, if not provided.
 .4+| *Return arguments* | *Name* | *Type* | *Description*
-| `projectId` | `STRING` | ID of the Aura project the Deployment token belongs to
+| `projectId` | `STRING` | ID of the Aura project the Deployment token belongs to.
 | `tokenExpires` | `STRING` | Token expiry
-| `errorMessage` | `STRING` | Error message if token inspection fails
+| `errorMessage` | `STRING` | Error message if token inspection fails.
 | *Mode* 3+| DBMS
 |===
 
@@ -57,11 +57,11 @@ These procedures can be executed in Neo4j Browser or any other Neo4j client.
 .Details
 |===
 | *Syntax* 3+m| fleetManagement.registerToken(token) :: (result)
-| *Description* 3+a| Add a token for authenticating to Fleet Manager
+| *Description* 3+a| Add a token for authenticating to Fleet Manager.
 .2+| *Input arguments* | *Name* | *Type* | *Description*
-| `token` | `STRING` | A token obtained from Neo4j Aura
+| `token` | `STRING` | A token obtained from Neo4j Aura.
 .2+| *Return arguments* | *Name* | *Type* | *Description*
-| `result` | `STRING` | A message indicating the result of the operation
+| `result` | `STRING` | A message indicating the result of the operation.
 | *Mode* 3+| DBMS
 |===
 
@@ -71,13 +71,13 @@ These procedures can be executed in Neo4j Browser or any other Neo4j client.
 .Details
 |===
 | *Syntax* 3+m| fleetManagement.reportedData() :: (messageType, fieldPath, description, fieldType, values)
-| *Description* 3+a| Generate documentation for the data structures used in Fleet Manager messages
+| *Description* 3+a| Generate documentation for the data structures used in Fleet Manager messages.
 .6+| *Return arguments* | *Name* | *Type* | *Description*
-| `messageType` | `STRING` | Name of the message in which the current field appears
-| `fieldPath` | `STRING` | The path to the field
-| `description` | `STRING` | Description of the field
-| `fieldType` | `STRING` | The data type of this field
-| `values` | `LIST<STRING>` | The current values of fields which are dynamically determined on connection
+| `messageType` | `STRING` | Name of the message in which the current field appears.
+| `fieldPath` | `STRING` | The path to the field.
+| `description` | `STRING` | Description of the field.
+| `fieldType` | `STRING` | The data type of this field.
+| `values` | `LIST<STRING>` | The current values of fields which are dynamically determined on connection.
 | *Mode* 3+| READ
 |===
 
@@ -88,9 +88,9 @@ These procedures can be executed in Neo4j Browser or any other Neo4j client.
 .Details
 |===
 | *Syntax* 3+m| fleetManagement.restart() :: (result)
-| *Description* 3+a| Restart Fleet Manager
+| *Description* 3+a| Restart Fleet Manager.
 .2+| *Return arguments* | *Name* | *Type* | *Description*
-| `result` | `STRING` | A message indicating the result of the operation
+| `result` | `STRING` | A message indicating the result of the operation.
 | *Mode* 3+| DBMS
 |===
 
@@ -101,10 +101,10 @@ These procedures can be executed in Neo4j Browser or any other Neo4j client.
 .Details
 |===
 | *Syntax* 3+m| fleetManagement.status() :: (active, connected, statusMessage)
-| *Description* 3+a| Check the status of Fleet Manager
+| *Description* 3+a| Check the status of Fleet Manager.
 .4+| *Return arguments* | *Name* | *Type* | *Description*
 | `active` | `BOOLEAN` | Is Fleet Manager active?
 | `connected` | `BOOLEAN` | Is Fleet Manager connected?
-| `statusMessage` | `STRING` | Error message if Fleet Manager is not connected
+| `statusMessage` | `STRING` | Error message if Fleet Manager is not connected.
 | *Mode* 3+| READ
 |===
