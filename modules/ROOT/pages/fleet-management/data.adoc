@@ -56,7 +56,7 @@ This page describes the data structures used in Fleet Manager messages.
 | Unique identifier for the server
 | `metrics`
 | Map<String, Collection<DataPoint>>
-| Map of metric names to lists of DataPoint objects. Values are dynamically populated from the Fleet Management server.
+| Map of metric names to lists of DataPoint objects. Values are dynamically populated from the Fleet Manager server.
 | `metrics<>[].tags`
 | Map<String, String>
 | Map of string key-value pairs providing additional context for the metric
@@ -87,7 +87,7 @@ This page describes the data structures used in Fleet Manager messages.
 | Unique identifier for the server
 | `neo4j_config`
 | Map<String, Object>
-| Map of neo4j config names to config values. Values are dynamically populated from the Fleet Management server.
+| Map of neo4j config names to config values. Values are dynamically populated from the Fleet Manager server.
 |===
 
 == `PingMessage`

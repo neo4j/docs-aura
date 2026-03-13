@@ -1,5 +1,5 @@
 = Overview
-:description: This page provides an overview of fleet management.
+:description: This page provides an overview of Fleet Manager.
 
 Fleet Manager allows you to monitor *all* of your Neo4j instances, both Aura and self-managed, directly from the Aura console.
 It collects the following information from your self-managed deployment and securely transmits it to Aura:
@@ -45,7 +45,7 @@ Community Edition compatibility is offered on a best-effort basis. Neo4j does no
 
 == Security
 
-Fleet management is designed to be secure, no inbound connections to your self-managed deployment are allowed.
+Fleet Manager is designed to be secure, no inbound connections to your self-managed deployment are allowed.
 Further, there is no capability for performing any write operations or other mutations remotely.
 
 No data is read from your databases.
@@ -53,11 +53,11 @@ See xref:fleet-management/data.adoc[Data transparency] for a complete list of th
 
 == Access permissions
 
-Aura project users have the following capabilities related to fleet management and self-managed deployments, depending on their project role.
+Aura project users have the following capabilities related to Fleet Manager and self-managed deployments, depending on their project role.
 
 :check-mark: icon:check[]
 
-.Aura project roles and fleet management capabilities
+.Aura project roles and Fleet Manager capabilities
 [opts="header",cols="3,1,1,1,1"]
 |===
 | Capability
