@@ -1,7 +1,6 @@
 [[visual-overview]]
 = Visual tour of the console
 :description: This section introduces the console UI.
-:gds-sessions-page: {neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/
 
 == Structure
 
@@ -68,7 +67,7 @@ See xref:aura-agent.adoc[Aura Agent] for more information about agents.
 [[graph-analytics-org-settings]]
 === Aura Graph Analytics settings
 
-From this page you can enable or disable link:{gds-sessions-page}[Aura Graph Analytics], as well as configure the following settings:
+From this page you can enable or disable xref:../graph-analytics/aga.adoc[Aura Graph Analytics], as well as configure the following settings:
 
 * The maximum available memory for each session
 * The maximum number of concurrent sessions within the organization
@@ -96,7 +95,7 @@ See the xref:import/introduction.adoc[What is Import?] for more information abou
 [[graph-analytics-page]]
 === Graph Analytics
 
-This page lists the link:{gds-sessions-page}[Aura Graph Analytics] sessions associated with a project.
+This page lists the xref:../graph-analytics/aga.adoc[Aura Graph Analytics] sessions associated with a project.
 
 By default, the list displays active sessions.
 You can view past sessions by switching on the **Include deleted sessions** toggle.
