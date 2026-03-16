@@ -59,7 +59,7 @@ See xref:explore/explore-features/search-phrases-advanced.adoc[Search phrases fo
 
 == Full-text search
 
-When Explore can’t find an appropriate suggestion for the entered search term, you have the ability to run a full-text search against the Neo4j database.
+When Explore can’t find an appropriate suggestion for the entered search term, you have the ability to run a full-text search against the Neo4j database. INSTANCE-DATABASE-DEFINITION-REVIEW
 Explore uses the native full-text indexes in the database for this feature.
 You will need to set up a full-text index to enable full-text search in Explore.
 Without any full-text index configured, Explore will fall back to searching in all available indexed string properties.

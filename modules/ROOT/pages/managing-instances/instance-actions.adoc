@@ -16,7 +16,7 @@ image::connect-to-tools.png[]
 
 == Pause an instance
 
-Pausing a Neo4j instance temporarily stops the database, which means:
+Pausing a Neo4j instance temporarily stops the instance, which means: INSTANCE-DATABASE-DEFINITION-REVIEW
 
 * No Access to Data: The data stored in the database becomes inaccessible.
 Any applications or users trying to connect to the instance won't be able to run queries or retrieve data until the instance is resumed.
@@ -56,7 +56,7 @@ You can pause an instance for up to 30 days, after which point Aura automaticall
 Resume a paused instance with the *Play* button on the instance card.
 
 After confirming, the instance begins resuming, which may take a few minutes.
-Resuming an instance restores the database from the backup.
+Resuming an instance restores the database from the backup. ?
 
 [WARNING]
 ====
@@ -100,7 +100,7 @@ You cannot clone from a Neo4j latest version instance to a Neo4j version 4 insta
 === Clone to a new instance
 
 . From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *New instance* from the contextual menu.
-. Set your desired settings for the new database.
+. Set your desired settings for the new instance.
 For more information on AuraDB database creation, see xref:getting-started/create-instance.adoc[Create an instance].
 . Check the *I accept* box and select *Create*.
 +

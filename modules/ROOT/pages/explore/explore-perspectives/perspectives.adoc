@@ -30,7 +30,7 @@ image::image22.png[width=800]
 When importing Northwind directly into a Neo4j graph there is a 1:1 correspondence of tables to labels, which means that for each record a node has been created with a label that matches the original name of the table.
 Each foreign key reference gets converted into a graph relationship.
 
-After connecting to the instance that contains this Neo4j database and launching Explore for the first time, Explore automatically generates a Perspective based on the data it finds.
+After connecting to the instance that contains this Neo4j database and launching Explore for the first time, Explore automatically generates a Perspective based on the data it finds. INSTANCE-DATABASE-DEFINITION-REVIEW
 If you have any previously defined Perspectives, they are available for selection.
 You can always ask Explore to auto-generate a Perspective.
 The auto-generated Perspective is a good place to start.

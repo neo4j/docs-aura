@@ -16,7 +16,7 @@ For pre-paid AuraDB instances on GCP, adjustable storage independent of memory i
 For AuraDB, you need to select an option for xref:graph-analytics/index.adoc[Graph Analytics]:
 
 * *Serverless* - default and recommended, allows graph algorithms to run in a separate compute environment.
-* *Plugin* - allows graph algorithms to run in the same instance as the database, sharing resources.
+* *Plugin* - allows graph algorithms to run in the same instance, sharing resources. INSTANCE-DATABASE-DEFINITION-REVIEW
 
 Once the instance is created, you *cannot* change this.
 

@@ -173,7 +173,7 @@ Each project must have at least one Project Admin, but it is also possible for p
 | {check-mark}
 | {check-mark}
 
-| View and open instances
+| View and open instances (we can view instances, and we open databases) INSTANCE-DATABASE-DEFINITION-REVIEW
 | {check-mark}
 | {check-mark}
 | {check-mark}
@@ -191,7 +191,7 @@ Each project must have at least one Project Admin, but it is also possible for p
 | {check-mark}
 | {check-mark}
 
-| Clone data to new and existing instances
+| Clone data to new and existing databases
 |
 |
 | {check-mark}
@@ -252,7 +252,7 @@ Users within a project can access instances seamlessly with their console role i
 
 When enabled, a user connects seamlessly with a predefined database role that matches their console role, i.e. their project-level role.
 Predefined roles are *immutable* and apply to all Free, Professional, and Business Critical instances.
-The predefined roles are assigned the following privileges on the instance level:
+The predefined roles are assigned the following privileges:
 
 .Predefined roles and database privileges
 [options="header", cols="3,^,^,^,^,^"]
@@ -435,10 +435,10 @@ User management within the Aura console does not replace built-in roles or fine-
 
 The `METRICS_READER` role can be assigned to any user or service account.
 It has the same permissions as the `PROJECT_VIEWER` role, but with some extra permissions specifically for reading metrics via an API endpoint.
-The role allows access to metrics for all instances in a project.
+The role allows access to metrics for all databases in a project.
 Accessing metric endpoints requires xref:/api/authentication.adoc[Aura API Credentials] and the `METRICS_READER` role enables the creation of these credentials.
 
-The `METRICS_READER` role can view and open instances in the console, however, login to the instance is required to interact with it, with access to Explore and Query defined by the instance's RBAC settings.
+The `METRICS_READER` role can view and open databases in the console, however, login to the instance is required to interact with it, with access to Explore and Query defined by the instance's RBAC settings.
 
 [[graph-analytics-roles]]
 === Graph Analytics roles

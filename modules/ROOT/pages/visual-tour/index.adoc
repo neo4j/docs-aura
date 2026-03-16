@@ -81,7 +81,7 @@ To access your data, navigate to a project and xref:getting-started/connect-inst
 
 === Instances
 
-An instance in Aura is an environment of the Neo4j database, managed and run in the cloud.
+An Aura instance is a fully managed Neo4j DBMS running in the cloud. INSTANCE-DATABASE-DEFINITION-REVIEW
 A project can contain one or more instances.
 In the instance section, you can view and select which instance you want to connect to.
 
@@ -90,7 +90,7 @@ Additionally, you can also connect the instance to an application.
 
 === Import
 
-If your instance doesn't contain any data, the Import service allows you to import CSV files to your database.
+If your instance doesn't contain any data, the Import service allows you to import CSV files. INSTANCE-DATABASE-DEFINITION-REVIEW
 This service lets you create your data model and map it to your files.
 See the xref:import/introduction.adoc[What is Import?] for more information about this service.
 
@@ -157,7 +157,7 @@ See xref:query/introduction.adoc[What is Query?] for more information.
 
 === Metrics
 
-Metrics help you monitor and analyze your database's performance and usage.
+Metrics help you monitor and analyze performance and usage.
 Some metrics are available directly on the instance card, and you can find the full range in **Metrics**.
 See xref:metrics/view-metrics.adoc[Metrics] for more information.
 
