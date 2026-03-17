@@ -1,33 +1,87 @@
-= Multiple databases 
-:description: This page describes Multiple databases within an Aura instance and how to create and connect to a database.
+= Multiple databases
+:description: This page describes multiple databases within an Aura instance and how to create and connect to a database.
 
 label:AuraDB-Business-Critical[]
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-Create multiple databases within a single Aura instance using the Aura Console or the Aura API.
+== Overview
 
-== Use cases
+AuraDB Business Critical and AuraDB Virtual Dedicated Cloud support multiple databases within an AuraDB instance (DBMS).  
+You can create and manage databases using the Aura Console or the Aura API.
 
-Use multiple databases when you want clear separation inside a single Aura instance.
+=== Use cases
+
+Use multiple databases when you need clear separation within a single Aura instance.
+Multiple databases keep data organised within a single instance, without the overhead of managing multiple instances.
 
 * Less administrative overhead compared to running multiple instances
 * Development and test environments
 * Different teams or features working in the same instance
 
-This approach keeps things organised without the overhead of running multiple instances, which can also help reduce costs.
+=== Feature matrix
+
+An AuraDB instance includes a default database.  
+You can create additional databases within the same instance.
+
+The table compares features available for single-database and multi-database instances.  
+A dash (–) indicates the feature is not currently supported.
+
+[cols="1,1,1"]
+|===
+| Feature | Instance (Single DB) | Multi DB
+
+| Aura Agents
+| ✓
+| –
+
+| Backup and restore
+| ✓
+| ✓
+
+| CMK
+| ✓
+| –
+
+| IP filtering
+| ✓
+| –
+
+| Pause and resume
+| ✓
+| –
+
+| Private link
+| ✓
+| ✓
+
+| Push to cloud
+| ✓
+| ✓
+
+| Rename databases
+| ✓
+| –
+
+| Secondaries
+| ✓
+| –
+
+| Tool authentication
+| ✓
+| –
+|===
 
 == Max number of databases
 
-Resource allocations are pre-tuned during EAP.
-All databases share the instance’s compute and memory resources.
-The max number of databases is tied directly to the memory (RAM) of your instance.
-e.g. 4GB instance supports up to 4 databases.
+All databases share the instance’s compute and memory resources.  
+The maximum number of databases depends on the memory (RAM) of the instance.  
+For example, a 4GB instance supports up to 4 databases.
 
 == Enable multiple databases
 
 [IMPORTANT]
 ====
-To work with multiple databases, you must enable the toggle during instance creation. 
+You must enable multiple databases during instance creation.  
 This setting cannot be changed later.
 ====
 
@@ -35,12 +89,13 @@ This setting cannot be changed later.
 .Multiple databases toggle
 image::multiple-databases/multiple-databases-toggle.png[]
 
-To create a database, connect to your instance, then from the more menu (three dots) where you can inspect the instance's details, go to the databases tab. 
+To create a database, connect to your instance.  
+From the more menu (three dots), select *Inspect*, then go to the *Databases* tab.
 
-Use the *Create Database* to add a new database to the instance. 
-It will automatically get a default database name such as `293fd870`.
+Use *Create Database* to add a new database.  
+A default name is assigned automatically (for example, `293fd870`).
 
-You cannot delete the `DEFAULT` database.
+The `DEFAULT` database cannot be deleted.
 
 [.shadow]
 .Create database
@@ -48,21 +103,24 @@ image::multiple-databases/create-database.png[]
 
 == Manage multiple databases
 
-You can access all database details from *Inspect > Databases* within a running AuraDB instance.
+Access database details from *Inspect > Databases* within a running instance.
 
-The table lists all databases in the instance and shows:
+The table shows:
 
-* Database names (the default database is labeled) 
+* Database names (the default database is labeled)
 * Number of nodes and relationships
-* Status (e.g. `CREATING` or `RUNNING`) The status `RUNNING` means the database is online and ready to accept connections.
+* Status (e.g. `CREATING`, `RUNNING`)
 
-The three-dot menu at the end of each row provides database-specific management actions.
-Use the search bar to filter databases by name.
+`RUNNING` indicates the database is online and ready to accept connections.
+
+Use the three-dot menu for database-specific actions.  
+Use the search bar to filter by name.
 
 == Backups
 
-From *Inspect > Backups* there’s a dropdown labeled “Select Database.”
-Choose which database inside the instance you want to view or back up.
+Backups are managed at the database level.
+
+From *Inspect > Backups*, use the *Select Database* dropdown to choose a database.
 
 [.shadow]
 .Backups
@@ -70,29 +128,30 @@ image::multiple-databases/backups.png[]
 
 == Database administration
 
-Aura manages the `system` database and handles administrative routing automatically.
-The system database is used internally for role-based access control (RBAC) and SSO configuration.
-You do not need to interact with the system database in Aura.
+Aura manages the `system` database and handles administrative routing automatically.  
+The system database is used for RBAC and SSO configuration.  
+You do not need to interact with it.
 
-== Explore and Query
+=== Explore and Query
 
-In Explore and Query, use the https://neo4j.com/docs/aura/query/visual-tour/#_connection_bar[connection bar] to select the database you want to work with.
+Use the connection bar in Explore and Query to select the database you want to work with.
 
-== Metrics
+=== Metrics
 
-In *Metrics > Database tab*, use the dropdown to switch between databases in the instance.
+Metrics support database-level selection and charts.  
+Integrations provide per-database metrics.
+In *Metrics > Database*, use the dropdown to switch between databases.
 
-== Import
+=== Import
 
-You are prompted to choose an instance and a database to run an import.
+When running an import, select both the instance and the target database.
 
-== Current limitations
+== Limitations
 
-Initially the features are quite restrictive in general.
-These features are not yet available for multi-database instances:
+Some features are not yet available for multi-database instances:
 
-* Databases cannot be created using Cypher database management commands
 * Custom database naming or renaming
 * Pause and resume for instances or individual databases
-* Backup and restore for multi-database-enabled instances
-* Aura Agents (tool authentication is not supported)
+
+Databases cannot be created using Cypher database management commands.  
+Use the Aura Console or API instead.
