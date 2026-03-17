@@ -99,11 +99,12 @@ You cannot clone from a Neo4j latest version instance to a Neo4j version 4 insta
 
 === Clone to a new instance
 
-. From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *New instance* from the contextual menu.
-. Set your desired settings for the new database.
-For more information on AuraDB database creation, see xref:getting-started/create-instance.adoc[Create an instance].
+. From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *New instance*.
+. Set your desired settings for the new instance.
+For more information see xref:getting-started/create-instance.adoc[Create an instance].
 . Check the *I accept* box and select *Create*.
-+
+
+
 [WARNING]
 ====
 Make sure that the username and password are stored safely before continuing.
@@ -120,8 +121,8 @@ Cloning into an existing instance will replace all existing data.
 If you want to keep the current data, take a snapshot and export it.
 ====
 
-. From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *Existing instance* from the contextual menu.
-. Select the existing AuraDB database to clone to from the dropdown menu.
+. From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *Existing instance*.
+. Select the existing AuraDB instance to clone to from the dropdown menu.
 +
 [NOTE]
 ====
