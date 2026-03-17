@@ -101,17 +101,15 @@ image::multiple-databases/create-database.png[]
 == Manage multiple databases
 
 Access database details from *Inspect > Databases* within a running instance.
+Use the search bar to filter by name.
 
 The table shows:
 
 * Database names (the default database is labeled)
 * Number of nodes and relationships
-* Status (e.g. `CREATING`, `RUNNING`)
-
-`RUNNING` indicates the database is online and ready to accept connections.
+* Status e.g. `CREATING`, `RUNNING` indicates the database is online and ready to accept connections.
 
 Use the three-dot menu for database-specific actions.  
-Use the search bar to filter by name.
 
 == Backups
 
@@ -129,19 +127,15 @@ Aura manages the `system` database and handles administrative routing automatica
 The system database is used for RBAC and SSO configuration.  
 You do not need to interact with it.
 
-=== Explore and Query
+== Working with multiple databases
 
-Use the connection bar in Explore and Query to select the database you want to work with.
+Multiple databases are supported across Aura tools:
 
-=== Metrics
+* *Explore and Query*: Use the connection bar to select the database you want to work with.
+* *Metrics*: Use the database dropdown in *Metrics > Database* to switch between databases. Metrics are available per database.
+* *Import*: Select both the instance and the target database when running an import.
 
-Metrics support database-level selection and charts.  
-Integrations provide per-database metrics.
-In *Metrics > Database*, use the dropdown to switch between databases.
 
-=== Import
-
-When running an import, select both the instance and the target database.
 
 == Limitations
 
