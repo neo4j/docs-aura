@@ -16,6 +16,11 @@ It can also be changed with the link:https://neo4j.com/docs/aura/platform/api/sp
 The plugin shares compute and memory resources with the AuraDB server, so you do not incur any additional costs when you enable it.
 This also means that using the plugin can disrupt transactional queries and can impact the instance.
 
+[IMPORTANT]
+====
+Any graphs and models are dropped when the DBMS is restarted (see the xref:graph-analytics/index.adoc#comparison[deployment comparison table]).
+====
+
 
 [[get-started-plugin]]
 === Getting started
