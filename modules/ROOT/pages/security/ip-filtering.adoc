@@ -24,7 +24,7 @@ To create or edit IP filters, users must have one of the following roles:
 The *Aura Agent* organization setting needs to be *disabled* in order to create an IP Filter.
 ====
 
-. In the Aura console, go to *Organization Settings > Security > IP Filtering*
+. In the Aura console, go to *Organization Security > IP Filtering*
 . Add the name and description of the IP filter (Adding a description makes it easier to manage later, because descriptions will be displayed in the Allow List when you’ve finished creating the filter.)
 . Select where to apply the filter:
 .. If you apply a filter to an Organization it applies to all instances in the org
@@ -95,8 +95,7 @@ With IP filtering:
 
 == Using `neo4j-admin database upload` with IP filtering
 
-To use `neo4j-admin database upload` add the specific link:https://support.neo4j.com/s/article/360050504254-What-are-the-public-IP-addresses-to-provision-in-a-firewall-configuration-to-allow-Aura-use[Control Plane Egress] to your IP filter allow list.
-This ensures the temporary connection needed to push data is permitted.
+When setting up an IP filter, *Enable Control Plane access* to allow network access for the Aura Control Plane to selected entities, required when using `neo4j-admin database upload`.
 
 == IP filtering via API
 
