@@ -95,20 +95,7 @@ With IP filtering:
 
 == Using `neo4j-admin database upload` with IP filtering
 
-To use `neo4j-admin database upload` add the specific link:https://support.neo4j.com/s/article/360050504254-What-are-the-public-IP-addresses-to-provision-in-a-firewall-configuration-to-allow-Aura-use[Control Plane Egress] to your IP filter allow list.
-This ensures the temporary connection needed to push data is permitted.
-
-== Using `neo4j-admin database upload` with IP filtering
-
-To use `neo4j-admin database upload` with IP filtering enabled, you must allow control plane access.
-
-In the IP filter configuration, enable the *Control Plane Access* option.
-This allows the temporary connection required to upload data without needing to manually add control plane IP addresses to the allow list.
-
-[NOTE]
-====
-Enabling *Control Plane Access* replaces the need to manually maintain control plane IP addresses in your IP allow list.
-====
+When setting up IP filtering, enable the *Control Plane Access* option to allow network access for the Aura Control Plane to selected entities, required when using `neo4j-admin database upload`.
 
 == IP filtering via API
 
