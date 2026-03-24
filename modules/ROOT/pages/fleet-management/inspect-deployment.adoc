@@ -86,3 +86,52 @@ Refer to link:https://neo4j.com/docs/operations-manual/current/configuration/neo
 The configuration for each server is presented as a list of key-value pairs in a collapsible expander.
 
 The search bar at the top of the page allows you to filter by configuration key across all servers in the deployment.
+
+== Settings
+
+In the *Settings* tab, you can view and change deployment settings. Changes should take effect almost instantly.
+
+=== List of settings
+
+[cols="1,2,1,1,2"]
+|===
+|Name |Description |Minimum version |Edition |Additional requirements
+
+|xref:logging/query-log-analyzer.adoc[Query log analyzer]
+|Enable/disable query log analyzer on the deployment.
+|2026.03
+|Entreprise
+|*db.logs.query.obfuscate_literals: true*
+
+|xref:logging/security-log-analyzer.adoc[Security log analyzer]
+|Enable/disable security log analyzer on the deployment.
+|2026.04
+|Entreprise
+|*db.logs.query.obfuscate_literals: true*
+
+|===
+
+=== Query log analyzer
+
+This setting allows users to opt-in to the query log analyzer feature in their Fleet Manager deployments. For more information, see the xref:logging/query-log-analyzer.adoc[Query log analyzer documentation].
+
+* Minimum required Neo4j version: *2026.03*
+* Required Neo4j edition: *Enterprise*
+* Requires that *db.logs.query.obfuscate_literals* is set to *true* in the neo4j.conf config file.
+
+[NOTE]
+====
+We will collect aggregated and obfuscated query logs which we will store and retain for up to 30 days. You need to enable log obfuscation on your Neo4j deployment to use this feature. For full details on how to set obfuscation, and what is collected, please see the docs.
+====
+
+=== Security log analyzer
+
+This setting allows users to opt-in to the security log analyzer feature in their Fleet Manager deployments. For more information, see the xref:logging/security-log-analyzer.adoc[Security log analyzer documentation].
+
+* Minimum required Neo4j version: *2026.04*
+* Required Neo4j edition: *Enterprise*
+
+[NOTE]
+====
+We will collect aggregated security logs in their current (non-obfuscated) form, including items such as username for login events. We will store and retain these logs for up to 30 days for the log analysis. For full details of what is collected, please see the docs
+====
