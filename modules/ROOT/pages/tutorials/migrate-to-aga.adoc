@@ -55,52 +55,33 @@ Included in the instance cost (plugin)
 
 === Authentication
 
-Unlike standard Neo4j connections, Aura Graph Analytics requires authentication to the Compute Layer (to spin up sessions) separate from the Data Layer (to read your graph).
+Aura Graph Analytics requires authentication with the Aura API to spin up sessions.
+The Aura API credentials are different from the Neo4j database credentials.
 
-How you handle this depends on where you run your code:
+* If you launch your session through the xref:query/introduction.adoc[Query tab] in the Aura console, you are implicitly authorized to create analytics sessions and do not need to generate or provide Aura API keys.
+You only need the Neo4j database credentials to read your data.
 
-==== Scenario A: Running in Aura Console (Simplest)
+* If you launch your session with the Python client or via an external script, you must explicitly authenticate with the Aura API first. +
+To generate Aura API credentials:
+. Navigate to the API Keys page (Organization level).
+. Generate a client ID and a client secret.
 
-Use this for quick exploration via the "Query" tab within Aura.
-No setup required.
-Because you are already logged into the Aura Console, you are implicitly authorized to create analytics sessions. You do not need to generate or provide Aura API keys.
+* Include the credentials in your script before the first call to the session creation method.
 
-Action: You can skip directly to running Cypher.
-
-[source]
-// Works immediately without credentials
-CALL gds.graph.project(..., { memory: '8GB' })
-
-==== Scenario B: Running Python or external scripts
-
-Use this for notebooks, scheduled jobs, or any script running outside the Aura Console.
-You must explicitly authenticate with the Aura API to authorize the creation of compute resources.
-
-* Generate Credentials:
-Navigate to the API Keys page (Organization Level).
-Generate a client_id and client_secret.
-Note: Save the secret immediately; it cannot be viewed again.
-
-* Update Your Code Accordingly (optional):
-Update your scripts or application configuration to retrieve and use these new client_id and client_secret values instead of your database username and password.
-
-Important: Two Layers of Authentication (For Python/External Users)
-
-* Layer 1 (Compute): Aura API credentials unlock the ability to spin up the ephemeral compute session.
-* Layer 2 (Data): If you're loading data from AuraDB or self-managed Neo4j, your standard database username/password unlocks the ability to read your specific graph data.
+[IMPORTANT]
+====
+Save the credentials immediately, as they cannot be viewed again after creation.
+====
 
 === Python client migration
 
-If you use the graphdatascience Python library, you must update how you instantiate the GDS object and how you project graphs.
+If you use the `graphdatascience` Python library, you must update how you instantiate the GDS object and how you project graphs.
 
-==== 1. Connecting to the instance
-
-[.tabbed-example]
+.Connect to the instance
+[.tabbed-example, caption=]
 ====
 [.include-with-AuraDS-or-plugin]
 =====
-You connected directly to a specific database URI.
-
 [source, python, subs=attributes+]
 ----
 from graphdatascience import GraphDataScience
@@ -115,13 +96,13 @@ gds = GraphDataScience(
 
 [.include-with-Aura-Graph-Analytics]
 =====
-You use the GdsSessions class to authenticate with the Aura API and spawn a session.
+Use the `GdsSessions` class to authenticate with the Aura API and spawn a session.
 
 [source, python, subs=attributes+]
 ----
 from graphdatascience.session import GdsSessions, AuraAPICredentials, SessionMemory, DbmsConnectionInfo
 
-# 1. Authenticate with Aura API
+# Authenticate with Aura API
 sessions = GdsSessions(
     api_credentials=AuraAPICredentials(
         client_id="<YOUR_CLIENT_ID>",
@@ -130,14 +111,14 @@ sessions = GdsSessions(
     )
 )
 
-# 2. Define the source database (if loading from AuraDB)
+# Define the source database (if loading from AuraDB)
 db_connection = DbmsConnectionInfo(
     aura_instance_id="<YOUR_INSTANCE_ID>",
     username="neo4j",
     password="<YOUR_PASSWORD>"
 )
 
-# 3. Get or create the session
+# Get or create the session
 # This returns a 'gds' object configured to run on the remote session
 gds = sessions.get_or_create(
     session_name="my-analytics-job",
@@ -145,18 +126,15 @@ gds = sessions.get_or_create(
     db_connection=db_connection
 )
 
-# Now 'gds' works exactly like it did before, but runs on the session
+# Use the 'gds' object to run any commands directly on the session
+
+# Optional: use 'gds.verify_connectivity()' to verify that the connection is correctly configured 
 ----
 =====
 ====
 
-Tip box: You can verify that the connection is correctly configured via the gds.verify_connectivity() utility function.
-
-==== Projecting the graph
-
-Because the compute (AGA) is separate from the storage (AuraDB), you cannot use standard "Native Projections." You must use a Remote Projection to pull data over the network.
-
-[.tabbed-example]
+.Project the graph
+[.tabbed-example, caption=]
 ====
 [.include-with-AuraDS-or-plugin]
 =====
@@ -168,9 +146,13 @@ G = gds.graph.project("my-graph", "Person", "KNOWS")
 
 [.include-with-Aura-Graph-Analytics]
 =====
-Path A: From AuraDB or Self-Managed Neo4j (Remote Projection)
+With Aura Graph Analytics you cannot use a standard native projection.
+You must use a remote projection to pull data over the network.
 
-If the session reads data from a Neo4j source, you must use gds.graph.project with a query that specifically calls gds.graph.project.remote. This special procedure moves data from the source DB to the session.
+**From AuraDB or self-managed Neo4j (Remote projection)**
+
+If the session reads data from a Neo4j source, you must use `gds.graph.project` with a query that specifically calls `gds.graph.project.remote`.
+This procedure moves data from the source DB to the session.
 
 [source, python, subs=attributes+]
 ----
@@ -189,13 +171,14 @@ G, result = gds.graph.project(
 )
 ----
 
-Path B: From DataFrames (Standalone)
+**From a Pandas DataFrame (Standalone)**
 
-If your data comes from a non-Neo4j source (via Pandas DataFrames), there is no connected database to run Cypher against. In this case, you use `gds.graph.construct` to load data directly from memory structures.
+If your data source is not Neo4j (via Pandas DataFrames), there is no connected database to run Cypher against.
+In this case, you use `gds.graph.construct` to load data directly from memory structures.
 
 [source, python, subs=attributes+]
 ----
-# 1. Prepare your DataFrames (Example)
+# Create DataFrames for nodes and relationships
 nodes = pandas.DataFrame({
     "nodeId": [1, 2, 3],
     "labels": ["Person", "Person", "Person"],
@@ -208,7 +191,7 @@ rels = pandas.DataFrame({
     "relationshipType": ["KNOWS", "KNOWS"]
 })
 
-# 2. Construct the graph in the session
+# Construct the graph in the session
 G = gds.graph.construct(
     "my-dataframe-graph", 
     nodes, 
@@ -217,9 +200,6 @@ G = gds.graph.construct(
 ----
 =====
 ====
-
-
-Note: `gds.graph.construct` is highly efficient for data pipelines (e.g., Airflow) where data is already being processed in Python/Pandas before being sent to Aura Graph Analytics.
 
 ==== Cleanup
 
@@ -232,23 +212,23 @@ No cleanup required.
 
 [.include-with-Aura-Graph-Analytics]
 =====
-You should clean up the session when done to stop billing. To do so, you have two options:
+You must delete the session when you no longer need it to stop billing.
+You can either delete the session directly or the `GdsSession` object that wraps it.
 
 [source, python, subs=attributes+]
 ----
-# The sessions.delete function:
-
+# Delete the session
 sessions.delete(session_name="my-analytics-job")
 
-# The gds object
-
+# Delete the 'gds' object
 gds.delete()
 ----
 =====
 ====
 
 === Cypher migration
-If you are running GDS algorithms directly via Cypher (e.g., in Aura Console or Neo4j Browser), the syntax depends on your environment and permission level.
+
+If you run GDS algorithms directly via Cypher (for example in Aura Console or Neo4j Browser), the syntax depends on your environment and permission level.
 
 [.tabbed-example]
 ====
@@ -263,27 +243,28 @@ CALL gds.pageRank.stream('my-graph') YIELD nodeId, score;
 
 [.include-with-Aura-Graph-Analytics]
 =====
-By default, when you are logged into an AuraDB instance, you are automatically authorized to create and manage your own analytics sessions. You do not need to handle API credentials manually.
-How to migrate:
-Simply add a configuration map with a memory key to your projection call. This triggers the remote session creation.
+By default, when you are logged into an AuraDB instance, you are automatically authorized to create and manage your own analytics sessions.
+You do not need to handle API credentials manually, and only need to add a configuration map with a memory key to your projection call.
+This triggers the remote session creation.
 
 [source, cypher, subs=attributes+]
 ----
-// 1. Project and Create Session
-// The {memory: '8GB'} configuration automatically triggers the remote session
+// Project and create session
+// The 'memory' configuration setting automatically triggers the
+// creation of the remote session
 CALL gds.graph.project(
   'my-graph',       
   'Person',
   'KNOWS',
-  {},               // (Optional) Node/Rel Properties config               
-  { memory: '8GB', ttl: duration({hours: 1}) } // <--- Session config 
+  {},               // (Optional) Node/Relationship properties config               
+  { memory: '8GB', ttl: duration({hours: 1}) } // Session configuration
 );
-// 2. Run algorithms normally
-// The system knows 'my-graph' lives in the remote session
+
+// Run algorithms in the same way
 CALL gds.pageRank.stream('my-graph') 
 YIELD nodeId, score;
 
-// 3. Drop the graph to stop the session (stopping costs)
+// Drop the graph to delete the session
 CALL gds.graph.drop('my-graph');
 ----
 =====
