@@ -104,22 +104,10 @@ This setting allows users to opt-in to the query log analyzer feature in their F
 
 [WARNING]
 ====
-Note that setting query obfuscation on will also obfuscate all of the local logs on the running Neo4j deployment, not just the query logs sent and used for query log analysis.
+Note that enabling query obfuscation will also obfuscate all of the local logs on the running Neo4j deployment, not just the query logs sent and used for query log analysis.
 ====
 
 [NOTE]
 ====
 We will collect aggregated and obfuscated query logs which we will store and retain for up to 30 days. You need to enable log obfuscation on your Neo4j deployment to use this feature. For full details on how to set obfuscation, and what is collected, please see the docs.
-====
-
-=== Security log analyzer
-
-This setting allows users to opt-in to the security log analyzer feature in their Fleet Manager deployments. For more information, see the xref:logging/security-log-analyzer.adoc[Security log analyzer documentation].
-
-* Minimum required Neo4j version: *2026.04*
-* Required Neo4j edition: *Enterprise*
-
-[NOTE]
-====
-We will collect aggregated security logs in their current (non-obfuscated) form, including items such as username for login events. We will store and retain these logs for up to 30 days for the log analysis. For full details of what is collected, please see the docs
 ====
