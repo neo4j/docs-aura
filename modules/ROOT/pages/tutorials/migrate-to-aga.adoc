@@ -1,8 +1,9 @@
 = Migrate to Aura Graph Analytics
 :hard-stop-hours: 168 hours
 :hard-stop-days: 7 days
+:default-ttl: 1 hour
 
-This tutorial describes how to migrate existing graph data science workloads to Aura Graph Analytics (AGA) from AuraDS or AuraDB Graph Analytics plugin.
+This tutorial describes how to migrate existing graph data science workloads to Aura Graph Analytics (AGA) from AuraDS or AuraDB Pro Graph Analytics plugin.
 
 == Overview
 
@@ -61,10 +62,7 @@ The Aura API credentials are different from the Neo4j database credentials.
 * If you launch your session through the xref:query/introduction.adoc[Query tab] in the Aura console, you are implicitly authorized to create analytics sessions and do not need to generate or provide Aura API keys.
 You only need the Neo4j database credentials to read your data.
 
-* If you launch your session with the Python client or via an external script, you must explicitly authenticate with the Aura API first. +
-To generate Aura API credentials:
-. Navigate to the API Keys page (Organization level).
-. Generate a client ID and a client secret.
+* If you launch your session with the link:{neo4j-docs-base-uri}/graph-data-science-client/current/[GDS Python client] or via an external script, you must explicitly xref:api/authentication.adoc#_creating_credentials[authenticate] with the Aura API first.
 
 * Include the credentials in your script before the first call to the session creation method.
 
@@ -73,7 +71,7 @@ To generate Aura API credentials:
 Save the credentials immediately, as they cannot be viewed again after creation.
 ====
 
-=== Python client migration
+=== Python client
 
 If you use the `graphdatascience` Python library, you must update how you instantiate the GDS object and how you project graphs.
 
@@ -213,6 +211,8 @@ No cleanup required.
 [.include-with-Aura-Graph-Analytics]
 =====
 You must delete the session when you no longer need it to stop billing.
+If you do not delete it explicitly, the session is deleted automatically anyway when it reaches its <<session-ttl, TTL>>.
+
 You can either delete the session directly or the `GdsSession` object that wraps it.
 
 [source, python, subs=attributes+]
@@ -226,9 +226,9 @@ gds.delete()
 =====
 ====
 
-=== Cypher migration
+=== Cypher
 
-If you run GDS algorithms directly via Cypher (for example in Aura Console or Neo4j Browser), the syntax depends on your environment and permission level.
+If you run GDS algorithms directly via Cypher (for example in Aura Console or Neo4j Browser), you only need to update your projection query and include the configuration parameters that trigger the on-demand session.
 
 [.tabbed-example]
 ====
@@ -291,9 +291,11 @@ To prevent this, the Python client has an link:https://neo4j.com/docs/graph-data
 
 The Cypher API does not include an estimation procedure, so you may need to adjust the memory parameter by trial and error.
 
+[#session-ttl]
 === Session Time-To-Live
 
 Always set a Time-To-Live (TTL) limit for your sessions to prevent accidental costs, for example if a script crashes before it can tear down the session.
+If you do not set one, the default TTL value is {default-ttl}.
 
 === Long-running workflows
 
@@ -305,8 +307,3 @@ If your workflow duration is likely to exceed the limit, you must either reduce 
 
 Since the creation of a new session involves provisioning a new compute infrastructure and is not instantaneous, do not create sessions inside synchronous or latency-sensitive user requests such as API calls.
 Either create a session beforehand or use an asynchronous job queue instead.
-
-=== Model persistence
-
-Machine learning models are discarded when a session is deleted.
-If you need to reuse a model, train it again in the new session.
