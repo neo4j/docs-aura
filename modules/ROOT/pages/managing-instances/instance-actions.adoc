@@ -256,14 +256,15 @@ image::marked-as-production.png[]
 == Delete an instance
 
 Delete an instance using the trashcan icon on the instance card.
-
 Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
+
+Deleting an instance also removes all associated snapshots, so they cannot be used to backup and restore data. If you may need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] and export and save it on your computer, before deleting the instance.
 
 [WARNING]
 ====
-There is no way to recover data from a deleted Aura instance.
+There is no way to recover data from a deleted Aura instance, including snapshots.
+If you may need the data later, export a snapshot before deleting the instance.
 ====
-
 
 [role=label--aura-db-dedicated label--aura-db-business-critical label--aura-db-professional]
 == Metrics
