@@ -3,7 +3,7 @@
 :hard-stop-days: 7 days
 :default-ttl: 1 hour
 
-This tutorial describes how to migrate existing graph data science workloads to Aura Graph Analytics (AGA) from AuraDS or AuraDB Pro Graph Analytics plugin.
+This guide provides an overview of the prerequisites and preparation steps needed to migrate existing graph data science workloads to Aura Graph Analytics (AGA) from AuraDS or the AuraDB Pro Graph Analytics plugin.
 
 == Overview
 
@@ -18,7 +18,7 @@ This change results in the architectural differences and operational considerati
 |Compute resource
 |Always-on instance (AuraDS) +
 Shared DB resources (plugin)
-|Sessions created on-demand for the duration of the task
+|Sessions created on-demand for the duration of the task; no shared resources
 
 |Data location
 |Data resides on the same machine as the compute
