@@ -213,7 +213,7 @@ No cleanup required.
 You must delete the session when you no longer need it to stop billing.
 If you do not delete it explicitly, the session is deleted automatically anyway when it reaches its <<session-ttl, TTL>>.
 
-You can either delete the session directly or the `GdsSession` object that wraps it.
+You can either delete the session explicitly by referencing the session name or call `delete()` on the `gds` object.
 
 [source, python, subs=attributes+]
 ----
