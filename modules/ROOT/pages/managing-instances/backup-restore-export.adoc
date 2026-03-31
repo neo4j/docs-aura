@@ -39,11 +39,24 @@ See <<snapshot-details>> further on for information about frequency, restorabili
 An *On Demand* snapshot is a snapshot that you manually trigger with the *Take snapshot* button.
 This type of snapshot is the only snapshot available for Free instances.
 
-
 == Snapshot actions
 
+Slightly different UI for an instance with a Single Database or an instance with Multiple Databases.
+
+.Single DB
 image::snapshot-actions.png[width=400]
 
+.Multiple Database
+
+== Backups for multiple databases
+
+Backups are managed at the database level.
+
+From *Inspect > Backups*, use the *Select Database* dropdown to choose a database.
+
+[.shadow]
+.Backups
+image::multiple-databases/backups.png[]
 
 [[export-create]]
 === Export / Create

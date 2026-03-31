@@ -6,75 +6,68 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 
 == Overview
 
-AuraDB Business Critical and AuraDB Virtual Dedicated Cloud support multiple databases within an AuraDB instance (DBMS).  
+AuraDB Business Critical and AuraDB Virtual Dedicated Cloud support multiple databases within an AuraDB instance. 
 You can create and manage databases using the Aura Console or the Aura API.
-
 An instance has its own compute and storage, and the databases run within the instance.
 
-=== Use cases
-
-Use multiple databases when you need clear separation within a single Aura instance.
-Multiple databases keep data organised within a single instance, without the overhead of managing multiple instances.
-
-* Less administrative overhead compared to running multiple instances
-* Development and test environments
-* Different teams or features working in the same instance
-
-=== Feature matrix
-
-The table compares features available for single-database and multi-database instances.  
-A dash (–) indicates the feature is not currently supported.
-
-[cols="1,1,1"]
-|===
-| Feature | Instance with a Single Database | Instance with Multiple Databases
-
-| Aura Agents
-| ✓
-| –
-
-| Backup and restore
-| ✓
-| ✓
-
-| CMK
-| ✓
-| –
-
-| IP filtering
-| ✓
-| –
-
-| Pause and resume
-| ✓
-| –
-
-| Private link
-| ✓
-| ✓
-
-| Push to cloud
-| ✓
-| ✓
-
-| Rename databases
-| ✓
-| –
-
-| Secondaries
-| ✓
-| –
-
-| Tool authentication
-| ✓
-| –
-|===
+== RAM and Database Limits
 
 == Max number of databases
 
 All databases share the instance’s compute and memory resources.  
-The maximum number of databases depends on the memory (RAM) of the instance.  
-For example, a 4GB instance supports up to 4 databases.
+The maximum number of databases depends on the instance size (RAM) of the instance.  
+
+[cols="1,1", options="header"]
+|===
+| Available Instance Memory | Maximum Databases
+
+| 32GB
+| 160
+
+| 64GB
+| 320
+
+| 128GB
+| 500
+
+| 256GB+
+| 500
+|===
+
+=== Use cases
+
+Use multiple databases when you need clear separation of data within a single instance, without managing multiple instances.
+
+* Lower administrative overhead compared to running multiple instances
+* Development and test environments
+* Different teams or features working in the same instance
+* Faster to create and remove than separate instances
+
+Example: multi-tenant systems  
+You can create lightweight, isolated databases for individual tenants (such as customers or groups), scaling from a few to hundreds within one instance.
+
+== Example: consolidated environments
+
+A single instance (for example, 8 GB) can host multiple environments:
+
+* Production — 4 GB
+* Development / testing — 2 GB
+* Training / preview — 1 GB (for example, a small Northwind dataset)
+
+This allows you to combine environments into one instance instead of running separate instances for each.
+
+== Example use case 
+
+Consolidated Environments (configuration: Dev / Test / Production)
+
+A single instance (e.g. 8 GB) can be split across multiple databases:
+
+Instead of running separate instances for development, testing, and production, environments can be combined into a single instance.
+
+Production 4GB
+Dev / testing 2GB
+Training / Preview 1GB e.g. tiny Northwind dataset
+All in the same instance
 
 == Enable multiple databases
 
@@ -91,9 +84,8 @@ image::multiple-databases/multiple-databases-toggle.png[]
 To create a database, connect to your instance.  
 From the more menu (three dots), select *Inspect*, then go to the *Databases* tab.
 
-Use *Create Database* to add a new database.  
-A default name is assigned automatically (for example, `293fd870`).
-
+Select *Create Database* to add a new database.  
+A default name is generated automatically (for example, `293fd870`).
 The `DEFAULT` database cannot be deleted.
 
 [.shadow]
@@ -101,6 +93,9 @@ The `DEFAULT` database cannot be deleted.
 image::multiple-databases/create-database.png[]
 
 == Manage multiple databases
+
+Access multiple databases as if you where 
+See manage instances xref:== [Inspect an instance's details]
 
 Access database details from *Inspect > Databases* within a running instance.
 Use the search bar to filter by name.
@@ -113,36 +108,27 @@ The table shows:
 
 Use the three-dot menu for database-specific actions.  
 
-== Backups
-
-Backups are managed at the database level.
-
-From *Inspect > Backups*, use the *Select Database* dropdown to choose a database.
-
-[.shadow]
-.Backups
-image::multiple-databases/backups.png[]
-
 == Database administration
 
 Aura manages the `system` database and handles administrative routing automatically.  
 The system database is used for RBAC and SSO configuration.  
 You do not need to interact with it.
 
-== Working with multiple databases
+== Supported features:
 
 Multiple databases are supported across Aura tools:
+.. for working with multiple databases
 
+* xref:managing-instances/backup-restore-export.adoc[Backup, export, and restore] You can take snapshots of your databases - Backup / snapshots 
 * *Explore and Query*: Use the connection bar to select the database you want to work with.
 * *Metrics*: Use the database dropdown in *Metrics > Database* to switch between databases. Metrics are available per database.
 * *Import*: Select both the instance and the target database when running an import.
 
-
-
-== Limitations
+== Unsupported features:
 
 Some features are not available for multi-database instances:
 
 * Custom database naming or renaming.
 * Pause and resume for instances or individual databases.
 * Databases cannot be created using Cypher database management commands.  
+

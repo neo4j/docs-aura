@@ -112,3 +112,7 @@ Thus, reducing the data (nodes, relationships, properties) stored in the databas
 However, Neo4j will reuse this 'available' space before allocating more from the system.
 The amount of allocated space that is 'available' is reported by the database, and Advanced metrics uses this metric to derive the used space by subtracting it from the allocated store size.
 This information can help you understand how close your database is to exceeding the assigned storage size.
+
+== Multiple databases
+
+As usual, but can choose the database from the dropdown 
