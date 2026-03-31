@@ -156,10 +156,7 @@ This procedure moves data from the source DB to the session.
 ----
 # The query runs on your DB, but projects into the session
 query = """
-    CALL () {
-        MATCH (n:Person)-[:KNOWS]->(m:Person)
-        RETURN n, m
-    }
+    MATCH (n:Person)-[:KNOWS]->(m:Person)
     RETURN gds.graph.project.remote(
         n, 
         m
