@@ -156,10 +156,13 @@ This procedure moves data from the source DB to the session.
 ----
 # The query runs on your DB, but projects into the session
 query = """
-    CALL gds.graph.project.remote(
-      $graph_name,
-      'MATCH (n:Person) RETURN n',
-      'MATCH (n:Person)-[r:KNOWS]->(m:Person) RETURN n, r, m'
+    CALL () {
+        MATCH (n:Person)-[:KNOWS]->(m:Person)
+        RETURN n, m
+    }
+    RETURN gds.graph.project.remote(
+        n, 
+        m
     )
 """
 
@@ -252,10 +255,11 @@ This triggers the remote session creation.
 // Project and create session
 // The 'memory' configuration setting automatically triggers the
 // creation of the remote session
-CALL gds.graph.project(
+MATCH (n:Person)-[:KNOWS]->(m:Person)
+RETURN gds.graph.project(
   'my-graph',       
-  'Person',
-  'KNOWS',
+  n,
+  m,
   {},               // (Optional) Node/Relationship properties config               
   { memory: '8GB', ttl: duration({hours: 1}) } // Session configuration
 );
