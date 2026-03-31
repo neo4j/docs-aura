@@ -89,12 +89,14 @@ The search bar at the top of the page allows you to filter by configuration key 
 
 == Settings
 
-In the *Settings* tab, you can view and change deployment settings. Changes should take effect almost instantly.
+In the *Settings* tab, you can view and change deployment settings.
+Changes should take effect almost instantly.
 
 [role=label--enterprise-edition label--new-2026.03]
 === Query log analyzer
 
-This setting allows users to opt-in to the query log analyzer feature in their Fleet Manager deployments. For more information, see the xref:logging/query-log-analyzer.adoc[Query log analyzer documentation].
+This setting allows users to opt-in to the query log analyzer feature in their Fleet Manager deployments. 
+For more information, see the xref:logging/query-log-analyzer.adoc[Query log analyzer documentation].
 
 Requires that *db.logs.query.obfuscate_literals* is set to *true* in the neo4j.conf config file.
 
@@ -109,5 +111,6 @@ Note that enabling query obfuscation will also obfuscate all of the local logs o
 
 [NOTE]
 ====
-We will collect aggregated and obfuscated query logs which we will store and retain for up to 30 days. You need to enable log obfuscation on your Neo4j deployment to use this feature.
+Aggregated and obfuscated query logs are collected and these are stored and retained for up to 30 days. 
+You need to enable log obfuscation on your Neo4j deployment to use this feature.
 ====
