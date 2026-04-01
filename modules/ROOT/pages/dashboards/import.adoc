@@ -29,22 +29,25 @@ This means that the import can be run.
 
 === Supported legacy NeoDash reports
 
+:check-mark: icon:check[]
+:cross-mark: icon:times[]
+
 [cols="9,^4",options="header",grid="cols"]
 |===
 | NeoDash                                      | Aura dashboards
 
-| Table                                        | ✅ 
-| Graph                                        | ✅ 
-| Bar chart                                    | ✅ 
-| Pie chart                                    | ✅ 
-| Line chart                                   | ✅ 
+| Table                                        | {check-mark}
+| Graph                                        | {check-mark}
+| Bar chart                                    | {check-mark}
+| Pie chart                                    | {check-mark}
+| Line chart                                   | {check-mark}
 | Map                                          | Converted to graph 
-| Single value                                 | ✅ 
-| Raw JSON                                     | ❌ 
+| Single value                                 | {check-mark}
+| Raw JSON                                     | {cross-mark}
 | Parameter select                             | Only node and relationship properties  
-| Form                                         | ❌
-| iFrame                                       | ❌ 
-| Markdown                                     | ✅ 
+| Form                                         | {cross-mark}
+| iFrame                                       | {cross-mark}
+| Markdown                                     | {check-mark}
 
 |===
 

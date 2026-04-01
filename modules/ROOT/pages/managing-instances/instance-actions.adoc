@@ -98,11 +98,12 @@ You cannot clone from a Neo4j latest version instance to a Neo4j version 4 insta
 
 === Clone to a new instance
 
-. From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *New instance* from the contextual menu.
-. Set your desired settings for the new database.
-For more information on AuraDB database creation, see xref:getting-started/create-instance.adoc[Create an instance].
+. From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *New instance*.
+. Set your desired settings for the new instance.
+For more information see xref:getting-started/create-instance.adoc[Create an instance].
 . Check the *I accept* box and select *Create*.
-+
+
+
 [WARNING]
 ====
 Make sure that the username and password are stored safely before continuing.
@@ -119,8 +120,8 @@ Cloning into an existing instance will replace all existing data.
 If you want to keep the current data, take a snapshot and export it.
 ====
 
-. From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *Existing instance* from the contextual menu.
-. Select the existing AuraDB database to clone to from the dropdown menu.
+. From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *Existing instance*.
+. Select the existing AuraDB instance to clone to from the dropdown menu.
 +
 [NOTE]
 ====
@@ -254,14 +255,15 @@ image::marked-as-production.png[]
 == Delete an instance
 
 Delete an instance using the trashcan icon on the instance card.
-
 Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
+
+Deleting an instance also removes all associated snapshots, so they cannot be used to backup and restore data. If you may need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] and export and save it on your computer, before deleting the instance.
 
 [WARNING]
 ====
-There is no way to recover data from a deleted Aura instance.
+There is no way to recover data from a deleted Aura instance, including snapshots.
+If you may need the data later, export a snapshot before deleting the instance.
 ====
-
 
 [role=label--aura-db-dedicated label--aura-db-business-critical label--aura-db-professional]
 == Metrics

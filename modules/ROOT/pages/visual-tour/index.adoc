@@ -1,7 +1,6 @@
 [[visual-overview]]
 = Visual tour of the console
 :description: This section introduces the console UI.
-:gds-sessions-page: {neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/
 
 == Structure
 
@@ -53,7 +52,7 @@ image::organization-settings.jpg[]
 === Generative AI assistance
 
 When enabled, Generative AI assistance is available in a number of places, including the xref:query/visual-tour.adoc#copilot[Query copilot] and xref:explore/explore-visual-tour/search-bar.adoc#copilot[Explore copilot].
-These features are always identified with a ✨ and your use is subject to the link:{neo4j-docs-base-uri}/reference/license/#_genai_outputs[GenAI outputs] disclaimer.
+These features are identified with the sparkle icon and your use is subject to the link:{neo4j-docs-base-uri}/reference/license/#_genai_outputs[GenAI outputs] disclaimer.
 
 === Aura Agent
 
@@ -68,7 +67,7 @@ See xref:aura-agent.adoc[Aura Agent] for more information about agents.
 [[graph-analytics-org-settings]]
 === Aura Graph Analytics settings
 
-From this page you can enable or disable link:{gds-sessions-page}[Aura Graph Analytics], as well as configure the following settings:
+From this page you can enable or disable xref:../graph-analytics/aga.adoc[Aura Graph Analytics], as well as configure the following settings:
 
 * The maximum available memory for each session
 * The maximum number of concurrent sessions within the organization
@@ -96,7 +95,7 @@ See the xref:import/introduction.adoc[What is Import?] for more information abou
 [[graph-analytics-page]]
 === Graph Analytics
 
-This page lists the link:{gds-sessions-page}[Aura Graph Analytics] sessions associated with a project.
+This page lists the xref:../graph-analytics/aga.adoc[Aura Graph Analytics] sessions associated with a project.
 
 By default, the list displays active sessions.
 You can view past sessions by switching on the **Include deleted sessions** toggle.

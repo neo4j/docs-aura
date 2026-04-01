@@ -4,7 +4,7 @@
 [NOTE]
 ====
 The Aura CLI makes heavy use of console commands containing the keyword `tenant`.
-To be consistent with that, all Aura CLI documentation pages use the term "tenant", which other parts of the documentation refer to as "project" instead, which is the xref:new-console.adoc#_topology[topological evolution] of "tenant".
+To be consistent with that, all Aura CLI documentation pages use the term "tenant", which other parts of the documentation refer to as "project" instead, which is the topological evolution of "tenant".
 ====
 
 The Aura CLI provides a full set of commands to manage the lifecycle of an AuraDB instance.
@@ -248,7 +248,7 @@ When the status is "Running" the overwrite is completed.
 Encryption of data at REST is a standard feature of AuraDB and uses keys from a supported cloud key management service (KMS).
 AuraDB Virtual Dedicated Cloud customers may wish to use their own encryption keys, a capability that is referred to as Customer-Managed Encryption Keys (CMEK).
 
-For more information about Customer Managed Keys, see xref:security/encryption.adoc#_customer_managed_keys[Encryption].
+For more information about Customer Managed Keys, see xref:security/customer-managed-keys.adoc[Encryption].
 It is recommended to familiarize yourself with this before proceeding.
 
 The Aura CLI allows management of this feature with these commands:
