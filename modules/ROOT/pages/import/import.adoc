@@ -1,5 +1,5 @@
 [[import]]
-:description: This section describes how to do the actual import of data with Neo4h Import.
+:description: This section describes how to do the actual import of data with Neo4j Import.
 = Run the import
 
 Once the files are provided, the data model complete, and all elements mapped, the import can be run.
@@ -33,7 +33,10 @@ When you are happy with the model and the mapping is complete, the import can be
 But before starting the import, it is important to make sure Import is connected to the database.
 This is done in the dropdown on the connection banner located in the top center of the UI.
 
-// Add something about the DB switcher here, when that is available.
+=== Import to an instance with multiple databases
+
+If your instance contains multiple databases, select the target database before running the import.
+The import is applied to the selected database.
 
 [.shadow]
 .Connection dropdown
