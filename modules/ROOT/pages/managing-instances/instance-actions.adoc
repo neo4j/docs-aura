@@ -14,7 +14,9 @@ This is possible from both Aura instances as well as self-managed deployments (s
 .Connect to tools
 image::connect-to-tools.png[]
 
-== Pause an instance
+== Instance lifecycle
+
+=== Pause an instance
 
 Pausing a Neo4j instance temporarily stops the database, which means:
 
@@ -64,6 +66,27 @@ Aura Free instances do not automatically resume after 30 days.
 If an Aura Free instance remains paused for more than 30 days, Aura deletes the instance, and all information is lost.
 ====
 
+=== Delete an instance
+
+Delete an instance using the trashcan icon on the instance card.
+Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
+
+Deleting an instance also removes all associated snapshots, so they cannot be used to backup and restore data. If you may need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] and export and save it on your computer, before deleting the instance.
+
+[WARNING]
+====
+There is no way to recover data from a deleted Aura instance, including snapshots.
+If you may need the data later, export a snapshot before deleting the instance.
+====
+
+[role=label--aura-db-professional label--AuraDB-Free]
+=== Reset an instance
+
+You can clear all data in an instance using the *Reset to blank* action.
+
+Select *Reset to blank* from the *(...)* more menu on the instance card.
+You need to confirm your intention since this action cannot be undone.
+
 == Inspect an instance's details
 
 From the instance card, select the more menu (*...*) then select *instance details*.
@@ -80,7 +103,9 @@ Snapshots are taken at regular intervals and can be used to download or dump you
 You can also restore backups of 4GB or less.
 See xref:managing-instances/backup-restore-export.adoc[Backup, export, restore, and upload] for more information
 
-== Clone an instance
+== Clone data
+
+=== Clone an instance
 
 You can clone an existing instance to create a new instance with the same data.
 You can clone across regions, and from Neo4j version 4 to Neo4j latest version.
@@ -131,8 +156,9 @@ Existing instances that are not large enough to clone into will not be available
 +
 . Check the *I understand the target instance will be overwritten* box and select *Clone*.
 
+== Environment
 
-== Upgrade an instance
+=== Upgrade instance 
 
 AuraDB Free instances have an *Upgrade* button that you can use to upgrade to either Professional or Business Critical.
 You can upgrade an AuraDB Professional instance to an Business Critical instance using the *Upgrade* action from the *(...)* menu.
@@ -150,24 +176,36 @@ The GDS plugin is not supported in AuraDB Business Critical.
 *Minimum instance size:*
 If you try to upgrade a 1GB Professional instance, you need to resize it to at least 2GB of storage, because this is the minimum supported size in AuraDB Business Critical.
 
+[role=label--aura-db-dedicated label--aura-db-business-critical]
+=== Mark an instance as `production`
+
+Admins can mark a database instance as `production` in AuraDB Virtual Dedicated Cloud and AuraDB Business Critical.
+
+When Neo4j updates Aura Database versions, instances marked as `production` are last to have the Aura Database version updated.
+Because updates are applied to these database instances after other database instances receive updates, you can monitor any potential impact on less critical instances first.
+
+After marking the instance as `production` the label is applied immediately, and all instance actions (such as pause or clone) are temporarily unavailable while the instance is set to `production` in the Neo4j backend.
+
+Use the more menu (*...*) on the instance card to mark it as `production`.
+
+[.shadow]
+.Mark an instance as production
+image::mark-as-production.png[]
+
+[.shadow]
+.Instance marked as production
+image::marked-as-production.png[]
 
 [role=label--aura-db-dedicated label--aura-db-business-critical]
-== Edit Secondary Count
+=== Edit secondary count
 
 Secondaries are read-only copies of your database used for scaling.
 You can edit the number of secondary copies on applicable instances.
 See xref:managing-instances/secondaries.adoc[Secondaries] for more information.
 
+== Resize
 
-[role=label--aura-db-professional label--AuraDB-Free]
-== Reset an instance
-
-You can clear all data in an instance using the *Reset to blank* action.
-
-Select *Reset to blank* from the *(...)* more menu on the instance card.
-You need to confirm your intention since this action cannot be undone.
-
-== Resize an instance
+=== Resize an instance
 // label:AuraDB-professional[]
 // label:AuraDB-enterprise[]
 // label:AuraDB-business-critical[]
@@ -185,8 +223,7 @@ Note that this option is *not available* for *Free instances*.
 You can change the size of an existing instance using the *Configure* button on the instance you want to resize.
 From the *Configure Instance* settings, go to **Sizing** and then select the preferred sizes from the dropdown.
 
-
-== Adjust memory and CPU
+=== Adjust memory and CPU
 
 You select the amount of resources you need when you create your AuraDB instance, but this can be adjusted at any time if your needs change.
 
@@ -199,8 +236,7 @@ You may *reduce* your memory and CPU, provided that the new value is *equal to o
 .Adjust memeory and CPU
 image::adjust-memory-cpu.jpg[width=600]
 
-
-== Adjust storage
+=== Adjust storage
 
 [NOTE]
 ====
@@ -230,41 +266,6 @@ image::adjust-storage1.jpg[width=600]
 Custom endpoints are used for database management and migration.
 You set up endpoints in the *Project settings*.
 See xref:managing-instances/custom-endpoints.adoc[Custom endpoints] for more information.
-
-
-[role=label--aura-db-dedicated label--aura-db-business-critical]
-== Mark an instance as `production`
-
-Admins can mark a database instance as `production` in AuraDB Virtual Dedicated Cloud and AuraDB Business Critical.
-
-When Neo4j updates Aura Database versions, instances marked as `production` are last to have the Aura Database version updated.
-Because updates are applied to these database instances after other database instances receive updates, you can monitor any potential impact on less critical instances first.
-
-After marking the instance as `production` the label is applied immediately, and all instance actions (such as pause or clone) are temporarily unavailable while the instance is set to `production` in the Neo4j backend.
-
-Use the more menu (*...*) on the instance card to mark it as `production`.
-
-[.shadow]
-.Mark an instance as production
-image::mark-as-production.png[]
-
-[.shadow]
-.Instance marked as production
-image::marked-as-production.png[]
-
-
-== Delete an instance
-
-Delete an instance using the trashcan icon on the instance card.
-Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
-
-Deleting an instance also removes all associated snapshots, so they cannot be used to backup and restore data. If you may need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] and export and save it on your computer, before deleting the instance.
-
-[WARNING]
-====
-There is no way to recover data from a deleted Aura instance, including snapshots.
-If you may need the data later, export a snapshot before deleting the instance.
-====
 
 [role=label--aura-db-dedicated label--aura-db-business-critical label--aura-db-professional]
 == Metrics
