@@ -3,10 +3,13 @@
 :description: This page describes metrics in the Neo4j Aura console.
 :page-aliases: auradb/managing-databases/monitoring.adoc, auradb/managing-databases/advanced-metrics.adoc, aurads/managing-databases/monitoring.adoc, aurads/managing-databases/advanced-metrics.adoc
 
-You can get a view of instance resources from the instance card.
+You can access metrics in two ways:
 
-You can also monitor the following metrics of an instance from the *Metrics* tab.
-Then from the tabs at the top, you can navigate between resources, instance and database metrics.
+* From the instance card, expand the *Metrics* section to view a summary, or select *View all metrics* to open the full metrics page.
+* From the sidebar, go to *Operations* → *Metrics*m for the full metrics page.
+
+When accessed from an instance, metrics are shown for that instance by default.
+In the full metrics page, you can switch between *Resources, Instance,* and *Database* metrics.
 
 The metrics are laid out across three tabs according to their category:
 
@@ -16,7 +19,7 @@ The metrics are laid out across three tabs according to their category:
 
 image::metrics.png[]
 
-Select the info icon to see information about a particular metric, and you can expland the graph.
+Select the info icon to see information about a particular metric, and you can expand the graph.
 
 image::moreinfo.png[]
 
@@ -115,4 +118,6 @@ This information can help you understand how close your database is to exceeding
 
 == Multiple databases
 
-As usual, but can choose the database from the dropdown 
+If your instance contains multiple databases, select the database from the dropdown in the Metrics view.
+Metrics are shown for the selected database.
+For more information, see xref:managing-instances/multiple-databases.adoc[Multiple databases].
