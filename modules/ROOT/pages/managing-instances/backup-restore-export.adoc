@@ -41,21 +41,22 @@ This type of snapshot is the only snapshot available for Free instances.
 
 == Snapshot actions
 
-Slightly different UI for an instance with a Single Database or an instance with Multiple Databases.
+From the *Snapshots* tab, use the more menu (*...*) next to a snapshot to access available actions, such as export or restore.
+If your instance contains a single database, backups apply to the entire instance.
 
-.Single DB
+.Single database
 image::snapshot-actions.png[width=400]
 
-.Multiple Database
+== Backups in multiple database instances
 
-== Backups for multiple databases
+If your instance contains multiple databases, backups are managed at the database level rather than the instance level.
 
-Backups are managed at the database level.
+From *Inspect > Backups*, use the *Select database* dropdown to choose a database.
 
-From *Inspect > Backups*, use the *Select Database* dropdown to choose a database.
+All snapshot, restore, and export actions apply to the selected database.
 
 [.shadow]
-.Backups
+.Multiple database - Backups
 image::multiple-databases/backups.png[]
 
 [[export-create]]
@@ -85,7 +86,7 @@ Use the toggle **Show exportable only** on top of the list of snapshots to filte
 
 
 [[restore-snapshot]]
-=== Restore
+=== Restore from snapshot
 
 [CAUTION]
 ====
