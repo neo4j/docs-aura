@@ -1,0 +1,84 @@
+= List parameter
+
+List parameters allow you to pass multiple values into a query and reuse them across different parts of a dashboard.
+
+Instead of filtering on a single value, you can define a list and use it to control how data is selected, grouped, or compared. 
+This makes it easier to apply consistent filters across multiple queries and build more interactive views.
+
+You define the parameter once, then reference it in Cypher using the $ prefix.
+
+== Example
+
+Explore Northwind data by location with a list parameter.
+
+You can use a list parameter to filter dashboard queries by location instead of product.
+For example, you might use a parameter named $list to store a set of selected countries:
+
+`$list = ["UK", "France", "Germany"]`
+
+In this case, the parameter represents the locations currently in focus.
+
+To create this parameter in the dashboard UI:
+
+Open Parameters.
+Create a new parameter named $list.
+Set Default value type to List.
+Set List element type to String.
+Add one or more country names as default values.
+
+Once the parameter is defined, you can reference it in Cypher queries.
+
+== Count orders by selected country
+
+The following query returns the number of orders shipped to each country in $list:
+
+[source,cypher]
+----
+MATCH (o:Order)
+WHERE o.shipCountry IN $list
+RETURN o.shipCountry AS country, count(*) AS orders
+ORDER BY orders DESC
+Example: Show products ordered in selected countries
+----
+
+You can also use the same parameter to explore which products are associated with those locations:
+
+[source,cypher]
+----
+MATCH (o:Order)-[:CONTAINS]->(p:Product)
+WHERE o.shipCountry IN $list
+RETURN o.shipCountry AS country,
+       p.productName AS product,
+       count(*) AS orders
+ORDER BY orders DESC
+LIMIT 10
+----
+
+== Explore supplier-to-destination flows
+
+This query shows how supplier countries connect to selected shipping destinations:
+
+[source,cypher]
+----
+MATCH (s:Supplier)-[:SUPPLIES]->(p:Product)<-[:CONTAINS]-(o:Order)
+WHERE o.shipCountry IN $list
+RETURN s.country AS supplierCountry,
+       o.shipCountry AS destinationCountry,
+       count(*) AS shipments
+ORDER BY shipments DESC
+----
+
+Why use a list parameter for location filtering?
+
+A list parameter is useful when you want to:
+
+filter multiple locations in a single query
+reuse the same location selection across several dashboard cards
+create interactive dashboards where one control updates multiple visualizations
+
+This approach works well for exploratory analysis because the same parameter can drive different views of the data, such as orders, products, suppliers, or customers.
+
+Notes
+Use String as the list element type when storing country or city names.
+Use Integer only when the list contains numeric identifiers.
+Make sure the values in $list match the property values in your dataset exactly.
