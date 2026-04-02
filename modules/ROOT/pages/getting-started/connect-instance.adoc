@@ -50,6 +50,12 @@ In an enterprise environment with restrictive networking, connection errors are 
 
 Switching to *https://* can address connection issues and ensure seamless connectivity without extra configuration.
 
+== Export connection logs
+
+If a connection to your Aura database fails, an “Export connection logs” button in the connection screen appears.
+Selecting it downloads a simple text file with technical details about what went wrong.
+Use that file to debug the issue yourself, or share it with Support.
+
 == Instance credentials
 
 When you create an instance in the Aura console, you have the option to download a credential file that contains:
