@@ -192,11 +192,11 @@ This granular view is useful for investigating specific incidents or understandi
 | List of servers where the query was executed.
 
 | Apps
-| app
+| annotationData.app
 | List of applications that initiated the query.
 
 | Initiation types
-| initiationType
+| annotationData.initiationType
 | List of query initiation types.
 
 |===
@@ -245,11 +245,11 @@ This granular view is useful for investigating specific incidents or understandi
 | The database driver used to execute the query.
 
 | Application
-| app
+| annotationData.app
 | The application that initiated the query.
 
 | Initiation type
-| initiationType
+| annotationData.initiationType
 | The type of query initiation.
 
 | Alloc bytes
