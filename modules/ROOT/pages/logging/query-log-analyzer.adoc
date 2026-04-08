@@ -6,7 +6,11 @@
 :max-request-hours: 24
 :page-role: aura-db-professional aura-db-business-critical aura-db-dedicated
 
-Query log analyzer is a feature that provides a UI to review the queries executed on an Aura instance.
+Query log analyzer is a feature that provides a UI to review the queries executed on an Aura instance or a self-managed deployment.
+
+Query log analyzer is similar between Aura instances and self-managed deployments. The differences are that the summary table has
+more fields for self-managed deployments that are located in the details tab for Aura instances and the details view is not
+available for self-managed deployments.
 
 [NOTE]
 ====
