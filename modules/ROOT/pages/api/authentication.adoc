@@ -13,14 +13,15 @@ The API credentials never expire unless you delete them.
 To create credentials in the Aura console go to the https://console.neo4j.io/account/api-keys[API Keys page] in your browser, or:
 
 * Go to your profile menu from the top right corner of your screen
-* Select *API Keys*
-* Select the *Create* button
+* Select *Account Settings*
+* Select the *API Keys* tab
+* Select the *Generate API key* button
 * Enter a Client *Name*, and select *Create*.
-* *Save* the Client ID and Client Secret you are given in the resulting modal; you will need these for the next step.
+* *Save* the Client ID and Client Secret you are given in the resulting modal.
 
 [CAUTION]
 ====
-You cannot retrieve your secret after you close the modal, so save it securely.
+You cannot retrieve your Client Secret after you close the modal, so save it securely.
 ====
 
 == Authenticating API requests
