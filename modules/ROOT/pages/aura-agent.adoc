@@ -24,6 +24,7 @@ Additionally, you need to enable *Tool authentication* for the project in which 
 This is done from *Security* on the organization level.
 See xref:security/tool-auth.adoc[Tool authentication with Aura user] for more information.
 
+To create, edit, or delete an agent, you need to be a project admin, project members and viewers can list and use agents but not make any changes to them.
 
 [NOTE]
 ====
@@ -33,6 +34,7 @@ This means that *all* interactions with agents go via Belgium, regardless of whe
 
 Aura Agent uses a curated set of AI models to deliver advanced planning, reasoning, retrieval, and explainability.
 For more information on how Aura Agent uses AI models, see link:{neo4j-docs-base-uri}/reference/license/agent-ai-model/[License and disclaimers -> How Aura Agent uses AI models].
+
 
 
 == Create an agent
@@ -326,6 +328,22 @@ image::claude-desktop.jpg[width=600]
 When enabled, Claude will use your Aura Agent when appropriate.
 The first time the agent is invoked, Claude asks for permission to use the agent.
 
+== Import/Export agent
+
+Existing agents can be exported in as _JSON_ format.
+You can either download the _JSON_ file or copy it to the clipboard.
+This is done from the *[...]* menu on the agent.
+
+[.shadow]
+.Export an agent as _JSON_
+image::export-agent.jpg[width=400]
+
+If you have a _JSON_ file of an agent, you can use that to create a new agent.
+Use the *Import agent* button and select the instance the new agent should target.
+Then you can either browse for or paste the configuration for the agent.
+
+You can edit the _JSON_ file, such as change the name of the agent, for example.
+However, keep in mind that *internal* (`"is_private": true`) agents *cannot* be enabled as MCP server (`"is_mcp_enabled": true`).
 
 
 == Learn more
