@@ -1,7 +1,7 @@
 [[instance-actions]]
 = Instance actions
-:description: This page describes the following instance actions - rename, resest, upgrade, resize, pause, resume, clone to a new database, clone to an existing database, or delete and instance.
-:page-alisases: auradb/managing-databases/database-actions.adoc, aurads/managing-instances/instance-actions.adoc
+:description: This page describes the following instance actions - rename, reset, upgrade, resize, pause, resume, clone to a new database, clone to an existing database, or delete an instance.
+:page-aliases: auradb/managing-databases/database-actions.adoc, aurads/managing-instances/instance-actions.adoc
 
 Perform multiple instance actions directly from an instance card: connect to tools, pause/resume, inspect the instance's details, take a snapshot, restore a backup, clone to new instance/clone to existing instance, edit secondaries, delete, resize, view resources/view all metrics.
 
@@ -18,16 +18,14 @@ image::connect-to-tools.png[]
 
 Pausing a Neo4j instance temporarily stops the database, which means:
 
-* No Access to Data: The data stored in the database becomes inaccessible.
-Any applications or users trying to connect to the instance won't be able to run queries or retrieve data until the instance is resumed.
+* No connectivity: Any applications or users trying to connect to the instance won't be able to run queries or retrieve data until the instance is resumed.
 
-* No Processing: The database won't process any operations or transactions while it is paused.
+* No processing: The database won't process any operations or transactions while it is paused.
 Any ongoing operations are halted.
 
-* Data is Preserved: Your data remains safe and unchanged while the instance is paused.
+* Data is preserved: Your data remains safe and unchanged while the instance is paused.
+You may export a backup of your data within its exportable period. 
 When you resume the instance, you can pick up right where you left off.
-
-Pausing is putting the database on hold without shutting it down completely, so you can restart it quickly when needed.
 
 // label:AuraDB-professional[]
 // label:AuraDB-Enterprise[]
@@ -55,8 +53,9 @@ You can pause an instance for up to 30 days, after which point Aura automaticall
 
 Resume a paused instance with the *Play* button on the instance card.
 
-After confirming, the instance begins resuming, which may take a few minutes.
-Resuming an instance restores the database from the backup.
+After confirming, the instance begins resuming.
+When you resume an instance, Aura restarts the instance and restores it from the backup. 
+Resuming the instance can take a few minutes to a few hours, depending on its size.
 
 [WARNING]
 ====
