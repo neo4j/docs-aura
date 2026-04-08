@@ -5,6 +5,7 @@
 
 Perform multiple instance actions directly from an instance card: connect to tools, pause/resume, inspect the instance's details, take a snapshot, restore a backup, clone to new instance/clone to existing instance, edit secondaries, delete, resize, view resources/view all metrics.
 
+[role=label--aura-db-dedicated label--aura-db-business-critical label--aura-db-professional label--aura-db-free]
 == Connect to tools
 
 The *Connect* button allows you to connect your instance to one of the tools; Query, Explore, or Dashboards, or to the Developer hub.
@@ -14,6 +15,7 @@ This is possible from both Aura instances as well as self-managed deployments (s
 .Connect to tools
 image::connect-to-tools.png[]
 
+[role=label--aura-db-dedicated label--aura-db-business-critical label--aura-db-professional]
 == Pause an instance
 
 Pausing a Neo4j instance temporarily stops the database, which means:
@@ -49,6 +51,7 @@ Paused instances run at a discounted rate compared to standard consumption, as o
 You can pause an instance for up to 30 days, after which point Aura automatically resumes the instance.
 ====
 
+[role=label--aura-db-dedicated label--aura-db-business-critical label--aura-db-professional]
 == Resume a paused instance
 
 Resume a paused instance with the *Play* button on the instance card.
@@ -63,6 +66,7 @@ Aura Free instances do not automatically resume after 30 days.
 If an Aura Free instance remains paused for more than 30 days, Aura deletes the instance, and all information is lost.
 ====
 
+[role=label--aura-db-dedicated label--aura-db-business-critical label--aura-db-professional label--aura-db-free]
 == Delete an instance
 
 Delete an instance using the trashcan icon on the instance card.
