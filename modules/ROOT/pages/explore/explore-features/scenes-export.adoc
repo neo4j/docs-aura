@@ -17,8 +17,6 @@ If you switch Scene, the Scene you left is the same when you return to it.
 
 Style settings for a Scene is determined by the Perspective by default.
 If you change the styling, the changes only affect the current Scene and any new Scenes you create follow the Perspective styling.
-If you have write permission on the Perspective, you can choose to save the styling to the Perspective.
-This affects any new Scenes created, but not already existing Scenes.
 
 [.shadow]
 image::styling-perspective.jpg[width=300]
@@ -27,7 +25,9 @@ image::styling-perspective.jpg[width=300]
 ====
 Scenes rely on node and relationship IDs in Neo4j.
 Changes to this underlying data can cause data in saved Scenes to appear incorrectly if IDs are reused by the database.
+This also applies when you pause and then restore an instance.
 ====
+
 
 == Sharing options
 
