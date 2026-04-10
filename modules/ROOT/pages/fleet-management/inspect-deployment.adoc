@@ -124,6 +124,7 @@ For more information, see the xref:logging/security-log-analyzer.adoc[security l
 
 [NOTE]
 ====
-Aggregated security logs are collected and these are stored and retained for up to 30 days.
-For more information about the data collected, see the xref:fleet-management/data.adoc#_queryreportmessage[data transparency documentation].
+Aggregated security logs are collected in their current (non-obfuscated) form, including items such as username for login events.
+These are store and retained for up to 30 days.
+For more information about the data collected, see the xref:fleet-management/data.adoc#_securitylogsreportmessage[data transparency documentation].
 ====
