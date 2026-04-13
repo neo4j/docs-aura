@@ -6,35 +6,20 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 
 == Overview
 
-AuraDB Business Critical and AuraDB Virtual Dedicated Cloud support multiple databases within an AuraDB instance. 
-Create and manage databases using the Aura Console or the Aura API.
+Create and manage multiple databases within an AuraDB instance using the Aura Console or the Aura API.
 An instance has its own compute and storage, and the databases run within the instance.
-
-== How to know if you have it
+Scale from a few to 500 databases within one instance.
 
 If your instance supports multiple databases, they are listed in Instance details → Databases.
 
-== Limits (RAM and maximum databases)
+== Use cases
 
-All databases share the instance’s compute and memory resources.  
-The maximum number of databases depends on the memory size (RAM) of the instance.  
+Use multiple databases when you need clear separation of data within a single instance, without managing multiple instances.
 
-[cols="1,1", options="header"]
-|===
-| Available Instance Memory | Maximum Databases
-
-| 32GB
-| 160
-
-| 64GB
-| 320
-
-| 128GB
-| 500
-
-| 256GB+
-| 500
-|===
+* Lower administrative overhead compared to running multiple instances
+* Development and test environments
+* Different teams or features working in the same instance
+* Faster to create and remove than separate instances
 
 == Enable multiple databases
 
@@ -76,35 +61,32 @@ Use the more menu (*...*) for database-specific actions.
 
 For more information about inspecting an instance's details see xref:managing-instances/instance-actions.adoc#_inspect_an_instances_details[inspect an instances details]
 
-=== Benefits and use cases
+== Limits (RAM and maximum databases)
 
-Use multiple databases when you need clear separation of data within a single instance, without managing multiple instances.
+All databases share the instance’s compute and memory resources.  
+The maximum number of databases depends on the memory size (RAM) of the instance.  
 
-* Lower administrative overhead compared to running multiple instances
-* Development and test environments
-* Different teams or features working in the same instance
-* Faster to create and remove than separate instances
+[cols="1,1", options="header"]
+|===
+| Available Instance Memory | Maximum Databases
 
-Example: multi-tenant systems  
-You can create lightweight, isolated databases for individual tenants (such as customers or groups), scaling from a few to hundreds within one instance.
+| 32GB
+| 160
 
-== Example use case: consolidated environments
+| 64GB
+| 320
 
-Consolidated Environments (configuration: Dev / Test / Production)
+| 128GB
+| 500
 
-A single instance (e.g. 8 GB) can be split across multiple databases:
-
-Instead of running separate instances for development, testing, and production, environments can be combined into a single instance.
-
-Production 4GB
-Dev / testing 2GB
-Training / Preview 1GB e.g. tiny Northwind dataset
-All in the same instance
+| 256GB+
+| 500
+|===
 
 == Supported features
 
-Multiple databases are supported across Aura tools:
-.. for working with multiple databases
+Multiple databases are supported across Aura tools.
+For working with multiple databases, see the following documentation:
 
 * xref:managing-instances/backup-restore-export.adoc[Backup, export, and restore] Take snapshots of your databases.
 * *Explore and Query*: When connecting, select the target database using the connection bar.
