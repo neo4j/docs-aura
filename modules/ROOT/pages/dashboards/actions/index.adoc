@@ -64,10 +64,11 @@ ORDER BY revenue DESC
 
 In the report actions panel set:
 
-. *WHEN* to *Cell click*
-. *ON* to *employee*
-. *SET PARAMETER* to *employee*
-. *NAVIGATE TO PAGE* to *Employee info*
+. *TRIGGER* *Cell click*
+. *ON CELL* *employee*
+. *UPDATE PARAMETER* *employee*
+. *TO CELL VALUE* *employee*
+. *NAVIGATE TO PAGE* *Employee info*
 
 .Add action
 [.shadow]
