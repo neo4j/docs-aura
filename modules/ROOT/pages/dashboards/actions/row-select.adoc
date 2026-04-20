@@ -19,7 +19,8 @@ It lets you pick one column value at a time and bind it to a parameter.
 
 == Example
 
-Using the (Northwind) dataset.
+The examples on this page use the xref::/dashboards/index.adoc#_sample_dataset[Northwind sample dataset] which you can also use.
+
 The selected OrderID values are passed to $orderID.
 We'll then use that in another card to calculate the total freight.
 
@@ -51,7 +52,7 @@ If you select multiple rows, the selected `OrderID` values are stored in the par
 
 Now you can use the `$orderID` value in another card.
 
-For example,
+For example:
 
 .Calculate the total freight across selected orders
 [source,cypher]
