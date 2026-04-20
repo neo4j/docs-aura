@@ -20,6 +20,12 @@ For example, insert the `$employee` parameter value into the URL e.g. `www.neo4j
 An action will always set a parameter and optionally navigate to a dashboard page or an external URL.
 ====
 
+[WARNING]
+====
+Keep data secure! Avoid including sensitive data in URLs, because it will be exposed in browser history and server logs.
+For example, the URL could include someone’s name, such as `?name=David` which means personal data is exposed directly in the URL.
+====
+
 //On click navigate to an external URL, a Bloom scene, another dashboard.
 //Or a specific dashboard page within the same dashboard, optionally passing a parameter into that dashboard page's visualizations too, creating a drill-down into another page (the following example demonstrates this). 
 
