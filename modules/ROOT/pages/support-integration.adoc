@@ -1,0 +1,84 @@
+= Support guide
+
+== Overview 
+
+This guide explains:
+
+* xref:support-integration.adoc#support-eligibility[Which Aura tiers and subscriptions include support]
+* xref:support-integration.adoc#_set_up_support_access[How to enable access to the Neo4j Support Portal]
+* xref:support-integration.adoc#_authorised_support_contacts[How to manage Authorised Support Contacts]
+* xref:support-integration.adoc#_creating_a_case[How to submit a support case]
+* xref:support-integration.adoc#_service_levels[Where to find service level information]
+
+If you are using a paid Aura tier or have a support subscription, you must complete the support setup process before you can submit cases.
+
+[[support-eligibility]]
+== Support Eligibility
+
+=== Included
+
+* AuraDB Professional
+* AuraDB Business Critical
+* AuraDB Virtual Dedicated Cloud
+* AuraDS Professional
+* AuraDS Enterprise
+* AuraDB Professional Trial (with a credit card attached to the Organization)
+
+=== Not included
+
+* AuraDB Free (Community support only via link:https://community.neo4j.com/[Community] and link:https://discord.com/invite/neo4j[Discord])
+
+== Set up support access
+
+Organization Owners and Admins provide access to the Support Portal from the link:https://console.neo4j.io/[Neo4j Aura Console].
+
+. Navigate to *Organization Settings → Support*
+. Complete the Support Profile (timezone, company name, address)
+. Add Authorised Support Contacts
+
+Support access is granted only after the profile is completed and authorised contacts are added.
+
+== Authorised support contacts
+
+Only Authorised Support Contacts can submit cases in the link:https://support.neo4j.com/s/[Support Portal].
+
+Organization Owners and Admins can add or remove contacts at any time.
+
+=== Contact limits
+
+==== Aura PAYG
+
+* AuraDB Professional / DS Professional – 5 contacts
+* AuraDB Business Critical – 10 contacts
+* AuraDB Virtual Dedicated Cloud / DS Enterprise – 10 contacts
+
+==== Subscription support packages
+
+* Regional Support – 10 contacts
+* Global Support – 20 contacts
+* Signature Support – 30 contacts
+
+If you require additional authorised contacts, contact your account team.
+
+== Creating a case
+
+. Register on the Support Portal using the email address designated as an Authorised Support Contact
+. Set up Multi-Factor Authentication (TOTP required)
+. Submit a case by selecting the relevant instance tier or *Other support enquiry*
+. Provide a clear subject and detailed description
+
+Include as much relevant detail as possible, such as:
+
+* Start time of the issue
+* Affected feature or surface
+* Relevant Cypher queries
+* Error messages
+* Steps to reproduce
+
+Additional user registration information can be found link:https://support.neo4j.com/s/article/Accessing-the-Support-Portal-the-first-time[here].
+
+== Service levels
+
+Response times depend on case severity and your support package.
+
+Refer to the link:https://neo4j.com/terms/support-terms/[Neo4j Support Terms] for full SLT details.

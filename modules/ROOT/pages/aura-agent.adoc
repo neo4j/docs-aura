@@ -20,6 +20,11 @@ See also xref:billing/billing-dimensions.adoc[Billing dimensions] for more infor
 To get started you need a knowledge graph in a running AuraDB instance and you need to make sure *Generative AI assistance* as well as *Aura Agent* are both enabled in the xref:visual-tour/index.adoc#org-settings[Organization settings].
 When *Generative AI Assistance* is enabled, *Aura Agent* can be toggled on and off, but if you disable *Generative AI assistance*, *Aura Agent* is automatically disabled.
 
+Additionally, you need to enable *Tool authentication* for the project in which you create the agent.
+This is done from *Security* on the organization level.
+See xref:security/tool-auth.adoc[Tool authentication with Aura user] for more information.
+
+To create, edit, or delete an agent, you need to be a project admin, project members and viewers can list and use agents but not make any changes to them.
 
 [NOTE]
 ====
@@ -29,6 +34,7 @@ This means that *all* interactions with agents go via Belgium, regardless of whe
 
 Aura Agent uses a curated set of AI models to deliver advanced planning, reasoning, retrieval, and explainability.
 For more information on how Aura Agent uses AI models, see link:{neo4j-docs-base-uri}/reference/license/agent-ai-model/[License and disclaimers -> How Aura Agent uses AI models].
+
 
 
 == Create an agent
@@ -73,7 +79,7 @@ Start by selecting which instance you want to connect to, keep in mind that the 
 
 If you want your agent to use the <<Similarity Search>> tool, your database needs to have *vector embeddings*.
 If it does, select the embedding provider and model for your database.
-For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{{neo4j-docs-base-uri}}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
+For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
 
 Then you need to add a prompt that contains a detailed use-case or context, a description of what you want the agent to be able to do, and any other preferences.
 The more details you provide, the more accurate the generation will be.
@@ -150,7 +156,7 @@ Aura Agent currently supports embeddings generated with the following text embed
 
 * Vertex AI: `gemini-embedding-001`, `text-embedding-005`, and `text-multi-lingual-embedding-00`.
 
-For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{{neo4j-docs-base-uri}}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
+For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
 
 You need to provide the name of your vector index and a value for *Top K*, i.e. the number of results you want the search to return.
 
@@ -235,7 +241,8 @@ Once you *Update agent*, the endpoint can be copied from the same *[...]* menu.
 .Copy endpoint from *[...]* menu
 image::agent-endpoint.jpg[width=400]
 
-To access the endpoint externally, you need to have an xref:aura-cli/initial-configuration.adoc#_obtain_an_aura_api_key[Aura API Key] to generate a client ID and secret.
+To access the endpoint externally, you need to have an xref:api/authentication.adoc#_creating_credentials[Aura API key] to generate a client ID and secret.
+
 Once you have these, verify them in the terminal:
 
 [source,shell]
@@ -321,6 +328,22 @@ image::claude-desktop.jpg[width=600]
 When enabled, Claude will use your Aura Agent when appropriate.
 The first time the agent is invoked, Claude asks for permission to use the agent.
 
+== Import/Export agent
+
+Existing agents can be exported in as _JSON_ format.
+You can either download the _JSON_ file or copy it to the clipboard.
+This is done from the *[...]* menu on the agent.
+
+[.shadow]
+.Export an agent as _JSON_
+image::export-agent.jpg[width=400]
+
+If you have a _JSON_ file of an agent, you can use that to create a new agent.
+Use the *Import agent* button and select the instance the new agent should target.
+Then you can either browse for or paste the configuration for the agent.
+
+You can edit the _JSON_ file, such as change the name of the agent, for example.
+However, keep in mind that *internal* (`"is_private": true`) agents *cannot* be enabled as MCP server (`"is_mcp_enabled": true`).
 
 
 == Learn more

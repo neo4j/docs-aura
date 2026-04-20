@@ -1,0 +1,121 @@
+= Aura Graph Analytics
+:max-lifetime: 7 days
+
+Aura Graph Analytics is an on-demand ephemeral compute environment for running graph analytics within independent _sessions_.
+
+Each session is a standalone Neo4j Aura compute environment that is created when needed and deleted when no longer useful or when the <<max-lifetime, maximum session lifetime>> is reached, without any instance management operations.
+
+While an Aura Graph Analytics session is ephemeral, the results of the computation can be stored by writing back to the database or exporting to an external system.
+
+[[administration]]
+== Administration
+
+=== Organization settings
+
+You can enable, disable, and configure Aura Graph Analytics on the organization level in the xref:visual-tour/index.adoc#graph-analytics-org-settings[organization settings].
+
+Here you can also configure:
+
+* The maximum available memory for each session
+* The maximum number of concurrent sessions within the organization
+
+=== User management
+
+Aura Console roles map to user privileges in Aura Graph Analytics sessions as described in xref:user-management.adoc#graph-analytics-roles[Graph Analytics roles].
+
+=== Running sessions
+
+The details on any running sessions are available in the xref:visual-tour/index.adoc#graph-analytics-page[Graph Analytics] page of the Aura Console.
+
+[[workflow]]
+== Workflow
+
+The typical workflow with Aura Graph Analytics is:
+
+. Create a session.
+. Load your data into a session via a _remote projection_.
+. Run graph algorithms or train machine learning models on the data.
+. Write the results back to the original data source using _remote write-back_ (to an AuraDB instance or a self-managed Neo4j DBMS) or a custom method (for a non-Neo4j data source).
+. Delete the session.
+
+.Architecture diagram for Aura Graph Analytics
+image::aga-architecture.svg["Architecture diagram for Aura Graph Analytics. The arrows represent the data flow.",width=600]
+
+[[interfaces]]
+== Interfaces
+
+You can create and use sessions either with the GDS Cypher API or with the GDS Python client.
+
+[[cypher-api]]
+=== Cypher API
+
+The Cypher API is a collection of Cypher procedures to interact with Aura Graph Analytics sessions from a Cypher environment like the xref:query/introduction.adoc[Aura Query tool].
+
+The Graph Data Science documentation provides a quickstart, see link:{neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/quickstart[Graph Data Science -> Quickstart] and the complete API documentation as described in link:{neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/cypher[Graph Data Science -> Cypher API].
+
+[IMPORTANT]
+====
+The Cypher API is available only for sessions attached to AuraDB instances in the Professional, Business Critical, or Virtual Dedicated Cloud plans.
+Depending on which plan is used, different limitations apply.
+See the xref:graph-analytics/index.adoc#comparison[Aura deployment comparison] for more details.
+====
+
+[[implicit-sessions]]
+==== Implicit sessions
+
+If you use the Cypher API, you can skip the first and last steps in the workflow by creating a session automatically with the first remote projection.
+
+In this case, the session is deleted when the projected graph is dropped.
+If additional graphs are projected into the same session, for example via link:{neo4j-docs-base-uri}/graph-data-science/current/management-ops/graph-creation/graph-filter[Graph Data Science -> Graph filtering], the session is deleted only after all graphs are dropped.
+
+Implicit sessions can still be listed and dropped via the corresponding link:{neo4j-docs-base-uri}/graph-data-science/current/aura-graph-analytics/cypher#session-management[Graph Data Science -> Session management procedures].
+
+[[python-client]]
+=== Python client
+
+The Python client is the Python interface to the GDS library.
+
+You can find tutorials on how to use sessions in the Python documentation:
+
+* link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless/[Graph Data Science client -> Aura Graph Analytics for AuraDB]
+* link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-self-managed/[Graph Data Science client -> Self-managed Neo4j database]
+* link:{neo4j-docs-base-uri}/graph-data-science-client/current/tutorials/graph-analytics-serverless-standalone/[Graph Data Science client -> Non-Neo4j data source]
+
+[NOTE]
+====
+You need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] to run the Python tutorials.
+====
+
+[[configuration]]
+== Configuration
+
+The configuration parameters for a session are the same regardless of the interface.
+
+[[session-size]]
+=== Session size
+
+When creating a session (either explicitly or via a remote graph projection), you must set the `memory` parameter to specify the amount of memory allocated to the session.
+
+The supported values are `2GB`, `4GB`, `8GB`, `16GB`, `24GB`, `32GB`, `48GB`, `64GB`, `96GB`, `128GB`, `192GB`, `256GB`, `384GB`, and `512GB`.
+
+A larger size means faster runtime and the ability to process larger volumes of data, but also increased cost.
+See link:https://neo4j.com/pricing/#graph-analytics[Neo4j Pricing] for more information.
+
+[NOTE]
+The session maximum size can be configured for your whole xref:visual-tour/index.adoc#graph-analytics-org-settings[Aura organization].
+
+[[session-expiration]]
+=== Session expiration
+
+When creating a session (either explicitly or via a remote graph projection), you can set an optional `ttl` parameter to specify how quickly an inactive session will expire.
+The default value for `ttl` is 1 hour and the maximum allowed value is {max-lifetime}.
+
+An expired session cannot be used to run workloads, does not incur any cost, and is deleted automatically after the same amount of time specified by the `ttl` parameter.
+Expired sessions can also be deleted through the Aura Console UI.
+
+[[max-lifetime]]
+==== Maximum lifetime
+
+A session can never be kept active for more than {max-lifetime}.
+Even if the session does not expire due to inactivity, it will still expire {max-lifetime} after its creation.
+This is a hard limit and cannot be changed.
