@@ -1,0 +1,64 @@
+= Row select
+:description: Select a row value directly in a table result and feed it into a parameter.
+
+Select one value from a table row, then assign it to a parameter.
+That parameter can then be reused in another card or query.
+Row select passes a specific cell value from the row, not the entire row object.
+
+Use row select when your first query returns many results, and you want to choose one result to explore in more detail.
+You can select values directly from a row in the table result by selecting the row’s checkbox. 
+
+When a person selects a row in a table, you can use one of the returned column values as a parameter.
+This is useful when your query returns multiple records and you want to work with a specific result from the table view.
+
+[IMPORTANT]
+====
+When you select a row, the system doesn’t pass the entire row object.
+It lets you pick one column value at a time and bind it to a parameter.
+====
+
+== Example
+
+Using the (Northwind) dataset.
+The selected OrderID values are passed to $orderID.
+We'll then use that in another card to calculate the total freight.
+
+=== Step 1: Add the first card
+
+Return orders in a table.
+
+. Add a card.
+. Paste the following Cypher into the card, then select *Save*:
+
+.Return orders in a table
+[source,cypher]
+----
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)
+RETURN o.orderID AS OrderID, c.companyName AS CustomerCompanyName, o.freight AS freight
+----
+
+=== Step 2: Add an action
+
+`TRIGGER row select → UPDATE PARAMETER $orderID → TO CELL VALUE OrderID`
+
+After you set it up, the action is shown as *Row selection → Set $orderID to OrderID* 
+
+When you select a row in the table the `OrderID` value from that row is stored in `$orderID`.
+
+If you select multiple rows, the selected `OrderID` values are stored in the parameter as a list.
+
+=== Step 3: Add a second card
+
+Now you can use the `$orderID` value in another card.
+
+For example,
+
+.Calculate the total freight across selected orders
+[source,cypher]
+----
+MATCH (o:Order)
+WHERE toString(o.orderID) IN $orderID
+RETURN sum(toFloat(o.freight)) AS TotalFreight
+----
+
+Selecting multiple rows adds the OrderID values to a list, allowing you to calculate the total freight across those orders.
