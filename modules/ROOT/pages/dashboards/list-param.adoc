@@ -1,26 +1,20 @@
 = List parameter
 
 List parameters allow you to pass multiple values into a parameter and use them in Cypher queries.
-Instead of filtering on a single value, you can define them as a list.
-This makes it easier to apply consistent filters across multiple queries. 
-Define the parameter once, then reference it in Cypher using the `$` prefix.
+Define the parameter once, then reference it using the `$` prefix.
+See link:https://neo4j.com/docs/cypher-manual/current/values-and-types/lists/[Cypher Manual -> Lists]
 
+= Example 
 
-Once the parameter is defined, you can reference it in Cypher queries.
+Examples used here use the Northwind dataset as outlined in xref::/dashboards/index.adoc#_sample_dataset[Northwind sample dataset] and you can recreate them in your own dashboard.
 
-== Simple example (compare number of ordered items for countries)
+This example compares how many items are ordered by selected countries.
 
-Using xref:Northwind dataset
+1. Set the list parameter `$list = ["UK", "France", "Germany"]`
 
-Example using a list parameter to work out `how much stuff does each selected country order?`
+2. Add a card and set the visualization to a bar chart.
 
-1) set the list param
-
-`$list = ["UK", "France", "Germany"]`
-
-2) add card
-
-Using the Cypher query:
+3. Paste the Cypher query:
 
 [source,cypher]
 ----
@@ -31,84 +25,8 @@ RETURN o.shipCountry AS country,
 ORDER BY unitsOrdered DESC
 ----
 
-I set the example to `bar chart`.
-We can see that, `Germany orders way more units than UK, which orders more than France`
+As a result, we can see in the Northwind dataset that Germany orders the most units, followed by the UK, then France.
 
-.list param countries
+[.shadow]
+.Compare how many items are ordered by selected countries.
 image::dashboards/parameters-and-filters/list-parameter.png[example]
-
-//
-
-== Example
-
-Explore Northwind data by location with a list parameter.
-
-You can use a list parameter to filter dashboard queries by location instead of product.
-For example, you might use a parameter named $list to store a set of selected countries:
-
-In this case, the parameter represents the locations currently in focus.
-
-To create this parameter in the dashboard UI:
-
-Open Parameters.
-Create a new parameter named $list.
-Set Default value type to List.
-Set List element type to String.
-Add one or more country names as default values.
-
-Once the parameter is defined, you can reference it in Cypher queries.
-
-== Count orders by selected country
-
-The following query returns the number of orders shipped to each country in $list:
-
-[source,cypher]
-----
-MATCH (o:Order)
-WHERE o.shipCountry IN $list
-RETURN o.shipCountry AS country, count(*) AS orders
-ORDER BY orders DESC
-Example: Show products ordered in selected countries
-----
-
-You can also use the same parameter to explore which products are associated with those locations:
-
-[source,cypher]
-----
-MATCH (o:Order)-[:CONTAINS]->(p:Product)
-WHERE o.shipCountry IN $list
-RETURN o.shipCountry AS country,
-       p.productName AS product,
-       count(*) AS orders
-ORDER BY orders DESC
-LIMIT 10
-----
-
-== Explore supplier-to-destination flows
-
-This query shows how supplier countries connect to selected shipping destinations:
-
-[source,cypher]
-----
-MATCH (s:Supplier)-[:SUPPLIES]->(p:Product)<-[:CONTAINS]-(o:Order)
-WHERE o.shipCountry IN $list
-RETURN s.country AS supplierCountry,
-       o.shipCountry AS destinationCountry,
-       count(*) AS shipments
-ORDER BY shipments DESC
-----
-
-Why use a list parameter for location filtering?
-
-A list parameter is useful when you want to:
-
-filter multiple locations in a single query
-reuse the same location selection across several dashboard cards
-create interactive dashboards where one control updates multiple visualizations
-
-This approach works well for exploratory analysis because the same parameter can drive different views of the data, such as orders, products, suppliers, or customers.
-
-Notes
-Use String as the list element type when storing country or city names.
-Use Integer only when the list contains numeric identifiers.
-Make sure the values in $list match the property values in your dataset exactly.
