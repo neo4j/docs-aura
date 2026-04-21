@@ -20,12 +20,11 @@ Use cell click actions to:
 This is typically used to create a drill-down effect, where the *set parameter* action filters the visualizations on the destination page.
 
 * *Navigate to an external URL*: The *set parameter* value can be embedded directly into a URL string to pass the parameter value to the external target. 
-For example, insert the `$employee` parameter value into the URL e.g. `www.neo4j.com/name=\{employee}`
 
 [WARNING]
 ====
 To keep data secure, avoid including sensitive data in URL parameters.
-For example, a URL like `?name=John` exposes personal information directly.
+For example, a URL like `name=John` exposes personal information directly.
 Data in URLs may also appear in browser history and server logs.
 ====
 
