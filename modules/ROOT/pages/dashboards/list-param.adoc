@@ -1,15 +1,10 @@
 = List parameter
 
-List parameters allow you to pass multiple values into a query and use them in Cypher queries. 
-Instead of filtering on a single value, you can define a list as an array, 
+List parameters allow you to pass multiple values into a parameter and use them in Cypher queries.
+Instead of filtering on a single value, you can define them as a list.
 This makes it easier to apply consistent filters across multiple queries. 
 Define the parameter once, then reference it in Cypher using the `$` prefix.
 
-.Open Parameters.
-.Create a new parameter name.
-.Set Default value type to List.
-.Set List element type to String.
-.Add one or more values as default values.
 
 Once the parameter is defined, you can reference it in Cypher queries.
 
