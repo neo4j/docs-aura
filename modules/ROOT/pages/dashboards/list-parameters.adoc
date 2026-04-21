@@ -1,0 +1,32 @@
+= List parameter
+
+List parameters allow you to pass multiple values into a parameter and use them in Cypher queries.
+Define the parameter once, then reference it using the `$` prefix.
+See link:https://neo4j.com/docs/cypher-manual/current/values-and-types/lists/[Cypher Manual -> Lists]
+
+= Example 
+
+Examples used here use the Northwind dataset as outlined in xref::/dashboards/index.adoc#_sample_dataset[Northwind sample dataset] and you can recreate them in your own dashboard.
+
+This example compares how many items are ordered by selected countries.
+
+1. Set the list parameter `$list = ["UK", "France", "Germany"]`
+
+2. Add a card and set the visualization to a bar chart.
+
+3. Paste the Cypher query:
+
+[source,cypher]
+----
+MATCH (o:Order)-[r:ORDERS]->(p:Product)
+WHERE o.shipCountry IN $list
+RETURN o.shipCountry AS country,
+       sum(r.quantity) AS unitsOrdered
+ORDER BY unitsOrdered DESC
+----
+
+As a result, we can see in the Northwind dataset that Germany orders the most units, followed by the UK, then France.
+
+[.shadow]
+.Compare how many items are ordered by selected countries.
+image::dashboards/parameters-and-filters/list-parameter.png[example]
