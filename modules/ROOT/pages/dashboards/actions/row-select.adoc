@@ -38,11 +38,11 @@ RETURN o.orderID AS OrderID, c.companyName AS CustomerCompanyName, o.freight AS 
 
 === Step 2: Add an action
 
-Select the following:
+In the actions panel set:
 
-TRIGGER `Row selection`
-UPDATE PARAMETER `$orderID`
-TO CELL VALUE `OrderID` 
+1. TRIGGER Row selection
+2. UPDATE PARAMETER orderID
+3. TO CELL VALUE OrderID
 
 When you select a row, the OrderID value from that row is stored in `$orderID`.
 If you select multiple rows, $orderID stores a list of OrderID values.
