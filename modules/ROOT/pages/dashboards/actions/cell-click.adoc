@@ -1,7 +1,7 @@
 = Cell click action
 :description: Use dashboard actions to connect cards, set parameters, and navigate between pages or external link URLS in a Neo4j dashboard report. User-defined interactivity plays a big role in dashboarding. This type of interactivity allows dashboard builders to link charts together, turning them from read-only views to control elements, just like filters. We introduce actions as a way to enable this type of interactivity. Actions extend dashboards to become rapid prototypes, allowing for the interactivity that is present in a rudimentary graph app. In addition, actions provide data-driven interactivity, allowing query output to be used as input for other queries. For many applications (such as proof-of-concepts), this level of interactivity significantly upgrades the potential of dashboards.
 
-The cell click action is available for xref:dashboards/visualizations/table.adoc[Table] visualizations.
+The cell click action is available for xref:dashboards/visualizations/table.adoc[Tables].
 
 An action is event-driven. 
 When an action trigger within a visualization is clicked, it assigns a value to a parameter.
@@ -20,7 +20,7 @@ Use cell click actions to:
 This is typically used to create a drill-down effect, where the *set parameter* action filters the visualizations on the destination page.
 
 * *Navigate to an external URL*: The *set parameter* value can be embedded directly into a URL string to pass the parameter value to the external target. 
-For example, insert the `$employee` parameter value into the URL e.g. `www.neo4j.com/name=\{employee}`
+For example, insert the `$employee` parameter value into the URL e.g. `https://neo4j.com/name=\{employee}`
 
 [WARNING]
 ====
@@ -28,9 +28,6 @@ To keep data secure, avoid including sensitive data in URL parameters.
 For example, a URL like `name=John` exposes personal information directly.
 Data in URLs may also appear in browser history and server logs.
 ====
-
-//On click navigate to an external URL, a Bloom scene, another dashboard.
-//Or a specific dashboard page within the same dashboard, optionally passing a parameter into that dashboard page's visualizations too, creating a drill-down into another page (the following example demonstrates this). 
 
 == Action icons
 
