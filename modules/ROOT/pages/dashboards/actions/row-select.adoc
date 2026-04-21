@@ -5,16 +5,13 @@ Select one value from a table row, then assign it to a parameter.
 That parameter can then be reused in another card or query.
 Row select passes a specific cell value from the row, not the entire row object.
 
-Use row select when your first query returns many results, and you want to choose one result to explore in more detail.
+You can select multiple rows, and multiple values from the same column will be selected.
 You can select values directly from a row in the table result by selecting the row’s checkbox. 
-
-When a person selects a row in a table, you can use one of the returned column values as a parameter.
-This is useful when your query returns multiple records and you want to work with a specific result from the table view.
 
 [IMPORTANT]
 ====
 When you select a row, the system doesn’t pass the entire row object.
-It lets you pick one column value at a time and bind it to a parameter.
+It lets you pick one column value at a time and adds it to a list parameter.
 ====
 
 == Example
