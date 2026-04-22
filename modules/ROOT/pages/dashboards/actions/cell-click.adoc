@@ -1,0 +1,108 @@
+= Cell click action
+:description: Use the cell click dashboard action to connect cards, set parameters, and navigate between pages or external link URLS in cards.
+
+The cell click action is available for xref:dashboards/visualizations/table.adoc[Tables].
+
+Use it to:
+
+* *Set a parameter*: A cell click will always set a parameter, which can update the rest of the dashboard so visualizations respond to the selection.
+
+* *Navigate to a dashboard page*: Opens a specific page within the current dashboard. 
+This is typically used to create a drill-down effect, where the *set parameter* action filters the visualizations on the destination page.
+
+* *Navigate to an external URL*: The *set parameter* value can be embedded directly into a URL string to pass the parameter value to the external target. 
+For example, insert the `$employee` parameter value into the URL e.g. `https://neo4j.com/name=\{employee}`
+
+[WARNING]
+====
+To keep data secure, avoid including sensitive data in URL parameters.
+For example, a URL including `name=John` exposes personal information directly.
+Data in URLs may also appear in browser history and server logs.
+====
+
+== Action icons
+
+Action icons appear next to values that can be set as a parameter.
+
+[cols="1,20", frame="none", grid="none"]
+|===
+|image:dashboards/actions/filter.svg[] 
+|Set parameter
+
+|image:dashboards/actions/navigate-url.svg[] 
+|Set parameter and navigate to URL
+
+|image:dashboards/actions/navigate-dashboard.svg[] 
+|Set parameter and navigate to dashboard page
+|===
+
+== Example
+
+The following example uses the Northwind dataset to show how to *set a parameter* and *navigate to a dashboard page*. 
+Click the name of a top order and revenue generator to open that employee’s dashboard.
+
+* The example starts with the default *Main page*.
+* Add a second page called *Employee info*.
+* Use an action on the *Main page* to set a parameter and navigate to *Employee info*.
+
+1) On the *Main page*, add a card with a Cypher query that returns each employee’s name, number of orders, and total revenue.
+
+[source,cypher]
+----
+MATCH (e:Employee)-[:SOLD]->(o:Order)-[orders:ORDERS]->(:Product)
+RETURN
+  e.firstName AS employee,
+  count(DISTINCT o) AS orders,
+  round(sum(orders.quantity * orders.unitPrice), 2) AS revenue
+ORDER BY revenue DESC
+----
+
+2) Add an action to the `employee` column's values
+
+In the actions panel set:
+
+. *TRIGGER* *Cell click*
+. *ON CELL* *employee*
+. *UPDATE PARAMETER* *employee*
+. *TO CELL VALUE* *employee*
+. *NAVIGATE TO PAGE* *Employee info*
+
+.Add action
+[.shadow]
+image::dashboards/actions/add-action.png[width=900]
+
+Once the action is configured, the action preview shows its structure
+
+*action trigger → parameter action → optional navigation action*
+
+.Action preview
+[.shadow]
+image::dashboards/actions/action-preview.png[width=900]
+
+
+3) Use the `$employee` parameter on the `Employee info` page's visualizations
+
+On the *Employee info* page, add a Cypher query to a card that reads the parameter and returns details for the selected employee.
+
+[source,cypher]
+----
+MATCH (e:Employee)
+WHERE e.firstName = $employee
+RETURN
+  $employee AS employee,
+  e.notes AS notes
+----
+
+4) Click on a name on the `Main page`
+
+.Top employees selected on the Main page, with hover over the filter icon
+[.shadow]
+image::dashboards/actions/top-employees.png[width=400]
+
+5) This navigates you to the `Employee info` page and updates the visualization based on the value that was selected
+
+.Employee info
+[.shadow]
+image::dashboards/actions/employee-notes.png[width=600]
+
+
