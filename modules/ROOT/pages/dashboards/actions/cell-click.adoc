@@ -3,18 +3,9 @@
 
 The cell click action is available for xref:dashboards/visualizations/table.adoc[Tables].
 
-An action is event-driven. 
-When an action trigger within a visualization is clicked, it assigns a value to a parameter.
-Any card with a Cypher query that includes that parameter responds immediately, so visualizations update dynamically based on the selection.
+Use it to:
 
-[NOTE]
-====
-A cell click action will always set a parameter and optionally navigate to a dashboard page or an external URL.
-====
-
-Use cell click actions to:
-
-* *Set a parameter*: Send a value to a parameter, which can update the rest of the dashboard so visualizations respond to the selection.
+* *Set a parameter*: A cell click will always set a parameter, which can update the rest of the dashboard so visualizations respond to the selection.
 
 * *Navigate to a dashboard page*: Opens a specific page within the current dashboard. 
 This is typically used to create a drill-down effect, where the *set parameter* action filters the visualizations on the destination page.
@@ -25,7 +16,7 @@ For example, insert the `$employee` parameter value into the URL e.g. `https://n
 [WARNING]
 ====
 To keep data secure, avoid including sensitive data in URL parameters.
-For example, a URL like `name=John` exposes personal information directly.
+For example, a URL including `name=John` exposes personal information directly.
 Data in URLs may also appear in browser history and server logs.
 ====
 

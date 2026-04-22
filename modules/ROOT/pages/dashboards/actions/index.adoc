@@ -1,21 +1,17 @@
 = Actions
 
-There are two types of actions:
+An action is event-driven. 
+When an action trigger within a visualization is clicked, it assigns a value to a parameter.
+Any card with a Cypher query that includes that parameter responds immediately, so visualizations update dynamically based on the selection.
+
+There are two types of actions, used with xref:dashboards/visualizations/table.adoc[tables]:
 
 * xref:dashboards/actions/cell-click.adoc[Cell click action] - Triggered when a person clicks a specific cell value.
 * xref:dashboards/actions/row-select.adoc[Row select action] - Triggered when a person selects one or more rows.
 
 [.shadow]
 .Dashboard actions
-image::dashboards/actions/dashboard-actions.png[]
-
-Actions let you connect cards, so something happening in one place can trigger behavior somewhere else.
-
-They make it possible to pass query results into other queries using parameters, creating a simple flow where query output becomes query input.  
-
-_Use dashboard actions to connect cards, or navigate to dashboard pages and external URLs._
-
-This also enables rapid prototyping, so your dashboard starts behaving more like an app.
+image::dashboards/actions/dashboard-actions.png[] 
 
 For example:
 
@@ -25,3 +21,4 @@ For example:
 
 For many use cases, especially proof-of-concepts, this level of interactivity significantly expands what dashboards can do.
 Instead of building a graph app with frontend code, you're sketching one directly in the dashboard.
+This enables rapid prototyping, with your dashboard behaving like an app.

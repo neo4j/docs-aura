@@ -3,17 +3,11 @@
 
 The row select action is available for xref:dashboards/visualizations/table.adoc[Tables].
 
-Select a value from a table row and assign it to a parameter.
-You can reuse this parameter in another card or query.
+Select a value from a table row by clicking a checkbox. and assign it to a parameter.
+Reuse this parameter in another card or query.
 Only the selected cell value is passed, not the full row.
 
-Select rows by clicking a checkbox. 
-You can select multiple rows, and multiple values from the same column will be selected and added to a list parameter.
-
-[IMPORTANT]
-====
-When you select a row, the list parameter doesn't get all values in that row, it gets values from a chosen column.
-====
+You can select multiple rows, and multiple values from the same column will be selected and added to a xref:dashboards/list-parameters.adoc[list parameter].
 
 == Example
 
