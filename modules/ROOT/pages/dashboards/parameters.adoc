@@ -1,0 +1,46 @@
+= Parameters
+
+The parameters drawer lets you adjust values that shape your dashboard results.
+It's on the top right side of a dasboard. 
+Use the curly brackets icon `{}` to
+link:https://neo4j.com/docs/aura/dashboards/parameters-and-filters/#_step_1_open_the_parameters_drawer[open the parameters drawer].
+
+* *Default value*: The default value if there is no initial current value. It is not required.
+* *Current value*: The current value is used even if there is a default value.
+
+== Parameters drawer
+
+.The parameters drawer
+[.shadow]
+image::dashboards/parameters-and-filters/parameters-drawer.png[]
+
+The drawer shows the dashboard parameters in alphabetical order.
+Each parameter has an icon next to it hinting at its data type:
+
+* A text icon for strings.
+* A toggle icon for boolean.
+* A hashtag icon for numbers.
+* A calendar icon for dates.
+* A filter icon for unspecified data types. 
+
+=== Creating a parameter in the parameter drawer
+
+. From the **Parameters** drawer, use the **Add** button.
+. In the dialog, enter a parameter name, select a data type and optionally an initial value for the parameter, then **Save**.
+
+=== Editing a parameter
+
+. From the **Parameters** drawer, hover over the parameter you wish to edit.
+. In the dialog, edit the parameter name, data type and/or initial value, then **Save**.
+
+=== Using a parameter in a query
+
+To use a parameter in a Cypher query, prefix the parameter name with `$`.
+See link:http://localhost:8000/aura/dashboards/parameters-and-filters/#_step_2_add_a_parameter[add a parameter].
+
+// .Cypher query for a table which displays products with a certain number of units in stock
+
+// MATCH (p:Product)
+// WHERE p.unitsInStock = $unit_param
+// RETURN p.productName as product, p.unitsInStock AS units
+// LIMIT 10
