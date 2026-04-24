@@ -12,7 +12,7 @@ on:
       - completed
 
 jobs:
-  # [Optional] Restrict automatic dpeloyment to PRs from the upstream repo
+  # [Optional] Restrict automatic deployment to PRs from the upstream repo
   # For fork PRs, requires manual approval via the "preview" environment.
   # For PRs from the main repository this job is skipped and deploy-docs runs immediately.
   # Setup: create a "preview" environment in Settings → Environments with required reviewers.
