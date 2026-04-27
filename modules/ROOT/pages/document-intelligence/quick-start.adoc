@@ -1,0 +1,56 @@
+= Quick start
+:description: This page describes how to get started importing unstructured data into a running Neo4j Aura instance.
+
+In short, the process for importing unstructured data into a knowledge graph consists of five steps:
+
+* Connect your data source
+* Generate a data model
+* Refine the schema
+* Extract entities
+* Build the knowledge graph
+
+Document Intelligence tool does most of it for you but you need to provide the data and verify and possibly refine the generated schema.
+
+You need to have a running Aura instance available, currently Document Import only supports the Free tier.
+
+== Provide the data
+
+You can connect to either a *cloud data source* or stream *local files*.
+This quick start uses a cloud storage, see xref:document-intelligence/data-provision.adoc[Data provision] for more extensive information.
+
+To connect to a cloud storage, navigate to the *Cloud data sources* tab and use the *Add data source* button to add a new source.
+Once a source is added, it is listed in the table.
+
+The following cloud storage options are supported:
+
+* AWS S3
+* Azure Blobs & Data Lake Storage
+* Google Cloud Storage
+
+Select the appropriate provider and enter your information.
+
+[.shadow]
+.Connection details
+image::kgb-connect-gcp.jpg[width=600]
+
+* *Name*: Give the connection a unique name.
+This appears in the table of cloud data sources once added.
+
+* *Bucket path*: Enter the URI for your bucket.
+You can point to a specific file, add multiple paths, or use a wildcard (*).
+
+* *Credentials*: Enter your HMAC access key and secret and then use *Confirm* to continue.
+
+
+== Generate initial data model
+
+This step requires a running instance, as mentioned above.
+Once your data source has been added, use *Create graph model* to move to the next step in the process.
+
+The system identifies the node labels and relationship types present in your files and depending on the size of your files, this process can take a moment.
+
+Once done, an interactive model is displayed in the data model panel.
+It contains the identified nodes and relationship, complete with labels and types.
+
+
+
