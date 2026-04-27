@@ -5,9 +5,8 @@ This page describes the data structures used in Fleet Manager messages.
 
 == `ConnectMessage`
 
-`ConnectMessage` is the message sent from the server to the Fleet Manager service to establish a connection.
+Message sent from the server to the Fleet Manager service to establish a connection.
 
-.Message fields
 [options="header", cols="2,1,2"]
 |===
 |Field |Type |Description
@@ -36,9 +35,8 @@ This page describes the data structures used in Fleet Manager messages.
 
 == `MetricsMessage`
 
-`MetricsMessage` is the message sent from the server to the Fleet Manager service containing metrics data.
+Message sent from the server to the Fleet Manager service containing metrics data.
 
-.Message fields
 [options="header", cols="2,1,2"]
 |===
 |Field |Type |Description
@@ -67,9 +65,8 @@ This page describes the data structures used in Fleet Manager messages.
 
 == `Neo4jConfigMessage`
 
-`Neo4jConfigMessage` is the message sent from the server to the Fleet Manager service containing neo4j configuration data.
+Message sent from the server to the Fleet Manager service containing neo4j configuration data.
 
-.Message fields
 [options="header", cols="2,1,2"]
 |===
 |Field |Type |Description
@@ -87,14 +84,13 @@ This page describes the data structures used in Fleet Manager messages.
 | Unique identifier for the server
 | `neo4j_config`
 | Map<String, Object>
-| Map of neo4j config names to config values. Values are dynamically populated from the Fleet Manager server.
+| Map of neo4j config names to config values. Values are dynamically populated from the Fleet Management server.
 |===
 
 == `PingMessage`
 
-`PingMessage` is the message sent from the server to the Fleet Manager service to retrieve configuration updates.
+Message sent from the server to the Fleet Manager service to retrieve configuration updates.
 
-.Message fields
 [options="header", cols="2,1,2"]
 |===
 |Field |Type |Description
@@ -111,10 +107,8 @@ This page describes the data structures used in Fleet Manager messages.
 
 == `QueryReportMessage`
 
-`QueryReportMessage` is the message sent from the server to the Fleet Manager service containing aggregated query data.
-It is only sent if query logging is enabled explicitly through Aura Console.
+Message sent from the server to the Fleet Manager service containing aggregated query data. Only sent if query logging is enabled explicitly through Aura Console.
 
-.Message fields
 [options="header", cols="2,1,2"]
 |===
 |Field |Type |Description
@@ -193,15 +187,15 @@ It is only sent if query logging is enabled explicitly through Aura Console.
 | `queries[].meta.users`
 | Collection<String>
 | List of users that executed the query
-| `queries[].meta.avgPageHits`
-| double
-| The average number of page hits
 | `queries[].meta.avgElapsedMs`
 | double
 | The average duration
 | `queries[].meta.avgWaitTimeMs`
 | double
 | The average wait time
+| `queries[].meta.avgPageHits`
+| double
+| The average number of page hits
 | `queries[].meta.avgPageFaults`
 | double
 | The average number of page faults
@@ -210,67 +204,10 @@ It is only sent if query logging is enabled explicitly through Aura Console.
 | The average number of allocated bytes
 |===
 
-== `SecurityLogsReportMessage`
-
-`SecurityLogsReportMessage` is the message sent from the server to the Fleet Manager service containing security log data.
-It is only sent if security logging is enabled explicitly through Aura Console.
-
-.Message fields
-[options="header", cols="2,1,2"]
-|===
-|Field |Type |Description
-|`from_timestamp`
-|long
-|Unix timestamp in milliseconds from the first query in the set
-|`to_timestamp`
-|long
-|Unix timestamp in milliseconds to the last query in the set
-|`project_id`
-|String
-|Identifier for the project
-|`dbms_id`
-|String
-|Unique identifier for the DBMS
-|`server_id`
-|String
-|Unique identifier for the server
-|`logs`
-|Collection<SecurityLogsDefaultAggregation>
-|Security logs data
-|`logs[]`
-|SecurityLogsDefaultAggregation
-|A specific security log in the set
-|`logs[].message`
-|String
-|Log event main message
-|`logs[].level`
-|String
-|Severity level of the log event
-|`logs[].executingUser`
-|String
-|User associated with the execution of the process that caused the log event
-|`logs[].meta`
-|Meta
-|Aggregated metadata for the log event
-|`logs[].meta.count`
-|int
-|Security logs count for unique set of log fields
-|`logs[].meta.databases`
-|Set<String>
-|Databases in context of the log event occurred
-|`logs[].meta.authenticatedUsers`
-|Set<String>
-|Users authenticated to the Database for execution of the process that caused the log event
-|`logs[].meta.sources`
-|Set<String>
-|Connection information for the log event sources
-|===
-
 == `ReportingMessage`
 
-`ReportingMessage` is the message sent from the server to the Fleet Manager service containing reporting data.
+Message sent from the server to the Fleet Manager service containing reporting data.
 
-.Message fields
 [options="header", cols="2,1,2"]
 |===
 |Field |Type |Description
@@ -465,7 +402,7 @@ It is only sent if security logging is enabled explicitly through Aura Console.
 | Manifest vendor of the plugin, if available
 | `pluginVersion`
 | String
-| Version of the Fleet Manager
+| Version of the Fleet Manager module
 | `osName`
 | String
 | Operating system name
@@ -482,3 +419,55 @@ It is only sent if security logging is enabled explicitly through Aura Console.
 | String
 | Java Virtual Machine vendor
 |===
+
+== `SecurityLogsReportMessage`
+
+Message sent from the server to the Fleet Manager service containing security logs data.
+
+[options="header", cols="2,1,2"]
+|===
+|Field |Type |Description
+| `from_timestamp`
+| long
+| Unix timestamp in milliseconds from the first query in the set
+| `to_timestamp`
+| long
+| Unix timestamp in milliseconds to the last query in the set
+| `project_id`
+| String
+| Identifier for the project
+| `dbms_id`
+| String
+| Unique identifier for the DBMS
+| `server_id`
+| String
+| Unique identifier for the server
+| `logs`
+| Collection<Value>
+| Security logs data
+| `logs[].meta`
+| Meta
+| Aggregated metadata for the log event
+| `logs[].meta.count`
+| int
+| Security logs count for unique set of log fields
+| `logs[].meta.databases`
+| Collection<String>
+| Databases in context of the log event occurred
+| `logs[].meta.authenticatedUsers`
+| Collection<String>
+| Users authenticated to the Database for execution of the process that caused the log event
+| `logs[].meta.sources`
+| Collection<String>
+| Connection information for the log event sources
+| `logs[].message`
+| String
+| Log event main message
+| `logs[].level`
+| String
+| Severity level of the log event
+| `logs[].executingUser`
+| String
+| User associated with the execution of the process that caused the log event
+|===
+
