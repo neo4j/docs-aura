@@ -1,0 +1,36 @@
+= Visual tour
+:description: This page provides a visual tour of the UI of Neo4j's Document Intelligence.
+
+When you navigate to Document Intelligence, you are presented with the *Cloud data sources* tab and a list of your connected cloud sources, if you have any.
+The other two tabs available are *Graph models* and *Import jobs*, where your models and previous imports (if any) are listed, respectively.
+
+[.shadow]
+.Document Intelligence tabs
+image::document-intel.jpg[width=full]
+
+Most interactions take place in the Graph models tab.
+
+[.shadow]
+.Graph models
+image::docintel.png[width=full]
+
+The graph model UI consists of three panels, *data source panel*, *model panel*, and *details panel*.
+A *connection bar* shows instance, database, and user information.
+
+The *data source panel* shows any connected data sources and contains options for adding more sources, adding a prompt (under the *Settings* button) for the model generation, and the *Generate model* button that starts the process.
+
+The *model panel* contains the model (if generated) and on the bottom you find the *tool bar* where you can access the AI assistant and tools for interacting with the model.
+
+The *details panel* is where you find, add, and edit details about the elements in the model.
+Constraints are created automatically, and they are listed here, so are corresponding indexes.
+New indexes can be created here as well.
+
+Additionally, this is also where you start the import process by using the *Run import* button.
+
+The last tab, *Import jobs*, contains a list of all current and past import jobs.
+The *[...]* menu on each import job allows you to view more details about the import job.
+
+[.shadow]
+.Import jobs
+image::progress.jpg[width=full]
+
