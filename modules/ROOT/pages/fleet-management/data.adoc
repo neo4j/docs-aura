@@ -84,7 +84,7 @@ Message sent from the server to the Fleet Manager service containing neo4j confi
 | Unique identifier for the server
 | `neo4j_config`
 | Map<String, Object>
-| Map of neo4j config names to config values. Values are dynamically populated from the Fleet Management server.
+| Map of neo4j config names to config values. Values are dynamically populated from the Fleet Manager service.
 |===
 
 == `PingMessage`
@@ -429,10 +429,10 @@ Message sent from the server to the Fleet Manager service containing security lo
 |Field |Type |Description
 | `from_timestamp`
 | long
-| Unix timestamp in milliseconds from the first query in the set
+| Unix timestamp in milliseconds from the first log in the set
 | `to_timestamp`
 | long
-| Unix timestamp in milliseconds to the last query in the set
+| Unix timestamp in milliseconds to the last log in the set
 | `project_id`
 | String
 | Identifier for the project
@@ -470,4 +470,3 @@ Message sent from the server to the Fleet Manager service containing security lo
 | String
 | User associated with the execution of the process that caused the log event
 |===
-
