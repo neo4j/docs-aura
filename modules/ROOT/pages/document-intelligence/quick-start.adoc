@@ -3,13 +3,12 @@
 
 In short, the process for importing unstructured data into a knowledge graph consists of five steps:
 
-* Connect your data source
+* Provide the data
 * Generate a data model
-* Refine the schema
-* Extract entities
-* Build the knowledge graph
+* Refine the model
+* Fix model errors
+* Run the import
 
-Document Intelligence tool does most of it for you but you need to provide the data and verify and possibly refine the generated schema.
 
 You need to have a running Aura instance available, currently Document Import only supports the Free tier.
 
@@ -42,7 +41,7 @@ You can point to a specific file, add multiple paths, or use a wildcard (*).
 * *Credentials*: Enter your HMAC access key and secret and then use *Confirm* to continue.
 
 
-== Generate initial data model
+== Generate initial graph data model
 
 This step requires a running instance, as mentioned above.
 Once your data source has been added, use *Create graph model* to move to the next step in the process.
@@ -50,7 +49,97 @@ Once your data source has been added, use *Create graph model* to move to the ne
 The system identifies the node labels and relationship types present in your files and depending on the size of your files, this process can take a moment.
 
 Once done, an interactive model is displayed in the data model panel.
-It contains the identified nodes and relationship, complete with labels and types.
+It contains the identified different node labels and relationship types.
+
+This model is a proposal and you can keep it as it is or you can refine it.
+
+[.shadow]
+.Proposed graph model
+image::proposed-model.jpg[width=600]
+
+
+== Refine graph model
+
+The proposed model can be refined manually or with the AI assistant.
+
+Once you select a node or relationship in the model, the details panel opens up.
+You can edit definitions, add or modify properties, create indexes, and review existing constraints.
+
+Additionally, you can use the tools in the tool bar on the bottom of the canvas to add new nodes, relationships or reverse relationship direction.
+
+[.shadow]
+.Tool bar
+image::tool-bar.jpg[width=400]
+
+=== Refine with AI Assistant
+
+To the left in the tool bar, you find an interactive agent that can assist you with not only refining your model but also audit and answer questions about the proposed model.
+Additionally, it can generate Cypher queries for you based on the model.
+
+Open the agent and use natural language to describe what you want to do.
+For example, you can ask the agent to change a node label and see the results update momentarily in your model.
+
+[.shadow]
+.AI assistant
+image::graph-agent.jpg[width=400]
+
+You can use the agent as a consultant to verify that your model is optimal for your use case.
+For example, you can ask it to explain the model and why it is useful.
+If you are new to graphs and data modeling, you can ask for an explanation suitable for for someone new to the area.
+
+You can ask the agent to look for potential issues such as ambiguous relationships or anti-patterns such as super nodes.
+If any issues are detected, you can use the agent to rectify accordingly.
+
+The agent can also write Cypher queries for you that you can execute against your graph once imported.
+
+== Fix model errors
+
+When you have refined the model, you have to resolve any errors before you can run the import.
+
+Errors in the model are marked with a red exclamation mark.
+To resolve, select the offending node or relationship to open the details panel and adjust accordingly.
+
+[.shadow]
+.Errors in model
+image::model-error.jpg[width=400]
+
+== Run import
+
+Once you are satisfied with your model and it is free of errors, you can run the import.
+You need to have a running Aura instance to import the data into, as described previously.
+
+The *Run import* button is located in the top right corner, use it to start the process.
+
+You need to specify the target instance and provide the credentials then start the import job with the *Run* button.
+
+You can monitor the progress in the *Import jobs* tab.
+
+[.shadow]
+.Import job progress
+image::progress.jpg[width=full]
+
+Use the *[...]* menu on the individual job to see more details.
+
+Once the import is completed, navigate to the xref:query/introduction.adoc[*Query*] tool to verify that the imported data matches your model.
+You can run the following command to visualize the data.
+
+[source, Cypher]
+----
+CALL db.schema.visualization
+----
+
+Note that there is some extra data in the model, `_ \_Chunk_ \_`, `_ \_Document_ \_`, and `_ \_Entity_ _` nodes and corresponding relationships.
+See <<another chapter>> for more information about this.
+
+
+
+
+
+
+
+
+
+
 
 
 
