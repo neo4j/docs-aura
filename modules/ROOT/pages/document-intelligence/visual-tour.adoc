@@ -1,14 +1,10 @@
 = Visual tour
 :description: This page provides a visual tour of the UI of Neo4j's Document Intelligence.
 
-When you navigate to Document Intelligence, you are presented with the *Cloud data sources* tab and a list of your connected cloud sources, if you have any.
-The other two tabs available are *Graph models* and *Import jobs*, where your models and previous imports (if any) are listed, respectively.
+When you navigate to Document Intelligence, you are presented with the *Graph models* tab and a list of your existing models, if you have any.
+The other two tabs available are *Cloud data sources* and *Import jobs*, where your existing data sources (if any) and previous imports (if any) are listed, respectively.
 
-[.shadow]
-.Document Intelligence tabs
-image::document-intel.jpg[width=full]
-
-Most interactions take place in the Graph models tab.
+Most interactions take place in the *Graph models* tab.
 
 [.shadow]
 .Graph models
@@ -26,6 +22,13 @@ Constraints are created automatically, and they are listed here, so are correspo
 New indexes can be created here as well.
 
 Additionally, this is also where you start the import process by using the *Run import* button.
+
+The *Cloud data sources* tab is where you go to add new data sources (except for local sources).
+Any sources already set up are listed here and the *[...]* on each item in the list allows you to view details, take a shortcut to create a new data model, or delete the source.
+
+[.shadow]
+.Cloud data sources
+image::cloud-data-sources.jpg[width=full]
 
 The last tab, *Import jobs*, contains a list of all current and past import jobs.
 The *[...]* menu on each import job allows you to view more details about the import job.
