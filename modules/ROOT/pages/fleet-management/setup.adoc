@@ -72,15 +72,15 @@ Registering a token associates the deployment with the Aura project used to gene
 
 == Add from Neo4j Admin CLI
 
-You can add deployments discovered on your network using a code produced by the Neo4j Admin CLI tool.
+You can add deployments discovered on your network using a registration code provided by the Neo4j Admin CLI tool.
 This involves first running the `neo4j-admin fleet discover` command to look for running Neo4j servers on your network.
 
 For more information on discovering running Neo4j servers with Neo4j Admin, see link:https://neo4j.com/docs/operations-manual/current/neo4j-admin-neo4j-cli/[Operations Manual -> Neo4j Admin and Neo4j CLI].
 
-The next step is to select the *down arrow* next to the *Add deployment* button [See Figure 1]. In the dialog that appears, paste the code you got from running `neo4j-admin` in the indicated input box.
+After you have obtained a registration code from the Neo4j Admin CLI tool, select *Discover deployments* which can be found by selecting the *down arrow* next to the *Add deployment* button [See Figure 1]. In the drawer that appears, paste the code in the indicated input box.
 
 [.shadow]
 .Add a new self-managed deployment
 image::add-from-cli.png[width=600]
 
-The list of deployments discovered by `neo4j-admin` appears in the dialog. Next to each deployment is a *Register* button which can be used to register each deployment in turn. Select this button to initiate the setup wizard which is described in the previous sections.
+The list of deployments discovered by `neo4j-admin` appears in the drawer. Next to each deployment is a *Register* button which can be used to register each deployment in turn. Select this button to initiate the setup wizard which is described in previous sections.
