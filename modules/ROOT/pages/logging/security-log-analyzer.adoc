@@ -5,7 +5,13 @@
 :page-role: aura-db-professional aura-db-business-critical aura-db-dedicated
 
 
-Security log analyzer is a feature that provides a UI to review the security events on an Aura instance.
+Security log analyzer is a feature that provides a UI to review the security events on an Aura instance or a self-managed deployment.
+
+[NOTE]
+====
+For enabling security log analyzer for Fleet Manager deployments, see the xref:fleet-management/inspect-deployment.adoc#_security_log_analyzer[deployment settings documentation].
+For information about the data collection of the feature, see the xref:fleet-management/data.adoc#_securitylogsreportmessage[data transparency documentation].
+====
 
 You can access security logs from *Logs* in the left-hand navigation and selecting *Security* in the tabs at the top.
 
