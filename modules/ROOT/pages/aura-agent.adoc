@@ -160,15 +160,20 @@ For more information about vectors and embeddings, see the link:{neo4j-docs-base
 
 You need to provide the name of your vector index and a value for *Top K*, i.e. the number of results you want the search to return.
 
-If you want to further refine the tool, you can use the results from the similarity search (`node` and `score`) in a Cypher query.
-When you check the box *Return connected graph data*, you have two options.
-Either use natural language to describe what you want the query to do  and then use *Generate* to get a corresponding Cypher query.
-Review the query and make any necessary changes, the use *Add tool* to confirm.
-The other option is to write your own Cypher query from the *Cypher* tab, for the purpose.
+To further process the similarity search results, check *Return connected graph data*.
+This lets you write a Cypher query that is appended to the vector search and runs as a single query, with `node` (the matched node) and `score` (the similarity score) already in scope.
 
-Keep in mind that adding this post-processing query to the similarity search narrows the scope of the tool.
-But it is also possible to have multiple similarity search tools with the same vector search configuration, but with different post-processing queries.
+You can write the query directly in the *Cypher* tab, or describe the traversal, i.e. what the query should accomplish, in the *Natural language* tab and use *Generate* to produce a Cypher query.
+Review and optionally edit the query in the *Cypher* tab and use *Add tool* to save it.
+Note that the natural language description is not saved, only the final Cypher query is stored with the tool.
 
+You can add multiple similarity search tools with the same vector index but with different post-processing queries to cover different traversal patterns.
+
+[TIP]
+====
+Use the *Similarity Search* tool when your starting point is a vector index.
+Use the *Cypher Template* tool for arbitrary read queries that do not require a vector lookup.
+====
 
 
 [.shadow]
