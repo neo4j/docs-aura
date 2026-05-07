@@ -139,7 +139,7 @@ Also, always test the Cypher statement to make sure it works as expected.
 [[similarity-search]]
 === Similarity Search
 
-This tool uses vector similarity to do a semantic search and is a great complement to the Cypher template tool.
+This tool uses vector similarity to do a semantic search.
 The similarity search finds the semantically similar entities and the Cypher template can find connections between these, which provides relevant context for the agent.
 
 This tool is best for:
@@ -159,6 +159,22 @@ Aura Agent currently supports embeddings generated with the following text embed
 For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
 
 You need to provide the name of your vector index and a value for *Top K*, i.e. the number of results you want the search to return.
+
+To further process the similarity search results, check *Return connected graph data*.
+This lets you write a Cypher query that is appended to the vector search and runs as a single query, with `node` (the matched node) and `score` (the similarity score) already in scope.
+
+You can write the query directly in the *Cypher* tab, or describe the traversal, i.e. what the query should accomplish, in the *Natural language* tab and use *Generate* to produce a Cypher query.
+Review and optionally edit the query in the *Cypher* tab and use *Add tool* to save it.
+Note that the natural language description is not saved, only the final Cypher query is stored with the tool.
+
+You can add multiple similarity search tools with the same vector index but with different post-processing queries to cover different traversal patterns.
+
+[TIP]
+====
+Use the *Similarity Search* tool when your starting point is a vector index.
+Use the *Cypher Template* tool for arbitrary read queries that do not require a vector lookup.
+====
+
 
 [.shadow]
 .Similarity search tool
