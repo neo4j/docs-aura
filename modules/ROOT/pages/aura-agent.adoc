@@ -160,6 +160,17 @@ For more information about vectors and embeddings, see the link:{neo4j-docs-base
 
 You need to provide the name of your vector index and a value for *Top K*, i.e. the number of results you want the search to return.
 
+If you want to further refine the tool, you can use the results from the similarity search (`node` and `score`) in a Cypher query.
+When you check the box *Return connected graph data*, you have two options.
+Either use natural language to describe what you want the query to do  and then use *Generate* to get a corresponding Cypher query.
+Review the query and make any necessary changes, the use *Add tool* to confirm.
+The other option is to write your own Cypher query from the *Cypher* tab, for the purpose.
+
+Keep in mind that adding this post-processing query to the similarity search narrows the scope of the tool.
+But it is also possible to have multiple similarity search tools with the same vector search configuration, but with different post-processing queries.
+
+
+
 [.shadow]
 .Similarity search tool
 image::similarity-search.jpg[width=400]
