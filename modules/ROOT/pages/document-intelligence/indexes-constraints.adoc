@@ -12,10 +12,10 @@ image::docintel-index.jpg[]
 
 == Constraints
 
-A uniqueness constraint is created on the node property selected as node ID.
-This ensures that no other node with the same ID is created and to achieve that, a corresponding index is also created to support that constraint.
-It is not possible to modify the uniqueness constraint nor to add any additional constraints.
-For more information on constraints see link:https://neo4j.com/docs/cypher-manual/current/constraints/#unique-node-property[Cypher Manual -> Constraints].
+A key constraint is created on the node property selected as node ID.
+This ensures that the property must be unique and not null and to achieve that, a corresponding composite range index is also created to support that constraint.
+You can change *which* property to use in the constraint, but not the constraint type and you cannot add any additional constraints.
+For more information on the key constraint see link:{neo4j-docs-base-uri}/cypher-manual/current/schema/constraints/create-constraints/#create-key-constraints[Cypher Manual -> Create key constraints].
 
 == Indexes
 
