@@ -17,6 +17,9 @@ The editor in Query understands a few client-side commands, which begin with a c
 m| :access-mode read/write
 a| Set the access mode to read or write.
 
+m| :auto
+a| Execute a query in an auto-committing transaction (write access mode with implicit transactions)
+
 m| :clear
 a| Remove all frames from the stream.
 
@@ -26,6 +29,9 @@ If already connected, this returns the instance you are connected to.
 
 m| :disconnect
 a| Disconnect the currently open connection toan instance.
+
+m| :help
+a| Display information about the built-in commands
 
 m| :history
 a| Open the history drawer of your executed commands.
