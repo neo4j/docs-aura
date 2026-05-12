@@ -56,9 +56,11 @@ Additionally, you can use the tools in the tool bar on the bottom of the canvas 
 .Tool bar
 image::tool-bar.jpg[width=400]
 
-=== Refine with AI Assistant
+=== Refine with the Document Intelligence Agent
 
-To the left in the tool bar, you find an interactive agent that can assist you with not only refining your model but also audit and answer questions about the proposed model.
+The graph assistant is open by default when you open the graph model view.
+If you close it, you can find it on the left in the tool bar.
+The graph assistant is an interactive agent that can assist you with not only refining your model but also audit and answer questions about the proposed model.
 Additionally, it can generate Cypher queries for you based on the model.
 
 Open the agent and use natural language to describe what you want to do.
@@ -76,6 +78,7 @@ You can ask the agent to look for potential issues such as ambiguous relationshi
 If any issues are detected, you can use the agent to rectify accordingly.
 
 The agent can also write Cypher queries for you that you can execute against your graph once imported.
+It can also execute them for you behind the scenes and interpret the results and return them to you in natural language as well.
 
 == Fix model errors
 
@@ -114,7 +117,7 @@ CALL db.schema.visualization
 ----
 
 Note that there is some extra data in the model, `_ \_Chunk_ \_`, `_ \_Document_ \_`, and `_ \_Entity_ _` nodes and corresponding relationships.
-See link-to-another-chapter-tbd for more information about this.
+See xref:document-intelligence/import.adoc#_lexical_graph[Lexical graph] for more information about this.
 
 
 

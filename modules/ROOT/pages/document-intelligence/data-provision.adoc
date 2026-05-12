@@ -16,11 +16,13 @@ The following file formats are supported:
 To connect to a cloud storage, navigate to the *Cloud data sources* tab and use the *Add data source* button to add a new source.
 Once a source is added, it is listed in the table.
 
-The following cloud storage options are supported:
+The following cloud storage options and authorization methods are supported:
 
-* AWS S3
-* Azure Blobs & Data Lake Storage
-* Google Cloud Storage
+* AWS S3 - S3 key + secret
+* Azure Blobs & Data Lake Storage - Azure storage connection string
+* Google Cloud Storage - HMAC Access key + secret
+
+
 
 Select the appropriate provider and enter your information.
 
