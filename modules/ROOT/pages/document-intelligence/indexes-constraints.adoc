@@ -19,7 +19,7 @@ For more information on the key constraint see link:{neo4j-docs-base-uri}/cypher
 
 == Indexes
 
-As mentioned previously, an index is created automatically on the assigned ID property for a node to support the uniqueness constraint.
+As mentioned previously, an index is created automatically on the assigned ID property for a node to support the key constraint.
 This index cannot be modified in any way from this tab, but if you change which property to use as ID, both the constraint and corresponding index change accordingly.
 
 You can add more indexes with the `+` and then name a property to index from the dropdown menu.
