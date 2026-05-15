@@ -4,6 +4,7 @@
   "description": "= Neo4j Aura",
   "main": "server.js",
   "scripts": {
+    "apoc": "node scripts/apoc.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "npm update",
     "start": "nodemon --exec \"npm run build\"",
@@ -32,7 +33,9 @@
     "@neo4j-antora/xref-hash-validator": "^0.1.4",
     "@neo4j-documentation/macros": "^1.0.4",
     "@neo4j-documentation/remote-include": "^1.0.0",
-    "antora": "3.1.14"
+    "antora": "3.1.14",
+    "dotenv": "^17.4.2",
+    "neo4j-driver": "^6.0.1"
   },
   "devDependencies": {
     "express": "5.2.1",
@@ -40,16 +43,16 @@
   },
   "nodemonConfig": {
     "watch": [
-        "**/modules/**",
-        "**/antora.yml",
-        "**/preview.yml",
-        "**/publish.yml"
-      ],
-      "ext": "yml,yaml,adoc,svg,png,jpg",
-      "ignore": [
-        "build/**",
-        "node_modules/**"
-      ],
-      "delay": 1000
+      "**/modules/**",
+      "**/antora.yml",
+      "**/preview.yml",
+      "**/publish.yml"
+    ],
+    "ext": "yml,yaml,adoc,svg,png,jpg",
+    "ignore": [
+      "build/**",
+      "node_modules/**"
+    ],
+    "delay": 1000
   }
 }
