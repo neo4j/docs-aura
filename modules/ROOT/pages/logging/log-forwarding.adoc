@@ -96,8 +96,7 @@ After the log data has been securely handed off from the Neo4j cluster to your c
 
 === Google Cloud Platform
 
-When using log forwarding with GCP, all logs are transmitted to the link:https://docs.cloud.google.com/logging/docs/reference/v2/rest?rep_location=global[Cloud Logging API].
-The log data is sent directly to `logging.googleapis.com` which resolves to the logging service of the current data center. At this point, the logs become available to you via Log Router without ever leaving the data center.
+When using log forwarding with GCP, all logs are transmitted to the link:https://docs.cloud.google.com/logging/docs/reference/v2/rest?rep_location=global[Cloud Logging API] of the source data center via the internal endpoint `logging.googleapis.com`. At this point, the logs become available to you via Log Router without ever leaving the data center.
 
 If you set up a log sink that sends logs to a Google service in another region, traffic is generally kept secure through encryption and by using an internal load balancer which keeps the traffic on the internal backplane. For more information, see link:https://docs.cloud.google.com/load-balancing/docs/load-balancing-overview[load balancing overview].
 
@@ -111,4 +110,4 @@ If you choose to forward logs to a different AWS region than your Aura instance 
 
 When using log forwarding with Azure, all logs are transmitted to link:https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-platform-logs[Azure Monitor] of the source data center via the internal endpoint `opinsights.azure.com`.
 
-For cross-region log forwarding within Azure, the link:https://azure.microsoft.com/en-us/explore/global-infrastructure/global-network[Azure global network] backplane is used to transmit your logs securely without crossing the open internet.
+If you choose to forward logs to a different Azure region than your Aura instance resides in, the link:https://azure.microsoft.com/en-us/explore/global-infrastructure/global-network[Azure global network] backplane is used to transfer data without crossing the open internet.
