@@ -158,15 +158,15 @@ Deconstructs a `LIST<ANY>` into identifiers indicating their specific type.
 Returns a `LIST<ANY>` with the given count of items.
 ¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.flatten[apoc.coll.flatten icon:book[] ^] +
 Flattens the given `LIST<ANY>` (to flatten nested `LIST<ANY>` values, set recursive to true).
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.frequencies[apoc.coll.frequencies icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.frequencies[apoc.coll.frequencies icon:book[] ^] +
 Returns a `LIST<ANY>` of frequencies of the items in the collection, keyed by `item` and `count`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.frequenciesAsMap[apoc.coll.frequenciesAsMap icon:book[] ^] +
 Returns a `MAP` of frequencies of the items in the collection, keyed by `item` and `count`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.indexOf[apoc.coll.indexOf icon:book[] ^] +
 Returns the index for the first occurrence of the specified value in the `LIST<ANY>`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.insert[apoc.coll.insert icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.insert[apoc.coll.insert icon:book[] ^] +
 Inserts a value into the specified index in the `LIST<ANY>`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.insertAll[apoc.coll.insertAll icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.insertAll[apoc.coll.insertAll icon:book[] ^] +
 Inserts all of the values into the `LIST<ANY>`, starting at the specified index.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.intersection[apoc.coll.intersection icon:book[] ^] +
 Returns the distinct intersection of two `LIST<ANY>` values.
@@ -194,7 +194,7 @@ Returns a random item from the `LIST<ANY>`, or null on `LIST<NOTHING>` or `LIST<
 Returns a `LIST<ANY>` of `itemCount` random items from the original `LIST<ANY>` (optionally allowing elements in the original `LIST<ANY>` to be selected more than once).
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.remove[apoc.coll.remove icon:book[] ^] +
 Removes a range of values from the `LIST<ANY>`, beginning at position index for the given length of values.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.removeAll[apoc.coll.removeAll icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.removeAll[apoc.coll.removeAll icon:book[] ^] +
 Returns the first `LIST<ANY>` with all elements also present in the second `LIST<ANY>` removed.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.runningTotal[apoc.coll.runningTotal icon:book[] ^] +
 Returns an accumulative `LIST<INTEGER | FLOAT>`.
@@ -204,7 +204,7 @@ Sets the element at the given index to the new value.
 Returns the `LIST<ANY>` shuffled.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.sort[apoc.coll.sort icon:book[] ^] +
 Sorts the given `LIST<ANY>` into ascending order.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.sortMaps[apoc.coll.sortMaps icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.sortMaps[apoc.coll.sortMaps icon:book[] ^] +
 Sorts the given `LIST<MAP<STRING, ANY>>` into descending order, based on the `MAP` property indicated by `prop`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.sortMulti[apoc.coll.sortMulti icon:book[] ^] +
 Sorts the given `LIST<MAP<STRING, ANY>>` by the given fields.
@@ -225,7 +225,7 @@ Returns the sum of all the `INTEGER | FLOAT` in the `LIST<INTEGER | FLOAT>`.
 Returns the sum of all the `INTEGER | FLOAT` in the `LIST<INTEGER | FLOAT>`.
 ¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.toSet[apoc.coll.toSet icon:book[] ^] +
 Returns a unique `LIST<ANY>` from the given `LIST<ANY>`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.union[apoc.coll.union icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.union[apoc.coll.union icon:book[] ^] +
 Returns the distinct union of the two given `LIST<ANY>` values.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.coll/apoc.coll.unionAll[apoc.coll.unionAll icon:book[] ^] +
 Returns the full union of the two given `LIST<ANY>` values (duplicates included).
@@ -268,7 +268,7 @@ Converts the given value into a `RELATIONSHIP`.
 Converts the given value into a `LIST<RELATIONSHIP>`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.convert/apoc.convert.toSet[apoc.convert.toSet icon:book[] ^] +
 Converts the given value into a set represented in Cypher as a `LIST<ANY>`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.convert/apoc.convert.toSortedJsonMap[apoc.convert.toSortedJsonMap icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.convert/apoc.convert.toSortedJsonMap[apoc.convert.toSortedJsonMap icon:book[] ^] +
 Converts a serialized JSON object from the property of a given `NODE` into a Cypher `MAP`.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.convert/apoc.convert.toTree[apoc.convert.toTree icon:book[] ^] +
 Returns a stream of `MAP` values, representing the given `PATH` values as a tree with at least one root.
@@ -374,20 +374,20 @@ Adds a unit of specified time to the given timestamp.
 Converts the given timestamp from one time unit into a timestamp of a different time unit.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.convertFormat[apoc.date.convertFormat icon:book[] ^] +
 Converts a `STRING` of one type of date format into a `STRING` of another type of date format.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.currentTimestamp[apoc.date.currentTimestamp icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.currentTimestamp[apoc.date.currentTimestamp icon:book[] ^] +
 Returns the current Unix epoch timestamp in milliseconds.
 ¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.field[apoc.date.field icon:book[] ^] +
 Returns the value of one field from the given date time.
 ¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.fields[apoc.date.fields icon:book[] ^] +
 Splits the given date into fields returning a `MAP` containing the values of each field.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.format[apoc.date.format icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.format[apoc.date.format icon:book[] ^] +
 Returns a `STRING` representation of the time value.
 The time unit (default: ms), date format (default: ISO), and time zone (default: current time zone) can all be changed.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.fromISO8601[apoc.date.fromISO8601 icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.fromISO8601[apoc.date.fromISO8601 icon:book[] ^] +
 Converts the given date `STRING` (ISO8601) to an `INTEGER` representing the time value in milliseconds.
 ¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.parse[apoc.date.parse icon:book[] ^] +
 Parses the given date `STRING` from a specified format into the specified time unit.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.systemTimezone[apoc.date.systemTimezone icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.systemTimezone[apoc.date.systemTimezone icon:book[] ^] +
 Returns the display name of the system time zone (e.g. Europe/London).
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.date/apoc.date.toISO8601[apoc.date.toISO8601 icon:book[] ^] +
 Returns a `STRING` representation of a specified time value in the ISO8601 format.
@@ -915,11 +915,10 @@ Runs a repeatedly called background statement until it returns 0.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.periodic/apoc.periodic.iterate[apoc.periodic.iterate icon:book[] ^] +
 Runs the second statement for each item returned by the first statement.
 This procedure returns the number of batches and the total number of processed rows.
-¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.periodic/apoc.periodic.list[apoc.periodic.list icon:book[] ^] +
+¦ label:procedure[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.periodic/apoc.periodic.list[apoc.periodic.list icon:book[] ^] +
 Returns a `LIST<ANY>` of all background jobs.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.periodic/apoc.periodic.repeat[apoc.periodic.repeat icon:book[] ^] +
-Runs a repeatedly called background job.
-To stop this procedure, use `apoc.periodic.cancel`.
+Runs a repeatedly called background job. To stop this procedure, use `apoc.periodic.cancel`.
 ¦ label:procedure[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.periodic/apoc.periodic.submit[apoc.periodic.submit icon:book[] ^] +
 Creates a background job which runs the given Cypher statement once.
 ¦ label:procedure[]
@@ -1098,11 +1097,11 @@ Returns the percentile groupings of the degrees on the `NODE` values connected b
 ¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.temporal/apoc.temporal.format[apoc.temporal.format icon:book[] ^] +
 Formats the given temporal value into the given time format.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.temporal/apoc.temporal.formatDuration[apoc.temporal.formatDuration icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.temporal/apoc.temporal.formatDuration[apoc.temporal.formatDuration icon:book[] ^] +
 Formats the given duration into the given time format.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.temporal/apoc.temporal.toZonedTemporal[apoc.temporal.toZonedTemporal icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.temporal/apoc.temporal.toZonedTemporal[apoc.temporal.toZonedTemporal icon:book[] ^] +
 Parses the given date `STRING` using the specified format into the given time zone.
-¦ label:function[]
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]
 |===
 
 
