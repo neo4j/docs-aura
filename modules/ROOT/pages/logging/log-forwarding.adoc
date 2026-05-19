@@ -128,7 +128,7 @@ When using log forwarding with AWS, all logs are transmitted to the local link:h
 Data is always encrypted both at rest and in transit.
 Authentication uses link:https://aws.amazon.com/identity/federation/[Identity federation].
 
-If you choose to forward logs to a different AWS region than your Aura instance resides in, the link:https://aws.amazon.com/about-aws/global-infrastructure/global-network/[AWS Global Network] backplane is used to transfer data without crossing the open internet.
+If you choose to forward logs to a different AWS region than the one your Aura instance resides in, the link:https://aws.amazon.com/about-aws/global-infrastructure/global-network/[AWS Global Network] backplane is used to transfer data without crossing the public internet.
 
 === Azure
 
