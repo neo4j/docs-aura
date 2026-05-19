@@ -135,4 +135,4 @@ If you choose to forward logs to a different AWS region than the one your Aura i
 When using log forwarding with Azure, all logs are transmitted to link:https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-platform-logs[Azure Monitor] of the source data center via the internal endpoint `opinsights.azure.com`.
 The traffic is `TLS` encrypted and authenticated with `HMAC-SHA256`.
 
-If you choose to forward logs to a different Azure region than your Aura instance resides in, the link:https://azure.microsoft.com/en-us/explore/global-infrastructure/global-network[Azure global network] backplane is used to transfer data without crossing the open internet.
+If you choose to forward logs to a different Azure region than the one your Aura instance resides in, the link:https://azure.microsoft.com/en-us/explore/global-infrastructure/global-network[Azure global network] backplane is used to transfer data without crossing the public internet.
