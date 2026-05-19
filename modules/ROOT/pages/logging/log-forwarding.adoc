@@ -108,23 +108,31 @@ For details on the implementation for specific cloud providers, see the sections
 
 [NOTE]
 ====
-After the log data has been securely handed off from the Neo4j cluster to your cloud provider, Neo4j cannot control and does not take any responsibility for how the data is handled. The descriptions below are provided for information only. For the latest information, consult your cloud provider and/or any third party solution provider you choose to employ.
+After the log data has been securely handed off from the Neo4j cluster to your cloud provider, Neo4j cannot control and does not take any responsibility for how the data is handled.
+The descriptions below are provided for information only.
+For the latest information, consult your cloud provider and/or any third party solution provider you choose to employ.
 ====
 
 === Google Cloud Platform
 
-When using log forwarding with GCP, all logs are transmitted to the link:https://docs.cloud.google.com/logging/docs/reference/v2/rest?rep_location=global[Cloud Logging API] of the source data center via the internal endpoint `logging.googleapis.com`. At this point, the logs become available to you via Log Router without ever leaving the data center.
+When using log forwarding with GCP, all logs are transmitted to the link:https://docs.cloud.google.com/logging/docs/reference/v2/rest?rep_location=global[Cloud Logging API] of the source data center via the internal endpoint `logging.googleapis.com`.
+At this point, the logs become available to you via Log Router without ever leaving the data center.
+Authentication uses link:https://docs.cloud.google.com/iam/docs/workload-identity-federation[Workload Identity Federation].
 
-If you set up a log sink that sends logs to a Google service in another region, traffic is generally kept secure through encryption and by using an internal load balancer which keeps the traffic on the internal backplane. For more information, see link:https://docs.cloud.google.com/load-balancing/docs/load-balancing-overview[load balancing overview].
+If you set up a log sink that sends logs to a Google service in another region, traffic is generally kept secure through encryption and by using an internal load balancer which keeps the traffic on the internal backplane.
+For more information, see link:https://docs.cloud.google.com/load-balancing/docs/load-balancing-overview[load balancing overview].
 
 === Amazon Web Services
 
-When using log forwarding with AWS, all logs are transmitted to the local link:https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/data-protection.html[CloudWatch] destination endpoint. Data is always encrypted both at rest and in transit. Authentication is implemented with link:https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html[AWS Signature Version 4].
+When using log forwarding with AWS, all logs are transmitted to the local link:https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/data-protection.html[CloudWatch] destination endpoint.
+Data is always encrypted both at rest and in transit.
+Authentication uses link:https://aws.amazon.com/identity/federation/[Identity federation].
 
 If you choose to forward logs to a different AWS region than your Aura instance resides in, the link:https://aws.amazon.com/about-aws/global-infrastructure/global-network/[AWS Global Network] backplane is used to transfer data without crossing the open internet.
 
 === Azure
 
-When using log forwarding with Azure, all logs are transmitted to link:https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-platform-logs[Azure Monitor] of the source data center via the internal endpoint `opinsights.azure.com`. The traffic is `TLS` encrypted and authenticated with `HMAC-SHA256`.
+When using log forwarding with Azure, all logs are transmitted to link:https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-platform-logs[Azure Monitor] of the source data center via the internal endpoint `opinsights.azure.com`.
+The traffic is `TLS` encrypted and authenticated with `HMAC-SHA256`.
 
 If you choose to forward logs to a different Azure region than your Aura instance resides in, the link:https://azure.microsoft.com/en-us/explore/global-infrastructure/global-network[Azure global network] backplane is used to transfer data without crossing the open internet.
