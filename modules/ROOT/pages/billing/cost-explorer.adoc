@@ -1,30 +1,41 @@
-= Billing and usage report
-:description: usage reporting allows customers to monitor their billing and credit consumption.
-:page-role: aura-db-professional aura-db-business-critical aura-db-dedicated
+= Organization billing
 
-The billing screen at the organization-level gives you a view of how all your instances are using resources across every project.
-From the billing screen, you can also see payment methods.
-You can also view a usage report at the project-level that only includes usage information about instances in that project.
+label:AuraDB-Professional[]
+label:AuraDB-Business-Critical[]
 
-== Usage report
+Organization Billing provides organization-level visibility into costs, usage, credits, and payment methods across projects.
 
-On the organization-level, the usage report is available under *Billing* in the left-hand navigation.
+From Organization billing you can access the following tabs: overview, cost explorer, usage, payment methods. 
 
-.Organization-level billing
-[.shadow]
-image::organizationbilling.png[width=500]
+=== Required roles
 
+At the organization-level, billing and usage is available to `Organization Owner` and `Organization Admin`.
+
+At the project-level, usage is available to `Project Admin`.
+
+== Overview
+
+An overview of total usage as a graph for the past year or month.
+And the billing account (initial ACUs, remaining ACUs, ACUs spent month-to-date, and approximately how many days ACUs will last.) 
+This is also where you link:https://neo4j.com/docs/aura/billing/payment-options/#_applying_aura_credits_to_your_account[redeem credits].
+
+== Cost explorer
+
+“What is generating cost, and why?” designed for deeper financial analysis.
+This page can show usage information from all projects and billing accounts belonging to the organization.
+Analyze spending patterns and dig deeper into resource usage, understand where costs originate by breaking usage down across projects, services, resources, providers, and time periods.
++ investigate the financial impact of resource consumption over time.
+
+== Usage
+
+Usage information is available at both the project and organization-level. 
+Organization Billing Usage can aggregate billable usage across billing accounts and projects.
+A usage report at the project-level that only includes usage information about instances in that project.
 Within a project, you can find the report in *Project -> Usage*.
 
 .Project-level usage
 [.shadow]
 image::projectusage.png[width=500]
-
-=== Required roles
-
-At the organization-level, the billing and usage report is available to `Organization Owner` and `Organization Admin`.
-
-At the project-level, a usage report is available to `Organization Owner`, `Organization Admin`, and `Project Admin`.
 
 === Export
 
@@ -42,13 +53,14 @@ All instances with usage in the selected interval are listed, including destroye
 [.shadow]
 image::usagefilters.png[]
 
-=== View instances, sessions, or egress usage
+=== View instances, sessions, egress, or agents usage
 
-There are three options for viewing consumption:
+The options for viewing consumption are:
 
 * *Instances* includes a usage summary for database instances.
 * *Sessions* includes a usage summary for any Graph Analytics sessions.
 * *Egress* includes a usage summary for any data egress from Aura (e.g. Log Forwarding usage).
+* *Agents* includes a usage summary for Aura agent usage.
 
 == Payment methods
 
@@ -76,7 +88,8 @@ The billing status can be `ongoing` (currently being billed) or `ended` (histori
 Usage is displayed in the specified unit of measure.
 GB-hours usage is calculated by multiplying the number of hours a database is running (whether actively used or not) by the memory size in gigabytes (GB).
 
-== Invoices
+== Payment methods
 
-Invoices that have been paid appear in the invoices tab.
-This tab only appears when credit cards are used.
+Manage billing configuration within the link:https://neo4j.com/docs/aura/billing/payment-methods/[payment methods] tab. 
+
+
