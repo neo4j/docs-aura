@@ -1,11 +1,8 @@
 = Organization billing
 
-label:AuraDB-Professional[]
-label:AuraDB-Business-Critical[]
-
 Organization Billing provides organization-level visibility into costs, usage, and billing configuration.
 
-Organization Billing includes the following tabs: Overview, Cost explorer, Usage, Payment methods and Invoices.
+Organization Billing includes the following tabs: Overview, Cost explorer, Usage, Payment methods, and Invoices.
 
 == Required roles
 
@@ -27,6 +24,22 @@ It displays usage information across all projects and billing accounts in the or
 * Analyze spending patterns over time.
 * Identify which projects, services, resources, or providers generate costs.
 * Investigate the financial impact of resource consumption.
+
+== Usage details
+
+You can view detailed information about your usage, including:
+
+* Consumption period: the date the usage occurred.
+* Project ID and name
+* Service: an offering that can be purchased from Neo4j. For a managed database service like Neo4j Aura,  services include compute, storage or networking charges.
+* Tier
+* Resource: a resource is a unique component that incurs a charge. For example, an AuraDB/AuraDS instance, an Aura Agent or an Aura Graph Analytics session. We track:
+** Resource type 
+** Resource ID
+** Resource name
+* Cloud provider and region
+* Consumed quantity and unit: the volume of a metered SKU associated with a resource or service used. For example, for an AuraDB instance, consumed quantity represents the amount of metered GB-hours.
+* Total cost: the monetary value of the consumed quantity. Calculated as `consumed quantity` x `unit price`.
 
 === Export CSV
 
