@@ -28,6 +28,10 @@ It displays usage information across all projects and billing accounts in the or
 * Identify which projects, services, resources, or providers generate costs.
 * Investigate the financial impact of resource consumption.
 
+=== Export CSV
+
+Export usage details as a CSV file for a selected time period.
+
 == Usage
 
 Usage information is available at both the organization and project levels.
@@ -39,10 +43,6 @@ Project-level usage reports only include usage for instances within that project
 .Project-level usage
 [.shadow]
 image::projectusage.png[width=500]
-
-=== Export
-
-Export usage data as a CSV file for a selected time period.
 
 === Filter by time range
 
@@ -92,5 +92,10 @@ For prepaid, you can see:
 For credit cards, you can see the last 4 digits, the expiration date and the billing address.
 
 For more information, see link:https://neo4j.com/docs/aura/billing/payment-options/[payment options].
+
+== Invoices
+
+Invoices that have been paid appear in the invoices tab. 
+This tab only appears when credit cards are used.
 
 
