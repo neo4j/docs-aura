@@ -3,9 +3,9 @@
 label:AuraDB-Professional[]
 label:AuraDB-Business-Critical[]
 
-Organization Billing provides organization-level visibility into costs, usage, credits, and payment methods across projects.
+Organization Billing provides organization-level visibility into costs, usage, and billing configuration.
 
-From Organization billing you can access the following tabs: overview, cost explorer, usage, payment methods. 
+Organization Billing includes the following tabs: Overview, Cost explorer, Usage, Payment methods and Invoices.
 
 == Required roles
 
@@ -15,23 +15,26 @@ At the project-level, usage is available to `Project Admin`.
 
 == Overview
 
-An overview of total usage as a graph for the past year or month.
-And the billing account (initial ACUs, remaining ACUs, ACUs spent month-to-date, and approximately how many days ACUs will last.) 
+View total usage trends for the past month or year.
+The Overview tab also displays billing account information, including initial ACU credits, remaining credits, credits consumed month-to-date, and approximately how many days ACUs will last.
 This is also where you link:https://neo4j.com/docs/aura/billing/payment-options/#_applying_aura_credits_to_your_account[redeem credits].
 
 == Cost explorer
 
-“What is generating cost, and why?” designed for deeper financial analysis.
-This page can show usage information from all projects and billing accounts belonging to the organization.
-Analyze spending patterns and dig deeper into resource usage, understand where costs originate by breaking usage down across projects, services, resources, providers, and time periods.
-+ investigate the financial impact of resource consumption over time.
+Look into “what is generating cost, and why” in the cost explorer.
+It displays usage information across all projects and billing accounts in the organization, to:
+
+* Analyze spending patterns over time.
+* Identify which projects, services, resources, or providers generate costs.
+* Investigate the financial impact of resource consumption.
 
 == Usage
 
-Usage information is available at both the project and organization-level. 
-Organization Billing Usage can aggregate billable usage across billing accounts and projects.
-A usage report at the project-level that only includes usage information about instances in that project.
-Within a project, you can find the report in *Project -> Usage*.
+Usage information is available at both the organization and project levels.
+
+Organization-level usage aggregates billable usage across billing accounts and projects.
+
+Project-level usage reports only include usage for instances within that project. To view project usage, navigate to *Project -> Usage*.
 
 .Project-level usage
 [.shadow]
@@ -39,7 +42,7 @@ image::projectusage.png[width=500]
 
 === Export
 
-You can Export a CSV file containing usage in a selected period.
+Export usage data as a CSV file for a selected time period.
 
 === Filter by time range
 
@@ -55,24 +58,12 @@ image::usagefilters.png[]
 
 === View instances, sessions, egress, or agents usage
 
-The options for viewing consumption are:
+Usage can be viewed by the following categories:
 
 * *Instances* includes a usage summary for database instances.
 * *Sessions* includes a usage summary for any Graph Analytics sessions.
 * *Egress* includes a usage summary for any data egress from Aura (e.g. Log Forwarding usage).
 * *Agents* includes a usage summary for Aura agent usage.
-
-== Payment methods
-
-On the organization-level, you can see the different payment methods configured for your organization.
-
-For prepaid, you can see:
-
-* Contracted credits: the initial credit balance for the current contract period.
-* Consumed credits: total usage so far in the current contract period.
-* Remaining credits: remaining balance in the current contract period.
-
-For credit cards, you can see the last 4 digits, the expiration date and the billing address.
 
 === Product name and pricing
 
@@ -90,6 +81,16 @@ GB-hours usage is calculated by multiplying the number of hours a database is ru
 
 == Payment methods
 
-Manage billing configuration within the link:https://neo4j.com/docs/aura/billing/payment-methods/[payment methods] tab. 
+View the payment methods configured for the organization.
+
+For prepaid, you can see:
+
+* Contracted credits: the initial credit balance for the current contract period.
+* Consumed credits: total usage so far in the current contract period.
+* Remaining credits: remaining balance in the current contract period.
+
+For credit cards, you can see the last 4 digits, the expiration date and the billing address.
+
+For more information, see link:https://neo4j.com/docs/aura/billing/payment-options/[payment options].
 
 
