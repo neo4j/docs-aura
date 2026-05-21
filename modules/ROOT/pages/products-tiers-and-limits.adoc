@@ -1,0 +1,205 @@
+= Products, tiers and limits
+
+[NOTE]
+====
+This is a draft document, to work on the layout of the page - figures are subject to change.
+====
+
+This document provides a comprehensive overview of the system limits, quotas, and operational constraints for Neo4j AuraDB across its different service tiers. 
+These limits are in place to ensure the stability, performance, and security of the managed service.
+
+== Products
+
+AuraDB is offered in four distinct tiers, each designed for different use cases, from learning and development to mission-critical enterprise applications.
+
+*AuraDB Free:* A perpetual free tier for learning, prototyping, and small projects.
+
+*AuraDB Professional:* A scalable, pay-as-you-go tier for production-ready applications.
+
+*AuraDB Business Critical:* A highly available, multi-node cluster for mission-critical workloads requiring a 99.95% uptime SLA.
+
+*AuraDB Virtual Dedicated Cloud (VDC):* A single-tenant, dedicated environment offering maximum security, isolation, and customizable configurations.
+
+== Graph Size & Instance Limits
+
+These limits define the scale of a single AuraDB instance based on its tier and configured size.
+
+[cols="1,1,1,1,1", options="header"]
+|===
+|Limit |AuraDB Free |AuraDB Professional |AuraDB Business Critical |AuraDB VDC 
+
+|Nodes
+|200,000
+|No hard limit
+|No hard limit
+|No hard limit
+
+|Relationships
+|400,000
+|No hard limit
+|No hard limit
+|No hard limit
+
+|Memory (RAM)
+|N/A
+|1 GB to 128 GB
+|Up to 512 GB
+|Up to 512 GB 
+
+|Storage
+|N/A
+|2GB to 1TB
+|4GB to 2TB
+|4GB to 2TB
+|===
+
+== Connection Limits
+
+The number of simultaneous connections an instance can handle is tied to its resources and architecture.
+
+[cols="1,2", options="header"]
+|===
+|Tier |Connection Limit Details
+
+|AuraDB Free
+|400 connections, limited use of tools
+
+|AuraDB Professional
+|400 connections
+
+|AuraDB Business Critical
+|800 connections by default. Adding each secondary will enable 400 more connections.
+
+|AuraDB VDC
+|800 connections by default. Adding each secondary will enable 400 more connections.
+|===
+
+== Query and Transaction Limits
+
+These limits govern the execution of Cypher queries to ensure database stability.
+
+[cols="2,2",options="header"]
+|===
+| Limit | Default Value
+
+| Max Query Execution Time
+| Configurable in the future
+
+| Max Concurrent Transactions
+| 1,000 (configurable default)
+
+| Max Transaction
+| TBD
+
+| Metadata Size
+| TBD
+
+| Idle Connection Timeout
+| 1 hour
+
+| Query cache size
+| 51
+
+| Transaction Memory Size
+| 278 MiB for both 1G & 2G instances
+
+| Checkpoint IOPS limit
+|600
+
+|Additional pagecache warmup after restart
+|True/False
+
+|Page cache warmup profile interval
+|1 minute/2 hours
+|===
+
+== Data Import & Operational Limits
+
+These limits apply when loading data into AuraDB or performing administrative actions.
+
+[cols="2,2",options="header"]
+|===
+| Limit | Value
+
+| LOAD CSV Source File Size
+| 10M Nodes (Recommended, not enforced)
+
+|Load CSV per field size
+|2MB+ with room to grow or editable
+
+| Database Dump (.dump) Upload Size
+| 256 GB
+|===
+
+== Features, Backups, and SLAs
+
+This table compares key operational features and service level agreements across the tiers.
+
+[cols="1,1,1,1,1",options="header"]
+|===
+| Feature 
+| AuraDB Free 
+| AuraDB Professional 
+| AuraDB Business Critical 
+| AuraDB VDC
+
+| Uptime SLA
+| None
+| None
+| 99.95%
+| 99.95%
+
+| Backup Frequency
+| On-demand
+| Daily
+| Daily & Hourly
+| Hourly
+
+| Default Backup Retention
+| 1 snapshot at a time
+| 7 days
+| 30 days
+| 60 days
+
+| Point-in-Time Recovery
+| No
+| No
+| Yes
+| Yes
+
+| IP Filtering
+| None
+| None
+| 20 IP Ranges
+| 100 IP Ranges
+
+| Architecture
+| Zonal Database
+| Zonal Instance
+| Regional Cluster
+| Regional Cluster with Dedicated VPC
+|===
+
+== Aura Trial Limits
+
+These limits apply to Aura credit-based trials. Based on guardrails.
+
+[cols="2,2",options="header"]
+|===
+| Limit | Value
+
+|Max number of non-free-tier active instances
+|2
+
+|Max instance size
+|4GB
+
+|Aura Graph Analytics - Max session size
+|8GB
+
+|Aura Graph Analytics - Max concurrent number of sessions
+|3
+
+|Aura Agent - Max number of external agents
+|1
+|===
