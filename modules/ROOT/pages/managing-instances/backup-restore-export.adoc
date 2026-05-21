@@ -209,3 +209,17 @@ To enable *Public traffic* on a network access configuration:
 
 You can now use the `database upload` command on the instances within that region.
 Once the command has completed, you can disable *Public traffic* again by following the same steps and re-selecting the *Disable public* traffic checkbox.
+
+== Suspended instances
+
+[NOTE]
+==== 
+Snapshots remain available for 30 days after an instance is suspended. 
+You can download a backup without reinstating the project.
+====
+
+* Free instances are automatically suspended after 72 hours of inactivity. Suspension is lifted when the instance is queried again.
+
+* Instances running deprecated Neo4j versions can be suspended. Suspension is lifted after upgrading to a supported Neo4j version.
+
+* Instances can be suspended because of unpaid invoices. Suspension is lifted after outstanding invoices are paid.
