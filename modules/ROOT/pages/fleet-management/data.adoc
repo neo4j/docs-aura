@@ -31,6 +31,9 @@ Message sent from the server to the Fleet Manager service to establish a connect
 | `build_profile`
 | String
 | Build profile of the Fleet Manager module
+| `is_system_db_writer`
+| boolean
+| Does this server allow writing to system DB?
 |===
 
 == `MetricsMessage`
@@ -54,7 +57,7 @@ Message sent from the server to the Fleet Manager service containing metrics dat
 | Unique identifier for the server
 | `metrics`
 | Map<String, Collection<DataPoint>>
-| Map of metric names to lists of DataPoint objects. Values are dynamically populated from the Fleet Manager server.
+| Map of metric names to lists of DataPoint objects. Values are dynamically populated from the Fleet Manager service.
 | `metrics<>[].tags`
 | Map<String, String>
 | Map of string key-value pairs providing additional context for the metric
