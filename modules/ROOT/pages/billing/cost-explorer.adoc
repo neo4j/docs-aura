@@ -13,7 +13,7 @@ At the project-level, usage is available to `Project Admin`.
 == Overview
 
 View total usage trends for the past month or year.
-The Overview tab also displays billing account information, including initial ACU credits, remaining credits, credits consumed month-to-date, and approximately how many days ACUs will last.
+The Overview tab also displays billing account information, including initial xref:billing/payment-options.adoc#_aura_consumption_units[Aura Consumption Units (ACUs)], remaining credits, credits consumed month-to-date, and approximately how many days ACUs will last.
 This is also where you link:https://neo4j.com/docs/aura/billing/payment-options/#_applying_aura_credits_to_your_account[redeem credits].
 
 == Cost explorer
@@ -60,8 +60,8 @@ image::projectusage.png[width=500]
 === Filter by time range
 
 * Filter the usage data by predefined and custom date intervals.
-* Look back for a period of up to 180 days.
-* Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days`, `Last 180 days`  or a `Custom range`.
+* Look back for a period of up to 180 days. However, you can only select an interval of maximum 30 days at a time.
+* Filter by `Last 24 hours`, `Last 7 days`, `Last 30 days`, `Last 90 days`,  or a `Custom range`.
 
 All instances with usage in the selected interval are listed, including destroyed instances.
 
