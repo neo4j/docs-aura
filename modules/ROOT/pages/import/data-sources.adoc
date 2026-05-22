@@ -8,7 +8,7 @@ In general it covers the same aspects, but on a detailed level it can differ fro
 This page outlines where to find the required information in your remote data source.
 
 Some data sources require specific roles/permissions to access the data.
-Exactly which permissions are required depends on the data source and how the data is organized in the data source.
+Exactly which permissions are required depends on the data source and how the data is organized.
 Therefore, it is recommended to consult the database administrator to set up the minimal required permissions for each case.
 
 [NOTE]
@@ -18,7 +18,7 @@ As the sources are third parties, this guidance is based on the information avai
 
 == PostgreSQL, MySQL, SQL Server, and Oracle
 
-All four data sources use follow common patterns for RDBMS of host, port, and database schema.
+All four data sources follow common patterns for RDBMS of host, port, and database schema.
 They all use Username and Password for authentication.
 
 == BigQuery
@@ -29,7 +29,7 @@ The following information is required to connect to BigQuery:
 * *Dataset name*
 * *Service Account key JSON*
 
-The *Project ID* and *dataset name* is available in the link:https://console.cloud.google.com/bigquery[BigQuery Studio] in the Google Cloud console.
+The *Project ID* and *dataset name* are available in the link:https://console.cloud.google.com/bigquery[BigQuery Studio] in the Google Cloud console.
 Browse to the BigQuery dataset you want to connect to and inspect the details to find the project ID and dataset name.
 Note that the dataset is sometimes prefixed with the project ID namespace, but not always.
 
