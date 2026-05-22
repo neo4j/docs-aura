@@ -141,4 +141,4 @@ In the Google Cloud Console, under *Buckets*, navigate to a specific resource in
 The bucket path can optionally contain glob patterns to reference multiple fles, but must *always reference to parquet or  csv files*.
 Each file must be given a temporary table name, which is used to reference the file in the mapping UI.
 
-For Google service accounts with access to the cloud bucket, see the link:https://docs.cloud.google.com/storage/docs/authentication/managing-hmackeys[Google documentation] on how to creat an HMAC key.
+For Google service accounts with access to the cloud bucket, see the link:https://docs.cloud.google.com/storage/docs/authentication/managing-hmackeys[Google documentation] on how to create an HMAC key.
