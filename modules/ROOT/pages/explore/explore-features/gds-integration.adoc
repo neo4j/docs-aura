@@ -3,13 +3,13 @@
 [[explore-gds]]
 = Graph Data Science integration
 
-Neo4j Graph Data Science algorithms can help you find new insights in your data, both into the nodes themselves as well as into how they are connected.
-See link:https://neo4j.com/docs/graph-data-science/current/[The Neo4j Graph Data Science Library Manual] for more information on graph algorithms.
+Neo4j Graph Data Science algorithms can help you find new insights in your data, from community detection to influence and graph structure and more.
 
 [NOTE]
 ====
-Running Graph Data Science algorithms on elements in your Scene does *not* alter the underlying data.
+Running Graph Data Science algorithms *on elements in your Scene* does *not* alter the underlying data.
 The scores only exist temporarily in Explore.
+However, if you opt to create a projection on the *entire graph*, results *are written* back to your data as a new database property.
 ====
 
 The algorithms are described briefly below, but refer to link:https://neo4j.com/docs/graph-data-science/current/[The Neo4j Graph Data Science Library Manual] for their full descriptions.
@@ -103,9 +103,17 @@ It can be used to determine whether your network is fully connected or not and a
 === Running the algorithms
 
 The GDS algorithms are accessed via the GDS button in the upper-left corner of the Scene.
-When you have selected an appropriate algorithm, you have the option to run it on _all_ elements in the Scene, or specify which node categories and/or relationship types.
+When you have selected an appropriate algorithm, you have the option to run it on *all* elements or specify which node labels and/or relationship types.
 Additionally, you can also select the orientation of the relationships to be traversed.
-The options are accessed via the Settings button in the GDS drawer.
+The options are accessed via the Settings button next to the algorithm name.
+
+When you are satisfied, you can either run the algorithm on the data in your *current Scene* or create a projection *on the entire graph*.
+The time it takes to run the algorithm can be different depending on the size of your graph.
+Additionally, running an algorithm on the current Scene only temporary adds a score to the elements visible in the Scene.
+This action does *not* write to your graph.
+But creating a projection on the entire graph adds a new database property to *all affected elements* containing the score for that element.
+This is *written* to the graph and unlike other property keys, it cannot be altered.
+You can manually remove the property using the *Query* tool, if needed.
 
 Applying your selected algorithm does not immediately change anything in the Scene.
 You can inspect each node to see its score, but to make the results easily visible, apply rule-based styling.
