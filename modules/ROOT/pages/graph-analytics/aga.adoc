@@ -44,7 +44,7 @@ image::aga-architecture.svg["Architecture diagram for Aura Graph Analytics. The 
 [[interfaces]]
 == Interfaces
 
-You can create and use sessions either with the GDS Cypher API or with the GDS Python client.
+You can create and use sessions with the GDS Cypher API, the GDS Python client, or the Explore tool.
 
 [[cypher-api]]
 === Cypher API
@@ -85,6 +85,20 @@ You can find tutorials on how to use sessions in the Python documentation:
 ====
 You need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] to run the Python tutorials.
 ====
+
+=== Explore
+
+xref:explore/introduction.adoc[The Explore tool] provides a no-code visual interface for running graph algorithms against your data directly from the Aura console. From Explore, you can create an Aura Graph Analytics session and run one or more algorithms against it.
+
+Results are applied as visual styling in the Explore Scene and are not written back to the database.
+
+[NOTE]
+====
+To run algorithms using Aura Graph Analytics from Explore, the AuraDB instance used as the data source must be configured to use Aura Graph Analytics.
+See xref:getting-started/create-instance.adoc[Create instance] for details.
+====
+
+For a full list of available algorithms and other details on running algorithms in Explore, see xref:explore/explore-features/gds-integration.adoc[Graph Data Science integration].
 
 [[configuration]]
 == Configuration
