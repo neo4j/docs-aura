@@ -19,7 +19,7 @@ This is also where you link:https://neo4j.com/docs/aura/billing/payment-options/
 == Cost explorer
 
 The cost explorer allows you to see what is generating cost and when.
-It displays usage information across all projects and billing accounts in the organization, to:
+It displays usage information across all projects and billing accounts in the organization, to help you:
 
 * Analyze spending patterns over time
 * Identify which projects, services, resources, or providers generate costs.
@@ -29,11 +29,11 @@ It displays usage information across all projects and billing accounts in the or
 
 You can view detailed information about your usage, including:
 
-* Consumption period: the date the usage occurred.
+* Consumption period: the date the usage occurred
 * Project ID and name
-* Service: an offering that can be purchased from Neo4j. For a managed database service like Neo4j Aura,  services include compute, storage or networking charges.
+* Service - an offering that can be purchased from Neo4j. For a managed database service like Neo4j Aura,  services include compute, storage or networking charges.
 * Tier
-* Resource: a resource is a unique component that incurs a charge. For example, an AuraDB/AuraDS instance, an Aura Agent or an Aura Graph Analytics session. We track:
+* Resource: a resource is a unique component that incurs a charge. For example, an AuraDB/AuraDS instance, an Aura Agent or an Aura Graph Analytics session. The following are tracked
 ** Resource type 
 ** Resource ID
 ** Resource name
@@ -47,15 +47,10 @@ Export usage details as a CSV file for a selected time period.
 
 == Usage
 
-Usage information is available at both the organization and project levels.
-
 Organization-level usage aggregates billable usage across billing accounts and projects.
 
-Project-level usage reports only include usage for instances within that project. To view project usage, navigate to *Project -> Usage*.
+Project-level usage can be viewed separately from the *Billing* menu on the project-level.
 
-.Project-level usage
-[.shadow]
-image::projectusage.png[width=500]
 
 === Filter by time range
 
