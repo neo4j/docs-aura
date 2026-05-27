@@ -22,6 +22,7 @@ This is determined by which option you chose when you created the instance, as d
 See xref:graph-analytics/index.adoc[Graph analytics in Aura] for more information about the differences between the two options.
 
 [.shadow]
+.Graph Data Science in Explore
 image::louvain.jpg[width=800]
 
 [[algorithms]]
@@ -47,16 +48,16 @@ The following community detection algorithms are available in Explore:
 * Weakly connected components
 
 
-[[gds-centrality]]
-=== Degree Centrality
-
-The link:https://neo4j.com/docs/graph-data-science/current/algorithms/degree-centrality/[Degree Centrality algorithm] measures the relationships connected to a node, either incoming, outgoing, or both, to find the most connected nodes in a graph.
-
 [[gds-betweenness]]
 === Betweenness Centrality
 
 The link:https://neo4j.com/docs/graph-data-science/current/algorithms/betweenness-centrality/[Betweenness Centrality algorithm] finds influential nodes, that is, nodes that are thoroughfares for the most shortest-paths in the scene.
 Nodes with a high degree of betweenness centrality are nodes that connect different sub-parts of a graph.
+
+[[gds-centrality]]
+=== Degree Centrality
+
+The link:https://neo4j.com/docs/graph-data-science/current/algorithms/degree-centrality/[Degree Centrality algorithm] measures the relationships connected to a node, either incoming, outgoing, or both, to find the most connected nodes in a graph.
 
 [[gds-eigenvector]]
 === Eigenvector Centrality
@@ -68,7 +69,7 @@ The difference between the eigenvector and the betweenness centrality is that th
 [[gds-pagerank]]
 === PageRank
 
-The link:https://neo4j.com/docs/graph-data-science/current/algorithms/page-rank/[PageRank alggorithm] is a way to measure the relevance of each node in a graph.
+The link:https://neo4j.com/docs/graph-data-science/current/algorithms/page-rank/[PageRank algorithm] is a way to measure the relevance of each node in a graph.
 The relevance of a node is based on how many incoming relationships from other nodes it has and how important the source nodes are.
 
 
@@ -83,7 +84,7 @@ If you know a customer bought one product from an identified cluster, they are l
 === Label Propagation
 
 The link:https://neo4j.com/docs/graph-data-science/current/algorithms/label-propagation/[Label Propagation algorithm] is another way to find communities in a graph.
-One difference between Label Propagation and Louvain, both community detection algorithms, is that this one allows for some supervision, i.e. it is possible to set certain prerequisites that allows for a degree of control of the outcome.
+One difference between Label Propagation and Louvain, both community detection algorithms, is that this one allows for some supervision, i.e. it is possible to set certain prerequisites that allow for a degree of control of the outcome.
 This can be useful when you already have some knowledge of the intrinsic structure of your data.
 
 // [[gds-triangle-count]] not available as of 2.6
@@ -100,7 +101,7 @@ The link:https://neo4j.com/docs/graph-data-science/current/algorithms/wcc/[Weakl
 It can be used to determine whether your network is fully connected or not and also to find vulnerable parts in supply chains, for example.
 
 
-=== Running the algorithms
+== Running the algorithms
 
 The GDS algorithms are accessed via the GDS button in the upper-left corner of the Scene.
 When you have selected an appropriate algorithm, you have the option to run it on *all* elements or specify which node labels and/or relationship types.
@@ -109,11 +110,17 @@ The options are accessed via the Settings button next to the algorithm name.
 
 When you are satisfied, you can either run the algorithm on the data in your *current Scene* or create a projection *on the entire graph*.
 The time it takes to run the algorithm can be different depending on the size of your graph.
-Additionally, running an algorithm on the current Scene only temporary adds a score to the elements visible in the Scene.
+Additionally, running an algorithm on the current Scene only temporarily adds a score to the elements in the Scene.
 This action does *not* write to your graph.
-But creating a projection on the entire graph adds a new database property to *all affected elements* containing the score for that element.
-This is *written* to the graph and unlike other property keys, it cannot be altered.
-You can manually remove the property using the *Query* tool, if needed.
+But creating a projection on the entire graph *adds a new database property* containing the individual score to *all affected elements*.
+The property name contains the name of the algorithm and a number and it is displayed in the GDS drawer.
+
+[.shadow]
+.An algorithm in the GDS drawer
+image::graph-algo.jpg[width=300]
+
+You can edit and delete the property on the individual nodes, but you *cannot* rename it.
+You can manually remove the property from the entire graph using the *Query* tool, if needed.
 
 Applying your selected algorithm does not immediately change anything in the Scene.
 You can inspect each node to see its score, but to make the results easily visible, apply rule-based styling.
@@ -121,4 +128,5 @@ This is done directly in the GDS drawer.
 The centrality algorithms are based on a range of values and can be either size-scaled or color gradient, while the community detection algorithms use unique values and offer unique colors to style the nodes.
 
 [.shadow]
+.Options when running a graph algorithm
 image::eigenvector.jpg[width=800]
