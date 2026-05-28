@@ -1,6 +1,6 @@
 = Cost explorer
 
-Organization Billing provides organization-level visibility into costs, usage, and billing configuration. 
+Organization Billing provides organization-level visibility into costs, usage, and billing configuration.
 This page in the Aura console includes the following tabs: Overview, Cost explorer, Usage, Payment methods, and Invoices.
 
 == Required roles
@@ -12,7 +12,7 @@ At the project-level, usage is available to `Project Admin`.
 == Overview
 
 View total usage trends for the past month or year.
-The Overview tab also displays billing account information, including initial xref:billing/payment-options.adoc#_aura_consumption_units[Aura Consumption Units (ACUs)], remaining credits, credits consumed month-to-date, and approximately how many days ACUs will last.
+The Overview tab also displays billing account information, including initial xref:billing/payment-options.adoc#_aura_consumption_unit_acu[Aura Consumption Units (ACUs)], remaining credits, credits consumed month-to-date, and approximately how many days ACUs will last.
 This is also where you link:https://neo4j.com/docs/aura/billing/payment-options/#_applying_aura_credits_to_your_account[redeem credits].
 
 == How to use the cost explorer
@@ -33,7 +33,7 @@ You can view detailed information about your usage, including:
 * Service: an offering that can be purchased from Neo4j. For a managed database service like Neo4j Aura,  services include compute, storage or networking charges.
 * Tier
 * Resource: a resource is a unique component that incurs a charge. For example, an AuraDB/AuraDS instance, an Aura Agent or an Aura Graph Analytics session. The following are tracked
-** Resource type 
+** Resource type
 ** Resource ID
 ** Resource name
 * Cloud provider and region
@@ -102,7 +102,7 @@ For more information, see link:https://neo4j.com/docs/aura/billing/payment-optio
 
 == Invoices
 
-Invoices that have been paid appear in the invoices tab. 
+Invoices that have been paid appear in the invoices tab.
 This tab only appears when credit cards are used.
 
 
