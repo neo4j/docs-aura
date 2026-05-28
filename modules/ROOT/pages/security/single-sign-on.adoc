@@ -4,7 +4,7 @@
 :page-aliases: platform/security/single-sign-on.adoc
 :page-role: aura-db-dedicated aura-db-business-critical aura-ds-enterprise
 
-Single Sign-On (SSO) enables organization owners and organization admins to use your organization’s identity provider (IdP) to authenticate users so they can access the Aura console and Aura instances.
+Single Sign-On (SSO) enables organization owners and organization admins to use their organization’s identity provider (IdP) to authenticate users so they can access the Aura console and Aura instances.
 
 There are two different ways to secure:
 
@@ -29,18 +29,12 @@ For information on how to assign roles see xref:user-management.adoc[User manage
 
 * *Use as login method for instances within Projects in this Org:* The SSO log in will be on the instances. Impacts new database instances created within that project.
 
-[IMPORTANT]
-====
-Single sign-on for instances only works for AuraDB Business Critical and AuraDB Virtual Private Cloud. 
-It does not cover AuraDB Professional instances.
-====
 
 [IMPORTANT]
 ====
-Existing customers with existing instances that want to turn on single sign-on, need to know it doesn't affect existing instances. 
-It will only affect new instances that you create. 
-A workaround is to clone those instances. 
-Once SSO is configured, clone those instances to a new instance, and the new instance will be protected by SSO.
+Note that SSO does *not* apply retroactively.
+If you set it up, only *new* instances are affected.
+To apply SSO to existing instances, you need to clone the instances to new instances, and thus work around this limitation.
 ====
 
 == Log-in methods
@@ -67,7 +61,6 @@ At the project-level, admins cannot disable user/password.
 
 == Setup requirements
 
-Accessing Aura with SSO requires:
 
 Aura requires the Authorization Code Flow, an OAuth2 authentication method that involves redirecting users to a publicly accessible IdP server for login.
 
@@ -107,7 +100,7 @@ When SSO is enabled at the project level, Aura uses role mapping to determine wh
 
 This access then applies to *all newly created* instances the user has access to.
 
-*Use as login method for instances within Projects in this Org:* ensures users logging in with SSO have access to the database instances within the project.
+When used as login method for instances within Projects in this Org, it ensures that users logging in with SSO have access to the database instances within the project.
 It does not give access to edit the project settings, for example to edit the project name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
 It depends on RBAC if the user can access and view or modify data within the instances themselves.
 For this level, the role mapping may be used to grant users different levels of access based on a role in their IdP.
