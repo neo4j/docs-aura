@@ -16,6 +16,7 @@ Therefore, it is recommended to consult the database administrator to set up the
 As the sources are third parties, this guidance is based on the information available at the time of writing and may not always reflect the current state of the third party data source.
 ====
 
+[[data-source-sqls]]
 == PostgreSQL, MySQL, SQL Server, and Oracle
 
 All four data sources follow common patterns for RDBMS of host, port, and database schema.
@@ -45,6 +46,7 @@ You need to add the following roles to the *Permissions* of the service account:
 Once the account is created, you need to create a private key for the account.
 This is accessed from the *Keys* tab of the service account, use *Add key* and select key type *JSON* and download the key.
 
+[[data-spurce-databricks]]
 == Databricks
 
 The following information is required to connect to Databricks:
@@ -66,6 +68,7 @@ If you expand the selected catalog with the down arrow, you can find the schema.
 The *personal access token* can be created from the *User settings* menu.
 Navigate to *Developer* and use *Manage* under *Access tokens* to generate a new token.
 
+[[data-source-redshift]]
 == Redshift
 
 The following information is required to connect to Redshift:
@@ -85,6 +88,7 @@ The port and database should not contain any punctuation (i.e. no colon or slash
 
 The credentials can be either IAM credentials or username/password.
 
+[[data-source-snowflake]]
 == Snowflake
 
 The following information is required to connect to Snowflake:
@@ -122,6 +126,7 @@ However, note that the necessary permissions depend on how the data is organized
 It is recommended to consult the DB administrator to set up the minimal required permissions for each case.
 
 The credentials are the username and private key of a user in Snowflake.
+For information on how to create a private key, see link:https://docs.snowflake.com/en/user-guide/key-pair-auth[Snowflake documentation].
 
 //== Azure Synapse
 //TBD
@@ -132,6 +137,7 @@ The credentials are the username and private key of a user in Snowflake.
 //==Azure Blobs and Data Lake Storage
 // TBD
 
+[[data-source-gcs]]
 == Google Cloud Storage
 
 The following information is required to connect to Google Cloud Storage:
@@ -142,7 +148,7 @@ The following information is required to connect to Google Cloud Storage:
 * *HMAC Secret*
 
 In the Google Cloud Console, under *Buckets*, navigate to a specific resource in a bucket to see its bucket path.
-The bucket path can optionally contain glob patterns to reference multiple fles, but must *always reference to parquet or  csv files*.
+The bucket path can optionally contain glob patterns to reference multiple files, but must *always reference to parquet or  csv files*.
 Each file must be given a temporary table name, which is used to reference the file in the mapping UI.
 
 For Google service accounts with access to the cloud bucket, see the link:https://docs.cloud.google.com/storage/docs/authentication/managing-hmackeys[Google documentation] on how to create an HMAC key.
