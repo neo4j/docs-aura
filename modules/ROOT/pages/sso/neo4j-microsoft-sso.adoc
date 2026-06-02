@@ -1,0 +1,51 @@
+= Microsoft Entra ID SSO
+
+. In the *Azure Portal*, go to *App Registrations* and then *New Registration*.
+
+. Add a name for the new app registration and select *Register*.
+Skip redirect URI’s for now.
+
+. On the app overview page, take note of the Application (client) ID.
+
+. Select the *Client Credentials* link to open the client credentials page.
+
+. Create a new secret and *copy the Value field*, it won’t be visible after leaving the page.
+
+. Go back to the *App Overview* page and open the *App Endpoints* and take note of the OpenID Connection metadata document URI
+
+. Under *Authentication* in the left-hand navigation, setup redirect URLs:
+
+.. Adding a new Web platform
+.. Enter `https://login.neo4j.com/login/callback` as the redirect URI.
+
+. In the Aura console, go to xref:visual-tour/index.adoc#_organizations[Organization] > *Security* > *Single Sign On* > *New configuration*
+
+. Select how you want the SSO configuration to be applied in Aura:
+
+.. *Use as a log in method for the organization* applies to organization-level logins (which acts as a login to the Aura console).
+
+.. *Use as a login method for instances within Projects in this Org* applies to the project-level and you can select specific projects within the organization (where login is on the instance).
+
+.. Or, select both.
+
+. For IdP Type select *Microsoft Entra ID*.
+
+. For Client ID enter the *Application (client) ID* from the Azure app.
+
+. For Client Secret enter the client secret value (not secret id) from the secret you created in the Azure app.
+
+. For Discovery URI enter the *OpenID Connect metadata document URI*.
+
+. Configure any additional settings as needed:
+
+..  For organization-level SSO, no additional settings needed.
+
+.. For project-level SSO, enter role mappings if applicable.
+
+. Select *Create*.
+
+. Select the additional log in methods:
+
+.. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
+
+.. For *Project-level testing* the user/password login is always available on the instance, so if SSO isn't working, the instance is still accessible.
