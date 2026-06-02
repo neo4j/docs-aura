@@ -1,4 +1,11 @@
 = Import
+:description: This page describes how to run the import in Neo4j Document Intelligence.
+:page-role: preview
+
+[IMPORTANT]
+====
+This feature is in *preview* and is offered AS-IS and should only be used for internal development purposes and *not in production*.
+====
 
 Once you have added your source documents, generated a model, refined it, and fixed any errors, you can run the import.
 However, if you want to see what your graph will look like, you can generate a preview from the tool bar on the bottom of the *model panel*.
@@ -8,6 +15,11 @@ Once the import job is complete, you can use the Document Intelligence Agent to 
 
 You can also use the xref:query/introduction.adoc[*Query*] and xref:explore/introduction.adoc[*Explore*] tools to interact.
 
+[NOTE]
+====
+Document Intelligence uses generative AI assistance and this usage can be disabled on the Organization level.
+See xref:visual-tour/index.adoc#org-settings[Visual tour -> Organization settings].
+====
 
 == The import process
 
