@@ -94,6 +94,11 @@ After setting up SSO, the `Organization sso login` link can be found in the orga
 
 == Role mapping
 
+[IMPORTANT]
+====
+Set up the roles that you want the auth server to send along with the JWT token.
+====
+
 Role mapping links a user’s identity from an identity provider (such as Okta or Microsoft Entra ID) to a specific Aura role, based on attributes passed during authentication, like group or department.
 
 When SSO is enabled at the project level, Aura uses role mapping to determine what access a user should have based on their IdP group membership.
@@ -223,7 +228,7 @@ image::security/sso/sso-applications.png[500,500]
 +
 --
 [.shadow]
-.Okta portal > where to enter Neo4j's Allowed Callback URLs
+.Okta portal > where to enter Neo4j's Callback URLs
 image::security/sso/allowed-callback-urls.png[500,500]
 --
 
