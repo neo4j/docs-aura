@@ -220,6 +220,12 @@ image::security/sso/sso-applications.png[500,500]
 . For *Grant type* select *Authorization Code*.
 
 . For *Sign-in redirect URIs* add https://login.neo4j.com/login/callback as the redirect URI.
++
+--
+[.shadow]
+.Where to enter Okta Allowed Callback URLs
+image::security/sso/allowed-callback-urls.png[500,500]
+--
 
 . Save.
 
