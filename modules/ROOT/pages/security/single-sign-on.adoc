@@ -92,27 +92,6 @@ image::sso.png[A screenshot of the SSO configuration,640,480]
 
 After setting up SSO, the `Organization sso login` link can be found in the organization summary page in the Aura console.
 
-== Role mapping
-
-[IMPORTANT]
-====
-Set up the roles that you want the auth server to send along with the JWT token.
-====
-
-Role mapping links a user’s identity from an identity provider (such as Okta or Microsoft Entra ID) to a specific Aura role, based on attributes passed during authentication, like group or department.
-
-When SSO is enabled at the project level, Aura uses role mapping to determine what access a user should have based on their IdP group membership.
-
-This access then applies to *all newly created* instances the user has access to.
-
-=== Example role mapping
-
-`aws-neo4j-sso=editor`
-
-In this case:
-
-`aws-neo4j-sso` is a group name from the groups claim in the token and `editor` is the instance role assigned to any user in that group.
-
 == Instance-level SSO support
 
 Customer support can assist with:
@@ -121,6 +100,12 @@ Customer support can assist with:
 * Updating SSO settings on existing instances
 * Role mapping specific IdP groups to a single database instance, instead of all instances which is the default behavior.
 * Creating link:https://auth0.com/docs/secure/tokens/json-web-tokens/create-custom-claims[custom claims] beyond `groups`
+
+[IMPORTANT]
+====
+Auth0 has a limitation that it doesn't send the groups in the token out of the box.
+There's an action you need to set up to tell it to send those groups.
+====
 
 === Ticket template
 
