@@ -1156,13 +1156,13 @@ Returns the hexadecimal value of the given `STRING` at the given index.
 Returns the hexadecimal value of the given value.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.indexOf[apoc.text.indexOf icon:book[] ^] +
 Returns the first occurrence of the lookup `STRING` in the given `STRING`, or -1 if not found.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.indexesOf[apoc.text.indexesOf icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.indexesOf[apoc.text.indexesOf icon:book[] ^] +
 Returns all occurrences of the lookup `STRING` in the given `STRING`, or an empty list if not found.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.jaroWinklerDistance[apoc.text.jaroWinklerDistance icon:book[] ^] +
 Compares the two given `STRING` values using the Jaro-Winkler distance algorithm.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.join[apoc.text.join icon:book[] ^] +
 Joins the given `STRING` values using the given delimiter.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.levenshteinDistance[apoc.text.levenshteinDistance icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.levenshteinDistance[apoc.text.levenshteinDistance icon:book[] ^] +
 Compares the given `STRING` values using the Levenshtein distance algorithm.
 ¦ label:function[] label:deprecated[Deprecated in Cypher 5] label:removed[Removed in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.levenshteinSimilarity[apoc.text.levenshteinSimilarity icon:book[] ^] +
 Returns the similarity (a value within 0 and 1) between the two given `STRING` values based on the Levenshtein distance algorithm.
@@ -1185,7 +1185,7 @@ Finds and replaces all matches found by the given regular expression with the gi
 Returns the result of the given item multiplied by the given count.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.replace[apoc.text.replace icon:book[] ^] +
 Finds and replaces all matches found by the given regular expression with the given replacement.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.rpad[apoc.text.rpad icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.rpad[apoc.text.rpad icon:book[] ^] +
 Right pads the given `STRING` by the given width.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.text/apoc.text.slug[apoc.text.slug icon:book[] ^] +
 Replaces the whitespace in the given `STRING` with the given delimiter.
