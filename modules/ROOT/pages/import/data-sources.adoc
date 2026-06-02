@@ -128,8 +128,38 @@ It is recommended to consult the DB administrator to set up the minimal required
 The credentials are the username and private key of a user in Snowflake.
 For information on how to create a private key, see link:https://docs.snowflake.com/en/user-guide/key-pair-auth[Snowflake documentation].
 
-//== Azure Synapse
-//TBD
+== Azure Synapse
+
+The following information is required to connect to Azure Synapse
+
+* *Server Endpoint*
+* *Database*
+* *Schema*
+* *Credentials*
+
+To find the *server endpoint*, first navigate to link:https://web.azuresynapse.net/[Microsoft Azure] and connect to your workspace.
+Once connected, from *Manage* in the left-hand navigation, select *SQL pools*, and from there select which endpoint you want to use.
+That selection takes you to the pool's overlay and there you can see the *Workspace SQL endpoint*.
+Copy and paste that into the *Server Endpoint* field in the Aura console.
+
+The *Database* can be found in your Azure workspace.
+Navigate to *Data* in the left-hand navigation and from the *Workspace* tab you find the database name directly under *SQL Database*.
+
+The default *Schema* is *dbo* and unless you select a custom schema when creating the table in Azure Synapse, in which case you enter this in *Schema* field in the console, *dbo* is what you should use.
+
+The *Credentials* are either *Username* and *Password* for the Azure Synapse SQL pool, *or* use your *Principal* as user credentials in the console.
+
+The first option, username/password is your login for Azure Synapse SQL pool.
+User management is handled by the Azure tenant's IT administrator and if you are unsure about your credentials, you should contact them.
+
+Using your *Principal* as User Credentials requires that you have an Microsoft Entra ID application registered.
+See this link:https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app[Microsoft guide] for information if you don't already have this set up.
+Once it is, you need to assign the application to your Azure Endpoint.
+From the Azure Synapse workspace, use *Manage* in the left-hand navigation, select *Access control* and *Add* to add the Microsoft Entra ID application.
+When you have added the application, you are set to use your Principal as User Credentials.
+The required fields (by the Import tool), *Azure Synapse Tenant* and *Application ID* can be found in the overview of your registered application in the link:portal.azure.com[Azure Portal].
+The *Azure Client secret* is also found in the portal, in the *Certificates & secrets* page.
+Note that the secret is obfuscated and only visible at the time of creation.
 
 //==AWS S3
 //TBD
