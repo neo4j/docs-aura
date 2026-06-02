@@ -21,6 +21,10 @@ Aura also supports authenticating with Google as the identity provider.
 When a user attempts to log in, Aura generates a redirect URL with authentication parameters and sends the user to the IdP for authentication.
 After successful authentication, the IdP redirects the user back to Aura with a secure token, allowing Aura to establish an authenticated session.
 
+.Access SSO settings from the Aura console
+[.shadow]
+image::security/sso/access-sso.png[Access SSO settings from the Aura console,640,480]
+
 == Required roles
 
 The person setting up SSO needs an `Organization Owner` or `Organization Admin` role.
