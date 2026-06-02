@@ -1,5 +1,11 @@
 = Quick start
 :description: This page describes how to get started importing unstructured data into a running Neo4j Aura instance.
+:page-role: preview
+
+[IMPORTANT]
+====
+This feature is in *preview* and is offered AS-IS and should only be used for internal development purposes and *not in production*.
+====
 
 In short, the process for importing unstructured data into a knowledge graph consists of five steps:
 
@@ -11,6 +17,12 @@ In short, the process for importing unstructured data into a knowledge graph con
 
 
 You need to have a running Aura instance available, currently Document Intelligence only supports the Free tier.
+
+[NOTE]
+====
+Document Intelligence uses generative AI assistance and this usage can be disabled on the Organization level.
+See xref:visual-tour/index.adoc#org-settings[Visual tour -> Organization settings].
+====
 
 == Provide the data
 
