@@ -6,8 +6,13 @@ For AI features to be accessible, an xref:user-management.adoc#_organization_lev
 To create a dashboard, you need a database and data.
 The examples on this page use the xref::/dashboards/index.adoc#_sample_dataset[Northwind sample dataset] which you can also use.
 
-. In the **Create with AI** dialog, you can enter an optional natural language text prompt to let Neo4j create a customized dashboard.
-. Once you are happy with the prompt, **Create** the dashboard.
+. In the **Create with AI** dialog, you can enter an optional natural language text prompt.
+. Pick from the suggested ideas. Or, write own suggestions in the text box, then press the AI button ✨ to reload the suggested ideas.
+. Once you are happy with the prompt, select *Continue*. 
+. *Review your dashboard plan*:  this will show you the layout of your new dashboard. 
+. You can type in the text box to change/refine the plan. Refining the layout of the charts etc. 
+. Again, press the ✨ to reload based on your suggestions.
+. When things are looking the way you like, select **Create dashboard**. You can always edit things later when the dashboard is generated. 
 
 [NOTE]
 ====
@@ -19,7 +24,7 @@ The prompt is processed in the background.
 The AI analyzes your database schema and tries to come up with useful queries about the data while taking your prompt into account.
 Then it creates a suitable visualization for each query.
 
-If you do not enter a prompt, Neo4j AI will still make use of your database schema and come up with a suitable dashboard.
+// If you do not enter a prompt, Neo4j AI will still make use of your database schema and come up with a suitable dashboard.
 
 Note that the following examples might differ when you reproduce them.
 This is due to the nature of how LLM processing works.
