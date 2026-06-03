@@ -9,16 +9,11 @@ The examples on this page use the xref::/dashboards/index.adoc#_sample_dataset[N
 . In the **Create with AI** dialog, you can enter an optional natural language text prompt.
 . Pick from the suggested ideas. Or, write own suggestions in the text box, then press the AI button ✨ to reload the suggested ideas.
 . Once you are happy with the prompt, select *Continue*. 
-. *Review your dashboard plan*:  this will show you the layout of your new dashboard. 
-. You can type in the text box to change/refine the plan. Refining the layout of the charts etc. 
-. Again, press the ✨ to reload based on your suggestions.
-. When things are looking the way you like, select **Create dashboard**. You can always edit things later when the dashboard is generated. 
+. The *Review your dashboard plan* will show you the layout of your new dashboard. 
+. You can type in the text box to change the plan, you can enter more prompts and press the ✨ to reload based on your suggestions.
+. When things are looking the way you like, select **Create dashboard**. 
 
-[NOTE]
-====
-When creating a dashboard with AI, the AI analyzes your link:https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[database schema], that is, the node labels and relationship types of your database.
-It cannot read the actual data in your database.
-====
+You can always edit things later when the dashboard is generated (refining the layout of the charts, colors etc. from the generated dashboard). 
 
 The prompt is processed in the background. 
 The AI analyzes your database schema and tries to come up with useful queries about the data while taking your prompt into account.
@@ -29,10 +24,17 @@ Then it creates a suitable visualization for each query.
 Note that the following examples might differ when you reproduce them.
 This is due to the nature of how LLM processing works.
 
+[NOTE]
+====
+When creating a dashboard with AI, the AI analyzes your link:https://neo4j.com/docs/operations-manual/current/procedures/#procedure_db_schema_visualization[database schema], that is, the node labels and relationship types of your database.
+It cannot read the actual data in your database.
+====
+
 == Creating a data-focused dashboard
 
 Copy the following prompt or create your own and use it to create a dashboard:
 
+[.shadow]
 .Prompt for a data-focused dashboard
 [source]
 ----
@@ -42,8 +44,9 @@ Create a dashboard on my retail database, giving me an overview over recent top 
 The more information you include, the better the result.
 This holds for information about the database itself as well as entities in the data model. 
 
+[.shadow]
 .Create a data-focused dashboard
-image::dashboards/ai-dashboard-prompt-data-focus.png[]
+image::dashboards/describe-dashboard.png[width=500]
 
 Here is a sample result:
 
