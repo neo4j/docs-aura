@@ -191,7 +191,6 @@ image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing tools over a V
 
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
 
-
 [role=label--aura-db-dedicated]
 == Private links
 
@@ -203,6 +202,24 @@ The term “private link” refers to:
 * Private Service Connect = Google Cloud platform
 * PrivateLink = AWS
 * Private Link = Azure
+
+=== Private link support
+
+Supported tools: 
+
+Unsupported Aura tools: 
+
+* Data Importer (connecting to customer data sources, eg GCS via HMAC)
+* Query
+* Explore
+* Dashboards
+* GraphQL 
+* Graph Analytics 
+* GenAI Agents
+* IP Filtering
+* 
+
+=== Private link how-to
 
 The following steps explain the process of establishing a private link connection to securely connect your application to an AuraDB Virtual Dedicated Cloud environment.
 
