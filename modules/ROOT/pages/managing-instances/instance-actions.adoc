@@ -27,6 +27,13 @@ Any ongoing operations are halted.
 You may export a backup of your data within its exportable period. 
 When you resume the instance, you can pick up right where you left off.
 
+You can pause an instance when not needed and resume it at any time.
+Do so by using the *Pause* button on the instance card.
+After confirming, the instance begins pausing, and a play button replaces the pause button.
+
+When you pause an instance, Aura performs a backup operation behind the scenes.
+It can take a while to pause, depending on your instance size, because Aura is creating the backup.
+
 // label:AuraDB-professional[]
 // label:AuraDB-Enterprise[]
 // label:AuraDB-business-critical[]
@@ -36,12 +43,6 @@ When you resume the instance, you can pick up right where you left off.
 You cannot manually pause an AuraDB Free instance; they are paused automatically after 72 hours of inactivity.
 ====
 
-You can pause an instance when not needed and resume it at any time.
-Do so by using the *Pause* button on the instance card.
-After confirming, the instance begins pausing, and a play button replaces the pause button.
-
-When you pause an instance, Aura performs a backup operation behind the scenes.
-It can take a while to pause, depending on your instance size, because Aura is creating the backup.
 
 [NOTE]
 ====
@@ -65,10 +66,22 @@ If an Aura Free instance remains paused for more than 30 days, Aura deletes the 
 
 == Delete an instance
 
+Concept: 
+
+Deleting an instance removes all associated snapshots, so they cannot be used to backup and restore data. If you may need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] and export and save it on your computer, before deleting the instance.
+
+UI: 
+
 Delete an instance using the trashcan icon on the instance card.
 Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
 
-Deleting an instance also removes all associated snapshots, so they cannot be used to backup and restore data. If you may need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] and export and save it on your computer, before deleting the instance.
+API: 
+
+DELETE /v1/instances/{instanceId}
+No request body required
+Reset to blank has no API equivalent — console only
+
+https://neo4j.com/docs/aura/platform/api/specification/#/instances/delete-instance-id
 
 [WARNING]
 ====
