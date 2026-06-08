@@ -1,5 +1,15 @@
 = Quick start
 :description: This page describes how to get started importing unstructured data into a running Neo4j Aura instance.
+:page-role: preview
+
+label:AuraDB-Free[]
+label:AuraDB-Professional[]
+label:AuraDB-Business-Critical[]
+
+[IMPORTANT]
+====
+This feature is in *preview* and is offered AS-IS and should only be used for internal development purposes and *not in production*.
+====
 
 In short, the process for importing unstructured data into a knowledge graph consists of five steps:
 
@@ -10,7 +20,13 @@ In short, the process for importing unstructured data into a knowledge graph con
 * Run the import
 
 
-You need to have a running Aura instance available, currently Document Intelligence only supports the Free tier.
+You need to have a running Aura instance available, currently Document Intelligence supports the Free, Professional, and Business Critical tiers.
+
+[NOTE]
+====
+Document Intelligence uses generative AI assistance and this usage can be disabled on the Organization level.
+See xref:visual-tour/index.adoc#org-settings[Visual tour -> Organization settings].
+====
 
 == Provide the data
 
@@ -26,6 +42,7 @@ You can add up to 20 documents.
 == Generate initial graph data model
 
 It is recommended to have a running instance for this step, but not strictly necessary until your run the import.
+Note that if your instance is an *AuraDB Professional* or *AuraDB Business Critical*, you need to have xref:security/tool-auth.adoc[Tool authentication with Aura user] enabled for your Project.
 Once your data source has been added, use *Create graph model* to move to the next step in the process.
 
 If you have any additional context about your documents, you can add a prompt to describe the data.
@@ -59,9 +76,9 @@ image::tool-bar.jpg[width=400]
 
 === Refine with the Document Intelligence Agent
 
-The graph assistant is open by default when you open the graph model view.
+The Document Intelligence Agent is open by default when you open the graph model view.
 If you close it, you can find it on the left in the tool bar.
-The graph assistant is an interactive agent that can assist you with not only refining your model but also audit and answer questions about the proposed model.
+The agent is interactive and can assist you with not only refining your model but also audit and answer questions about the proposed model.
 Additionally, it can generate Cypher queries for you based on the model.
 
 Open the agent and use natural language to describe what you want to do.

@@ -1,5 +1,16 @@
 = What is Document Intelligence?
 :description: This page describes that Neo4j Document Intelligence is used to import unstructured data into Neo4j Aura.
+:page-role: preview
+
+label:AuraDB-Free[]
+label:AuraDB-Professional[]
+label:AuraDB-Business-Critical[]
+
+[IMPORTANT]
+====
+This feature is in *preview* and is offered AS-IS and should only be used for internal development purposes and *not in production*.
+====
+
 
 Document Intelligence is a tool that allows you to transform unstructured data into a structured knowledge graph.
 
@@ -18,3 +29,8 @@ Document Intelligence supports _PDF_, _MD_, _DOCX_, _TXT_, _EPUB_ formats and ca
 
 Additionally, you can also use files stored locally to build your knowledge graph.
 
+[NOTE]
+====
+Document Intelligence uses generative AI assistance and this usage can be disabled on the Organization level.
+See xref:visual-tour/index.adoc#org-settings[Visual tour -> Organization settings].
+====
