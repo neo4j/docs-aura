@@ -54,7 +54,7 @@ Replace `YOUR_BEARER_TOKEN` with your token.
 
 [source, cURL]
 ----
-curl --location 'https://api.neo4j.io/v1/projects' --header 'Accept: application/json' --header 'Authorization: Bearer YOUR_BEARER_TOKEN'
+curl --location 'https://api.neo4j.io/v1/tenants' --header 'Accept: application/json' --header 'Authorization: Bearer YOUR_BEARER_TOKEN'
 ----
 
 This returns something similar to:
@@ -86,7 +86,7 @@ The following values are customizable `version`, `region`, `memory`, `name`, `ty
 
 [source, cURL]
 ----
-curl --location 'https://api.neo4j.io/v1/instances' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer YOUR_BEARER_TOKEN' --data ' { "version": "5", "region": "europe-west1", "memory": "8GB", "name": "instance01", "type": "enterprise-db", "tenant_id": "YOUR_PROJECT_ID", "cloud_provider": "gcp" }'
+curl --location 'https://api.neo4j.io/v1/instances' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer YOUR_BEARER_TOKEN' --data ' { "version": "5", "region": "europe-west1", "memory": "8GB", "name": "instance01", "type": "professional-db", "tenant_id": "YOUR_PROJECT_ID", "cloud_provider": "gcp" }'
 ----
 See xref:api/overview.adoc[Aura API documentation] for more details.
 

@@ -74,7 +74,7 @@ You can also fine-tune the usage of an index in your query by leveraging it with
 == Review metrics and instance size
 
 With Aura, you can keep an eye on some key metrics to see which resource constraints your instance may be experiencing.
-Follow the steps described in link:{neo4j-docs-base-uri}/aura/auradb/managing-databases/monitoring/[Monitoring] to check that information.
+Follow the steps described in xref:auradb/managing-databases/monitoring.adoc[Monitoring] to check that information.
 
 At this stage, if the key metrics are too high, you may want to reconsider the instance sizing.
 A resize operation does not cause any downtime, and you would only pay for what you use.
@@ -113,4 +113,4 @@ You can control the version used to interpret your queries by using these link:{
 With Aura, it is essential to consider the best cloud in your region as the physical distance is a direct factor in the achievable network latency.
 
 When some event causes any network disruption between your application and Aura, you would be affected by round-trip network latency to re-submit a query.
-With Aura, this is particularly important because you will need to be using transaction functions when link:{neo4j-docs-base-uri}/aura/auradb/connecting-applications/overview/[connecting your instance to applications].
+With Aura, this is particularly important because you will need to be using transaction functions when xref:auradb/connecting-applications/overview.adoc[connecting your instance to applications].

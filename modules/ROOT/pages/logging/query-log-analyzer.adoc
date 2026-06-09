@@ -4,12 +4,20 @@
 :page-alisases: platform/logging/query-log-analyzer.adoc
 :log-retention-days: 30
 :max-request-hours: 24
+:page-role: aura-db-professional aura-db-business-critical aura-db-dedicated
 
-label:AuraDB-Professional[]
-label:AuraDB-Business-Critical[]
-label:AuraDB-Virtual-Dedicated-Cloud[]
+Query log analyzer is a feature that provides a UI to review the queries executed on an Aura instance or a self-managed deployment.
 
-Query log analyzer is a feature that provides a UI to review the queries executed on an Aura instance.
+Query log analyzer is similar between Aura instances and self-managed deployments.
+The difference is that the summary table has more fields for self-managed deployments.
+The corresponding information for Aura instances can instead be found in the *Details* table.
+This table is *not* available for self-managed deployments.
+
+[NOTE]
+====
+For enabling query log analyzer for Fleet Manager deployments, see the xref:fleet-management/inspect-deployment.adoc#_query_log_analyzer[deployment settings documentation].
+For information about the data collection of the feature, see the xref:fleet-management/data.adoc#_queryreportmessage[data transparency documentation].
+====
 
 You can access query logs from *Logs* in the left-hand navigation or from query-related metrics in the *Database* tab in *Metrics*.
 Use the more menu (*...*) on the metric to navigate to *Explore query logs*.
@@ -171,9 +179,36 @@ This granular view is useful for investigating specific incidents or understandi
 | Contains an icon button (Arrow Right Circle) to view detailed executions of this specific query in the Details table. Use this button to filter the Details table to show only executions of the selected query.
 |===
 
+.Additional colums for self-managed deployments only
+[cols="25,25m,50v"]
+|===
+| Display Name | Field Name | Description
+
+| Users
+| executingUser
+| List of users who executed the query.
+
+| Databases
+| database
+| List of databases where the query was executed.
+
+| Servers
+| server
+| List of servers where the query was executed.
+
+| Apps
+| annotationData.app
+| List of applications that initiated the query.
+
+| Initiation types
+| annotationData.initiationType
+| List of query initiation types.
+
+|===
+
 === Details
 
-.Details table columns
+.Details table columns (Not available for self-managed deployments)
 [cols="25,25m,50v"]
 |===
 | Display Name | Field Name | Description
@@ -215,11 +250,11 @@ This granular view is useful for investigating specific incidents or understandi
 | The database driver used to execute the query.
 
 | Application
-| app
+| annotationData.app
 | The application that initiated the query.
 
 | Initiation type
-| initiationType
+| annotationData.initiationType
 | The type of query initiation.
 
 | Alloc bytes

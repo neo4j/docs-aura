@@ -3,10 +3,9 @@
 :description: VPC boundaries enable you to operate within an isolated section of the service.
 :page-aliases: platform/security/secure-connections.adoc
 
-== VPC isolation
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Enterprise[]
+[role=label--aura-db-dedicated label--aura-ds-enterprise]
+== VPC isolation
 
 AuraDB Virtual Dedicated Cloud and AuraDS Enterprise run in a dedicated AWS cloud account, Azure subscription, or GCP project to achieve complete isolation for your deployment.
 Additional Virtual Private Cloud (VPC) boundaries enable you to operate within an isolated section of the service, where your processing, networking, and storage are further protected.
@@ -45,8 +44,8 @@ To continue accessing Browser and Bloom, you can configure a VPN in your VPC and
 
 == Tool access
 
-When public traffic is disabled, Query and Explore are not accessible via the public internet. 
-To continue accessing these tools, xref:getting-started/connect-instance.adoc#_connection_method[connect via HTTPS (port 443)], this is helpful when network security blocks Bolt (port 7687), e.g. when a private link is set up on the database with public traffic disabled.
+When public traffic is disabled, Query and Explore are not accessible via the public internet.
+To continue accessing these tools, xref:getting-started/connect-instance.adoc#_https[connect via HTTPS (port 443)], this is helpful when network security blocks Bolt (port 7687), e.g. when a private link is set up on the database with public traffic disabled.
 Alternatively you can set up a VPN (Virtual Private Network) in your VPC and connect to Query and Explore over the VPN.
 
 == Private endpoints
@@ -62,10 +61,9 @@ You can set up a second private link connection to applications that are hosted 
 * When activated, a Private Connection label, shield icon, and dedicated Private URI will appear on any instance tile using a private endpoint in the Aura console.
 * Connections using private endpoints are one-way. Aura VPCs can’t initiate connections back to your VPCs.
 
-=== AWS private endpoints
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Enterprise[]
+[role=label--aura-db-dedicated label--aura-ds-enterprise]
+=== AWS private endpoints
 
 Refer to link:https://aws.amazon.com/privatelink[AWS PrivateLink] documentation for IAM requirements.
 
@@ -74,7 +72,7 @@ Refer to link:https://aws.amazon.com/privatelink[AWS PrivateLink] documentation 
 In AWS region `us-east-1`, Neo4j does not support the Availability Zone with ID `use1-az3` for private endpoints.
 ====
 
-All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet. 
+All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet.
 You can then disable public traffic, ensuring all traffic to the instance remains private to your VPC.
 
 .VPC connectivity with AWS PrivateLink
@@ -97,14 +95,13 @@ It is different from the *Connection URI* you used before.
 .Accessing tools over a VPN
 image::privatelink_03_browser_bloom_over_vpn.png["Accessing tools over a VPN"]
 
-=== GCP private endpoints
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Enterprise[]
+[role=label--aura-db-dedicated label--aura-ds-enterprise]
+=== GCP private endpoints
 
 Refer to https://cloud.google.com/vpc/docs/private-service-connect[GCP Private Service Connect] documentation for required permissions.
 
-All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet. 
+All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet.
 You can then disable public traffic, ensuring all traffic to the instance remains private to your VPC.
 
 .VPC connectivity with GCP Private Service Connect
@@ -127,14 +124,13 @@ It is different from the *Connection URI* you used before.
 .Accessing tools over a VPN
 image::privateserviceconnect_03_browser_bloom_over_vpn.png["Accessing tools over a VPN"]
 
-=== Azure private endpoints
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Enterprise[]
+[role=label--aura-db-dedicated label--aura-ds-enterprise]
+=== Azure private endpoints
 
 Refer to link:https://azure.microsoft.com/en-us/products/private-link/#overview[Azure Private Link] documentation to create an endpoint in your Virtual Network (VNet) that connects to Aura.
 
-All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet. 
+All applications running Neo4j workloads inside the VPC are routed directly to your isolated environment in Aura without traversing the public internet.
 You can then disable public traffic, ensuring all traffic to the instance remains private to your VPC.
 
 .VNet connectivity with Azure Private Link
@@ -195,9 +191,9 @@ image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing tools over a V
 
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
 
-== Private links
 
-label:AuraDB-Virtual-Dedicated-Cloud[]
+[role=label--aura-db-dedicated]
+== Private links
 
 This private link section is cloud-agnostic and therefore applicable to all clouds.
 A private link provides secure network connectivity between your application and AuraDB without exposing traffic to the public internet.
@@ -298,7 +294,7 @@ Use nc commands on one of your VM instances or container located in the related 
 nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 443
 nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 7687
 nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 7474
-# if you are using AuraDS
+# if you are using Graph Analytics (Aura Graph Analytics or AuraDS)
 nc -vz <dbid>.production-orch-<orchestra>.neo4j.io 8491
 ----
 
@@ -309,7 +305,7 @@ On Windows, you can get https://nmap.org/download.html[Netcat] or use PowerShell
 Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 7687
 Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 7474
 Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 443
-# if you are using AuraDS
+# if you are using Graph Analytics (Aura Graph Analytics or AuraDS)
 Test-NetConnection <dbid>.production-orch-<orchestra>.neo4j.io -Port 8491
 ----
 
@@ -333,10 +329,3 @@ TLS v1.2:
 * `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5289)`
 * `TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (RFC7905)`
 * `TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (RFC5288)`
-
-
-
-
-
-
-

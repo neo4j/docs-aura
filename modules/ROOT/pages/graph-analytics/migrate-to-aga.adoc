@@ -1,0 +1,310 @@
+= Migrate to Aura Graph Analytics
+:hard-stop-hours: 168 hours
+:hard-stop-days: 7 days
+:default-ttl: 1 hour
+
+This guide provides an overview of the prerequisites and preparation steps needed to migrate existing graph data science workloads to Aura Graph Analytics (AGA) from AuraDS or the AuraDB Pro Graph Analytics plugin.
+
+== Overview
+
+The main difference when migrating to AGA is the shift from a persistent compute model to an on-demand (ephemeral) session model.
+This change results in the architectural differences and operational considerations summarized below.
+
+.Architecture
+[cols="1s,2a,2a"]
+|===
+|| AuraDS / Graph Analytics plugin| Aura Graph Analytics
+
+|Compute resource
+|Always-on instance (AuraDS) +
+Shared DB resources (plugin)
+|Sessions created on-demand for the duration of the task; no shared resources
+
+|Data location
+|Data resides on the same machine as the compute
+|Data is loaded from your source (Neo4j DB or external) into the session's memory
+
+|Cost model
+|Flat hourly rate (AuraDS) +
+Included in the instance cost (plugin)
+|Pay-as-you-go (billed only while the session is active)
+|===
+
+.Operations
+[cols="1s,2a,2a"]
+|===
+|| AuraDS / Graph Analytics plugin| Aura Graph Analytics
+
+|Authentication
+|Database credentials
+|Implicit (from the Aura Console) or Aura API credentials (for external usage and scripts)
+
+|Maximum running time
+|Indefinite (until instance is deleted)
+|Hard limit of {hard-stop-days} ({hard-stop-hours}), which can interrupt long-running workflows
+
+|Provisioning
+|Instance already up and running
+|The provisioning process is not instantaneous and can take from a few seconds to a few minutes
+
+|File system access
+|File export procedures can write to the local file system
+|No access to the local file system; results must be streamed backfootnote:[You can use link:{neo4j-docs-base-uri}/graph-data-science/current/management-ops/graph-reads/graph-stream-nodes/[`gds.graph.nodeProperties.stream`] and link:{neo4j-docs-base-uri}/graph-data-science/current/management-ops/graph-reads/graph-stream-relationships/[`gds.graph.relationshipProperties.stream`] to retrieve nodes and relationships from a remote projected graph.] to the session client first
+|===
+
+== Code changes
+
+=== Authentication
+
+Aura Graph Analytics requires authentication with the Aura API to launch sessions.
+The Aura API credentials are different from the Neo4j database credentials.
+
+* If you launch your session through the xref:query/introduction.adoc[Query tab] in the Aura console, you are implicitly authorized to create analytics sessions and do not need to generate or provide Aura API keys.
+You only need the Neo4j database credentials to read your data.
+
+* If you launch your session with the link:{neo4j-docs-base-uri}/graph-data-science-client/current/[GDS Python client] or via an external script, you must explicitly xref:api/authentication.adoc#_creating_credentials[authenticate] with the Aura API first.
+
+* Include the credentials in your script before the first call to the session creation method.
+
+[IMPORTANT]
+====
+Save the credentials immediately, as they cannot be viewed again after creation.
+====
+
+=== Python client
+
+If you use the `graphdatascience` Python library, you must update how you instantiate the GDS object and how you project graphs.
+
+.Connect to the instance
+[.tabbed-example, caption=]
+====
+[.include-with-AuraDS-or-plugin]
+=====
+[source, python, subs=attributes+]
+----
+from graphdatascience import GraphDataScience
+
+# Direct connection to the database/instance
+gds = GraphDataScience(
+    "neo4j+s://my-aurads-instance.databases.neo4j.io", 
+    auth=("neo4j", "password")
+)
+----
+=====
+
+[.include-with-Aura-Graph-Analytics]
+=====
+Use the `GdsSessions` class to authenticate with the Aura API and spawn a session.
+
+[source, python, subs=attributes+]
+----
+from graphdatascience.session import GdsSessions, AuraAPICredentials, SessionMemory, DbmsConnectionInfo
+
+# Authenticate with Aura API
+sessions = GdsSessions(
+    api_credentials=AuraAPICredentials(
+        client_id="<YOUR_CLIENT_ID>",
+        client_secret="<YOUR_CLIENT_SECRET>",
+        project_id="<YOUR_PROJECT_ID>" # Optional if you have only one project
+    )
+)
+
+# Define the source database (if loading from AuraDB)
+db_connection = DbmsConnectionInfo(
+    aura_instance_id="<YOUR_INSTANCE_ID>",
+    username="neo4j",
+    password="<YOUR_PASSWORD>"
+)
+
+# Get or create the session
+# This returns a 'gds' object configured to run on the remote session
+gds = sessions.get_or_create(
+    session_name="my-analytics-job",
+    memory=SessionMemory.m_16GB,
+    db_connection=db_connection
+)
+
+# Use the 'gds' object to run any commands directly on the session
+
+# Optional: use 'gds.verify_connectivity()' to verify that the connection is correctly configured 
+----
+=====
+====
+
+.Project the graph
+[.tabbed-example, caption=]
+====
+[.include-with-AuraDS-or-plugin]
+=====
+[source, python, subs=attributes+]
+----
+G = gds.graph.project("my-graph", "Person", "KNOWS")
+----
+=====
+
+[.include-with-Aura-Graph-Analytics]
+=====
+With Aura Graph Analytics you cannot use a standard native projection.
+You must use a remote projection to pull data over the network.
+
+**From AuraDB or self-managed Neo4j (Remote projection)**
+
+If the session reads data from a Neo4j source, you must use `gds.graph.project` with a query that specifically calls `gds.graph.project.remote`.
+This procedure moves data from the source DB to the session.
+
+[source, python, subs=attributes+]
+----
+# The query runs on your DB, but projects into the session
+query = """
+    MATCH (n:Person)-[:KNOWS]->(m:Person)
+    RETURN gds.graph.project.remote(
+        n, 
+        m
+    )
+"""
+
+G, result = gds.graph.project(
+    graph_name="my-graph",
+    query=query
+)
+----
+
+**From a Pandas DataFrame (Standalone)**
+
+If your data source is not Neo4j (via Pandas DataFrames), there is no connected database to run Cypher against.
+In this case, you use `gds.graph.construct` to load data directly from memory structures.
+
+[source, python, subs=attributes+]
+----
+# Create DataFrames for nodes and relationships
+nodes = pandas.DataFrame({
+    "nodeId": [1, 2, 3],
+    "labels": ["Person", "Person", "Person"],
+    "age": [25, 30, 35]
+})
+
+rels = pandas.DataFrame({
+    "sourceNodeId": [1, 2],
+    "targetNodeId": [2, 3],
+    "relationshipType": ["KNOWS", "KNOWS"]
+})
+
+# Construct the graph in the session
+G = gds.graph.construct(
+    "my-dataframe-graph", 
+    nodes, 
+    rels
+)
+----
+=====
+====
+
+==== Cleanup
+
+[.tabbed-example]
+====
+[.include-with-AuraDS-or-plugin]
+=====
+No cleanup required.
+=====
+
+[.include-with-Aura-Graph-Analytics]
+=====
+You must delete the session when you no longer need it to stop billing.
+If you do not delete it explicitly, the session is deleted automatically anyway when it reaches its <<session-ttl, TTL>>.
+
+You can either delete the session explicitly by referencing the session name or call `delete()` on the `gds` object.
+
+[source, python, subs=attributes+]
+----
+# Delete the session
+sessions.delete(session_name="my-analytics-job")
+
+# Delete the 'gds' object
+gds.delete()
+----
+=====
+====
+
+=== Cypher
+
+If you run GDS algorithms directly via Cypher in Aura Console, you only need to update your projection query and include the configuration parameters that trigger the on-demand session.
+
+[.tabbed-example]
+====
+[.include-with-AuraDS-or-plugin]
+=====
+[source, cypher, subs=attributes+]
+----
+CALL gds.graph.project('my-graph', 'Person', 'KNOWS');
+CALL gds.pageRank.stream('my-graph') YIELD nodeId, score;
+----
+=====
+
+[.include-with-Aura-Graph-Analytics]
+=====
+By default, when you are logged into an AuraDB instance, you are automatically authorized to create and manage your own analytics sessions.
+You do not need to handle API credentials manually, and only need to add a configuration map with a memory key to your projection call.
+This triggers the remote session creation.
+
+[source, cypher, subs=attributes+]
+----
+// Project and create session
+// The 'memory' configuration setting automatically triggers the
+// creation of the remote session
+MATCH (n:Person)-[:KNOWS]->(m:Person)
+RETURN gds.graph.project(
+  'my-graph',       
+  n,
+  m,
+  {},               // (Optional) Node/Relationship properties config               
+  { memory: '8GB', ttl: duration({hours: 1}) } // Session configuration
+);
+
+// Run algorithms in the same way
+CALL gds.pageRank.stream('my-graph') 
+YIELD nodeId, score;
+
+// Drop the graph to delete the session
+CALL gds.graph.drop('my-graph');
+----
+=====
+====
+
+== Best practices
+
+=== Organization limits for AGA
+
+If you try to spawn more sessions or create a session larger than allowed by your xref:visual-tour/index.adoc#graph-analytics-org-settings[organization settings], the request will be rejected.
+
+If your workload is likely to exceed any of these limits, you may need to request a quota increase.
+
+=== Data transfer costs
+
+Be aware of any data egress fees from your cloud provider when loading data across regions or from an external cloud provider.
+Where possible, co-locate your session in the same region as your data source.
+
+=== Memory size estimation
+
+Since the memory is configured for each session, you can potentially hit Out-Of-Memory (OOM) errors if the memory requirements change across sessions.
+
+To prevent this, the Python client has an link:https://neo4j.com/docs/graph-data-science-client/current/graph-analytics-serverless/#_estimating_session_memory[`estimate` method] to calculate the memory requirement before creating a session.
+
+The Cypher API does not include an estimation procedure, so you may need to adjust the memory parameter by trial and error.
+
+[#session-ttl]
+=== Session Time-To-Live
+
+Always set a Time-To-Live (TTL) limit for your sessions to prevent accidental costs, for example if a script crashes before it can tear down the session.
+If you do not set one, the default TTL value is {default-ttl}.
+
+=== Long-running workflows
+
+A session terminates automatically when its duration hits the hard stop limit ({hard-stop-hours}), regardless of whether a job is currently running.
+
+If your workflow duration is likely to exceed the limit, you must either reduce its running time or save intermediate results externally.
+
+=== Session startup latency
+
+Since the creation of a new session involves provisioning a new compute infrastructure and is not instantaneous, do not create sessions inside synchronous or latency-sensitive user requests such as API calls.
+Either create a session beforehand or use an asynchronous job queue instead.

@@ -17,32 +17,31 @@ See <<snapshot-details>> for more information.
 Aura stores the data securely in encrypted cloud storage buckets.
 Backups are stored in the same Cloud Service Provider and region as the instance they are associated with.
 
+
 == Snapshot types
 
-=== Scheduled
 
-label:AuraDB-Professional[]
-label:AuraDB-Business-Critical[]
-label:AuraDB-Virtual-Dedicated-Cloud[]
-label:AuraDS-Professional[]
-label:AuraDS-Enterprise[]
+[role=label--aura-db-professional label--aura-db-business-critical label--aura-db-dedicated label--aura-ds-professional label--aura-ds-enterprise]
+=== Scheduled
 
 A *Scheduled* snapshot is a snapshot that is automatically triggered at a cadence depending on your tier.
 
 For Professional instances running the latest version, scheduled snapshots are run automatically once a day, same for both AuraDS Professional and for AuraDS Enterprise instances, For Business Critical and Virtual Dedicated Cloud instances, they run once an hour.
 See <<snapshot-details>> further on for information about frequency, restorability, and exportability of scheduled snapshots, as well snapshots on instances running version 4.x.
 
+
 === On Demand
 
 An *On Demand* snapshot is a snapshot that you manually trigger with the *Take snapshot* button.
 This type of snapshot is the only snapshot available for Free instances.
 
+
 == Snapshot actions
 
 image::snapshot-actions.png[width=400]
 
-[[export-create]]
 
+[[export-create]]
 === Export / Create
 
 From the more menu (...) next to an existing snapshot, you can:

@@ -5,6 +5,11 @@
 
 User management is a feature within Aura that allows admins to invite users and set their roles within an isolated environment.
 
+[IMPORTANT]
+====
+Every xref:visual-tour/index.adoc#_organizations[organization] must have an `Organization Owner` or `Organization Admin`.
+====
+
 You can view and manage roles from *Users* pages, accessible via the console sidebar.
 An organization has one *Users* page for managing organization-level roles.
 Each project has a *Users* page for managing project-specific roles.
@@ -95,9 +100,9 @@ The following roles are available at the org level:
 | {check-mark}
 |
 
-| List members of a project
+| View and edit billing information
 | {check-mark}
-| {check-mark} footnote:[An admin can only list members of projects the admin is also a member of.]
+| {check-mark}
 |
 
 // | Add customer information for a trial within org
@@ -135,8 +140,8 @@ The following roles are available at the org level:
 |
 |
 
-| Transfer projects to and from the org
-| {check-mark} footnote:[An owner needs to permission for both the source and destination orgs.]
+| Project Admin access to all projects in the organization 
+| {check-mark}
 |
 |
 |===
@@ -155,15 +160,6 @@ Users within a project can be assigned one of the following roles:
 ====
 Each project must have at least one Project Admin, but it is also possible for projects to have multiple Project Admins.
 ====
-
-=== Metrics reader role
-
-The `METRICS_READER` role can be assigned to any user or service account.
-It has the same permissions as the `PROJECT_VIEWER` role, but with some extra permissions specifically for reading metrics via an API endpoint.
-The role allows access to metrics for all instances in a project.
-Accessing metric endpoints requires xref:/api/authentication.adoc[Aura API Credentials] and the `METRICS_READER` role enables the creation of these credentials.
-
-The `METRICS_READER` role can view and open instances in the console, however, login to the instance is required to interact with it, with access to Explore and Query defined by the instance’s RBAC settings.
 
 :check-mark: icon:check[]
 
@@ -218,6 +214,12 @@ The `METRICS_READER` role can view and open instances in the console, however, l
 | {check-mark}
 | {check-mark}
 
+| Download/Export snapshot
+|
+|
+| {check-mark}
+| {check-mark}
+
 | Edit the project name
 |
 |
@@ -242,12 +244,27 @@ The `METRICS_READER` role can view and open instances in the console, however, l
 |
 | {check-mark}
 
-| View and edit billing information
-|
-|
+| Access Prometheus metrics endpoint
 |
 | {check-mark}
+|
+|
+
+| Read metrics
+|
+| {check-mark}
+|
+|
 |===
+
+=== Metrics reader role
+
+The `METRICS_READER` role can be assigned to any user or service account.
+It has the same permissions as the `PROJECT_VIEWER` role, but with some extra permissions specifically for reading metrics via an API endpoint.
+The role allows access to metrics for all instances in a project.
+Accessing metric endpoints requires xref:/api/authentication.adoc[Aura API Credentials] and the `METRICS_READER` role enables the creation of these credentials.
+
+The `METRICS_READER` role can view and open instances in the console, however, login to the instance is required to interact with it, with access to Explore and Query defined by the instance's RBAC settings.
 
 === Predefined roles
 
@@ -255,6 +272,14 @@ Users within a project can access instances seamlessly with their console role i
 
 When enabled, a user connects seamlessly with a predefined database role that matches their console role, i.e. their project-level role.
 Predefined roles are *immutable* and apply to all Free, Professional, and Business Critical instances.
+
+The predefined roles take the following format: `console_<role>_<dbid>`, for example `console_member_73b84556` or `console_admin_pro_73b84556`.
+
+[TIP]
+====
+User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
+====
+
 The predefined roles are assigned the following privileges on the instance level:
 
 .Predefined roles and database privileges
@@ -426,13 +451,6 @@ The predefined roles are assigned the following privileges on the instance level
 |
 | {check-mark}
 |===
-
-The predefined roles take the following format: `console_<role>_<dbid>`, for example `console_member_73b84556` or `console_admin_pro_73b84556`.
-
-[TIP]
-====
-User management within the Aura console does not replace built-in roles or fine-grained RBAC at the database level.
-====
 
 [[graph-analytics-roles]]
 === Graph Analytics roles

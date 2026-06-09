@@ -1,0 +1,55 @@
+= Row select action
+:description: Select multiple values for a table to be used in a parameter.
+
+The row select action is available for xref:dashboards/visualizations/table.adoc[Tables].
+
+Select a value from a table row by clicking a checkbox. and assign it to a parameter.
+Reuse this parameter in another card or query.
+Only the selected cell value is passed, not the full row.
+
+You can select multiple rows, and multiple values from the same column will be selected and added to a xref:dashboards/list-parameters.adoc[list parameter].
+
+== Example
+
+The examples on this page use the xref::/dashboards/index.adoc#_sample_dataset[Northwind sample dataset] which you can also use.
+
+The selected OrderID values are passed to `$orderID`.
+We'll then use that in another card to calculate the total freight.
+
+=== Step 1: Add the first card
+
+To return orders in a table, paste the following Cypher into the card, then select *Save*:
+
+.Return orders in a table
+[source,cypher]
+----
+MATCH (c:Customer)-[:PURCHASED]->(o:Order)
+RETURN o.orderID AS OrderID, c.companyName AS CustomerCompanyName, o.freight AS Freight
+----
+
+=== Step 2: Add an action
+
+In the actions panel set:
+
+1. *TRIGGER Row selection*
+2. *UPDATE PARAMETER orderID*
+3. *TO CELL VALUE OrderID*
+
+When you select a row, the OrderID value from that row is stored in `$orderID`.
+If you select multiple rows, $orderID stores a list of OrderID values.
+
+=== Step 3: Add a second card
+
+Now you can use the `$orderID` value in another card.
+
+For example:
+
+.Calculate the total freight across selected orders
+[source,cypher]
+----
+MATCH (o:Order)
+WHERE toString(o.orderID) IN $orderID
+RETURN sum(toFloat(o.freight)) AS TotalFreight
+----
+
+Selecting multiple rows adds the OrderID values to a list, allowing you to calculate the total freight across those orders.

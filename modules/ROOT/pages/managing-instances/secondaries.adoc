@@ -2,9 +2,7 @@
 = Secondaries
 :description: This section introduces secondaries for scaling out read workloads.
 :page-aliases: auradb/managing-databases/secondaries.adoc
-
-label:AuraDB-Business-Critical[]
-label:AuraDB-Virtual-Dedicated-Cloud[]
+:page-role: aura-db-business-critical aura-db-dedicated
 
 A secondary is a read-only copy of your Aura database.
 Secondaries help you scale the read query workload your AuraDB instance is able to serve, by spreading the load evenly across multiple copies of the data.
