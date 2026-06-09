@@ -193,6 +193,8 @@ aura-cli instance list --output table
 aura-cli instance overwrite DESTINATION_INSTANCE_ID --source-instance-id SOURCE_INSTANCE_ID --source-snapshot-id SOURCE_SNAPSHOT_ID
 ----
 +
+Note that there are limitations: you cannot overwrite an AuraDB Free instance with an AuraDB Professional instance nor can you overwrite an instance that is smaller than the source instance.
++
 If you receive a response that looks like the following, select a different snapshot:
 +
 [source, shell]
@@ -230,6 +232,8 @@ aura-cli instance list --output table
 ----
 aura-cli instance overwrite DESTINATION_INSTANCE_ID --source-instance-id SOURCE_INSTANCE_ID
 ----
++
+Note that there are limitations: you cannot overwrite an AuraDB Free instance with an AuraDB Professional instance nor can you overwrite an instance that is smaller than the source instance.
 +
 . The destination AuraDB instance content will now be overwritten.
   Depending on the size, this will take several minutes to complete.
