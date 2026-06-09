@@ -8,8 +8,10 @@ This tutorial describes how to migrate from a self-managed Neo4j database to Aur
 
 [CAUTION]
 ====
-The minimum version of self-managed to upload to Aura is v5 LTS (5.26.x)
+The minimum version of self-managed to upload to Aura is v5 LTS (5.26.7)
 ====
+
+With the new console the only compatible versions of `database upload` that can work are 5.26.7 and later, 2025.04 and later.
 
 == Preparation
 
@@ -80,11 +82,11 @@ bin/neo4j-admin database dump {database} --to-path={dump-folder}
 [.include-with-From-Neo4j-4]
 =====
 
-Use the link:https://neo4j.com/docs/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[`neo4j-admin push-to-cloud`] command.
+Use the link:https://neo4j.com/docs/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[`neo4j-admin upload`] command.
 
 [source,shell,subs=attributes+]
 ----
-bin/neo4j-admin push-to-cloud --dump={dump-folder}/file.dump --bolt-uri={aura-uri} --overwrite
+bin/neo4j-admin upload --dump={dump-folder}/file.dump --bolt-uri={aura-uri} --overwrite
 ----
 =====
 
@@ -99,3 +101,5 @@ bin/neo4j-admin database upload {database} --from-path={dump-folder} --to-uri={a
 =====
 ====
 +
+
+For more info see the following migration guide: link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/[Migrate databases from 4.4 LTS (EOL)]
