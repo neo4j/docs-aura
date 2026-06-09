@@ -3,12 +3,12 @@
 :description: This page describes how to manage users in Neo4j Aura.
 :page-aliases: platform/user-management.adoc
 
-IMPORTANT
-====
-Please make sure you have an Organization Admin or Organization Owner.
-====
-
 User management is a feature within Aura that allows admins to invite users and set their roles within an isolated environment.
+
+[IMPORTANT]
+====
+Every xref:visual-tour/index.adoc#_organizations[organization] must have an `Organization Owner` or `Organization Admin`.
+====
 
 You can view and manage roles from *Users* pages, accessible via the console sidebar.
 An organization has one *Users* page for managing organization-level roles.
