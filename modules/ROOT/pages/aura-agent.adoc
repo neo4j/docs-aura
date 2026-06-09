@@ -24,6 +24,7 @@ Additionally, you need to enable *Tool authentication* for the project in which 
 This is done from *Security* on the organization level.
 See xref:security/tool-auth.adoc[Tool authentication with Aura user] for more information.
 
+To create, edit, or delete an agent, you need to be a project admin, project members and viewers can list and use agents but not make any changes to them.
 
 [NOTE]
 ====
@@ -33,6 +34,7 @@ This means that *all* interactions with agents go via Belgium, regardless of whe
 
 Aura Agent uses a curated set of AI models to deliver advanced planning, reasoning, retrieval, and explainability.
 For more information on how Aura Agent uses AI models, see link:{neo4j-docs-base-uri}/reference/license/agent-ai-model/[License and disclaimers -> How Aura Agent uses AI models].
+
 
 
 == Create an agent
@@ -137,7 +139,7 @@ Also, always test the Cypher statement to make sure it works as expected.
 [[similarity-search]]
 === Similarity Search
 
-This tool uses vector similarity to do a semantic search and is a great complement to the Cypher template tool.
+This tool uses vector similarity to do a semantic search.
 The similarity search finds the semantically similar entities and the Cypher template can find connections between these, which provides relevant context for the agent.
 
 This tool is best for:
@@ -157,6 +159,22 @@ Aura Agent currently supports embeddings generated with the following text embed
 For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
 
 You need to provide the name of your vector index and a value for *Top K*, i.e. the number of results you want the search to return.
+
+To further process the similarity search results, check *Return connected graph data*.
+This lets you write a Cypher query that is appended to the vector search and runs as a single query, with `node` (the matched node) and `score` (the similarity score) already in scope.
+
+You can write the query directly in the *Cypher* tab, or describe the traversal, i.e. what the query should accomplish, in the *Natural language* tab and use *Generate* to produce a Cypher query.
+Review and optionally edit the query in the *Cypher* tab and use *Add tool* to save it.
+Note that the natural language description is not saved, only the final Cypher query is stored with the tool.
+
+You can add multiple similarity search tools with the same vector index but with different post-processing queries to cover different traversal patterns.
+
+[TIP]
+====
+Use the *Similarity Search* tool when your starting point is a vector index.
+Use the *Cypher Template* tool for arbitrary read queries that do not require a vector lookup.
+====
+
 
 [.shadow]
 .Similarity search tool
@@ -326,6 +344,22 @@ image::claude-desktop.jpg[width=600]
 When enabled, Claude will use your Aura Agent when appropriate.
 The first time the agent is invoked, Claude asks for permission to use the agent.
 
+== Import/Export agent
+
+Existing agents can be exported in as _JSON_ format.
+You can either download the _JSON_ file or copy it to the clipboard.
+This is done from the *[...]* menu on the agent.
+
+[.shadow]
+.Export an agent as _JSON_
+image::export-agent.jpg[width=400]
+
+If you have a _JSON_ file of an agent, you can use that to create a new agent.
+Use the *Import agent* button and select the instance the new agent should target.
+Then you can either browse for or paste the configuration for the agent.
+
+You can edit the _JSON_ file, such as change the name of the agent, for example.
+However, keep in mind that *internal* (`"is_private": true`) agents *cannot* be enabled as MCP server (`"is_mcp_enabled": true`).
 
 
 == Learn more

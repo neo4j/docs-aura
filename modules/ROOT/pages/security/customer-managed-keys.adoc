@@ -9,7 +9,7 @@ A Customer Managed Key (CMK) gives you more control over key operations than the
 These are created and managed using a supported cloud key management service (KMS).
 Externally, Customer Managed Keys are also known as Customer Managed Encryption Keys (CMEK).
 
-When using a Customer Managed Key, all data at rest is encrypted with the key.
+When using a Customer Managed Key, all data at rest is encrypted with the key, including backups.
 Customer Managed Keys are supported for v4.x and latest version instances.
 
 It is not possible to add a Customer Managed Key to an existing Neo4j Aura instance.
@@ -118,12 +118,6 @@ Aura supports automatic key rotation via the AWS KMS.
 To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbox after initially creating a key, to automatically rotate the key once a year.
 
 == Azure keys
-
-[IMPORTANT]
-====
-Aura supports Customer Managed Keys in the following regions:
-`Australia Southeast`, `Southeast Asia`, `North Europe`, `Germany West Central`, `UK South`, `Central US`, `UAE North`.
-====
 
 === Create an Azure key vault
 

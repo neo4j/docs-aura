@@ -1,0 +1,184 @@
+= Data sources
+:description: This page details how to configure data sources for the Import tool in Neo4j Aura.
+
+As mentioned in xref:import/file-provision.adoc#_connecting_to_remote_data_sources[Connecting to remote data sources], you need to provide the Import tool with information about the data source in order for the tool to be able to load the tables from your remote data source.
+
+The information required depends on the remote data source you want to connect to.
+In general it covers the same aspects, but on a detailed level it can differ from one data source to another.
+This page outlines where to find the required information in your remote data source.
+
+Some data sources require specific roles/permissions to access the data.
+Exactly which permissions are required depends on the data source and how the data is organized.
+Therefore, it is recommended to consult the database administrator to set up the minimal required permissions for each case.
+
+[NOTE]
+====
+As the sources are third parties, this guidance is based on the information available at the time of writing and may not always reflect the current state of the third party data source.
+====
+
+[[data-source-sqls]]
+== PostgreSQL, MySQL, SQL Server, and Oracle
+
+All four data sources follow common patterns for RDBMS of host, port, and database schema.
+They all use Username and Password for authentication.
+
+== BigQuery
+
+The following information is required to connect to BigQuery:
+
+* *Project ID*
+* *Dataset name*
+* *Service Account key JSON*
+
+The *Project ID* and *dataset name* are available in the link:https://console.cloud.google.com/bigquery[BigQuery Studio] in the Google Cloud console.
+Browse to the BigQuery dataset you want to connect to and inspect the details to find the project ID and dataset name.
+Note that the dataset is sometimes prefixed with the project ID namespace, but not always.
+
+The *service account key JSON*  requires that you create a service account and then create a JSON key for the account.
+See Google Cloud link:https://docs.cloud.google.com/iam/docs/service-accounts-create[Create service accounts] for information on how to set up a service account.
+
+You need to add the following roles to the *Permissions* of the service account:
+
+* `BigQuery Data Viewer`
+* `BigQuery Read Session User`
+* `BigQuery Job User`
+
+Once the account is created, you need to create a private key for the account.
+This is accessed from the *Keys* tab of the service account, use *Add key* and select key type *JSON* and download the key.
+
+[[data-spurce-databricks]]
+== Databricks
+
+The following information is required to connect to Databricks:
+
+* *Server hostname*
+* *HTTP Path*
+* *Catalog*
+* *Schema*
+* *Personal Access Token*
+
+The server hostname and the HTTP Path can be found under *SQL Warehouses -> Connection details*.
+See the Databricks link:https://docs.databricks.com/aws/en/integrations/compute-details[documentation] for more information.
+Note that the instructions in the link are for AWS, but the same information applies for Azure and GCP.
+Refer to link:https://learn.microsoft.com/en-gb/azure/databricks/integrations/compute-details[Azure], and link:https://docs.databricks.com/gcp/en/integrations/compute-details[GCP].
+
+The *catalog* is found in the left-hand menu in the Databricks workspace, browse for the catalog you want to use.
+If you expand the selected catalog with the down arrow, you can find the schema.
+
+The *personal access token* can be created from the *User settings* menu.
+Navigate to *Developer* and use *Manage* under *Access tokens* to generate a new token.
+
+[[data-source-redshift]]
+== Redshift
+
+The following information is required to connect to Redshift:
+
+* *Server endpoint*
+* *Port*
+* *Database*
+* *Schema*
+* *IAM Credentials*
+or
+* *Password*
+
+The *server endpoint* is found in the dashboard.
+In addition to the actual endpoint, it contains the *port* and *database*.
+Copy the endpoint up until the colon, then copy the port number after the colon, and the database is found after the slash.
+The port and database should not contain any punctuation (i.e. no colon or slash).
+
+The credentials can be either IAM credentials or username/password.
+
+[[data-source-snowflake]]
+== Snowflake
+
+The following information is required to connect to Snowflake:
+
+* *Host*
+* *Port*
+* *Database*
+* *Schema*
+* *Warehouse*
+* *Role*
+* *Username*
+* *Private Key*
+* *Private Key Passphrase*
+
+The *host* can be found in the account details of the Snowflake account.
+Open your profile in Snowflake, and navigate to *Account* to access the account details.
+
+The *database* name can be found in *Catalog* in the left-hand menu in the Snowflake workspace and the *schema* is listed under each database name.
+
+*Warehouse* can be found in *Compute* in the left-hand menu.
+If none is specified, a default is used.
+
+*Role* is optional and if not specified, default permissions should apply.
+These are:
+
+[source,sql]
+----
+GRANT USAGE ON WAREHOUSE $WAREHOUSE_NAME TO  ROLE $ROLE;
+GRANT USAGE ON DATABASE $DATABASE TO ROLE $ROLE;
+GRANT USAGE ON SCHEMA $DATABASE.$SCHEMA TO ROLE $ROLE;
+GRANT SELECT ON ALL TABLES IN SCHEMA $DATABASE.$SCHEMA TO ROLE $ROLE;
+----
+
+However, note that the necessary permissions depend on how the data is organized in Snowflake.
+It is recommended to consult the DB administrator to set up the minimal required permissions for each case.
+
+The credentials are the username and private key of a user in Snowflake.
+For information on how to create a private key, see link:https://docs.snowflake.com/en/user-guide/key-pair-auth[Snowflake documentation].
+
+== Azure Synapse
+
+The following information is required to connect to Azure Synapse
+
+* *Server Endpoint*
+* *Database*
+* *Schema*
+* *Credentials*
+
+To find the *server endpoint*, first navigate to link:https://web.azuresynapse.net/[Microsoft Azure] and connect to your workspace.
+Once connected, from *Manage* in the left-hand navigation, select *SQL pools*, and from there select which endpoint you want to use.
+That selection takes you to the pool's overlay and there you can see the *Workspace SQL endpoint*.
+Copy and paste that into the *Server Endpoint* field in the Aura console.
+
+The *Database* can be found in your Azure workspace.
+Navigate to *Data* in the left-hand navigation and from the *Workspace* tab you find the database name directly under *SQL Database*.
+
+The default *Schema* is *dbo* and unless you select a custom schema when creating the table in Azure Synapse, in which case you enter this in *Schema* field in the console, *dbo* is what you should use.
+
+The *Credentials* are either *Username* and *Password* for the Azure Synapse SQL pool, *or* use your *Principal* as user credentials in the console.
+
+The first option, username/password is your login for Azure Synapse SQL pool.
+User management is handled by the Azure tenant's IT administrator and if you are unsure about your credentials, you should contact them.
+
+Using your *Principal* as User Credentials requires that you have an Microsoft Entra ID application registered.
+See this link:https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app[Microsoft guide] for information if you don't already have this set up.
+Once it is, you need to assign the application to your Azure Endpoint.
+From the Azure Synapse workspace, use *Manage* in the left-hand navigation, select *Access control* and *Add* to add the Microsoft Entra ID application.
+When you have added the application, you are set to use your Principal as User Credentials.
+The required fields (by the Import tool), *Azure Synapse Tenant* and *Application ID* can be found in the overview of your registered application in the link:portal.azure.com[Azure Portal].
+The *Azure Client secret* is also found in the portal, in the *Certificates & secrets* page.
+Note that the secret is obfuscated and only visible at the time of creation.
+
+//==AWS S3
+//TBD
+
+//==Azure Blobs and Data Lake Storage
+// TBD
+
+[[data-source-gcs]]
+== Google Cloud Storage
+
+The following information is required to connect to Google Cloud Storage:
+
+* *Bucket name*
+* *Bucket path*
+* *HMAC Access Key*
+* *HMAC Secret*
+
+In the Google Cloud Console, under *Buckets*, navigate to a specific resource in a bucket to see its bucket path.
+The bucket path can optionally contain glob patterns to reference multiple files, but must *always reference to parquet or  csv files*.
+Each file must be given a temporary table name, which is used to reference the file in the mapping UI.
+
+For Google service accounts with access to the cloud bucket, see the link:https://docs.cloud.google.com/storage/docs/authentication/managing-hmackeys[Google documentation] on how to create an HMAC key.
