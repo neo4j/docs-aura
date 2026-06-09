@@ -22,6 +22,9 @@ The examples on this page use the xref::/dashboards/index.adoc#_sample_dataset[N
 * Select the  ✨ button to generate suggestions for prompts to make a dashboard layout.
 * Pick a suggestion then select Continue.
 
+The more information you include, the better the result.
+This holds for information about the database itself as well as entities in the data model. 
+
 === 2. Review your dashboard plan 
 
 * The dashboard plan gives you an idea of the layout of your dashboard. 
@@ -41,11 +44,10 @@ This keeps your data private.
 ====
 
 == AI as a starting point
-
-Remember, you can always edit an AI-generated dashboard. 
+You can always edit an AI-generated dashboard. 
 Use AI as a starting point, and then build on it by editing the output - and refining Cypher queries, visualizations, colors, and layouts to match your needs.
 
-You can always edit things later when the dashboard is generated (refining the layout of the charts, colors etc. from the generated dashboard). 
+//You can always edit things later when the dashboard is generated (refining the layout of the charts, colors etc. from the generated dashboard). 
 
 // If you do not enter a prompt, Neo4j AI will still make use of your database schema and come up with a suitable dashboard.
 
@@ -63,9 +65,6 @@ Copy the following prompt or create your own and use it to create a dashboard:
 ----
 Create a dashboard on my retail database, giving me an overview over recent top customers, top selling products, currently available stock, a category overview and sales volume per quarter.
 ----
-
-The more information you include, the better the result.
-This holds for information about the database itself as well as entities in the data model. 
 
 [.shadow]
 .Create a data-focused dashboard
