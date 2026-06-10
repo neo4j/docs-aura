@@ -39,11 +39,9 @@ If the database is larger than 4 GB, you have to use `neo4j-admin database uploa
 
 [NOTE]
 ====
-The `neo4j-admin push-to-cloud` command in Neo4j v4.4 and earlier is **not** supported for instances encrypted with Customer Managed Keys.
+The Aura console only supports `neo4j-admin database upload` from versions 5.26.7 and later, 2025.04 and later.
+If your self-managed database is of an earlier version, you need to first update or migrate to at least 5.26.7.
 For more information, see xref:managing-instances/backup-restore-export.adoc#neo4j-admin-upload[Upload an existing Neo4j database].
-
-This is because `neo4j-admin push-to-cloud` is *not* compatible with the new console.
-You need to use `neo4j-admin database upload` and version  5.26.7+ or 2025.04+.
 ====
 
 
