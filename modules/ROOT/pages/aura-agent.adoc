@@ -296,7 +296,7 @@ Note that this example uses link:https://jqlang.org/[jq] for command line JSON p
 
 === MCP server
 
-The other option is to make your agent available to an MCP client such as Claude Desktop or VSCode MCP.
+The other option is to make your agent available to an MCP client such as Claude Desktop, VSCode MCP, or Microsoft Copilot Studio.
 In this setup, your agent acts as an read-only MCP server that allows an external agent to use your agent and its target instance as a tool to answer inquiries.
 
 Once you are satisfied with your agent, make it *external* and *enable MCP server* before saving it.
@@ -312,7 +312,7 @@ It can be found from the *[...]* menu on the agent.
 .Copy MCP server endpoint from *[...]* menu
 image::agent-endpoint.jpg[width=400]
 
-Then you go to your MCP client of choice and add a remote MCP entry with the MCP server endopint for your agent.
+Then you go to your MCP client of choice and add a remote MCP entry with the MCP server endpoint for your agent.
 You may need to restart the client after.
 
 Once your MCP server has been attached to the client, you need to authorize it to access your account.
@@ -343,6 +343,106 @@ image::claude-desktop.jpg[width=600]
 +
 When enabled, Claude will use your Aura Agent when appropriate.
 The first time the agent is invoked, Claude asks for permission to use the agent.
+
+==== Set up with Microsoft Copilot Studio
+
+Start by making your agent external and enabling MCP server (see above), then copy the MCP server endpoint from the *[...]* menu.
+
+[NOTE]
+====
+Copilot Studio's Streamable HTTP runtime strips all query parameters from outgoing requests.
+Your MCP endpoint URL contains `project_id` and `agent_id` as query parameters — you must not use the full URL.
+Note the two values from the query string before proceeding, then strip the query string so you are left with only the base URL.
+For example: `https://<base-url>/agent?project_id=<PROJECT_ID>&agent_id=<AGENT_ID>` becomes `https://<base-url>/agent`.
+====
+
+. Add the MCP server in Copilot Studio
++
+In link:https://copilotstudio.microsoft.com[Copilot Studio], open your agent and go to *Tools* > *Add a tool* > *Add an MCP server*.
+Enter the *base URL* (without query parameters) and follow the wizard to connect.
+Authenticate with the same credentials you use to log in to the Aura Console.
++
+Copilot Studio creates a Power Apps custom connector in the background.
++
+
+. Edit the custom connector in Power Apps
++
+Sign in to link:https://make.powerapps.com[Power Apps].
+From the left navigation, select *Data* > *Custom connectors* and find the connector that Copilot Studio just created.
+Open it for editing.
+
+. Add internal header parameters
++
+In the connector editor, go to the *Definition* tab.
+Find the POST action and add two new parameters:
++
+[cols="1,1,1,1,1"]
+|===
+|Name |Location |Required |Type |Visibility
+
+|`project-id`
+|Header
+|Yes
+|String
+|Internal
+
+|`agent-id`
+|Header
+|Yes
+|String
+|Internal
+|===
++
+For each parameter, set the *Default value* to your actual `project_id` and `agent_id` values noted in the first step.
+Setting visibility to *Internal* hides these from end users while Copilot Studio sends them silently on every request.
+Note that the parameter names use hyphens (`project-id`, `agent-id`), not underscores.
++
+
+You should end up with a configuration that looks similiar to the one shown below:
++
+```yaml
+swagger: '2.0'
+info:
+  title: My Movie Databse MCP Server Connection
+  description: Get information on movies, actors and directors
+  version: 1.0.0
+host: mcp.neo4j.io
+basePath: /
+schemes:
+  - https
+paths:
+  /agent:
+    post:
+      responses:
+        '200':
+          description: Immediate Response
+      x-ms-agentic-protocol: mcp-streamable-1.0
+      operationId: InvokeServer
+      summary: My Movie Databse MCP Server Connection
+      description: Get information on movies, actors and directors
+      parameters:
+        - name: project-id
+          in: header
+          required: true
+          type: string
+          description: The specific project ID context
+          default: <project_id>
+          x-ms-visibility: internal
+        - name: agent-id
+          in: header
+          required: true
+          type: string
+          description: The executing agent context
+          default: <agent_id>
+          x-ms-visibility: internal
+securityDefinitions: {}
+security: []
+```
+
+. Save and verify
++
+Select *Update connector* to save your changes.
+In Copilot Studio, open the test playground and ask your agent a question that exercises the Aura Agent tools to verify the connection is working end-to-end.
 
 == Import/Export agent
 
