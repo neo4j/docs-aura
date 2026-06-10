@@ -5,12 +5,7 @@
 
 User management is a feature within Aura that allows admins to invite users and set their roles within an isolated environment.
 
-[IMPORTANT]
-====
-Every xref:visual-tour/index.adoc#_organizations[organization] must have an `Organization Owner` or `Organization Admin`.
-====
-
-You can view and manage roles from *Users* pages, accessible via the console sidebar.
+View and manage roles from *Users* pages, accessible via the console sidebar.
 An organization has one *Users* page for managing organization-level roles.
 Each project has a *Users* page for managing project-specific roles.
 
@@ -22,6 +17,11 @@ The organization-level role cannot be changed until the user accepts their invit
 ====
 
 == Organization-level roles
+
+[IMPORTANT]
+====
+Every xref:visual-tour/index.adoc#_organizations[organization] must have an `Organization Owner`.
+====
 
 Roles at the organization level determine what administrative capabilities a user has across all projects within the organization.
 
