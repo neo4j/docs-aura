@@ -11,7 +11,7 @@ This tutorial describes how to migrate from a self-managed Neo4j database to Aur
 The minimum version of self-managed to upload to Aura is v5 LTS (5.26.7)
 ====
 
-The new Aura console only supports `neo4j-admin database upload` from versions 5.26.7 and later, 2025.04 and later.
+The Aura console only supports `neo4j-admin database upload` from versions 5.26.7 and later, 2025.04 and later.
 
 == Preparation
 
@@ -47,59 +47,18 @@ Stop the database you want to make a dump of, using the command `STOP DATABASE {
 
 . Ensure the target directory to store the database dumps (for instance `{dump-folder}`) exists.
 
-. Depending on your self-managed Neo4j version, create a dump of your database (e.g., `{database}`) using one of the following options:
-
+. Depending on your self-managed Neo4j version, create a dump of your database (e.g. `{database}`) using the link:https://neo4j.com/docs/operations-manual/current/backup-restore/offline-backup/[`neo4j-admin database dump`] command:
 +
-[.tabbed-example]
-====
-[.include-with-From-Neo4j-4]
-=====
-Use the link:https://neo4j.com/docs/operations-manual/4.4/backup-restore/offline-backup/[`neo4j-admin dump`] command.
-
-[source,shell,subs=attributes+]
-----
-bin/neo4j-admin dump --database={database} --to={dump-folder}
-----
-=====
-
-[.include-with-From-Neo4j-5]
-=====
-Use the link:https://neo4j.com/docs/operations-manual/current/backup-restore/offline-backup/[`neo4j-admin database dump`] command.
-
 [source,shell,subs=attributes+]
 ----
 bin/neo4j-admin database dump {database} --to-path={dump-folder}
 ----
-=====
-====
 +
-
-. Depending on your self-managed Neo4j version, upload the database dump (e.g., `{database}`) to your Aura instance (the Aura instance does *not* need to be stopped) using one of the following options:
-
+For more info see the following migration guide: link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/[Migrate databases from 4.4 LTS (EOL)]
 +
-[.tabbed-example]
-====
-[.include-with-From-Neo4j-4]
-=====
-
-Use the link:https://neo4j.com/docs/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[`neo4j-admin upload`] command.
-
-[source,shell,subs=attributes+]
-----
-bin/neo4j-admin upload --dump={dump-folder}/file.dump --bolt-uri={aura-uri} --overwrite
-----
-=====
-
-[.include-with-From-Neo4j-5]
-=====
-Use the link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[`neo4j-admin database upload`] command.
-
+. Depending on your self-managed Neo4j version, upload the database dump (e.g. `{database}`) to your Aura instance (the Aura instance does *not* need to be stopped) using the link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[`neo4j-admin database upload`] command.
++
 [source,shell,subs=attributes+]
 ----
 bin/neo4j-admin database upload {database} --from-path={dump-folder} --to-uri={aura-uri} --overwrite-destination=true
 ----
-=====
-====
-+
-
-For more info see the following migration guide: link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/[Migrate databases from 4.4 LTS (EOL)]
