@@ -30,22 +30,28 @@ If you select one, you see a sample of the selected element as a graph or table.
 [.shadow]
 image::database-drawer.png[width=400]
 
-Additionally, the drawer contains node and relationship counts, displayed in parantheses.
+Additionally, the drawer contains node and relationship counts, displayed in parentheses.
 
-=== Saved Cypher
+=== Query
 
-The Saved Cypher drawer is where you keep your bookmarked queries and commands.
-
-[.shadow]
-image::saved-cypher-drawer.png[width=400]
-
-From here, you can organize your saved Cypher, download or upload these, or delete them if needed.
-To run a saved query, click on it to populate it to the Cypher editor and use the play button to execute.
-
-To save a query, use the bookmark icon in the Cypher editor.
+When you use the *Save and open in tab* button, the query in the editor is saved to this drawer, even after the tab is closed.
 
 [.shadow]
-image::save-cypher.png[width=800]
+image::save-tab.png[width=300]
+
+From here, you can organize your saved queries, download or upload these, or delete them if needed.
+
+[.shadow]
+image::query-drawer.png[width=400]
+
+Right-click a query to access the possible actions.
+You can:
+
+* rename
+* open in a new tab
+* open in the stream
+* download
+* delete
 
 
 === Query history
@@ -178,9 +184,37 @@ A stream is a scrolling series of result frames.
 image::stream.png[]
 
 A reusable result frame is created for each command execution, added to the top of the stream to create a scrollable collection in reverse chronological order.
-You can expand and collapse the result frames using the *Collapse* icon.
+You can minimize and enlarge the result frames from the *[...]* more menu.
 To remove all the frames from the stream, use the `:clear` command.
 Clearing the stream does **not** clear the history, that is done from the **Query history** drawer, as mentioned previously.
+
+== Tabs
+
+If you open a query in a tab, either from the result frame or from the Query drawer, you have three options to view the query and results:
+
+* *Results on bottom*
+* *Results on right*
+* *Interactive table view*
+
+All three options displays the Cypher query and the results, either as a graph (if results can be visualized as a graph) or as a table.
+The first two options allow you to toggle between graph (if available), table, and RAW views.
+
+Regardless of orientation of results, in the table view, you can search the table, download in different formats, and copy a table to the clipboard.
+In the graph view, you can search the graph and download as _PNG_.
+
+The interactive table view displays the result both as a graph and a table.
+It consists of three panels, the *Cypher editor* (populated with your Cypher query), the *graph panel*, and the *table panel*.
+
+The query in the editor can be edited and re-run, and the results will be updated in both the graph and the table panels.
+
+The *graph panel* offers the same functionality as the regular graph view, but it also allows you to select graph objects from the graph and see them highlighted in the table.
+
+Likewise, the *table panel* allows you to select graph objects from the tabular results and see them highlighted in the graph.
+
+[.shadow]
+.Interactive table view
+image::interactive-view.png[width=full]
+
 
 [[copilot]]
 == Query co-pilot
