@@ -1,0 +1,102 @@
+= Console-only instance actions
+
+== Connect to tools
+
+The *Connect* button allows you to connect your instance to one of the tools; Query, Explore, or Dashboards, or to the Developer hub.
+This is possible from both Aura instances as well as self-managed deployments (see xref:managing-instances/self-managed.adoc[Self-managed instances]), as long as the instance/deployment is running.
+
+[.shadow]
+.Connect to tools
+image::connect-to-tools.png[]
+
+== Clone
+
+[NOTE]
+====
+You cannot clone from a Neo4j latest version instance to a Neo4j version 4 instance.
+====
+
+Clone an existing instance to create a new instance with the same data.
+Clone across regions, and from Neo4j version 4 to Neo4j latest version.
+
+There are two options to clone an instance:
+
+* Clone to a new instance
+* Clone to an existing instance
+
+Access all the cloning options from the more menu (*...*) on the instance.
+
+== Clone to a new instance
+
+. From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *New instance*.
+. Set your desired settings for the new instance.
+For more information see xref:getting-started/create-instance.adoc[Create an instance].
+. Check the *I accept* box and select *Create*.
+
+[WARNING]
+====
+Make sure that the username and password are stored safely before continuing.
+Credentials cannot be recovered afterwards.
+====
+
+== Clone to an existing instance
+
+When you clone an instance to an existing instance, the database connection URI stays the same, but the data is replaced with the data from the cloned instance.
+
+[WARNING]
+====
+Cloning into an existing instance will replace all existing data.
+If you want to keep the current data, take a snapshot and export it.
+====
+
+. From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *Existing instance*.
+. Select the existing AuraDB instance to clone to from the dropdown menu.
++
+[NOTE]
+====
+Existing instances that are not large enough to clone into will not be available for selection.
+====
++
+. Check the *I understand the target instance will be overwritten* box and select *Clone*.
+
+== Mark an instance as `production`
+
+Admins can mark a database instance as `production` in AuraDB Virtual Dedicated Cloud and AuraDB Business Critical.
+
+When Neo4j updates Aura Database versions, instances marked as `production` are last to have the Aura Database version updated.
+Because updates are applied to these database instances after other database instances receive updates, you can monitor any potential impact on less critical instances first.
+
+After marking the instance as `production` the label is applied immediately, and all instance actions (such as pause or clone) are temporarily unavailable while the instance is set to `production` in the Neo4j backend.
+
+Use the more menu (*...*) on the instance card to mark it as `production`.
+
+[.shadow]
+.Mark an instance as production
+image::mark-as-production.png[]
+
+[.shadow]
+.Instance marked as production
+image::marked-as-production.png[]
+
+== Manage custom endpoints
+
+Custom endpoints are used for database management and migration.
+You set up endpoints in the *Project settings*.
+See xref:managing-instances/custom-endpoints.adoc[Custom endpoints] for more information.
+
+== Metrics
+
+On the bottom of the instance card you can find a selection of collapsible metrics.
+Use the *View all metrics* button to see more.
+See xref:metrics/view-metrics.adoc[View metrics] for more information.
+
+== Reset an instance
+
+When you have an AuraDB instance and you want to delete everything (all data and metadata, but not the users and roles), you can use the "Reset to blank option" which is available in the Neo4j Aura console.
+
+Clear all data in an instance using the *Reset to blank* action.
+
+https://support.neo4j.com/s/article/4412131924883-How-to-wipe-out-delete-all-the-content-in-a-Neo4j-AuraDB-Instance
+
+Select *Reset to blank* from the *(...)* more menu on the instance card.
+You need to confirm your intention since this action cannot be undone.

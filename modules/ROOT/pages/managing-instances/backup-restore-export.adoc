@@ -209,3 +209,67 @@ To enable *Public traffic* on a network access configuration:
 
 You can now use the `database upload` command on the instances within that region.
 Once the command has completed, you can disable *Public traffic* again by following the same steps and re-selecting the *Disable public* traffic checkbox.
+
+== Snapshots and backups
+
+Snapshots are taken at regular intervals and can be used to download or dump your data to a new instance.
+You can also restore backups of 4GB or less.
+See xref:managing-instances/backup-restore-export.adoc[Backup, export, restore, and upload] for more information
+
+[.tabbed-example]
+====
+[.include-with-API]
+=====
+
+/instances/{instanceId} 
+Returns instance details
+
+|===
+
+=====
+
+[.include-with-UI]
+=====
+
+UI
+
+|===
+=====
+====
+
+== Upgrade instance 
+
+This upgrade does not change the original DBID, so your application strings remain valid.
+
+*GDS plugin removal:*
+If your AuraDB Professional instance uses the GDS plugin, it is removed during the upgrade.
+The GDS plugin is not supported in AuraDB Business Critical.
+
+*Minimum instance size:*
+If you try to upgrade a 1GB Professional instance, you need to resize it to at least 2GB of storage, because this is the minimum supported size in AuraDB Business Critical.
+
+[.tabbed-example]
+====
+[.include-with-API]
+=====
+
+/instances/{instanceId}/upgrade
+
+|===
+
+=====
+
+[.include-with-UI]
+=====
+
+AuraDB Free instances have an *Upgrade* button that you can use to upgrade to either Professional or Business Critical.
+You can upgrade an AuraDB Professional instance to an Business Critical instance using the *Upgrade* action from the *(...)* menu.
+
+.Upgrade your AuraDB Professional instance to AuraDB Business Critical
+[.shadow]
+image::upgradeprotobc.png[]
+
+|===
+=====
+====
+
