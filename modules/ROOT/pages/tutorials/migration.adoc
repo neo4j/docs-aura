@@ -13,6 +13,7 @@ The minimum version of self-managed to upload to Aura is v5 LTS (5.26.7)
 
 The Aura console only supports `neo4j-admin database upload` from versions 5.26.7 and later, 2025.04 and later.
 If your self-managed database is of an earlier version, you need to first update or migrate to at least 5.26.7.
+
 == Preparation
 
 // == Migrating to Neo4j latest
@@ -42,8 +43,7 @@ This process requires a short downtime for your self-managed database.
 The following admin commands must be invoked with the same user as your self-managed Neo4j database.
 This guarantees that Neo4j has full rights to start and work with the database files you use.
 
-. Stop your self-managed Neo4j database.
-Stop the database you want to create a dump of, using the command `STOP DATABASE {database}` in Cypher Shell or Browser.
+. Stop the self-managed database you want to create a dump of, using the command `STOP DATABASE {database}` in Cypher Shell or Browser.
 
 . Ensure the target directory to store the database dumps (for instance `{dump-folder}`) exists.
 
@@ -57,7 +57,7 @@ bin/neo4j-admin database dump {database} --to-path={dump-folder}
 If your self-managed database is of version 4.4, you need to migrate to a later version before uploading to Aura.
 See the migration guide: link:https://neo4j.com/docs/upgrade-migration-guide/current/version-5/migration/[Migrate databases from 4.4 LTS (EOL)] for more information.
 +
-. Depending on your self-managed Neo4j version, upload the database dump (e.g. `{database}`) to your Aura instance (the Aura instance does *not* need to be stopped) using the link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[`neo4j-admin database upload`] command.
+. Upload the database dump (e.g. `{database}`) to your Aura instance (the Aura instance does *not* need to be stopped) using the link:https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/upload-to-aura/[`neo4j-admin database upload`] command.
 +
 [source,shell,subs=attributes+]
 ----
