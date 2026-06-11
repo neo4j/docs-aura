@@ -348,10 +348,6 @@ The first time the agent is invoked, Claude asks for permission to use the agent
 
 Start by making your agent public and enable MCP server, as described above, and copy the MCP server endpoint accordingly.
 
-[NOTE]
-====
-Copilot Studio's Streamable HTTP runtime strips all query parameters from outgoing requests.
-====
 Your MCP endpoint URL contains `project_id` and `agent_id` as query parameters. These pieces of information are *crucial* for the MCP server endpoint to be able to *identify* your project and agent.
 
 *Therefore, make sure to note the two values from the query string before proceeding.* 
