@@ -369,41 +369,23 @@ Copilot Studio creates a Power Apps custom connector in the background.
 +
 Sign in to link:https://make.powerapps.com[Power Apps].
 From the left navigation, select *Data* > *Custom connectors* and find the connector that Copilot Studio just created.
-Open it for editing.
+(You may need to click *More* > *Discover all* to find the *Custom connectors* menu.)
+Open it for editing and press the toggle to enable *Swagger editor*.
 
 . Add internal header parameters
 +
-In the connector editor, go to the *Definition* tab.
-Find the POST action and add two new parameters:
+In the Swagger editor, locate the `parameters` array inside the `/agent` POST action and add the `project-id` and `agent-id` header entries, replacing the placeholder values with your actual `project_id` and `agent_id` from the first step.
 +
-[cols="1,1,1,1,1"]
-|===
-|Name |Location |Required |Type |Visibility
-
-|`project-id`
-|Header
-|Yes
-|String
-|Internal
-
-|`agent-id`
-|Header
-|Yes
-|String
-|Internal
-|===
-+
-For each parameter, set the *Default value* to your actual `project_id` and `agent_id` values noted in the first step.
-Setting visibility to *Internal* hides these from end users while Copilot Studio sends them silently on every request.
+Setting `x-ms-visibility: internal` hides these parameters from end users while Copilot Studio sends them silently as request headers.
 Note that the parameter names use hyphens (`project-id`, `agent-id`), not underscores.
 +
-
-You should end up with a configuration that looks similiar to the one shown below:
+The result should look similar to the following:
 +
-```yaml
+[source,yaml]
+----
 swagger: '2.0'
 info:
-  title: My Movie Databse MCP Server Connection
+  title: My Movie Database MCP Server Connection
   description: Get information on movies, actors and directors
   version: 1.0.0
 host: mcp.neo4j.io
@@ -418,7 +400,7 @@ paths:
           description: Immediate Response
       x-ms-agentic-protocol: mcp-streamable-1.0
       operationId: InvokeServer
-      summary: My Movie Databse MCP Server Connection
+      summary: My Movie Database MCP Server Connection
       description: Get information on movies, actors and directors
       parameters:
         - name: project-id
@@ -437,7 +419,7 @@ paths:
           x-ms-visibility: internal
 securityDefinitions: {}
 security: []
-```
+----
 
 . Save and verify
 +
