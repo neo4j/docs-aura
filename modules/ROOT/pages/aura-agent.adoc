@@ -348,18 +348,17 @@ The first time the agent is invoked, Claude asks for permission to use the agent
 
 Start by making your agent public and enable MCP server, as described above, and copy the MCP server endpoint accordingly.
 
-[NOTE]
-====
 Copilot Studio's Streamable HTTP runtime strips all query parameters from outgoing requests.
-Your MCP endpoint URL contains `project_id` and `agent_id` as query parameters — you must not use the full URL.
-Note the two values from the query string before proceeding, then strip the query string so you are left with only the base URL.
-For example: `https://<base-url>/agent?project_id=<PROJECT_ID>&agent_id=<AGENT_ID>` becomes `https://<base-url>/agent`.
-====
+Your MCP endpoint URL contains `project_id` and `agent_id` as query parameters, these pieces of information are crucial for the MCP server endpoint to be able to identify your project and agent.
+
+Note the two values from the query string before proceeding, we'll need them later to add as headers to requests made from Copilot Studio.
 
 . Add the MCP server in Copilot Studio
 +
 In link:https://copilotstudio.microsoft.com[Copilot Studio], open your agent and go to *Tools* > *Add a tool* > *Add an MCP server*.
-Enter the *base URL* (without query parameters) and follow the wizard to connect.
+Enter the *MCP endpoint URL* and follow the wizard to connect. 
++
+For authentication choose *OAuth 2.0* > *Dynamic Discovery*.
 Authenticate with the same credentials you use to log in to the Aura Console.
 +
 Copilot Studio creates a Power Apps custom connector in the background.
