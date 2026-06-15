@@ -36,30 +36,3 @@ image::secondary-count-console.png[width=400]
 == Edit secondary count using the Aura API
 
 Use the `/instances/\{instanceId}` endpoint to edit the number of secondaries.
-
-[role=label--aura-db-dedicated label--aura-db-business-critical]
-== Edit secondary count
-
-Secondaries are read-only copies of your database used for scaling.
-You can edit the number of secondary copies on applicable instances.
-See xref:managing-instances/secondaries.adoc[Secondaries] for more information.
-
-[.tabbed-example]
-====
-[.include-with-API]
-=====
-
-/instances/{instanceId}
-
-|===
-
-=====
-
-[.include-with-UI]
-=====
-
-123
-
-|===
-=====
-====
