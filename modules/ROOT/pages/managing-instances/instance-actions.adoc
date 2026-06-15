@@ -40,7 +40,6 @@ You can pause an instance for up to 30 days, after which point Aura automaticall
 /instances/{instanceId}
 
 =====
-
 [.include-with-UI]
 =====
 
@@ -50,11 +49,11 @@ After confirming, the instance begins pausing, and a play button replaces the pa
 =====
 ====
 
+== Resume a paused instance
+
 // label:AuraDB-professional[]
 // label:AuraDB-Enterprise[]
 // label:AuraDB-business-critical[]
-
-== Resume a paused instance
 
 When you resume an instance, Aura restarts the instance and restores it from the backup. 
 Resuming the instance can take a few minutes to a few hours, depending on its size.
@@ -70,14 +69,7 @@ If an Aura Free instance remains paused for more than 30 days, Aura deletes the 
 [.include-with-API]
 =====
 
-Pause: POST https://api.neo4j.io/v1/instances/{instanceId}/pause. 
-Resume: POST .../instances/{instanceId}/resume. 
-Poll GET .../instances/{instanceId} for status: paused or running.
-POST /v1/instances/{instanceId}/pause
-POST /v1/instances/{instanceId}/resume
-Poll GET /v1/instances/{id} — check status field
-
-|===
+/{instanceId}/pause
 
 =====
 
@@ -87,7 +79,6 @@ Poll GET /v1/instances/{id} — check status field
 Resume a paused instance with the *Play* button on the instance card.
 After confirming, the instance begins resuming.
 
-|===
 =====
 ====
 
@@ -108,23 +99,14 @@ If you may need the data later, export a snapshot before deleting the instance.
 [.include-with-API]
 =====
 
-DELETE /v1/instances/{instanceId}
-No request body required
-Reset to blank has no API equivalent — console only
-
-https://neo4j.com/docs/aura/platform/api/specification/#/instances/delete-instance-id
-
-|===
+/v1/instances/{instanceId}
 
 =====
 
 [.include-with-UI]
 =====
-
 Delete an instance using the trashcan icon on the instance card.
 Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
-
-|===
 =====
 ====
 
@@ -138,9 +120,6 @@ Returns details about a specific Aura instance.
 =====
 
 /instances/{instanceId} 
-Returns instance details
-
-|===
 
 =====
 
@@ -152,7 +131,6 @@ From the instance details you can rename an instance and view instance details.
 See xref:managing-instances/instance-details.adoc[Instance details] for more information.
 
 [.shadow]
-.The more (...) menu on an AuraDB Free instance
 image::instance-actions.png[]
 
 |===
