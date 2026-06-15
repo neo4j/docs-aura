@@ -40,6 +40,7 @@ Generic Start
 ** xref:import/mapping.adoc[Map data]
 ** xref:import/indexes-and-constraints.adoc[Indexes and constraints]
 ** xref:import/import.adoc[Run the import]
+** xref:import/data-sources.adoc[Data sources]
 
 * Graph analytics in Aura
 ** xref:graph-analytics/index.adoc[Overview]
@@ -69,6 +70,7 @@ Generic Start
 *** xref:explore/explore-perspectives/refresh-perspectives.adoc[Refresh Perspectives]
 *** xref:explore/explore-perspectives/database-scans.adoc[Database scans]
 
+
 ** Explore features in detail
 *** xref:explore/explore-features/graph-pattern-search.adoc[Graph pattern search]
 *** xref:explore/explore-features/search-phrases-advanced.adoc[Search phrases for advanced queries]
@@ -77,6 +79,7 @@ Generic Start
 *** xref:explore/explore-features/edit-graph-data.adoc[Edit graph data]
 *** xref:explore/explore-features/gds-integration.adoc[Graph Data Science integration]
 *** xref:explore/explore-features/slicer.adoc[Slicer]
+*** xref:explore/explore-features/scenes-export.adoc[Scenes and sharing data]
 ** xref:explore/explore-default-actions.adoc[Default actions and shortcuts]
 
 * Query data
@@ -85,12 +88,12 @@ Generic Start
 ** xref:query/operations.adoc[Query operations]
 ** xref:query/command-reference.adoc[Command reference]
 
-* Fleet management
+* Fleet Manager
 ** xref:fleet-management/overview.adoc[Overview]
 ** xref:fleet-management/setup.adoc[Add a deployment]
 ** xref:fleet-management/inspect-deployment.adoc[Inspect deployment]
 ** xref:fleet-management/deployment-details.adoc[Deployment details]
-** xref:fleet-management/procedures.adoc[Plugin procedures]
+** xref:fleet-management/procedures.adoc[Fleet Manager procedures]
 ** xref:fleet-management/data.adoc[Data transparency]
 ** xref:fleet-management/aura-api.adoc[Aura API]
 ** xref:fleet-management/aura-cli.adoc[Aura CLI]
@@ -112,8 +115,6 @@ Generic Start
 ** xref:dashboards/create-dashboards-manually.adoc[Create dashboards with Cypher]
 ** xref:dashboards/managing-dashboards.adoc[Managing dashboards]
 ** xref:dashboards/import.adoc[Import and export]
-** xref:dashboards/parameters-and-filters.adoc[Parameters and filters]
-** xref:dashboards/filter-types.adoc[Filter types]
 ** xref:dashboards/sharing-dashboards.adoc[Sharing dashboards]
 ** xref:dashboards/visualizations/index.adoc[Visualizations]
 *** xref:dashboards/visualizations/graph.adoc[Graph]
@@ -124,7 +125,22 @@ Generic Start
 *** xref:dashboards/visualizations/single-value.adoc[Single value]
 *** xref:dashboards/visualizations/text.adoc[Text]
 *** xref:dashboards/visualizations/map.adoc[Map]
+** xref:dashboards/parameters-and-filters.adoc[Filters]
+** xref:dashboards/filter-types.adoc[Filter types]
+** xref:dashboards/parameters.adoc[Parameters]
+** xref:dashboards/list-parameters.adoc[List parameters]
+** xref:dashboards/actions/index.adoc[Actions]
+** xref:dashboards/actions/cell-click.adoc[Cell click action]
+** xref:dashboards/actions/row-select.adoc[Row select action]
 ** xref:dashboards/faq-and-resources.adoc[FAQ and resources]
+
+* Document Intelligence (Preview feature)
+** xref:document-intelligence/introduction.adoc[What is Document Intelligence?]
+** xref:document-intelligence/quick-start.adoc[Quick start]
+** xref:document-intelligence/visual-tour.adoc[Visual tour]
+** xref:document-intelligence/data-provision.adoc[Data provision]
+** xref:document-intelligence/indexes-constraints.adoc[Indexes and constraints]
+** xref:document-intelligence/import.adoc[Import]
 
 * Metrics
 ** xref:metrics/view-metrics.adoc[View metrics]
@@ -152,11 +168,12 @@ Generic Start
 ** xref:security/encryption.adoc[Encryption]
 ** xref:security/customer-managed-keys.adoc[Customer Managed Keys]
 ** xref:security/tool-auth.adoc[Tool authentication with Aura user]
+** xref:security/inactive-organization-member-pruning.adoc[Inactive organization member pruning]
 
 * xref:user-management.adoc[User management]
 
 * Billing and usage
-** xref:billing/usage-report.adoc[Billing and usage report]
+** xref:billing/cost-explorer.adoc[Cost explorer]
 ** xref:billing/billing-dimensions.adoc[Billing dimensions]
 ** xref:billing/payment-options.adoc[Payment options]
 
@@ -173,6 +190,8 @@ Generic Start
 ** xref:api/overview.adoc[]
 ** xref:api/authentication.adoc[]
 ** link:{neo4j-docs-base-uri}/aura/platform/api/specification/[API Specification]
+
+* xref:support-integration.adoc[Support]
 
 * *Tutorials*
 * Upgrade and migration

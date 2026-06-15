@@ -24,6 +24,7 @@ Additionally, you need to enable *Tool authentication* for the project in which 
 This is done from *Security* on the organization level.
 See xref:security/tool-auth.adoc[Tool authentication with Aura user] for more information.
 
+To create, edit, or delete an agent, you need to be a project admin, project members and viewers can list and use agents but not make any changes to them.
 
 [NOTE]
 ====
@@ -33,6 +34,7 @@ This means that *all* interactions with agents go via Belgium, regardless of whe
 
 Aura Agent uses a curated set of AI models to deliver advanced planning, reasoning, retrieval, and explainability.
 For more information on how Aura Agent uses AI models, see link:{neo4j-docs-base-uri}/reference/license/agent-ai-model/[License and disclaimers -> How Aura Agent uses AI models].
+
 
 
 == Create an agent
@@ -137,7 +139,7 @@ Also, always test the Cypher statement to make sure it works as expected.
 [[similarity-search]]
 === Similarity Search
 
-This tool uses vector similarity to do a semantic search and is a great complement to the Cypher template tool.
+This tool uses vector similarity to do a semantic search.
 The similarity search finds the semantically similar entities and the Cypher template can find connections between these, which provides relevant context for the agent.
 
 This tool is best for:
@@ -157,6 +159,22 @@ Aura Agent currently supports embeddings generated with the following text embed
 For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
 
 You need to provide the name of your vector index and a value for *Top K*, i.e. the number of results you want the search to return.
+
+To further process the similarity search results, check *Return connected graph data*.
+This lets you write a Cypher query that is appended to the vector search and runs as a single query, with `node` (the matched node) and `score` (the similarity score) already in scope.
+
+You can write the query directly in the *Cypher* tab, or describe the traversal, i.e. what the query should accomplish, in the *Natural language* tab and use *Generate* to produce a Cypher query.
+Review and optionally edit the query in the *Cypher* tab and use *Add tool* to save it.
+Note that the natural language description is not saved, only the final Cypher query is stored with the tool.
+
+You can add multiple similarity search tools with the same vector index but with different post-processing queries to cover different traversal patterns.
+
+[TIP]
+====
+Use the *Similarity Search* tool when your starting point is a vector index.
+Use the *Cypher Template* tool for arbitrary read queries that do not require a vector lookup.
+====
+
 
 [.shadow]
 .Similarity search tool
@@ -278,7 +296,7 @@ Note that this example uses link:https://jqlang.org/[jq] for command line JSON p
 
 === MCP server
 
-The other option is to make your agent available to an MCP client such as Claude Desktop or VSCode MCP.
+The other option is to make your agent available to an MCP client such as Claude Desktop, VSCode MCP, or Microsoft Copilot Studio.
 In this setup, your agent acts as an read-only MCP server that allows an external agent to use your agent and its target instance as a tool to answer inquiries.
 
 Once you are satisfied with your agent, make it *external* and *enable MCP server* before saving it.
@@ -294,7 +312,7 @@ It can be found from the *[...]* menu on the agent.
 .Copy MCP server endpoint from *[...]* menu
 image::agent-endpoint.jpg[width=400]
 
-Then you go to your MCP client of choice and add a remote MCP entry with the MCP server endopint for your agent.
+Then you go to your MCP client of choice and add a remote MCP entry with the MCP server endpoint for your agent.
 You may need to restart the client after.
 
 Once your MCP server has been attached to the client, you need to authorize it to access your account.
@@ -326,6 +344,104 @@ image::claude-desktop.jpg[width=600]
 When enabled, Claude will use your Aura Agent when appropriate.
 The first time the agent is invoked, Claude asks for permission to use the agent.
 
+==== Set up with Microsoft Copilot Studio
+
+Start by making your agent public and enable MCP server, as described above, and copy the MCP server endpoint accordingly.
+
+Your MCP endpoint URL contains `project_id` and `agent_id` as query parameters. These pieces of information are *crucial* for the MCP server endpoint to be able to *identify* your project and agent.
+
+Note that Copilot Studio's Streamable HTTP runtime *strips all query parameters* from outgoing requests.
+*Therefore, make sure to note the two values from the query string before proceeding.* 
+You will need them later to add as headers to requests made from Copilot Studio.
+
+. Add the MCP server in Copilot Studio
++
+In link:https://copilotstudio.microsoft.com[Copilot Studio], open your agent and go to *Tools* > *Add a tool* > *Add an MCP server*.
+Enter the *MCP endpoint URL* and follow the wizard to connect. 
++
+For authentication choose *OAuth 2.0* > *Dynamic Discovery*.
+Authenticate with the same credentials you use to log in to the Aura Console.
++
+Copilot Studio creates a Power Apps custom connector in the background.
++
+
+. Edit the custom connector in Power Apps
++
+Sign in to link:https://make.powerapps.com[Power Apps].
+From the left navigation, select *Data* > *Custom connectors* and find the connector that Copilot Studio just created.
+(You may need to go to *More* > *Discover all* to find the *Custom connectors* menu.)
+Open it for editing and enable *Swagger editor*.
+
+. Add internal header parameters
++
+In the Swagger editor, locate the `parameters` array inside the `/agent` POST action and add the `project-id` and `agent-id` header entries, replacing the placeholder values with your actual `project_id` and `agent_id` from the first step.
++
+Setting `x-ms-visibility: internal` hides these parameters from end users while Copilot Studio sends them silently as request headers.
+Note that the parameter names use hyphens (`project-id`, `agent-id`), not underscores.
++
+The result should look similar to the following:
++
+[source,yaml]
+----
+swagger: '2.0'
+info:
+  title: My Movie Database MCP Server Connection
+  description: Get information on movies, actors and directors
+  version: 1.0.0
+host: mcp.neo4j.io
+basePath: /
+schemes:
+  - https
+paths:
+  /agent:
+    post:
+      responses:
+        '200':
+          description: Immediate Response
+      x-ms-agentic-protocol: mcp-streamable-1.0
+      operationId: InvokeServer
+      summary: My Movie Database MCP Server Connection
+      description: Get information on movies, actors and directors
+      parameters:
+        - name: project-id
+          in: header
+          required: true
+          type: string
+          description: The specific project ID context
+          default: <project_id>
+          x-ms-visibility: internal
+        - name: agent-id
+          in: header
+          required: true
+          type: string
+          description: The executing agent context
+          default: <agent_id>
+          x-ms-visibility: internal
+securityDefinitions: {}
+security: []
+----
+
+. Save and verify
++
+Use *Update connector* to save your changes.
+In Copilot Studio, open the test playground and ask your agent a question that exercises the Aura Agent tools to verify the connection is working end-to-end.
+
+== Import/Export agent
+
+Existing agents can be exported in as _JSON_ format.
+You can either download the _JSON_ file or copy it to the clipboard.
+This is done from the *[...]* menu on the agent.
+
+[.shadow]
+.Export an agent as _JSON_
+image::export-agent.jpg[width=400]
+
+If you have a _JSON_ file of an agent, you can use that to create a new agent.
+Use the *Import agent* button and select the instance the new agent should target.
+Then you can either browse for or paste the configuration for the agent.
+
+You can edit the _JSON_ file, such as change the name of the agent, for example.
+However, keep in mind that *internal* (`"is_private": true`) agents *cannot* be enabled as MCP server (`"is_mcp_enabled": true`).
 
 
 == Learn more

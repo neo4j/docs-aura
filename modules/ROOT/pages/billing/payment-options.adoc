@@ -33,7 +33,7 @@ There is no billing integration with marketplaces for prepaid contracts.
 The contract is executed as a private offer, Neo4j instructs the marketplace to invoice the user for a number of ACUs and nothing else.
 Neo4j does not provision an Aura environment automatically in this case, does not report usage to the marketplace for these deals, and the marketplace does not keep track of the remaining balance.
 
-== Aura Consumption Unit (ACU)
+== Aura Consumption Unit (ACU) 
 
 Each billing dimension has its own unit of measure, GB-hours, GB-minutes, MB-hours, GB etc.
 To aggregate and then pay for usage across different dimensions, Aura Consumption Units (ACUs) are used.
@@ -45,7 +45,9 @@ They need to be used before their expiration date, or they are forfeited.
 
 == Applying Aura credits to your account
 
-Aura pay-as-you-go customers can receive a credit allowance expressed as a number of Aura Consumption Units (ACU), usually as part of a promotional marketing program.
+Aura customers can receive a credit allowance expressed as a number of Aura Consumption Units (ACU).
+
+The credits can be purchased through a prepaid Aura contract, or granted by Neo4j as part of a promotional marketing program, proof of concept, developer program, and more.
 
 These credits are then used to offset your Aura usage bill. 
 When all credits are depleted, the remaining usage that was not covered by credits will be invoiced and charged to your payment method.
@@ -58,12 +60,8 @@ To redeem the credits:
 
 * You will receive an email from Neo4j containing an activation code.
 * Log into the Aura console, and choose the organization where you want to redeem the credits. *Note:* You need to be an organization owner or admin to redeem the credits.
-* Navigate to *Billing - Payment methods.*
-* Click *Redeem credits* [See Figure 1]
-
-.Redeem credits
-[.shadow]
-image::redeem-credits.png[width=900]
+* Navigate to *Billing*
+* Click *Redeem credits*
 
 * Type in the activation code, and click *Apply*. You should see the amount of ACUs that will be granted. [See Figure 2]
 
@@ -74,20 +72,15 @@ image::acu-credit-entitlement.png[width=500]
 * If necessary, select a billing account that you want to apply the credits to.
 * Confirm the operation.
 
-You will see the credit balance on the billing account tile that you applied the credits to. [See Figure 3]
-
-.Voucher credit balance 
-[.shadow]
-image::billing-voucher-complete.png[width=900]
+You will see the credit balance on the billing account tile that you applied the credits to.
 
 [IMPORTANT]
 ====
 You cannot redeem credits before their start date.
 ====
 	
-Credit allowances generally require you to have a valid credit card on file.
-
-We do not currently support redeeming credits for Aura subscriptions created through a marketplace (AWS, GCP or Azure Marketplace).
+Credit allowances sometimes require you to have a valid credit card on file.
+If this is the case, you will be asked to add one as part of the redeem flow.
 
 == Contract lifecycle
 

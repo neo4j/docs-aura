@@ -56,7 +56,7 @@ If the on-demand ephemeral architecture of Aura Graph Analytics is not suitable 
 |AuraDS
 
 |Primary use cases
-|Analytical data pipelines (ETL), ephemeral workloads, interactive experimentation
+|Analytical data pipelines (ETL), ephemeral workloads, interactive experimentation, persistent model serving
 |Lightweight exploration
 |Persistent model serving, concurrent experiments on shared physical resources
 
@@ -81,9 +81,9 @@ If the on-demand ephemeral architecture of Aura Graph Analytics is not suitable 
 |Full isolation or shared footnote:[If the source transactional database is used on the same AuraDS instance, graph analytics can impact its performance.]
 
 |Machine learning
-|Train and predict (session-scoped)
+|Train, store, and serve models (any session within the project)
 |Limited
-|Train, store and serve models
+|Train, store, and serve models (only same instance)
 
 |Maximum memory
 |Up to 128 GB (Pro, BC) or 512 GB (VDC)
