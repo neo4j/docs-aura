@@ -39,8 +39,6 @@ You can pause an instance for up to 30 days, after which point Aura automaticall
 
 /instances/{instanceId}
 
-|===
-
 =====
 
 [.include-with-UI]
@@ -49,7 +47,6 @@ You can pause an instance for up to 30 days, after which point Aura automaticall
 Use the *Pause* button on the instance card.
 After confirming, the instance begins pausing, and a play button replaces the pause button.
 
-|===
 =====
 ====
 
@@ -59,7 +56,6 @@ After confirming, the instance begins pausing, and a play button replaces the pa
 
 == Resume a paused instance
 
-After confirming, the instance begins resuming.
 When you resume an instance, Aura restarts the instance and restores it from the backup. 
 Resuming the instance can take a few minutes to a few hours, depending on its size.
 
@@ -89,6 +85,7 @@ Poll GET /v1/instances/{id} — check status field
 =====
 
 Resume a paused instance with the *Play* button on the instance card.
+After confirming, the instance begins resuming.
 
 |===
 =====
@@ -97,6 +94,7 @@ Resume a paused instance with the *Play* button on the instance card.
 == Delete an instance
 
 Deleting an instance removes all associated snapshots, so they cannot be used to backup and restore data. 
+
 If you may need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] and export and save it on your computer, before deleting the instance.
 
 [WARNING]
@@ -132,7 +130,7 @@ Type the exact name of the instance (as instructed) to confirm your decision, an
 
 == Inspect an instance's details
 
-Returns details about a specific Aura Instance.
+Returns details about a specific Aura instance.
 
 [.tabbed-example]
 ====
