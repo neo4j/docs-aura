@@ -3,7 +3,6 @@
 :min-version: 2026.05.0
 :min-version-plugin: 5.26.0
 :min-plugin-version: 1.2.0
-:min-version-analysis: 2026.03.0
 
 Fleet Manager can guide you through migrating a monitored self-managed Neo4j deployment to Aura, directly from the Aura console.
 The migration is driven by a wizard that helps you check compatibility, choose a destination Aura instance, and transfer your data.
@@ -19,7 +18,7 @@ To migrate a self-managed deployment to Aura using Fleet Manager:
 
 * The deployment must be *monitored* by Fleet Manager and in the *RUNNING* state.
 See xref:fleet-management/setup.adoc[Add a deployment] for how to set up monitoring.
-* The deployment must run *Neo4j {min-version} or later*, OR *Neo4j {min-version-plugin} or later with Fleet Management plugin {min-plugin-version} or later*.
+* The deployment must run *Neo4j {min-version} or later*, or *Neo4j {min-version-plugin} or later with Fleet Management plugin {min-plugin-version} or later*.
 * You must have the *Project admin* role for the Aura project where the deployment is monitored.
 
 == Start a migration
@@ -30,7 +29,7 @@ You can start a migration from a self-managed deployment in the Aura console:
 * Select *Migrate to Aura with one click* to migrate to a new instance using a recommended configuration, without going through the full wizard (see <<one-click-migration>>).
 
 [[one-click-migration]]
-=== One-click migration
+== One-click migration
 
 *Migrate to Aura with one click* creates a new Aura instance using a configuration recommended from your deployment's recent usage, then starts the migration.
 
@@ -50,7 +49,7 @@ Select *Migrate* to start or *Cancel* to go back.
 
 The wizard has three steps: *Check compatibility*, *Choose Aura destination*, and *Transfer data*.
 
-=== Step 1 – Check compatibility
+=== Step 1: Check compatibility
 
 This step helps you verify that your workload is compatible with Aura before migrating.
 
@@ -73,14 +72,14 @@ Manually review your workload. Aura does not allow custom plugins or arbitrary p
 
 You must acknowledge that verifying compatibility is your responsibility before continuing.
 
-=== Step 2 – Choose Aura destination
+=== Step 2: Choose Aura destination
 
 Choose where to migrate your data:
 
 *Migrate to a new instance*::
 Create a new Aura instance for the migration.
 The wizard pre-fills a recommended size based on your deployment's usage and hides unsupported (too-small) sizes.
-Migrating to an Aura Free tier instances is not supported.
+Migrating to AuraDB Free is not supported.
 The estimated cost is shown before you create the instance.
 
 *Migrate to an existing instance*::
@@ -92,13 +91,13 @@ All existing data in the selected instance is *deleted* and replaced with data f
 You must acknowledge this before continuing.
 ====
 +
-As a rule of thumb, the target instance should:
+The target instance must:
 +
 * Have more than double the storage of your database dump file.
 * Have enough RAM for your query load and memory requirements.
-* Not be an AuraDB Free instance, as Free instances are not supported as migration targets.
+* Not be an AuraDB Free instance. Migrating to AuraDB Free is not supported.
 
-=== Step 3 – Transfer data
+=== Step 3: Transfer data
 
 Choose how to transfer your data.
 
