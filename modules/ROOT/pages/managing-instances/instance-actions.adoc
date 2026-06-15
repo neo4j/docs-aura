@@ -149,9 +149,9 @@ image::connect-to-tools.png[]
 
 When you have an AuraDB instance and you want to delete everything (all data and metadata, but not the users and roles), you can use the "Reset to blank option" which is available in the Neo4j Aura console.
 
-Clear all data in an instance using the *Reset to blank* action.
+// Clear all data in an instance using the *Reset to blank* action.
 
-https://support.neo4j.com/s/article/4412131924883-How-to-wipe-out-delete-all-the-content-in-a-Neo4j-AuraDB-Instance
+// https://support.neo4j.com/s/article/4412131924883-How-to-wipe-out-delete-all-the-content-in-a-Neo4j-AuraDB-Instance
 
 Select *Reset to blank* from the *(...)* more menu on the instance card.
 You need to confirm your intention since this action cannot be undone.
@@ -170,8 +170,6 @@ There are two options to clone an instance:
 
 * Clone to a new instance
 * Clone to an existing instance
-
-Access all the cloning options from the more menu (*...*) on the instance.
 
 === Clone to a new instance
 
@@ -205,6 +203,35 @@ Existing instances that are not large enough to clone into will not be available
 ====
 +
 . Check the *I understand the target instance will be overwritten* box and select *Clone*.
+
+== Upgrade an instance 
+
+An upgrade does not change the original DBID, so your application strings remain valid.
+
+*GDS plugin removal:*
+If your AuraDB Professional instance uses the GDS plugin, it is removed during the upgrade.
+The GDS plugin is not supported in AuraDB Business Critical.
+
+*Minimum instance size:*
+If you try to upgrade a 1GB Professional instance, you need to resize it to at least 2GB of storage, because this is the minimum supported size in AuraDB Business Critical.
+
+[.tabbed-example]
+====
+[.include-with-API]
+=====
+/instances/{instanceId}/upgrade
+=====
+
+[.include-with-UI]
+=====
+AuraDB Free instances have an *Upgrade* button that you can use to upgrade to either Professional or Business Critical.
+You can upgrade an AuraDB Professional instance to an Business Critical instance using the *Upgrade* action from the *(...)* menu.
+
+.Upgrade your AuraDB Professional instance to AuraDB Business Critical
+[.shadow]
+image::upgradeprotobc.png[]
+=====
+====
 
 == Mark an instance as `production`
 
