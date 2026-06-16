@@ -8,8 +8,6 @@ There are two types of Aura product instances:
 * **AuraDB** (the default Aura instance type)
 * **AuraDS** (the xref:graph-analytics/index.adoc#aura-ds[fully managed version] of Neo4j Graph Data Science)
 
-Select the type of instance using the switch on the top right, then choose the tier that best suits your needs.
-
 For AuraDB, you can upgrade your tier, and resize your instance's memory and storage later if your needs change.
 For pre-paid AuraDB instances on GCP, adjustable storage independent of memory is available, see xref:managing-instances/instance-actions.adoc#_adjust_storage[Adjust storage] for more information.
 
@@ -19,10 +17,6 @@ For AuraDB, you need to select an option for xref:graph-analytics/index.adoc[Gra
 * *Plugin* - allows graph algorithms to run in the same instance as the database, sharing resources.
 
 You can optionally enable xref:managing-instances/instance-details.adoc[Vector optimization] to enhance performance for vector-based operations.
-
-After selecting **Next**, your instance is created.
-A password is generated for the instance, ensure to either copy or download it, as it will **not** be recoverable after.
-The password is required to access your instance later.
 
 [NOTE]
 ====
@@ -36,8 +30,11 @@ See link:https://neo4j.com/pricing/[Neo4j Pricing] for more information on the d
 [.include-with-Aura-console]
 =====
 
-Use the *Pause* button on the instance card.
-After confirming, the instance begins pausing, and a play button replaces the pause button.
+Select the type of instance using the switch on the top right, then choose the tier that best suits your needs.
+
+After selecting **Next**, your instance is created.
+A password is generated for the instance, ensure to either copy or download it, as it will **not** be recoverable after.
+The password is required to access your instance later.
 
 =====
 [.include-with-API] 

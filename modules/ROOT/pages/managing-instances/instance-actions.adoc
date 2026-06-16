@@ -44,7 +44,7 @@ After confirming, the instance begins pausing, and a play button replaces the pa
 [.include-with-API]
 =====
 
-POST /https://api.neo4j.io/v1/instances/{instanceId}/pause
+POST `/https://api.neo4j.io/v1/instances/{instanceId}/pause`
 
 =====
 ====
@@ -76,7 +76,7 @@ After confirming, the instance begins resuming.
 [.include-with-API]
 =====
 
-POST /https://api.neo4j.io/v1/instances/{instanceId}/resume
+POST `/https://api.neo4j.io/v1/instances/{instanceId}/resume`
 
 =====
 ====
@@ -95,17 +95,14 @@ If you may need the data later, export a snapshot before deleting the instance.
 
 [.tabbed-example]
 ====
-[.include-with-API]
-=====
-
-DELETE /https://api.neo4j.io/v1/instances/{instanceId}
-
-=====
-
-[.include-with-UI]
+[.include-with-Aura-console]
 =====
 Delete an instance using the trashcan icon on the instance card.
 Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
+=====
+[.include-with-API]
+=====
+DELETE `/https://api.neo4j.io/v1/instances/{instanceId}`
 =====
 ====
 
@@ -115,22 +112,19 @@ Returns details about a specific Aura instance.
 
 [.tabbed-example]
 ====
-[.include-with-API]
+[.include-with-Aura-console]
 =====
-
-/instances/{instanceId} 
-
-=====
-
-[.include-with-UI]
-=====
-
 From the instance card, select the more menu (*...*) then select *instance details*.
 From the instance details you can rename an instance and view instance details.
 See xref:managing-instances/instance-details.adoc[Instance details] for more information.
-
 [.shadow]
 image::instance-actions.png[]
+
+=====
+[.include-with-API]
+=====
+//Returns an instance details
+`GET /https://api.neo4j.io/v1/instances/{instanceId}` 
 
 =====
 ====
@@ -216,19 +210,17 @@ If you try to upgrade a 1GB Professional instance, you need to resize it to at l
 
 [.tabbed-example]
 ====
-[.include-with-API]
-=====
-/instances/{instanceId}/upgrade
-=====
-
-[.include-with-UI]
+[.include-with-Aura-console]
 =====
 AuraDB Free instances have an *Upgrade* button that you can use to upgrade to either Professional or Business Critical.
 You can upgrade an AuraDB Professional instance to an Business Critical instance using the *Upgrade* action from the *(...)* menu.
 
-.Upgrade your AuraDB Professional instance to AuraDB Business Critical
 [.shadow]
 image::upgradeprotobc.png[]
+=====
+[.include-with-API]
+=====
+POST /https://api.neo4j.io/v1/instances/{instanceId}/upgrade
 =====
 ====
 
