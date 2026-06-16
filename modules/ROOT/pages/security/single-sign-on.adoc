@@ -100,6 +100,16 @@ When SSO is enabled at the project level, Aura uses role mapping to determine wh
 
 This access then applies to *all newly created* instances the user has access to.
 
+[NOTE]
+====
+Microsoft Entra ID users:
+The Entra group name can not be used but rather the UUID should be used.
+
+For Azure, the role mapping should look something like:
+`"eg680880-eg92-4bx0-9eg0-eg161cdfxa81"=admin;` where the UUID is the Object ID of the group in Microsoft Entra ID. Not the group name.
+====
+
+
 === Example role mapping
 
 `aws-neo4j-sso=editor`
