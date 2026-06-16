@@ -111,6 +111,14 @@ In this case:
 
 `aws-neo4j-sso` is a group name from the groups claim in the token and `editor` is the instance role assigned to any user in that group.
 
+[NOTE]
+====
+For Microsoft Entra ID users, the Entra group name can not be used but rather the UUID should be used.
+
+For Azure, the role mapping should look something like:
+`"aj680880-ag92-4bx0-9eg0-eg161cdfxa81"=admin;` where the UUID is the Object ID of the group in Microsoft Entra ID. Not the group name.
+====
+
 == Instance-level SSO support
 
 Customer support can assist with:
