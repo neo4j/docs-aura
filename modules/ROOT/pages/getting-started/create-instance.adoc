@@ -30,3 +30,33 @@ You can only create **one Free instance** per account.
 To create more instances, you need to upgrade your tier.
 See link:https://neo4j.com/pricing/[Neo4j Pricing] for more information on the different tiers.
 ====
+
+[.tabbed-example]
+====
+[.include-with-Aura-console]
+=====
+
+Use the *Pause* button on the instance card.
+After confirming, the instance begins pausing, and a play button replaces the pause button.
+
+=====
+[.include-with-API] 
+=====
+
+POST `\https://api.neo4j.io/v1/instances`
+
+The request body should include:
+
+[source, json, role=nocopy]
+----
+* tenant_id
+* name
+* version
+* region
+* type
+* cloud provider
+* memory
+----
+
+=====
+====

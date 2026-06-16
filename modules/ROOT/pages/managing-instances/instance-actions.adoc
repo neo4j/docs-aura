@@ -34,17 +34,17 @@ You can pause an instance for up to 30 days, after which point Aura automaticall
 
 [.tabbed-example]
 ====
-[.include-with-API]
-=====
-
-/instances/{instanceId}
-
-=====
-[.include-with-UI]
+[.include-with-Aura-console]
 =====
 
 Use the *Pause* button on the instance card.
 After confirming, the instance begins pausing, and a play button replaces the pause button.
+
+=====
+[.include-with-API]
+=====
+
+POST /https://api.neo4j.io/v1/instances/{instanceId}/pause
 
 =====
 ====
@@ -66,18 +66,17 @@ If an Aura Free instance remains paused for more than 30 days, Aura deletes the 
 
 [.tabbed-example]
 ====
-[.include-with-API]
-=====
-
-/{instanceId}/pause
-
-=====
-
-[.include-with-UI]
+[.include-with-Aura-console]
 =====
 
 Resume a paused instance with the *Play* button on the instance card.
 After confirming, the instance begins resuming.
+
+=====
+[.include-with-API]
+=====
+
+POST /https://api.neo4j.io/v1/instances/{instanceId}/resume
 
 =====
 ====
@@ -99,7 +98,7 @@ If you may need the data later, export a snapshot before deleting the instance.
 [.include-with-API]
 =====
 
-/v1/instances/{instanceId}
+DELETE /https://api.neo4j.io/v1/instances/{instanceId}
 
 =====
 
