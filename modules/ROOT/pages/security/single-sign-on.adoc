@@ -94,12 +94,9 @@ After setting up SSO, the `Organization sso login` link can be found in the orga
 
 == Role mapping
 
-The SSO option for `group` to `role` mapping can map any role defined in the DBMS instance.
+The SSO option for group to role mapping can map a group from an SSO provider to any role defined in the DBMS instance.
 
-Role mapping maps a group in the customer's SSO provider to an instance role.
 If the same SSO configuration for multiple instances is used, that same mapping applies.
-
-When SSO is enabled at the project level, Aura uses role mapping to determine what access a user should have based on their IdP group membership.
 
 This access then applies to *all newly created* instances the user has access to.
 
