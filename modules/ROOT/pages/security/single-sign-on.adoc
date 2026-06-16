@@ -94,21 +94,14 @@ After setting up SSO, the `Organization sso login` link can be found in the orga
 
 == Role mapping
 
-Role mapping links a user’s identity from an identity provider (such as Okta or Microsoft Entra ID) to a specific instance role, based on attributes passed during authentication, like group or department.
+The SSO option for `group` to `role` mapping can map any role defined in the DBMS instance.
+
+Role mapping maps a group in the customer's SSO provider to an instance role.
+If the same SSO configuration for multiple instances is used, that same mapping applies.
 
 When SSO is enabled at the project level, Aura uses role mapping to determine what access a user should have based on their IdP group membership.
 
 This access then applies to *all newly created* instances the user has access to.
-
-[NOTE]
-====
-Microsoft Entra ID users:
-The Entra group name can not be used but rather the UUID should be used.
-
-For Azure, the role mapping should look something like:
-`"eg680880-eg92-4bx0-9eg0-eg161cdfxa81"=admin;` where the UUID is the Object ID of the group in Microsoft Entra ID. Not the group name.
-====
-
 
 === Example role mapping
 
