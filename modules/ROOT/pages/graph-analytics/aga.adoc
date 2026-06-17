@@ -7,6 +7,8 @@ Each session is a standalone Neo4j Aura compute environment that is created when
 
 While an Aura Graph Analytics session is ephemeral, the results of the computation can be stored by writing back to the database or exporting to an external system.
 
+include::partial$aga-min-bill.adoc[]
+
 [[administration]]
 == Administration
 
@@ -89,10 +91,10 @@ You need to create xref:api/authentication.adoc#_creating_credentials[Aura API c
 [[explore-tool]]
 === Explore tool
 
-xref:explore/introduction.adoc[The Explore tool] provides a no-code visual interface for running graph algorithms against your data directly from the Aura console. 
+xref:explore/introduction.adoc[The Explore tool] provides a no-code visual interface for running graph algorithms against your data directly from the Aura console.
 From Explore, you can create an Aura Graph Analytics session and run one or more algorithms against it.
 
-Results are displayed in the Explore Scene and can be configured visually using rule-based styling. 
+Results are displayed in the Explore Scene and can be configured visually using rule-based styling.
 You can also choose to persist results to your database as a new property, in which case they are applied to the entire graph.
 
 [NOTE]
@@ -126,6 +128,7 @@ The session maximum size can be configured for your whole xref:visual-tour/index
 
 When creating a session (either explicitly or via a remote graph projection), you can set an optional `ttl` parameter to specify how quickly an inactive session will expire.
 The default value for `ttl` is 1 hour and the maximum allowed value is {max-lifetime}.
+For the free tier, the default and maximum allowed value for `ttl` is limited to 30 minutes.
 
 An expired session cannot be used to run workloads, does not incur any cost, and is deleted automatically after the same amount of time specified by the `ttl` parameter.
 Expired sessions can also be deleted through the Aura Console UI.
