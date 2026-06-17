@@ -292,7 +292,7 @@ You can supply this as a string, or derive it from a projected graph using the l
 CALL gds.model.store('my-model', sessionInfo('my-graph').sessionName) // <1>
 YIELD modelInfo;
 
-CALL gds.model.list(sessionInfo('my-graph').name) // <1>
+CALL gds.model.list(sessionInfo('my-graph').sessionName) // <1>
 YIELD modelInfo;
 ----
 <1> `sessionInfo('my-graph')` returns metadata for the session in which the graph `my-graph` was projected, including its name.
