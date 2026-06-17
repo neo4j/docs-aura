@@ -99,7 +99,7 @@ The SSO option for `group` to `role` mapping can map any role defined in the DBM
 Role mapping maps a group in the customer's SSO provider to an instance role.
 If the same SSO configuration for multiple instances is used, that same mapping applies.
 
-When SSO is enabled at the project level, Aura uses role mapping to determine what access a user should have based on their IdP group membership.
+When SSO is enabled at the project level, Aura uses role mapping to determine what access a user should have to instances based on their IdP group membership.
 
 Multiple group to role mappings can be defined, and multiple roles can be given to any SSO group.
 The role field can be a comma separated list.
