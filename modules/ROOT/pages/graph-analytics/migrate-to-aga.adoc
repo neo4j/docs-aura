@@ -271,6 +271,36 @@ CALL gds.graph.drop('my-graph');
 =====
 ====
 
+==== Model catalog operations
+
+In AuraDS and the Graph Analytics plugin, model catalog procedures require no session context:
+
+[source,cypher]
+----
+CALL gds.model.store('my-model')
+YIELD modelInfo;
+
+CALL gds.model.list()
+YIELD modelInfo;
+----
+
+In AGA, when using the Cypher API, all model catalog operations require an additional `sessionName` parameter.
+You can supply this as a string, or derive it from a projected graph using the link:https://neo4j.com/docs/graph-data-science/current/aura-graph-analytics/cypher/#_retrieving_session_information_for_a_graph[`sessionInfo`] helper function:
+
+[source,cypher]
+----
+CALL gds.model.store('my-model', sessionInfo('my-graph').sessionName) // <1>
+YIELD modelInfo;
+
+CALL gds.model.list(sessionInfo('my-graph').sessionName) // <1>
+YIELD modelInfo;
+----
+<1> `sessionInfo('my-graph')` returns metadata for the session in which the graph `my-graph` was projected, including its name.
+If you already know the session name, you can pass it as a plain string instead.
+
+Once stored, models persist beyond the lifetime of the originating session and can be reused in later sessions within the same Aura project.
+Models are scoped by project, cloud provider, and region.
+
 == Best practices
 
 === Organization limits for AGA
