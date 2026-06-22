@@ -1,0 +1,63 @@
+= Delete and restore projects
+
+== Delete a project
+
+=== Required roles
+
+* `Project Admin`
+* `Organization Owner`
+* `Organization Admin`
+
+Deleting a project moves it into a 30 day recovery window, stops billing and resource usage, and the project immediately becomes unusable.
+
+This also deletes the project's associated resources after 30 days, including:
+
+* Instances
+* GDS sessions
+* GenAI Agents
+* Saved Cypher
+* Dashboards
+* Data APIs
+
+When the 30 day recovery window expires, the project and all associated data are permanently destroyed.
+
+[.tabbed-example]
+====
+[.include-with-Aura-console]
+=====
+
+xref:visual-tour/#_project_settings[Project settings] > scroll down to *Delete Project*
+
+=====
+[.include-with-API]
+=====
+
+DELETE organizations/{organizationId}/projects/{projectId}
+
+=====
+====
+
+== Recover a deleted project
+
+=== Required roles
+
+* `Organization Owner` 
+* `Organization Admin`
+
+A project can be restored within the 30 day recovery window that begins when the project is deleted.
+
+[.tabbed-example]
+====
+[.include-with-Aura-console]
+=====
+
+Select the xref:visual-tour/#_organizations[Organization] > *Settings* > scroll down to *Recover deleted projects*
+
+=====
+[.include-with-API] 
+=====
+
+POST organizations/{organizationId}/projects/{projectId}/restore
+
+=====
+====
