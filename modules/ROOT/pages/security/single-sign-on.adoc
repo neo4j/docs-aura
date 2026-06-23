@@ -95,18 +95,17 @@ After setting up SSO, the `Organization sso login` link can be found in the orga
 == Role mapping
 
 The SSO option for group to role mapping can map a group from an SSO provider to any role defined in the instance.
-
 If the same SSO configuration for multiple instances is used, that same mapping applies.
+This access then applies to all newly created instances the user has access to.
 
-This access then applies to *all newly created* instances the user has access to.
+Multiple group to role mappings can be defined, and multiple roles can be given to any SSO group. The role field can be a comma separated list.
 
-=== Example role mapping
+For Azure and Microsoft Entra ID use the Object ID of the group, not the group name.
+For OIDC use the group name.
 
-`aws-neo4j-sso=editor`
-
-In this case:
-
-`aws-neo4j-sso` is a group name from the groups claim in the token and `editor` is the instance role assigned to any user in that group.
+[.shadow]
+.Example role mapping in the Aura console
+image::security/role-mapping-ui.png[width=800]
 
 == Instance-level SSO support
 
@@ -264,4 +263,3 @@ No, users must be granted the role on the organization via Aura console invites 
 
 Ensure that the email field is provided on your user in Microsoft Entra ID.
 If it already is, contact support for further assistance.
-
