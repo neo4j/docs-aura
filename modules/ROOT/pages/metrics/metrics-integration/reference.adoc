@@ -14,7 +14,7 @@
 [frame="topbot", stripes=odd, grid="cols", cols="<1,<4"]
 |===
 | Metric name
-m| `neo4j_aura_out_of_memory_errors_total`
+m| neo4j_aura_out_of_memory_errors_total
 | Description
 | The total number of Out of Memory errors for the instance.
 Consider increasing the size of the instance if any OOM errors.
@@ -30,7 +30,8 @@ m| SUM
 | Metric name
 m| neo4j_aura_cpu_limit
 | Description
-| The total CPU cores assigned to the instance nodes.
+| The guaranteed baseline vCPU cores allocated to your instance.
+To optimize performance, your instance is designed to dynamically burst well above this baseline to handle heavy query workloads and peak traffic.
 | Metric type
 | _Gauge_
 | Aggregation method
@@ -43,9 +44,9 @@ m| MAX
 | Metric name
 m| neo4j_aura_cpu_usage
 | Description
-| CPU usage (cores).
-CPU is used for planning and serving queries.
-If this metric is constantly spiking or at its limits, consider increasing the size of your instance.
+| Current vCPU cores used for planning and serving queries.
+This can safely exceed your guaranteed baseline during peak demand.
+If usage is consistently sustained near or above your tier's average allocation, consider upgrading your instance size.
 | Metric type
 | _Gauge_
 | Aggregation method
@@ -224,7 +225,7 @@ m| MAX
 | Metric name
 m| neo4j_database_transaction_active_read
 | Description
-| The number of currently active read transactions.
+| The number of active read transactions.
 | Metric type
 | _Gauge_
 | Aggregation method
@@ -320,7 +321,7 @@ m| MAX
 | Metric name
 m| neo4j_database_check_point_duration
 | Description
-|The duration of the last checkpoint event.
+| The duration of the last checkpoint event in milliseconds.
 Checkpoints should typically take several seconds to several minutes.
 Values over 30 minutes warrant investigation.
 | Metric type
