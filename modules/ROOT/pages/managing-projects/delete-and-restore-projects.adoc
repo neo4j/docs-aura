@@ -33,7 +33,10 @@ If the recovery window expires without a restore, the project and all associated
 [.include-with-API]
 =====
 
+[source]
+----
 DELETE organizations/{organizationId}/projects/{projectId}
+----
 
 =====
 ====
@@ -69,7 +72,10 @@ For Graph Analytics Users: Because Graph Analytics sessions are compute-based, t
 [.include-with-API] 
 =====
 
+[source]
+----
 POST organizations/{organizationId}/projects/{projectId}/restore
+----
 
 =====
 ====
