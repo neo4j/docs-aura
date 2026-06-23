@@ -44,7 +44,10 @@ After confirming, the instance begins pausing, and a play button replaces the pa
 [.include-with-API]
 =====
 
-POST \https://api.neo4j.io/v1/instances/{instanceId}/pause
+[source]
+----
+POST https://api.neo4j.io/v1/instances/{instanceId}/pause
+----
 
 =====
 ====
@@ -75,7 +78,10 @@ After confirming, the instance begins resuming.
 =====
 [.include-with-API]
 =====
-POST \https://api.neo4j.io/v1/instances/{instanceId}/resume
+[source]
+----
+POST https://api.neo4j.io/v1/instances/{instanceId}/resume
+----
 =====
 ====
 
@@ -100,7 +106,10 @@ Type the exact name of the instance (as instructed) to confirm your decision, an
 =====
 [.include-with-API]
 =====
-DELETE \https://api.neo4j.io/v1/instances/{instanceId}
+[source]
+----
+DELETE https://api.neo4j.io/v1/instances/{instanceId}
+----
 =====
 ====
 
@@ -121,8 +130,10 @@ image::instance-actions.png[]
 =====
 [.include-with-API]
 =====
-//Returns an instance details
-GET \https://api.neo4j.io/v1/instances/{instanceId}
+[source]
+----
+GET https://api.neo4j.io/v1/instances/{instanceId}
+----
 =====
 ====
 
@@ -217,7 +228,10 @@ image::upgradeprotobc.png[]
 =====
 [.include-with-API]
 =====
-POST \https://api.neo4j.io/v1/instances/{instanceId}/upgrade
+[source]
+----
+POST https://api.neo4j.io/v1/instances/{instanceId}/upgrade
+----
 =====
 ====
 
