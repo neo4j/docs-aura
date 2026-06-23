@@ -2,31 +2,32 @@
 
 == Delete a project
 
+Deleting a project stops billing and resource usage immediately.
+
+Deleting a project starts a 30 day recovery window. 
+During this window, the project can be restored at any time and no data is lost.
+If the recovery window expires without a restore, the project and all associated data are permanently destroyed.
+
 === Required roles
 
 * `Project Admin`
 * `Organization Owner`
 * `Organization Admin`
 
-Deleting a project moves it into a 30 day recovery window, stops billing and resource usage, and the project immediately becomes unusable.
-
-This also deletes the project's associated resources after 30 days, including:
-
-* Instances
-* GDS sessions
-* GenAI Agents
-* Saved Cypher
-* Dashboards
-* Data APIs
-
-When the 30 day recovery window expires, the project and all associated data are permanently destroyed.
+=== How to delete a project
 
 [.tabbed-example]
 ====
 [.include-with-Aura-console]
 =====
 
-xref:visual-tour/#_project_settings[Project settings] > scroll down to *Delete Project*
+* xref:visual-tour/index.adoc#_project_settings[Project settings] -> *Delete Project*
+
+* Select *Delete Project*.
+
+* A warning modal appears.
+
+* Type the name of the project to confirm, then select *Confirm Deletion*.
 
 =====
 [.include-with-API]
@@ -39,19 +40,30 @@ DELETE organizations/{organizationId}/projects/{projectId}
 
 == Recover a deleted project
 
+A project can be restored within the 30 day recovery window that begins when the project is deleted.
+Aura instances will automatically resume. 
+Compute billing will resume once the resources are active.
+
+[IMPORTANT]
+====
+For Graph Analytics Users: Because Graph Analytics sessions are compute-based, they are permanently terminated when a project is deleted. If you restore a project, you will need to provision a new GDS session.
+====
+
 === Required roles
 
 * `Organization Owner` 
 * `Organization Admin`
 
-A project can be restored within the 30 day recovery window that begins when the project is deleted.
+=== How to recover a deleted project
 
 [.tabbed-example]
 ====
 [.include-with-Aura-console]
 =====
 
-Select the xref:visual-tour/#_organizations[Organization] > *Settings* > scroll down to *Recover deleted projects*
+* Select the xref:visual-tour/index.adoc#_organizations[Organization Settings] -> *Recover deleted projects*
+* Locate the project you wish to recover.
+* Select *Restore Project*.
 
 =====
 [.include-with-API] 
