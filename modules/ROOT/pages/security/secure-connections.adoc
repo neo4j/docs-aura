@@ -214,7 +214,9 @@ These are different in your AuraDB Virtual Dedicated Cloud environment.
 
 . The application initializes a driver connection to neo4j+s://abcd1234.production-orch-0000.neo4j.io.
 . The network layer then queries the DNS server to resolve the fully qualified domain name (FQDN) (in this case, abcd1234.production-orch-0000.neo4j.io) to its corresponding IP address.
-. The Cloud Virtual Network private DNS is queried, and it resolves the FQDN to 10.10.10.10, based on the wildcard DNS A record created: *.production-orch-0000.neo4j.io -> 10.10.10.10
+. The Cloud Virtual Network private DNS is queried, and it resolves the FQDN to 10.10.10.10, based on the wildcard DNS A record created: *.production-orch-0000.neo4j.io -> → <IP address of your cloud provider Private Link/Private Endpoint>
+. For example: *.production-orch-0000.neo4j.io → 10.10.10.10
+. The wildcard record must point to the IP address of the [your/the customer's] Private Link/Private Endpoint, not to the Aura Private URI or any Aura-managed endpoint.
 . The application's connection is directed to 10.10.10.10, which is the private link endpoint.
 From there, the private link endpoint forwards the network connection to the private ingress through the private link.
 . The private ingress extracts the dbid from the FQDN and directs the connection to the appropriate Aura instance (dbid: abcd1234).
@@ -273,12 +275,25 @@ This breaks routing for custom endpoints located in the other regions, and there
 
 == Test connectivity through the private endpoint
 
-Use the `nslookup` command to confirm whether the Fully Qualified Domain Names (FQDNs) of your Aura instances are directed to the IP address of the PrivateLink endpoint (usually represented by an internal IP address, such as 10.0.0.0).
+Verify DNS resolution before testing application connectivity. 
+If DNS resolution fails, Private Link connectivity will not work regardless of the network configuration.
+
+Use the `nslookup` command (or `dig` on Linux/macOS) to confirm whether the Fully Qualified Domain Names (FQDNs) of your Aura instances are directed to the IP address of the PrivateLink endpoint (usually represented by an internal IP address, such as 10.0.0.0).
 
 [source,bash]
 ----
 nslookup <dbid>.production-orch-<orchestra>.neo4j.io
 ----
+
+Alternatively, you can use:
+
+[source,bash]
+----
+dig <dbid>.production-orch-<orchestra>.neo4j.io
+----
+
+Both commands should resolve the hostname to the private IP address of your cloud provider's Private Link/Private Endpoint. 
+If they do not, verify that your private DNS service is configured correctly and that the wildcard record (*.production-orch-<orchestra>.neo4j.io) points to the Private Link endpoint IP address.
 
 Use cURL from a VM instance or a container located in the related VPC network.
 
