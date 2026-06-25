@@ -161,8 +161,40 @@ The required fields (by the Import tool), *Azure Synapse Tenant* and *Applicatio
 The *Azure Client secret* is also found in the portal, in the *Certificates & secrets* page.
 Note that the secret is obfuscated and only visible at the time of creation.
 
-//==AWS S3
-//TBD
+==AWS S3
+
+The following information is required to connect to AWS S3
+
+* *Bucket name*
+* *Bucket path(s)*
+* *S3 Key*
+* *S3 Secret*
+* *S3 Session Token* *optional*
+* *S3 Endpoint* *optional*
+* *S3 Region*
+
+To locate the *bucket path*, go to the AWS console -> S3 and select the bucket and locate the files.
+Note that only _CSV_ and _Parquet_ files are supported.
+The file path should follow this format:
+
+[source]
+----
+s3://<bucket-name>/<key>
+----
+
+Bucket paths can optionally contain glob patterns to reference multiple files, but must always be referring to _Parquet_ or _CSV_ files.
+Each file must be given a temporary table name by the user, which is then used to to reference the file in the mapping UI.
+For example, you may choose to call it `comment` if the file represents comments.
+
+The S3 Bucket Path can be copied directly from the Objects or Properties tab.
+
+
+S3 authentication is done through generating Access keys.
+
+For how to generate these access keys see: Manage access keys for IAM users.
+The permissions required for these access keys should be scoped to the buckets required for import should include s3:GetObject for file contents and s3:ListBucket .
+
+
 
 //==Azure Blobs and Data Lake Storage
 // TBD
