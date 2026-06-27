@@ -4,46 +4,35 @@
 :min-version-plugin: 5.26.0
 :min-plugin-version: 1.2.0
 
-Fleet Manager can guide you through migrating a monitored self-managed Neo4j deployment to Aura, directly from the Aura console.
-The migration is driven by a wizard that helps you check compatibility, choose a destination Aura instance, and transfer your data.
+There are different ways to migrate data from a self-managed Neo4j deployment to Aura.
+You can do it manually as described in xref:tutorials/migration.adoc[Migrate from self-managed to Aura], using `neo4j-admin` to create a database dump and the manually uploading it to an Aura instance.
 
-You can transfer your data in two ways:
+But if your self-managed deployment is already connected and monitored using Fleet Manager, Fleet Manager can guide you through the migration directly from the Aura console.
 
-* *Automatic* (recommended) – Fleet Manager stops the database, creates a dump, and uploads and imports it into Aura for you.
-* *Manual* – you create and upload the database dump yourself using `neo4j-admin`, following an online checklist.
+Fleet Manager has two options for migration:
 
-== Requirements
+* *Migrate to Aura* (or the *Migrate to Aura* button) to open the migration wizard.
+* *Migrate to Aura with one click* to migrate to a new instance using a recommended configuration, without going through the full wizard (see <<one-click-migration>>).
 
-To migrate a self-managed deployment to Aura using Fleet Manager:
+The migration wizard helps you check compatibility, select a destination Aura instance, and transfer your data.
+Fleet Manager stops the database, creates a dump, and uploads and imports it into Aura for you.
+
+
+== Prerequisites
+
+To migrate a self-managed deployment to Aura using Fleet Manager you need to ensure the following:
 
 * The deployment must be *monitored* by Fleet Manager and in the *RUNNING* state.
 See xref:fleet-management/setup.adoc[Add a deployment] for how to set up monitoring.
+
 * The deployment must run *Neo4j {min-version} or later*, or *Neo4j {min-version-plugin} or later with Fleet Management plugin {min-plugin-version} or later*.
+
 * You must have the *Project admin* role for the Aura project where the deployment is monitored.
 
 == Start a migration
 
-You can start a migration from a self-managed deployment in the Aura console:
-
-* Select *Migrate to Aura* from the deployment's action menu (or the *Migrate to Aura* button) to open the migration wizard.
-* Select *Migrate to Aura with one click* to migrate to a new instance using a recommended configuration, without going through the full wizard (see <<one-click-migration>>).
-
-[[one-click-migration]]
-== One-click migration
-
-*Migrate to Aura with one click* creates a new Aura instance using a configuration recommended from your deployment's recent usage, then starts the migration.
-
-A confirmation dialog shows the recommended configuration before you proceed:
-
-* Self-managed disk usage
-* Cloud provider
-* Region
-* Tier
-* Memory
-* Storage
-
-The dialog also shows the estimated cost of the new instance.
-Select *Migrate* to start or *Cancel* to go back.
+You start a migration from the self-managed deployment in the Aura console using the *[...]* menu on the remote instance card, or you can use the *Migrate to Aura* button (if you want to use the migration wizard).
+Select your preferred migration option to start the process.
 
 == Migration wizard
 
@@ -59,12 +48,11 @@ Only some 4.4 driver versions work with Aura, so updating to 5.x drivers or late
 
 *Identify queries or workloads that can't run on Aura*::
 +
-[NOTE]
-====
-Automatic workload analysis will be available in future versions of Neo4j.
-====
+Decide whether you want Fleet Manager to check your workload for compatibility or if you want to do this manually.
+You can allow Fleet Manager to collect data about your workload for 24 hours to gauge whether your workload is compatible with Aura.
 +
-Manually review your workload. Aura does not allow custom plugins or arbitrary procedures and functions:
+Manually review your workload.
+Aura does not allow custom plugins or arbitrary procedures and functions:
 +
 ** A subset of APOC Core is available. See xref:apoc.adoc[APOC support].
 ** APOC Extended and custom plugins are not supported.
@@ -72,9 +60,9 @@ Manually review your workload. Aura does not allow custom plugins or arbitrary p
 
 You must acknowledge that verifying compatibility is your responsibility before continuing.
 
-=== Step 2: Choose Aura destination
+=== Step 2: Select Aura destination
 
-Choose where to migrate your data:
+Select where to migrate your data:
 
 *Migrate to a new instance*::
 Create a new Aura instance for the migration.
@@ -99,7 +87,7 @@ The target instance must:
 
 === Step 3: Transfer data
 
-Choose how to transfer your data.
+Select how to transfer your data.
 
 ==== Automatic (recommended)
 
@@ -112,7 +100,7 @@ Fleet Manager performs the migration for you. It:
 . Uploads the dump to Aura and starts the import.
 . Waits for the import to complete.
 
-You must consent to these actions – including the database shutdown – before selecting *Start migration*.
+You must consent to these actions, including the database shutdown, before starting the migration.
 
 [NOTE]
 ====
@@ -122,7 +110,8 @@ You can monitor progress in the Aura console (see <<monitor-migration-status>>).
 
 ==== Manual
 
-You migrate the data yourself by following an in-console checklist. Mark each section *Done* to complete the guide.
+You migrate the data yourself by following an in-console checklist.
+Mark each section *Done* to complete the guide.
 
 . *Create a database dump*
 +
@@ -137,7 +126,7 @@ bin/neo4j stop
 bin/neo4j-admin database dump neo4j --to-path=PATH_TO_DUMP
 ----
 +
-Make a note of the dump file size to help choose the correct Aura instance size.
+Make a note of the dump file size to help select the correct Aura instance size.
 
 . *Check the target Aura instance state*
 +
@@ -161,6 +150,23 @@ bin/neo4j-admin database upload neo4j \
 ----
 +
 Alternatively, for dumps *4 GB or smaller*, you can restore directly from the Aura console: open *Inspect* on the Aura instance, select *Restore from backup* file, and drag and drop the `.dump` file.
+
+[[one-click-migration]]
+== One-click migration
+
+*Migrate to Aura with one click* creates a new Aura instance using a configuration recommended from your deployment's recent usage, then starts the migration.
+
+A confirmation dialog shows the recommended configuration before you proceed:
+
+* Self-managed disk usage
+* Cloud provider
+* Region
+* Tier
+* Memory
+* Storage
+
+The dialog also shows the estimated cost of the new instance.
+Select *Migrate* to start or *Cancel* to go back.
 
 [[monitor-migration-status]]
 == Monitor migration status
