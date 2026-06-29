@@ -1,8 +1,23 @@
 = Filters
 :description: Use parameters in your dashboards to further customize queries or use them in filters for node and relationship properties.
 
+* A **parameter** is a placeholder value used inside a query.
+* A **filter** is a dashboard widget — a dropdown — that lets someone choose what value a parameter should have, without editing the query directly.
+
 Filters are the main way to change the default parameter values.
 Filters also allow others to configure parameter values.
+
+A dropdown lets you choose the value you want to insert into the parameter.
+
+[NOTE]
+====
+Filters are specific to Dashboards and are extremely useful - especially now that there's actions that can set a parameter value and navigate to a different tab.
+====
+
+Normally you should always go by filter and not necessarily create a parameter on your own.
+But it depends if you want to expose it to the dashboard user. 
+You might create a dashboard and share it with `view` permissions with other users. 
+And then you might want to have some parameters that hold values that you use in your queries - but the `View only` users never see them.
 
 They can be created in two ways:
 
