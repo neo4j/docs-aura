@@ -1,12 +1,24 @@
 = Parameters
 
-The parameters drawer lets you adjust values that shape your dashboard results.
-It's on the top right side of a dasboard. 
-Use the curly brackets icon `{}` to
-link:https://neo4j.com/docs/aura/dashboards/parameters-and-filters/#_step_1_open_the_parameters_drawer[open the parameters drawer].
+A parameter is just a placeholder value sitting inside a query, such as $order_id. 
+Whatever value that parameter holds gets passed into the query.
+
+* A filter is one way to fill that parameter — you click a dropdown, pick a value, and it gets passed into the parameter.
+* An action is another way to fill that same parameter — except instead of a dropdown, you click a table cell, and whatever's in that cell gets passed into the parameter instead.
+
+To see all the parameters - use the parameters drawer.
+
+The parameters drawer lets you adjust default values that shape your dashboard results.
+It also lets you see which values are being passed into the parameters if you are using filters or actions.
 
 * *Default value*: The default value if there is no initial current value. It is not required.
 * *Current value*: The current value is used even if there is a default value.
+
+== Opening the parameters drawer
+
+It's on the top right side of a dasboard. 
+Use the curly brackets icon `{}` to
+link:https://neo4j.com/docs/aura/dashboards/parameters-and-filters/#_step_1_open_the_parameters_drawer[open the parameters drawer].
 
 == Parameters drawer
 
