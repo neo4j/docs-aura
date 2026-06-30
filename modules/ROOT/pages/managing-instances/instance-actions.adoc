@@ -1,5 +1,5 @@
 [[instance-actions]]
-= Instance actions
+= Lifecyle operations (CRUD)
 :description: This page describes the following instance actions - rename, reset, upgrade, resize, pause, resume, clone to a new database, clone to an existing database, or delete an instance.
 :page-aliases: auradb/managing-databases/database-actions.adoc, aurads/managing-instances/instance-actions.adoc
 
@@ -112,39 +112,6 @@ DELETE https://api.neo4j.io/v1/instances/{instanceId}
 ----
 =====
 ====
-
-== Inspect an instance's details
-
-Returns details about a specific Aura instance.
-
-[.tabbed-example]
-====
-[.include-with-Aura-console]
-=====
-From the instance card, select the more menu (*...*) then select *instance details*.
-From the instance details you can rename an instance and view instance details.
-See xref:managing-instances/instance-details.adoc[Instance details] for more information.
-[.shadow]
-image::instance-actions.png[]
-
-=====
-[.include-with-API]
-=====
-[source]
-----
-GET https://api.neo4j.io/v1/instances/{instanceId}
-----
-=====
-====
-
-== Connect to tools
-
-The *Connect* button allows you to connect your instance to one of the tools; Query, Explore, or Dashboards, or to the Developer hub.
-This is possible from both Aura instances as well as self-managed deployments (see xref:managing-instances/self-managed.adoc[Self-managed instances]), as long as the instance/deployment is running.
-
-[.shadow]
-.Connect to tools
-image::connect-to-tools.png[]
 
 == Reset an instance
 
