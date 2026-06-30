@@ -9,13 +9,6 @@ View and manage roles from *Users* pages, accessible via the console sidebar.
 An organization has one *Users* page for managing organization-level roles.
 Each project has a *Users* page for managing project-specific roles.
 
-[NOTE]
-====
-Users can only be invited on the project-level.
-Regardless of which project-role is specified in the invitation, the user is added to the organization as an `ORG_MEMBER` by default.
-The organization-level role cannot be changed until the user accepts their invitation.
-====
-
 == Organization-level roles
 
 [IMPORTANT]
@@ -487,7 +480,13 @@ Graph Analytics privileges *do not change across Aura tiers*.
 | {check-mark}
 |===
 
-=== Invite users
+=== Invite users (project level)
+
+=== Required role
+
+`Organization admin`
+
+=== How to invite
 
 * As an _Admin_, go to *Users* from within a project, and select *Invite users*.
 You need to provide an email address for the new user and decide which project-level role to assign them.
@@ -497,6 +496,19 @@ If needed, you can edit the organization-level role after the invite is accepted
 
 .Grant users access to a project
 image::inviteusers.png[]
+
+=== Invite users (organization level)
+
+=== Required role
+
+`Organization admin`
+
+=== How to invite
+
+* Add one or more email addresses separated by commas.
+* Organization role = Owner, Admin, Member
+* Project access is optional. Select a role, then tick *Access* to confirm it.
+* There's a summary of the invite you can review before sending.
 
 === Edit users and roles
 
