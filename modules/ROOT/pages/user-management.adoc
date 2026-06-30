@@ -480,36 +480,39 @@ Graph Analytics privileges *do not change across Aura tiers*.
 | {check-mark}
 |===
 
-=== Invite users (project level)
+== Invite users
 
-=== Required role
+=== Required roles
 
-`Organization admin`
+To invite users you need the following role:
 
-=== How to invite
+Invite users (organization level): `Organization admin`, `Organization owner`
 
-* As an _Admin_, go to *Users* from within a project, and select *Invite users*.
+Invite users (project level):  `Organization admin`, `Organization owner`, `Project admin`, `Project owner`
+
+=== Invite users (project-level roles)
+
+* Go to *Users* from within a project, and select *Invite users*.
 You need to provide an email address for the new user and decide which project-level role to assign them.
-* The invited user will receive an email with a link to accept the invitation and their status is *Pending* until they accept the invitation.
-Note that on accepting the invite, the invited user automatically gets an `ORG_MEMBER` role in the organization the project is part of.
+* Note that on accepting the invite, the invited user automatically gets an `ORG_MEMBER` role in the organization the project is part of.
 If needed, you can edit the organization-level role after the invite is accepted.
 
 .Grant users access to a project
 image::inviteusers.png[]
 
-=== Invite users (organization level)
+=== Invite users (organization-level roles)
 
-=== Required role
-
-`Organization admin`
-
-=== How to invite
-
+* Go to *Users* from within an organization, and select *Invite users*.
 * Add one or more email addresses separated by commas.
-* Organization role = Owner, Admin, Member
+* Select an organization role: `Owner`, `Admin`, or `Member`.
 * Project access is optional. Select a role, then tick *Access* to confirm it.
-* There's a summary of the invite you can review before sending.
+* Review the invite summary before sending.
 
-=== Edit users and roles
+=== Status of an invitation
 
-From the *Users* page, as and _Admin_, you can delete users or edit their roles using the [...] more menu by the user's name.
+The invited user will receive an email with a link to accept the invitation and their status is *Pending* until they accept the invitation.
+//You can see pending invites from the *Pending tab*
+
+== Edit users and roles
+
+From the *Users* page, as an _Admin_, you can delete users or edit their roles using the [...] more menu by the user's name.
