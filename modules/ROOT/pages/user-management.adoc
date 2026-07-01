@@ -482,37 +482,21 @@ Graph Analytics privileges *do not change across Aura tiers*.
 
 == Invite users
 
-=== Required roles
+=== Invite users from project settings
 
-To invite users you need the following role:
-
-Invite users (organization level): `Organization admin`, `Organization owner`
-
-Invite users (project level):  `Organization admin`, `Organization owner`, `Project admin`, `Project owner`
-
-=== Invite users (project-level roles)
-
-* Go to *Users* from within a project, and select *Invite users*.
+* Go to xref:visual-tour/index.adoc#_project_settings[project settings] -> *Users*, and select *Invite users*.
 You need to provide an email address for the new user and decide which project-level role to assign them.
 * Note that on accepting the invite, the invited user automatically gets an `ORG_MEMBER` role in the organization the project is part of.
 If needed, you can edit the organization-level role after the invite is accepted.
 
-.Grant users access to a project
-image::inviteusers.png[]
+=== Invite users from organization settings
 
-=== Invite users (organization-level roles)
-
-* Go to *Users* from within an organization, and select *Invite users*.
+* Go to xref:visual-tour/index.adoc#org-settings[organization settings] -> *Users*, and select *Invite users*.
 * Add one or more email addresses separated by commas.
-* Select an organization role: `Owner`, `Admin`, or `Member`.
-* Project access is optional. Select a role, then tick *Access* to confirm it.
+* Select an organization role.
+* Project access is optional. Select a project role, then tick *Access* to confirm it.
 * Review the invite summary before sending.
-
-=== Status of an invitation
-
-The invited user will receive an email with a link to accept the invitation and their status is *Pending* until they accept the invitation.
-//You can see pending invites from the *Pending tab*
 
 == Edit users and roles
 
-From the *Users* page, as an _Admin_, you can delete users or edit their roles using the [...] more menu by the user's name.
+From the *Users* page, delete users or edit their roles using the [...] more menu by the user's name.
