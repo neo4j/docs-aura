@@ -1,40 +1,16 @@
 = Security
 :description: This section covers important security aspects in Neo4j.
 
-This section of documentation describes how to ensure security of your Neo4j Aura instances.
-Helping you find the security features that best fit your use case.
-There's also guides for configuring secure log ins such as SSO, setting up Private Links and more.
+This section describes Aura's security tools:
 
-== Identity 
+* xref:security/mfa.adoc[Multi-factor authentication]
+* xref:security/single-sign-on.adoc[Single sign-on]
+* xref:security/ip-filtering.adoc[IP filtering]
+* xref:security/ip-addresses.adoc[Aura IP addresses and ports]
+* xref:security/secure-connections.adoc[Secure connections]
+* xref:security/encryption.adoc[Encryption]
+* xref:security/customer-managed-keys.adoc[Customer Managed Keys]
+* xref:security/tool-auth.adoc[Tool authentication with Aura user]
+* xref:security/inactive-organization-member-pruning.adoc[Inactive organization member pruning]
 
-Control who can access Aura, and what they can do.
-
-* Multi-Factor Authentication (MFA)
-* Log in with SSO linked to Aura Role-Based Access Control (RBAC)
-
-== Network 
-
-Restrict how applications and people connect to your databases.
-
-* IP filtering limits access. 
-* Private Link for private network connections
-
-== Platform 
-
-Aura takes care of the operational overhead with managed security.
-
-* Automatic updates and security patching.
-* Managed infrastructure.
-
-== Data protection 
-
-Keep data encrypted and under your control.
-
-* Customer-Managed Encryption Keys (CMEK)
-* Remove inactive members from an organization automatically.
-
-== Compliance 
-
-Meet regulatory requirements with confidence.
-
-* For more information, visit the https://trust.neo4j.com[Neo4j Trust Center] to learn about Neo4j Aura's security posture and request access to additional security documentation.
+For more information, visit the https://trust.neo4j.com[Neo4j Trust Center] to learn about Neo4j Aura's security posture and request access to additional security documentation.
