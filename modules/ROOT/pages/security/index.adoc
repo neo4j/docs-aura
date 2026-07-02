@@ -1,25 +1,27 @@
 = Security
 :description: This section covers important security aspects in Neo4j.
 
-This section describes how to ensure security of your Neo4j Aura instances.
+This section of documentation describes how to ensure security of your Neo4j Aura instances.
+Helping you find the security features that best fit your use case.
+There's also guides for configuring secure log ins such as SSO, setting up Private Links and more.
 
 == Identity 
 
-Protect access from the start.
+Control who can access Aura, and what they can do.
 
-* Log into the console/project/instance with SSO linked to Aura Role-Based Access Control (RBAC)
 * Multi-Factor Authentication (MFA)
+* Log in with SSO linked to Aura Role-Based Access Control (RBAC)
 
 == Network 
 
-Control how traffic reaches your databases.
+Restrict how applications and people connect to your databases.
 
-* IP filtering limits access as you get your robust security set up. 
-* Private Link creates a secure tunnel for your data.
+* IP filtering limits access. 
+* Private Link for private network connections
 
 == Platform 
 
-Reduce operational overhead with managed security.
+Aura takes care of the operational overhead with managed security.
 
 * Automatic updates and security patching.
 * Managed infrastructure.
@@ -33,6 +35,6 @@ Keep data encrypted and under your control.
 
 == Compliance 
 
-Meet government requirements with confidence.
+Meet regulatory requirements with confidence.
 
-* For more information, visit https://trust.neo4j.com to learn about Neo4j Aura's security posture and request access to additional security documentation.
+* For more information, visit the https://trust.neo4j.com[Neo4j Trust Center] to learn about Neo4j Aura's security posture and request access to additional security documentation.
