@@ -1,17 +1,38 @@
 = Security
 :description: This section covers important security aspects in Neo4j.
 
-This section of documentation describes how to ensure security according to industry best practices.
+This section describes how to ensure security of your Neo4j Aura instances.
 
-Neo4j Aura is available on multiple commercial cloud service
-providers and in multiple regions.
-As with any modern cloud service, Neo4j Aura, the provider and customers share responsibility for using the service securely.
+== Identity 
 
-* The foundational layer is the cloud infrastructure that the service runs on. 
-By utilizing cloud infrastructure providers, Neo4j Aura can rely on uptime and reliability in the building blocks that make up the infrastructure.
-* The middle layer is the Neo4j Aura service itself, delivering graph database services to customers around the world. 
-* The top layer is the customer, including user interaction and configuration. 
+Protect access from the start.
 
-Authentication and authorization are designed to ensure the principle of least privilege at every stage of hosting and maintaining Neo4j Aura.
+* Log into the console/project/instance with SSO linked to Aura Role-Based Access Control (RBAC)
+* Multi-Factor Authentication (MFA)
 
-For more information, visit https://trust.neo4j.com to learn about Neo4j Aura's security posture and request access to additional security documentation.
+== Network 
+
+Control how traffic reaches your databases.
+
+* IP filtering limits access as you get your robust security set up. 
+* Private Link creates a secure tunnel for your data.
+
+== Platform 
+
+Reduce operational overhead with managed security.
+
+* Automatic updates and security patching.
+* Managed infrastructure.
+
+== Data protection 
+
+Keep data encrypted and under your control.
+
+* Customer-Managed Encryption Keys (CMEK)
+* Remove inactive members from an organization automatically.
+
+== Compliance 
+
+Meet government requirements with confidence.
+
+* For more information, visit https://trust.neo4j.com to learn about Neo4j Aura's security posture and request access to additional security documentation.
