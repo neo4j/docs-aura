@@ -89,3 +89,25 @@ See xref:managing-instances/backup-restore-export.adoc#restore-backup[Restore] f
 // == Logs
 
 // From the _Logs_ tab, you can request Query logs for a specified time frame.
+
+== Suspended instances
+
+* Free instances are automatically suspended after 72 hours of inactivity. Suspension is lifted when the instance is queried again.
+
+* Instances running deprecated Neo4j versions may be suspended. Suspension is lifted after upgrading to a supported Neo4j version.
+
+* Instances may be suspended because of unpaid invoices. Suspension is lifted after outstanding invoices are paid.
+
+[NOTE]
+==== 
+Snapshots remain available for 30 days after an instance is suspended. 
+
+You can download a backup without reinstating the project.
+Backups remain available depending on tier and when the backups were taken. 
+See xref:managing-instances/backup-restore-export.adoc[Backup, export, restore] for more information.
+====
+
+== Suspended trial instances
+
+An instance is suspended when a trial period ends, preserving its data and settings.
+If you would like to continue using the instance, reactivate it by selecting a paid subscription.
