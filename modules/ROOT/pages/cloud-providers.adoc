@@ -60,29 +60,32 @@ If you subscribed to Neo4j Aura on the AWS marketplace prior to November 17th, 2
 Legacy marketplace subscriptions only have Neo4j AuraDB Professional.
 AuraDB Business Critical, Aura Graph Analytics, and other features are unavailable until you subscribe to the new listing.
 
+[IMPORTANT]
+====
+Legacy marketplace subscriptions will be deprecated on September 19, 2026.
+To avoid service disruption, make sure to update your legacy subscriptions, as described below.
+====
+
 [[update-legacy-aws]]
 ==== Update your legacy subscriptions
+
+You must be an organization admin or owner to perform the migration.
 
 . *Subscribe to the new Neo4j Aura marketplace listing on AWS*
 +
 Visit link:https://aws.amazon.com/marketplace/pp/prodview-xd42uzj2v7dae[Neo4j Aura marketplace listing on AWS]
 
-. *Set up your Neo4j Aura account*
+. *Log in to your Neo4j Aura account*
 +
 After creating the marketplace subscription, select *Sign up with Neo4j* and you will be directed to the Aura Console.
-From here you can either log in with an existing Neo4j Aura account or create a new one.
-+
-Once logged in to the Aura Console, the AWS Marketplace order will be confirmed and you can begin to consume Neo4j Aura.
-+
-[NOTE]
-====
-After signing up to Neo4j Aura, two organizations are provisioned for you: a marketplace organization and a personal organization.
-You need to ensure that the marketplace organization is selected before you start to deploy Neo4j.
-====
+From here you can log in with your existing Neo4j Aura account.
 
-. *Move legacy instances*
+. *Update your legacy Neo4j projects*
 +
-Any instances still running in your legacy Neo4j marketplace organization should be moved to your new Neo4j marketplace organization that was newly created as part of Step 2. Instructions on how to move instances to a new organization are available xref:managing-instances/backup-restore-export.adoc[here].
+After logging in to Neo4j Aura, you will be prompted to update your legacy Neo4j Aura projects.
+Select your legacy projects to continue.
+
+You are now updated to the new marketplace listing.
 
 
 === Prepaid commitment
@@ -126,29 +129,33 @@ Legacy marketplace subscriptions only have Neo4j AuraDB Professional. AuraDB Bus
 
 You can still log into the link:https://console.neo4j.io[Neo4j Aura console] directly to access your existing Azure marketplace organization.
 
+[IMPORTANT]
+====
+Legacy marketplace subscriptions will be deprecated on September 19, 2026.
+To avoid service disruption, make sure to update your legacy subscriptions, as described below.
+====
+
 [[update-legacy-azure]]
 ==== Update your legacy subscriptions
+
+You must be an organization admin or owner to perform the migration.
 
 . *Subscribe to the new Neo4j Aura listing on Azure*
 +
 Vist link:https://portal.azure.com/#view/Microsoft_Azure_Marketplace/GalleryItemDetailsBladeNopdl/id/neo4j.neo4j-aura[Neo4j Aura marketplace listing on Azure].
 
-. *Set up your Neo4j Aura account*
+. *Log in to your Neo4j Aura account*
 +
-After creating the marketplace subscription, click Configure account now and you will be directed to the Aura Console.
-From here you can either log in with an existing Neo4j Aura account or create a new one.
+After creating the marketplace subscription, use *Configure account now* to be directed to the Aura Console.
+From here you can log in with your existing Neo4j Aura account.
 +
-Once logged in to the Aura Console, the Azure Marketplace order will be confirmed and you can begin to consume Neo4j Aura.
-+
-[NOTE]
-====
-After signing up to Neo4j Aura, two organizations are provisioned for you: a marketplace organization and a personal organization.
-You need to ensure that the marketplace organization is selected before you start to deploy Neo4j.
-====
 
 . *Move legacy instances*
 +
-Any instances still running in your legacy Neo4j marketplace organization should be moved to your new Neo4j marketplace organization that was newly created as part of Step 2. Instructions on how to move instances to a new organization are available xref:managing-instances/backup-restore-export.adoc[here].
+After logging inn to Neo4j Aura, you will be prompted to update your legacy Neo4j Aura projects.
+Select your legacy projects to continue.
+
+You are now updated to the new marketplace listing.
 
 === Prepaid commitment
 
@@ -195,27 +202,26 @@ New users *cannot* be added directly via _Manage on provider_ from the Google Cl
 [[update-legacy-gcp]]
 ==== Update your legacy subscriptions
 
+You must be an organization admin or owner to perform the migration.
+
 . *Subscribe to the new Neo4j Aura listing on Google Cloud*
 +
-Vist link:https://console.cloud.google.com/marketplace/product/neo4j-mp-public/neo4j-aura[Neo4j Aura marketplace listing on Google Cloud]
+Vist link:https://console.cloud.google.com/marketplace/product/neo4j-mp-public/neo4j-aura[Neo4j Aura marketplace listing on Google Cloud].
 Purchasing from the Google Cloud Marketplace requires the `Billing Account Administrator (roles/billing.admin)` role as highlighted in the link:https://cloud.google.com/billing/docs/how-to/billing-access[Overview of Cloud Billing access control].
 
-. *Set up your Neo4j Aura account*
+. *Log in to your Neo4j Aura account*
 +
 After creating the marketplace subscription, select *Sign up with Neo4j* to be directed to the Aura Console.
-From here you can either log in with an existing Neo4j Aura account or create a new one.
+From here you can log in with your existing Neo4j Aura account.
 +
 Once logged in to the Aura Console, the Google Cloud Marketplace order will be confirmed, and you can begin to consume Neo4j Aura.
-+
-[NOTE]
-====
-After signing up to Neo4j Aura, two organizations are provisioned for you: a marketplace organization and a personal organization.
-You need to ensure that the marketplace organization is selected before you start to deploy Neo4j.
-====
 
-. *Move legacy instances*
+. *Update your legacy Neo4j projects*
 +
-Any instances still running in your legacy Neo4j marketplace organization should be moved to your new Neo4j marketplace organization that was newly created as part of Step 2. Instructions on how to move instances to a new organization are available xref:managing-instances/backup-restore-export.adoc[here].
+After logging in to Neo4j Aura, you will be prompted to update your legacy Neo4j Aura projects.
+Select your legacy projects to continue.
+
+You are now updated to the new marketplace.
 
 == Troubleshooting
 
