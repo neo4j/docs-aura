@@ -10,7 +10,6 @@ Generic Start
 
 * Quick start
 ** xref:getting-started/create-account.adoc[Create an account]
-** xref:getting-started/create-project.adoc[Create a project]
 ** xref:getting-started/create-instance.adoc[Create an instance]
 ** xref:getting-started/connect-instance.adoc[Connect to an instance]
 ** xref:getting-started/migrate-metadata.adoc[Migrate metadata]
@@ -31,6 +30,9 @@ Generic Start
 ** xref:managing-instances/vector-optimization.adoc[Vector optimization]
 ** xref:managing-instances/cypher-version.adoc[Cypher version]
 
+* Manage projects
+** xref:managing-projects/create-project.adoc[Create a project]
+** xref:managing-projects/delete-and-restore-projects.adoc[Delete and restore projects]
 
 * Import data
 ** xref:import/introduction.adoc[What is Import?]
@@ -41,6 +43,7 @@ Generic Start
 ** xref:import/mapping.adoc[Map data]
 ** xref:import/indexes-and-constraints.adoc[Indexes and constraints]
 ** xref:import/import.adoc[Run the import]
+** xref:import/data-sources.adoc[Data sources]
 
 * Graph analytics in Aura
 ** xref:graph-analytics/index.adoc[Overview]
@@ -134,6 +137,14 @@ Generic Start
 ** xref:dashboards/actions/row-select.adoc[Row select action]
 ** xref:dashboards/faq-and-resources.adoc[FAQ and resources]
 
+* Document Intelligence (Preview feature)
+** xref:document-intelligence/introduction.adoc[What is Document Intelligence?]
+** xref:document-intelligence/quick-start.adoc[Quick start]
+** xref:document-intelligence/visual-tour.adoc[Visual tour]
+** xref:document-intelligence/data-provision.adoc[Data provision]
+** xref:document-intelligence/indexes-constraints.adoc[Indexes and constraints]
+** xref:document-intelligence/import.adoc[Import]
+
 * Metrics
 ** xref:metrics/view-metrics.adoc[View metrics]
 ** Metrics integration
@@ -151,7 +162,7 @@ Generic Start
 ** xref:logging/log-downloads.adoc[Download logs]
 ** xref:logging/activity-feed.adoc[Activity feed]
 
-* Security
+* xref:security/index.adoc[]
 ** xref:security/mfa.adoc[Multi-factor authentication]
 ** xref:security/single-sign-on.adoc[Single sign-on]
 ** xref:security/ip-filtering.adoc[IP filtering]
@@ -165,7 +176,7 @@ Generic Start
 * xref:user-management.adoc[User management]
 
 * Billing and usage
-** xref:billing/usage-report.adoc[Billing and usage report]
+** xref:billing/cost-explorer.adoc[Cost explorer]
 ** xref:billing/billing-dimensions.adoc[Billing dimensions]
 ** xref:billing/payment-options.adoc[Payment options]
 
