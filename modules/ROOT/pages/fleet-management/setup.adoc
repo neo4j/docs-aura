@@ -22,7 +22,7 @@ image::add-sm-deployment.png[]
 
 To set up a connection without monitoring, select the *Unmonitored* option, provide the connection URL to your deployment, your credentials, and click *Connect*.
 Then, click *Add* to add your deployment to Aura.
-Adding your self-managed deployment to Aura allows you to use the graph tools Query, Explore, and Dashboards to run queries, explore the graph, and create dashboards.
+Adding your self-managed deployment to Aura allows you to use the graph tools Query, Bloom, and Dashboards to run queries, explore the graph, and create dashboards.
 See xref:managing-instances/self-managed.adoc[Self-managed instances] for more information.
 
 == Set up a connection with monitoring
@@ -78,13 +78,13 @@ This involves first running the `neo4j-admin fleet discover` command to look for
 
 For more information on discovering running Neo4j servers with Neo4j Admin, see link:https://neo4j.com/docs/operations-manual/current/monitoring/fleet-discovery/[Operations Manual -> Discover local servers].
 
-After you have obtained a registration code from the Neo4j Admin CLI tool, select *Discover deployments* which can be found by using the *down arrow* next to the *Add deployment* button [See Figure 1]. 
+After you have obtained a registration code from the Neo4j Admin CLI tool, select *Discover deployments* which can be found by using the *down arrow* next to the *Add deployment* button [See Figure 1].
 Paste the code in the indicated input box.
 
 [.shadow]
 .Add a new self-managed deployment
 image::add-from-cli.png[width=600]
 
-The list of deployments discovered by `neo4j-admin` appears in the drawer. 
-Next to each deployment is a *Register* button that can be used to register it. 
+The list of deployments discovered by `neo4j-admin` appears in the drawer.
+Next to each deployment is a *Register* button that can be used to register it.
 Use this button to start the setup wizard described in the previous sections.
