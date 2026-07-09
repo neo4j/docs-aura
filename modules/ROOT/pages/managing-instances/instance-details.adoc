@@ -92,8 +92,6 @@ See xref:managing-instances/backup-restore-export.adoc#restore-backup[Restore] f
 
 == Suspended instances
 
-* Free instances are automatically suspended after 72 hours of inactivity. Suspension is lifted when the instance is queried again.
-
 * Instances running deprecated Neo4j versions may be suspended. Suspension is lifted after upgrading to a supported Neo4j version.
 
 * Instances may be suspended because of unpaid invoices. Suspension is lifted after outstanding invoices are paid.
