@@ -163,7 +163,7 @@ Note that the secret is obfuscated and only visible at the time of creation.
 
 == AWS S3
 
-The following information is required to connect to AWS S3
+The following information is required to connect to AWS S3:
 
 * *Bucket name*
 * *Bucket path(s)*
@@ -191,8 +191,8 @@ The S3 Bucket Path can be copied directly from the Objects or Properties tab.
 
 
 *S3 authentication* is done through generating Access keys.
-See link:https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html[AWS documentation] for how to generate these access keys see: Manage access keys for IAM users.
-The permissions required for these access keys should be scoped to the buckets required for import should include `s3:GetObject` for file contents and `s3:ListBucket`.
+See link:https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html[Manage access keys for IAM users] for how to generate these access keys.
+The permissions required for these access keys should be scoped to the buckets required for import and should include `s3:GetObject` for file contents and `s3:ListBucket`.
 
 If you import _CSV_ files and they contain lists or vectors inside the cells, you can use the *Array and Vector configuration section* to set up your delimiters.
 This is an optional section and collapsed by default.
