@@ -52,7 +52,7 @@ Then, determine whether to enable SSO for Console access, Instance access, or bo
 Conceptually the user is logging into the Data Plane.
 * Authentication: Enables authentication for users or applications directly into specific Neo4j DBMS/instances (e.g., via Neo4j Browser, Bloom, or drivers) within an Aura Project.
 * Authorization: It ensures that when someone connects to a database instance within a specific project, they authenticate against your Identity Provider (IdP). 
-You can use *IdP group-to-role mapping* to assign RBAC database privileges (such as `admin`, `architect`, or `reader`) based on their SSO groups. 
+You can use *IdP group-to-role mapping* to assign link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/built-in-roles/[RBAC database privileges] (such as `admin`, `architect`, or `reader`) based on their SSO groups. 
 This optional setting in the configuration dialog is called role mapping.
 
 == SSO Administration
