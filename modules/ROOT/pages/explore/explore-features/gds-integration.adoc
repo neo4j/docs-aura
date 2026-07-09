@@ -1,4 +1,4 @@
-:description: This section provides an overview of the GDS integration with Explore.
+:description: This section provides an overview of the GDS integration with Bloom.
 
 [[explore-gds]]
 = Graph Data Science integration
@@ -8,31 +8,31 @@ Neo4j Graph Data Science algorithms can help you find new insights in your data,
 [NOTE]
 ====
 Running Graph Data Science algorithms *on elements in your Scene* does *not* alter the underlying data.
-The scores only exist temporarily in Explore.
+The scores only exist temporarily in Bloom.
 However, if you opt to create a projection on the *entire graph*, results *are written* back to your data as a new database property.
 ====
 
 The algorithms are described briefly below, but refer to link:https://neo4j.com/docs/graph-data-science/current/[The Neo4j Graph Data Science Library Manual] for their full descriptions.
 
-== Using GDS algorithms in Explore
+== Using GDS algorithms in Bloom
 
-When you run graph algorithms in Explore, these either run in a separate compute environment via xref:graph-analytics/aga.adoc[Aura Graph Analytics], or they run in your instance using the Graph Analytics plugin, sharing both memory and compute with your database.
-This is determined by which option you chose when you created the instance, as described in xref:getting-started/create-instance.adoc[Create instance] and cannot be manually selected from Explore.
+When you run graph algorithms in Bloom, these either run in a separate compute environment via xref:graph-analytics/aga.adoc[Aura Graph Analytics], or they run in your instance using the Graph Analytics plugin, sharing both memory and compute with your database.
+This is determined by which option you chose when you created the instance, as described in xref:getting-started/create-instance.adoc[Create instance] and cannot be manually selected from Bloom.
 
 See xref:graph-analytics/index.adoc[Graph analytics in Aura] for more information about the differences between the two options.
 
 [.shadow]
-.Graph Data Science in Explore
+.Graph Data Science in Bloom
 image::louvain.jpg[width=800]
 
 [[algorithms]]
-== Available GDS algorithms in Explore
+== Available GDS algorithms in Bloom
 
-The available algortihms can be divided into two categories, _centrality_ and _community detection_.
+The available algorithms can be divided into two categories, _centrality_ and _community detection_.
 Centrality algorithms are used to measure the importance of particular nodes in a network and to discover the roles individual nodes play.
 A node's _importance_ can mean that it has a lot of connections or that it is transitively connected to other important nodes.
 It can also mean that another node can be reached in few hops or that it sits on the shortest path of multiple pairs of nodes.
-The following centrality algorithms are available in Explore:
+The following centrality algorithms are available in Bloom:
 
 * Betweenness Centrality
 * Degree Centrality
@@ -41,7 +41,7 @@ The following centrality algorithms are available in Explore:
 
 Community detection algorithms on the other hand, are used to find sub-groups within the data and can give insight to whether networks are likely to break apart.
 Community detection is useful in a variety of graphs, from social media networks to machine learning.
-The following community detection algorithms are available in Explore:
+The following community detection algorithms are available in Bloom:
 
 * Louvain
 * Label propagation
