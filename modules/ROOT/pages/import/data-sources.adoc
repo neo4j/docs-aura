@@ -268,3 +268,8 @@ The bucket path can optionally contain glob patterns to reference multiple files
 Each file must be given a temporary table name, which is used to reference the file in the mapping UI.
 
 For Google service accounts with access to the cloud bucket, see the link:https://docs.cloud.google.com/storage/docs/authentication/managing-hmackeys[Google documentation] on how to create an HMAC key.
+
+If you import _CSV_ files and they contain lists or vectors inside the cells, you can use the *Array and Vector configuration section* to set up your delimiters.
+This is an optional section and collapsed by default.
+The supported delimiters are  `,`, `;`, `|`, `` ``, `:`, `\t`, `\n`, where the latter two represent the tab character and new line, respectively.
+If you do not provide any array/vector delimiter, you effectively opt out of the type and will not get any arrays or vectors recommended.
