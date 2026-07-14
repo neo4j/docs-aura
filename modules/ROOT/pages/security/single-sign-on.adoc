@@ -71,8 +71,7 @@ Currently, the fields available for override at the Instance level are *Display 
 
 The Display Name is the label shown to users when they choose to login with SSO while connecting to an instance.
 
-It only changes the name displayed in the Aura connection dialog.
-For example, changing the display name from *Docs SSO* to *Neo4j Dev* updates the button shown when users connect to the instance.
+It only changes the name displayed in the Aura connection dialog shown when users connect to the instance (e.g. *Neo4j Dev*).
 
 .Instance connection dialog showing the customized SSO display name.
 [.shadow]
@@ -99,7 +98,7 @@ To create an SSO Configuration, either a Discovery URI or a combination of Issue
 
 == Create a new SSO configuration
 
-. Go to xref:visual-tour/index.adoc#_organizations[Organization] > *Security* > *Single Sign-On* to set up a new SSO configuration.
+. Go to xref:visual-tour/index.adoc#_organizations[Organization settings] > *Security* > *Single Sign-On* to set up a new SSO configuration.
 
 . The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on organization-level, only on instance-level, or both.
 
@@ -120,11 +119,14 @@ If you use Attribute-Based Access Control (ABAC), Aura supports the following id
 Self-managed Neo4j deployments can use additional identity provider attributes. See link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/attribute-based-access-control/[Operations Manual > ABAC] for more information.
 ====
 
+== Example setup 
+
 If you want users to authenticate with SSO for both the Aura Console and your database instances, make sure to select both of the following checkboxes during setup:
+
 * Use as login for the Organization
 * Use as login method for instances within Projects in this Org
 
-.SSO configuration
+.SSO configuration form
 [.shadow]
 image::sso.png[A screenshot of the SSO configuration,640,480]
 
@@ -132,7 +134,7 @@ image::sso.png[A screenshot of the SSO configuration,640,480]
 
 After setting up SSO, the `Organization SSO login` link can be found in the organization summary page in the Aura console.
 
-.SSO example setup
+.Successful SSO setup
 [.shadow]
 image::security/ssoexamplesetup.png[A screenshot of an example SSO set up,840,680]
 
@@ -172,7 +174,11 @@ If the linked SSO config's role mapping is edited, the instance override prevail
 Editing SSO configs at an organization-level or project-level does not change SSO configuration to instances that have overrides.
 ====
 
-To view whether an instance inherits its SSO configuration or has an override, open the *SSO Membership* tab in the instance *Inspect* view.
+To view whether an instance inherits its SSO configuration or has an override, open the *SSO Membership* tab in the instance xref:managing-instances/instance-actions.adoc#_inspect_an_instances_details[Inspect] view.
+
+.Override example
+[.shadow]
+image::security/override-example.png[]
 
 == Microsoft Entra ID SSO
 
@@ -296,3 +302,10 @@ No, users must be granted the role on the organization (e.g. Owner, Admin, Membe
 
 Ensure that the email field is provided on your user in Microsoft Entra ID.
 If it already is, contact support for further assistance.
+
+*What happens if I enable/disable xref:security/tool-auth.adoc[tool authentication] on an instance*
+
+Enabling tool authentication will no longer allow Aura Console users to connect to an instance with instance SSO. Drivers and external tools remain unaffected.
+For more information see xref:security/tool-auth.adoc[Tool authentication with Aura user].
+
+
