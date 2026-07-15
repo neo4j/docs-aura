@@ -5,7 +5,7 @@
 :min-plugin-version: 1.2.0
 
 There are different ways to migrate data from a self-managed Neo4j deployment Community Edition to Aura.
-You can do it manually as described in xref:tutorials/migration.adoc[Migrate from self-managed to Aura], using `neo4j-admin` to create a database dump and the manually uploading it to an Aura instance.
+You can do it manually as described in xref:tutorials/migration.adoc[Migrate from self-managed to Aura], using `neo4j-admin` to create a database dump and then manually uploading it to an Aura instance.
 
 But if your self-managed CE deployment is already connected and monitored using Fleet Manager, Fleet Manager can guide you through the migration directly from the Aura console.
 
