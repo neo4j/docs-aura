@@ -18,7 +18,7 @@ After successful authentication, the IdP redirects the user back to Aura with a 
 The person setting up SSO needs an `Organization Owner` or `Organization Admin` role.
 For information on how to assign roles see xref:user-management.adoc[User management].
 
-== Log-in methods for Aura
+== Login methods for Aura
 
 Each Aura organization is configured with the following login methods that allow logging into the Aura Console (\https://console.neo4j.io):
 
@@ -41,7 +41,7 @@ Then, determine whether to enable SSO for Console access, Instance access, or bo
 
 == 1. Aura Console SSO
 
-* Authenticates users so they can log into the Neo4j Aura Console UI (console.neo4j.io). Conceptually the user is logging into the Management Plane.
+* Authenticates users so they can log into the Neo4j Aura Console UI (console.neo4j.io). The user is logging into the Management Plane.
 * Authentication: Enables users to log into the Aura Console via your Identity Provider (IdP) to manage the lifecycle of your instances. 
 * It controls: How team members log in to manage billing, view metrics, create or delete projects, and provision new databases. 
 * Authorization: Role management for projects, billing, and metrics is not currently handled via the IdP, and needs to be managed either via the UI or Aura API.
@@ -49,7 +49,7 @@ Then, determine whether to enable SSO for Console access, Instance access, or bo
 == 2. Instance SSO
 
 * Authenticates users or applications into individual Neo4j database instances (e.g., via Neo4j Browser, Bloom, or Drivers). 
-Conceptually the user is logging into the Data Plane.
+The user is logging into the Data Plane.
 * Authentication: Enables authentication for users or applications directly into specific Neo4j DBMS/instances (e.g., via Neo4j Browser, Bloom, or drivers) within an Aura Project.
 * Authorization: It ensures that when someone connects to a database instance within a specific project, they authenticate against your Identity Provider (IdP). 
 You can use *IdP group-to-role mapping* to assign link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/built-in-roles/[RBAC database privileges] (such as `admin`, `architect`, or `reader`) based on their SSO groups. 
@@ -294,7 +294,7 @@ The final URL should look similar to `https://dev-123-admin.okta.com/.well-known
 
 == FAQ
 
-*Can users get roles added to them in Aura console via SSO and a group to role mapping?*
+*Can users get organization roles added to them in Aura console via SSO and a group to role mapping?*
 
 No, users must be granted the role on the organization (e.g. Owner, Admin, Member) via Aura console invites or the access management API.
 
