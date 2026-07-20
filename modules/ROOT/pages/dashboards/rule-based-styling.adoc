@@ -13,8 +13,6 @@ image::dashboards/rule-based-styling/units-in-stock.png[width=900]
 
 This example uses the Northwind dataset, and rule-based styling to highlight stock levels.
 
-A really simple one shows units in stock as green if they are above 115. 
-
 === Apply a gradient
 
 This example applies progressively darker shades of green to products with higher stock levels, making it easy to identify the most well-stocked products at a glance.
@@ -31,19 +29,24 @@ ORDER BY `Units in stock` DESC
 LIMIT 10
 ----
 
+*To show units in stock cells will have green backgrounds if they are above 110:*
+
 Select *Styling*
 
 * Type = `cell`
 * Column = `units in stock`
 * Condition = `Greater than`
 * Value = `110`
-* Select = *Range*
-* Background = Range 
+* Select *Background*
+* Select *Range*
 
 ** Minpoint = 110 #abd9af
 ** Midpoint = 115 #65ee72
 ** Maxpoint = 120 #579380
 
-* Text = `Single` (#0829f5)
+*To make the text blue:*
+
+* Select *Text* 
+* Select *Single* and set it to (#0829f5)
 
 * Select *Apply* to apply the rule to the current visualization.
