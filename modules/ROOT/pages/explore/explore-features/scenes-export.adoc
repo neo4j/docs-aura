@@ -26,6 +26,7 @@ image::styling-perspective.jpg[width=300]
 Scenes rely on node and relationship IDs in Neo4j.
 Changes to this underlying data can cause data in saved Scenes to appear incorrectly if IDs are reused by the database.
 This also applies when you pause and then restore an instance.
+To avoid the loss of saved Scenes, make sure to export your saved Scenes prior to pausing your instance, as described below.
 ====
 
 
