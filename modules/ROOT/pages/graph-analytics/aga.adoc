@@ -21,6 +21,16 @@ Here you can also configure:
 * The maximum available memory for each session
 * The maximum number of concurrent sessions within the organization
 
+=== Network requirements
+
+Aura Graph Analytics sessions communicate with your AuraDB instance (or external data source) using the Apache Arrow Flight protocol for remote projections and write-back.
+
+[NOTE]
+====
+If your network enforces firewall rules or restricts outbound traffic, you must also allow TCP port `8491` for Apache Arrow, in addition to the standard ports for your instance.
+See xref:security/ip-addresses.adoc[Aura IP addresses and ports] for the full list of IP addresses and ports required.
+====
+
 === User management
 
 Aura Console roles map to user privileges in Aura Graph Analytics sessions as described in xref:user-management.adoc#graph-analytics-roles[Graph Analytics roles].
