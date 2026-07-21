@@ -1,52 +1,34 @@
 = Rule-based styling 
 
 Rule-based styling is more fun than its name suggests. 
-Add styling rules to highlight important chart values with color, making tables easier to scan and interpret at a glance. 
+Add styling rules to highlight important chart values with color, making data easier to scan and interpret at a glance.
+Rule-based styling is currently available for table visualizations. 
+Colors update automatically as your data changes.
+You can style cell or row backgrounds, text color, and number values using gradients.
 
-When multiple rules are defined they are executed in order, and you can drag and drop them to change the priority.
+To create a styling rule open a *Table* visualization > Select the *Styling* tab > Select *Add* > Configure your rule > Select *Apply*. 
+You can create multiple styling rules. 
+Rules are executed from top to bottom, so drag and drop them to change their priority.
 
-== Example - color coded stock 
+== Examples 
+
+=== Highlight stock levels
 
 .Stock
 [.shadow]
 image::dashboards/rule-based-styling/units-in-stock.png[width=900]
 
-This example uses the Northwind dataset, and rule-based styling to highlight stock levels.
+This example uses the Northwind dataset and rule-based styling to highlight stock levels.
+It uses two styling rules:
 
-=== Apply a gradient
+* Highlight values greater than `110` with a green background gradient. Color all the text in the table in blue to make the values stand out.
+* Highlight rows with values less than or equal to `110` in red to make low stock levels easy to spot.
 
-This example applies progressively darker shades of green to products with higher stock levels, making it easy to identify the most well-stocked products at a glance.
+=== Highlight text containing "Matrix" 
 
-Create a table:
+You can color based on text and numbers. In this example, if the cell contains "Matrix", the cell will turn blue.
 
-[source,cypher]
-----
-MATCH (p:Product)
-RETURN
-  p.productName AS Product,
-  p.unitsInStock AS `Units in stock`
-ORDER BY `Units in stock` DESC
-LIMIT 10
-----
+.Matrix
+[.shadow]
+image::dashboards/rule-based-styling/matrix.png[width=400]
 
-*To show units in stock cells will have green backgrounds if they are above 110:*
-
-Select *Styling*
-
-* Type = `cell`
-* Column = `units in stock`
-* Condition = `Greater than`
-* Value = `110`
-* Select *Background*
-* Select *Range*
-
-** Minpoint = 110 #abd9af
-** Midpoint = 115 #65ee72
-** Maxpoint = 120 #579380
-
-*To make the text blue:*
-
-* Select *Text* 
-* Select *Single* and set it to (#0829f5)
-
-* Select *Apply* to apply the rule to the current visualization.
