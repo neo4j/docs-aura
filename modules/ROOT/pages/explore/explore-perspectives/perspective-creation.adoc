@@ -1,4 +1,4 @@
-:description: This section describes how to create and use Perspectives in Explore.
+:description: This section describes how to create and use Perspectives in Bloom.
 
 [[perspective-creation]]
 = Creation and use
@@ -9,9 +9,9 @@ Aura Professional instances can have up to five Perspectives per user, and Busin
 
 == Default Perspective
 
-When you connect Explore for the first time to a non-empty database, a Perspective is automatically created for you (see *Generate Perspective* below for details on how this is done.).
+When you connect Bloom for the first time to a non-empty database, a Perspective is automatically created for you (see *Generate Perspective* below for details on how this is done.).
 This is called *Default Perspective* and it cannot be modified from the UI.
-However, if there are changes to the database, Explore updates the Default Perspective accordingly.
+However, if there are changes to the database, Bloom updates the Default Perspective accordingly.
 If you want to customize the view, you can create a new Perspective.
 
 == Create a Perspective
@@ -22,27 +22,27 @@ image::perspective-creation.png[width=800,align="center"]
 Perspectives can be selected or created from the Perspective gallery, found in the Perspective drawer.
 There are two options when you opt to create a new Perspective:
 
-. *Generate Perspective* - With this option, Explore performs a scan of the database and analyze the labels within the graph, identifying the smallest number of labels that uniquely categorize all nodes.
-Explore then creates the perspective and auto-fill in the requisite category definitions, select properties for captioning categories, populate list of available relationship types, and set default styles.
+. *Generate Perspective* - With this option, Bloom performs a scan of the database and analyze the labels within the graph, identifying the smallest number of labels that uniquely categorize all nodes.
+Bloom then creates the perspective and auto-fill in the requisite category definitions, select properties for captioning categories, populate list of available relationship types, and set default styles.
 Once created, the Perspective definition can be edited and reconfigured differently at any time.
 +
-When Explore connects to a database for the first time, auto generating the Perspective might be the best option in most cases.
+When Bloom connects to a database for the first time, auto generating the Perspective might be the best option in most cases.
 +
 As mentioned above, if the database contains more than 10,000,000 nodes and relationships combined, a complete scan takes a long time and you can elect to run a quick scan instead.
 See xref:explore/explore-perspectives/database-scans.adoc[Database scans] for more details.
 
 
 . *Blank Perspective* - With this option, you can build a Perspective from scratch by defining each category and configuring properties and styling for it.
-Explore still adds the list of available relationship types.
+Bloom still adds the list of available relationship types.
 +
 Choose this option when you have a large number of labels in the data, but your Perspective only needs to contain a small subset of them.
 It is more efficient to create the Perspective manually rather than auto-generating it and reconfiguring to remove many categories.
 
 [NOTE]
 ====
-The first time you open Explore with a new database, Explore automatically generates a perspective (Auto-perspective).
-As described above, Explore samples a node from each category it finds and use the properties of the sampled node.
-As you query more data, Explore adds any new properties as they are found.
+The first time you open Bloom with a new database, Bloom automatically generates a perspective (Auto-perspective).
+As described above, Bloom samples a node from each category it finds and use the properties of the sampled node.
+As you query more data, Bloom adds any new properties as they are found.
 ====
 
 
@@ -50,7 +50,7 @@ As you query more data, Explore adds any new properties as they are found.
 
 You can also export the Perspective definition in a serialized json file format.
 This is useful to either save the definition as of a certain time, or to migrate Perspectives between different environments.
-The json file can then be imported using Explore connected to the same or a different database.
+The json file can then be imported using Bloom connected to the same or a different database.
 
 
 Both exporting and importing a Perspective can be done from the Perspective gallery.
@@ -74,22 +74,22 @@ In the Perspective designer, you can specify *Categories*, *Relationships* and t
 Within a Perspective, a category defines each business entity – Person, Place or Thing – which is visible through the Perspective.
 Typically, a single graph label maps to a particular category, but multiple labels may also be mapped to a single category.
 
-When you create a category, Explore analyzes the graph to find the related properties and other labels that occur on nodes that have the category-defining label.
+When you create a category, Bloom analyzes the graph to find the related properties and other labels that occur on nodes that have the category-defining label.
 The list of property keys include their data type and an option to exclude them from the visualization.
 By default, any properties indexed by a *vector* index are automatically excluded.
 
-Explore assigns a default color for the category, but you can change the default color and node sizes from the xref:explore/explore-visual-tour/legend-panel.adoc[Legend panel].
+Bloom assigns a default color for the category, but you can change the default color and node sizes from the xref:explore/explore-visual-tour/legend-panel.adoc[Legend panel].
 You can also give the category an icon from an extensive library of searchable icons.
 Rule-based styling can also be applied at any stage.
 
 [TIP]
 ====
-Keep in mind when you manually create a Perspective, that Explore assigns nodes to categories in the order the categories appear in the list.
+Keep in mind when you manually create a Perspective, that Bloom assigns nodes to categories in the order the categories appear in the list.
 The category labels above take precedence over the ones below.
 A new category is by default added to the top of the list, but the list can be rearranged by dragging the categories up or down, allowing you to control the order of importance.
 ====
 
-If a node has multiple labels, and the labels are mapped to different categories, the category which is defined first in the Perspective definition is used by Explore for that node.
+If a node has multiple labels, and the labels are mapped to different categories, the category which is defined first in the Perspective definition is used by Bloom for that node.
 Hence the styling of the node is driven by the first category to which any of its labels are mapped.
 For example, if _Tom Hanks_ has the `Person` and `Actor` labels, and there are two respective categories defined for `Actor` and `Person` in that order, the styling for the _Tom Hanks_ node will be derived from the `Actor` category.
 However, when searching for all `Person` nodes, _Tom Hanks_ will still be returned in the query results since it has a `Person` label on it.

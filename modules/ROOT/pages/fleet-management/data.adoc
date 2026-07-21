@@ -66,6 +66,27 @@ Message sent from the server to the Fleet Manager service containing metrics dat
 | Double value representing the metric measurement
 |===
 
+== `MigrationTokenMessage`
+
+Message sent from the server to the Fleet Manager service to retrieve details of a migration to Aura.
+
+[options="header", cols="2,1,2"]
+|===
+|Field |Type |Description
+| `project_id`
+| String
+| Identifier for the project
+| `dbms_id`
+| String
+| Unique identifier for the DBMS
+| `server_id`
+| String
+| Unique identifier for the server
+| `migration_id`
+| String
+| ID of the migration
+|===
+
 == `Neo4jConfigMessage`
 
 Message sent from the server to the Fleet Manager service containing neo4j configuration data.
@@ -473,3 +494,52 @@ Message sent from the server to the Fleet Manager service containing security lo
 | String
 | User associated with the execution of the process that caused the log event
 |===
+
+== `UpdateMigrationStatusMessage`
+
+Message sent from the server to the Fleet Manager service to update migration status during a migration to Aura.
+
+[options="header", cols="2,1,2"]
+|===
+|Field |Type |Description
+| `project_id`
+| String
+| Identifier for the project
+| `dbms_id`
+| String
+| Unique identifier for the DBMS
+| `server_id`
+| String
+| Unique identifier for the server
+| `migration_id`
+| String
+| ID of the migration
+| `migration_step`
+| String
+| Name of the migration step to update status for
+| `started_at`
+| Instant
+| Timestamp when the migration step started
+| `completed_at`
+| Instant
+| Timestamp when the migration step completed
+| `logs`
+| MigrationStepLogs
+| Logs from the migration step, if any
+| `logs.stdout`
+| String
+| Standard output from the migration step
+| `logs.stderr`
+| String
+| Standard error output from the migration step
+| `error`
+| MigrationStepError
+| Error details from the migration step, if any
+| `error.message`
+| String
+| Error message
+| `error.stacktrace`
+| String
+| Stacktrace
+|===
+

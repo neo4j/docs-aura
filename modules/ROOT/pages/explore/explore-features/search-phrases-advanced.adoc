@@ -1,4 +1,4 @@
-:description: This section describes more advanced Search phrases in Explore.
+:description: This section describes more advanced Search phrases in Bloom.
 
 [[search-phrases-advanced]]
 = Search phrases for advanced queries
@@ -16,7 +16,7 @@ In this example using the Northwind graph, a static Search phrase has been saved
 The first box titled `Search phrase` specifies the phrase that the user will type in partially or fully.
 The description appears underneath all the Search phrase matches displayed to the user.
 
-Explore will match any part of the Search phrase field in a case-insensitive fashion.
+Bloom will match any part of the Search phrase field in a case-insensitive fashion.
 For example, typing in `germ` or `ORDER` or `SeaFoo` will all show a match for `Germans ordering Seafood`.
 
 == Dynamic Search phrases
@@ -37,8 +37,8 @@ There are three options available for suggestions to these parameters:
 === Parameter data types
 
 The data type for every parameter must be specified.
-Explore supports `string`, `integer`, `float` and `boolean` data types.
-Additionally, Explore also supports the temporal types `Date`, `Time`, `DateTime`, `LocalDate`, and `LocalDateTime`.
+Bloom supports `string`, `integer`, `float` and `boolean` data types.
+Additionally, Bloom also supports the temporal types `Date`, `Time`, `DateTime`, `LocalDate`, and `LocalDateTime`.
 Temporal types with time zones, i.e. `Time` and `DateTime`, can also be used for rule-based styling or filters.
 You can search for them and get search suggestions and also edit them in the Inspector (provided that you have write access to the graph).
 
@@ -85,7 +85,7 @@ image::parameter-chaining.png[width=400]
 
 == Search phrases caveats
 
-* Explore will limit the number of records processed for the visualization to 10000 unless a smaller limit has been set in the query.
+* Bloom will limit the number of records processed for the visualization to 10000 unless a smaller limit has been set in the query.
 This is to prevent the app from hanging or crashing for queries that return too many records.
 +
 [.shadow]

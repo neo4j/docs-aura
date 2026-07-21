@@ -1,17 +1,17 @@
-:description: This section describes full-text search in Explore.
+:description: This section describes full-text search in Bloom.
 
 [[bloom-fulltext-search]]
 = Full-text search
 
-Explore allows users to always run a full-text search query against the database for their search input.
-This is useful when suggestions provided by Explore do not satisfy the user’s need.
+Bloom allows users to always run a full-text search query against the database for their search input.
+This is useful when suggestions provided by Bloom do not satisfy the user’s need.
 Full-text search using the input is the last suggestion provided to the user in the suggestions list.
 
 [.shadow]
 image::full-text-search.jpg[width=400]
 
-Explore can take advantage of native full text indexes in the database.
-Additionally, for small graphs with low cardinality in data values (e.g. the Movies graph), Explore is able to search in property values without requiring an explicit index.
+Bloom can take advantage of native full text indexes in the database.
+Additionally, for small graphs with low cardinality in data values (e.g. the Movies graph), Bloom is able to search in property values without requiring an explicit index.
 The full text string entered by the user is searched as one unit for these cases.
 
 [NOTE]
