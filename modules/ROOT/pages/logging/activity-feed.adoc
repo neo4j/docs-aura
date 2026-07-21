@@ -286,6 +286,11 @@ a| `action_id`
 | User Management
 | A user's role has been updated
 
+| USER_REMOVED
+| 0207
+| User Management
+| A user was removed from the Organization
+
 | SSO_CREATE
 | 0301
 | Security
@@ -420,6 +425,21 @@ a| `action_id`
 | 0601
 | Organization Management
 | A new project in an organization has been created
+
+| PROJECT_PENDING_DELETION
+| 0602
+| Organization Management
+| A project is pending deletion
+
+| PROJECT_RESTORED
+| 0603
+| Organization Management
+| A project pending deletation has been restored
+
+| PROJECT_PERMANENTLY_DELETED
+| 0604
+| Organization Management
+| A project has been permantently deleted
 
 | BILLING_ACCOUNT_CREATE
 | 0701

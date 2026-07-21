@@ -1,11 +1,11 @@
 = Data transparency
-:description: This page documents the payloads used in fleet management messages.
+:description: This page documents the payloads used in Fleet Manager messages.
 
-This page describes the data structures used in fleet management messages.
+This page describes the data structures used in Fleet Manager messages.
 
 == `ConnectMessage`
 
-Message sent from the plugin to the Fleet Management service to establish a connection.
+Message sent from the server to the Fleet Manager service to establish a connection.
 
 [options="header", cols="2,1,2"]
 |===
@@ -27,15 +27,18 @@ Message sent from the plugin to the Fleet Management service to establish a conn
 | Identifier for the project
 | `plugin_version`
 | String
-| Version of the plugin
+| Version of the Fleet Manager module
 | `build_profile`
 | String
-| Build profile of the plugin
+| Build profile of the Fleet Manager module
+| `is_system_db_writer`
+| boolean
+| Whether this server allows writing to system DB
 |===
 
 == `MetricsMessage`
 
-Message sent from the plugin to the Fleet Management service containing metrics data.
+Message sent from the server to the Fleet Manager service containing metrics data.
 
 [options="header", cols="2,1,2"]
 |===
@@ -53,8 +56,8 @@ Message sent from the plugin to the Fleet Management service containing metrics 
 | String
 | Unique identifier for the server
 | `metrics`
-| Map<String, List<DataPoint>>
-| Map of metric names to lists of DataPoint objects. Values are dynamically populated from the Fleet Management server.
+| Map<String, Collection<DataPoint>>
+| Map of metric names to lists of DataPoint objects. Values are dynamically populated from the Fleet Manager service.
 | `metrics<>[].tags`
 | Map<String, String>
 | Map of string key-value pairs providing additional context for the metric
@@ -63,9 +66,30 @@ Message sent from the plugin to the Fleet Management service containing metrics 
 | Double value representing the metric measurement
 |===
 
+== `MigrationTokenMessage`
+
+Message sent from the server to the Fleet Manager service to retrieve details of a migration to Aura.
+
+[options="header", cols="2,1,2"]
+|===
+|Field |Type |Description
+| `project_id`
+| String
+| Identifier for the project
+| `dbms_id`
+| String
+| Unique identifier for the DBMS
+| `server_id`
+| String
+| Unique identifier for the server
+| `migration_id`
+| String
+| ID of the migration
+|===
+
 == `Neo4jConfigMessage`
 
-Message sent from the plugin to the Fleet Management service containing neo4j configuration data.
+Message sent from the server to the Fleet Manager service containing neo4j configuration data.
 
 [options="header", cols="2,1,2"]
 |===
@@ -84,12 +108,12 @@ Message sent from the plugin to the Fleet Management service containing neo4j co
 | Unique identifier for the server
 | `neo4j_config`
 | Map<String, Object>
-| Map of neo4j config names to config values. Values are dynamically populated from the Fleet Management server.
+| Map of neo4j config names to config values. Values are dynamically populated from the Fleet Manager service.
 |===
 
 == `PingMessage`
 
-Message sent from the plugin to the Fleet Management service to retrieve configuration updates.
+Message sent from the server to the Fleet Manager service to retrieve configuration updates.
 
 [options="header", cols="2,1,2"]
 |===
@@ -105,9 +129,108 @@ Message sent from the plugin to the Fleet Management service to retrieve configu
 | Identifier for the project
 |===
 
+== `QueryReportMessage`
+
+Message sent from the server to the Fleet Manager service containing aggregated query data. Only sent if query logging is enabled explicitly through Aura Console.
+
+[options="header", cols="2,1,2"]
+|===
+|Field |Type |Description
+| `fromTimestamp`
+| long
+| Unix timestamp in milliseconds from the first query in the set
+| `toTimestamp`
+| long
+| Unix timestamp in milliseconds to the last query in the set
+| `project_id`
+| String
+| Identifier for the project
+| `dbms_id`
+| String
+| Unique identifier for the DBMS
+| `server_id`
+| String
+| Unique identifier for the server
+| `queries`
+| Collection<AggregatedQueryData>
+| Aggregated query data
+| `queries[]`
+| AggregatedQueryData
+| A specific query in the set
+| `queries[].query`
+| String
+| Obfuscated query text
+| `queries[].success`
+| boolean
+| Whether the query was successful
+| `queries[].gqlError`
+| SimplifiedGqlError
+| GQL error object (if query failed)
+| `queries[].gqlError.cause`
+| SimplifiedGqlError (recursive)
+| Nested error (if any)
+| `queries[].gqlError.classification`
+| String
+| Error classification
+| `queries[].gqlError.statusDescription`
+| String
+| Error message description
+| `queries[].gqlError.gqlStatus`
+| String
+| GQL status code
+| `queries[].queryLanguage`
+| String
+| Language of the query
+| `queries[].meta`
+| QueryAggregationMeta
+| Metadata representing the aggregated executions of this query
+| `queries[].meta.count`
+| long
+| The number of recorded executions of the query
+| `queries[].meta.minElapsedMs`
+| long
+| The fastest execution of the query
+| `queries[].meta.maxElapsedMs`
+| long
+| The slowest execution of the query
+| `queries[].meta.minTimestamp`
+| long
+| The earliest execution of the query within this report
+| `queries[].meta.maxTimestamp`
+| long
+| The latest execution of the query within this report
+| `queries[].meta.databases`
+| Collection<String>
+| List of databases this query was executed on
+| `queries[].meta.applications`
+| Collection<String>
+| List of applications from which the query originated
+| `queries[].meta.types`
+| Collection<String>
+| List of initiation types of the query
+| `queries[].meta.users`
+| Collection<String>
+| List of users that executed the query
+| `queries[].meta.avgElapsedMs`
+| double
+| The average duration
+| `queries[].meta.avgWaitTimeMs`
+| double
+| The average wait time
+| `queries[].meta.avgPageHits`
+| double
+| The average number of page hits
+| `queries[].meta.avgPageFaults`
+| double
+| The average number of page faults
+| `queries[].meta.avgAllocatedBytes`
+| double
+| The average number of allocated bytes
+|===
+
 == `ReportingMessage`
 
-Message sent from the plugin to the Fleet Management service containing reporting data.
+Message sent from the server to the Fleet Manager service containing reporting data.
 
 [options="header", cols="2,1,2"]
 |===
@@ -128,7 +251,7 @@ Message sent from the plugin to the Fleet Management service containing reportin
 | String
 | Unique identifier for the server
 | `dbms.databases`
-| List<String>
+| Collection<String>
 | List of database names
 | `dbms.edition`
 | String
@@ -137,7 +260,7 @@ Message sent from the plugin to the Fleet Management service containing reportin
 | String
 | Packaging of DBMS installation
 | `dbms.servers`
-| List<Server>
+| Collection<Server>
 | List of servers in the DBMS cluster
 | `dbms.servers[].serverId`
 | String
@@ -161,7 +284,7 @@ Message sent from the plugin to the Fleet Management service containing reportin
 | String
 | Neo4j version of the server
 | `dbms.servers[].databases`
-| List<Database>
+| Collection<Database>
 | List of databases hosted on this server
 | `dbms.servers[].databases[].name`
 | String
@@ -173,7 +296,7 @@ Message sent from the plugin to the Fleet Management service containing reportin
 | String
 | Type of the database in the cluster
 | `dbms.servers[].databases[].aliases`
-| List<String>
+| Collection<String>
 | List of database aliases
 | `dbms.servers[].databases[].access`
 | String
@@ -236,10 +359,10 @@ Message sent from the plugin to the Fleet Management service containing reportin
 | Long
 | Number of relationships in the graph
 | `dbms.servers[].databases[].graphShards`
-| List<String>
+| Collection<String>
 | List of graph shards of this database
 | `dbms.servers[].databases[].propertyShards`
-| List<String>
+| Collection<String>
 | List of property shards of this database
 | `dbms.servers[].license`
 | License
@@ -287,7 +410,7 @@ Message sent from the plugin to the Fleet Management service containing reportin
 | Integer
 | Total number of days in trial period
 | `dbms.servers[].plugins`
-| List<Plugin>
+| Collection<Plugin>
 | List of plugins installed on the server
 | `dbms.servers[].plugins[].filename`
 | String
@@ -303,7 +426,7 @@ Message sent from the plugin to the Fleet Management service containing reportin
 | Manifest vendor of the plugin, if available
 | `pluginVersion`
 | String
-| Version of the fleet management plugin
+| Version of the Fleet Manager module
 | `osName`
 | String
 | Operating system name
@@ -319,5 +442,104 @@ Message sent from the plugin to the Fleet Management service containing reportin
 | `jvmVendor`
 | String
 | Java Virtual Machine vendor
+|===
+
+== `SecurityLogsReportMessage`
+
+Message sent from the server to the Fleet Manager service containing security logs data.
+
+[options="header", cols="2,1,2"]
+|===
+|Field |Type |Description
+| `from_timestamp`
+| long
+| Unix timestamp in milliseconds from the first log in the set
+| `to_timestamp`
+| long
+| Unix timestamp in milliseconds to the last log in the set
+| `project_id`
+| String
+| Identifier for the project
+| `dbms_id`
+| String
+| Unique identifier for the DBMS
+| `server_id`
+| String
+| Unique identifier for the server
+| `logs`
+| Collection<Value>
+| Security logs data
+| `logs[].meta`
+| Meta
+| Aggregated metadata for the log event
+| `logs[].meta.count`
+| int
+| Security logs count for unique set of log fields
+| `logs[].meta.databases`
+| Collection<String>
+| Databases in context of the log event occurred
+| `logs[].meta.authenticatedUsers`
+| Collection<String>
+| Users authenticated to the Database for execution of the process that caused the log event
+| `logs[].meta.sources`
+| Collection<String>
+| Connection information for the log event sources
+| `logs[].message`
+| String
+| Log event main message
+| `logs[].level`
+| String
+| Severity level of the log event
+| `logs[].executingUser`
+| String
+| User associated with the execution of the process that caused the log event
+|===
+
+== `UpdateMigrationStatusMessage`
+
+Message sent from the server to the Fleet Manager service to update migration status during a migration to Aura.
+
+[options="header", cols="2,1,2"]
+|===
+|Field |Type |Description
+| `project_id`
+| String
+| Identifier for the project
+| `dbms_id`
+| String
+| Unique identifier for the DBMS
+| `server_id`
+| String
+| Unique identifier for the server
+| `migration_id`
+| String
+| ID of the migration
+| `migration_step`
+| String
+| Name of the migration step to update status for
+| `started_at`
+| Instant
+| Timestamp when the migration step started
+| `completed_at`
+| Instant
+| Timestamp when the migration step completed
+| `logs`
+| MigrationStepLogs
+| Logs from the migration step, if any
+| `logs.stdout`
+| String
+| Standard output from the migration step
+| `logs.stderr`
+| String
+| Standard error output from the migration step
+| `error`
+| MigrationStepError
+| Error details from the migration step, if any
+| `error.message`
+| String
+| Error message
+| `error.stacktrace`
+| String
+| Stacktrace
 |===
 

@@ -8,7 +8,6 @@ Only allowing trusted IP addresses or CIDR ranges helps secure your environment 
 
 * AuraDB Business Critical supports up to 20 allowed IP ranges.
 * AuraDB Virtual Dedicated Cloud and AuraDS Enterprise support up to 100 allowed IP ranges.
-* Contact support if you need to increase the limit.
 
 == Required roles
 
@@ -91,7 +90,7 @@ Private Endpoints provide secure access through your VPC, while IP filtering wor
 With IP filtering:
 
 * No VPN or Private Endpoint setup is required.
-* Users only need to add their local IP address to the Allow List to access Aura from tools such as Query, Explore, and Neo4j Desktop.
+* Users only need to add their local IP address to the Allow List to access Aura from tools such as Query, Bloom, and Neo4j Desktop.
 
 == Using `neo4j-admin database upload` with IP filtering
 
