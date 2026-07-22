@@ -120,18 +120,18 @@ For working with multiple databases, see the following documentation:
 * xref:managing-instances/backup-restore-export.adoc#_backups_in_multiple_database_instances[Backup, export, and restore]: Take backups of individual databases.
 * xref:explore/introduction.adoc[Bloom] and xref:query/introduction.adoc[Query]: When connecting, select the target database using the connection bar.
 * xref:metrics/view-metrics.adoc#_multiple_databases[Metrics]: Switch between databases using the Database dropdown in Metrics.
-* xref:import/introduction.adoc[Import]: Select both the instance and the target database when running an import.
+* xref:import/introduction.adoc[Import]: Select the instance and the target database when running an import.
 
 === Unsupported features
 
 Some features are not available for MultiDB instances:
 
-* Databases cannot be created using Cypher database management commands (database management commands are disabled)
-* Instance clone, CDC, Secondaries, Tool Authentication (Seamless login)
+* Databases cannot be created using Cypher database management commands 
+* Instance clone, CDC, Secondaries, Tool authentication
 
 === Features coming soon
 
 * Pause and resume for instances or individual databases
 * Custom database naming or renaming
-* Default `neo4j` database management
+* Default database management
 * Instance level backup & restore
