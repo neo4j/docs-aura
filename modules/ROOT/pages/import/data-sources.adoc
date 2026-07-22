@@ -157,7 +157,7 @@ See this link:https://learn.microsoft.com/en-us/entra/identity-platform/quicksta
 Once it is, you need to assign the application to your Azure Endpoint.
 From the Azure Synapse workspace, use *Manage* in the left-hand navigation, select *Access control* and *Add* to add the Microsoft Entra ID application.
 When you have added the application, you are set to use your Principal as User Credentials.
-The required fields (by the Import tool), *Azure Synapse Tenant* and *Application ID* can be found in the overview of your registered application in the link:portal.azure.com[Azure Portal].
+The required fields (by the Import tool), *Azure Synapse Tenant* and *Application ID* can be found in the overview of your registered application in the link:https://portal.azure.com[Azure Portal].
 The *Azure Client secret* is also found in the portal, in the *Certificates & secrets* page.
 Note that the secret is obfuscated and only visible at the time of creation.
 
