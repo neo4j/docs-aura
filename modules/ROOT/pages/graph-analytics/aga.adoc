@@ -27,7 +27,8 @@ Aura Graph Analytics sessions use the Apache Arrow Flight protocol to communicat
 
 [NOTE]
 ====
-If you connect to Aura Graph Analytics from outside Aura (for example, running the GDS Python client on your own machine or infrastructure), you must allow outbound TCP traffic on port `8491` for Apache Arrow, in addition to the standard ports for your AuraDB instance. See xref:security/ip-addresses.adoc[Aura IP addresses and ports] for the full list of IP addresses and ports required.
+If you connect to Aura Graph Analytics from outside Aura (for example, running the GDS Python client on your own machine or infrastructure), you must allow outbound TCP traffic on port `8491` for Apache Arrow, in addition to the standard ports for your AuraDB instance. 
+See xref:security/ip-addresses.adoc[Aura IP addresses and ports] for the full list of IP addresses and ports required.
 ====
 
 === User management
