@@ -17,12 +17,12 @@ image::connection-bar.jpg[]
 .Connection modal
 image::connectionmodalnonremote.png[width=300]
 
+
 == Connect from external sources
 
 Additionally, you can connect to your instance from various external sources, such as link:https://neo4j.com/docs/create-applications/[Drivers], link:https://neo4j.com/docs/query-api/current/[Query API], link:https://neo4j.com/docs/operations-manual/current/cypher-shell/[Cypher Shell CLI], link:https://neo4j.com/docs/connectors/[Connectors], and other tools.
 These sources typically require a connection URI, instance user name, and instance password.
 The URI and credentials can be found in the instance credentials file that you downloaded from the Aura console when your instance was created, as described below.
-
 
 == Connection
 
@@ -55,6 +55,17 @@ Switching to *https://* can address connection issues and ensure seamless connec
 If a connection to your Aura database fails, an “Export connection logs” button in the connection screen appears.
 Selecting it downloads a simple text file with technical details about what went wrong.
 Use that file to debug the issue yourself, or share it with Support.
+
+== MultiDB instances
+
+If your instance contains xref:managing-instances/multiple-databases.adoc[multiple databases] use the Database dropdown to select the database you want to work with.
+When connecting to a MultiDB instance from an external client, specify the `database name` as part of the connection. 
+The database name identifies which database to access. 
+If no database name is provided, the connection cannot be established.
+
+[.shadow]
+.Database dropdown
+image::multidb/database-dropdown.png[]
 
 == Instance credentials
 
