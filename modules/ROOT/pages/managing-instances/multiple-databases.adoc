@@ -1,4 +1,4 @@
-= Multiple databases - Preview
+= Multiple databases - Preview feature
 :description: This page describes multiple databases within an Aura instance and how to create and connect to a database.
 
 label:AuraDB-Business-Critical[]
@@ -6,13 +6,13 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 
 == Overview
 
-AuraDB Business Critical and AuraDB Virtual Dedicated Cloud support multiple databases (MultiDB) within an AuraDB instance. 
+AuraDB Business Critical and AuraDB Virtual Dedicated Cloud support multiple databases within an AuraDB instance. 
 Create and manage databases using the Aura console or the Aura API. 
 An instance has its own compute and storage, and the databases run within the instance.
 
 [IMPORTANT]
 ====
-The MultiDB preview is governed by the link:https://legal.neo4j.com/#aura-specific-terms[Experimental Service Terms] in your customer agreement with Neo4j.
+The multi-database preview is governed by the link:https://legal.neo4j.com/#aura-specific-terms[Experimental Service Terms] in your customer agreement with Neo4j.
 ====
 
 == Limits (RAM and maximum databases)
@@ -80,9 +80,9 @@ Databases cannot be created using Cypher database management commands, only via 
 .Create database
 image::multidb/multidb-create.png[]
 
-== Connecting to external sources
+== Connecting external sources
 
-When connecting to a MultiDB instance from an external client, specify the `database name` as part of the connection. 
+When connecting to a multi-database instance from an external client, specify the `database name` as part of the connection. 
 The database name identifies which database to access. 
 If no database name is provided, the connection cannot be established.
 This applies to drivers, the Query API, and other external sources.
@@ -130,7 +130,7 @@ Multiple databases are supported across Aura tools. For working with multiple da
 
 == Unsupported features at GA
 
-Some features are not in scope for MultiDB instances at GA:
+Some features are not in scope for multi-database instances at GA:
 
 * Instance clone, CDC, Secondaries, Tool authentication / Seamless login, Custom Endpoints.
 * We're prioritizing based on customer feedback.

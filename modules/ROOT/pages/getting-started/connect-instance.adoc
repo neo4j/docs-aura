@@ -56,10 +56,10 @@ If a connection to your Aura database fails, an “Export connection logs” but
 Selecting it downloads a simple text file with technical details about what went wrong.
 Use that file to debug the issue yourself, or share it with Support.
 
-== MultiDB instances
+== Multi-database instances
 
 If your instance contains xref:managing-instances/multiple-databases.adoc[multiple databases] use the Database dropdown to select the database you want to work with.
-When connecting to a MultiDB instance from an external client, specify the `database name` as part of the connection. 
+When connecting to a multi-database instance from an external client, specify the `database name` as part of the connection. 
 The database name identifies which database to access. 
 If no database name is provided, the connection cannot be established.
 

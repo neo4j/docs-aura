@@ -213,7 +213,9 @@ To enable *Public traffic* on a network access configuration:
 You can now use the `database upload` command on the instances within that region.
 Once the command has completed, you can disable *Public traffic* again by following the same steps and re-selecting the *Disable public* traffic checkbox.
 
-== MultiDB instances (take backups only)
+== Multiple-database instances 
+
+(take backups only)
 
 If your instance contains multiple databases, backups are managed at the database level rather than the instance level.
 
@@ -221,5 +223,5 @@ From *Inspect > Backups*, use the *Select database* dropdown to select a databas
 All snapshot, restore, and export actions apply to the selected database.
 
 [.shadow]
-.Multiple database (MultiDB) backups
+.Multi-database backups
 image::multidb/multidb-backups.png[]
