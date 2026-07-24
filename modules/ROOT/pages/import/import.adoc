@@ -33,10 +33,6 @@ When you are happy with the model and the mapping is complete, the import can be
 But before starting the import, it is important to make sure Import is connected to the database.
 This is done in the dropdown on the connection banner located in the top center of the UI.
 
-== Multi-database instances
-
-If your instance contains xref:managing-instances/multiple-databases.adoc[multiple databases], you are prompted to select the target database before running an import.
-
 [.shadow]
 .Connection dropdown
 image::connection-dropdown.png[]
@@ -76,3 +72,7 @@ It finds the start (source) and end (target) nodes and creates a relationship be
 
 
 //== Errors
+
+== Multi-database instances
+
+If your instance contains xref:managing-instances/multiple-databases.adoc[multiple databases], you are prompted to select the target database before running an import.
