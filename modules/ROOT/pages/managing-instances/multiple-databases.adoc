@@ -1,4 +1,4 @@
-= Multiple databases - Preview feature
+= Multiple databases (Preview feature)
 :description: This page describes multiple databases within an Aura instance and how to create and connect to a database.
 
 label:AuraDB-Business-Critical[]
@@ -12,8 +12,30 @@ An instance has its own compute and storage, and the databases run within the in
 
 [IMPORTANT]
 ====
-The multi-database preview is governed by the link:https://legal.neo4j.com/#aura-specific-terms[Experimental Service Terms] in your customer agreement with Neo4j.
+The multiple datatabase preview is governed by the link:https://neo4j.com/legal-terms/[Experimental Service Terms] in your customer agreement with Neo4j.
 ====
+
+== Benefits
+
+Use multiple databases when you need clear separation of data within a single instance, without managing multiple instances.
+
+* Lower administrative overhead compared to running multiple instances
+* Development and test environments
+* Different teams or features working in the same instance
+* Faster to create and remove than separate instances
+
+Example: You can create lightweight, isolated databases for individual tenants (such as customers or groups), scaling from a few to hundreds within one instance.
+
+== Use case
+
+Instead of running separate instances for production, development, and training, and sample data, they can be combined into a single instance.
+
+An 8GB instance could be allocated as:
+
+* `Production` 4GB 
+* `Development` 2GB 
+* `Training` 1GB
+* `Sample dataset` 1GB (for experimenting with queries, dashboards, and new features)
 
 == Limits (RAM and maximum databases)
 
@@ -41,7 +63,7 @@ The maximum number of databases depends on the memory size (RAM) of the instance
 | 100
 |===
 
-== MultiDB in the Aura console
+== Multiple database in the Aura console
 
 === Enable multiple databases
 
@@ -87,40 +109,18 @@ The database name identifies which database to access.
 If no database name is provided, the connection cannot be established.
 This applies to drivers, the Query API, and other external sources.
 
-== Benefits
-
-Use multiple databases when you need clear separation of data within a single instance, without managing multiple instances.
-
-* Lower administrative overhead compared to running multiple instances
-* Development and test environments
-* Different teams or features working in the same instance
-* Faster to create and remove than separate instances
-
-Example: You can create lightweight, isolated databases for individual tenants (such as customers or groups), scaling from a few to hundreds within one instance.
-
-== Use case
-
-Instead of running separate instances for production, development, and training, and sample data, they can be combined into a single instance.
-
-An 8GB instance could be allocated as:
-
-* `Production` 4GB 
-* `Development` 2GB 
-* `Training` 1GB
-* `Sample dataset` 1GB (for experimenting with queries, dashboards, and new features)
-
 == Supported features
 
 Multiple databases are supported across Aura tools. For working with multiple databases, see the following documentation:
 
-* Backup, export, and restore: Take backups of individual databases.
+* xref:managing-instances/backup-restore-export.adoc#_multi_database_instances[Backup, export, and restore]: Take backups of individual databases.
 * Bloom and Query: When connecting, select the target database using the connection bar.
 * Metrics: Switch between databases using the Database dropdown in Metrics.
 * Import: Select the instance and the target database when running an import.
 * link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[Aura API]
 * Security & Networking: Instance level SSO, IP Filtering & Private Endpoints (where available for Tier)
 
-== Features coming soon
+== Features coming in future releases
 
 * Pause and resume for instances or individual databases
 * Custom database naming or renaming
@@ -128,16 +128,12 @@ Multiple databases are supported across Aura tools. For working with multiple da
 * Instance level backup & restore
 * Activity Feed 
 
-== Unsupported features at GA
+== Unsupported preview features
 
-Some features are not in scope for multi-database instances at GA:
+Some features are not yet in scope for multi-database instances:
 
 * Instance clone, CDC, Secondaries, Tool authentication / Seamless login, Custom Endpoints.
 * We're prioritizing based on customer feedback.
-
-Your feedback is important. 
-While this feature is in Public Preview, please share your experience using the Feedback button in the top right of the Aura console, or by emailing aura@neo4j.com. 
-For anything else, use your usual Aura Support contact routes.
 
 
 

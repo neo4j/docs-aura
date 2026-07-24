@@ -92,7 +92,6 @@ The possible aggregations are:
 
 The chart on the _Resources_ tab shows the allocated store size metric for the selected database either as a percentage of the available storage assigned for the database or as absolute values.
 
-
 === Database tab
 
 The _Database_ tab provides a chart that shows the store size and the portion of the allocated space that the database is actively utilizing.
@@ -104,6 +103,8 @@ Thus, reducing the data (nodes, relationships, properties) stored in the databas
 However, Neo4j will reuse this 'available' space before allocating more from the system.
 The amount of allocated space that is 'available' is reported by the database, and Advanced metrics uses this metric to derive the used space by subtracting it from the allocated store size.
 This information can help you understand how close your database is to exceeding the assigned storage size.
+
+== Multi-database instances
 
 For multi-database instances, you can switch between databases using the dropdown.
 
