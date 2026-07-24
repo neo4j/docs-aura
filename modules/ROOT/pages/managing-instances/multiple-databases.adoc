@@ -102,6 +102,12 @@ Databases cannot be created using Cypher database management commands, only via 
 .Create database
 image::multidb/multidb-create.png[]
 
+== Multiple databases and Aura API
+
+* how you create additional dbs using the API
+* API is slightly different
+* Example:
+
 == Connecting external sources
 
 When connecting to a multi-database instance from an external client, specify the `database name` as part of the connection. 
