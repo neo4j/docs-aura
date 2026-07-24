@@ -3,11 +3,6 @@
 :description: This page describes how to backup, export, and restore your data from a snapshot as well as using `neo4j admin` to upload data.
 :page-aliases: auradb/managing-databases/backup-restore-export.adoc, aurads/managing-databases/backup-restore-export.adoc, aurads/managing-databases/importing-data/import-db, auradb/importing/import-database
 
-For single-database instances, backups are managed through snapshots of the instance.
-For xref:managing-instances/multiple-databases.adoc[MultiDB] enabled instances, backups are managed individually for each database.
-
-== Snapshots
-
 The data in your Aura instance can be backed up, exported, and restored using snapshots.
 
 A snapshot is a copy of the data in an instance at a specific point in time.
@@ -18,8 +13,10 @@ You can find the *Snapshots* tab via *Inspect* in the more menu (*...*) on the i
 There are different kinds of snapshots taken at different intervals with different lifecycles depending on your tier.
 See <<snapshot-details>> for more information.
 
+
 Aura stores the data securely in encrypted cloud storage buckets.
 Backups are stored in the same Cloud Service Provider and region as the instance they are associated with.
+
 
 == Snapshot types
 
@@ -213,13 +210,11 @@ To enable *Public traffic* on a network access configuration:
 You can now use the `database upload` command on the instances within that region.
 Once the command has completed, you can disable *Public traffic* again by following the same steps and re-selecting the *Disable public* traffic checkbox.
 
-== Multiple-database instances 
-
-(take backups only)
+== Multip-database instances
 
 If your instance contains multiple databases, backups are managed at the database level rather than the instance level.
 
-From *Inspect > Backups*, use the *Select database* dropdown to select a database.
+From *Inspect > Backups* > use the *Select database* dropdown to select a database.
 All snapshot, restore, and export actions apply to the selected database.
 
 [.shadow]
