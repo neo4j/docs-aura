@@ -174,3 +174,21 @@ Rapid session creation can exceed the database's maximum concurrent connection l
 ====
 
 
+== Cannot resolve address / DNS resolution errors
+
+If your driver raises an error like the following when connecting to an AuraDB instance:
+
+[source, role=noheader]
+----
+ValueError: Cannot resolve address <instance-id>.databases.neo4j.io:7687
+----
+
+or
+
+----
+ServiceUnavailable: Failed to DNS resolve address <instance-id>.databases.neo4j.io:7687
+----
+
+this looks identical whether the URI is simply wrong, there's a network/firewall issue, or **the instance is paused**. AuraDB Free instances automatically pause after 3 days of inactivity, and a paused instance's hostname will not resolve.
+
+Before checking your URI, credentials, or network configuration, first confirm the instance status at https://console.neo4j.io. If the instance shows as *Paused*, click *Resume* and wait a few minutes for it to become available again before retrying your connection.
