@@ -20,7 +20,7 @@ The multiple datatabase preview is governed by the link:https://neo4j.com/legal-
 Use multiple databases when you need clear separation of data within a single instance, without managing multiple instances.
 
 * Lower administrative overhead compared to running multiple instances
-* Development and test environments
+* Development and test environments in one instance
 * Different teams or features working in the same instance
 * Faster to create and remove than separate instances
 
@@ -102,11 +102,122 @@ Databases cannot be created using Cypher database management commands, only via 
 .Create database
 image::multidb/multidb-create.png[]
 
-== Multiple databases and Aura API
+== Manage multi-database instances via Aura API
 
-* how you create additional dbs using the API
-* API is slightly different
-* Example:
+Standard guidance for Creating API credentials applies as per docs: https://neo4j.com/docs/aura/api/overview/ 
+
+[NOTE] 
+====
+All endpoints below now require your Organization ID and Project ID in the path, in addition to your Instance ID.
+====
+
+MultiDB uses the beta version of the Aura API. 
+Use link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[https://api.neo4j.io/v2beta1] as the base URL for all API requests.
+
+=== Create a multi-database instance via API
+
+[source]
+----
+POST /organizations/{orgId}/projects/{projectId}/instances
+
+curl -X POST "https://api.neo4j.io/v2beta1/organizations/$ORG_ID/projects/$PROJECT_ID/instances" \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "version": "5",
+    "region": "europe-west1",
+    "memory": "4GB",
+    "storage": "8GB",
+    "name": "MYMULTIDBTESTINSTANCE",
+    "type": "enterprise-db",
+    "cloud_provider": "gcp",
+    "multi_database": true
+  }'
+----
+
+=== Create additional databases via API
+
+[source]
+----
+POST /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databases
+
+curl -X POST "https://api.neo4j.io/v2beta1/organizations/$ORG_ID/projects/$PROJECT_ID/instances/$INSTANCE_ID/databases" \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "mydb"
+  }'
+----
+
+=== Instance details
+
+[source]
+----
+GET /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databases
+----
+
+=== Database details
+
+[source]
+----
+GET /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databases/{databaseId}
+----
+
+=== Delete database
+
+[source]
+----
+DELETE /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databases/{databaseId}
+----
+
+== Connecting with Drivers
+
+[.tabbed-example]
+====
+[.include-with-Python-example]
+=====
+
+[source, python]
+----
+from neo4j import GraphDatabase
+
+uri = "neo4j+s://instanceid.databases.neo4j.io"
+username = "neo4j"
+password = "xxxxxxxxxxxxxxxx"
+database = "my_database_id"
+
+driver = GraphDatabase.driver(uri, auth=(username, password))
+with driver.session(database=database) as session:
+    result = session.run("MATCH (n) RETURN count(n) AS node_count")
+    print(result.single())
+----
+=====
+[.include-with-javascript-example]
+=====
+
+[source, javascript]
+----
+const neo4j = require('neo4j-driver');
+
+const uri = "neo4j+s://instanceid.databases.neo4j.io";
+const user = "neo4j";
+const password = "xxxxxxxxxxxxxxxx";
+const database = "my_database_id";
+
+const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
+
+async function main() {
+  const session = driver.session({ database });
+  const result = await session.run("MATCH (n) RETURN count(n) AS node_count");
+  console.log(result.records[0].get("node_count").toInt());
+  await session.close();
+  await driver.close();
+}
+
+main();
+----
+=====
+====
 
 == Connecting external sources
 
@@ -115,7 +226,9 @@ The database name identifies which database to access.
 If no database name is provided, the connection cannot be established.
 This applies to drivers, the Query API, and other external sources.
 
-== Supported features
+== Features
+
+=== Supported features
 
 Multiple databases are supported across Aura tools. For working with multiple databases, see the following documentation:
 
@@ -126,7 +239,7 @@ Multiple databases are supported across Aura tools. For working with multiple da
 * link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[Aura API]
 * Security & Networking: Instance level SSO, IP Filtering & Private Endpoints (where available for Tier)
 
-== Features coming in future releases
+=== Features coming in future releases
 
 * Pause and resume for instances or individual databases
 * Custom database naming or renaming
@@ -134,11 +247,11 @@ Multiple databases are supported across Aura tools. For working with multiple da
 * Instance level backup & restore
 * Activity Feed 
 
-== Unsupported preview features
+=== Unsupported preview features
 
 Some features are not yet in scope for multi-database instances:
 
-* Instance clone, CDC, Secondaries, Tool authentication / Seamless login, Custom Endpoints.
+* Instance clone, CDC, Secondaries, Tool authentication (aka Seamless login), Custom Endpoints.
 * We're prioritizing based on customer feedback.
 
 
