@@ -4,12 +4,9 @@
 label:AuraDB-Business-Critical[]
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-
 AuraDB Business Critical and AuraDB Virtual Dedicated Cloud support multiple databases within an AuraDB instance. 
 You can create and manage databases using the Aura console or the Aura API. 
 Each instance has its own compute and storage, and the databases run within the instance.
-
-
 
 Use multiple databases when you need clear separation of data within a single instance, without managing multiple instances.
 
@@ -103,7 +100,7 @@ This applies to drivers, the Query API, and other external sources.
 
 == Manage multi-database instances via Aura API
 
-Standard guidance for Creating API credentials applies, see link:{neo4j.docs-base-uri}/aura/api/overview/[Aura API].
+Standard guidance for creating API credentials applies, see link:{neo4j.docs-base-uri}/aura/api/overview/[Aura API].
 
 [NOTE] 
 ====
@@ -177,7 +174,7 @@ There are some things to consider when working with multiple databases:
 * xref:metrics/view-metrics.adoc#_multi_database_instances[Metrics]: Switch between databases using the Database dropdown in Metrics.
 * xref:import/import.adoc#_multi_database_instances[Import]: Select the instance and the target database when running an import.
 * link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[Aura API]
-* xref:security/index.adoc[Security & Networking]: Instance level SSO, IP Filtering & Private Endpoints (where available for Tier)
+* xref:security/index.adoc[Security & Networking]: Instance level SSO, IP Filtering & Private Endpoints (where available for the Aura tier)
 
 === Future features
 
