@@ -95,6 +95,13 @@ Databases cannot be created using Cypher database management commands, only via 
 .Create database
 image::multidb/multidb-create.png[]
 
+== Connecting external sources
+
+When connecting to a multi-database instance from an external client, specify the `database name` as part of the connection. 
+The database name identifies which database to access. 
+If no database name is provided, the connection cannot be established.
+This applies to drivers, the Query API, and other external sources.
+
 == Manage multi-database instances via Aura API
 
 Standard guidance for Creating API credentials applies, see link:{neo4j.docs-base-uri}/aura/api/overview/[Aura API].
@@ -162,62 +169,6 @@ GET /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databases
 ----
 DELETE /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databases/{databaseId}
 ----
-
-== Connecting with Drivers
-
-[.tabbed-example]
-====
-[.include-with-Python-example]
-=====
-
-[source, python]
-----
-from neo4j import GraphDatabase
-
-uri = "neo4j+s://instanceid.databases.neo4j.io"
-username = "neo4j"
-password = "xxxxxxxxxxxxxxxx"
-database = "my_database_id"
-
-driver = GraphDatabase.driver(uri, auth=(username, password))
-with driver.session(database=database) as session:
-    result = session.run("MATCH (n) RETURN count(n) AS node_count")
-    print(result.single())
-----
-=====
-[.include-with-javascript-example]
-=====
-
-[source, javascript]
-----
-const neo4j = require('neo4j-driver');
-
-const uri = "neo4j+s://instanceid.databases.neo4j.io";
-const user = "neo4j";
-const password = "xxxxxxxxxxxxxxxx";
-const database = "my_database_id";
-
-const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
-
-async function main() {
-  const session = driver.session({ database });
-  const result = await session.run("MATCH (n) RETURN count(n) AS node_count");
-  console.log(result.records[0].get("node_count").toInt());
-  await session.close();
-  await driver.close();
-}
-
-main();
-----
-=====
-====
-
-== Connecting external sources
-
-When connecting to a multi-database instance from an external client, specify the `database name` as part of the connection. 
-The database name identifies which database to access. 
-If no database name is provided, the connection cannot be established.
-This applies to drivers, the Query API, and other external sources.
 
 == Features
 
