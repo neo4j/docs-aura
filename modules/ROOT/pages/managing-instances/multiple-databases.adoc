@@ -174,11 +174,11 @@ Multiple databases are supported across Aura tools.
 There are some things to consider when working with multiple databases:
 
 * xref:managing-instances/backup-restore-export.adoc#_multi_database_instances[Backup, export, and restore]: Take backups of individual databases.
-* Bloom and Query: When connecting, select the target database using the connection bar.
-* Metrics: Switch between databases using the Database dropdown in Metrics.
-* Import: Select the instance and the target database when running an import.
+* xref:explore/introduction.adoc[Bloom and Query]: When connecting, select the target database using the connection bar.
+* xref:metrics/view-metrics.adoc#_multi_database_instances[Metrics]: Switch between databases using the Database dropdown in Metrics.
+* xref:import/import.adoc#_multi_database_instances[Import]: Select the instance and the target database when running an import.
 * link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[Aura API]
-* Security & Networking: Instance level SSO, IP Filtering & Private Endpoints (where available for Tier)
+* xref:security/index.adoc[Security & Networking]: Instance level SSO, IP Filtering & Private Endpoints (where available for Tier)
 
 === Future features
 
