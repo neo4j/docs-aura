@@ -124,11 +124,10 @@ curl -X POST "https://api.neo4j.io/v2beta1/organizations/$ORG_ID/projects/$PROJE
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-    "version": "5",
     "region": "europe-west1",
     "memory": "4GB",
     "storage": "8GB",
-    "name": "MYMULTIDBTESTINSTANCE",
+    "name": "mymultidbtestinstance",
     "type": "enterprise-db",
     "cloud_provider": "gcp",
     "multi_database": true
@@ -144,9 +143,6 @@ POST /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/database
 curl -X POST "https://api.neo4j.io/v2beta1/organizations/$ORG_ID/projects/$PROJECT_ID/instances/$INSTANCE_ID/databases" \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{
-    "name": "mydb"
-  }'
 ----
 
 === Instance details
