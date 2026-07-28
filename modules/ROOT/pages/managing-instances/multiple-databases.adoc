@@ -64,9 +64,9 @@ The maximum number of databases depends on the memory size (RAM) of the instance
 | 100
 |===
 
-== Managing multiple databases
+== Managing databases
 
-=== Manage multi-database instances via Aura API
+=== API requirements
 
 [NOTE] 
 ====
@@ -196,7 +196,7 @@ GET /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databases
 ====
 [.include-with-Aura-console]
 =====
-To delete a database, view the database details > from the database [...] more menu > select *Delete*. 
+To delete a database, open the database details > from the database […] more menu > select *Delete*.
 =====
 [.include-with-API]
 =====
