@@ -4,7 +4,7 @@ List parameters allow you to pass multiple values into a parameter and use them 
 Define the parameter once, then reference it using the `$` prefix.
 See link:https://neo4j.com/docs/cypher-manual/current/values-and-types/lists/[Cypher Manual -> Lists]
 
-== Example 
+== Example
 
 Examples used here use the Northwind dataset as outlined in xref::/dashboards/index.adoc#_sample_dataset[Northwind sample dataset] and you can recreate them in your own dashboard.
 
@@ -25,7 +25,7 @@ RETURN o.shipCountry AS country,
 ORDER BY unitsOrdered DESC
 ----
 
-As a result, we can see in the Northwind dataset that Germany orders the most units, followed by the UK, then France.
+As a result, you can see in the Northwind dataset that Germany orders the most units, followed by the UK, then France.
 
 [.shadow]
 .Compare how many items are ordered by selected countries.
