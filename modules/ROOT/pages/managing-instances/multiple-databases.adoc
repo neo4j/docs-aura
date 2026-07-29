@@ -14,10 +14,8 @@ AuraDB Business Critical and AuraDB Virtual Dedicated Cloud support multiple dat
 You can create and manage databases using the Aura console or the Aura API. 
 Each instance has its own compute and storage, and the databases run within the instance.
 
-Use multiple databases when you need clear separation of data within a single instance, without managing multiple instances.
-
 Use multiple databases when you need clear separation of data within the same instance.
-This allows for lower administrative overhead compared to running multiple instances.
+This lowers administrative overhead compared to running multiple instances.
 It is faster to create and remove and allows for scaling within the same instance.
 
 For example, instead of running separate instances for production, development, training and sample data, they can all be combined into a single instance.
