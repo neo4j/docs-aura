@@ -100,8 +100,6 @@ image::multidb/multidb-toggle.png[Multiple databases toggle]
 [.include-with-API]
 =====
 
-To create a multi-database instance via API:
-
 [source]
 ----
 POST /organizations/{orgId}/projects/{projectId}/instances
@@ -164,10 +162,10 @@ curl -X POST "https://api.neo4j.io/v2beta1/organizations/$ORG_ID/projects/$PROJE
 [.include-with-Aura-console]
 =====
 You can create, view, and manage databases from the instance Databases view. 
-You can access it from:
+Access it from either:
 
-* From the instance [...] more menu > select *Databases*
-* Open *Inspect* > select the *Databases* tab.
+* The instance [...] more menu > select *Databases*
+* *Inspect* > select the *Databases* tab.
 
 =====
 [.include-with-API]
