@@ -5,7 +5,7 @@
 
 To interact with a database in an instance within the console, you need to establish a connection.
 
-. Go to *Import*, *Explore*, *Query*, or *Dashboards*.
+. Go to *Import*, *Bloom*, *Query*, or *Dashboards*.
 . From the connection status bar, use the dropdown to connect to an instance.
 . You may need your *Username* and *Password* credentials.
 
@@ -23,8 +23,7 @@ Additionally, you can connect to your instance from various external sources, su
 These sources typically require a connection URI, instance user name, and instance password.
 The URI and credentials can be found in the instance credentials file that you downloaded from the Aura console when your instance was created, as described below.
 
-
-== Connection
+== Connection methods
 
 Aura connection uses an automated fail over, initially attempting to use `neo4j+s://` but switching to `https://` if an issue is identified.
 
@@ -44,7 +43,7 @@ Use for optimal performance.
 TLS encrypted connection to Neo4j over HTTPS (Query API), with full certificate validation.
 Use in environments where port restrictions may prevent access to the Bolt port.
 
-== Connection errors
+== Troubleshooting errors
 
 In an enterprise environment with restrictive networking, connection errors are sometimes caused because non-standard ports (like the Bolt protocol) are ignored, or blocked by firewalls when using *neo4j+s://*.
 

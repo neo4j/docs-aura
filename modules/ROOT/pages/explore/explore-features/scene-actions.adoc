@@ -1,4 +1,4 @@
-:description: This section describes Scene actions in Explore.
+:description: This section describes Scene actions in Bloom.
 
 [[scene-actions]]
 = Scene actions
@@ -8,7 +8,7 @@ The difference is that in a Scene action, the parameters can be the selected ele
 Also, whereas Scene actions are defined in the Perspective drawer under _Saved Cypher_, they are invoked from the context menu.
 
 The Scene actions are listed in the order they were created.
-Explore lets you reorder them any way you like by dragging and dropping them as you please in the Perspective drawer.
+Bloom lets you reorder them any way you like by dragging and dropping them as you please in the Perspective drawer.
 The order of Scene actions in the Perspective drawer is also reflected from the context menu.
 
 [.shadow]
@@ -31,7 +31,7 @@ If a relationship is selected instead of nodes, the _Discontinued products_ Scen
 image::scene-action-relationship.png[width=400]
 
 If you write a Scene action where your query targets relationships rather than nodes, they are defined in a similar fashion, `WHERE elementId(r) in $relationships`.
-However, Explore reminds you if you forget.
+However, Bloom reminds you if you forget.
 
 [NOTE]
 ====

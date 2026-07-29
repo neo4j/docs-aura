@@ -18,8 +18,8 @@ To switch between different organizations or projects, click on its name.
 This opens a dropdown menu where you can see all the organizations and projects you have access to and select the one you want to switch to.
 
 [.shadow]
-.Breadcrumb navigation / org and project switcher
-image::breadcrumbs.png[Breadcrumb navigation]
+.Organization and project navigation
+image::org-project-navigation.jpg[Organization/project navigation]
 
 == Organizations
 
@@ -51,7 +51,7 @@ image::organization-settings.jpg[]
 
 === Generative AI assistance
 
-When enabled, Generative AI assistance is available in a number of places, including the xref:query/visual-tour.adoc#copilot[Query copilot] and xref:explore/explore-visual-tour/search-bar.adoc#copilot[Explore copilot].
+When enabled, Generative AI assistance is available in a number of places, including the xref:query/visual-tour.adoc#copilot[Query copilot] and xref:explore/explore-visual-tour/search-bar.adoc#copilot[Bloom copilot].
 These features are identified with the sparkle icon and your use is subject to the link:{neo4j-docs-base-uri}/reference/license/#_genai_outputs[GenAI outputs] disclaimer.
 
 === Aura Agent
@@ -86,11 +86,6 @@ In the instance section, you can view and select which instance you want to conn
 By expanding an instance card, you can explore various options, such as viewing metrics, taking snapshots, or pausing the instance.
 Additionally, you can also connect the instance to an application.
 
-=== Import
-
-If your instance doesn't contain any data, the Import service allows you to import CSV files to your database.
-This service lets you create your data model and map it to your files.
-See the xref:import/introduction.adoc[What is Import?] for more information about this service.
 
 [[graph-analytics-page]]
 === Graph Analytics
@@ -117,25 +112,31 @@ You can also perform the following actions via this page:
 Create a GraphQL API to use the power of GraphQL with AuraDB.
 For information on GraphQL Data APIs, see the link:https://neo4j.com/docs/graphql/7/aura-graphql/[GraphQL docs]
 
-== Tools
+== Studio
 
-The tools allow you to interact with your data and therefore require an active connection to an instance.
-Once connected to an instance, you can use both the Explore and the Query tools.
+The tools in the studio allow you to interact with your data and therefore require an active connection to an instance.
+Once connected to an instance, you can use both the Bloom and the Query tools.
 
 [.shadow]
 .Tools on the left side panel
 image::leftsidepanel.png[]
 
-=== Explore
+=== Import
 
-Explore helps you visualize and interact with datasets without using any code.
+If your instance doesn't contain any data, the Import tool allows you to import CSV files to your database.
+This service lets you create your data model and map it to your files.
+See the xref:import/introduction.adoc[What is Import?] for more information.
+
+=== Bloom
+
+Bloom helps you visualize and interact with datasets without using any code.
 
 * *Visual Exploration:* See your data as a graph, with nodes and relationships between them, making it easier to understand and analyze complex data connections.
 
 * *Data Insights:* By interacting with the graph, uncover patterns, trends, and insights that aren't easily visible in traditional tabular formats.
-Explore is designed to make working with graph data more intuitive and insightful by providing a visual and interactive way to analyze and manage your data.
+Bloom is designed to make working with graph data more intuitive and insightful by providing a visual and interactive way to analyze and manage your data.
 
-See xref:explore/introduction.adoc[What is Explore?] for more information.
+See xref:explore/introduction.adoc[What is Bloom?] for more information.
 
 === Dashboards
 

@@ -133,7 +133,7 @@ The following roles are available at the org level:
 |
 |
 
-| Project Admin access to all projects in the organization 
+| Project Admin access to all projects in the organization
 | {check-mark}
 |
 |
@@ -257,7 +257,7 @@ It has the same permissions as the `PROJECT_VIEWER` role, but with some extra pe
 The role allows access to metrics for all instances in a project.
 Accessing metric endpoints requires xref:/api/authentication.adoc[Aura API Credentials] and the `METRICS_READER` role enables the creation of these credentials.
 
-The `METRICS_READER` role can view and open instances in the console, however, login to the instance is required to interact with it, with access to Explore and Query defined by the instance's RBAC settings.
+The `METRICS_READER` role can view and open instances in the console, however, login to the instance is required to interact with it, with access to Bloom and Query defined by the instance's RBAC settings.
 
 === Predefined roles
 
