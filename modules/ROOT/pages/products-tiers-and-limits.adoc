@@ -1,24 +1,9 @@
-= Products, tiers and limits
+= Neo4j AuraDB Limits and Quotas
 
-[NOTE]
-====
-This is a draft document, to work on the layout of the page - figures are subject to change.
-====
-
-[IMPORTANT]
-====
-*Excited about the future of graphs*
-At Neo4j, we want to help you build and grow with confidence. 
-As your needs evolve, we’ll do our best to support you with the resources and guidance you need.
-We offer programs and initiatives such as the Neo4j Startup Program, and our Support team can also help you better understand and optimize your resource usage.
-If you need additional resources or higher limits, reach out to us. 
-We’ll work with you to explore the best options available, including ways to consolidate costs, adjust limits, and support your workload as efficiently as possible.
-====
-
-This document provides a comprehensive overview of the system limits, quotas, and operational constraints for Neo4j AuraDB across its different service tiers. 
+This document provides a comprehensive overview of the system limits, quotas, operational constraints and defaults for Neo4j AuraDB across its different service tiers. 
 These limits are in place to ensure the stability, performance, and security of the managed service.
 
-== Products
+== Service Tiers Overview
 
 AuraDB is offered in four distinct tiers, each designed for different use cases, from learning and development to mission-critical enterprise applications.
 
@@ -34,38 +19,53 @@ AuraDB is offered in four distinct tiers, each designed for different use cases,
 
 These limits define the scale of a single AuraDB instance based on its tier and configured size.
 
-[cols="1,1,1,1,1", options="header"]
+[cols="2,2,2,3",options="header"]
 |===
-|Limit |AuraDB Free |AuraDB Professional |AuraDB Business Critical |AuraDB VDC 
+| Limit
+| AuraDB Free
+| AuraDB Professional
+| AuraDB Business Critical / AuraDB VDC
 
-|Nodes
-|200,000
-|No hard limit
-|No hard limit
-|No hard limit
+| Nodes
+| 200,000
+| Millions of nodes and relationships
+| Billions of nodes and relationships
 
-|Relationships
-|400,000
-|No hard limit
-|No hard limit
-|No hard limit
+| Relationships
+| 400,000
+| Millions of nodes and relationships
+| Billions of nodes and relationships
 
-|Memory (RAM)
-|N/A
-|1 GB to 128 GB
-|Up to 512 GB
-|Up to 512 GB 
+| Memory (RAM)
+| N/A
+| 1 GB  -  128 GB
+| 2 GB  -  1,952 GB* (GCP)
 
-|Storage
-|N/A
-|2GB to 1TB
-|4GB to 2TB
-|4GB to 2TB
+2 GB  -  512 GB (AWS & Azure)
+
+| Storage
+| 1 GB
+| 2 GB  -  2,048 GB
+| 4 GB  -  5,120 GB (AWS & GCP)
+
+4 GB  -  2,048 GB (Azure)
+
+| RAM/Disk
+| N/A
+2+^| Up to 1:16 max
+
+| Ratio
+| N/A
+2+^| 
+
 |===
 
-== Connection Limits
+_*Larger GCP instances from 744GB RAM are available on request_
 
-The number of simultaneous connections an instance can handle is tied to its resources and architecture.
+== Query, Connection and Transaction Limits
+
+These limits govern the execution of Cypher queries to ensure database stability. 
+
 
 [cols="1,2", options="header"]
 |===
@@ -90,40 +90,94 @@ These limits govern the execution of Cypher queries to ensure database stability
 
 [cols="2,2",options="header"]
 |===
-| Limit | Default Value
-
-| Max Query Execution Time
-| Configurable in the future
+| Transaction Limits | Default Value
 
 | Max Concurrent Transactions
-| 1,000 (configurable default)
+| 1,000
 
-| Max Transaction
-| TBD
-
-| Metadata Size
-| TBD
-
-| Idle Connection Timeout
-| 1 hour
-
-| Query cache size
-| 51
-
-| Transaction Memory Size
-| 278 MiB for both 1G & 2G instances
-
-| Checkpoint IOPS limit
-|600
-
-|Additional pagecache warmup after restart
-|True/False
-
-|Page cache warmup profile interval
-|1 minute/2 hours
 |===
 
-== Data Import & Operational Limits
+[cols="2,2",options="header"]
+|===
+| Page Cache Limits | Default Value
+
+| Max Concurrent Transactions
+| 1,000
+
+| Query Cache Size
+| 51
+
+| Additional pagecache warmup after restart
+| False
+
+
+| Page cache warmup profile interval
+| 1 minute
+
+| Checkpoint IOPS limit
+| 600
+
+|===
+
+[cols="2,2",options="header"]
+|===
+| Page Cache Limits | Default Value
+
+| Max Concurrent Transactions
+| 1,000
+
+| Query Cache Size
+| 51
+
+| Additional page cache warmup after restart
+| False
+
+
+| Page cache warmup profile interval
+| 1 minute
+
+| Checkpoint IOPS limit
+| 600
+
+|===
+
+[cols="2,2",options="header"]
+|===
+| Max Transaction Memory Size Limits
+| Default Value
+
+| 1GB RAM instance
+| 200 MB
+
+| 2 GB RAM instance
+| 275 MB
+
+| 4 GB RAM instance
+| 1,597 MB
+
+| 8 GB RAM instance
+| 2,654 MB
+
+| 16 GB RAM instance
+| 4,154 MB
+
+| 24 GB RAM instance
+| 7,699 MB
+
+| 32 GB RAM instance
+| 11,244 MB
+
+| 48 GB RAM instance
+| 16,876 MB
+
+| 64 GB RAM instance
+| 22,508 MB
+
+| 128 GB  -  2 TB RAM instance
+| 28,508 MB
+|===
+
+== Data Import Limits
 
 These limits apply when loading data into AuraDB or performing administrative actions.
 
@@ -131,14 +185,8 @@ These limits apply when loading data into AuraDB or performing administrative ac
 |===
 | Limit | Value
 
-| LOAD CSV Source File Size
-| 10M Nodes (Recommended, not enforced)
-
-|Load CSV per field size
-|2MB+ with room to grow or editable
-
-| Database Dump (.dump) Upload Size
-| 256 GB
+| Restore from file on Aura Console
+| 4GB
 |===
 
 == Features, Backups, and SLAs
@@ -192,7 +240,7 @@ This table compares key operational features and service level agreements across
 
 == Aura Trial Limits
 
-These limits apply to Aura credit-based trials. Based on guardrails.
+These limits apply to Aura credit-based trials.
 
 [cols="2,2",options="header"]
 |===
