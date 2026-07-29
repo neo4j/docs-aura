@@ -66,28 +66,6 @@ _*Larger GCP instances from 744GB RAM are available on request_
 
 These limits govern the execution of Cypher queries to ensure database stability. 
 
-
-[cols="1,2", options="header"]
-|===
-|Tier |Connection Limit Details
-
-|AuraDB Free
-|400 connections, limited use of tools
-
-|AuraDB Professional
-|400 connections
-
-|AuraDB Business Critical
-|800 connections by default. Adding each secondary will enable 400 more connections.
-
-|AuraDB VDC
-|800 connections by default. Adding each secondary will enable 400 more connections.
-|===
-
-== Query and Transaction Limits
-
-These limits govern the execution of Cypher queries to ensure database stability.
-
 [cols="2,2",options="header"]
 |===
 | Transaction Limits | Default Value
@@ -192,7 +170,7 @@ This table compares key operational features and service level agreements across
 | Hourly
 
 | Backup Retention
-| 1 snapshot at a time
+| 1 backup at a time
 | 7 days
 | 30 days
 | 60 - 90 days
