@@ -91,7 +91,7 @@ This setting cannot be changed later.
 [.include-with-Aura-console]
 =====
 
-To create a multi-database instance, during instance creation scroll down to *Additional settings* during instance creation and enable *Multiple databases*.
+During instance creation, scroll down to *Additional settings* during instance creation and enable *Multiple databases*.
 
 [.shadow]
 image::multidb/multidb-toggle.png[Multiple databases toggle]
@@ -134,7 +134,7 @@ Databases cannot be created using Cypher database management commands, only via 
 [.include-with-Aura-console]
 =====
 
-To create additional databases, from the instance [...] more menu > select *Databases* > select *Create Database*. 
+From the instance [...] more menu > select *Databases* > select *Create Database*. 
 
 A database name is generated automatically (for example, `293fd870`). 
 
@@ -145,7 +145,6 @@ image::multidb/multidb-create.png[Create database]
 [.include-with-API]
 =====
 
-To create additional databases via API:
 
 [source]
 ----
@@ -196,7 +195,7 @@ GET /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databases
 ====
 [.include-with-Aura-console]
 =====
-To delete a database, open the database details > from the database […] more menu > select *Delete*.
+Open the database details > from the database […] more menu > select *Delete*.
 =====
 [.include-with-API]
 =====
