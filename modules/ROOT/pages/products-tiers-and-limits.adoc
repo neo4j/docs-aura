@@ -55,7 +55,7 @@ These limits define the scale of a single AuraDB instance based on its tier and 
 2+^| Up to 1:16 max
 
 | Ratio
-| N/A
+| 
 2+^| 
 
 |===
@@ -94,28 +94,6 @@ These limits govern the execution of Cypher queries to ensure database stability
 
 | Max Concurrent Transactions
 | 1,000
-
-|===
-
-[cols="2,2",options="header"]
-|===
-| Page Cache Limits | Default Value
-
-| Max Concurrent Transactions
-| 1,000
-
-| Query Cache Size
-| 51
-
-| Additional pagecache warmup after restart
-| False
-
-
-| Page cache warmup profile interval
-| 1 minute
-
-| Checkpoint IOPS limit
-| 600
 
 |===
 
@@ -213,17 +191,11 @@ This table compares key operational features and service level agreements across
 | Daily & Hourly
 | Hourly
 
-| Default Backup Retention
+| Backup Retention
 | 1 snapshot at a time
 | 7 days
 | 30 days
-| 60 days
-
-| Point-in-Time Recovery
-| No
-| No
-| Yes
-| Yes
+| 60 - 90 days
 
 | IP Filtering
 | None
