@@ -7,13 +7,10 @@ These limits are in place to ensure the stability, performance, and security of 
 
 AuraDB is offered in four distinct tiers, each designed for different use cases, from learning and development to mission-critical enterprise applications.
 
-*AuraDB Free:* A perpetual free tier for learning, prototyping, and small projects.
-
-*AuraDB Professional:* A scalable, pay-as-you-go tier for production-ready applications.
-
-*AuraDB Business Critical:* A highly available, multi-node cluster for mission-critical workloads requiring a 99.95% uptime SLA.
-
-*AuraDB Virtual Dedicated Cloud (VDC):* A single-tenant, dedicated environment offering maximum security, isolation, and customizable configurations.
+* AuraDB Free:* A perpetual free tier for learning, prototyping, and small projects.
+* AuraDB Professional:* A scalable, pay-as-you-go tier for production-ready applications.
+* AuraDB Business Critical:* A highly available, multi-node cluster for mission-critical workloads requiring a 99.95% uptime SLA.
+* AuraDB Virtual Dedicated Cloud (VDC):* A single-tenant, dedicated environment offering maximum security, isolation, and customizable configurations.
 
 == Graph Size & Instance Limits
 
@@ -50,13 +47,9 @@ These limits define the scale of a single AuraDB instance based on its tier and 
 
 4 GB  -  2,048 GB (Azure)
 
-| RAM/Disk
+| RAM/Disk ratio
 | N/A
 2+^| Up to 1:16 max
-
-| Ratio
-| 
-2+^| 
 
 |===
 
@@ -78,9 +71,6 @@ These limits govern the execution of Cypher queries to ensure database stability
 [cols="2,2",options="header"]
 |===
 | Page Cache Limits | Default Value
-
-| Max Concurrent Transactions
-| 1,000
 
 | Query Cache Size
 | 51
