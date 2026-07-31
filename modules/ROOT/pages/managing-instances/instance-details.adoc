@@ -28,6 +28,9 @@ It means multiple instances can have the same instance name, because they are di
 |Query API URL
 |Use this to connect to an instance with Query API
 
+|MCP URL
+|Use this to connect to an instance with an MCP client
+
 |Custom endpoint
 |Applicable if a custom endpoint has been configured for the instance.
 See xref:managing-instances/custom-endpoints.adoc[Custom endpoints] for more information.
@@ -44,16 +47,16 @@ See xref:managing-instances/custom-endpoints.adoc[Custom endpoints] for more inf
 |Memory
 |The capacity of your instance
 
-|CPU
+|vCPU
 |Aura provides database as a service through public cloud providers.
-It runs on container technology and this allows for the AuraDB Instance to allocate dedicated CPU resources.
+It runs on container technology and this allows for the AuraDB Instance to allocate a maximum of dedicated vCPU resources.
 
 |Storage
 |Backups, automated and manual, are stored separately from your instance's allocated storage.
 These are saved in the cloud provider's storage bucket in the same region as your Aura instance.
 
-Options for adjustable storage are available for AuraDB pre-paid billing on GCP, Neo4j latest version.  
-See xref:managing-instances/instance-actions.adoc#_adjust_storage[Adjust storage] for more information. 
+Options for adjustable storage are available for AuraDB pre-paid billing on GCP, Neo4j latest version.
+See xref:managing-instances/instance-actions.adoc#_adjust_storage[Adjust storage] for more information.
 
 |Encryption key
 |Neo4j Managed Key encrypts your data
@@ -97,11 +100,11 @@ See xref:managing-instances/backup-restore-export.adoc#restore-backup[Restore] f
 * Instances may be suspended because of unpaid invoices. Suspension is lifted after outstanding invoices are paid.
 
 [NOTE]
-==== 
-Snapshots remain available for 30 days after an instance is suspended. 
+====
+Snapshots remain available for 30 days after an instance is suspended.
 
 You can download a backup without reinstating the project.
-Backups remain available depending on tier and when the backups were taken. 
+Backups remain available depending on tier and when the backups were taken.
 See xref:managing-instances/backup-restore-export.adoc[Backup, export, restore] for more information.
 ====
 
