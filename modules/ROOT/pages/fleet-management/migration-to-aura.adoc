@@ -1,0 +1,205 @@
+= Migrate a self-managed deployment to Aura
+:description: This page describes how to migrate a self-managed Neo4j deployment to Aura using Fleet Manager.
+:min-version: 2026.05.0
+:min-version-plugin: 5.26.0
+:min-plugin-version: 1.2.0
+
+There are different ways to migrate data from a self-managed Neo4j deployment Community Edition to Aura.
+You can do it manually as described in xref:tutorials/migration.adoc[Migrate from self-managed to Aura], using `neo4j-admin` to create a database dump and then manually uploading it to an Aura instance.
+
+But if your self-managed CE deployment is already connected and monitored using Fleet Manager, Fleet Manager can guide you through the migration directly from the Aura console.
+
+Fleet Manager has two options for migration from Community Edition:
+
+* *Migrate to Aura* (or the *Migrate to Aura* button) to open the migration wizard.
+* *Migrate to Aura with one click* to migrate to a new instance using a recommended configuration, without going through the full wizard (see <<one-click-migration>>).
+
+The migration wizard helps you check compatibility, select a destination Aura instance, and transfer your data.
+Fleet Manager stops the database, creates a dump, and uploads and imports it into Aura for you.
+
+
+== Prerequisites
+
+To migrate a self-managed deployment to Aura using Fleet Manager you need to ensure the following:
+
+* The deployment must be *monitored* by Fleet Manager and in the *RUNNING* state.
+See xref:fleet-management/setup.adoc[Add a deployment] for how to set up monitoring.
+
+* The deployment must run *Neo4j Community Edition {min-version} or later*, or *Neo4j Community Edition {min-version-plugin} or later with Fleet Management plugin {min-plugin-version} or later*.
+
+* You must have the *Project admin* role for the Aura project where the deployment is monitored.
+
+[TIP]
+====
+Before migrating your database, consider creating a defragmented copy of your database.
+This can lead to a reduction in the size of the dump file, thus possibly lower cost for the Aura instance and a faster migration process.
+See link:https://neo4j.com/docs/operations-manual/current/performance/space-reuse/#space-reuse-reclaim-space[Reclaim unused space] for further reading on compacting a database.
+====
+
+== Start a migration
+
+You start a migration from the self-managed deployment in the Aura console using the *[...]* menu on the remote instance card, or you can use the *Migrate to Aura* button (if you want to use the migration wizard).
+Select your preferred migration option to start the process.
+
+== Migration wizard
+
+The wizard has three steps: *Check compatibility*, *Choose Aura destination*, and *Transfer data*.
+
+=== Step 1: Check compatibility
+
+This step helps you verify that your workload is compatible with Aura before migrating.
+
+*Check your driver versions*::
+If you connect using one of Neo4j's official drivers, make sure you are on a version supported by Aura.
+Only some 4.4 driver versions work with Aura, so updating to 5.x drivers or later is recommended (for more information see the https://support.neo4j.com/s/article/10845868658579[driver support article]).
+
+*Identify queries or workloads that can't run on Aura*::
++
+Decide whether you want Fleet Manager to check your workload for compatibility or if you want to do this manually.
+You can allow Fleet Manager to collect data about your workload for 24 hours to gauge whether your workload is compatible with Aura.
++
+Manually review your workload.
+Aura does not allow custom plugins or arbitrary procedures and functions:
++
+** A subset of APOC Core is available. See xref:apoc.adoc[APOC support].
+** APOC Extended and custom plugins are not supported.
+** User-defined procedures and functions are not available on Aura.
+
+You must acknowledge that verifying compatibility is your responsibility before continuing.
+
+=== Step 2: Select Aura destination
+
+Select where to migrate your data:
+
+*Migrate to a new instance*::
+Create a new Aura instance for the migration.
+The wizard pre-fills a recommended size based on your deployment's usage and hides unsupported (too-small) sizes.
+Migrating to AuraDB Free is not supported.
+The estimated cost is shown before you create the instance.
+
+*Migrate to an existing instance*::
+Select a running Aura instance as the target.
++
+[WARNING]
+====
+All existing data in the selected instance is *deleted* and replaced with data from your deployment.
+You must acknowledge this before continuing.
+====
++
+The target instance must:
++
+* Have more than double the storage of your database dump file.
+* Have enough RAM for your query load and memory requirements.
+* Not be an AuraDB Free instance. Migrating to AuraDB Free is not supported.
+
+=== Step 3: Transfer data
+
+Select how to transfer your data.
+
+==== Automatic (recommended)
+
+Fleet Manager performs the migration for you. It:
+
+. Shuts down the `neo4j` database on the self-managed deployment.
+. Creates a database dump.
+. Restarts the `neo4j` database on the self-managed deployment.
+. Creates or selects the target Aura instance.
+. Uploads the dump to Aura and starts the import.
+. Waits for the import to complete.
+
+You must consent to these actions, including the database shutdown, before starting the migration.
+
+[NOTE]
+====
+This process can take several hours depending on the size of the database.
+You can monitor progress in the Aura console (see <<monitor-migration-status>>).
+====
+
+==== Manual
+
+You migrate the data yourself by following an in-console checklist.
+Mark each section *Done* to complete the guide.
+
+. *Create a database dump*
++
+Open a console in the Neo4j installation directory, stop the database, and create the dump:
++
+[source,shell]
+----
+# Stop the database
+bin/neo4j stop
+
+# Create the dump (note the path -- you need it later)
+bin/neo4j-admin database dump neo4j --to-path=PATH_TO_DUMP
+----
++
+Make a note of the dump file size to help select the correct Aura instance size.
+
+. *Check the target Aura instance state*
++
+Confirm the selected target Aura instance is in the expected state before uploading.
+
+. *Upload the database dump to Aura*
++
+[IMPORTANT]
+====
+After a successful upload, the Aura instance is in a `LOADING` state and unavailable until the dump is processed. This can take several hours depending on database size.
+====
++
+Upload using `neo4j-admin` (recommended for large dumps):
++
+[source,shell]
+----
+bin/neo4j-admin database upload neo4j \
+    --from-path=PATH_TO_DUMP \
+    --to-uri=BOLT_URL \
+    --overwrite-destination=false
+----
++
+Alternatively, for dumps *4 GB or smaller*, you can restore directly from the Aura console: open *Inspect* on the Aura instance, select *Restore from backup* file, and drag and drop the `.dump` file.
+
+[[one-click-migration]]
+== One-click migration
+
+*Migrate to Aura with one click* creates a new Aura instance using a configuration recommended from your deployment's recent usage, then starts the migration.
+
+A confirmation dialog shows the recommended configuration before you proceed:
+
+* Self-managed disk usage
+* Cloud provider
+* Region
+* Tier
+* Memory
+* Storage
+
+The dialog also shows the estimated cost of the new instance.
+Select *Migrate* to start or *Cancel* to go back.
+
+[[monitor-migration-status]]
+== Monitor migration status
+
+After a migration starts, open the status page from the deployment's *Migration status* menu item or the *View migration status* banner.
+
+A migration can be in one of three states: *running*, *completed* (success), or *failed*.
+
+The status page shows a timeline of four stages:
+
+. *Aura instance creation*
+. *Database dump*
+. *Upload to Aura*
+. *Import into Aura*
+
+Each stage shows its progress (pending, in progress, success, or failure).
+If a stage fails, you can expand *Standard output*, *Standard error*, and *Stack trace* sections to inspect the logs.
+
+[[After-migration]]
+== After migration
+
+Uploading a database to Aura does not change its store format.
+If you migrated from a Community Edition deployment its likely that your database is not on block format.
+After a successful migration, you should consider switching to block format to take advantage of the performance and storage benefits it provides.
+See link:https://neo4j.com/docs/operations-manual/current/database-internals/store-formats/[Store formats] for more information about the block store format.
+
+To migrate your Aura instance to block format, you can use the instance cloning functionality in Aura console as described in
+link:https://neo4j.com/docs/aura/managing-instances/instance-actions/#_clone_to_a_new_instance[Clone to a new instance].
+Make sure to check the box to include the upgrade of the store format to block.

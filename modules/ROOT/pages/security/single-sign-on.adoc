@@ -4,14 +4,6 @@
 :page-aliases: platform/security/single-sign-on.adoc
 :page-role: aura-db-dedicated aura-db-business-critical aura-ds-enterprise
 
-
-[NOTE]
-====
-If you're planning to use Single Sign-On (SSO), keep in mind that SSO does not retroactively apply to existing instances.
-It only applies to instances created after SSO is configured.
-Therefore, plan accordingly.
-====
-
 Single Sign-On (SSO) enables organization owners and organization admins to use your organization’s identity provider (IdP) to authenticate users so they can access the Aura console and Aura instances.
 
 Aura supports SSO authentication and authorization using https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc[Microsoft Entra] and link:https://developer.okta.com/docs/guides/oin-sso-overview/[Okta] as IdPs, implementing the OpenID Connect (OIDC) protocol.
@@ -26,37 +18,75 @@ After successful authentication, the IdP redirects the user back to Aura with a 
 The person setting up SSO needs an `Organization Owner` or `Organization Admin` role.
 For information on how to assign roles see xref:user-management.adoc[User management].
 
-== SSO levels
+== Login methods for Aura
 
-* *Use as a log in for the Organization:* Login with SSO to the Aura console. Allows org admins to control how users log in when they are trying to access the organization.
-
-* *Use as login method for instances with Projects in this Org:*  The SSO log in will be on the instances. Impacts new database instances created within that project.
-It ensures users logging in with SSO have access to the database instances within the project.
-It does not give access to edit the project settings, for example to edit the project name, network access, or to edit the instance settings such as to rename an instance, or pause and resume.
-It depends on RBAC if the user can access and view or modify data within the instances themselves.
-For this level, the role mapping may be used to grant users different levels of access based on a role in their IdP.
-
-== Log-in methods
-
-Log-in methods are different for each SSO level.
-Administrators can configure a combination of one or more of the log-in methods.
-
-*Supported log-in methods at the organization-level:*
+Each Aura organization is configured with the following login methods that allow logging into the Aura Console (\https://console.neo4j.io):
 
 * Email/password
-* Okta
-* Microsoft Entra ID
-* Google SSO (not Google Workspace SSO)
+* Social Login
+** Google 
+** Microsoft 
+** Github
 
-At the organization-level, admins can disable email/password and Google SSO if one other custom SSO provider is configured.
+Additionally each organization can configure SSO. 
+*Note:* An Organization with SSO enabled as a login method for the Aura Console can deactivate the login methods listed above.
 
-*Supported log-in methods at the project-level:*
+== Configuring SSO
 
-* User/password
-* Okta
-* Microsoft Entra ID
+Setting up SSO in Aura requires two key access control decisions. 
+First, you must register your Identity Provider with Aura. 
+Then, determine whether to enable SSO for Console access, Instance access, or both.
 
-At the project-level, admins cannot disable user/password.
+== SSO levels
+
+== 1. Aura Console SSO
+
+* Authenticates users so they can log into the Neo4j Aura Console UI (console.neo4j.io). The user is logging into the Management Plane.
+* Authentication: Enables users to log into the Aura Console via your Identity Provider (IdP) to manage the lifecycle of your instances. 
+* It controls: How team members log in to manage billing, view metrics, create or delete projects, and provision new databases. 
+* Authorization: Role management for projects, billing, and metrics is not currently handled via the IdP, and needs to be managed either via the UI or Aura API.
+
+== 2. Instance SSO
+
+* Authenticates users or applications into individual Neo4j database instances (e.g., via Neo4j Browser, Bloom, or Drivers). 
+The user is logging into the Data Plane.
+* Authentication: Enables authentication for users or applications directly into specific Neo4j DBMS/instances (e.g., via Neo4j Browser, Bloom, or drivers) within an Aura Project.
+* Authorization: It ensures that when someone connects to a database instance within a specific project, they authenticate against your Identity Provider (IdP). 
+You can use *IdP group-to-role mapping* to assign link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/built-in-roles/[RBAC database privileges] (such as `admin`, `architect`, or `reader`) based on their SSO groups. 
+This optional setting in the configuration dialog is called role mapping.
+
+== SSO Administration
+
+To simplify administration, a single SSO configuration can be used for both the Aura Console and database instances by selecting the corresponding checkboxes during setup: *"Use as login for the Organization"* and *"Use as login method for instances within Projects in this Org"*. 
+These settings serve as the default for all instances within a project. 
+Consequently, instances should be grouped into projects based on their shared SSO login requirements.
+
+== Instance SSO Overrides
+
+Organization or project administrators can deviate from organization-wide defaults by applying overrides to individual instances. 
+This is useful when a few instances require custom role mappings, while the organization-level configuration could remain empty. 
+Currently, the fields available for override at the Instance level are *Display Name* and *Role Mapping*.
+
+== Display name
+
+The Display Name is the label shown to users when they choose to login with SSO while connecting to an instance.
+
+It only changes the name displayed in the Aura connection dialog shown when users connect to the instance (e.g. *Neo4j Dev*).
+
+.Instance connection dialog showing the customized SSO display name.
+[.shadow]
+image::security/displayname.png[Display name,300,300]
+
+== Legacy SSO Configurations
+
+Historically, certain custom SSO configurations—such as `Groups`, `Username`, `Scope`, and `Token parameters` were managed via support tickets. 
+While these configurations were previously not visible in the Organization settings page, they are now accessible and editable directly within the console.
+
+== Important notes
+
+* *Configuration propagation*: Applying edits to these SSO configurations will update all instances sharing that configuration.
+* *Legacy state*: Some legacy configurations may exist in an orphaned state. 
+We recommend creating new configurations to utilize current SSO management capabilities where possible.
 
 == Setup requirements
 
@@ -68,73 +98,87 @@ To create an SSO Configuration, either a Discovery URI or a combination of Issue
 
 == Create a new SSO configuration
 
-. Go to xref:visual-tour/index.adoc#_organizations[Organization] > *Security* > *Single Sign-On* to set up a new SSO configuration.
+. Go to xref:visual-tour/index.adoc#_organizations[Organization settings] > *Security* > *Single Sign-On* to set up a new SSO configuration.
 
-. The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on organization-level, only on project-level, or both.
+. The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on organization-level, only on instance-level, or both.
 
 . The required basic SSO configuration information can be retrieved from the IdP.
-Entering the Discovery URI pre-fills the fields below.
+Entering the Discovery URI pre-fills the fields.
 If this is not known these fields can be completed manually.
 
-[IMPORTANT]
+== Custom configuration settings (optional) 
+
+In addition to the standard settings, you can optionally configure custom token settings. 
+For more information, see link:https://neo4j.com/docs/operations-manual/current/configuration/configuration-settings/#_security_settings[Operations Manual -> Configuration Settings] 
+
+Most organizations can use the default values. Only modify these settings if required by your identity provider or authentication configuration.
+
+[NOTE]
 ====
+If you use Attribute-Based Access Control (ABAC), Aura supports the following identity attributes: `email`, `email_verified`, `name`, `preferred_username`, and `groups`. 
+Self-managed Neo4j deployments can use additional identity provider attributes. See link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/attribute-based-access-control/[Operations Manual > ABAC] for more information.
+====
+
+== Example setup 
+
 If you want users to authenticate with SSO for both the Aura Console and your database instances, make sure to select both of the following checkboxes during setup:
 
-- *Use as login for the Organization*
-- *Use as login method for instances within Projects in this Org*
-====
+* Use as login for the Organization
+* Use as login method for instances within Projects in this Org
 
-.SSO configuration
+.SSO configuration form
 [.shadow]
 image::sso.png[A screenshot of the SSO configuration,640,480]
 
 == Log-in link
 
-After setting up SSO, the `Organization sso login` link can be found in the organization summary page in the Aura console.
+After setting up SSO, the `Organization SSO login` link can be found in the organization summary page in the Aura console.
+
+.Successful SSO setup
+[.shadow]
+image::security/ssoexamplesetup.png[A screenshot of an example SSO set up,840,680]
 
 == Role mapping
 
-Role mapping links a user’s identity from an identity provider (such as Okta or Microsoft Entra ID) to a specific Aura role, based on attributes passed during authentication, like group or department.
+The SSO option for group to role mapping can map a group from an SSO provider to any role defined in the instance.
+If the same SSO configuration for multiple instances is used, that same mapping applies.
+This access then applies to all newly created instances the user has access to.
 
-When SSO is enabled at the project level, Aura uses role mapping to determine what access a user should have based on their IdP group membership.
+Multiple group to role mappings can be defined, and multiple roles can be given to any SSO group. The role field can be a comma separated list.
 
-This access then applies to *all newly created* instances the user has access to.
+For Azure and Microsoft Entra ID use the Object ID of the group, not the group name.
+For OIDC use the group name.
 
-=== Example role mapping
+By default, role mappings apply to all instances that inherit the SSO configuration.
 
-`aws-neo4j-sso=editor`
+[.shadow]
+.Example role mapping in the Aura console
+image::security/role-mapping-ui.png[width=800]
 
-In this case:
+== Updating SSO configurations
 
-`aws-neo4j-sso` is a group name from the groups claim in the token and `editor` is the instance role assigned to any user in that group.
+* Changes made to an SSO configuration are automatically applied to running instances that inherit that configuration. 
+*So you do not need to reconfigure each instance individually.*
+* If multiple instances require the same configuration, place them in a separate project and configure SSO at the project-level.
 
-== Instance-level SSO support
+== Instance-level SSO overrides
 
-Customer support can assist with:
+* *Overrides will still prevail if you have overrides.* 
+Only the overridden fields are frozen; everything else on that instance still updates.
 
-* Adding SSO just for a specific instance
-* Updating SSO settings on existing instances
-* Role mapping specific IdP groups to a single database instance, instead of all instances which is the default behavior.
-* Creating link:https://auth0.com/docs/secure/tokens/json-web-tokens/create-custom-claims[custom claims] beyond `groups`
+* *Example:* If role mapping is overridden on an instance and the linked SSO config's username claim is updated, the instance will still receive this update when the configuration is applied. 
+If the linked SSO config's role mapping is edited, the instance override prevails.
 
-=== Ticket template
+[IMPORTANT]
+====
+Editing SSO configs at an organization-level or project-level does not change SSO configuration to instances that have overrides.
+====
 
-To request assistance, contact Support and raise a ticket using the following template:
+To view whether an instance inherits its SSO configuration or has an override, open the *SSO Membership* tab in the instance xref:managing-instances/instance-actions.adoc#_inspect_an_instances_details[Inspect] view.
 
-[source]
-----
-Instance ID (Aura-only): [Insert]
-Project ID (Aura-only): [Insert]
-IdP name: [e.g., Okta, Azure]
-SSO update for existing instance? Yes / No
-Role mappings? Yes / No
-If yes: [Insert details]
-Custom claim? Yes / No
-If yes: [Insert details]
-----
-
-Instance ID (also known as DBID) can be found at xref:managing-instances/instance-details.adoc[instance details].
-Project ID can be found at xref:visual-tour/index.adoc#_project_settings[project settings].
+.Override example
+[.shadow]
+image::security/override-example.png[]
 
 == Microsoft Entra ID SSO
 
@@ -160,9 +204,9 @@ Skip redirect URI’s for now.
 
 . Select how you want the SSO configuration to be applied in Aura:
 
-.. *Use as a log in method for the organization* applies to organization-level logins (which acts as a login to the Aura console).
+.. *Use as a log in method for the Organization* applies to organization-level logins (which acts as a login to the Aura console).
 
-.. *Use as a login method for instances within Projects in this Org* applies to the project-level and you can select specific projects within the organization (where login is on the instance).
+.. *Use as a login method for instances within Projects in this Organization* applies to the project-level and you can select specific projects within the organization (where login is on the instance).
 
 .. Or, select both.
 
@@ -174,19 +218,16 @@ Skip redirect URI’s for now.
 
 . For Discovery URI enter the *OpenID Connect metadata document URI*.
 
-. Configure any additional settings as needed:
+. Configure any additional settings if required by your identity provider.
+.. *Instance-level SSO*: Optionally configure role mappings, token request scopes, username claims, group claims, and additional token parameters.
+.. *Organization-level SSO*: No additional configuration is available.
 
-..  For organization-level SSO, no additional settings needed.
-
-.. For project-level SSO, enter role mappings if applicable.
-
-. Select *Create*.
+. Select *Create*
 
 . Select the additional log in methods:
+.. For Organization-level testing it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
+.. For instance-level testing the user/password login is always available on the instance, so if SSO isn’t working, the instance is still accessible.
 
-.. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
-
-.. For *Project-level testing* the user/password login is always available on the instance, so if SSO isn't working, the instance is still accessible.
 
 === Token request scopes
 
@@ -209,13 +250,9 @@ For more information, see link:https://auth0.com/docs/get-started/apis/scopes/op
 
 . For *Application type* select *Web Application*.
 
-. Select *Next*.
-
-. For *Grant type* select *Authorization Code*.
-
 . For *Sign-in redirect URIs* add https://login.neo4j.com/login/callback as the redirect URI.
 
-. Save.
+. *Save*.
 
 . In the Aura console, go to xref:visual-tour/index.adoc#_organizations[Organization] > *Security* > *Single Sign On* > *New configuration*.
 
@@ -223,7 +260,7 @@ For more information, see link:https://auth0.com/docs/get-started/apis/scopes/op
 
 .. *Use as a log in method for the organization* applies to organization-level logins (which acts as a login to the Aura console).
 
-.. *Use as a login method for instances within Projects in this Org* applies to the project-level and you can select specific projects within the organization (where login is on the instance).
+.. *Use as a login method for instances within Projects in this Organization* applies to the project-level and you can select specific projects within the organization (where login is on the instance).
 
 .. Or, select both.
 
@@ -235,16 +272,17 @@ For more information, see link:https://auth0.com/docs/get-started/apis/scopes/op
 
 . Select discovery method:
 
-.. For Discovery URI take the domain from your Okta portal which should be something like https://dev-123-admin.okta.com/ and add `.well-known/openid-configuration`.
+.. For Discovery URI take the domain from your Okta portal (for example https://dev-123-admin.okta.com/) and add `.well-known/openid-configuration`.
 The final URL should look similar to `https://dev-123-admin.okta.com/.well-known/openid-configuration`.
 
 .. Alternatively, you can select *Manual Configuration* and enter the values separately, including Issuer, Authorization Endpoint, Token Endpoint and JWKS URI.
 
-. Configure any additional settings as needed:
+. Configure additional settings if required by your identity provider.
 
-..  For organization-level SSO, no additional settings needed.
+.. *Instance-level SSO*: Optionally configure role mappings, token request scopes, username claims, group claims, and additional token parameters.
 
-.. For project-level SSO, enter role mappings if applicable.
+.. *Organization-level SSO*: No additional configuration is available.
+
 
 . Select *Create*.
 
@@ -252,16 +290,22 @@ The final URL should look similar to `https://dev-123-admin.okta.com/.well-known
 
 .. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
 
-.. For *Project-level testing* the user/password login is always available on the instance, so if SSO isn't working, the instance is still accessible.
+.. For *instance-level testing* the user/password login is always available on the instance, so if SSO isn't working, the instance is still accessible.
 
 == FAQ
 
-*Can users get roles added to them in Aura console via SSO and a group to role mapping?*
+*Can users get organization roles added to them in Aura console via SSO and a group to role mapping?*
 
-No, users must be granted the role on the organization via Aura console invites and access management like with any other organization.
+No, users must be granted the role on the organization (e.g. Owner, Admin, Member) via Aura console invites or the access management API.
 
-*Why am I unable to connect to the instance after completing the SSO login, the connection is showing as unconnected?*
+*For Microsoft Entra only: Why am I unable to connect to the instance after completing the SSO login, the connection is showing as unconnected?*
 
 Ensure that the email field is provided on your user in Microsoft Entra ID.
 If it already is, contact support for further assistance.
+
+*What happens if I enable/disable xref:security/tool-auth.adoc[tool authentication] on an instance*
+
+Enabling tool authentication will no longer allow Aura Console users to connect to an instance with instance SSO. Drivers and external tools remain unaffected.
+For more information see xref:security/tool-auth.adoc[Tool authentication with Aura user].
+
 

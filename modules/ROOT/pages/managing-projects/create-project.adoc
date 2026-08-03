@@ -46,9 +46,21 @@ Here you can edit the project name, view the payment method attached to the proj
 * xref:security/ip-filtering.adoc[IP Filtering]
 * xref:security/secure-connections.adoc#_private_endpoints[Private endpoints] label:AuraDB-virtual-dedicated-cloud[]
 
-== Delete a project
+== Manage project billing
 
-It is currently not possible to delete a project.
-You can remove other users and delete resources, but the project will remain.
+To change the payment method for the projects in your Aura organization
+navigate to *Billing -> Payment methods* and select *Manage project billing*.
+Here you can change the billing for all of the projects in your organization. 
+Choose a new payment method from the dropdown. 
+The changes will propagate immediately and the project usage will be directed to the new payment method.
+When you are ready changing the project billing, select *Close*.
 
+You can change your project billing from a credit card to another credit card, or from credit card to a prepaid account and vice-versa.
+You can also change the project billing from a cloud marketplace payment method to credit card or prepaid.
+
+[NOTE]
+====
+* We do not currently support changing the project billing to a cloud marketplace pay-as-you-go subscription.
+* You can only change the project billing to a payment method that is in a valid state (e.g. a functional credit card).
+====
 

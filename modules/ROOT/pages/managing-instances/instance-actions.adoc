@@ -3,6 +3,17 @@
 :description: This page describes the following instance actions - rename, reset, upgrade, resize, pause, resume, clone to a new database, clone to an existing database, or delete an instance.
 :page-aliases: auradb/managing-databases/database-actions.adoc, aurads/managing-instances/instance-actions.adoc
 
+Perform multiple instance actions directly from an instance card: connect to tools, pause/resume, inspect the instance's details, take a snapshot, restore a backup, clone to new instance/clone to existing instance, edit secondaries, delete, resize, view resources/view all metrics.
+
+== Connect to tools
+
+The *Connect* button allows you to connect your instance to one of the tools; Query, Bloom, or Dashboards, or to the Developer hub.
+This is possible from both Aura instances as well as self-managed deployments (see xref:managing-instances/self-managed.adoc[Self-managed instances]), as long as the instance/deployment is running.
+
+[.shadow]
+.Connect to tools
+image::connect-to-tools.png[]
+
 == Pause an instance
 
 Pausing a Neo4j instance temporarily stops the database, which means:
@@ -13,7 +24,7 @@ Pausing a Neo4j instance temporarily stops the database, which means:
 Any ongoing operations are halted.
 
 * Data is preserved: Your data remains safe and unchanged while the instance is paused.
-You may export a backup of your data within its exportable period. 
+You may export a backup of your data within its exportable period.
 When you resume the instance, you can pick up right where you left off.
 
 You can pause an instance when not needed and resume it at any time.
@@ -59,6 +70,7 @@ POST https://api.neo4j.io/v1/instances/{instanceId}/pause
 // label:AuraDB-business-critical[]
 
 When you resume an instance, Aura restarts the instance and restores it from the backup. 
+After confirming, the instance begins resuming.
 Resuming the instance can take a few minutes to a few hours, depending on its size.
 
 [WARNING]
