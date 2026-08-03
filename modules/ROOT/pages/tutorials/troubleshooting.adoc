@@ -32,7 +32,7 @@ Solution::
 
 [NOTE]
 ====
-We recommend handling this error in your application code, as it may be intermittent.
+It is recommended to handle this error in your application code, as it may be intermittent.
 ====
 
 Overestimation is most likely to happen when using `UNWIND` on long lists or when expanding a variable length or shortest path pattern.
@@ -46,7 +46,7 @@ If removing the `ORDER BY` or `DISTINCT` clauses does not solve the issue, the p
 * Handle this exception in your code and be prepared to retry if this is an intermittent error.
 Keep in mind that the query can succeed regardless.
 +
-* Rework the relevant query to optimize it. 
+* Rework the relevant query to optimize it.
 ** Use `EXPLAIN` or `PROFILE` to review the plans (see more about link:https://neo4j.com/docs/cypher-manual/current/query-tuning/[query tuning]).
 ** Use `PROFILE` in the Cypher Shell to check the overall memory footprint of a query.
 The output will include memory consumption information, the query's result, if any, and the execution plan.
@@ -174,3 +174,23 @@ Rapid session creation can exceed the database's maximum concurrent connection l
 ====
 
 
+== Cannot resolve address / DNS resolution errors
+
+If you connect to an AuraDB instance using a driver, you can encounter the following errors:
+
+[source, role=noheader]
+----
+ValueError: Cannot resolve address <instance-id>.databases.neo4j.io:7687
+----
+
+or
+
+----
+ServiceUnavailable: Failed to DNS resolve address <instance-id>.databases.neo4j.io:7687
+----
+
+This can be due to an erroneous URI, a network/firewall issue, or that **the instance is paused**.
+AuraDB Free instances automatically pause after 3 days of inactivity, and a paused instance's hostname will not resolve.
+
+Before checking your URI, credentials, or network configuration, first confirm the instance status at https://console.neo4j.io. 
+If the instance shows as *Paused*, *Resume* the instance and wait a few minutes for it to become available again before retrying your connection.
