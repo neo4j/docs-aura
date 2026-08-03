@@ -16,6 +16,10 @@ image::connect-to-tools.png[]
 
 == Pause an instance
 
+// label:AuraDB-professional[]
+// label:AuraDB-Enterprise[]
+// label:AuraDB-business-critical[]
+
 Pausing a Neo4j instance temporarily stops the database, which means:
 
 * No connectivity: Any applications or users trying to connect to the instance won't be able to run queries or retrieve data until the instance is resumed.
@@ -26,10 +30,6 @@ Any ongoing operations are halted.
 * Data is preserved: Your data remains safe and unchanged while the instance is paused.
 You may export a backup of your data within its exportable period.
 When you resume the instance, you can pick up right where you left off.
-
-// label:AuraDB-professional[]
-// label:AuraDB-Enterprise[]
-// label:AuraDB-business-critical[]
 
 [NOTE]
 ====
@@ -68,16 +68,36 @@ POST https://api.neo4j.io/v1/instances/{instanceId}/pause
 
 == Resume a paused instance
 
-Resume a paused instance with the *Play* button on the instance card.
+// label:AuraDB-professional[]
+// label:AuraDB-Enterprise[]
+// label:AuraDB-business-critical[]
 
+When you resume an instance, Aura restarts the instance and restores it from the backup. 
 After confirming, the instance begins resuming.
-When you resume an instance, Aura restarts the instance and restores it from the backup.
 Resuming the instance can take a few minutes to a few hours, depending on its size.
 
 [WARNING]
 ====
 Aura Free instances do not automatically resume after 30 days.
 If an Aura Free instance remains paused for more than 30 days, Aura deletes the instance, and all information is lost.
+====
+
+[.tabbed-example]
+====
+[.include-with-Aura-console]
+=====
+
+Resume a paused instance with the *Play* button on the instance card.
+After confirming, the instance begins resuming.
+
+=====
+[.include-with-API]
+=====
+[source]
+----
+POST https://api.neo4j.io/v1/instances/{instanceId}/resume
+----
+=====
 ====
 
 == Delete an instance
