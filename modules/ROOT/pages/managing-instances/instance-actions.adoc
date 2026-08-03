@@ -102,10 +102,9 @@ POST https://api.neo4j.io/v1/instances/{instanceId}/resume
 
 == Delete an instance
 
-Delete an instance using the trashcan icon on the instance card.
-Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
+Deleting an instance removes all associated snapshots, so they cannot be used to backup and restore data. 
 
-Deleting an instance also removes all associated snapshots, so they cannot be used to backup and restore data. If you may need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] and export and save it on your computer, before deleting the instance.
+If you may need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] and export and save it on your computer, before deleting the instance.
 
 [WARNING]
 ====
@@ -113,13 +112,21 @@ There is no way to recover data from a deleted Aura instance, including snapshot
 If you may need the data later, export a snapshot before deleting the instance.
 ====
 
-[role=label--aura-db-professional label--AuraDB-Free]
-== Reset an instance
-
-You can clear all data in an instance using the *Reset to blank* action.
-
-Select *Reset to blank* from the *(...)* more menu on the instance card.
-You need to confirm your intention since this action cannot be undone.
+[.tabbed-example]
+====
+[.include-with-Aura-console]
+=====
+Delete an instance using the trashcan icon on the instance card.
+Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
+=====
+[.include-with-API]
+=====
+[source]
+----
+DELETE https://api.neo4j.io/v1/instances/{instanceId}
+----
+=====
+====
 
 == Inspect an instance's details
 
