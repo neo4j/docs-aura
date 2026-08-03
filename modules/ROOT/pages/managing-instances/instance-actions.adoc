@@ -158,8 +158,6 @@ image::instance-actions.png[]
 ----
 GET https://api.neo4j.io/v1/instances/{instanceId}
 
-This returns the instance details, including:
-
 Returns the instance ID, name, status, connection URL, creation time, metrics integration URL, region, instance type, cloud provider, tenant ID, memory, storage, customer-managed key ID, graph nodes, graph relationships, secondaries count, CDC enrichment mode, vector optimization status, and Graph Analytics plugin.
 ----
 =====
@@ -214,7 +212,7 @@ If you want to keep the current data, take a snapshot and export it.
 
 . From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *Existing instance*.
 . Select the existing AuraDB instance to clone to from the dropdown menu.
-+
+An upgrade does not change the original instance ID, meaning that your application strings remain valid.
 [NOTE]
 ====
 Existing instances that are not large enough to clone into will not be available for selection.
@@ -226,9 +224,9 @@ Existing instances that are not large enough to clone into will not be available
 
 Different tiers serve different operational needs. 
 Should your needs change, you can upgrade.
-Tiers and prices are described in: https://neo4j.com/pricing/[Neo4j.com/pricing]
+Tiers and prices are described at https://neo4j.com/pricing/[Neo4j.com/pricing]
 
-An upgrade does not change the original instance ID, so your application strings remain valid.
+An upgrade does not change the original instance ID, meaning that your application strings remain valid.
 
 *GDS plugin removal:*
 If your AuraDB Professional instance uses the GDS plugin, it is removed during the upgrade.
@@ -250,7 +248,24 @@ image::upgradeprotobc.png[]
 [source]
 ----
 POST https://api.neo4j.io/v1/instances/{instanceId}/upgrade
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+  "memory": "16GB",
+  "storage": "32GB"
+}
 ----
+
+Upgrades an AuraDB Professional instance to an AuraDB Business Critical instance.
+
+Upgrades are not available for Marketplace projects or trial instances.
+
+Optionally, provide values for memory and storage in the request body to resize the instance along with the upgrade. 
+If you don’t provide values, the instance keeps its configuration. 
+If you provide memory you must also provide storage and vice versa.
+
+This endpoint requires the `Content-Type: application/json` header to be set.
 =====
 ====
 
