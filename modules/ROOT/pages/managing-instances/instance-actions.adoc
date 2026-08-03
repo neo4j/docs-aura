@@ -117,7 +117,7 @@ If you may need the data later, export a snapshot before deleting the instance.
 [.include-with-Aura-console]
 =====
 Delete an instance using the trashcan icon on the instance card.
-Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
+Type the exact name of the instance and confirm with *Destroy*.
 =====
 [.include-with-API]
 =====
@@ -127,6 +127,15 @@ DELETE https://api.neo4j.io/v1/instances/{instanceId}
 ----
 =====
 ====
+
+[role=label--aura-db-professional label--AuraDB-Free]
+== Reset an instance
+
+Reset an instance from the Aura console only.
+You can clear all data in an instance using the *Reset to blank* action.
+
+Select *Reset to blank* from the *(...)* more menu on the instance card.
+You need to confirm your intention since this action cannot be undone.
 
 == Inspect an instance's details
 
@@ -148,6 +157,10 @@ image::instance-actions.png[]
 [source]
 ----
 GET https://api.neo4j.io/v1/instances/{instanceId}
+
+This returns the instance details, including:
+
+Returns the instance ID, name, status, connection URL, creation time, metrics integration URL, region, instance type, cloud provider, tenant ID, memory, storage, customer-managed key ID, graph nodes, graph relationships, secondaries count, CDC enrichment mode, vector optimization status, and Graph Analytics plugin.
 ----
 =====
 ====
@@ -211,8 +224,9 @@ Existing instances that are not large enough to clone into will not be available
 
 == Upgrade an instance
 
-All Neo4j tiers share the same advanced graph database technology that helps you uncover hidden patterns and relationships in connected data. 
-However, features, support levels, and management requirements differ to address different use cases and organizational needs.
+Different tiers serve different operational needs. 
+Should your needs change, you can upgrade.
+Tiers and prices are described in: https://neo4j.com/pricing/[Neo4j.com/pricing]
 
 An upgrade does not change the original instance ID, so your application strings remain valid.
 
@@ -227,9 +241,7 @@ If you try to upgrade a 1GB Professional instance, you need to resize it to at l
 ====
 [.include-with-Aura-console]
 =====
-AuraDB Free instances have an *Upgrade* button that you can use to upgrade to either Professional or Business Critical.
-You can upgrade an AuraDB Professional instance to an Business Critical instance using the *Upgrade* action from the *(...)* menu.
-
+Open the instance more menu *[...]* and select *Upgrade*.
 [.shadow]
 image::upgradeprotobc.png[]
 =====
