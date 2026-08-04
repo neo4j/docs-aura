@@ -1,0 +1,29 @@
+name: "Docs style review (advisory)"
+
+# Self-test / dogfood caller for the reusable style-review workflow, within docs-tools.
+# Uses a RELATIVE path (only possible in the same repo) so it always tracks the reusable
+# workflow on this branch — no tag/SHA needed while testing. Consumer repos instead use:
+#   uses: neo4j/docs-tools/.github/workflows/reusable-docs-style-review.yml@v2
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    branches: [console]
+    paths:
+      - 'modules/**/pages/**/*.adoc'
+      - 'modules/**/partials/**/*.adoc'
+
+permissions:
+  contents: read
+  pull-requests: write
+  id-token: write
+
+jobs:
+  style-review:
+    uses: neo4j/docs-tools/.github/workflows/reusable-docs-style-review.yml@v2
+    # Pass only the secrets the reusable workflow declares under `on.workflow_call.secrets`
+    # (least privilege) rather than `secrets: inherit`, which would forward every repo secret.
+    secrets:
+      DOCS_STYLE_GUIDE_ANTHROPIC_API_KEY: ${{ secrets.DOCS_STYLE_GUIDE_ANTHROPIC_API_KEY }}
+      DOCS_STYLE_GUIDE_LLMS_URL: ${{ secrets.DOCS_STYLE_GUIDE_LLMS_URL }}
+      DOCS_PR_COMMENT_TOKEN: ${{ secrets.DOCS_PR_COMMENT_TOKEN }}
