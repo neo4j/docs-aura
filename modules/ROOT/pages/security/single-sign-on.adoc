@@ -40,14 +40,14 @@ Then, determine whether to enable SSO for Console access, Instance access, or bo
 
 == SSO levels
 
-== 1. Aura Console SSO
+=== 1. Aura Console SSO
 
 * Authenticates users so they can log into the Neo4j Aura Console UI (console.neo4j.io). The user is logging into the Management Plane.
 * Authentication: Enables users to log into the Aura Console via your Identity Provider (IdP) to manage the lifecycle of your instances. 
 * It controls: How team members log in to manage billing, view metrics, create or delete projects, and provision new databases. 
 * Authorization: Role management for projects, billing, and metrics is not currently handled via the IdP, and needs to be managed either via the UI or Aura API.
 
-== 2. Instance SSO
+=== 2. Instance SSO
 
 * Authenticates users or applications into individual Neo4j database instances (e.g., via Neo4j Browser, Bloom, or Drivers). 
 The user is logging into the Data Plane.
@@ -107,7 +107,7 @@ To create an SSO Configuration, either a Discovery URI or a combination of Issue
 Entering the Discovery URI pre-fills the fields.
 If this is not known these fields can be completed manually.
 
-== Custom configuration settings (optional) 
+=== Custom configuration settings (optional) 
 
 In addition to the standard settings, you can optionally configure custom token settings. 
 For more information, see link:https://neo4j.com/docs/operations-manual/current/configuration/configuration-settings/#_security_settings[Operations Manual -> Configuration Settings] 
@@ -120,7 +120,7 @@ If you use Attribute-Based Access Control (ABAC), Aura supports the following id
 Self-managed Neo4j deployments can use additional identity provider attributes. See link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/attribute-based-access-control/[Operations Manual > ABAC] for more information.
 ====
 
-== Example setup 
+=== Example setup 
 
 If you want users to authenticate with SSO for both the Aura Console and your database instances, make sure to select both of the following checkboxes during setup:
 
@@ -131,7 +131,7 @@ If you want users to authenticate with SSO for both the Aura Console and your da
 [.shadow]
 image::sso.png[A screenshot of the SSO configuration,640,480]
 
-== Log-in link
+=== Log-in link
 
 After setting up SSO, the `Organization SSO login` link can be found in the organization summary page in the Aura console.
 
@@ -139,7 +139,7 @@ After setting up SSO, the `Organization SSO login` link can be found in the orga
 [.shadow]
 image::security/ssoexamplesetup.png[A screenshot of an example SSO set up,840,680]
 
-== Role mapping
+=== Role mapping
 
 The SSO option for group to role mapping can map a group from an SSO provider to any role defined in the instance.
 If the same SSO configuration for multiple instances is used, that same mapping applies.
