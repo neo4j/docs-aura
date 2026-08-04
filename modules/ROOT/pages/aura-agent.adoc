@@ -14,7 +14,7 @@ You can test the agent and iterate on it directly in the UI.
 
 Once you are satisfied with your agent, you can either share it internally with other members of your Aura project, or you can make it available externally via either an Aura API endpoint or an MCP server endpoint and thus integrate it into your GenAI application or model.
 
-Internal agents are free to use, but once you make an agent external, it incurs charges per link:https://neo4j.com/pricing/[Neo4j pricing].
+Internal agents are free to use, but once you make an agent external, it incurs charges per link:https://console.neo4j.io[Neo4j Aura Pricing].
 See also xref:billing/billing-dimensions.adoc[Billing dimensions] for more information on how billing works.
 
 To get started you need a knowledge graph in a running AuraDB instance and you need to make sure *Generative AI assistance* as well as *Aura Agent* are both enabled in the xref:visual-tour/index.adoc#org-settings[Organization settings].
@@ -351,13 +351,13 @@ Start by making your agent public and enable MCP server, as described above, and
 Your MCP endpoint URL contains `project_id` and `agent_id` as query parameters. These pieces of information are *crucial* for the MCP server endpoint to be able to *identify* your project and agent.
 
 Note that Copilot Studio's Streamable HTTP runtime *strips all query parameters* from outgoing requests.
-*Therefore, make sure to note the two values from the query string before proceeding.* 
+*Therefore, make sure to note the two values from the query string before proceeding.*
 You will need them later to add as headers to requests made from Copilot Studio.
 
 . Add the MCP server in Copilot Studio
 +
 In link:https://copilotstudio.microsoft.com[Copilot Studio], open your agent and go to *Tools* > *Add a tool* > *Add an MCP server*.
-Enter the *MCP endpoint URL* and follow the wizard to connect. 
+Enter the *MCP endpoint URL* and follow the wizard to connect.
 +
 For authentication choose *OAuth 2.0* > *Dynamic Discovery*.
 Authenticate with the same credentials you use to log in to the Aura Console.
