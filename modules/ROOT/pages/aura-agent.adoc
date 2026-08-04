@@ -318,10 +318,10 @@ You may need to restart the client after.
 Once your MCP server has been attached to the client, you need to authorize it to access your account.
 Two different authorization flows are supported:
 
-* *User* (authorization code): Log in via the Aura console, using your credentials.
+* *User* (authorization code): Use the same credentials you use to log in to the Aura console.
 You may need to enable the newly added MCP server in the client before the client can invoke it.
 
-* *Machine-to-machine* (client credentials): Service-to-service access using long-lived credentials issued by console-api.
+* *Machine-to-machine* (client credentials): Service-to-service access using credentials issued by the Aura console.
 
 ==== Machine-to-machine authorization flow
 
@@ -329,12 +329,16 @@ When calling the agent MCP server from a script or service, use the following fl
 
 . Create credentials
 +
-Call `POST /oath/genai` on console-api with a Console JWT.
-Include `https://agent-mcp.neo4j.io` (or any other environment-specific audience) in the `Audience` array.
-The response contains a `ClientID` and a `ClientSecret`, store them securely immediately as the latter is only returned this once.
+* Go to your profile menu from the top right corner in the console
+* Select *Account settings*
+* Select the *Client credentials* tab and *Aura Agent & MCP*
+* Use the *Create client credential* button and enter a name and use the dropdown to choose what this client credential can be used to access
+* Confirm with *Create*
+* Store the generated credentials somewhere secure, either copy them or use the *Download and close* button.
 +
 . Exchange for an access token
 +
+In the MCP client application, use the client credentials to request an access token:
 Post a `client_credentials` grant to the gateway token endpoint:
 +
 [source, shell]
