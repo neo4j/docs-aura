@@ -40,14 +40,14 @@ Then, determine whether to enable SSO for Console access, Instance access, or bo
 
 == SSO levels
 
-=== 1. Aura Console SSO
+=== Aura Console SSO
 
 * Authenticates users so they can log into the Neo4j Aura Console UI (console.neo4j.io). The user is logging into the Management Plane.
 * Authentication: Enables users to log into the Aura Console via your Identity Provider (IdP) to manage the lifecycle of your instances. 
 * It controls: How team members log in to manage billing, view metrics, create or delete projects, and provision new databases. 
 * Authorization: Role management for projects, billing, and metrics is not currently handled via the IdP, and needs to be managed either via the UI or Aura API.
 
-=== 2. Instance SSO
+=== Instance SSO
 
 * Authenticates users or applications into individual Neo4j database instances (e.g., via Neo4j Browser, Bloom, or Drivers). 
 The user is logging into the Data Plane.
