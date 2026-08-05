@@ -42,7 +42,7 @@ image::save-tab.png[width=250]
 When you open a query from this drawer, it opens in a new tab.
 
 If you open a new tab to write a new query, it is saved as a draft in this drawer as soon as you start writing the query or if you rename the tab.
-It remains a draft until you actively move it by dragging it to the location you prefer.
+The query remains a draft until you move it by dragging it to the location you prefer.
 
 [.shadow]
 image::draft-query.jpg[width=400]
@@ -170,7 +170,7 @@ The toggle for errors and warnings is used to enable hints to help you find erro
 
 == Reusable result frames
 
-The reusable result frames in Query allow you to edit the query of an existing result directly in the result fram and rerun it to update the result in situ.
+The reusable result frames in Query allow you to edit the query of an existing result directly in the result frame and rerun it to update the result in situ.
 You can also use _Cmd/Ctrl + click_ to send it back to the main editor and re-run it from there.
 
 Query supports different result frame views:
@@ -178,7 +178,7 @@ Query supports different result frame views:
 * Graph -- Display the result as nodes and relationships and allow xref:query/operations.adoc#styling[styling] to be configured.
 * Table -- Display the result as JSON formatted rows.
 * RAW -- Display the submitted request, the Neo4j Server version and address, and the response.
-* Plan -- Display the execution plan for the query, with out without execution.
+* Plan -- Display the execution plan for the query, with or without execution.
 
 [[stream]]
 == Stream
@@ -195,7 +195,7 @@ To remove all the frames from the stream, use the `:clear` command.
 Clearing the stream does **not** clear the history, that is done from the **Query history** drawer, as mentioned previously.
 
 The frames in the stream retain the connection that was active when the frame was created and if the current connection is different, the query cannot be re-run.
-*Tabs* however, always use the currently active connection, and if applicable, can thus always be run.
+*Tabs*, however, always use the currently active connection, and if applicable, can thus always be run.
 
 == Tabs
 
@@ -205,7 +205,7 @@ If you open a query in a tab, either from the result frame or from the Query dra
 * *Results on right*
 * *Interactive table view*
 
-All three options displays the Cypher query and the results, either as a graph (if results can be visualized as a graph) or as a table.
+All three options display the Cypher query and the results, either as a graph (if results can be visualized as a graph) or as a table.
 The first two options allow you to toggle between graph (if available), table, and RAW views.
 
 Regardless of orientation of results, in the table view, you can search the table, download in different formats, and copy a table to the clipboard.
