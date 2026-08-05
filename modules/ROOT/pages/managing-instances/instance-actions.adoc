@@ -158,8 +158,9 @@ image::instance-actions.png[]
 [source]
 ----
 GET https://api.neo4j.io/v1/instances/{instanceId}
-
 Returns the instance ID, name, status, connection URL, creation time, metrics integration URL, region, instance type, cloud provider, tenant ID, memory, storage, customer-managed key ID, graph nodes, graph relationships, secondaries count, CDC enrichment mode, vector optimization status, and Graph Analytics plugin.
+
+For more info see the link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/get-instance-id[Aura API spec]
 ----
 =====
 ====
