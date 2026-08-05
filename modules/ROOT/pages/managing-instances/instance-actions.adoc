@@ -97,7 +97,7 @@ After confirming, the instance begins resuming.
 ----
 POST https://api.neo4j.io/v1/instances/{instanceId}/resume
 ----
-For more info see the link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/post-resume-instance[Aura API spec]
+For more information, see link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/post-resume-instance[Aura API spec]
 =====
 ====
 
@@ -160,9 +160,7 @@ image::instance-actions.png[]
 GET https://api.neo4j.io/v1/instances/{instanceId}
 ----
 
-Returns the instance ID, name, status, connection URL, creation time, metrics integration URL, region, instance type, cloud provider, tenant ID, memory, storage, customer-managed key ID, graph nodes, graph relationships, secondaries count, CDC enrichment mode, vector optimization status, and Graph Analytics plugin.
-
-For more info see the link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/get-instance-id[Aura API spec]
+For more information, see link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/get-instance-id[Aura API spec]
 =====
 ====
 
@@ -215,13 +213,13 @@ If you want to keep the current data, take a snapshot and export it.
 
 . From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *Existing instance*.
 . Select the existing AuraDB instance to clone to from the dropdown menu.
-An upgrade does not change the original instance ID, meaning that your application strings remain valid.
+
+. Check the *I understand the target instance will be overwritten* box and select *Clone*.
+
 [NOTE]
 ====
 Existing instances that are not large enough to clone into will not be available for selection.
 ====
-+
-. Check the *I understand the target instance will be overwritten* box and select *Clone*.
 
 == Upgrade an instance
 
@@ -251,24 +249,8 @@ image::upgradeprotobc.png[]
 [source]
 ----
 POST https://api.neo4j.io/v1/instances/{instanceId}/upgrade
-Content-Type: application/json
-Authorization: Bearer <token>
-
-{
-  "memory": "16GB",
-  "storage": "32GB"
-}
 ----
-
-Upgrades an AuraDB Professional instance to an AuraDB Business Critical instance.
-
-Upgrades are not available for Marketplace projects or trial instances.
-
-Optionally, provide values for memory and storage in the request body to resize the instance along with the upgrade. 
-If you don’t provide values, the instance keeps its configuration. 
-If you provide memory you must also provide storage and vice versa.
-
-This endpoint requires the `Content-Type: application/json` header to be set.
+For more information, see link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/post-upgrade-instance[Aura API spec]
 =====
 ====
 
