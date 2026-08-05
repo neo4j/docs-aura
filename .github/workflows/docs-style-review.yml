@@ -7,11 +7,11 @@ name: "Docs style review (advisory)"
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
-    branches: [console]
+    types: [labeled]
+    branches: [dev, main]
     paths:
-      - 'modules/**/pages/**/*.adoc'
-      - 'modules/**/partials/**/*.adoc'
+      - '**/modules/**/pages/**/*.adoc'
+      - '**/modules/**/partials/**/*.adoc'
 
 permissions:
   contents: read
@@ -20,7 +20,8 @@ permissions:
 
 jobs:
   style-review:
-    uses: neo4j/docs-tools/.github/workflows/reusable-docs-style-review.yml@v2
+    if: github.event.label.name == 'style-review'
+    uses: ./.github/workflows/reusable-docs-style-review.yml
     # Pass only the secrets the reusable workflow declares under `on.workflow_call.secrets`
     # (least privilege) rather than `secrets: inherit`, which would forward every repo secret.
     secrets:
