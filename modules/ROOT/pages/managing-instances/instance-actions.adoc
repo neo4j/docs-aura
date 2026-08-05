@@ -62,7 +62,7 @@ After confirming, the instance begins pausing, and a play button replaces the pa
 ----
 POST https://api.neo4j.io/v1/instances/{instanceId}/pause
 ----
-
+For more information, see link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/post-pause-instance[Aura API spec]
 =====
 ====
 
@@ -126,6 +126,7 @@ Type the exact name of the instance and confirm with *Destroy*.
 ----
 DELETE https://api.neo4j.io/v1/instances/{instanceId}
 ----
+For more information, see link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/delete-instance-id[Aura API spec]
 =====
 ====
 
@@ -159,7 +160,6 @@ image::instance-actions.png[]
 ----
 GET https://api.neo4j.io/v1/instances/{instanceId}
 ----
-
 For more information, see link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/get-instance-id[Aura API spec]
 =====
 ====
