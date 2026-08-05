@@ -21,7 +21,7 @@ permissions:
 jobs:
   style-review:
     if: github.event.label.name == 'style-review'
-    uses: ./.github/workflows/reusable-docs-style-review.yml
+    uses: neo4j/docs-tools/.github/workflows/reusable-docs-style-review.yml@v2
     # Pass only the secrets the reusable workflow declares under `on.workflow_call.secrets`
     # (least privilege) rather than `secrets: inherit`, which would forward every repo secret.
     secrets:
