@@ -81,3 +81,8 @@ AuraDB Professional accounts with a billing method attached, AuraDB Business Cri
 |AuraDB Virtual Dedicated Cloud
 |125 requests/minute
 |===
+
+[NOTE]
+====
+The endpoints related to billing, `/organizations/{org_id}/billing/ledger` and `/organizations/{org_id}/billing/usage`, available in *v2beta1*, have a rate limit of *10 requests per day and organization*.
+====
