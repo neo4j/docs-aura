@@ -3,7 +3,7 @@
 :description: This section describes how to use the Query tool.
 
 [.shadow]
-image::query-ui.png[width=800]
+image::query-tabs.jpg[width=800]
 
 == Connection bar
 
@@ -30,22 +30,33 @@ If you select one, you see a sample of the selected element as a graph or table.
 [.shadow]
 image::database-drawer.png[width=400]
 
-Additionally, the drawer contains node and relationship counts, displayed in parantheses.
+Additionally, the drawer contains node and relationship counts, displayed in parentheses.
 
-=== Saved Cypher
+=== Query
 
-The Saved Cypher drawer is where you keep your bookmarked queries and commands.
-
-[.shadow]
-image::saved-cypher-drawer.png[width=400]
-
-From here, you can organize your saved Cypher, download or upload these, or delete them if needed.
-To run a saved query, click on it to populate it to the Cypher editor and use the play button to execute.
-
-To save a query, use the bookmark icon in the Cypher editor.
+When you use the *Save and open in tab* button (available in the result frame), the query in the editor is saved to this drawer, even after the tab is closed.
 
 [.shadow]
-image::save-cypher.png[width=800]
+image::save-tab.png[width=250]
+
+When you open a query from this drawer, it opens in a new tab.
+
+If you open a new tab to write a new query, it is saved as a draft in this drawer as soon as you start writing the query or if you rename the tab.
+The query remains a draft until you move it by dragging it to the location you prefer.
+
+[.shadow]
+image::draft-query.jpg[width=400]
+
+From here, you can organize your saved queries, download or upload these, or delete them if needed.
+
+Right-click a query to access the possible actions.
+You can:
+
+* rename
+* open in a new tab
+* open in the stream
+* download
+* delete
 
 
 === Query history
@@ -159,7 +170,7 @@ The toggle for errors and warnings is used to enable hints to help you find erro
 
 == Reusable result frames
 
-The reusable result frames in Query allow you to edit the query of an existing result directly in the result fram and rerun it to update the result in situ.
+The reusable result frames in Query allow you to edit the query of an existing result directly in the result frame and rerun it to update the result in situ.
 You can also use _Cmd/Ctrl + click_ to send it back to the main editor and re-run it from there.
 
 Query supports different result frame views:
@@ -167,8 +178,9 @@ Query supports different result frame views:
 * Graph -- Display the result as nodes and relationships and allow xref:query/operations.adoc#styling[styling] to be configured.
 * Table -- Display the result as JSON formatted rows.
 * RAW -- Display the submitted request, the Neo4j Server version and address, and the response.
-* Plan -- Display the execution plan for the query, with out without execution.
+* Plan -- Display the execution plan for the query, with or without execution.
 
+[[stream]]
 == Stream
 
 A stream is a scrolling series of result frames.
@@ -178,9 +190,40 @@ A stream is a scrolling series of result frames.
 image::stream.png[]
 
 A reusable result frame is created for each command execution, added to the top of the stream to create a scrollable collection in reverse chronological order.
-You can expand and collapse the result frames using the *Collapse* icon.
+You can minimize and enlarge the result frames from the *[...]* more menu.
 To remove all the frames from the stream, use the `:clear` command.
 Clearing the stream does **not** clear the history, that is done from the **Query history** drawer, as mentioned previously.
+
+The frames in the stream retain the connection that was active when the frame was created and if the current connection is different, the query cannot be re-run.
+*Tabs*, however, always use the currently active connection, and if applicable, can thus always be run.
+
+== Tabs
+
+If you open a query in a tab, either from the result frame or from the Query drawer, you have three options to view the query and results:
+
+* *Results on bottom*
+* *Results on right*
+* *Interactive table view*
+
+All three options display the Cypher query and the results, either as a graph (if results can be visualized as a graph) or as a table.
+The first two options allow you to toggle between graph (if available), table, and RAW views.
+
+Regardless of orientation of results, in the table view, you can search the table, download in different formats, and copy a table to the clipboard.
+In the graph view, you can search the graph and download as _PNG_.
+
+The interactive table view displays the result both as a graph and a table.
+It consists of three panels, the *Cypher editor* (populated with your Cypher query), the *graph panel*, and the *table panel*.
+
+The query in the editor can be edited and re-run, and the results will be updated in both the graph and the table panels.
+
+The *graph panel* offers the same functionality as the regular graph view, but it also allows you to select graph objects from the graph and see them highlighted in the table.
+
+Likewise, the *table panel* allows you to select graph objects from the tabular results and see them highlighted in the graph.
+
+[.shadow]
+.Interactive table view
+image::interactive-view.png[width=full]
+
 
 [[copilot]]
 == Query co-pilot
