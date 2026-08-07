@@ -29,7 +29,7 @@ Any ongoing operations are halted.
 
 * Data is preserved: Your data remains safe and unchanged while the instance is paused.
 You may export a backup of your data within its exportable period.
-When you resume the instance, you can pick up right where you left off.
+When you resume the instance, you can pick up where you left off.
 
 [NOTE]
 ====
@@ -62,7 +62,7 @@ After confirming, the instance begins pausing, and a play button replaces the pa
 ----
 POST https://api.neo4j.io/v1/instances/{instanceId}/pause
 ----
-For more information, see link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/post-pause-instance[Aura API spec]
+For more information, see the link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/post-pause-instance[Aura API specification].
 =====
 ====
 
@@ -88,7 +88,6 @@ If an Aura Free instance remains paused for more than 30 days, Aura deletes the 
 =====
 
 Resume a paused instance with the *Play* button on the instance card.
-After confirming, the instance begins resuming.
 
 =====
 [.include-with-API]
@@ -97,7 +96,7 @@ After confirming, the instance begins resuming.
 ----
 POST https://api.neo4j.io/v1/instances/{instanceId}/resume
 ----
-For more information, see link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/post-resume-instance[Aura API spec]
+For more information, see the link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/post-resume-instance[Aura API specification].
 =====
 ====
 
@@ -105,12 +104,11 @@ For more information, see link:https://neo4j.com/docs/aura/platform/api/specific
 
 Deleting an instance removes all associated snapshots, so they cannot be used to backup and restore data. 
 
-If you may need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] and export and save it on your computer, before deleting the instance.
 
 [WARNING]
 ====
 There is no way to recover data from a deleted Aura instance, including snapshots.
-If you may need the data later, export a snapshot before deleting the instance.
+If you need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] before deleting the instance.
 ====
 
 [.tabbed-example]
@@ -126,18 +124,19 @@ Type the exact name of the instance and confirm with *Destroy*.
 ----
 DELETE https://api.neo4j.io/v1/instances/{instanceId}
 ----
-For more information, see link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/delete-instance-id[Aura API spec]
+For more information, see the link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/delete-instance-id[Aura API specification].
 =====
 ====
 
 [role=label--aura-db-professional label--AuraDB-Free]
 == Reset an instance
 
-Reset an instance from the Aura console only.
 You can clear all data in an instance using the *Reset to blank* action.
 
 Select *Reset to blank* from the *(...)* more menu on the instance card.
 You need to confirm your intention since this action cannot be undone.
+
+You can reset an instance from the Aura console only.
 
 == Inspect an instance's details
 
@@ -147,8 +146,8 @@ Return details about a specific Aura instance.
 ====
 [.include-with-Aura-console]
 =====
-From the instance card, select the more menu (*...*) then select *instance details*.
-From the instance details you can rename an instance and view instance details.
+From  the more menu *[...]* on the instance card, select *instance details*.
+You can rename an instance and view instance details among other things.
 See xref:managing-instances/instance-details.adoc[Instance details] for more information.
 [.shadow]
 image::instance-actions.png[]
@@ -160,7 +159,7 @@ image::instance-actions.png[]
 ----
 GET https://api.neo4j.io/v1/instances/{instanceId}
 ----
-For more information, see link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/get-instance-id[Aura API spec]
+For more information, see the link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/get-instance-id[Aura API specification].
 =====
 ====
 
@@ -180,7 +179,7 @@ There are two options to clone an instance:
 * Clone to a new instance
 * Clone to an existing instance
 
-You can access all the cloning options from the more menu (*...*) on the instance.
+You can access all the cloning options from the more menu *[...]* on the instance.
 
 [NOTE]
 ====
@@ -250,7 +249,7 @@ image::upgradeprotobc.png[]
 ----
 POST https://api.neo4j.io/v1/instances/{instanceId}/upgrade
 ----
-For more information, see link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/post-upgrade-instance[Aura API spec]
+For more information, see thelink:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/post-upgrade-instance[Aura API specification].
 =====
 ====
 
