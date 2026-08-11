@@ -6,6 +6,7 @@ on:
   push:
     branches:
     - 'console'
+    - 'add-page-section-tabs'
   workflow_dispatch:
 
 # change `dev` and `main` according to your repository's branch names
@@ -13,7 +14,7 @@ on:
 # `main` is the branch you use to build and publish to neo4j.com/docs
 # in some cases, PROD_BRANCH and DEV_BRANCH may be the same branch
 env:
-  DEV_BRANCH: 'console'
+  DEV_BRANCH: 'add-page-section-tabs'
   PROD_BRANCH: 'console'
 
 jobs:
