@@ -81,7 +81,7 @@ image::security/displayname.png[Display name,300,300]
 == Legacy SSO Configurations
 
 Historically, certain custom SSO configurations—such as `Groups`, `Username`, `Scope`, and `Token parameters` were managed via support tickets.
-While these configurations were previously not visible in the Organization settings page, they are now accessible and editable directly within the console.
+While these configurations were previously not visible in the organization settings page, they are now accessible and editable directly within the console.
 Some legacy configurations may exist in an orphaned state.
 It is recommended to create new configurations to utilize current SSO management capabilities where possible.
 
@@ -118,8 +118,8 @@ Self-managed Neo4j deployments can use additional identity provider attributes. 
 
 If you want users to authenticate with SSO for both the Aura Console and your database instances, make sure to select both of the following checkboxes during setup:
 
-* Use as login for the Organization
-* Use as login method for instances within Projects in this Organization
+* Use as login for the organization
+* Use as login method for instances within projects in this organization
 
 .SSO configuration form
 [.shadow]
@@ -208,7 +208,7 @@ Skip redirect URI’s for now.
 
 . Select how you want the SSO configuration to be applied in Aura:
 
-.. *Use as a log in method for the Organization* applies to organization-level logins (which acts as a login to the Aura console).
+.. *Use as a log in method for the organization* applies to organization-level logins (which acts as a login to the Aura console).
 
 .. *Use as a login method for instances within Projects in this Organization* applies to the project-level and you can select specific projects within the organization (where login is on the instance).
 
@@ -229,7 +229,7 @@ Skip redirect URI’s for now.
 . Select *Create*
 
 . Select the additional log in methods:
-.. For Organization-level testing it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
+.. For organization-level testing it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
 .. For instance-level testing the user/password login is always available on the instance, so if SSO isn’t working, the instance is still accessible.
 
 
@@ -292,7 +292,7 @@ The final URL should look similar to `https://dev-123-admin.okta.com/.well-known
 
 . Select the additional log in methods:
 
-.. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
+.. For *organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
 
 .. For *instance-level testing* the user/password login is always available on the instance, so if SSO isn't working, the instance is still accessible.
 
