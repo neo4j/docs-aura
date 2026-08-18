@@ -170,8 +170,14 @@ The toggle for errors and warnings is used to enable hints to help you find erro
 
 == Reusable result frames
 
-The reusable result frames in Query allow you to edit the query of an existing result directly in the result frame and rerun it to update the result in situ.
+When you run a query in the Cypher editor, the query and the results are displayed in a *reusable result frame*.
+You can edit the query of an existing result directly in the result frame and rerun it to update the result in situ.
 You can also use _Cmd/Ctrl + click_ to send it back to the main editor and re-run it from there.
+This results in a *new* reusable result frame in your <<stream>>.
+
+[.shadow]
+.Reusable result frame
+image::result-frame.png[width=600]
 
 Query supports different result frame views:
 
