@@ -34,6 +34,7 @@ To use Aura Graph Analytics from AuraDB, verify the following requirements:
 * **Neo4j version:** 5 or later
 
 On a self-managed Neo4j instance, you must install the *latest version* of Neo4j and set up a xref:security/secure-connections.adoc#private-links[private link] allowing inbound traffic on port 8491.
+See more information on xref:graph-analytics/aga.adoc#network-requirements[Aura Graph Analytics > Administration > Network requirements].
 
 To use Aura Graph Analytics *outside* of an Aura environment (for example via the Python client), you need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] too.
 ====
