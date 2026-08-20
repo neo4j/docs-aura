@@ -239,12 +239,12 @@ a| `action_id`
 | DATA_SNAPSHOT_CREATE_ON_DEMAND
 | 0101
 | Data Management
-| An on-demand snapshot operation
+| An on-demand snapshot has been created
 
 | DATA_SNAPSHOT_EXPORT
 | 0102
 | Data Management
-| A snapshot has been exported
+| A snapshot has been downloaded
 
 | DATA_SNAPSHOT_RESTORE
 | 0103
@@ -425,6 +425,21 @@ a| `action_id`
 | 0601
 | Organization Management
 | A new project in an organization has been created
+
+| PROJECT_DELETION_REQUESTED
+| 0602
+| Organization Management
+| A project in an organization has been soft-deleted
+
+| PROJECT_RESTORE
+| 0603
+| Organization Management
+| A project in an organization has been restored
+
+| PROJECT_PERMANENTLY_DELETED
+| 0604
+| Organization Management
+| A project has been permantently deleted
 
 | BILLING_ACCOUNT_CREATE
 | 0701

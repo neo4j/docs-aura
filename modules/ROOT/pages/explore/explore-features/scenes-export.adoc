@@ -1,5 +1,5 @@
 = Scenes and sharing data
-:description: This section describes Scenes and how to export data from Explore in the Neo4j Aura console
+:description: This section describes Scenes and how to export data from Bloom in the Neo4j Aura console
 
 When you are working with a dataset, sometimes you may need more than one Scene to achieve your objective.
 By using the *Scene* button, you can expand the Scene panel from which you can add a new Scene, or rename, duplicate, or delete your existing Scene(s).
@@ -26,12 +26,13 @@ image::styling-perspective.jpg[width=300]
 Scenes rely on node and relationship IDs in Neo4j.
 Changes to this underlying data can cause data in saved Scenes to appear incorrectly if IDs are reused by the database.
 This also applies when you pause and then restore an instance.
+To avoid the loss of saved Scenes, make sure to export your saved Scenes prior to pausing your instance, as described below.
 ====
 
 
 == Sharing options
 
-Explore allows you to share your insights.
+Bloom allows you to share your insights.
 When you find an interesting Scene, you have different options to share it, depending on who you want to share it with.
 The options are accessed with the *Export* button in the top right corner of your Scene.
 

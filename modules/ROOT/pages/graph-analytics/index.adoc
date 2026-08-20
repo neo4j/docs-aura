@@ -30,7 +30,7 @@ include::partial$aga-min-bill.adoc[]
 ====
 To use Aura Graph Analytics from AuraDB, verify the following requirements:
 
-* **AuraDB tier:** AuraDB Professional, Business Critical, or Virtual Dedicated Cloud
+* **AuraDB tier:** AuraDB Free, AuraDB Professional, Business Critical, or Virtual Dedicated Cloud
 * **Neo4j version:** 5 or later
 
 On a self-managed Neo4j instance, you must install the *latest version* of Neo4j and set up a xref:security/secure-connections.adoc#private-links[private link] allowing inbound traffic on port 8491.
@@ -68,7 +68,8 @@ If the on-demand ephemeral architecture of Aura Graph Analytics is not suitable 
 |Dedicated instance (always on, pausing possible)
 
 |Billing
-|Pay-as-you-go (per session minute)
+|Pay-as-you-go (per session minute) +
+_The Free and Pro Trial tiers are not billed_
 |Included in the AuraDB cost
 |Flat hourly rate (per instance size)
 
@@ -88,12 +89,17 @@ If the on-demand ephemeral architecture of Aura Graph Analytics is not suitable 
 |Train, store, and serve models (only same instance)
 
 |Maximum memory
-|Up to 8GB (Pro trial), 128 GB (Pro, BC), or 512 GB (VDC)
+|Up to: 2GB (Free tier), 8GB (Pro Trial), 128 GB (Pro, BC), or 512 GB (VDC)
 |Up to 128 GB
 |Up to 384 GB
 
 |Number of concurrent GDS sessions
-|Up to 3 (Pro trial) or 100 (Pro, BC, VDC)
+|Up to: 1 (Free tier), 3 (Pro Trial), or 100 (Pro, BC, VDC)
+|-
+|-
+
+|Maximum GDS session duration
+|Up to: 4 hours (Free tier), 1 day (Pro Trial), or 7 days (Pro, BC, VDC)
 |-
 |-
 
