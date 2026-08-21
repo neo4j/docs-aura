@@ -17,6 +17,11 @@ It allows you to import data without using any code from:
 * Google Cloud Storage
 * .CSV
 
+The Import tool creates indexes and constraints on the database it imports to.
+Only `PROJECT_ADMIN` users have this capability and if you have the `PROJECT_MEMBER` role, the lack of privileges prevents you from using the Import tool to import data.
+However, on *Business Critical* and *Virtual Dedicated Cloud* instances, it is possible to create a custom role and add necessary privileges and grant it to a user with the `PROJECT_MEMBER`.
+See xref:appendix.adoc#create-custom-role[Create a custom import role] for more information.
+
 This service is also available as a standalone tool for importing data into self-managed Neo4j instances.
 The standalone importer is available at the following links, depending on whether you need support for unsecured connections:
 
