@@ -39,7 +39,7 @@ In the dialog that appears, input the URL and credentials to your deployment and
 
 [.shadow]
 .Connect to your deployment
-image::connectionmodalnonremote.png[]
+image::connectionmodalnonremote.png[width=400]
 
 After connecting, Aura runs the `fleetManagement.registerToken()` procedure to check whether your deployment meets the requirements for Fleet Manager.
 
@@ -83,8 +83,8 @@ Paste the code in the indicated input box.
 
 [.shadow]
 .Add a new self-managed deployment
-image::add-from-cli.png[width=600]
+image::add-from-cli.png[]
 
-The list of deployments discovered by `neo4j-admin` appears in the drawer.
+The list of deployments discovered by `neo4j-admin` appears.
 Next to each deployment is a *Register* button that can be used to register it.
 Use this button to start the setup wizard described in the previous sections.
