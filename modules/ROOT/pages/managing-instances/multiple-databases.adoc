@@ -205,7 +205,7 @@ This applies to drivers, the Query API, and other external sources.
 Multiple databases are supported across Aura tools. 
 There are some things to consider when working with multiple databases:
 
-* xref:managing-instances/backup-restore-export.adoc#_multi_database_instances[Backup, export, and restore]: Take backups of individual databases.
+* xref:managing-instances/backup-restore-export.adoc#_multi_database_instances[Backup, export, and restore]: Take backups of individual databases. During public preview backups are managed at DBID level. 
 * xref:explore/introduction.adoc[Bloom and Query]: When connecting, select the target database using the connection bar.
 * xref:metrics/view-metrics.adoc#_multi_database_instances[Metrics]: Switch between databases using the Database dropdown in Metrics.
 * xref:import/import.adoc#_multi_database_instances[Import]: Select the instance and the target database when running an import. Note the `push-to-cloud` command is not currently supported for multi-database instances.
