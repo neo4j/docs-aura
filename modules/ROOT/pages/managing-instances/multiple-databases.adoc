@@ -137,6 +137,9 @@ POST /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/database
 curl -X POST "https://api.neo4j.io/v2beta1/organizations/$ORG_ID/projects/$PROJECT_ID/instances/$INSTANCE_ID/databases" \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
+  -d '{ 
+       'name': "$DATABASE_NAME"
+      }'
 ----
 =====
 ====
