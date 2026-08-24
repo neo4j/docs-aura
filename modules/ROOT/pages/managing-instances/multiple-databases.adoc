@@ -100,21 +100,27 @@ curl -X POST "https://api.neo4j.io/v2beta1/organizations/$ORG_ID/projects/$PROJE
 =====
 ====
 
-=== Create additional databases
+=== Create databases
 
 [NOTE]
 ====
 Databases cannot be created using Cypher database management commands, only via API and Aura console.
 ====
 
+When a Multi-DB enabled instance is created, a default `neo4j` database is created automatically. 
+It is not possible to delete this database. 
+Databases contain a name and an automatically generated id.
+
+
+Database names follow link:https://neo4j.com/docs/operations-manual/current/database-administration/standard-databases/naming-databases/[standard neo4j rules] and are immutable so cannot be changed after they are created. 
+Avoid using personal or sensitive information in database names.
+
 [.tabbed-example]
 ====
 [.include-with-Aura-console]
 =====
 
-From the instance [...] more menu > select *Databases* > select *Create Database*. 
-
-A database name is generated automatically (for example, `293fd870`). 
+From the instance [...] more menu > select *Databases* > select *Create Database*.
 
 [.shadow]
 image::multidb/multidb-create.png[Create database]
@@ -199,9 +205,10 @@ There are some things to consider when working with multiple databases:
 * xref:managing-instances/backup-restore-export.adoc#_multi_database_instances[Backup, export, and restore]: Take backups of individual databases.
 * xref:explore/introduction.adoc[Bloom and Query]: When connecting, select the target database using the connection bar.
 * xref:metrics/view-metrics.adoc#_multi_database_instances[Metrics]: Switch between databases using the Database dropdown in Metrics.
-* xref:import/import.adoc#_multi_database_instances[Import]: Select the instance and the target database when running an import.
-* link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[Aura API]
+* xref:import/import.adoc#_multi_database_instances[Import]: Select the instance and the target database when running an import. Note the `push-to-cloud` command is not currently supported for multi-database instances.
+* link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[Aura API]: See xref:managing-instances/multiple-databases.adoc#_api_requirements[API requirements]
 * xref:security/index.adoc[Security & Networking]: IP Filtering & Private Endpoints (where available for the Aura tier)
+* xref:security/single-sign-on.adoc[Single Sign-On]: Authenticate users accessing the instance.
 
 
 
