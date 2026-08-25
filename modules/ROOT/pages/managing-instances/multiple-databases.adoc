@@ -196,8 +196,7 @@ DELETE /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databa
 
 When connecting to a multi-database instance from an external client, specify the `database name` as part of the connection. 
 The database name identifies which database to access. 
-If no database name is provided, the connection cannot be established.
-This applies to drivers, the Query API, and other external sources.
+If no database name is provided, you will connect to the default database. This applies to drivers, the Query API, and other external sources.
 
 == Supported features
 
