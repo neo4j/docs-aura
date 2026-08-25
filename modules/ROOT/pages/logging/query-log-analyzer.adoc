@@ -34,8 +34,8 @@ Query log analyzer is split up in three parts:
 image::query-log-analyzer.png[width=100%]
 
 To fetch logs, first select a time range in the Query timeline.
-With a time selection done, press the *Fetch logs* button.
-You may optionally select any filters or search text if required, then press *Fetch*.
+With a time selection done, use *Fetch logs* to continue.
+You may optionally select any filters or search text if required, then *Fetch*.
 
 A summary of query executions is returned, showing aggregations per query.
 To see the individual query executions, click the right arrow at the end of the line to show details for that query.
@@ -101,7 +101,6 @@ Filters are available for the following fields:
 * Minimum duration (ms)
 * Query text
 * Error text
-
 
 == Log tables
 
@@ -171,6 +170,10 @@ This granular view is useful for investigating specific incidents or understandi
 | Avg page faults
 | avgPageFaults
 | The average number of page faults per query execution.
+
+| Query language
+| queryLanguage
+| The Cypher version used in the query.
 
 | Actions
 | -
