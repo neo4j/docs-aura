@@ -6,7 +6,7 @@ label:AuraDB-Virtual-Dedicated-Cloud[]
 
 [IMPORTANT]
 ====
-The multiple database preview is governed by the link:https://neo4j.com/legal-terms/[Experimental Service Terms] in your customer agreement with Neo4j.
+The multiple database preview is governed by the link:https://neo4j.com/legal-terms/aura-feature-specific-terms[Experimental Service Terms] in your customer agreement with Neo4j.
 Updates about supported preview features will be added to link:https://neo4j-aura.canny.io/changelog[Canny].
 ====
 
@@ -206,7 +206,7 @@ There are some things to consider when working with multiple databases:
 
 * xref:managing-instances/backup-restore-export.adoc#_multi_database_instances[Backup, export, and restore]: Take backups of individual databases. During public preview, select using DBID to see the list of backups per database.
 * xref:explore/introduction.adoc[Bloom and Query]: When connecting, select the target database using the connection bar.
-* xref:metrics/view-metrics.adoc#_multi_database_instances[Metrics]: Switch between databases using the Database dropdown in Metrics.
+* xref:metrics/view-metrics.adoc#_multi_database_instances[Metrics] & xref:logging/query-log-analyzer.adoc[Logs]: Switch between databases using the Database dropdown in Metrics.
 * xref:import/import.adoc#_multi_database_instances[Import]: Select the instance and the target database when running an import. Note the `push-to-cloud` command is not currently supported for multi-database instances.
 * xref:managing-instances/backup-restore-export.adoc#restore-backup[Restore]: Restore a database using Database Restore or drag and drop.
 * xref:managing-instances/backup-restore-export.adoc#neo4j-admin-upload[Upload]: Note the `neo4j-admin database upload` (formerly `push-to-cloud`) command is not currently supported for multi-database instances.
