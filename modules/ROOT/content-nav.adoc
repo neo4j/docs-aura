@@ -34,6 +34,16 @@ Generic Start
 ** xref:managing-projects/create-project.adoc[Create a project]
 ** xref:managing-projects/delete-and-restore-projects.adoc[Delete and restore projects]
 
+* xref:virtual-graph.adoc[]
+
+* Graph analytics in Aura
+** xref:graph-analytics/index.adoc[Overview]
+** xref:graph-analytics/aga.adoc[]
+** xref:graph-analytics/alternative-deployments.adoc[]
+** xref:graph-analytics/migrate-to-aga.adoc[]
+
+* xref:aura-agent.adoc[Aura Agent]
+
 * Import data
 ** xref:import/introduction.adoc[What is Import?]
 ** xref:import/quick-start.adoc[Quick start]
@@ -45,14 +55,11 @@ Generic Start
 ** xref:import/import.adoc[Run the import]
 ** xref:import/data-sources.adoc[Data sources]
 
-* Graph analytics in Aura
-** xref:graph-analytics/index.adoc[Overview]
-** xref:graph-analytics/aga.adoc[]
-** xref:graph-analytics/alternative-deployments.adoc[]
-** xref:graph-analytics/migrate-to-aga.adoc[]
-
-* xref:aura-agent.adoc[Aura Agent]
-
+* Query data
+** xref:query/introduction.adoc[What is Query?]
+** xref:query/visual-tour.adoc[Visual tour]
+** xref:query/operations.adoc[Query operations]
+** xref:query/command-reference.adoc[Command reference]
 
 * Explore data with Bloom
 ** xref:explore/introduction.adoc[What is Bloom?]
@@ -73,7 +80,6 @@ Generic Start
 *** xref:explore/explore-perspectives/refresh-perspectives.adoc[Refresh Perspectives]
 *** xref:explore/explore-perspectives/database-scans.adoc[Database scans]
 
-
 ** Bloom features in detail
 *** xref:explore/explore-features/graph-pattern-search.adoc[Graph pattern search]
 *** xref:explore/explore-features/search-phrases-advanced.adoc[Search phrases for advanced queries]
@@ -85,33 +91,6 @@ Generic Start
 *** xref:explore/explore-features/scenes-export.adoc[Scenes and sharing data]
 ** xref:explore/explore-default-actions.adoc[Default actions and shortcuts]
 
-* Query data
-** xref:query/introduction.adoc[What is Query?]
-** xref:query/visual-tour.adoc[Visual tour]
-** xref:query/operations.adoc[Query operations]
-** xref:query/command-reference.adoc[Command reference]
-
-* Fleet Manager
-** xref:fleet-management/overview.adoc[Overview]
-** xref:fleet-management/setup.adoc[Add a deployment]
-** xref:fleet-management/inspect-deployment.adoc[Inspect deployment]
-** xref:fleet-management/deployment-details.adoc[Deployment details]
-** xref:fleet-management/procedures.adoc[Fleet Manager procedures]
-** xref:fleet-management/migration-to-aura.adoc[Migrate to Aura]
-** xref:fleet-management/data.adoc[Data transparency]
-** xref:fleet-management/aura-api.adoc[Aura API]
-** xref:fleet-management/aura-cli.adoc[Aura CLI]
-
-* xref:apoc.adoc[APOC support]
-
-* Aura CLI
-** xref:aura-cli/index.adoc[Introduction]
-** xref:aura-cli/installation.adoc[Installation]
-** xref:aura-cli/initial-configuration.adoc[Initial configuration]
-** xref:aura-cli/auradb-tenants.adoc[Working with AuraDB tenants]
-** xref:aura-cli/auradb-instances.adoc[Managing AuraDB instances]
-** xref:aura-cli/configuration.adoc[Configuration]
-** xref:aura-cli/migration.adoc[Migration]
 
 * Dashboards
 ** xref:dashboards/index.adoc[Overview]
@@ -136,6 +115,7 @@ Generic Start
 ** xref:dashboards/actions/index.adoc[Actions]
 ** xref:dashboards/actions/cell-click.adoc[Cell click action]
 ** xref:dashboards/actions/row-select.adoc[Row select action]
+** xref:dashboards/rule-based-styling.adoc[Rule-based styling]
 ** xref:dashboards/faq-and-resources.adoc[FAQ and resources]
 
 * Document Intelligence (Preview feature)
@@ -145,6 +125,28 @@ Generic Start
 ** xref:document-intelligence/data-provision.adoc[Data provision]
 ** xref:document-intelligence/indexes-constraints.adoc[Indexes and constraints]
 ** xref:document-intelligence/import.adoc[Import]
+
+* Fleet Manager
+** xref:fleet-management/overview.adoc[Overview]
+** xref:fleet-management/setup.adoc[Add a deployment]
+** xref:fleet-management/inspect-deployment.adoc[Inspect deployment]
+** xref:fleet-management/deployment-details.adoc[Deployment details]
+** xref:fleet-management/procedures.adoc[Fleet Manager procedures]
+** xref:fleet-management/migration-to-aura.adoc[Migrate to Aura]
+** xref:fleet-management/data.adoc[Data transparency]
+** xref:fleet-management/aura-api.adoc[Aura API]
+** xref:fleet-management/aura-cli.adoc[Aura CLI]
+
+* xref:apoc.adoc[APOC support]
+
+* Aura CLI
+** xref:aura-cli/index.adoc[Introduction]
+** xref:aura-cli/installation.adoc[Installation]
+** xref:aura-cli/initial-configuration.adoc[Initial configuration]
+** xref:aura-cli/auradb-tenants.adoc[Working with AuraDB tenants]
+** xref:aura-cli/auradb-instances.adoc[Managing AuraDB instances]
+** xref:aura-cli/configuration.adoc[Configuration]
+** xref:aura-cli/migration.adoc[Migration]
 
 * Metrics
 ** xref:metrics/view-metrics.adoc[View metrics]

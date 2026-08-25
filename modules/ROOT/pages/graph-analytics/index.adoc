@@ -28,12 +28,15 @@ include::partial$aga-min-bill.adoc[]
 
 [IMPORTANT]
 ====
-If you plan to use Aura Graph Analytics from AuraDB, verify the following requirements:
+To use Aura Graph Analytics from AuraDB, verify the following requirements:
 
 * **AuraDB tier:** AuraDB Free, AuraDB Professional, Business Critical, or Virtual Dedicated Cloud
 * **Neo4j version:** 5 or later
 
-If you plan to use Aura Graph Analytics *outside* of an Aura environment (for example via the Python client), you need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] too.
+On a self-managed Neo4j instance, you must install the *latest version* of Neo4j and set up a xref:security/secure-connections.adoc#private-links[private link] allowing inbound traffic on port 8491.
+See more information on xref:graph-analytics/aga.adoc#network-requirements[Aura Graph Analytics > Administration > Network requirements].
+
+To use Aura Graph Analytics *outside* of an Aura environment (for example via the Python client), you need to create xref:api/authentication.adoc#_creating_credentials[Aura API credentials] too.
 ====
 
 [[alternative-deployments]]
@@ -93,6 +96,11 @@ _The Free and Pro Trial tiers are not billed_
 
 |Number of concurrent GDS sessions
 |Up to: 1 (Free tier), 3 (Pro Trial), or 100 (Pro, BC, VDC)
+|-
+|-
+
+|Maximum GDS session duration
+|Up to: 4 hours (Free tier), 1 day (Pro Trial), or 7 days (Pro, BC, VDC)
 |-
 |-
 
