@@ -206,11 +206,11 @@ There are some things to consider when working with multiple databases:
 
 * xref:managing-instances/backup-restore-export.adoc#_multi_database_instances[Backup, export, and restore]: Take backups of individual databases. During public preview, select using DBID to see the list of backups per database.
 * xref:explore/introduction.adoc[Bloom and Query]: When connecting, select the target database using the connection bar.
-* xref:metrics/view-metrics.adoc#_multi_database_instances[Metrics] & xref:logging/query-log-analyzer.adoc[Logs]: Switch between databases using the Database dropdown in Metrics.
-* xref:import/import.adoc#_multi_database_instances[Import]: Select the instance and the target database when running an import. Note the `push-to-cloud` command is not currently supported for multi-database instances.
+* xref:metrics/view-metrics.adoc#_multi_database_instances[Metrics] & xref:logging/query-log-analyzer.adoc[Logs]: Switch between databases using the Database dropdown in Metrics and see Database specific Query logs.
+* link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[Aura API]: See xref:managing-instances/multiple-databases.adoc#_api_requirements[API requirements]
+* xref:import/import.adoc#_multi_database_instances[Import]: Select the instance and the target database when running an import.
 * xref:managing-instances/backup-restore-export.adoc#restore-backup[Restore]: Restore a database using Database Restore or drag and drop.
 * xref:managing-instances/backup-restore-export.adoc#neo4j-admin-upload[Upload]: Note the `neo4j-admin database upload` (formerly `push-to-cloud`) command is not currently supported for multi-database instances.
-* link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[Aura API]: See xref:managing-instances/multiple-databases.adoc#_api_requirements[API requirements]
 * xref:security/index.adoc[Security & Networking]: IP Filtering & Private Endpoints (where available for the Aura tier)
 * xref:security/single-sign-on.adoc[Single Sign-On]: Authenticate users accessing the instance.
 
