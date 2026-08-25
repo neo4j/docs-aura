@@ -4,25 +4,73 @@ Make tables easier to scan and interpret at a glance by adding styling rules to 
 Styling updates dynamically as your data changes.
 Apply styling to cells, rows, and text, or use color gradients to emphasize numeric values.
 
-To create a styling rule open a *Table* visualization > Select the *Styling* tab > Select *Add* > Configure your rule > Select *Apply*. 
+To create a styling rule:
+
+. Open a *Table* visualization and select the *Styling* tab
+. Select *Add*
+. Configure the rule and select *Apply*
+. Select *Add* to create the rule
+
+[IMPORTANT]
+====
+Select *Save* on the card to save your changes.
+Closing the card before selecting *Save* discards the changes.
+====
 
 You can create multiple styling rules. 
 Rules are executed from top to bottom, so drag and drop them to change their priority.
 
-== Examples 
+== Example
 
-The following examples use the Northwind dataset.
+The following example uses the Northwind dataset.
+
+Create a table visualization with the following Cypher:
+
+[source,cypher]
+----
+MATCH (p:Product)
+RETURN p.productName AS Product, p.unitsInStock AS `Units in stock`
+ORDER BY `Units in stock` DESC
+LIMIT 10
+----
 
 === Highlight stock levels
 
-Use multiple styling rules to make high and low stock levels easier to identify.
 
-.Highlight stock levels
+This example uses two styling rules to make high and low stock levels easier to identify.
+
+* Apply a green background gradient to values greater than or equal to 110.
+* Apply a red background to rows containing values less than 110.
+
+.Apply green background to values greater than or equal to 110
 [.shadow]
-image::dashboards/rule-based-styling/units-in-stock.png[width=900]
+image::dashboards/rule-based-styling/rule-based-styling-config.png[width=900]
 
-This example uses two styling rules:
+.Highlight low stock levels in red
+[.shadow]
+image::dashboards/rule-based-styling/low-stock-levels.png[width=900]
 
-* Apply a green background gradient to values greater than `110`.
-* Apply a red background to rows containing values less than or equal to `110`.
+== Add a color gradient
 
+To show differences between the higher stock values, change the green background from a single color to a color gradient.
+
+Set the *Minpoint* and *Maxpoint* values and select a color for each.
+For example, set the minimum value to `110` with a light green color and the maximum value to `130` with a bright green color.
+Values between these points use a blend of the two colors.
+
+Optionally, add a *Midpoint* of `115` to control the transition between the minimum and maximum.
+
+.Add a color gradient
+[.shadow]
+image::dashboards/rule-based-styling/gradient.png[width=900]
+
+== Add text color
+
+
+Use text color to highlight rows containing specific text.
+
+In this example, apply a blue background and purple text to the row where the *Product* value contains `Rhönbräu`.
+
+.Change text color
+[.shadow]
+image::dashboards/rule-based-styling/text-color.png[width=900]
