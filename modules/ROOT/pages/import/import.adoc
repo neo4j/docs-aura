@@ -52,23 +52,13 @@ The load statement creates nodes for every item in the mapped file and adds the 
 For relationships, there is only a load statement.
 It finds the start (source) and end (target) nodes and creates a relationship between them and sets the assigned (if any) properties to the relationship.
 
-// == Generate Cypher script
+[[rerun-import]]
+==  Re-run the import
 
-// There may be situations where you want use the import logic elsewhere or where you need more complex transformations than Import allows.
-// Once you have added your files and mapped the data, instead of running the import, you can generate the corresponding Cypher script representing the model and mapping.
+The import process is idempotent since the `LOAD` statements use `MERGE` on ID.
+This means that if you run the import again, only new data is imported and no existing data is modified nor overwritten.
+Depending on the size of your data, re-running the import can take some time if you import the whole database again.
+To optimize this process, you can separate the new/amended data from the original and point Importer to the data source that contains the changes.
+This way, Importer doesn't have to parse data that is not going to be imported.
 
-// The script can be used in the _Query_ tab of Workspace, provided that the files are accessible to the DBMS, or on the command line via Cypher shell, for example.
-
-// The generated code contains comments that help you understand how the load statement works and what different parts it consists of.
-// This also helps you understand where you need to make changes to adapt it to where you intend to run it.
-
-// You can download the script with or without the files.
-
-// The _Generate Cypher script_ is available from the more menu.
-
-// image::generate-cypher.png[]
-
-
-
-
-//== Errors
+Re-running the import works the same, regardless of data source.
