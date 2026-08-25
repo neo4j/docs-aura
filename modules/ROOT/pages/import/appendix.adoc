@@ -16,8 +16,8 @@ image::import-errors.png[width=600]
 
 To allow users with the `PROJECT_MEMBER` role to use the Import tool, a `PROJECT_ADMIN` can create a custom role for this, create new database users and assign them the new role.
 
-If you are a `PROJECT_ADMIN` of a Business Critical or Virtual Dedicated Cloud instance, navigate to Query to create the custom role.
-You need to grant the role privileges to *create* indexes and constraints.
+If you are a `PROJECT_ADMIN` of a Business Critical or Virtual Dedicated Cloud AuraDB instance, navigate to Query to create the custom role.
+You need to grant the role privileges to *create indexes* and *constraints*.
 
 For example:
 
@@ -29,7 +29,7 @@ GRANT CREATE INDEX ON DATABASE neo4j TO importer;
 GRANT CREATE CONSTRAINT ON DATABASE neo4j TO importer;
 ----
 
-It is recommended to always allow *only the minimum* privileges needed, which is why only `CREATE INDEXES` and `CREATE CONSTRAINTS` are granted and not full lifecycle control of indexes and constraints.
+It is recommended to always grant *only the minimum* privileges needed, which is why only `CREATE INDEXES` and `CREATE CONSTRAINTS` are granted and not full lifecycle control of indexes and constraints.
 
 You can then create a new database user and grant them the role.
 
