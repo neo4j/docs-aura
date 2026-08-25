@@ -125,3 +125,392 @@ For details, see link:https://docs.datadoghq.com/agent/?tab=Linux[Datadog Agent 
 * Check in Datadog metric explorer to see if metrics appear (after a couple of minutes).
 
 ====
+
+.Example metric outputs by granularity
+[aura-cmi-example-granularity-outputs%collapsible]
+====
+
+The metrics returned by the integration endpoint differ depending on the configured xref:./introduction.adoc#aura-cmi-metrics-granularity[metric granularity].
+The `Summary` granularity returns one data point per metric, labeled with `aggregation`, `instance_id`, and `database`.
+The `Comprehensive` granularity returns one data point per availability zone and instance mode combination, with the additional `availability_zone` and `instance_mode` labels.
+
+.Summary granularity output
+[source]
+----
+# HELP neo4j_dbms_bolt_connections_opened_total The total number of Bolt connections opened since startup. This includes both successful and failed connections. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_dbms_bolt_connections_opened_total counter
+neo4j_dbms_bolt_connections_opened_total{aggregation="MAX",instance_id="dd1b92f4"} 4.000000 1787670452427
+# HELP neo4j_dbms_vm_gc_time_g1_young_generation_total Shows the total time since startup spent clearing up heap space for short lived objects. Young garbage collections typically complete quickly, and the Aura instance waits while the garbage collector is run. High values indicate that the instance is running low on memory for the workload and you should consider increasing the size of your instance.
+# TYPE neo4j_dbms_vm_gc_time_g1_young_generation_total counter
+neo4j_dbms_vm_gc_time_g1_young_generation_total{aggregation="MAX",instance_id="dd1b92f4"} 752.000000 1787670452427
+# HELP neo4j_dbms_vm_gc_time_g1_old_generation_total Shows the total time since startup spent clearing up heap space for long-lived objects. Old garbage collections can take time to complete, and the Aura instance waits while the garbage collector is run. High values indicate that there are long-running processes or queries that could be optimized, or that your instance is running low on CPU or memory for the workload and you should consider reviewing these metrics and possibly increasing the size of your instance.
+# TYPE neo4j_dbms_vm_gc_time_g1_old_generation_total counter
+neo4j_dbms_vm_gc_time_g1_old_generation_total{aggregation="MAX",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_database_cypher_replan_events_total The total number of times Cypher has replanned a query since the server started. If this spikes or is increasing, check that the queries executed are using parameters correctly. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_cypher_replan_events_total counter
+neo4j_database_cypher_replan_events_total{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_database_transaction_active_read The number of currently active read transactions.
+# TYPE neo4j_database_transaction_active_read gauge
+neo4j_database_transaction_active_read{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_db_query_execution_internal_latency_q50 The query execution time in milliseconds where 50% of queries executed faster than the reported time. This also corresponds to the median of the query execution time. Available from Neo4j Version 5.
+# TYPE neo4j_db_query_execution_internal_latency_q50 gauge
+neo4j_db_query_execution_internal_latency_q50{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_database_transaction_last_committed_tx_id_total The id of the last committed transaction. Track this for primary cluster members of your Aura instance. It should show overlapping, ever-increasing lines and if one of the lines levels off or falls behind, it is clear that this cluster member is no longer replicating data, and action is needed to rectify the situation.
+# TYPE neo4j_database_transaction_last_committed_tx_id_total counter
+neo4j_database_transaction_last_committed_tx_id_total{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 3.000000 1787670452427
+# HELP neo4j_database_check_point_total_time_total The total time in milliseconds spent in checkpointing since the server started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_check_point_total_time_total counter
+neo4j_database_check_point_total_time_total{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 21.000000 1787670452427
+# HELP neo4j_database_check_point_duration The duration of the last checkpoint event in milliseconds. Checkpoints should typically take several seconds to several minutes. Values over 30 minutes warrant investigation.
+# TYPE neo4j_database_check_point_duration gauge
+neo4j_database_check_point_duration{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 21.000000 1787670452427
+# HELP neo4j_database_count_relationship The total number of relationships in the database.
+# TYPE neo4j_database_count_relationship gauge
+neo4j_database_count_relationship{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_database_count_node The total number of nodes in the database.
+# TYPE neo4j_database_count_node gauge
+neo4j_database_count_node{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_database_store_size_database Amount of disk space reserved to store user database data, in bytes. Ideally, the database should all fit into memory (page cache) for the best performance. Keep an eye on this metric to make sure you have enough storage for today and for future growth. Check this metric with page cache usage to see if the data is too large for the memory and consider increasing the size of your instance in this case.
+# TYPE neo4j_database_store_size_database gauge
+neo4j_database_store_size_database{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 919071.000000 1787670452427
+# HELP neo4j_database_transaction_active_write The number of currently active write transactions.
+# TYPE neo4j_database_transaction_active_write gauge
+neo4j_database_transaction_active_write{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_database_transaction_committed_total The total number of committed transactions since the server was started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_transaction_committed_total counter
+neo4j_database_transaction_committed_total{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_database_transaction_peak_concurrent_total The highest number of concurrent transactions detected since the server started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_transaction_peak_concurrent_total counter
+neo4j_database_transaction_peak_concurrent_total{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_database_transaction_rollbacks_total The total number of rolled-back transactions. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_transaction_rollbacks_total counter
+neo4j_database_transaction_rollbacks_total{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_database_check_point_events_total The total number of checkpoint events executed since the server started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_check_point_events_total counter
+neo4j_database_check_point_events_total{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 1.000000 1787670452427
+# HELP neo4j_dbms_page_cache_evictions_total The number of times data in memory is being replaced in total. A spike can mean your workload is exceeding the instance's available memory, and you may notice a degradation in performance or query execution errors. Consider increasing the size of your instance to improve performance if this metric remains high.
+# TYPE neo4j_dbms_page_cache_evictions_total counter
+neo4j_dbms_page_cache_evictions_total{aggregation="MAX",instance_id="dd1b92f4"} 714.000000 1787670452427
+# HELP neo4j_db_query_execution_success_total The total number of successful queries executed on this database.
+# TYPE neo4j_db_query_execution_success_total counter
+neo4j_db_query_execution_success_total{aggregation="SUM",database="neo4j",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_db_query_execution_failure_total The total number of failed queries executed on this database.
+# TYPE neo4j_db_query_execution_failure_total counter
+neo4j_db_query_execution_failure_total{aggregation="SUM",database="neo4j",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_db_query_execution_internal_latency_q99 The query execution time in milliseconds where 99% of queries executed faster than the reported time. Available from Neo4j Version 5.
+# TYPE neo4j_db_query_execution_internal_latency_q99 gauge
+neo4j_db_query_execution_internal_latency_q99{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_db_query_execution_internal_latency_q75 The query execution time in milliseconds where 75% of queries executed faster than the reported time. Available from Neo4j Version 5.
+# TYPE neo4j_db_query_execution_internal_latency_q75 gauge
+neo4j_db_query_execution_internal_latency_q75{aggregation="MAX",database="neo4j",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_aura_out_of_memory_errors_total The total number of Out of Memory Errors for the instance. Consider increasing the size of the instance if any OOM errors.
+# TYPE neo4j_aura_out_of_memory_errors_total counter
+neo4j_aura_out_of_memory_errors_total{aggregation="SUM",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_aura_cpu_usage CPU usage (cores). CPU is used for planning and serving queries. If this metric is constantly spiking or at its limits, consider increasing the size of your instance.
+# TYPE neo4j_aura_cpu_usage gauge
+neo4j_aura_cpu_usage{aggregation="MAX",instance_id="dd1b92f4"} 0.021404 1787670452427
+# HELP neo4j_dbms_vm_heap_used_ratio The percentage of configured heap memory in use. The heap space is used for query execution, transaction state, management of the graph etc. The size needed for the heap is very dependent on the nature of the usage of Neo4j. For example, long-running queries, or very complicated queries, are likely to require a larger heap than simpler queries. To improve performance, the heap should be large enough to sustain concurrent operations. This value should not exceed 80% for long periods, short spikes can be normal. In case of performance issues, you may have to tune your queries, and monitor their memory usage, to determine whether the heap needs to be increased. If the workload of Neo4j and performance of queries, indicates that more heap space is required, consider increasing the size of your instance. This helps avoid unwanted pauses for garbage collection.
+# TYPE neo4j_dbms_vm_heap_used_ratio gauge
+neo4j_dbms_vm_heap_used_ratio{aggregation="MAX",instance_id="dd1b92f4"} 0.745748 1787670452427
+# HELP neo4j_dbms_page_cache_hit_ratio_per_minute The percentage of times data required during query execution was found in memory vs needing to be read from disk. Ideally the whole graph should fit into memory, and this should consistently be between 98% and 100%. If this value is consistently or significantly under 100%, check the page cache usage ratio to see if the graph is too large to fit into memory. A high amount of insert or update activity on a graph can also cause this value to change.
+# TYPE neo4j_dbms_page_cache_hit_ratio_per_minute gauge
+neo4j_dbms_page_cache_hit_ratio_per_minute{aggregation="AVG",instance_id="dd1b92f4"} 1.000000 1787670452427
+# HELP neo4j_dbms_page_cache_usage_ratio The percentage of the allocated page cache in use. If this is close to or at 100%, then it is likely that the hit ratio will start dropping, and you should consider increasing the size of your instance so that more memory is available for the page cache.
+# TYPE neo4j_dbms_page_cache_usage_ratio gauge
+neo4j_dbms_page_cache_usage_ratio{aggregation="MIN",instance_id="dd1b92f4"} 0.004013 1787670452427
+# HELP neo4j_dbms_bolt_connections_running The total number of Bolt connections that are currently executing Cypher transactions and returning results. This is a set of snapshots over time and may appear to spike if workloads are all completed quickly.
+# TYPE neo4j_dbms_bolt_connections_running gauge
+neo4j_dbms_bolt_connections_running{aggregation="MAX",instance_id="dd1b92f4"} 0.000000 1787670452427
+# HELP neo4j_dbms_bolt_connections_idle The total number of Bolt connections that are connected to the Aura database but not currently executing Cypher or returning results.
+# TYPE neo4j_dbms_bolt_connections_idle gauge
+neo4j_dbms_bolt_connections_idle{aggregation="MAX",instance_id="dd1b92f4"} 4.000000 1787670452427
+# HELP neo4j_dbms_bolt_connections_closed_total The total number of Bolt connections closed since startup. This includes both properly and abnormally ended connections. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_dbms_bolt_connections_closed_total counter
+neo4j_dbms_bolt_connections_closed_total{aggregation="MAX",instance_id="dd1b92f4"} 0.000000 1787670452427
+----
+
+.Comprehensive granularity output
+[source]
+----
+# HELP neo4j_database_transaction_active_write The number of active write transactions.
+# TYPE neo4j_database_transaction_active_write gauge
+neo4j_database_transaction_active_write{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_active_write The number of active write transactions.
+# TYPE neo4j_database_transaction_active_write gauge
+neo4j_database_transaction_active_write{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_active_write The number of active write transactions.
+# TYPE neo4j_database_transaction_active_write gauge
+neo4j_database_transaction_active_write{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_committed_total The total number of committed transactions since the server was started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_transaction_committed_total counter
+neo4j_database_transaction_committed_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_committed_total The total number of committed transactions since the server was started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_transaction_committed_total counter
+neo4j_database_transaction_committed_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_committed_total The total number of committed transactions since the server was started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_transaction_committed_total counter
+neo4j_database_transaction_committed_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_peak_concurrent_total The highest number of concurrent transactions detected since the server started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_transaction_peak_concurrent_total counter
+neo4j_database_transaction_peak_concurrent_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_peak_concurrent_total The highest number of concurrent transactions detected since the server started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_transaction_peak_concurrent_total counter
+neo4j_database_transaction_peak_concurrent_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_peak_concurrent_total The highest number of concurrent transactions detected since the server started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_transaction_peak_concurrent_total counter
+neo4j_database_transaction_peak_concurrent_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_rollbacks_total The total number of rolled-back transactions. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_transaction_rollbacks_total counter
+neo4j_database_transaction_rollbacks_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_rollbacks_total The total number of rolled-back transactions. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_transaction_rollbacks_total counter
+neo4j_database_transaction_rollbacks_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_rollbacks_total The total number of rolled-back transactions. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_transaction_rollbacks_total counter
+neo4j_database_transaction_rollbacks_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_check_point_events_total The total number of checkpoint events executed since the server started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_check_point_events_total counter
+neo4j_database_check_point_events_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 1.000000 1787671035820
+# HELP neo4j_database_check_point_events_total The total number of checkpoint events executed since the server started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_check_point_events_total counter
+neo4j_database_check_point_events_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 1.000000 1787671035820
+# HELP neo4j_database_check_point_events_total The total number of checkpoint events executed since the server started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_check_point_events_total counter
+neo4j_database_check_point_events_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 1.000000 1787671035820
+# HELP neo4j_dbms_page_cache_hit_ratio_per_minute The percentage of times data required during query execution was found in memory vs needing to be read from disk. Ideally the whole graph should fit into memory, and this should consistently be between 98% and 100%. If this value is consistently or significantly under 100%, check the page cache usage ratio to see if the graph is too large to fit into memory. A high amount of insert or update activity on a graph can also cause this value to change.
+# TYPE neo4j_dbms_page_cache_hit_ratio_per_minute gauge
+neo4j_dbms_page_cache_hit_ratio_per_minute{aggregation="AVG",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 1.000000 1787671035820
+# HELP neo4j_dbms_page_cache_hit_ratio_per_minute The percentage of times data required during query execution was found in memory vs needing to be read from disk. Ideally the whole graph should fit into memory, and this should consistently be between 98% and 100%. If this value is consistently or significantly under 100%, check the page cache usage ratio to see if the graph is too large to fit into memory. A high amount of insert or update activity on a graph can also cause this value to change.
+# TYPE neo4j_dbms_page_cache_hit_ratio_per_minute gauge
+neo4j_dbms_page_cache_hit_ratio_per_minute{aggregation="AVG",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 1.000000 1787671035820
+# HELP neo4j_dbms_page_cache_hit_ratio_per_minute The percentage of times data required during query execution was found in memory vs needing to be read from disk. Ideally the whole graph should fit into memory, and this should consistently be between 98% and 100%. If this value is consistently or significantly under 100%, check the page cache usage ratio to see if the graph is too large to fit into memory. A high amount of insert or update activity on a graph can also cause this value to change.
+# TYPE neo4j_dbms_page_cache_hit_ratio_per_minute gauge
+neo4j_dbms_page_cache_hit_ratio_per_minute{aggregation="AVG",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 1.000000 1787671035820
+# HELP neo4j_dbms_page_cache_usage_ratio The percentage of the allocated page cache in use. If this is close to or at 100%, then it is likely that the hit ratio will start dropping, and you should consider increasing the size of your instance so that more memory is available for the page cache.
+# TYPE neo4j_dbms_page_cache_usage_ratio gauge
+neo4j_dbms_page_cache_usage_ratio{aggregation="MIN",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.004013 1787671035820
+# HELP neo4j_dbms_page_cache_usage_ratio The percentage of the allocated page cache in use. If this is close to or at 100%, then it is likely that the hit ratio will start dropping, and you should consider increasing the size of your instance so that more memory is available for the page cache.
+# TYPE neo4j_dbms_page_cache_usage_ratio gauge
+neo4j_dbms_page_cache_usage_ratio{aggregation="MIN",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.004167 1787671035820
+# HELP neo4j_dbms_page_cache_usage_ratio The percentage of the allocated page cache in use. If this is close to or at 100%, then it is likely that the hit ratio will start dropping, and you should consider increasing the size of your instance so that more memory is available for the page cache.
+# TYPE neo4j_dbms_page_cache_usage_ratio gauge
+neo4j_dbms_page_cache_usage_ratio{aggregation="MIN",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.004136 1787671035820
+# HELP neo4j_dbms_bolt_connections_running The total number of Bolt connections that are currently executing Cypher transactions and returning results. This is a set of snapshots over time and may appear to spike if workloads are all completed quickly.
+# TYPE neo4j_dbms_bolt_connections_running gauge
+neo4j_dbms_bolt_connections_running{aggregation="MAX",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_dbms_bolt_connections_running The total number of Bolt connections that are currently executing Cypher transactions and returning results. This is a set of snapshots over time and may appear to spike if workloads are all completed quickly.
+# TYPE neo4j_dbms_bolt_connections_running gauge
+neo4j_dbms_bolt_connections_running{aggregation="MAX",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_dbms_bolt_connections_running The total number of Bolt connections that are currently executing Cypher transactions and returning results. This is a set of snapshots over time and may appear to spike if workloads are all completed quickly.
+# TYPE neo4j_dbms_bolt_connections_running gauge
+neo4j_dbms_bolt_connections_running{aggregation="MAX",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_dbms_bolt_connections_idle The total number of Bolt connections that are connected to the Aura database but not currently executing Cypher or returning results.
+# TYPE neo4j_dbms_bolt_connections_idle gauge
+neo4j_dbms_bolt_connections_idle{aggregation="MAX",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 3.000000 1787671035820
+# HELP neo4j_dbms_bolt_connections_idle The total number of Bolt connections that are connected to the Aura database but not currently executing Cypher or returning results.
+# TYPE neo4j_dbms_bolt_connections_idle gauge
+neo4j_dbms_bolt_connections_idle{aggregation="MAX",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 3.000000 1787671035820
+# HELP neo4j_dbms_bolt_connections_idle The total number of Bolt connections that are connected to the Aura database but not currently executing Cypher or returning results.
+# TYPE neo4j_dbms_bolt_connections_idle gauge
+neo4j_dbms_bolt_connections_idle{aggregation="MAX",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 3.000000 1787671035820
+# HELP neo4j_dbms_bolt_connections_closed_total The total number of Bolt connections closed since startup. This includes both properly and abnormally ended connections. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_dbms_bolt_connections_closed_total counter
+neo4j_dbms_bolt_connections_closed_total{aggregation="MAX",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 1.000000 1787671035820
+# HELP neo4j_dbms_bolt_connections_closed_total The total number of Bolt connections closed since startup. This includes both properly and abnormally ended connections. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_dbms_bolt_connections_closed_total counter
+neo4j_dbms_bolt_connections_closed_total{aggregation="MAX",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 1.000000 1787671035820
+# HELP neo4j_dbms_bolt_connections_closed_total The total number of Bolt connections closed since startup. This includes both properly and abnormally ended connections. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_dbms_bolt_connections_closed_total counter
+neo4j_dbms_bolt_connections_closed_total{aggregation="MAX",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 2.000000 1787671035820
+# HELP neo4j_dbms_bolt_connections_opened_total The total number of Bolt connections opened since startup. This includes both successful and failed connections. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_dbms_bolt_connections_opened_total counter
+neo4j_dbms_bolt_connections_opened_total{aggregation="MAX",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 4.000000 1787671035820
+# HELP neo4j_dbms_bolt_connections_opened_total The total number of Bolt connections opened since startup. This includes both successful and failed connections. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_dbms_bolt_connections_opened_total counter
+neo4j_dbms_bolt_connections_opened_total{aggregation="MAX",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 4.000000 1787671035820
+# HELP neo4j_dbms_bolt_connections_opened_total The total number of Bolt connections opened since startup. This includes both successful and failed connections. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_dbms_bolt_connections_opened_total counter
+neo4j_dbms_bolt_connections_opened_total{aggregation="MAX",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 5.000000 1787671035820
+# HELP neo4j_dbms_vm_gc_time_g1_young_generation_total Shows the total time since startup spent clearing up heap space for short lived objects. Young garbage collections typically complete quickly, and the Aura instance waits while the garbage collector is run. High values indicate that the instance is running low on memory for the workload and you should consider increasing the size of your instance.
+# TYPE neo4j_dbms_vm_gc_time_g1_young_generation_total counter
+neo4j_dbms_vm_gc_time_g1_young_generation_total{aggregation="MAX",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 648.000000 1787671035820
+# HELP neo4j_dbms_vm_gc_time_g1_young_generation_total Shows the total time since startup spent clearing up heap space for short lived objects. Young garbage collections typically complete quickly, and the Aura instance waits while the garbage collector is run. High values indicate that the instance is running low on memory for the workload and you should consider increasing the size of your instance.
+# TYPE neo4j_dbms_vm_gc_time_g1_young_generation_total counter
+neo4j_dbms_vm_gc_time_g1_young_generation_total{aggregation="MAX",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 682.000000 1787671035820
+# HELP neo4j_dbms_vm_gc_time_g1_young_generation_total Shows the total time since startup spent clearing up heap space for short lived objects. Young garbage collections typically complete quickly, and the Aura instance waits while the garbage collector is run. High values indicate that the instance is running low on memory for the workload and you should consider increasing the size of your instance.
+# TYPE neo4j_dbms_vm_gc_time_g1_young_generation_total counter
+neo4j_dbms_vm_gc_time_g1_young_generation_total{aggregation="MAX",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 780.000000 1787671035820
+# HELP neo4j_dbms_vm_gc_time_g1_old_generation_total Shows the total time since startup spent clearing up heap space for long-lived objects. Old garbage collections can take time to complete, and the Aura instance waits while the garbage collector is run. High values indicate that there are long-running processes or queries that could be optimized, or that your instance is running low on CPU or memory for the workload and you should consider reviewing these metrics and possibly increasing the size of your instance.
+# TYPE neo4j_dbms_vm_gc_time_g1_old_generation_total counter
+neo4j_dbms_vm_gc_time_g1_old_generation_total{aggregation="MAX",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_dbms_vm_gc_time_g1_old_generation_total Shows the total time since startup spent clearing up heap space for long-lived objects. Old garbage collections can take time to complete, and the Aura instance waits while the garbage collector is run. High values indicate that there are long-running processes or queries that could be optimized, or that your instance is running low on CPU or memory for the workload and you should consider reviewing these metrics and possibly increasing the size of your instance.
+# TYPE neo4j_dbms_vm_gc_time_g1_old_generation_total counter
+neo4j_dbms_vm_gc_time_g1_old_generation_total{aggregation="MAX",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_dbms_vm_gc_time_g1_old_generation_total Shows the total time since startup spent clearing up heap space for long-lived objects. Old garbage collections can take time to complete, and the Aura instance waits while the garbage collector is run. High values indicate that there are long-running processes or queries that could be optimized, or that your instance is running low on CPU or memory for the workload and you should consider reviewing these metrics and possibly increasing the size of your instance.
+# TYPE neo4j_dbms_vm_gc_time_g1_old_generation_total counter
+neo4j_dbms_vm_gc_time_g1_old_generation_total{aggregation="MAX",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_cypher_replan_events_total The total number of times Cypher has replanned a query since the server started. If this spikes or is increasing, check that the queries executed are using parameters correctly. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_cypher_replan_events_total counter
+neo4j_database_cypher_replan_events_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_cypher_replan_events_total The total number of times Cypher has replanned a query since the server started. If this spikes or is increasing, check that the queries executed are using parameters correctly. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_cypher_replan_events_total counter
+neo4j_database_cypher_replan_events_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_cypher_replan_events_total The total number of times Cypher has replanned a query since the server started. If this spikes or is increasing, check that the queries executed are using parameters correctly. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_cypher_replan_events_total counter
+neo4j_database_cypher_replan_events_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_active_read The number of active read transactions.
+# TYPE neo4j_database_transaction_active_read gauge
+neo4j_database_transaction_active_read{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_active_read The number of active read transactions.
+# TYPE neo4j_database_transaction_active_read gauge
+neo4j_database_transaction_active_read{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_transaction_active_read The number of active read transactions.
+# TYPE neo4j_database_transaction_active_read gauge
+neo4j_database_transaction_active_read{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_database_check_point_total_time_total The total time in milliseconds spent in checkpointing since the server started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_check_point_total_time_total counter
+neo4j_database_check_point_total_time_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 21.000000 1787671035821
+# HELP neo4j_database_check_point_total_time_total The total time in milliseconds spent in checkpointing since the server started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_check_point_total_time_total counter
+neo4j_database_check_point_total_time_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 21.000000 1787671035821
+# HELP neo4j_database_check_point_total_time_total The total time in milliseconds spent in checkpointing since the server started. This value may drop if background maintenance is performed by Aura.
+# TYPE neo4j_database_check_point_total_time_total counter
+neo4j_database_check_point_total_time_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 14.000000 1787671035821
+# HELP neo4j_database_check_point_duration The duration of the last checkpoint event in milliseconds. Checkpoints should typically take several seconds to several minutes. Values over 30 minutes warrant investigation.
+# TYPE neo4j_database_check_point_duration gauge
+neo4j_database_check_point_duration{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 21.000000 1787671035821
+# HELP neo4j_database_check_point_duration The duration of the last checkpoint event in milliseconds. Checkpoints should typically take several seconds to several minutes. Values over 30 minutes warrant investigation.
+# TYPE neo4j_database_check_point_duration gauge
+neo4j_database_check_point_duration{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 21.000000 1787671035821
+# HELP neo4j_database_check_point_duration The duration of the last checkpoint event in milliseconds. Checkpoints should typically take several seconds to several minutes. Values over 30 minutes warrant investigation.
+# TYPE neo4j_database_check_point_duration gauge
+neo4j_database_check_point_duration{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 14.000000 1787671035821
+# HELP neo4j_database_count_relationship The total number of relationships in the database.
+# TYPE neo4j_database_count_relationship gauge
+neo4j_database_count_relationship{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_database_count_relationship The total number of relationships in the database.
+# TYPE neo4j_database_count_relationship gauge
+neo4j_database_count_relationship{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_database_count_relationship The total number of relationships in the database.
+# TYPE neo4j_database_count_relationship gauge
+neo4j_database_count_relationship{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_database_count_node The total number of nodes in the database.
+# TYPE neo4j_database_count_node gauge
+neo4j_database_count_node{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_database_count_node The total number of nodes in the database.
+# TYPE neo4j_database_count_node gauge
+neo4j_database_count_node{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_database_count_node The total number of nodes in the database.
+# TYPE neo4j_database_count_node gauge
+neo4j_database_count_node{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_database_store_size_database Amount of disk space reserved to store user database data, in bytes. Ideally, the database should all fit into memory (page cache) for the best performance. Keep an eye on this metric to make sure you have enough storage for today and for future growth. Check this metric with page cache usage to see if the data is too large for the memory and consider increasing the size of your instance in this case.
+# TYPE neo4j_database_store_size_database gauge
+neo4j_database_store_size_database{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 919071.000000 1787671035821
+# HELP neo4j_database_store_size_database Amount of disk space reserved to store user database data, in bytes. Ideally, the database should all fit into memory (page cache) for the best performance. Keep an eye on this metric to make sure you have enough storage for today and for future growth. Check this metric with page cache usage to see if the data is too large for the memory and consider increasing the size of your instance in this case.
+# TYPE neo4j_database_store_size_database gauge
+neo4j_database_store_size_database{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 919071.000000 1787671035821
+# HELP neo4j_database_store_size_database Amount of disk space reserved to store user database data, in bytes. Ideally, the database should all fit into memory (page cache) for the best performance. Keep an eye on this metric to make sure you have enough storage for today and for future growth. Check this metric with page cache usage to see if the data is too large for the memory and consider increasing the size of your instance in this case.
+# TYPE neo4j_database_store_size_database gauge
+neo4j_database_store_size_database{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 919071.000000 1787671035821
+# HELP neo4j_aura_out_of_memory_errors_total The total number of Out of Memory errors for the instance. Consider increasing the size of the instance if any OOM errors.
+# TYPE neo4j_aura_out_of_memory_errors_total counter
+neo4j_aura_out_of_memory_errors_total{aggregation="SUM",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_aura_out_of_memory_errors_total The total number of Out of Memory errors for the instance. Consider increasing the size of the instance if any OOM errors.
+# TYPE neo4j_aura_out_of_memory_errors_total counter
+neo4j_aura_out_of_memory_errors_total{aggregation="SUM",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_aura_out_of_memory_errors_total The total number of Out of Memory errors for the instance. Consider increasing the size of the instance if any OOM errors.
+# TYPE neo4j_aura_out_of_memory_errors_total counter
+neo4j_aura_out_of_memory_errors_total{aggregation="SUM",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035820
+# HELP neo4j_aura_cpu_usage Current vCPU cores used for planning and serving queries. This can safely exceed your guaranteed baseline during peak demand. If usage is consistently sustained near or above your tier's average allocation, consider upgrading your instance size.
+# TYPE neo4j_aura_cpu_usage gauge
+neo4j_aura_cpu_usage{aggregation="MAX",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.022424 1787671035820
+# HELP neo4j_aura_cpu_usage Current vCPU cores used for planning and serving queries. This can safely exceed your guaranteed baseline during peak demand. If usage is consistently sustained near or above your tier's average allocation, consider upgrading your instance size.
+# TYPE neo4j_aura_cpu_usage gauge
+neo4j_aura_cpu_usage{aggregation="MAX",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.021340 1787671035820
+# HELP neo4j_aura_cpu_usage Current vCPU cores used for planning and serving queries. This can safely exceed your guaranteed baseline during peak demand. If usage is consistently sustained near or above your tier's average allocation, consider upgrading your instance size.
+# TYPE neo4j_aura_cpu_usage gauge
+neo4j_aura_cpu_usage{aggregation="MAX",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.013887 1787671035820
+# HELP neo4j_dbms_vm_heap_used_ratio The percentage of configured heap memory in use. The heap space is used for query execution, transaction state, management of the graph etc. The size needed for the heap is very dependent on the nature of the usage of Neo4j. For example, long-running queries, or very complicated queries, are likely to require a larger heap than simpler queries. To improve performance, the heap should be large enough to sustain concurrent operations. This value should not exceed 80% for long periods, short spikes can be normal. In case of performance issues, you may have to tune your queries and monitor their memory usage, to determine whether the heap needs to be increased. If the workload of Neo4j and performance of queries indicates that more heap space is required, consider increasing the size of your instance. This helps avoid unwanted pauses for garbage collection.
+# TYPE neo4j_dbms_vm_heap_used_ratio gauge
+neo4j_dbms_vm_heap_used_ratio{aggregation="MAX",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.779480 1787671035820
+# HELP neo4j_dbms_vm_heap_used_ratio The percentage of configured heap memory in use. The heap space is used for query execution, transaction state, management of the graph etc. The size needed for the heap is very dependent on the nature of the usage of Neo4j. For example, long-running queries, or very complicated queries, are likely to require a larger heap than simpler queries. To improve performance, the heap should be large enough to sustain concurrent operations. This value should not exceed 80% for long periods, short spikes can be normal. In case of performance issues, you may have to tune your queries and monitor their memory usage, to determine whether the heap needs to be increased. If the workload of Neo4j and performance of queries indicates that more heap space is required, consider increasing the size of your instance. This helps avoid unwanted pauses for garbage collection.
+# TYPE neo4j_dbms_vm_heap_used_ratio gauge
+neo4j_dbms_vm_heap_used_ratio{aggregation="MAX",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.362316 1787671035820
+# HELP neo4j_dbms_vm_heap_used_ratio The percentage of configured heap memory in use. The heap space is used for query execution, transaction state, management of the graph etc. The size needed for the heap is very dependent on the nature of the usage of Neo4j. For example, long-running queries, or very complicated queries, are likely to require a larger heap than simpler queries. To improve performance, the heap should be large enough to sustain concurrent operations. This value should not exceed 80% for long periods, short spikes can be normal. In case of performance issues, you may have to tune your queries and monitor their memory usage, to determine whether the heap needs to be increased. If the workload of Neo4j and performance of queries indicates that more heap space is required, consider increasing the size of your instance. This helps avoid unwanted pauses for garbage collection.
+# TYPE neo4j_dbms_vm_heap_used_ratio gauge
+neo4j_dbms_vm_heap_used_ratio{aggregation="MAX",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.265274 1787671035820
+# HELP neo4j_dbms_page_cache_evictions_total The number of times data in memory is being replaced in total. A spike can mean your workload is exceeding the instance's available memory, and you may notice a degradation in performance or query execution errors. Consider increasing the size of your instance to improve performance if this metric remains high.
+# TYPE neo4j_dbms_page_cache_evictions_total counter
+neo4j_dbms_page_cache_evictions_total{aggregation="MAX",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 409.000000 1787671035821
+# HELP neo4j_dbms_page_cache_evictions_total The number of times data in memory is being replaced in total. A spike can mean your workload is exceeding the instance's available memory, and you may notice a degradation in performance or query execution errors. Consider increasing the size of your instance to improve performance if this metric remains high.
+# TYPE neo4j_dbms_page_cache_evictions_total counter
+neo4j_dbms_page_cache_evictions_total{aggregation="MAX",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 409.000000 1787671035821
+# HELP neo4j_dbms_page_cache_evictions_total The number of times data in memory is being replaced in total. A spike can mean your workload is exceeding the instance's available memory, and you may notice a degradation in performance or query execution errors. Consider increasing the size of your instance to improve performance if this metric remains high.
+# TYPE neo4j_dbms_page_cache_evictions_total counter
+neo4j_dbms_page_cache_evictions_total{aggregation="MAX",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 714.000000 1787671035821
+# HELP neo4j_db_query_execution_success_total The total number of successful queries executed on this database.
+# TYPE neo4j_db_query_execution_success_total counter
+neo4j_db_query_execution_success_total{aggregation="SUM",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_db_query_execution_success_total The total number of successful queries executed on this database.
+# TYPE neo4j_db_query_execution_success_total counter
+neo4j_db_query_execution_success_total{aggregation="SUM",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_db_query_execution_success_total The total number of successful queries executed on this database.
+# TYPE neo4j_db_query_execution_success_total counter
+neo4j_db_query_execution_success_total{aggregation="SUM",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_db_query_execution_failure_total The total number of failed queries executed on this database.
+# TYPE neo4j_db_query_execution_failure_total counter
+neo4j_db_query_execution_failure_total{aggregation="SUM",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_db_query_execution_failure_total The total number of failed queries executed on this database.
+# TYPE neo4j_db_query_execution_failure_total counter
+neo4j_db_query_execution_failure_total{aggregation="SUM",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_db_query_execution_failure_total The total number of failed queries executed on this database.
+# TYPE neo4j_db_query_execution_failure_total counter
+neo4j_db_query_execution_failure_total{aggregation="SUM",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_db_query_execution_internal_latency_q99 The query execution time in milliseconds where 99% of queries executed faster than the reported time. Available from Neo4j Version 5.
+# TYPE neo4j_db_query_execution_internal_latency_q99 gauge
+neo4j_db_query_execution_internal_latency_q99{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_db_query_execution_internal_latency_q99 The query execution time in milliseconds where 99% of queries executed faster than the reported time. Available from Neo4j Version 5.
+# TYPE neo4j_db_query_execution_internal_latency_q99 gauge
+neo4j_db_query_execution_internal_latency_q99{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_db_query_execution_internal_latency_q99 The query execution time in milliseconds where 99% of queries executed faster than the reported time. Available from Neo4j Version 5.
+# TYPE neo4j_db_query_execution_internal_latency_q99 gauge
+neo4j_db_query_execution_internal_latency_q99{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_db_query_execution_internal_latency_q75 The query execution time in milliseconds where 75% of queries executed faster than the reported time. Available from Neo4j Version 5.
+# TYPE neo4j_db_query_execution_internal_latency_q75 gauge
+neo4j_db_query_execution_internal_latency_q75{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_db_query_execution_internal_latency_q75 The query execution time in milliseconds where 75% of queries executed faster than the reported time. Available from Neo4j Version 5.
+# TYPE neo4j_db_query_execution_internal_latency_q75 gauge
+neo4j_db_query_execution_internal_latency_q75{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_db_query_execution_internal_latency_q75 The query execution time in milliseconds where 75% of queries executed faster than the reported time. Available from Neo4j Version 5.
+# TYPE neo4j_db_query_execution_internal_latency_q75 gauge
+neo4j_db_query_execution_internal_latency_q75{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035821
+# HELP neo4j_db_query_execution_internal_latency_q50 The query execution time in milliseconds where 50% of queries executed faster than the reported time. This also corresponds to the median of the query execution time. Available from Neo4j Version 5.
+# TYPE neo4j_db_query_execution_internal_latency_q50 gauge
+neo4j_db_query_execution_internal_latency_q50{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035819
+# HELP neo4j_db_query_execution_internal_latency_q50 The query execution time in milliseconds where 50% of queries executed faster than the reported time. This also corresponds to the median of the query execution time. Available from Neo4j Version 5.
+# TYPE neo4j_db_query_execution_internal_latency_q50 gauge
+neo4j_db_query_execution_internal_latency_q50{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035819
+# HELP neo4j_db_query_execution_internal_latency_q50 The query execution time in milliseconds where 50% of queries executed faster than the reported time. This also corresponds to the median of the query execution time. Available from Neo4j Version 5.
+# TYPE neo4j_db_query_execution_internal_latency_q50 gauge
+neo4j_db_query_execution_internal_latency_q50{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035819
+# HELP neo4j_database_transaction_last_committed_tx_id_total The id of the last committed transaction. Track this for primary cluster members of your Aura instance. It should show overlapping, ever-increasing lines and if one of the lines levels off or falls behind, it is clear that this cluster member is no longer replicating data, and action is needed to rectify the situation.
+# TYPE neo4j_database_transaction_last_committed_tx_id_total counter
+neo4j_database_transaction_last_committed_tx_id_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 3.000000 1787671035819
+# HELP neo4j_database_transaction_last_committed_tx_id_total The id of the last committed transaction. Track this for primary cluster members of your Aura instance. It should show overlapping, ever-increasing lines and if one of the lines levels off or falls behind, it is clear that this cluster member is no longer replicating data, and action is needed to rectify the situation.
+# TYPE neo4j_database_transaction_last_committed_tx_id_total counter
+neo4j_database_transaction_last_committed_tx_id_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 3.000000 1787671035819
+# HELP neo4j_database_transaction_last_committed_tx_id_total The id of the last committed transaction. Track this for primary cluster members of your Aura instance. It should show overlapping, ever-increasing lines and if one of the lines levels off or falls behind, it is clear that this cluster member is no longer replicating data, and action is needed to rectify the situation.
+# TYPE neo4j_database_transaction_last_committed_tx_id_total counter
+neo4j_database_transaction_last_committed_tx_id_total{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 3.000000 1787671035819
+# HELP neo4j_cluster_raft_is_leader Is this server the leader? Track this for each rafted member in the cluster. It reports 0 if it is not the leader and 1 if it is the leader. The sum of all of these should always be 1. However, there are transient periods in which the sum can be more than 1 because more than one member thinks it is the leader. Action may be needed if the metric shows 0 for more than 30 seconds.
+# TYPE neo4j_cluster_raft_is_leader gauge
+neo4j_cluster_raft_is_leader{aggregation="MAX",database="neo4j",availability_zone="europe-west2-b",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035819
+# HELP neo4j_cluster_raft_is_leader Is this server the leader? Track this for each rafted member in the cluster. It reports 0 if it is not the leader and 1 if it is the leader. The sum of all of these should always be 1. However, there are transient periods in which the sum can be more than 1 because more than one member thinks it is the leader. Action may be needed if the metric shows 0 for more than 30 seconds.
+# TYPE neo4j_cluster_raft_is_leader gauge
+neo4j_cluster_raft_is_leader{aggregation="MAX",database="neo4j",availability_zone="europe-west2-c",instance_mode="PRIMARY",instance_id="dd1b92f4"} 1.000000 1787671035819
+# HELP neo4j_cluster_raft_is_leader Is this server the leader? Track this for each rafted member in the cluster. It reports 0 if it is not the leader and 1 if it is the leader. The sum of all of these should always be 1. However, there are transient periods in which the sum can be more than 1 because more than one member thinks it is the leader. Action may be needed if the metric shows 0 for more than 30 seconds.
+# TYPE neo4j_cluster_raft_is_leader gauge
+neo4j_cluster_raft_is_leader{aggregation="MAX",database="neo4j",availability_zone="europe-west2-a",instance_mode="PRIMARY",instance_id="dd1b92f4"} 0.000000 1787671035819
+----
+
+====
