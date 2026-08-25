@@ -1,0 +1,33 @@
+= Rule-based styling 
+
+Add styling rules to color important values, making tables easier to scan and interpret at a glance. 
+Styling updates dynamically as your data changes.
+You can apply styling to cells, rows, and text, or use color gradients to emphasize numeric values.
+
+To create a styling rule open a *Table* visualization > Select the *Styling* tab > Select *Add* > Configure your rule > Select *Apply*. 
+
+You can create multiple styling rules. 
+Rules are executed from top to bottom, so drag and drop them to change their priority.
+
+== Examples 
+
+=== Highlight stock levels
+
+.Highlight stock levels
+[.shadow]
+image::dashboards/rule-based-styling/units-in-stock.png[width=900]
+
+This example uses the Northwind dataset and rule-based styling to highlight stock levels.
+It uses two styling rules:
+
+* Highlight values greater than `110` with a green background gradient. Color all the text in the table in blue to make the values stand out.
+* Highlight rows with values less than or equal to `110` in red to make low stock levels easy to spot.
+
+=== Highlight text containing "Matrix" 
+
+You can color based on text and numbers. In this example, if the cell contains "Matrix", the cell will turn blue.
+
+.Highlight text containing "Matrix" 
+[.shadow]
+image::dashboards/rule-based-styling/matrix.png[width=400]
+
