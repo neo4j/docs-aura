@@ -61,7 +61,8 @@ Use that file to debug the issue yourself, or share it with Support.
 If your instance contains xref:managing-instances/multiple-databases.adoc[multiple databases] use the Database dropdown to select the database you want to work with.
 When connecting to a multi-database instance from an external client, specify the `database name` as part of the connection. 
 The database name identifies which database to access. 
-If no database name is provided, the connection cannot be established.
+If no database name is provided, you will connect to the default database. 
+This applies to drivers, the Query API, and other external sources.
 
 [.shadow]
 .Database dropdown
