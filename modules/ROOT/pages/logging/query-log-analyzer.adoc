@@ -92,18 +92,16 @@ Use the filter button to load the available filters over the selected time perio
 Filters are available for the following fields:
 
 * Status
+* Gql status
 * User
 * Driver
 * Application
 * Initiation type
+* Query language
 * Minimum duration (ms)
+* Query text
+* Error text
 
-[[search]]
-=== Search
-
-Use the search button to search for specific queries or errors.
-Search can be specified for the *Query text* and the *Error text*.
-The fields are case insensitive.
 
 == Log tables
 
@@ -285,5 +283,7 @@ Columns can be enabled or disabled, or the order changed using the grid icon at 
 === Expand query
 
 In the table three rows of query text will be shown.
-To see the whole query if the query is longer, press the *View more* button under the query text.
+If the query is longer, select *View more* to show the full, raw Cypher statement.
+Use the *Format query* to prettify the query.
 
+For failed queries, use *Show GQL Error* to see the full GQL error.
