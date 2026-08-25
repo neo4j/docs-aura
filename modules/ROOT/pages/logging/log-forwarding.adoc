@@ -45,9 +45,9 @@ The complete steps for setting up log forwarding depend on the chosen cloud prov
 Exhaustive instructions are provided in the wizard which appears by following the steps below.
 
 . Navigate to the *Log forwarding* page as described above.
-. Use *Configure log forwarding* and select the scope for log forwarding.
-* Single instance.
-* label:AuraDB-virtual-dedicated-cloud[] All instances in the specified region.
+. Select *Configure log forwarding* and select the scope for log forwarding.
+* A single instance.
+* label:AuraDB-virtual-dedicated-cloud[] All instances in a specified region.
 . Select the type of logs to forward: *Security logs* or *Query logs*.
 * For query logs, it is possible to apply certain filters to decrease the volume of forwarded data.
 . Follow the instructions specific to your cloud provider.
