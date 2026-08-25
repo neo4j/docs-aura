@@ -1,12 +1,12 @@
 = Rule-based styling 
 
-.Styled dashboard tables
-[.shadow]
-image::dashboards/rule-based-styling/rule-based-styling-intro.png[width=900]
-
 Make tables easier to scan and interpret at a glance by adding styling rules to color important values.
 Styling updates dynamically as your data changes.
 Apply styling to cells, rows, and text, or use color gradients to emphasize numeric values.
+
+.Styled dashboard tables
+[.shadow]
+image::dashboards/rule-based-styling/rule-based-styling-intro.png[width=900]
 
 To create a styling rule:
 
@@ -24,9 +24,12 @@ Closing the card before selecting *Save* discards the changes.
 You can create multiple styling rules. 
 Rules are executed from top to bottom, so drag and drop them to change their priority.
 
-== Example
+== Example: Style a stock-level table
 
 The following example uses the Northwind dataset.
+
+
+It shows you how to use styling rules to make high and low stock levels easier to identify.
 
 Create a table visualization with the following Cypher:
 
@@ -38,25 +41,26 @@ ORDER BY `Units in stock` DESC
 LIMIT 10
 ----
 
-=== Highlight stock levels
+=== Highlight high stock levels
 
-
-This example uses two styling rules to make high and low stock levels easier to identify.
-
-* Apply a green background gradient to values greater than or equal to 110.
-* Apply a red background to rows containing values less than 110.
+Create a rule that applies a green background to *Units in stock* values greater than or equal to `110`.
 
 .Apply green background to values greater than or equal to 110
 [.shadow]
 image::dashboards/rule-based-styling/rule-based-styling-config.png[width=900]
 
+=== Highlight low stock levels
+
+Create another rule that applies a red background to rows where the *Units in stock* value is less than `110`.
+
 .Highlight low stock levels in red
 [.shadow]
 image::dashboards/rule-based-styling/low-stock-levels.png[width=900]
 
-== Add a color gradient
+=== Add a color gradient
 
-To show differences between the higher stock values, change the green background from a single color to a color gradient.
+To make differences between the higher stock values more visible, edit the green styling rule and change the background from a single color to a color gradient.
+
 
 Select the edit icon to update styling.
 
@@ -70,12 +74,11 @@ Optionally, add a *Midpoint* of `115` to control the transition between the mini
 [.shadow]
 image::dashboards/rule-based-styling/gradient.png[width=900]
 
-== Add text color
+=== Add text color
 
+You can also use text color to highlight rows containing specific text.
 
-Use text color to highlight rows containing specific text.
-
-In this example, apply a blue background and purple text to the row where the *Product* value contains `Rhönbräu`.
+Create a rule that applies a blue background and purple text to the row where the *Product* value contains `Rhönbräu`.
 
 .Change text color
 [.shadow]
