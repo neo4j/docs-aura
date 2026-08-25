@@ -236,6 +236,11 @@ a| `action_id`
 | Instance Actions
 | An internal pause operation
 
+| INSTANCE_INTERNAL_RESUME
+| 0011
+| Instance Actions
+| An internal resume operation
+
 | DATA_SNAPSHOT_CREATE_ON_DEMAND
 | 0101
 | Data Management
@@ -286,7 +291,7 @@ a| `action_id`
 | User Management
 | A user's role has been updated
 
-| USER_REMOVED
+| ORGANIZATION_MEMBER_REMOVE
 | 0207
 | User Management
 | A user was removed from the Organization
@@ -426,15 +431,15 @@ a| `action_id`
 | Organization Management
 | A new project in an organization has been created
 
-| PROJECT_PENDING_DELETION
+| PROJECT_DELETION_REQUESTED
 | 0602
 | Organization Management
-| A project is pending deletion
+| A project in an organization has been soft-deleted
 
-| PROJECT_RESTORED
+| PROJECT_RESTORE
 | 0603
 | Organization Management
-| A project pending deletation has been restored
+| A project in an organization has been restored
 
 | PROJECT_PERMANENTLY_DELETED
 | 0604

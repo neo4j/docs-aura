@@ -16,6 +16,10 @@ image::connect-to-tools.png[]
 
 == Pause an instance
 
+// label:AuraDB-professional[]
+// label:AuraDB-Enterprise[]
+// label:AuraDB-business-critical[]
+
 Pausing a Neo4j instance temporarily stops the database, which means:
 
 * No connectivity: Any applications or users trying to connect to the instance won't be able to run queries or retrieve data until the instance is resumed.
@@ -25,36 +29,51 @@ Any ongoing operations are halted.
 
 * Data is preserved: Your data remains safe and unchanged while the instance is paused.
 You may export a backup of your data within its exportable period.
-When you resume the instance, you can pick up right where you left off.
-
-// label:AuraDB-professional[]
-// label:AuraDB-Enterprise[]
-// label:AuraDB-business-critical[]
+When you resume the instance, you can pick up where you left off.
 
 [NOTE]
 ====
 You cannot manually pause an AuraDB Free instance; they are paused automatically after 72 hours of inactivity.
 ====
 
-You can pause an instance when not needed and resume it at any time.
-Do so by using the *Pause* button on the instance card.
-After confirming, the instance begins pausing, and a play button replaces the pause button.
-
 When you pause an instance, Aura performs a backup operation behind the scenes.
 It can take a while to pause, depending on your instance size, because Aura is creating the backup.
 
 [NOTE]
 ====
-Paused instances run at a discounted rate compared to standard consumption, as outlined in the confirmation window.
+Paused instances run at a discounted rate compared to standard consumption.
 You can pause an instance for up to 30 days, after which point Aura automatically resumes the instance.
+====
+
+[.tabbed-example]
+====
+[.include-with-Aura-console]
+=====
+
+Use the *Pause* button on the instance card. 
+A confirmation window opens.
+After confirming, the instance begins pausing, and a play button replaces the pause button.
+
+=====
+[.include-with-API]
+=====
+
+[source]
+----
+POST https://api.neo4j.io/v1/instances/{instanceId}/pause
+----
+For more information, see the link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/post-pause-instance[Aura API specification].
+=====
 ====
 
 == Resume a paused instance
 
-Resume a paused instance with the *Play* button on the instance card.
+// label:AuraDB-professional[]
+// label:AuraDB-Enterprise[]
+// label:AuraDB-business-critical[]
 
+When you resume an instance, Aura restarts the instance and restores it from the backup. 
 After confirming, the instance begins resuming.
-When you resume an instance, Aura restarts the instance and restores it from the backup.
 Resuming the instance can take a few minutes to a few hours, depending on its size.
 
 [WARNING]
@@ -63,17 +82,50 @@ Aura Free instances do not automatically resume after 30 days.
 If an Aura Free instance remains paused for more than 30 days, Aura deletes the instance, and all information is lost.
 ====
 
+[.tabbed-example]
+====
+[.include-with-Aura-console]
+=====
+
+Resume a paused instance with the *Play* button on the instance card.
+
+=====
+[.include-with-API]
+=====
+[source]
+----
+POST https://api.neo4j.io/v1/instances/{instanceId}/resume
+----
+For more information, see the link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/post-resume-instance[Aura API specification].
+=====
+====
+
 == Delete an instance
 
-Delete an instance using the trashcan icon on the instance card.
-Type the exact name of the instance (as instructed) to confirm your decision, and select *Destroy*.
+Deleting an instance removes all associated snapshots, so they cannot be used to backup and restore data. 
 
-Deleting an instance also removes all associated snapshots, so they cannot be used to backup and restore data. If you may need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] and export and save it on your computer, before deleting the instance.
 
 [WARNING]
 ====
 There is no way to recover data from a deleted Aura instance, including snapshots.
-If you may need the data later, export a snapshot before deleting the instance.
+If you need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] before deleting the instance.
+====
+
+[.tabbed-example]
+====
+[.include-with-Aura-console]
+=====
+Delete an instance using the trashcan icon on the instance card.
+Type the exact name of the instance and confirm with *Destroy*.
+=====
+[.include-with-API]
+=====
+[source]
+----
+DELETE https://api.neo4j.io/v1/instances/{instanceId}
+----
+For more information, see the link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/delete-instance-id[Aura API specification].
+=====
 ====
 
 [role=label--aura-db-professional label--AuraDB-Free]
@@ -84,15 +136,32 @@ You can clear all data in an instance using the *Reset to blank* action.
 Select *Reset to blank* from the *(...)* more menu on the instance card.
 You need to confirm your intention since this action cannot be undone.
 
+You can reset an instance from the Aura console only.
+
 == Inspect an instance's details
 
-From the instance card, select the more menu (*...*) then select *instance details*.
-From the instance details you can rename an instance and view instance details.
-See xref:managing-instances/instance-details.adoc[Instance details] for more information.
+Return details about a specific Aura instance.
 
+[.tabbed-example]
+====
+[.include-with-Aura-console]
+=====
+From  the more menu *[...]* on the instance card, select *instance details*.
+You can rename an instance and view instance details among other things.
+See xref:managing-instances/instance-details.adoc[Instance details] for more information.
 [.shadow]
-.The more (...) menu on an AuraDB Free instance
 image::instance-actions.png[]
+
+=====
+[.include-with-API]
+=====
+[source]
+----
+GET https://api.neo4j.io/v1/instances/{instanceId}
+----
+For more information, see the link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/get-instance-id[Aura API specification].
+=====
+====
 
 == Snapshots and backups
 
@@ -110,7 +179,7 @@ There are two options to clone an instance:
 * Clone to a new instance
 * Clone to an existing instance
 
-You can access all the cloning options from the more menu (*...*) on the instance.
+You can access all the cloning options from the more menu *[...]* on the instance.
 
 [NOTE]
 ====
@@ -151,16 +220,13 @@ Existing instances that are not large enough to clone into will not be available
 +
 . Check the *I understand the target instance will be overwritten* box and select *Clone*.
 
-== Upgrade instance
+== Upgrade an instance
 
-AuraDB Free instances have an *Upgrade* button that you can use to upgrade to either Professional or Business Critical.
-You can upgrade an AuraDB Professional instance to an Business Critical instance using the *Upgrade* action from the *(...)* menu.
+Different tiers serve different operational needs. 
+Should your needs change, you can upgrade.
+Tiers and prices are described at https://neo4j.com/pricing/[Neo4j.com/pricing]
 
-.Upgrade your AuraDB Professional instance to AuraDB Business Critical
-[.shadow]
-image::upgradeprotobc.png[]
-
-This upgrade does not change the original DBID, so your application strings remain valid.
+An upgrade does not change the original instance ID, meaning that your application strings remain valid.
 
 *GDS plugin removal:*
 If your AuraDB Professional instance uses the GDS plugin, it is removed during the upgrade.
@@ -168,6 +234,24 @@ The GDS plugin is not supported in AuraDB Business Critical.
 
 *Minimum instance size:*
 If you try to upgrade a 1GB Professional instance, you need to resize it to at least 2GB of storage, because this is the minimum supported size in AuraDB Business Critical.
+
+[.tabbed-example]
+====
+[.include-with-Aura-console]
+=====
+Open the instance more menu *[...]* and select *Upgrade*.
+[.shadow]
+image::upgradeprotobc.png[]
+=====
+[.include-with-API]
+=====
+[source]
+----
+POST https://api.neo4j.io/v1/instances/{instanceId}/upgrade
+----
+For more information, see the link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v1#/instances/post-upgrade-instance[Aura API specification].
+=====
+====
 
 [role=label--aura-db-dedicated label--aura-db-business-critical]
 == Mark an instance as `production`
