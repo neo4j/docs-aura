@@ -24,7 +24,7 @@ Closing the card before selecting *Save* discards the changes.
 You can create multiple styling rules. 
 Rules are executed from top to bottom, so drag and drop them to change their priority.
 
-== Example: Style a stock-level table
+== Style a stock-level table
 
 The following example uses the Northwind dataset.
 It shows you how to use styling rules to make high and low stock levels easier to identify.
@@ -57,7 +57,7 @@ image::dashboards/rule-based-styling/low-stock-levels.png[width=900]
 === Add a color gradient
 
 To make differences between the higher stock values more visible, edit the green styling rule and change the background from a single color to a color gradient.
-Select the edit icon to update styling.
+Select the edit icon for the rule.
 
 Set the *Minpoint* and *Maxpoint* values and select a color for each.
 For example, set the minimum value to `110` with a light green color and the maximum value to `130` with a bright green color.
@@ -77,8 +77,8 @@ Create a rule that applies a blue background and purple text to the row where th
 [.shadow]
 image::dashboards/rule-based-styling/text-color.png[width=900]
 
-== Accessibility note: text color rules
+== Text color accessibility
 
 When setting a background color, the dashboard automatically picks a light or dark text color to keep the contrast readable. 
 If you set a custom text color rule, this adjustment is skipped so there may be combinations with poor contrast that are hard to read or fail accessibility standards (for example, light gray text on a white background).
-If you set custom text colors, check the contrast against the background and aim for at least 4.5:1 (link:https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html[WCAG AA]).
+If you set custom text colors, check the contrast against the background and aim for at least 4.5:1 (link:https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html[W3C Web Accessibility Initiative]).
