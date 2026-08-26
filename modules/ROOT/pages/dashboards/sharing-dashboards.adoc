@@ -7,6 +7,20 @@ Filters allow others to configure parameter values.
 
 A shared dashboard grants VIEWER permission to the users you shared it with.
 
+[cols="1,2", options="header"]
+|===
+|Role |Permission
+
+|Viewer
+|Read
+
+|Editor
+|Read, Update
+
+|Owner
+|Read, Update, Delete
+|===
+
 Either use the more menu *[...]* of a dashboard in the **Dashboards** page and select **Share** or select **Share** at the top right when looking at a particular dashboard.
 
 .Dashboard sharing dialog
@@ -28,17 +42,3 @@ Hover the icon to learn whether the dashboard is shared with the project or the 
 
 .Dashboard sharing icon
 image::dashboards/sharing-hover.png[]
-
-[cols="1,2", options="header"]
-|===
-|Role |Access
-
-|Viewer
-|Read
-
-|Editor
-|Read, Update
-
-|Owner
-|Read, Update, Delete
-|===
