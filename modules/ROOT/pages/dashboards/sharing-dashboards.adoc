@@ -2,10 +2,23 @@
 :description: Share your dashboards with people in your project.
 
 You can share your dashboards with other users in your project.
-You can either invite individual users from your project or share your dashboard with everyone in the project.
-Filters allow others to configure parameter values.
+Invite individual users from your project or share your dashboard with everyone in the project.
 
-A shared dashboard grants VIEWER permission to the users you shared it with.
+Either use the more menu *[...]* of a dashboard in the **Dashboards** page and select **Share** or select **Share** at the top right when looking at a particular dashboard.
+
+.Dashboard sharing dialog
+image::dashboards/sharing-dialog.png[]
+
+The **Share** dialog lets you invite more users by selecting email addresses from the **Invite users** dropdown and adding them to the list of **People with access**.
+
+[NOTE]
+====
+The users you can invite are the same users you can find in the **Users** page under **Project**.
+====
+
+You can grant others edit access as `Viewers` or `Editors`. Filters allow `Viewers` to adjust parameter values.
+ 
+The permissions are outlined below:
 
 [cols="1,2", options="header"]
 |===
@@ -20,18 +33,6 @@ A shared dashboard grants VIEWER permission to the users you shared it with.
 |Owner
 |Read, Update, Delete
 |===
-
-Either use the more menu *[...]* of a dashboard in the **Dashboards** page and select **Share** or select **Share** at the top right when looking at a particular dashboard.
-
-.Dashboard sharing dialog
-image::dashboards/sharing-dialog.png[]
-
-The **Share** dialog lets you invite more users by selecting email addresses from the **Invite users** dropdown and adding them to the list of **People with access**.
-
-[NOTE]
-====
-The users you can invite are the same users you can find in the **Users** page under **Project**.
-====
 
 You can also toggle and grant **General access** to anyone in the project.
 If toggled, it takes precedence over the possibly more restrictive list of people with access.
