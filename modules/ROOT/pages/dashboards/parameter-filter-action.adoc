@@ -1,0 +1,101 @@
+= Parameter, filter, action tutorial
+
+Filters are a cool way to change visualizations 
+(GIF)
+
+But how do they work? Well, they work with parameters.
+
+Filters and actions are two different ways of changing parameter values.
+
+Parameters hold values. Filters and actions are ways of changing parameter values. Dashboard elements that reference those parameters can respond when the values change.
+
+== Actions
+
+* Use parameters when you set up Actions. Filters can be used to change the parameter value. Or, use the action features to click on values to change Parameter values.
+
+You could have a filter, linked to a parameter, linked to an action!
+
+You can have a parameter, that is changed with a filter, which therefore changes the parameter in an action, which could then change another filter??? LOL
+
+base on specific order
+
+Actions are available for parameters but not for filters.  Parameter actions enable changes in your view, by hover, select or menu.
+
+* The difference become clear as you try them out in your dashboard.
+You can see how everything is implemented with step by step tutorials + tutorials in their own docs page.
+
+== Actions example
+
+Filter Name → sets parameter $name → action uses $name
+
+The parameter is the connective tissue. The filter and action aren't really linked directly; they're both interacting with the same parameter.
+
+actions set parameters rather than use them in the same sense as a query does.
+
+
+Which employee? → what did they sell? → tell me more about this product.
+
+//
+
+Filter → choose an employee
+Parameter → $employeeName = "Laura"
+Results → show products Laura sold
+Action → select a product
+Second parameter → $productName = "Gnocchi di nonna Alice"
+Details panel → load price, stock, reviews, related items
+
+//
+
+### Example: Filter and update employee data
+
+Imagine a dashboard that uses the Northwind dataset to explore employees.
+
+Create a filter and link it to a parameter named `$employeeName`.
+
+When a viewer enters `L` in the filter, the filter sets the parameter value:
+
+```text
+$employeeName = "L"
+```
+
+A Cypher query can use the parameter to find employees whose first name starts with that value:
+
+```cypher
+MATCH (e:Employee)
+WHERE e.firstName STARTS WITH $employeeName
+RETURN e.firstName AS Employee
+```
+
+The visualization displays the matching employees. In this example, the results include `Laura`.
+
+The relationship between the filter, parameter, and query is:
+
+**Filter → changes `$employeeName` → query uses `$employeeName` → visualization updates**
+
+The parameter is separate from the filter. The filter provides a way for a dashboard viewer to change its value without editing the Cypher query.
+
+=== Add an action
+
+You can build on the example by creating another parameter named `$employeeOfTheMonth`.
+
+Add an action to the employee visualization that sets `$employeeOfTheMonth` to the name of the employee that a viewer selects.
+
+For example, selecting `Laura` sets:
+
+$employeeOfTheMonth = "Laura"
+
+Another card can reference `$employeeOfTheMonth` to display information about the selected employee.
+
+The complete interaction is:
+
+**Filter** → sets `$employeeName` → **query results** → viewer selects Laura → **action** → sets `$employeeOfTheMonth` → **another card updates**
+
+This demonstrates that filters and actions provide different ways to change parameter values:
+
+* A **filter** lets a viewer provide or select a value.
+* An **action** changes a parameter value in response to an interaction with a visualization.
+* A **parameter** holds the value that queries and other dashboard elements can reference.
+
+
+CARD WITH TEXT = "Employee of the month!" Name = Laura!
+

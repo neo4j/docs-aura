@@ -1,0 +1,65 @@
+= Interactivity
+:description: This page aims to separate the conceptual model of filters and parameters to add to the step-by-step tutorials.
+
+When two people engage with the same dashboard, the subject remains the same, but the questions they ask and the perspectives they need may be completely different.
+
+Filters and parameters support these different perspectives by letting each person choose what they want to explore.
+
+[.shadow]
+.Filters and parameters
+image::dashboards/filters-parameters.png[]
+
+The following table summarizes the relationship between filters and parameters:
+
+[cols="1,1,1",options="header"]
+|===
+| | Filter | Parameter
+
+| What is it?
+| A dashboard select component/dashboard control
+| A placeholder with a value that can change
+
+| What does it do?
+| Lets a viewer set or change a parameter value
+| Makes the supplied value available wherever the parameter is referenced
+
+| Where does it appear?
+| In the dashboard UI as a filter card/widget
+| Mainly Cypher queries, and also card titles, descriptions, and Markdown.
+
+|===
+
+== Filters
+
+Think of a filter as a select component / a parameter setter with a UI that helps someone change the value of a parameter by typing or selecting values.
+Whatever value is in the filter input is passed to the parameter. 
+So, other people can interact with the dashboard without having to directly edit a Cypher query.
+
+== Parameters
+
+Dashboard parameters use the same concept as Cypher parameters.
+The Neo4j Cypher manual says, “A parameterized query is a query in which placeholders are used for parameters and the parameter values are supplied at execution time.”
+
+You can view current parameter values in the parameter drawer.
+When configuring a filter, you can also view the parameter linked to that filter.
+
+== Example
+
+Imagine you’re searching for an employee in the Northwind dataset. 
+You enter or select "Anna" in a filter linked to the parameter $employeeName. 
+The parameter remains $employeeName; only its value changes. 
+The query then uses the supplied value:
+
+[source, Cypher]
+----
+MATCH (e:Employee)
+WHERE e.firstName = $employeeName
+RETURN e
+----
+
+The mental model is:
+
+* Filter → collects a value.
+* Parameter → stores the value.
+* Query → uses the value.
+
