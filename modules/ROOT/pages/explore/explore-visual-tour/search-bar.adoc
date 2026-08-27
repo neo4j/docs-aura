@@ -1,11 +1,11 @@
-:description: This section describes the search bar in Explore.
+:description: This section describes the search bar in Bloom.
 
 [[search-bar]]
 = Search bar
 
-Explore is a search-first environment for you to explore your graph.
+Bloom is a search-first environment for you to explore your graph.
 To provide this experience, the search bar supports several types of search input.
-When you enter a term or phrase in the search bar, Explore provides a list of suggestions for queries you can run, based on matches in the following input types:
+When you enter a term or phrase in the search bar, Bloom provides a list of suggestions for queries you can run, based on matches in the following input types:
 
 * Search phrase
 * Graph pattern
@@ -30,7 +30,7 @@ You can press <TAB> or click on a suggestion in the list to select it, or scroll
 
 == Sample Search phrase
 
-When Explore autogenerates a Perspective (see xref:explore/explore-perspectives/perspective-creation.adoc[Creating a Perspective] for more information) or when you create your own (non-empty) Perspective, Explore provides a sample Search phrase to help you see the data in your graph.
+When Bloom autogenerates a Perspective (see xref:explore/explore-perspectives/perspective-creation.adoc[Creating a Perspective] for more information) or when you create your own (non-empty) Perspective, Bloom provides a sample Search phrase to help you see the data in your graph.
 The Search phrase is called _Show me a graph_ and is available in the search bar.
 It returns a sample of your data.
 
@@ -40,7 +40,7 @@ image::show-me-a-graph.png[width=500]
 == Graph pattern
 
 Graph patterns are a relaxed, near-natural language grammar based on a vocabulary drawn from node labels, relationship types and property keys and indexed property values, enriched by categories or other configuration as defined in the applied Perspective (see xref:explore/explore-perspectives/perspectives.adoc[Perspectives] for more detail).
-Terms that Explore detects are used to create potential pattern matches, are added to the suggestions list, from which you can pick the one you wish to query.
+Terms that Bloom detects are used to create potential pattern matches, are added to the suggestions list, from which you can pick the one you wish to query.
 See xref:explore/explore-features/graph-pattern-search.adoc[Graph pattern search] for tips on graph pattern searching.
 
 [[search-phrase]]
@@ -59,10 +59,10 @@ See xref:explore/explore-features/search-phrases-advanced.adoc[Search phrases fo
 
 == Full-text search
 
-When Explore can’t find an appropriate suggestion for the entered search term, you have the ability to run a full-text search against the Neo4j database.
-Explore uses the native full-text indexes in the database for this feature.
-You will need to set up a full-text index to enable full-text search in Explore.
-Without any full-text index configured, Explore will fall back to searching in all available indexed string properties.
+When Bloom can’t find an appropriate suggestion for the entered search term, you have the ability to run a full-text search against the Neo4j database.
+Bloom uses the native full-text indexes in the database for this feature.
+You will need to set up a full-text index to enable full-text search in Bloom.
+Without any full-text index configured, Bloom will fall back to searching in all available indexed string properties.
 
 See xref:explore/explore-features//full-text-search.adoc[Full-text search] tutorial topic for tips on using the full-text search option.
 
@@ -86,7 +86,7 @@ See xref:explore/explore-default-actions.adoc[Default actions and shortcuts] for
 
 
 [[copilot]]
-== Explore co-pilot
+== Bloom co-pilot
 
 The co-pilot is a feature to help you write search patterns.
 The search bar already offers near-natural search, but the co-pilot is even closer to natural language.

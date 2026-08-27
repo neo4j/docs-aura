@@ -21,6 +21,17 @@ Here you can also configure:
 * The maximum available memory for each session
 * The maximum number of concurrent sessions within the organization
 
+[[network-requirements]]
+=== Network requirements
+
+Aura Graph Analytics sessions use the Apache Arrow Flight protocol to communicate with your client (for example, the GDS Python client that creates a session).
+
+[NOTE]
+====
+If you connect to Aura Graph Analytics from outside Aura (for example, running the GDS Python client on your own machine or infrastructure), you must allow outbound TCP traffic on port `8491` for Apache Arrow, in addition to the standard ports for your AuraDB instance. 
+See xref:security/ip-addresses.adoc[Aura IP addresses and ports] for the full list of IP addresses and ports required.
+====
+
 === User management
 
 Aura Console roles map to user privileges in Aura Graph Analytics sessions as described in xref:user-management.adoc#graph-analytics-roles[Graph Analytics roles].
@@ -46,7 +57,7 @@ image::aga-architecture.svg["Architecture diagram for Aura Graph Analytics. The 
 [[interfaces]]
 == Interfaces
 
-You can create and use sessions with the GDS Cypher API, the GDS Python client, or the Explore tool.
+You can create and use sessions with the GDS Cypher API, the GDS Python client, or the Bloom tool.
 
 [[cypher-api]]
 === Cypher API
@@ -89,21 +100,21 @@ You need to create xref:api/authentication.adoc#_creating_credentials[Aura API c
 ====
 
 [[explore-tool]]
-=== Explore tool
+=== Bloom tool
 
-xref:explore/introduction.adoc[The Explore tool] provides a no-code visual interface for running graph algorithms against your data directly from the Aura console.
-From Explore, you can create an Aura Graph Analytics session and run one or more algorithms against it.
+xref:explore/introduction.adoc[The Bloom tool] provides a no-code visual interface for running graph algorithms against your data directly from the Aura console.
+From Bloom, you can create an Aura Graph Analytics session and run one or more algorithms against it.
 
-Results are displayed in the Explore Scene and can be configured visually using rule-based styling.
+Results are displayed in the Bloom Scene and can be configured visually using rule-based styling.
 You can also choose to persist results to your database as a new property, in which case they are applied to the entire graph.
 
 [NOTE]
 ====
-To run algorithms using Aura Graph Analytics from Explore, the AuraDB instance used as the data source must be configured to use Aura Graph Analytics.
+To run algorithms using Aura Graph Analytics from Bloom, the AuraDB instance used as the data source must be configured to use Aura Graph Analytics.
 See xref:getting-started/create-instance.adoc[Create instance] for details.
 ====
 
-For a full list of available algorithms and other details on running algorithms in Explore, see xref:explore/explore-features/gds-integration.adoc[Graph Data Science integration].
+For a full list of available algorithms and other details on running algorithms in Bloom, see xref:explore/explore-features/gds-integration.adoc[Graph Data Science integration].
 
 [[configuration]]
 == Configuration

@@ -44,9 +44,9 @@ To continue accessing Browser and Bloom, you can configure a VPN in your VPC and
 
 == Tool access
 
-When public traffic is disabled, Query and Explore are not accessible via the public internet.
+When public traffic is disabled, Query and Bloom are not accessible via the public internet.
 To continue accessing these tools, xref:getting-started/connect-instance.adoc#_https[connect via HTTPS (port 443)], this is helpful when network security blocks Bolt (port 7687), e.g. when a private link is set up on the database with public traffic disabled.
-Alternatively you can set up a VPN (Virtual Private Network) in your VPC and connect to Query and Explore over the VPN.
+Alternatively you can set up a VPN (Virtual Private Network) in your VPC and connect to Query and Bloom over the VPN.
 
 == Private endpoints
 
@@ -78,15 +78,15 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 .VPC connectivity with AWS PrivateLink
 image::privatelink.png["VPC connectivity with AWS PrivateLink"]
 
-Without private endpoints, you access the tools Query and Explore over the internet:
+Without private endpoints, you access the tools Query and Bloom over the internet:
 
 .Architecture overview before enabling private endpoints
 image::privatelink_01_before_enabling.png["Architecture overview before enabling private endpoints"]
 
-When you have enabled private endpoints and disabled public internet access, you can no longer connect Query and Explore to your instances over the internet.
+When you have enabled private endpoints and disabled public internet access, you can no longer connect Query and Bloom to your instances over the internet.
 To continue accessing the tools, you can set up a VPN.
 
-To access Query and Explore over a VPN, you must ensure that:
+To access Query and Bloom over a VPN, you must ensure that:
 
 * The VPN server uses the https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#AmazonDNS[VPC's DNS servers].
 * You use the *Private URI* shown on the instance tile and in the instance details.
@@ -107,15 +107,15 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 .VPC connectivity with GCP Private Service Connect
 image::privateserviceconnect.png["VPC connectivity with GCP Private Service Connect"]
 
-Without private endpoints, you access the tools Query and Explore over the internet:
+Without private endpoints, you access the tools Query and Bloom over the internet:
 
 .Architecture overview before enabling private endpoints
 image::privateserviceconnect_01_before_enabling.png["Architecture overview before enabling private endpoints"]
 
-When you have enabled private endpoints and disabled public internet access, you can no longer connect Query and Explore to your instances over the internet.
+When you have enabled private endpoints and disabled public internet access, you can no longer connect Query and Bloom to your instances over the internet.
 To continue accessing the tools, you can set up a VPN.
 
-To access Query and Explore over a VPN, you must ensure that:
+To access Query and Bloom over a VPN, you must ensure that:
 
 * You have set up link:https://cloud.google.com/dns/docs/zones/manage-response-policies[GCP Response Policy Zone], or an equivalent DNS service, inside of the VPC.
 * You use the *Private URI* shown on the instance tile and in the instance details.
@@ -136,15 +136,15 @@ You can then disable public traffic, ensuring all traffic to the instance remain
 .VNet connectivity with Azure Private Link
 image::azure_privatelink.png["VNet connectivity with Azure Private Link"]
 
-Without private endpoints, you access the tools Query and Explore over the internet:
+Without private endpoints, you access the tools Query and Bloom over the internet:
 
 .Architecture overview before enabling private endpoints
 image::azure_privatelink_01_before_enabling.png["Architecture overview before enabling private endpoints"]
 
-When you have enabled private endpoints and disabled public internet access, you can no longer connect Query and Explore to your instances over the internet.
+When you have enabled private endpoints and disabled public internet access, you can no longer connect Query and Bloom to your instances over the internet.
 To continue accessing the tools, you can set up a VPN.
 
-To access Query and Explore over a VPN, you must ensure that:
+To access Query and Bloom over a VPN, you must ensure that:
 
 * You have setup https://learn.microsoft.com/en-us/azure/dns/private-dns-overview[Azure Private DNS], or an equivalent DNS service, inside of the VNet.
 * You use the *Private URI* shown on the instance tile and in the instance details.
@@ -191,7 +191,7 @@ image::azure_privatelink_03_browser_bloom_over_vpn.png["Accessing tools over a V
 
 Please see the link:https://learn.microsoft.com/en-us/azure/private-link/rbac-permissions#private-endpoint[Azure Documentation] for required roles and permissions.
 
-
+[[private-links]]
 [role=label--aura-db-dedicated]
 == Private links
 
