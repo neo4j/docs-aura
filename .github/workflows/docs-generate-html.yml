@@ -1,4 +1,8 @@
+
 name: "Generate HTML"
+
+permissions:
+  contents: read
 
 # edit the list of branches according to your repository
 # the list of branches should contain all the branches in your Antora publish playbooks
@@ -29,19 +33,26 @@ jobs:
       - name: Set Build Ref
         id: set-ref-env
         run: |
-          if [[ "${GITHUB_REF}" == "refs/heads/${{ env.DEV_BRANCH }}" ]]; then
-            build_from=${{ env.DEV_BRANCH }}
+          dev_branch="${{ env.DEV_BRANCH }}"
+          prod_branch="${{ env.PROD_BRANCH }}"
+
+          if [[ -z "${prod_branch}" ]]; then
+            build_from="${dev_branch}"
+            environments='["dev"]'
+          elif [[ "${GITHUB_REF}" == "refs/heads/${dev_branch}" ]]; then
+            build_from="${dev_branch}"
             environments='["dev"]'
           else
-            build_from=${{ env.PROD_BRANCH }}
+            build_from="${prod_branch}"
             environments='["prod"]'
           fi
-          # if dev branch = prod branch publish to both
-          if [[ "${{ env.DEV_BRANCH }}" == "${{ env.PROD_BRANCH }}" ]]; then
+
+          if [[ -n "${prod_branch}" && "${dev_branch}" == "${prod_branch}" ]]; then
             environments='["dev","prod"]'
           fi
+
           echo "build-ref=${build_from}" >> $GITHUB_OUTPUT
-          echo "environments=${environments[@]}" >> $GITHUB_OUTPUT
+          echo "environments=${environments}" >> $GITHUB_OUTPUT
 
   docs-build:
     name: Generate HTML
@@ -82,8 +93,3 @@ jobs:
               "run_id": "${{ github.run_id }}",
               "publish_env": "${{ matrix.environments }}"
             }
-
-      - name: Echo
-        if: ${{ matrix.environments == 'prod' }}
-        run: |
-          echo "If this step runs then approval has been granted" >> $GITHUB_STEP_SUMMARY
