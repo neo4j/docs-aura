@@ -8,14 +8,6 @@ on:
     - 'console'
   workflow_dispatch:
 
-# change `dev` and `main` according to your repository's branch names
-# `dev` is the branch you use to build and publish to staging
-# `main` is the branch you use to build and publish to neo4j.com/docs
-# in some cases, PROD_BRANCH and DEV_BRANCH may be the same branch
-env:
-  DEV_BRANCH: 'console'
-  PROD_BRANCH: 'console'
-
 jobs:
 
   prepare-ref-env:
@@ -25,22 +17,47 @@ jobs:
       build-ref: ${{ steps.set-ref-env.outputs.build-ref }}
       environments: ${{ steps.set-ref-env.outputs.environments }}
     steps:
+      # DOCS_DEV_BRANCH and DOCS_PROD_BRANCH are required repository variables
+      # (Settings -> Secrets and variables -> Actions -> Variables), not
+      # values to edit here. `docs-publish` independently reads the same
+      # variables from this repo's settings to verify what it's asked to
+      # publish, so they can't be set by editing this file on a branch/PR.
+      # `dev` is the branch you use to build and publish to staging.
+      # `main` is the branch you use to build and publish to neo4j.com/docs.
+      # If your repo has no separate prod environment, set DOCS_PROD_BRANCH
+      # equal to DOCS_DEV_BRANCH.
       - name: Set Build Ref
         id: set-ref-env
+        env:
+          DEV_BRANCH: ${{ vars.DOCS_DEV_BRANCH }}
+          PROD_BRANCH: ${{ vars.DOCS_PROD_BRANCH }}
         run: |
-          if [[ "${GITHUB_REF}" == "refs/heads/${{ env.DEV_BRANCH }}" ]]; then
-            build_from=${{ env.DEV_BRANCH }}
+          dev_branch="${DEV_BRANCH}"
+          prod_branch="${PROD_BRANCH}"
+
+          if [[ -z "${dev_branch}" ]]; then
+            echo "::error::vars.DOCS_DEV_BRANCH is not set for this repository. Set it in Settings -> Secrets and variables -> Actions -> Variables."
+            exit 1
+          fi
+          if [[ -z "${prod_branch}" ]]; then
+            echo "::error::vars.DOCS_PROD_BRANCH is not set for this repository. Set it in Settings -> Secrets and variables -> Actions -> Variables."
+            exit 1
+          fi
+
+          if [[ "${GITHUB_REF}" == "refs/heads/${dev_branch}" ]]; then
+            build_from="${dev_branch}"
             environments='["dev"]'
           else
-            build_from=${{ env.PROD_BRANCH }}
+            build_from="${prod_branch}"
             environments='["prod"]'
           fi
-          # if dev branch = prod branch publish to both
-          if [[ "${{ env.DEV_BRANCH }}" == "${{ env.PROD_BRANCH }}" ]]; then
+
+          if [[ "${dev_branch}" == "${prod_branch}" ]]; then
             environments='["dev","prod"]'
           fi
+
           echo "build-ref=${build_from}" >> $GITHUB_OUTPUT
-          echo "environments=${environments[@]}" >> $GITHUB_OUTPUT
+          echo "environments=${environments}" >> $GITHUB_OUTPUT
 
   docs-build:
     name: Generate HTML
