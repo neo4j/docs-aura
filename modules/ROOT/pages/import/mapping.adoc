@@ -40,11 +40,10 @@ Import derives the properties from the columns in the file and guesses the data 
 With this option, you can select which properties to use.
 Once selected, you can rename the properties, change the data type, if needed, and select which property should serve as the node ID.
 
-By default, Import uses the property with `id` in its name as the ID, but if none of the columns in the mapped file meet this condition, or if more than one does, you have to manually select which property to use as the node ID.
+By default, Import uses the property with `id` in its name as the ID.
+If there is only one property, it is selected automatically.
+If none of the columns in the mapped file meet this condition, or if more than one does, you have to manually select which property to use as the node ID.
 Whether you let Import select the ID or you do it manually, every node _needs_ to have an ID in order to complete the mapping.
-
-* If there is only one property, it is selected automatically.
-* If there are multiple properties, select one by its ID.
 
 [.shadow]
 image::node-id.png[width=400]
