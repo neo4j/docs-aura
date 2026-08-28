@@ -24,8 +24,9 @@ jobs:
       # publish, so they can't be set by editing this file on a branch/PR.
       # `dev` is the branch you use to build and publish to staging.
       # `main` is the branch you use to build and publish to neo4j.com/docs.
-      # If your repo has no separate prod environment, set DOCS_PROD_BRANCH
-      # equal to DOCS_DEV_BRANCH.
+      # Each push resolves to exactly one of "dev"/"prod", never both. If
+      # your repo has no separate prod environment, set DOCS_PROD_BRANCH
+      # equal to DOCS_DEV_BRANCH — every push will then resolve to "dev".
       - name: Set Build Ref
         id: set-ref-env
         env:
@@ -50,10 +51,6 @@ jobs:
           else
             build_from="${prod_branch}"
             environments='["prod"]'
-          fi
-
-          if [[ "${dev_branch}" == "${prod_branch}" ]]; then
-            environments='["dev","prod"]'
           fi
 
           echo "build-ref=${build_from}" >> $GITHUB_OUTPUT
