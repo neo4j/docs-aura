@@ -239,7 +239,7 @@ A saved agent can then be used internally, i.e. by other users in your Aura proj
 [[agent-evaluation]]
 == Agent evaluation
 
-Once you have an agent that behaves the way you expect, you can run a structured evaluation against it.
+A structured evaluation is a way to test whether the agent behaves the way you expect.
 An evaluation asks your agent a fixed set of test questions and scores each answer against an expected answer and, optionally, the tools it was expected to call.
 
 Use agent evaluation before you promote an agent to production, after you change its prompt or tools, or whenever you want to check for regressions before relying on an agent's answers again.
@@ -251,79 +251,83 @@ You can access agent evaluation from the *[...]* menu next to an agent, using *A
 An evaluation dataset is a named set of test questions you run an agent against.
 Each question has the question text itself, an expected answer, and, optionally, one or more expected tool calls, i.e. which tool you expect the agent to use and with what input.
 
-A dataset belongs to your Aura project, not to a single agent, so you can reuse the same dataset to evaluate several agents, for example when comparing two versions of an agent built against the same knowledge graph.
+An evaluation dataset belongs to your Aura project, not to a single agent, so you can reuse the same dataset to evaluate several agents, for example when comparing two versions of an agent built against the same knowledge graph.
 
-==== Creating a dataset
+==== Create an evaluation dataset
 
 You can create a dataset in two places:
 
-* Inline, while setting up an evaluation run, using *Create new dataset*.
+* While setting up an evaluation, using *Create new dataset*.
 * From the *Evaluation datasets* page, using the *Create new dataset* button.
 
 Both lead to the same authoring screen.
 Give the dataset a name and, for each test question, provide the question text and the expected answer.
-If you want the run to also check tool usage for that question, add one or more expected tool calls, naming the tool and the input you expect the agent to pass to it.
+If you want the evaluation to also check tool usage for that question, add one or more expected tool calls.
+Specify the tool's name and the input you expect the agent to pass to it.
 
-A dataset can hold up to 50 questions.
+An evaluation dataset can hold up to 50 questions.
 
 [TIP]
 ====
-If you use an LLM to help you draft a dataset, give it your agent's exported JSON definition (see <<import-export-agent>>) alongside your prompt, not just a description of the use case.
-Expected tool calls have to match the tools your agent actually has, with their real names and input shapes, so an LLM working from a general description alone tends to invent tool calls that look plausible but don't match what your agent can call.
+If you use an LLM to help you draft an evaluation dataset, give it your agent's exported JSON definition (see <<import-export-agent>>) alongside your prompt, not just a description of the use case.
+Expected tool calls have to match the tools your agent actually has, with their real names and input shapes.
+An LLM working from a general description alone tends to invent tool calls that look plausible but don't match what your agent can call.
 ====
 
-==== Managing a dataset
+==== Manage an evaluation dataset
 
 The *Evaluation datasets* page lists every dataset in your project, with its description, question count, and when it was last updated.
-Opening a dataset shows its questions.
+Select a dataset to show its questions.
 
 You can edit a dataset's name and description at any time.
-Questions themselves are permanently read-only once a dataset is saved: changing a question after it has been used in a run would change what that run's scores actually mean, so instead of editing questions in place, use *Create from this* to start a new, separate dataset seeded with a copy of the same name, description, and questions.
+The questions are permanently read-only once a dataset is saved.
+Changing a question after it has been used in an evaluation would change what that evaluation's scores actually mean.
+If you need to edit the questions, use *Create from this* from the *[...]* on the dataset to start a new, separate dataset seeded with a copy of the same name, description, and questions.
 The copy is independent from the moment it's created: editing or deleting one dataset never affects the other.
 
-There is no dataset version history in this release, so editing a dataset's name or description changes that one copy going forward, it doesn't keep older copies around.
+There is no dataset version history, so editing a dataset's name or description changes that one copy going forward, it doesn't keep older copies around.
 
-==== Deleting a dataset
+==== Delete an evaluation dataset
 
-Deleting a dataset also deletes the evaluation history of every run that used it, and this cannot be undone.
-If a run using the dataset is still queued or in progress, you can't delete the dataset until that run finishes.
+Deleting a dataset also deletes the evaluation history of every evaluation that used it, and this cannot be undone.
+If an evaluation using the dataset is still queued or in progress, you can't delete the dataset until that evaluation finishes.
 
-=== Running an evaluation
+=== Run an evaluation
 
-Setting up a run has two tabs.
+*Run evaluation* has two tabs.
 
-* *Dataset*: pick an existing dataset or create a new one inline, as described above.
-* *Metrics*: choose which metrics to score this run on.
+* *Dataset*: pick an existing dataset or create a new one, as described above.
+* *Metrics*: select which metrics to score this evaluation on.
 
-Latency is always measured and can't be turned off.
-The other metrics, Accuracy, Relevance, Grounding, and Tool trajectory, are opt-in checkboxes; select any combination of them for the run.
-See <<agent-evaluation-metrics>> for what each one means.
+*Latency* is always measured and can't be turned off.
+The other metrics, *Accuracy*, *Relevance*, *Grounding*, and *Tool trajectory*, are opt-in checkboxes; select any combination of them for the evaluation.
+See <<agent-evaluation-metrics>> for more information on each metric.
 
-Once you start the run with *Run evaluation*, it executes in the background.
-You can navigate away from the page, and the run keeps going.
-A run moves through these statuses: *Queued*, *Running*, and then one of *Succeeded*, *Failed*, or *Cancelled*.
-If you have an agent evaluation page open when a run finishes, you get a notification with a link straight to its results.
+Once you start the evaluation with *Run evaluation*, it executes in the background.
+You can navigate away from the page, and the evaluation keeps going.
+An evaluation moves through these statuses: *Queued*, *Running*, and then one of *Succeeded*, *Failed*, or *Cancelled*.
+If you have an agent evaluation page open when an evaluation finishes, you get a notification with a link straight to its results.
 
-You can cancel a run while it's still queued or running, from its row menu on the evaluation history page.
-Confirm the cancellation, and the run stops after the question it's currently on finishes, so its progress may still tick up briefly right after you cancel.
-A cancelled run keeps whatever results it collected before you stopped it.
+You can cancel an evaluation while it's still queued or running, from its row menu on the evaluation history page.
+Confirm the cancellation, and the evaluation stops after the question it's currently on finishes, so its progress may still tick up briefly right after you cancel.
+A cancelled evaluation keeps whatever results it collected before you stopped it.
 
 === Evaluation history
 
-The evaluation history page lists every run for this agent: when it ran, its status, which dataset it used, its progress, and its average score for each metric it was run with.
-Open any row to see that run's full results.
+The evaluation history page lists every evaluation for this agent: when it ran, its status, which dataset it used, its progress, and its average score for each metric it was run with.
+Open any row to see that evaluation's full results.
 
-To evaluate the agent again with the same dataset and metrics, use *Run again* from a past run's row menu or from its results page.
+To evaluate the agent again with the same dataset and metrics, use *Run again* from a past evaluation's row menu or from its results page.
 
 === Reading an evaluation's results
 
-Opening a run from the evaluation history page takes you to its results, with two tabs: *Overview* and *Questions*.
+If you open an evaluation from the evaluation history page you can view its results, with two tabs: *Overview* and *Questions*.
 
-*Overview* shows the total number of questions, how long the run took, the average latency, and one average score card for each metric you selected for the run.
-If the run has a metric averaging below the warning threshold, you'll also see a short insight card naming the worst-performing metric, so you know where to look first.
-If the run itself failed, was cancelled, or had failing questions, you'll instead see a status banner describing that instead of the insight card.
+*Overview* shows the total number of questions, how long the evaluation took, the average latency, and one average score card for each metric you selected for the evaluation.
+If the evaluation has a metric averaging below the warning threshold, you also see a short insight card naming the worst-performing metric, so you know where to look first.
+If the evaluation itself failed, was cancelled, or had failing questions, you instead see a status banner describing that instead of the insight card.
 
-*Questions* lists every question in the run, with its test question, expected answer, the agent's actual answer, the expected tools, its latency, and a column for each metric you selected.
+*Questions* lists every question in the evaluation, with its test question, expected answer, the agent's actual answer, the expected tools, its latency, and a column for each metric you selected.
 Open a question to see its full detail, including the expected and actual tool calls side by side, each with the input it was called with.
 When the agent's tool call returned a result, you can expand an *Output* section to see the raw result the tool returned.
 In the question detail view, you can also switch the agent's answer between rendered and raw text; the table itself always shows the rendered version.
@@ -340,18 +344,18 @@ Each metric answers a different question about the agent's answer, and is graded
 *Accuracy* (`LLM judge`, scored 0 to 1) asks whether the answer is factually correct and complete compared to the expected answer.
 Wording, formatting, or extra correct detail don't affect the score, only the substance does.
 A claim in the answer that isn't backed by the expected answer counts against it as an unsupported claim, even if the rest of the answer is right.
-Accuracy is graded by a judge LLM, which compares the agent's answer against the expected answer and returns a score with a written reason.
+Accuracy is graded by a judge LLM, which *compares the agent's answer against the expected answer* and returns a score with a written reason.
 
 *Relevance* (`LLM judge`, scored 0 to 1) asks a narrower question than Accuracy: does the answer actually address what was asked, regardless of whether it's factually correct.
 A confident answer that's wrong but stays on topic still scores well on Relevance, even though it scores poorly on Accuracy; conversely, a correct fact that doesn't answer the question asked scores poorly on Relevance even though it might be accurate on its own.
-Relevance is graded by a judge LLM, working from the question and the agent's answer alone, without comparing against the expected answer.
+Relevance is graded by a judge LLM, working *from the question and the agent's answer alone*, without comparing against the expected answer.
 
-*Grounding* (`LLM judge`, scored 0 to 1) asks a different question again: whether the answer is actually supported by what the agent's own tools returned, regardless of whether the answer is correct.
+*Grounding* (`LLM judge`, scored 0 to 1) asks a different question again: whether *the answer is actually supported by what the agent's own tools returned, regardless of whether the answer is correct*.
 An answer that faithfully reports what the tools said is well grounded even if the tools themselves were wrong; an answer with claims the tools never supported is poorly grounded even if the claim happens to be true.
 Grounding is also graded by a judge LLM, given the tool results as evidence.
 When the agent didn't call any tools for a question, there's no evidence to check the answer against, so grounding shows as not applicable rather than a score.
 
-*Tool trajectory* (`Deterministic` + `LLM judge`, shown as a percentage) compares the tools the agent actually called, with their inputs, against the tools the question expected.
+*Tool trajectory* (`Deterministic` + `LLM judge`, shown as a percentage) *compares the tools the agent actually called, with their inputs, against the tools the question expected*.
 The score is a Jaccard similarity: the share of expected and actual calls that match, out of every call on either side, so missing an expected call or making an extra unexpected one both pull the score down.
 The order the tools were called in doesn't matter, and calling the same tool more than once is expected to match a duplicate expected call.
 Matching is exact for a Cypher Template call: its parameters have to match precisely to count.
