@@ -239,7 +239,7 @@ A saved agent can then be used internally, i.e. by other users in your Aura proj
 [[agent-evaluation]]
 == Agent evaluation
 
-A structured evaluation is a way to test whether the agent behaves the way you expect.
+A structured evaluation tests whether the agent behaves the way you expect.
 An evaluation asks your agent a fixed set of test questions and scores each answer against an expected answer and, optionally, the tools it was expected to call.
 
 Use agent evaluation before you promote an agent to production, after you change its prompt or tools, or whenever you want to check for regressions before relying on an agent's answers again.
