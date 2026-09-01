@@ -1,0 +1,77 @@
+= Instances explorer
+:description: This page is temporary and describes the new Neo4j Aura Console experience instances explorer
+
+When you open the Aura console, you can try the new instances explorer with *Switch to new instances explorer*.
+You can switch back to the classic view at any time.
+
+This experience makes it easier to get an overview of *all* instances, both Aura and self-managed, in addition to any Virtual Graphs.
+
+[.shadow]
+.Instance explorer
+image::instance-explorer.png[width=full]
+
+On the left, you can see your existing instances, *Aura*, *self-managed*, and *Virtual Graphs*.
+Instances have a badge to indicate their status, e.g. running, paused, stopped, etc, and if you hover over it, the status is displayed.
+You can use the search field or use a filter to find instances.
+You can filter on:
+
+* Status (running, paused, offline, unmonitored, degraded, or creating/destroying)
+* Tier
+* Issues (with license or plugin)
+
+This panel is also where you can create new Aura instances, or connect self-managed instances or create Virtual Graphs.
+
+== Aura instances
+
+Selecting an instance from the list on the left displays its details in the main frame.
+The first tab is *Overview* and this corresponds to the equivalent tab when you *Inspect* from the instance card in the classic view.
+See xref:managing-instances/instance-details.adoc[Instance details] for a closer description.
+
+If an instance has *multiple databases* enabled, a *databases* tab contains a table of the existing databases.
+You can create additional databases from this tab.
+See xref:managing-instances/multiple-databases.adoc#_create_databases[Create databases] for more information.
+If you select a database on a multi-database instance, its details and options for backups and restore can be navigated in the main frame.
+
+Under the *Snapshots* tab, you find available snapshots, as described in xref:managing-instances/instance-details.adoc#_snapshots[Snapshots].
+Note that the *Snapshots* tab is *not available* for multi-database instances, where backups are handled on a per-database basis, as described above.
+
+*Restore from file* allows you to restore a database to your instance, see xref:managing-instances/instance-details.adoc#_restore_from_backup_file[Restore from backup file].
+Note that the *Restore from file* tab is *not available* for multi-database instances, where restores are handled on a per-database basis, as described above.
+
+
+*Metrics* is available via the dropdown in the classic view, but in the instance explorer, you access them from the *Metrics* tab instead.
+
+*SSO membership* shows details about single sign-on for the instance, if set up.
+See xref:security/single-sign-on.adoc[Single Sign-On] for more information about SSO.
+
+*Security* allows you to configure *custom endpoints*.
+The instance explorer allows you to configure custom endpoints directly from the instance view, rather than via *Project* -> *Settings* -> *Custom endpoints*, although it is still possible to use that route.
+See xref:managing-instances/custom-endpoints.adoc[Custom endpoints] for more information on this feature.
+Note that the *Security* tab is *not available* for AuraDB Free instances.
+
+In the *Settings* tab, you can *rename* your instance, xref:managing-instances/instance-details.adoc#_restore_from_backup_file[*clone*], and *delete* the instance.
+
+Additionally, instance actions are available from the *[...]* menu in the top right corner of main frame.
+These are described in detail in xref:managing-instances/instance-actions.adoc[Instance actions].
+
+[.shadow]
+.More menu in the instance explorer
+image::more-menu-explorer.png[width=400]
+
+== Self-managed instances
+
+Self-managed DBMS's contain multiple databases by default and the instance explorer's hierarchy reflects this.
+The top level is the *deployment*, followed by one or more *servers*, and each server contains at least two *databases*.
+
+=== Deployment
+
+[.shadow]
+.Self-managed deployment
+image::self-managed-explorer.png[width=full]
+
+If you select a deployment, the first tab in the main frame is *Overview*.
+This corresponds to using the *[...]* menu on the instance card to *Inspect* the details, in the classic view.
+
+
+
+
