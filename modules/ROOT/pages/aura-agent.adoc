@@ -431,6 +431,7 @@ This is the same JSON format produced by <<import-export-agent>>.
 ----
 
 A dataset built for this agent gives each question an expected answer, and, for questions that should use a tool, the exact tool name and input to expect.
+When you import a dataset as JSON, each question must include a `query_number` (1-based); the UI renumbers questions when you add or remove them manually.
 Notice how the two Cypher Template questions expect a specific parameter value, while the Text2Cypher questions expect a natural-language `query`.
 
 [source,json]
@@ -440,6 +441,7 @@ Notice how the two Cypher Template questions expect a specific parameter value, 
   "description": "A sample of test questions about the movie database, covering the Movies by Actor and Movie Directors tools and the Natural Language to Cypher Tool.",
   "questions": [
     {
+      "query_number": 1,
       "query_text": "Which movies has Keanu Reeves acted in?",
       "expected_answer": "Keanu Reeves acted in The Matrix (1999), The Matrix Reloaded (2003), The Matrix Revolutions (2003), The Devil's Advocate (1997), The Replacements (2000), Johnny Mnemonic (1995), and Something's Gotta Give (2003).",
       "expected_tool_calls": [
@@ -453,6 +455,7 @@ Notice how the two Cypher Template questions expect a specific parameter value, 
       ]
     },
     {
+      "query_number": 2,
       "query_text": "Who directed A Few Good Men?",
       "expected_answer": "A Few Good Men was directed by Rob Reiner.",
       "expected_tool_calls": [
@@ -466,6 +469,7 @@ Notice how the two Cypher Template questions expect a specific parameter value, 
       ]
     },
     {
+      "query_number": 3,
       "query_text": "How many movies are in the database?",
       "expected_answer": "There are 38 movies in the database.",
       "expected_tool_calls": [
@@ -479,6 +483,7 @@ Notice how the two Cypher Template questions expect a specific parameter value, 
       ]
     },
     {
+      "query_number": 4,
       "query_text": "In what year was Tom Hanks born?",
       "expected_answer": "Tom Hanks was born in 1956.",
       "expected_tool_calls": [
