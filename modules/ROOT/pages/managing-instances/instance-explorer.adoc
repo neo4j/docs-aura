@@ -38,8 +38,9 @@ Note that the *Snapshots* tab is *not available* for multi-database instances, w
 *Restore from file* allows you to restore a database to your instance, see xref:managing-instances/instance-details.adoc#_restore_from_backup_file[Restore from backup file].
 Note that the *Restore from file* tab is *not available* for multi-database instances, where restores are handled on a per-database basis, as described above.
 
-
-*Metrics* is available via the dropdown in the classic view, but in the instance explorer, you access them from the *Metrics* tab instead.
+*Metrics* are available via the dropdown in the classic view, but in the instance explorer, you access them from the *Metrics* tab instead.
+Use *View all metrics* to see *all* available metrics.
+See xref:metrics/view-metrics.adoc[View metrics] for more information.
 
 *SSO membership* shows details about single sign-on for the instance, if set up.
 See xref:security/single-sign-on.adoc[Single Sign-On] for more information about SSO.
@@ -79,5 +80,33 @@ See xref:fleet-management/inspect-deployment.adoc#_servers[Servers] for more inf
 
 The *Databases* show corresponding information about the databases in the deployment, as described in xref:fleet-management/deployment-details.adoc#_databases_and_database_instances[Databases and Database instances].
 
+*Metrics* contains the same three metrics as the classic experience, *CPU Usage*, *Storage*, and *Query Rate*.
+Metrics are *not* available for Neo4j Community Edition.
+Use *View all metrics* to see *alla* available metrics.
+See xref:metrics/view-metrics.adoc[View metrics] for more information.
 
+*Topology* is a graph view of your deployment and it corresponds to the *Show details* in the *[...]* menu in the classic view.
+See xref:fleet-management/deployment-details.adoc#_graph_view[Graph view] to learn more.
 
+The *Plugin* tab lists any available plugins in the deployment.
+
+*Active configuration* shows the effective server configuration settings per *server* for the deployment.
+This can be inspected from the *[...]* menu in the classic view.
+For more information on configuration settings for self-managed deployments, see link:{neo4j-docs-base-uri}/operations-manual/current/configuration[Operations Manual -> Configuration].
+
+The *Settings* tab includes options for updating name and connection URL for the deployment as well as options for logging.
+You can also unregister the deployment from Fleet Manager, which removes the deployment from the instances explorer in the Aura console.
+The deployment is *not* stopped nor deleted.
+
+=== Server
+
+If you select a *server* in a deployment, information about the server is available in the *Overview* tab.
+
+The *Database instances* tab shows a table view of the databases/database instances hosted on the server.
+See xref:fleet-management/deployment-details.adoc#_databases_and_database_instances[Databases and Database instances] for more information.
+
+The *Plugin* tab lists available plugins in the server.
+
+=== Databases
+
+If you select an individual database, an overview of that database is displayed in the main frame.
