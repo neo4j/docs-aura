@@ -236,6 +236,265 @@ This way, the reasoning is transparent and if your agent is not acting to your e
 Save your agent once you are happy with it.
 A saved agent can then be used internally, i.e. by other users in your Aura project, but only project admins can create, edit, or delete agents.
 
+[[agent-evaluation]]
+== Agent evaluation
+
+A structured evaluation tests whether the agent behaves the way you expect.
+An evaluation asks your agent a fixed set of test questions and scores each answer against an expected answer and, optionally, the tools it was expected to call.
+
+Use agent evaluation before you promote an agent to production, after you change its prompt or tools, or whenever you want to check for regressions before relying on an agent's answers again.
+
+You can access agent evaluation from the *[...]* menu next to an agent, using *Agent evaluation*.
+
+=== Evaluation datasets
+
+An evaluation dataset is a named set of test questions you run an agent against.
+Each question has the question text itself, an expected answer, and, optionally, one or more expected tool calls, i.e. which tool you expect the agent to use and with what input.
+
+An evaluation dataset belongs to your Aura project, not to a single agent, so you can reuse the same dataset to evaluate several agents, for example when comparing two versions of an agent built against the same knowledge graph.
+
+==== Create an evaluation dataset
+
+You can create a dataset in two places:
+
+* While setting up an evaluation, using *Create new dataset*.
+* From the *Evaluation datasets* page, using the *Create new dataset* button.
+
+Both lead to the same authoring screen.
+Give the dataset a name and, for each test question, provide the question text and the expected answer.
+If you want the evaluation to also check tool usage for that question, add one or more expected tool calls.
+Specify the tool's name and the input you expect the agent to pass to it.
+
+An evaluation dataset can hold up to 50 questions.
+
+[TIP]
+====
+If you use an LLM to help you draft an evaluation dataset, give it your agent's exported JSON definition (see <<import-export-agent>>) alongside your prompt, not just a description of the use case.
+Expected tool calls have to match the tools your agent actually has, with their real names and input shapes.
+An LLM working from a general description alone tends to invent tool calls that look plausible but don't match what your agent can call.
+====
+
+==== Manage an evaluation dataset
+
+The *Evaluation datasets* page lists every dataset in your project, with its description, question count, and when it was last updated.
+Select a dataset to show its questions.
+
+You can edit a dataset's name and description at any time.
+The questions are permanently read-only once a dataset is saved.
+Changing a question after it has been used in an evaluation would change what that evaluation's scores actually mean.
+If you need to edit the questions, use *Create from this* from the *[...]* on the dataset to start a new, separate dataset seeded with a copy of the same name, description, and questions.
+The copy is independent from the moment it's created: editing or deleting one dataset never affects the other.
+
+There is no dataset version history, so editing a dataset's name or description changes that one copy going forward, it doesn't keep older copies around.
+
+==== Delete an evaluation dataset
+
+Deleting a dataset also deletes the evaluation history of every evaluation that used it, and this cannot be undone.
+If an evaluation using the dataset is still queued or in progress, you can't delete the dataset until that evaluation finishes.
+
+=== Run an evaluation
+
+*Run evaluation* has two tabs.
+
+* *Dataset*: pick an existing dataset or create a new one, as described above.
+* *Metrics*: select which metrics to score this evaluation on.
+
+*Latency* is always measured and can't be turned off.
+The other metrics, *Accuracy*, *Relevance*, *Grounding*, and *Tool trajectory*, are opt-in checkboxes; select any combination of them for the evaluation.
+See <<agent-evaluation-metrics>> for more information on each metric.
+
+Once you start the evaluation with *Run evaluation*, it executes in the background.
+You can navigate away from the page, and the evaluation keeps going.
+An evaluation moves through these statuses: *Queued*, *Running*, and then one of *Succeeded*, *Failed*, or *Cancelled*.
+If you have an agent evaluation page open when an evaluation finishes, you get a notification with a link straight to its results.
+
+You can cancel an evaluation while it's still queued or running, from its row menu on the evaluation history page.
+Confirm the cancellation, and the evaluation stops after the question it's currently on finishes, so its progress may still tick up briefly right after you cancel.
+A cancelled evaluation keeps whatever results it collected before you stopped it.
+
+=== Evaluation history
+
+The evaluation history page lists every evaluation for this agent: when it ran, its status, which dataset it used, its progress, and its average score for each metric it was run with.
+Open any row to see that evaluation's full results.
+
+To evaluate the agent again with the same dataset and metrics, use *Run again* from a past evaluation's row menu or from its results page.
+
+=== Reading an evaluation's results
+
+If you open an evaluation from the evaluation history page you can view its results, with two tabs: *Overview* and *Questions*.
+
+*Overview* shows the total number of questions, how long the evaluation took, the average latency, and one average score card for each metric you selected for the evaluation.
+If the evaluation has a metric averaging below the warning threshold, you also see a short insight card naming the worst-performing metric, so you know where to look first.
+If the evaluation itself failed, was cancelled, or had failing questions, you instead see a status banner describing that instead of the insight card.
+
+*Questions* lists every question in the evaluation, with its test question, expected answer, the agent's actual answer, the expected tools, its latency, and a column for each metric you selected.
+Open a question to see its full detail, including the expected and actual tool calls side by side, each with the input it was called with.
+When the agent's tool call returned a result, you can expand an *Output* section to see the raw result the tool returned.
+In the question detail view, you can also switch the agent's answer between rendered and raw text; the table itself always shows the rendered version.
+Hover over a metric's score to see the reason behind it.
+
+A question that failed, for example because the agent or a tool errored, is flagged differently from a question that simply scored low.
+A low score is still a real answer you can learn from; a failure means the question wasn't meaningfully evaluated at all, so the two need different follow-up.
+
+[[agent-evaluation-metrics]]
+=== Metrics
+
+Each metric answers a different question about the agent's answer, and is graded differently.
+
+*Accuracy* (`LLM judge`, scored 0 to 1) asks whether the answer is factually correct and complete compared to the expected answer.
+Wording, formatting, or extra correct detail don't affect the score, only the substance does.
+A claim in the answer that isn't backed by the expected answer counts against it as an unsupported claim, even if the rest of the answer is right.
+Accuracy is graded by a judge LLM, which *compares the agent's answer against the expected answer* and returns a score with a written reason.
+
+*Relevance* (`LLM judge`, scored 0 to 1) asks a narrower question than Accuracy: does the answer actually address what was asked, regardless of whether it's factually correct.
+A confident answer that's wrong but stays on topic still scores well on Relevance, even though it scores poorly on Accuracy; conversely, a correct fact that doesn't answer the question asked scores poorly on Relevance even though it might be accurate on its own.
+Relevance is graded by a judge LLM, working *from the question and the agent's answer alone*, without comparing against the expected answer.
+
+*Grounding* (`LLM judge`, scored 0 to 1) asks a different question again: whether *the answer is actually supported by what the agent's own tools returned, regardless of whether the answer is correct*.
+An answer that faithfully reports what the tools said is well grounded even if the tools themselves were wrong; an answer with claims the tools never supported is poorly grounded even if the claim happens to be true.
+Grounding is also graded by a judge LLM, given the tool results as evidence.
+When the agent didn't call any tools for a question, there's no evidence to check the answer against, so grounding shows as not applicable rather than a score.
+
+*Tool trajectory* (`Deterministic` + `LLM judge`, shown as a percentage) *compares the tools the agent actually called, with their inputs, against the tools the question expected*.
+The score is a Jaccard similarity: the share of expected and actual calls that match, out of every call on either side, so missing an expected call or making an extra unexpected one both pull the score down.
+The order the tools were called in doesn't matter, and calling the same tool more than once is expected to match a duplicate expected call.
+Matching is exact for a Cypher Template call: its parameters have to match precisely to count.
+Text2Cypher and Similarity Search calls take a natural-language query instead of a fixed parameter, so an exact match is the exception, not the rule.
+When one isn't found, a judge LLM decides whether a differently worded query asks for the same thing, and counts it as a match if so.
+Since agents lean on Text2Cypher and Similarity Search often, this judge LLM step is a routine part of scoring most trajectories, not a rare fallback.
+
+*Latency* is the wall-clock time the agent took to produce its complete answer for that question.
+
+Accuracy, Relevance, Grounding, and Tool trajectory all show a warning indicator when a question scores below 0.8.
+This is a fixed line the product uses to flag a score worth a closer look, not a pass or fail grade, and not a value calculated from your data.
+A score of 0.79 isn't meaningfully different from 0.81, it's simply on the other side of where the UI draws attention.
+
+There's no confidence or probability interval behind any of these scores.
+Accuracy, Relevance, and Grounding each come from a single judge LLM judgment, with its reasoning shown as a tooltip on the score.
+Tool trajectory comes from directly comparing the calls themselves, deterministically, plus a judge LLM to decide whether two differently worded Text2Cypher or Similarity Search queries mean the same thing, which for many agents is the more common path.
+
+=== Example
+
+The following is a trimmed excerpt of a real agent and evaluation dataset, to show the shapes described above in context.
+The agent below has three tools: two Cypher Template tools and a Text2Cypher tool.
+This is the same JSON format produced by <<import-export-agent>>.
+
+[source,json]
+----
+{
+  "name": "Movie & Person Graph Assistant",
+  "description": "A versatile assistant for querying movies and the people involved in them, including actors, directors, producers, writers, and reviewers. It can provide detailed movie overviews, actor filmographies, and social connections between people.",
+  "system_prompt": "You are a helpful assistant for querying information about movies and people in a graph database. Provide clear and concise answers based on the available data. When a movie or person name is provided, assume it's an exact match.",
+  "is_private": false,
+  "is_mcp_enabled": false,
+  "tools": [
+    {
+      "name": "Movies by Actor",
+      "description": "Lists all movies an actor has appeared in, along with their roles in those movies, ordered by release year.",
+      "enabled": true,
+      "type": "cypherTemplate",
+      "config": {
+        "template": "MATCH (p:Person {name: $actorName})-[r:ACTED_IN]->(m:Movie) RETURN m.title AS movieTitle, m.released AS releasedYear, r.roles AS roles ORDER BY m.released DESC LIMIT 25",
+        "parameters": [
+          {
+            "name": "actorName",
+            "data_type": "string",
+            "description": "The exact name of the actor."
+          }
+        ]
+      }
+    },
+    {
+      "name": "Movie Directors",
+      "description": "Finds the names of all directors for a specified movie.",
+      "enabled": true,
+      "type": "cypherTemplate",
+      "config": {
+        "template": "MATCH (m:Movie {title: $movieTitle})<-[:DIRECTED]-(p:Person) RETURN p.name AS directorName ORDER BY directorName LIMIT 10",
+        "parameters": [
+          {
+            "name": "movieTitle",
+            "data_type": "string",
+            "description": "The exact title of the movie."
+          }
+        ]
+      }
+    },
+    {
+      "name": "Natural Language to Cypher Tool",
+      "description": "A general-purpose, free-form Text-to-Cypher tool that converts natural language questions into Cypher queries, executes them, and returns the results. Use this option when no specialized tool (e.g. for aggregation or domain-specific logic) is more appropriate.",
+      "enabled": true,
+      "type": "text2cypher"
+    }
+  ]
+}
+----
+
+A dataset built for this agent gives each question an expected answer, and, for questions that should use a tool, the exact tool name and input to expect.
+Notice how the two Cypher Template questions expect a specific parameter value, while the Text2Cypher questions expect a natural-language `query`.
+
+[source,json]
+----
+{
+  "dataset_name": "movie-questions-sample",
+  "description": "A sample of test questions about the movie database, covering the Movies by Actor and Movie Directors tools and the Natural Language to Cypher Tool.",
+  "questions": [
+    {
+      "query_text": "Which movies has Keanu Reeves acted in?",
+      "expected_answer": "Keanu Reeves acted in The Matrix (1999), The Matrix Reloaded (2003), The Matrix Revolutions (2003), The Devil's Advocate (1997), The Replacements (2000), Johnny Mnemonic (1995), and Something's Gotta Give (2003).",
+      "expected_tool_calls": [
+        {
+          "tool_name": "Movies by Actor",
+          "tool_type": "cypher_template",
+          "tool_input": {
+            "actorName": "Keanu Reeves"
+          }
+        }
+      ]
+    },
+    {
+      "query_text": "Who directed A Few Good Men?",
+      "expected_answer": "A Few Good Men was directed by Rob Reiner.",
+      "expected_tool_calls": [
+        {
+          "tool_name": "Movie Directors",
+          "tool_type": "cypher_template",
+          "tool_input": {
+            "movieTitle": "A Few Good Men"
+          }
+        }
+      ]
+    },
+    {
+      "query_text": "How many movies are in the database?",
+      "expected_answer": "There are 38 movies in the database.",
+      "expected_tool_calls": [
+        {
+          "tool_name": "Natural Language to Cypher Tool",
+          "tool_type": "text2cypher",
+          "tool_input": {
+            "query": "How many movies are in the database?"
+          }
+        }
+      ]
+    },
+    {
+      "query_text": "In what year was Tom Hanks born?",
+      "expected_answer": "Tom Hanks was born in 1956.",
+      "expected_tool_calls": [
+        {
+          "tool_name": "Natural Language to Cypher Tool",
+          "tool_type": "text2cypher",
+          "tool_input": {
+            "query": "What is the born year of the person named Tom Hanks?"
+          }
+        }
+      ]
+    }
+  ]
+}
+----
+
 == Make your agent public
 
 There are two different ways to interact with your agent externally.
@@ -473,6 +732,7 @@ security: []
 Use *Update connector* to save your changes.
 In Copilot Studio, open the test playground and ask your agent a question that exercises the Aura Agent tools to verify the connection is working end-to-end.
 
+[[import-export-agent]]
 == Import/Export agent
 
 Existing agents can be exported in as _JSON_ format.
