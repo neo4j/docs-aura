@@ -19,7 +19,7 @@ You can filter on:
 * Tier
 * Issues (with license or plugin)
 
-This panel is also where you can create new Aura instances, or connect self-managed instances or create Virtual Graphs.
+This panel is also where you can create new Aura instances, connect self-managed instances, or create Virtual Graphs.
 
 == Aura instances
 
@@ -59,9 +59,9 @@ These are described in detail in xref:managing-instances/instance-actions.adoc[I
 .More menu in the instance explorer
 image::more-menu-explorer.png[width=400]
 
-== Self-managed instances
+== Self-managed deployments
 
-Self-managed DBMS's contain multiple databases by default and the instance explorer's hierarchy reflects this.
+Self-managed deployments can contain multiple servers, and each server contains multiple databases by default and the instances explorer's hierarchy reflects this.
 The top level is the *deployment*, followed by one or more *servers*, and each server contains at least two *databases*.
 
 === Deployment
@@ -91,12 +91,12 @@ See xref:fleet-management/deployment-details.adoc#_graph_view[Graph view] to lea
 The *Plugin* tab lists any available plugins in the deployment.
 
 *Active configuration* shows the effective server configuration settings per *server* for the deployment.
-This can be inspected from the *[...]* menu in the classic view.
-For more information on configuration settings for self-managed deployments, see link:{neo4j-docs-base-uri}/operations-manual/current/configuration[Operations Manual -> Configuration].
+This can be inspected from the *[...]* menu in the classic view, and is described in xref:fleet-management/inspect-deployment.adoc#_active_configuration[Active configuration].
+For more information on configuration settings for self-managed deployments, see link:{neo4j-docs-base-uri}/operations-manual/current/configuration/neo4j-conf[Operations Manual -> The `neo4j.conf` file].
 
 The *Settings* tab includes options for updating name and connection URL for the deployment as well as options for logging.
 You can also unregister the deployment from Fleet Manager, which removes the deployment from the instances explorer in the Aura console.
-The deployment is *not* stopped nor deleted.
+The deployment is *not* stopped nor deleted, only not connected to the Aura console anymore.
 
 === Server
 
@@ -105,7 +105,7 @@ If you select a *server* in a deployment, information about the server is availa
 The *Database instances* tab shows a table view of the databases/database instances hosted on the server.
 See xref:fleet-management/deployment-details.adoc#_databases_and_database_instances[Databases and Database instances] for more information.
 
-The *Plugin* tab lists available plugins in the server.
+The *Plugin* tab lists available plugins on the server.
 
 === Databases
 
