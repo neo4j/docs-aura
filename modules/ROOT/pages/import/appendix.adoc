@@ -1,0 +1,49 @@
+= Appendix
+:description: This page contains additional information on how to import data using the Import tool in the Neo4j Aura console.
+
+[[create-custom-role]]
+== Create a custom import role
+label:AuraDB-Business-Critical[] label:AuraDB-Virtual-Dedicated-Cloud[]
+
+As mentioned in the introduction, to use the Import tool, you need to have index and constraint creation privileges on the database you want to import to.
+By default, the `PROJECT_ADMIN` role is mapped to the necessary database privileges, as described in xref:user-management.adoc[User management].
+The `PROJECT_MEMBER` role does not have these privileges and if you try to run the import with this role, it will complete with the `Neo.ClientError.Security.Forbidden` error.
+
+[.shadow]
+.Import with errors
+image::import-errors.png[width=600]
+
+
+To allow users with the `PROJECT_MEMBER` role to use the Import tool, a `PROJECT_ADMIN` can create a custom role for this, create new database users and assign them the new role.
+
+If you are a `PROJECT_ADMIN` of a Business Critical or Virtual Dedicated Cloud AuraDB instance, navigate to Query to create the custom role.
+You need to grant the role privileges to *create indexes* and *constraints*.
+
+For example:
+
+.Create custom role
+[source,cypher]
+----
+CREATE ROLE importer;
+GRANT CREATE INDEX ON DATABASE neo4j TO importer;
+GRANT CREATE CONSTRAINT ON DATABASE neo4j TO importer;
+----
+
+It is recommended to always grant *only the minimum* privileges needed, which is why only `CREATE INDEXES` and `CREATE CONSTRAINTS` are granted and not full lifecycle control of indexes and constraints.
+
+You can then create a new database user and grant them the role.
+
+For example:
+
+.Create user and grant role
+[source,cypher]
+----
+CREATE USER bob SET PASSWORD 'password' CHANGE REQUIRED
+GRANT ROLE importer TO bob
+----
+
+If you have enabled xref:security/tool-auth.adoc[Tool authentication with Aura user] in the organization settings, you need to disable this for the instance in question.
+Navigate to the organization and then find *Security* in the left-hand navigation.
+Under *Tool authentication*, unselect all applicable instances and *Save*.
+This will force console users to connect to the instance(s) in question using a username and password.
+This means that when the `PROJECT_MEMBER` user  _Bob_ connects to an instance, they have the right privileges to import data using the Import tool.
