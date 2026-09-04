@@ -169,56 +169,62 @@ Snapshots are taken at regular intervals and can be used to download or dump you
 You can also restore backups of 4GB or less.
 See xref:managing-instances/backup-restore-export.adoc[Backup, export, restore, and upload] for more information
 
-== Clone an instance
+= Cloning an instance
 
-You can clone an existing instance to create a new instance with the same data.
-You can clone across regions, and from Neo4j version 4 to Neo4j latest version.
-
-There are two options to clone an instance:
-
-* Clone to a new instance
-* Clone to an existing instance
-
-You can access all the cloning options from the more menu *[...]* on the instance.
+Cloning duplicates data from one Aura instance (source instance) to another instance (destination instance). Clone to an existing instance or a new instance.
 
 [NOTE]
 ====
-You cannot clone from a Neo4j latest version instance to a Neo4j version 4 instance.
+You can move your data to a new region by cloning to a new instance and selecting the required options under *Cloud provider & region*.
 ====
 
-== Clone to a new instance
+Clone using the Aura console. 
+Cloning is not available through the Aura API.
 
-. From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *New instance*.
-. Set your desired settings for the new instance.
-For more information see xref:getting-started/create-instance.adoc[Create an instance].
-. Check the *I accept* box and select *Create*.
+The time it takes depends on the amount of data (and factors such as number of indexes and constraints, or the capacity of the destination instance).
 
+You can clone from a Neo4j version 4 instance to an instance running the latest Neo4j version. 
+You cannot clone from latest Neo4j version to Neo4j version 4.
+
+=== Clone to a new instance
+
+Cloning to a new instance creates a brand new destination instance containing a duplicate of the source instance data.
+
+. From the more menu (*...*) on the source instance select *Clone to* > *New instance.*
+. Configure the new instance including the required options under *Cloud provider & region*.
+For more information, see xref:getting-started/create-instance/[Create an instance].
+. The next screen will display the new instance credentials. Select *Download* and *Continue*.
 
 [WARNING]
 ====
-Make sure that the username and password are stored safely before continuing.
-Credentials cannot be recovered afterwards.
+Store the username and password securely. The credentials cannot be recovered.
 ====
 
-== Clone to an existing instance
+The destination instance progresses through states, including *Overwriting* and *Loading*.
+When cloning is complete, the status changes to *Running* and it is ready to use. 
 
-When you clone an instance to an existing instance, the database connection URI stays the same, but the data is replaced with the data from the cloned instance.
+=== Clone to an existing instance
+
+An existing instance is a destination instance that was already created before you started cloning. The destination instance can be empty or contain data. 
 
 [WARNING]
 ====
-Cloning into an existing instance will replace all existing data.
-If you want to keep the current data, take a snapshot and export it.
+If there is data in the destination instance, the source instance data replaces the destination instance data.
+Export a snapshot of the destination instance before cloning to back it up.
 ====
 
-. From the more menu (*...*) on the instance you want to clone, select *Clone to* and then *Existing instance*.
-. Select the existing AuraDB instance to clone to from the dropdown menu.
-+
-[NOTE]
-====
-Existing instances that are not large enough to clone into will not be available for selection.
-====
-+
-. Check the *I understand the target instance will be overwritten* box and select *Clone*.
+The destination instance connection URI and credentials are not affected.
+
+Only instances with enough capacity for the cloned data are available for selection.
+
+. From the more menu (*...*) on the source instance, select *Clone to* > *Existing instance*.
+. Select the target AuraDB instance.
+. Select the *I understand the target instance will be overwritten* checkbox.
+. Select *Clone*.
+
+When all the steps are completed, the instance will show a *Running* state and is ready to be used.
+
+If you want to export your RBAC settings, see the tutorial at https://neo4j.com/docs/aura/tutorials/upgrade/#_recreate_users_and_roles_in_neo4j_aura[recreate users and roles in Neo4j Aura].
 
 == Upgrade an instance
 
