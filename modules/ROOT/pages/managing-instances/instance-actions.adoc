@@ -175,7 +175,7 @@ You can clone data from an Aura instance to another existing instance or a new i
 
 [NOTE]
 ====
-You can move your data to a new region by cloning to a new instance and selecting the required options under *Cloud provider & region*.
+To move your instance to a different region, clone to a new instance in the desired region and then delete your original instance.
 ====
 
 Note that you have to use the Aura console to clone, it is not supported via Aura API.
@@ -192,7 +192,7 @@ Cloning to a new instance creates a new destination instance containing a duplic
 . From the more menu *[...]* on the source instance select *Clone to* > *New instance.*
 . Configure the new instance including the required options under *Cloud provider & region* and confirm with *Create instance*.
 For more information, see xref:getting-started/create-instance/[Create an instance].
-. Save the credentials in a safe place and *Continue*.
+. Save the credentials and *Continue*.
 
 [WARNING]
 ====
@@ -200,7 +200,7 @@ Store the username and password securely.
 The credentials cannot be recovered.
 ====
 
-The destination instance progresses through states, including *Overwriting* and *Loading*.
+The destination instance progresses through states, including *Loading*.
 When cloning is complete, the status changes to *Running* and it is ready to use. 
 
 === Clone to an existing instance
