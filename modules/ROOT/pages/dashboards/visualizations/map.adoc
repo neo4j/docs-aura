@@ -20,11 +20,11 @@ For more info, see https://neo4j.com/docs/cypher-manual/current/values-and-types
 
 . Fallback `latitude` / `longitude` 
 +
-If no `Point` property is found, the visualization looks for properties named exactly `latitude` and `longitude`. Both must exist.
+If no `Point` property is found, the visualization looks for properties named exactly `latitude` and `longitude`. Both `latitude` and `longitude` must exist.
 
-. Fallback properties: `lat` / `long` 
+. Fallback properties: `lat` / `long` (or `lon`)
 +
-If the above are not found, properties named exactly `lat` and `long` are used. Again, both must exist.
+If the `latitude` / `longitude` are not found, properties named exactly `lat` and `long` are used. Both `lat` and `long` must exist.
 
 If more than one spatial property is detected, the property for node placement can be changed in **Settings**.
 Fallback properties (`latitude` / `longitude` and `lat` / `long`) are not configurable.
