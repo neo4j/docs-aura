@@ -35,6 +35,30 @@ See <<snapshot-details>> further on for information about frequency, restorabili
 An *On Demand* snapshot is a snapshot that you manually trigger with the *Take snapshot* button.
 This type of snapshot is the only snapshot available for Free instances.
 
+== Snapshot status
+
+Scheduled and on-demand snapshots move through the same statuses.
+
+[cols="1,4", options="header"]
+|===
+|Status |Description
+
+|Pending
+|The snapshot request has been processed and queued, but hasn't started yet.
+
+|InProgress
+|The snapshot is in progress. You can't restore from it or clone an instance from it until it completes.
+
+|Completed
+|The snapshot finished successfully and is available to restore. If exportable is true, you can also clone a new instance from it.
+
+|Failed
+|A reliable restore is not available from this snapshot, either because it didn't finish or because it is unsafe to restore.
+
+|Cancelled
+|The snapshot stopped before it finished, so no data was captured. This status is system generated and could appear if the instance was paused while the snapshot was in progress.
+|===
+
 
 == Snapshot actions
 
