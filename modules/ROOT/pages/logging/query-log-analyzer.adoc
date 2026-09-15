@@ -34,8 +34,8 @@ Query log analyzer is split up in three parts:
 image::query-log-analyzer.png[width=100%]
 
 To fetch logs, first select a time range in the Query timeline.
-With a time selection done, press the *Fetch logs* button.
-You may optionally select any filters or search text if required, then press *Fetch*.
+With a time selection done, use *Fetch logs* to continue.
+You may optionally select any filters or search text if required, then *Fetch*.
 
 A summary of query executions is returned, showing aggregations per query.
 To see the individual query executions, click the right arrow at the end of the line to show details for that query.
@@ -92,18 +92,15 @@ Use the filter button to load the available filters over the selected time perio
 Filters are available for the following fields:
 
 * Status
+* Gql status
 * User
 * Driver
 * Application
 * Initiation type
+* Query language
 * Minimum duration (ms)
-
-[[search]]
-=== Search
-
-Use the search button to search for specific queries or errors.
-Search can be specified for the *Query text* and the *Error text*.
-The fields are case insensitive.
+* Query text
+* Error text
 
 == Log tables
 
@@ -173,6 +170,10 @@ This granular view is useful for investigating specific incidents or understandi
 | Avg page faults
 | avgPageFaults
 | The average number of page faults per query execution.
+
+| Query language
+| queryLanguage
+| The Cypher version used in the query.
 
 | Actions
 | -
@@ -285,5 +286,7 @@ Columns can be enabled or disabled, or the order changed using the grid icon at 
 === Expand query
 
 In the table three rows of query text will be shown.
-To see the whole query if the query is longer, press the *View more* button under the query text.
+If the query is longer, select *View more* to show the full, raw Cypher statement.
+Use the *Format query* to prettify the query.
 
+For failed queries, use *Show GQL Error* to see the full GQL error.

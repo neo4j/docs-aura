@@ -1,10 +1,10 @@
 [[aura-reference-security]]
 = Single Sign-On (SSO)
-:description: SSO allows you to log in to the Aura Console using their company IdP credentials.
+:description: This page describes how to set up SSO in Neo4j Aura.
 :page-aliases: platform/security/single-sign-on.adoc
 :page-role: aura-db-dedicated aura-db-business-critical aura-ds-enterprise
 
-Single Sign-On (SSO) enables organization owners and organization admins to use your organization’s identity provider (IdP) to authenticate users so they can access the Aura console and Aura instances.
+Single Sign-On (SSO) enables organization owners and organization admins to use your organization's identity provider (IdP) to authenticate users so they can access the Aura console and Aura instances.
 
 Aura supports SSO authentication and authorization using https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc[Microsoft Entra] and link:https://developer.okta.com/docs/guides/oin-sso-overview/[Okta] as IdPs, implementing the OpenID Connect (OIDC) protocol.
 
@@ -24,48 +24,48 @@ Each Aura organization is configured with the following login methods that allow
 
 * Email/password
 * Social Login
-** Google 
-** Microsoft 
+** Google
+** Microsoft
 ** Github
 
-Additionally each organization can configure SSO. 
+Additionally each organization can configure SSO.
 
-An Organization with SSO enabled as a login method for the Aura Console can deactivate the login methods listed above.
+An organization with SSO enabled as a login method for the Aura Console can deactivate the login methods listed above.
 
-== Configuring SSO
-
-Setting up SSO in Aura requires two key access control decisions. 
-First, you must register your Identity Provider with Aura. 
-Then, determine whether to enable SSO for Console access, Instance access, or both.
 
 == SSO levels
+
+SSO can be applied on the organization level, which means that it is the login method to the console itself, this is referred to as *Console SSO*.
+Or, it can be applied on instances, either by project, or selected individually, known as *Instance SSO*.
 
 === Aura Console SSO
 
 * Authenticates users so they can log into the Neo4j Aura Console UI (console.neo4j.io). The user is logging into the Management Plane.
-* Authentication: Enables users to log into the Aura Console via your Identity Provider (IdP) to manage the lifecycle of your instances. 
-* It controls: How team members log in to manage billing, view metrics, create or delete projects, and provision new databases. 
-* Authorization: Role management for projects, billing, and metrics is not currently handled via the IdP, and needs to be managed either via the UI or Aura API.
+* Enables users to log into the Aura Console via your Identity Provider (IdP) to manage the lifecycle of your instances.
+* It controls how team members log in to manage billing, view metrics, create or delete projects, and provision new databases.
+* Role management for projects, billing, and metrics is not currently handled via the IdP, and needs to be managed either via the UI or Aura API.
 
 === Instance SSO
 
-* Authenticates users or applications into individual Neo4j database instances (e.g., via Neo4j Browser, Bloom, or Drivers). 
+* Authenticates users or applications into individual Neo4j database instances (e.g., via Neo4j Browser, Bloom, or Drivers).
 The user is logging into the Data Plane.
-* Authentication: Enables authentication for users or applications directly into specific Neo4j DBMS/instances (e.g., via Neo4j Browser, Bloom, or drivers) within an Aura Project.
-* Authorization: It ensures that when someone connects to a database instance within a specific project, they authenticate against your Identity Provider (IdP). 
-You can use *IdP group-to-role mapping* to assign link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/built-in-roles/[RBAC database privileges] (such as `admin`, `architect`, or `reader`) based on their SSO groups. 
+* Enables authentication for users or applications directly into specific Neo4j DBMS/instances (e.g., via Neo4j Browser, Bloom, or drivers) within an Aura Project.
+* It ensures that when someone connects to a database instance within a specific project, they authenticate against your Identity Provider (IdP).
+You can use *IdP group-to-role mapping* to assign link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/built-in-roles/[RBAC database privileges] (such as `admin`, `architect`, or `reader`) based on their SSO groups.
 This optional setting in the configuration dialog is called role mapping.
 
 == SSO Administration
 
-To simplify administration, a single SSO configuration can be used for both the Aura Console and database instances by selecting the corresponding checkboxes during setup: *"Use as login for the Organization"* and *"Use as login method for instances within Projects in this Org"*. 
-These settings serve as the default for all instances within a project. 
-Consequently, instances should be grouped into projects based on their shared SSO login requirements.
+To simplify administration, a single SSO configuration can be used for both the Aura Console and database instances by selecting the corresponding checkboxes during setup: *"Use as login for the Organization"* and *"Use as login method for instances within Projects in this Organization"*.
+These settings serve as the default for all instances within a project.
+If you don't check any of the boxes, you can still add the configuration and apply it to organizations, projects and/or instances later.
+
+It is recommended to group instances to projects based on their shared SSO login requirement.
 
 == Instance SSO Overrides
 
-Organization or project administrators can deviate from organization-wide defaults by applying overrides to individual instances. 
-This is useful when a few instances require custom role mappings, while the organization-level configuration could remain empty. 
+Organization or project administrators can deviate from organization-wide defaults by applying overrides to individual instances.
+This is useful when a few instances require custom role mappings, while the organization-level configuration could remain empty.
 Currently, the fields available for override at the Instance level are *Display Name* and *Role Mapping*.
 
 == Display name
@@ -80,18 +80,12 @@ image::security/displayname.png[Display name,300,300]
 
 == Legacy SSO Configurations
 
-Historically, certain custom SSO configurations—such as `Groups`, `Username`, `Scope`, and `Token parameters` were managed via support tickets. 
-While these configurations were previously not visible in the Organization settings page, they are now accessible and editable directly within the console.
-
-== Important notes
-
-* *Configuration propagation*: Applying edits to these SSO configurations will update all instances sharing that configuration.
-* *Legacy state*: Some legacy configurations may exist in an orphaned state. 
-We recommend creating new configurations to utilize current SSO management capabilities where possible.
+Historically, certain custom SSO configurations—such as `Groups`, `Username`, `Scope`, and `Token parameters` were managed via support tickets.
+While these configurations were previously not visible in the organization settings page, they are now accessible and editable directly within the console.
+Some legacy configurations may exist in an orphaned state.
+It is recommended to create new configurations to utilize current SSO management capabilities where possible.
 
 == Setup requirements
-
-Accessing Aura with SSO requires:
 
 Aura requires the Authorization Code Flow, an OAuth2 authentication method that involves redirecting users to a publicly accessible IdP server for login.
 
@@ -107,25 +101,25 @@ To create an SSO Configuration, either a Discovery URI or a combination of Issue
 Entering the Discovery URI pre-fills the fields.
 If this is not known these fields can be completed manually.
 
-=== Custom configuration settings (optional) 
+=== Custom configuration settings (optional)
 
-In addition to the standard settings, you can optionally configure custom token settings. 
-For more information, see link:https://neo4j.com/docs/operations-manual/current/configuration/configuration-settings/#_security_settings[Operations Manual -> Configuration Settings] 
+In addition to the standard settings, you can optionally configure custom token settings.
+For more information, see link:https://neo4j.com/docs/operations-manual/current/configuration/configuration-settings/#_security_settings[Operations Manual -> Configuration Settings]
 
 Most organizations can use the default values. Only modify these settings if required by your identity provider or authentication configuration.
 
 [NOTE]
 ====
-If you use Attribute-Based Access Control (ABAC), Aura supports the following identity attributes: `email`, `email_verified`, `name`, `preferred_username`, and `groups`. 
+If you use Attribute-Based Access Control (ABAC), Aura supports the following identity attributes: `email`, `email_verified`, `name`, `preferred_username`, and `groups`.
 Self-managed Neo4j deployments can use additional identity provider attributes. See link:https://neo4j.com/docs/operations-manual/current/authentication-authorization/attribute-based-access-control/[Operations Manual > ABAC] for more information.
 ====
 
-=== Example setup 
+=== Example setup
 
 If you want users to authenticate with SSO for both the Aura Console and your database instances, make sure to select both of the following checkboxes during setup:
 
-* Use as login for the Organization
-* Use as login method for instances within Projects in this Org
+* Use as login for the organization
+* Use as login method for instances within projects in this organization
 
 .SSO configuration form
 [.shadow]
@@ -156,19 +150,28 @@ By default, role mappings apply to all instances that inherit the SSO configurat
 .Example role mapping in the Aura console
 image::security/role-mapping-ui.png[width=800]
 
+== Linking SSO to projects and instances
+
+Once you have added an SSO configuration, you can use the link icon to link the configuration to a project and or individual instances.
+If you link a *project*, *all* new instances created within this project will require SSO login.
+If you link an individual *instance*, the SSO configuration will be applied to that instance immediately.
+
+[.shadow]
+.Link a configuration to projects and/or instances
+image::granular-sso.png[width=800]
+
 == Updating SSO configurations
 
-* Changes made to an SSO configuration are automatically applied to running instances that inherit that configuration. 
-*So you do not need to reconfigure each instance individually.*
-* If multiple instances require the same configuration, place them in a separate project and configure SSO at the project-level.
+Changes made to an SSO configuration are automatically applied to running instances that inherit that configuration.
+So you do not need to reconfigure each instance individually.
+If multiple instances require the same configuration, place them in a separate project and configure SSO at the project-level.
 
 == Instance-level SSO overrides
 
-* *Overrides will still prevail if you have overrides.* 
-Only the overridden fields are frozen; everything else on that instance still updates.
+If you have overrides on instances, the overridden fields remain frozen but everything else updates with an SSO configuration update.
 
-* *Example:* If role mapping is overridden on an instance and the linked SSO config's username claim is updated, the instance will still receive this update when the configuration is applied. 
-If the linked SSO config's role mapping is edited, the instance override prevails.
+For example, if role mapping is overridden on an instance and the linked SSO configuration username claim is updated, the instance still receives this update when the configuration is applied.
+If the linked SSO configuration's role mapping is edited, the instance override prevails.
 
 [IMPORTANT]
 ====
@@ -205,7 +208,7 @@ Skip redirect URI’s for now.
 
 . Select how you want the SSO configuration to be applied in Aura:
 
-.. *Use as a log in method for the Organization* applies to organization-level logins (which acts as a login to the Aura console).
+.. *Use as a log in method for the organization* applies to organization-level logins (which acts as a login to the Aura console).
 
 .. *Use as a login method for instances within Projects in this Organization* applies to the project-level and you can select specific projects within the organization (where login is on the instance).
 
@@ -226,7 +229,7 @@ Skip redirect URI’s for now.
 . Select *Create*
 
 . Select the additional log in methods:
-.. For Organization-level testing it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
+.. For organization-level testing it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
 .. For instance-level testing the user/password login is always available on the instance, so if SSO isn’t working, the instance is still accessible.
 
 
@@ -289,7 +292,7 @@ The final URL should look similar to `https://dev-123-admin.okta.com/.well-known
 
 . Select the additional log in methods:
 
-.. For *Organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
+.. For *organization-level testing* it is recommended to keep the Email/password or Google log-in method enabled, so that if SSO fails, you can still access the Aura console and adjust the configuration.
 
 .. For *instance-level testing* the user/password login is always available on the instance, so if SSO isn't working, the instance is still accessible.
 
