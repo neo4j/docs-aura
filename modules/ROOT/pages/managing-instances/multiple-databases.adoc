@@ -207,7 +207,7 @@ This applies to drivers, the Query API, and other external sources.
 Multiple databases are supported across Aura tools.
 There are some things to consider when working with multiple databases:
 
-* xref:managing-instances/backup-restore-export.adoc#_multi_database_instances[Backup, export, and restore]: Take backups of individual databases. During public preview, select using DBID to see the list of backups per database. (Note that it is not possible to restore two or more databases within an instance at the same time.)
+* xref:managing-instances/backup-restore-export.adoc#_multi_database_instances[Backup, export, and restore]: Take backups of individual databases. You can either restore one database at a time, or restore the whole instance.
 * xref:explore/introduction.adoc[Bloom and Query]: When connecting, select the target database using the connection bar.
 * xref:metrics/view-metrics.adoc#_multi_database_instances[Metrics] & xref:logging/query-log-analyzer.adoc[Logs]: Switch between databases using the Database dropdown in Metrics and see Database specific Query logs.
 * link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[Aura API]: See xref:managing-instances/multiple-databases.adoc#_api_requirements[API requirements]
