@@ -598,23 +598,23 @@ Acquires a write lock on the given `RELATIONSHIP` values.
 ¦ Qualified Name ¦ Type and language details
 ¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.clean[apoc.map.clean icon:book[] ^] +
 Filters the keys and values contained in the given `LIST<ANY>` values.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.flatten[apoc.map.flatten icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.flatten[apoc.map.flatten icon:book[] ^] +
 Flattens nested items in the given `MAP`.
 This function is the reverse of the `apoc.map.unflatten` function.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.fromLists[apoc.map.fromLists icon:book[] ^] +
 Creates a `MAP` from the keys and values in the given `LIST<ANY>` values.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.fromNodes[apoc.map.fromNodes icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.fromNodes[apoc.map.fromNodes icon:book[] ^] +
 Returns a `MAP` of the given prop to the node of the given label.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.fromPairs[apoc.map.fromPairs icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.fromPairs[apoc.map.fromPairs icon:book[] ^] +
 Creates a `MAP` from the given `LIST<LIST<ANY>>` of key-value pairs.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.fromValues[apoc.map.fromValues icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.fromValues[apoc.map.fromValues icon:book[] ^] +
 Creates a `MAP` from the alternating keys and values in the given `LIST<ANY>`.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.get[apoc.map.get icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.get[apoc.map.get icon:book[] ^] +
 Returns a value for the given key.
 If the given key does not exist, or lacks a default value, this function will throw an exception.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.groupBy[apoc.map.groupBy icon:book[] ^] +
 Creates a `MAP` of the `LIST<ANY>` keyed by the given property, with single values.
-¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.groupByMulti[apoc.map.groupByMulti icon:book[] ^] +
+¦ label:function[] label:deprecated[Deprecated in Cypher 25]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.groupByMulti[apoc.map.groupByMulti icon:book[] ^] +
 Creates a `MAP` of the `LIST<ANY>` values keyed by the given property, with the `LIST<ANY>` values.
 ¦ label:function[]¦ link:https://neo4j.com/docs/apoc/current/overview/apoc.map/apoc.map.merge[apoc.map.merge icon:book[] ^] +
 Merges the two given `MAP` values into one `MAP`.
