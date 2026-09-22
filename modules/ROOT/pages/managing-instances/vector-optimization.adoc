@@ -40,7 +40,7 @@ To learn more about how to use vector indexes, see link:https://neo4j.com/docs/c
 == Instance sizing guide
 
 The vector-optimized configuration is intended to support large vector workloads while providing consistent vector search performance.
-The table below estimates the theoretical maximum logical full-precision vector data that can be searched with rescored binary for each instance size, and the equivalent number of 768-dimensional `FLOAT32` vectors.
+The table provides a safe maximum for logical full-precision vector data that can be searched with rescored binary for each instance size, and the equivalent number of 768-dimensional `FLOAT32` vectors.
 Logical full-precision vector data is calculated as `vector count x dimensions x 4 bytes`; it describes dataset capacity rather than the amount of memory occupied by the binary search representation.
 Select the largest available storage size to take full advantage of rescored binary vector search.
 
