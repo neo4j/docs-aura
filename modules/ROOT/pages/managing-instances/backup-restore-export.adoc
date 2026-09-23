@@ -187,6 +187,11 @@ From the *Restore from backup file* tab, next to the *Snapshots* tab on the inst
 This action also overwrites the data currently in your instance.
 If this is not desired, you can create a new instance from the snapshot instead, as described in <<export-create>>.
 
+[NOTE]
+====
+It is not supported to restore from a link:{neo4j-docs-base-uri}/operations-manual/current/backup-restore/planning/#splitting-backup-archive[split backup archive] introduced in Neo4j 2026.09.
+====
+
 [[neo4j-admin-upload]]
 == Upload an existing Neo4j database
 
@@ -208,6 +213,11 @@ For details on how to use the `neo4j-admin database upload` command, along with 
 ====
 The `database upload` command, introduced in Neo4j 5, replaces the `push-to-cloud` command in Neo4j 4.4 and 4.3.
 If the database you want to upload is running an earlier version of Neo4j, please see link:https://neo4j.com/docs/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[the Neo4j Admin push-to-cloud documentation].
+====
+
+[CAUTION]
+====
+The `neo4j-admin database upload` command does not support uploads of link:{neo4j-docs-base-uri}/operations-manual/current/backup-restore/planning/#splitting-backup-archive[split backup/dump archives] introduced in Neo4j 2026.09.
 ====
 
 [CAUTION]
