@@ -13,7 +13,7 @@ For vector search workloads in Aura, it is recommended to:
 * use binary quantization with rescoring
 
 Binary quantization with rescoring is the default for new vector indexes.
-Check the link:https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[vector index documentation] for how to update existing indexes.
+See the link:https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[vector index documentation] for how to update existing indexes.
 With rescored binary vector search, the index searches a compact binary-quantized representation of the vectors and then rescores selected candidates against the full-precision values.
 This allows substantially more vectors to be searched effectively.
 Select the largest available storage size to take full advantage of rescored binary vector search.
