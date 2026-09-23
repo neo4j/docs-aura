@@ -7,7 +7,7 @@
 Vector optimization reserves a larger share of an instance's memory for vector indexes, improving vector search performance.
 It is available for AuraDB instances with 4GB of memory or more and across all supported cloud providers and regions.
 
-For vector search workloads in Aura, Neo4j recommends:
+For vector search workloads in Aura, it is recommended to:
 
 * enabling the vector-optimized configuration
 * using binary quantization with rescoring
