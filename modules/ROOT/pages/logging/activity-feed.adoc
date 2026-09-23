@@ -144,7 +144,7 @@ curl https://api.neo4j.io/v2beta1/organizations/$YOUR_ORG_ID/activity-feed \
   --header "Authorization: Bearer $YOUR_AURA_API_TOKEN"
 ----
 
-The acitivy feed can be filtered with three different values, the start time, the end time and the page limit. The start time is limited to a maximum of 30 days from the current date which is also the default value if no filter options are given.
+The activity feed can be filtered with three different values, the start time, the end time and the page limit. The start time is limited to a maximum of 30 days from the current date which is also the default value if no filter options are given.
 
 Example request with filtering using the organization URL:
 [source, shell]
