@@ -5,7 +5,7 @@
 
 The data in your single-database Aura instance can be backed up, exported, and restored using snapshots.
 For instances containing multiple databases, this is done on a per-database basis.
-However, you can *restore a whole instance*, as described in <<Multi-database instance restore>> below.
+However, you can *restore a whole instance*, as described in <<multi-db-instance-restore>> below.
 
 A *snapshot* is a copy of the data in an *instance* at a specific point in time.
 This includes the `system` database, which contains your RBAC and credentials.
@@ -113,7 +113,7 @@ This action overwrites the data currently in your instance and you will be asked
 If not, you can create a new instance from the snapshot instead, as described in <<export-create>>.
 
 For instances with *multiple user databases*, you can restore the individual databases in the same way, but not the entire instance.
-See <<Multi-database instances restore>> for information on how to restore the whole instance.
+See <<multi-db-instance-restore>> for information on how to restore the whole instance.
 
 [NOTE]
 ====
@@ -260,6 +260,7 @@ To enable *Public traffic* on a network access configuration:
 You can now use the `database upload` command on the instances within that region.
 Once the command has completed, you can disable *Public traffic* again by following the same steps and re-selecting the *Disable public* traffic checkbox.
 
+[[multi-db-instance-restore]]
 == Multi-database instance restore
 
 If your instance contains multiple databases, backups are managed at the database level rather than the instance level.
