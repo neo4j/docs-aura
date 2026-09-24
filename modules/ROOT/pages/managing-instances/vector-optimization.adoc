@@ -4,10 +4,22 @@
 :page-role: aura-db-professional aura-db-business-critical aura-db-dedicated
 
 
-Vector optimization reserves memory for vector indexes, enhancing performance for vector-based operations.
-It is available for AuraDB instances with more than 4GB of memory and across all supported cloud providers and regions.
+Vector optimization reserves a larger share of an instance's memory for vector indexes, improving vector search performance.
+It is available for AuraDB instances with 4GB of memory or more and across all supported cloud providers and regions.
 
-This configuration re-allocates memory from the graph database to the vector index.
+For vector search workloads in Aura, it is recommended to:
+
+* enable the vector-optimized configuration
+* use binary quantization with rescoring
+
+Binary quantization with rescoring is the default for new vector indexes.
+See the link:https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[vector index documentation] for how to update existing indexes.
+With rescored binary vector search, the index searches a compact binary-quantized representation of the vectors and then rescores selected candidates against the full-precision values.
+This allows substantially more vectors to be searched effectively.
+Select the largest available storage size to take full advantage of rescored binary vector search.
+
+
+This configuration reallocates memory from the graph database to the vector index.
 If this has an impact on your application, consider resizing to a larger Aura instance.
 
 To enable vector optimization during instance creation, select *Instance details* > *Additional settings* > *Vector-optimized configuration*.
@@ -27,48 +39,54 @@ To learn more about how to use vector indexes, see link:https://neo4j.com/docs/c
 
 == Instance sizing guide
 
-The vector optimized configuration is intended to allow an Aura instances' available storage to be completely filled and still provide consistent vector search performance.
-The table below shows the theoretical maximum GiB of vectors for each instance size, and the equivalent number of 768 dimension float-32 vectors.
+The vector-optimized configuration is intended to support large vector workloads while providing consistent vector search performance.
+The table provides a safe maximum for logical full-precision vector data that can be searched with rescored binary for each instance size, and the equivalent number of 768-dimensional `FLOAT32` vectors.
+Logical full-precision vector data is calculated as `vector count x dimensions x 4 bytes`; it describes dataset capacity rather than the amount of memory occupied by the binary search representation.
+Select the largest available storage size to take full advantage of rescored binary vector search.
 
-[cols="1,1,2"]
+[NOTE]
+====
+The estimates assume one vector index of 768-dimensional `FLOAT32` vectors with binary quantization, rescoring, the default `vector.hnsw.m` value of `16`, and no additional properties for in-index filtering.
+Actual capacity also depends on the rest of the graph, other indexes, and the query workload.
+====
+
+.Rescored binary vector capacity
+[options="header", cols="1,1,2"]
 |===
-|Aura Instance Size
-|GiB vectors
+|Aura instance size (GB)
+|Full-precision vector data (GB)
 |Million vectors (768 dimensions)
 
-|4GB
-|2.8
-|0.9
+|4
+|11.3
+|3.7
 
-|8GB
-|5.6
-|1.8
+|8
+|22.7
+|7.4
 
-|16GB
-|11.2
-|3.6
+|16
+|45.4
+|14.8
 
-|32GB
-|22.4
-|7.3
+|32
+|90.9
+|29.6
 
-|64GB
-|44.9
-|14.6
+|64
+|181.9
+|59.2
 
-|128GB
-|89.8
-|29.2
+|128
+|363.8
+|118.4
 
-|256GB
-|179.6
-|58.4
+|256
+|727.5
+|236.8
 
-|512GB
-|359.3
-|116.9
+|512
+|1,455
+|473.6
 
 |===
-
-GiB vectors is limited by available storage.
-As larger stores become available, you can increase the vector capacity for these instances.
