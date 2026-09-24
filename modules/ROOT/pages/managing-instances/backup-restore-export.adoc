@@ -3,16 +3,21 @@
 :description: This page describes how to backup, export, and restore your data from a snapshot as well as using `neo4j admin` to upload data.
 :page-aliases: auradb/managing-databases/backup-restore-export.adoc, aurads/managing-databases/backup-restore-export.adoc, aurads/managing-databases/importing-data/import-db, auradb/importing/import-database
 
-The data in your Aura instance can be backed up, exported, and restored using snapshots.
+The data in your single-database Aura instance can be backed up, exported, and restored using snapshots.
+For instances containing multiple databases, this is done on a per-database basis.
+However, you can *restore a whole instance*, as described in <<multi-db-instance-restore>> below.
 
-A snapshot is a copy of the data in an instance at a specific point in time.
+A *snapshot* is a copy of the data in an *instance* at a specific point in time.
+This includes the `system` database, which contains your RBAC and credentials.
+
+A *backup* is a copy of the data in a *database* at a specific point in time and a snapshot of an instance consists of the backups of both the user database as well as the `system` database.
+As such, the snapshot concept does *not* apply to instances with *multiple user databases*.
 
 The *Snapshots* tab within an Aura instance card shows a list of available snapshots.
 You can find the *Snapshots* tab via *Inspect* in the more menu (*...*) on the instance card.
 
-There are different kinds of snapshots taken at different intervals with different lifecycles depending on your tier.
+There are different kinds of snapshots taken at different intervals with different life cycles depending on your tier.
 See <<snapshot-details>> for more information.
-
 
 Aura stores the data securely in encrypted cloud storage buckets.
 Backups are stored in the same Cloud Service Provider and region as the instance they are associated with.
@@ -90,6 +95,9 @@ Additionally, for Virtual Dedicated Cloud instances running Neo4j latest version
 
 Use the toggle **Show exportable only** on top of the list of snapshots to filter by whether a snapshot is exportable or not.
 
+For instances with *multiple user databases*, only backups available for export have a *[...]* menu.
+Such databases *cannot* be used to create new instances.
+
 
 [[restore-snapshot]]
 === Restore
@@ -100,9 +108,17 @@ Restoring from a snapshot overwrites the data in your instance, replacing it wit
 ====
 
 You can restore data in your instance to a previous snapshot.
-Use the arrow next to the (*...*) menu on the snapshot you want to restore from.
+Use the arrow next to the *[...]* menu on the snapshot you want to restore from.
 This action overwrites the data currently in your instance and you will be asked to confirm that this is indeed desired.
 If not, you can create a new instance from the snapshot instead, as described in <<export-create>>.
+
+For instances with *multiple user databases*, you can restore the individual databases in the same way, but not the entire instance.
+See <<multi-db-instance-restore>> for information on how to restore the whole instance.
+
+[NOTE]
+====
+It is not possible to restore multiple databases within an instance at the same time, unless you are restoring the whole instance.
+====
 
 
 [[snapshot-details]]
@@ -244,14 +260,16 @@ To enable *Public traffic* on a network access configuration:
 You can now use the `database upload` command on the instances within that region.
 Once the command has completed, you can disable *Public traffic* again by following the same steps and re-selecting the *Disable public* traffic checkbox.
 
-== Multi-database instances
+[[multi-db-instance-restore]]
+== Multi-database instance restore
 
 If your instance contains multiple databases, backups are managed at the database level rather than the instance level.
+As mentioned in the introduction, the concept of a snapshot cannot be applied to a multi-database instance.
+However, you can create a *restoration point* that triggers backups of all the databases in the instance.
 
-//[NOTE]
-//====
-//It is not possible to restore two or more databases within an instance at the same time, unless you are restoring the whole instance.
-//====
+When you want to restore the instance to a previous state, you select a date and a time that you want to restore to and the available individual backups that match the specified timestamp are listed.
+You can select to *restore* or *clear* each individual user database, i.e. *not* the `system` database.
+
 
 From *Inspect > Backups* > use the *Select database* dropdown to select a database.
 All snapshot, restore, and export actions apply to the selected database.
