@@ -6,16 +6,25 @@ For information on pricing, refer to link:https://neo4j.com/pricing[Aura Pricing
 
 == Pay as you go
 
-Get started by creating an Aura account.
-You can cancel the account at any time.
-Pay as you go (PAYG) has no expiration date, it continues as long as you use Aura.
+Pay-as-you-go (PAYG) allows you to consume Neo4j Aura products on an on-demand hourly basis.
+It has no expiration date and continues as long as you use the products.
 
-Usage is billed monthly for the previous month.
-At every billing cycle, usage from the previous month is priced, invoiced and then charged to your payment method.
+Usage is metered hourly and you are billed monthly for the previous month.
+At every billing cycle, usage from the previous month is priced, invoiced, and then charged to your payment method.
 
-You can get billed directly with Neo4j using a credit card as a payment method.
-Or, you can get billed through GCP, AWS or Azure Marketplace where usage is reported hourly to the marketplace.
-At the marketplace’s billing cycle, Aura usage is aggregated and charged as part of your cloud bill.
+To set up PAYG billing with Neo4j Aura, use one of the following methods:
+
+* link:https://console.neo4j.io/billing/payment-methods[Enter a credit card] in the Neo4j Aura console.
+After entering a credit card, you also have the option to pre-purchase credits.
+
+* Subscribe to Neo4j Aura through a cloud marketplace.
+At the marketplace's billing cycle, Aura usage is aggregated and charged as part of your cloud bill.
+The following cloud marketplaces are supported:
+
+** link:https://aws.amazon.com/marketplace/pp/prodview-xd42uzj2v7dae[AWS]
+** link:https://portal.azure.com/#view/Microsoft_Azure_Marketplace/GalleryItemDetailsBladeNopdl/id/neo4j.neo4j-aura[Microsoft Azure]
+** link:https://console.cloud.google.com/marketplace/product/neo4j-mp-public/neo4j-aura[Google Cloud]
+
 
 == Prepaid
 
@@ -33,7 +42,7 @@ There is no billing integration with marketplaces for prepaid contracts.
 The contract is executed as a private offer, Neo4j instructs the marketplace to invoice the user for a number of ACUs and nothing else.
 Neo4j does not provision an Aura environment automatically in this case, does not report usage to the marketplace for these deals, and the marketplace does not keep track of the remaining balance.
 
-== Aura Consumption Unit (ACU) 
+== Aura Consumption Unit (ACU)
 
 Each billing dimension has its own unit of measure, GB-hours, GB-minutes, MB-hours, GB etc.
 To aggregate and then pay for usage across different dimensions, Aura Consumption Units (ACUs) are used.
@@ -49,14 +58,14 @@ Aura customers can receive a credit allowance expressed as a number of Aura Cons
 
 The credits can be purchased through a prepaid Aura contract, or granted by Neo4j as part of a promotional marketing program, proof of concept, developer program, and more.
 
-These credits are then used to offset your Aura usage bill. 
+These credits are then used to offset your Aura usage bill.
 When all credits are depleted, the remaining usage that was not covered by credits will be invoiced and charged to your payment method.
 
-Credits have a start date and an expiration date. 
-Usage that occurs before the start date will not be covered by credits. 
+Credits have a start date and an expiration date.
+Usage that occurs before the start date will not be covered by credits.
 If not used by the expiration date, credits are forfeited.
 
-To redeem the credits: 
+To redeem the credits:
 
 * You will receive an email from Neo4j containing an activation code.
 * Log into the Aura console, and choose the organization where you want to redeem the credits. *Note:* You need to be an organization owner or admin to redeem the credits.
@@ -78,7 +87,7 @@ You will see the credit balance on the billing account tile that you applied the
 ====
 You cannot redeem credits before their start date.
 ====
-	
+
 Credit allowances sometimes require you to have a valid credit card on file.
 If this is the case, you will be asked to add one as part of the redeem flow.
 
