@@ -136,13 +136,13 @@ It is not possible to restore multiple databases within an instance at the same 
 |===
 | Tier
 | Aura version
-2+| Frequency of snapshots
-2+| Scheduled snapshots
-| On-demand snapshot footnote:1[On-demand snapshots are restorable and exportable for the same period.]
+2+| Frequency of snapshots footnote:1[For multi-database instances, *backups* are taken of the individual databases at the same intervals.]
+2+| Scheduled snapshots footnote:1[]
+| On-demand snapshot footnote:2[On-demand snapshots are restorable and exportable for the same period.]
 
 |
 |
-| *Full snapshot* footnote:2[The full snapshot captures the entire database, while differential snapshots record changes since the last full snapshot.]
+| *Full snapshot* footnote:3[The full snapshot captures the entire database, while differential snapshots record changes since the last full snapshot.]
 | *Differential snapshot*
 | *Restorable days*
 | *Exportable days*
@@ -169,12 +169,12 @@ It is not possible to restore multiple databases within an instance at the same 
 | Daily
 | Hourly
 | 30
-| 30 full footnote:3[The differential snapshot is not exportable.]
+| 30 full footnote:4[The differential snapshot is not exportable.]
 | 30
 
 .2+| AuraDB Virtual Dedicated Cloud
 | 4
-| Every 6 hours footnote:4[One snapshot per day has a long retention period and remaining three a shorter period.]
+| Every 6 hours footnote:5[One snapshot per day has a long retention period and remaining three a shorter period.]
 |
 | 60 (long), 7 (short)
 | 14 (long), 7 (short)
@@ -219,6 +219,25 @@ Restoring from a link:{neo4j-docs-base-uri}/operations-manual/current/backup-res
 On instances with multiple user databases, you can restore individual databases from a backup file as well.
 This is done from the *Databases* tab.
 Use the *[...]* menu on the database you want to restore, and select *Restore from file*.
+
+[[multi-db-instance-restore]]
+== Multi-database instance restore
+
+If your instance contains multiple databases, backups are managed at the database level rather than the instance level.
+As mentioned in the introduction, the concept of a snapshot cannot be applied to a multi-database instance.
+However, you can create a *restoration point* that triggers backups of all the databases in the instance.
+
+When you want to restore the instance to a previous state, you select a date and a time that you want to restore to and the available individual backups that match the specified timestamp are listed.
+You can select to *restore* or *clear* each individual user database, i.e. *not* the `system` database.
+
+
+From *Inspect > Backups* > use the *Select database* dropdown to select a database.
+All snapshot, restore, and export actions apply to the selected database.
+
+[.shadow]
+.Multi-database backups
+image::multidb/multidb-backups.png[]
+
 
 [[neo4j-admin-upload]]
 == Upload an existing Neo4j database
@@ -270,21 +289,5 @@ To enable *Public traffic* on a network access configuration:
 You can now use the `database upload` command on the instances within that region.
 Once the command has completed, you can disable *Public traffic* again by following the same steps and re-selecting the *Disable public* traffic checkbox.
 
-[[multi-db-instance-restore]]
-== Multi-database instance restore
 
-If your instance contains multiple databases, backups are managed at the database level rather than the instance level.
-As mentioned in the introduction, the concept of a snapshot cannot be applied to a multi-database instance.
-However, you can create a *restoration point* that triggers backups of all the databases in the instance.
-
-When you want to restore the instance to a previous state, you select a date and a time that you want to restore to and the available individual backups that match the specified timestamp are listed.
-You can select to *restore* or *clear* each individual user database, i.e. *not* the `system` database.
-
-
-From *Inspect > Backups* > use the *Select database* dropdown to select a database.
-All snapshot, restore, and export actions apply to the selected database.
-
-[.shadow]
-.Multi-database backups
-image::multidb/multidb-backups.png[]
 
