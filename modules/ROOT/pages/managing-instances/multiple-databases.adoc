@@ -18,7 +18,7 @@ Databases are isolated, with separation of data.
 Creating and removing databases is faster than managing separate instances.
 And, you can scale within the same instance, reducing administrative overhead.
 
-Billing for multiple database enabled instances is the same as for single database instances. 
+Billing for multiple database enabled instances is the same as for single database instances.
 Usage is charged at your standard AuraDB GB-hour rate, regardless of the number of databases.
 
 == Limits (RAM and maximum databases)
@@ -207,10 +207,10 @@ This applies to drivers, the Query API, and other external sources.
 Multiple databases are supported across Aura tools.
 There are some things to consider when working with multiple databases:
 
-* xref:managing-instances/backup-restore-export.adoc#_multi_database_instances[Backup, export, and restore]: Take backups of individual databases. You can restore one database at a time.
+* xref:managing-instances/backup-restore-export.adoc#multi-db-instance-restore[Backup, export, and restore]: Either back up and restore databases individually or restore the whole instance to a restoration point.
 // or restore the whole instance.
 * xref:explore/introduction.adoc[Bloom and Query]: When connecting, select the target database using the connection bar.
-* xref:metrics/view-metrics.adoc#_multi_database_instances[Metrics] & xref:logging/query-log-analyzer.adoc[Logs]: Switch between databases using the Database dropdown in Metrics and see Database specific Query logs.
+* xref:metrics/view-metrics.adoc#multi-db-instances[Metrics] & xref:logging/query-log-analyzer.adoc[Logs]: Switch between databases using the Database dropdown in Metrics and see Database specific Query logs.
 * link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[Aura API]: See xref:managing-instances/multiple-databases.adoc#_api_requirements[API requirements]
 * xref:import/import.adoc#run-import[Import]: Select the instance and the target database when running an import.
 * xref:managing-instances/backup-restore-export.adoc#restore-backup[Restore]: Restore a database using Database Restore or drag and drop.
