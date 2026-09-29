@@ -14,24 +14,26 @@ A *backup* is a copy of the data in a *database* at a specific point in time and
 As such, the snapshot concept does *not* apply to instances with *multiple user databases*.
 
 The *Snapshots* tab within an Aura instance card shows a list of available snapshots.
-You can find the *Snapshots* tab via *Inspect* in the more menu (*...*) on the instance card.
+You can find the *Snapshots* tab via *Inspect* in the more menu *[...]* on the instance card.
 
 There are different kinds of snapshots taken at different intervals with different life cycles depending on your tier.
 See <<snapshot-details>> for more information.
+
 
 Aura stores the data securely in encrypted cloud storage buckets.
 Backups are stored in the same Cloud Service Provider and region as the instance they are associated with.
 
 
-== Snapshot types
+== Snapshot/backup types
 
 
 [role=label--aura-db-professional label--aura-db-business-critical label--aura-db-dedicated label--aura-ds-professional label--aura-ds-enterprise]
 === Scheduled
 
-A *Scheduled* snapshot is a snapshot that is automatically triggered at a cadence depending on your tier.
+A *Scheduled* snapshot/backup is automatically triggered at a cadence depending on your tier.
 
-For Professional instances running the latest version, scheduled snapshots are run automatically once a day, same for both AuraDS Professional and for AuraDS Enterprise instances, For Business Critical and Virtual Dedicated Cloud instances, they run once an hour.
+For Professional instances running the latest version, scheduled snapshots are run automatically once a day, same for both AuraDS Professional and for AuraDS Enterprise instances.
+For Business Critical and Virtual Dedicated Cloud instances, they run once an hour and the same for backups of the databases within an instance with multiple user databases.
 See <<snapshot-details>> further on for information about frequency, restorability, and exportability of scheduled snapshots, as well snapshots on instances running version 4.x.
 
 
@@ -40,32 +42,38 @@ See <<snapshot-details>> further on for information about frequency, restorabili
 An *On Demand* snapshot is a snapshot that you manually trigger with the *Take snapshot* button.
 This type of snapshot is the only snapshot available for Free instances.
 
-== Snapshot status
+For instances with multiple user databases, you can take manual backups in a similar fashion, using the *Take backup* button.
 
-Scheduled and on-demand snapshots move through the same statuses.
+Both actions are performed from the *Snapshots* or *Backups* tab in the instance details.
+If you have multiple user databases, you select which database to back up from a dropdown.
+
+== Snapshot/backup status
+
+Scheduled and on-demand snapshots/backups move through the same statuses.
 
 [cols="1,4", options="header"]
 |===
 |Status |Description
 
 |Pending
-|The snapshot request has been processed and queued, but hasn't started yet.
+|The snapshot/backup request has been processed and queued, but hasn't started yet.
 
 |In Progress
-|The snapshot is in progress. You can't restore from it or clone an instance from it until it completes.
+|The snapshot/backup is in progress. You can't restore from it or clone an instance from it until it completes.
 
 |Completed
-|The snapshot finished successfully and is available to restore. If exportable is true, you can also clone a new instance from it.
+|The snapshot/backup finished successfully and is available to restore. If exportable is true, you can also clone a new instance from it.
 
 |Failed
-|A reliable restore is not available from this snapshot, either because it didn't finish or because it is unsafe to restore.
+|A reliable restore is not available from this snapshot/backup, either because it didn't finish or because it is unsafe to restore.
 
 |Cancelled
-|The snapshot stopped before it finished, so no data was captured. This status is system generated and could appear if the instance was paused while the snapshot was in progress.
+|The snapshot stopped before it finished, so no data was captured.
+This status is system generated and could appear if the instance was paused while the snapshot was in progress.
 |===
 
 
-== Snapshot actions
+== Snapshot/backup actions
 
 image::snapshot-actions.png[width=400]
 
@@ -73,7 +81,7 @@ image::snapshot-actions.png[width=400]
 [[export-create]]
 === Export / Create
 
-From the more menu (...) next to an existing snapshot, you can:
+From the more menu *[...]* next to an existing *snapshot*, you can:
 
 * *Export* - Download an AuraDB instance as a .backup file (latest version) or .dump file (version 4.x) to store a local copy and work on data offline.
 AuraDB instances with the Graph Analytics plugin are also exported as a .backup file.
@@ -96,7 +104,7 @@ Additionally, for Virtual Dedicated Cloud instances running Neo4j latest version
 Use the toggle **Show exportable only** on top of the list of snapshots to filter by whether a snapshot is exportable or not.
 
 For instances with *multiple user databases*, only backups available for export have a *[...]* menu.
-Such databases *cannot* be used to create new instances.
+Databases within multi-database instances *cannot* be used to create new instances.
 
 
 [[restore-snapshot]]
@@ -208,6 +216,10 @@ If this is not desired, you can create a new instance from the snapshot instead,
 Restoring from a link:{neo4j-docs-base-uri}/operations-manual/current/backup-restore/planning/#splitting-backup-archive[split backup archive] (introduced in Neo4j 2026.09) is *not* supported in Aura.
 ====
 
+On instances with multiple user databases, you can restore individual databases from a backup file as well.
+This is done from the *Databases* tab.
+Use the *[...]* menu on the database you want to restore, and select *Restore from file*.
+
 [[neo4j-admin-upload]]
 == Upload an existing Neo4j database
 
@@ -225,16 +237,14 @@ Otherwise, the upload will fail with SSL errors.
 
 For details on how to use the `neo4j-admin database upload` command, along with a full list of options and version compatibility, see link:{neo4j-docs-base-uri}/operations-manual/current/tools/neo4j-admin/upload-to-aura/[Operations Manual → Upload to Neo4j Aura].
 
-[NOTE]
-====
-The `database upload` command, introduced in Neo4j 5, replaces the `push-to-cloud` command in Neo4j 4.4 and 4.3.
-If the database you want to upload is running an earlier version of Neo4j, please see link:https://neo4j.com/docs/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[the Neo4j Admin push-to-cloud documentation].
-====
-
 [CAUTION]
 ====
 The `neo4j-admin database upload` command does not support uploads of link:{neo4j-docs-base-uri}/operations-manual/current/backup-restore/planning/#splitting-backup-archive[split backup/dump archives] introduced in Neo4j 2026.09.
 ====
+
+Note that the `database upload` command, introduced in Neo4j 5, replaces the `push-to-cloud` command in Neo4j 4.4 and 4.3.
+If the database you want to upload is running an earlier version of Neo4j, please see link:https://neo4j.com/docs/operations-manual/4.4/tools/neo4j-admin/push-to-cloud/[the Neo4j Admin push-to-cloud documentation].
+
 
 [CAUTION]
 ====
