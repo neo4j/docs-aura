@@ -16,9 +16,9 @@ Usage is charged at your standard AuraDB GB-hour rate, regardless of the number 
 
 == Limits (RAM and maximum databases)
 
-All databases share the instance’s compute and memory resources.
-By default a maximum number of 5 databases per GB of RAM can be provisioned.
-The maximum number of databases depends on the memory size (RAM) of the instance and there is an upper limit of 100 for AuraDB Business Critical, and 250 for Virtual Dedicated Cloud configurations.
+All databases share the instance's compute and memory resources. 
+By default, up to 5 databases per GB of RAM can be provisioned. 
+The maximum number of databases depends on the memory size (RAM) of the instance, with an upper limit of 100 for AuraDB Business Critical and 250 for AuraDB Virtual Dedicated Cloud.
 
 [cols="1,1,1", options="header"]
 |===
@@ -51,6 +51,11 @@ AuraDB Virtual Dedicated Cloud
 | 100
 | 250
 |===
+
+[NOTE]
+====
+These limits are the maximum number of databases you can create, choose an instance size that fits your database count and workload, and scale up if you see resource pressure.
+====
 
 Each project can have up to 20 multiple database enabled instances by default. 
 This limit is currently set across both AuraDB Business Critical and AuraDB Virtual Dedicated Cloud configurations, and helps keep performance and provisioning consistent as usage grows. If you need more, contact Support with your project, region, and the number of databases you expect to run, and we will assess the request.
