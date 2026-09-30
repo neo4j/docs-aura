@@ -65,15 +65,6 @@ Retrain and store models in the destination you choose.
 Snapshots of the original instance are removed when you delete it.
 |===
 
-[NOTE]
-====
-Custom roles aren't available on AuraDS Professional or AuraDB Professional (see xref:user-management.adoc#custom-roles[Custom roles]), so there are no roles to migrate.
-Built-in role assignments, such as `reader` or `editor`, are recreated along with the users they belong to.
-
-Console users who connect through xref:security/tool-auth.adoc[Tool authentication with Aura user] don't need migrating.
-Aura assigns them a predefined role on each instance, so they can connect to the new instance straight away.
-====
-
 == Prerequisites
 
 Before you being, there are a few things you need to check:
