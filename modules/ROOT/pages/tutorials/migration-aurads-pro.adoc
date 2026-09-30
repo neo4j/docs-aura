@@ -1,9 +1,9 @@
 = Migrate an AuraDS Professional instance to AuraDB Professional
-:description: This tutorial describes how to migrate an AuraDS Professional instance to AuraDB Professional, with either the Graph Analytics plugin or Aura Graph Analytics.
+:description: This tutorial describes how to migrate a Neo4j AuraDS Professional instance to AuraDB Professional, with either the Graph Analytics plugin or Aura Graph Analytics.
 
 This tutorial describes how to move an AuraDS Professional instance to AuraDB Professional.
 
-On AuraDB Professional, you run Graph Data Science (GDS) workloads in one of two ways:
+On AuraDB Professional, you can run Graph Data Science (GDS) workloads in two ways:
 
 * xref:graph-analytics/alternative-deployments.adoc#aura-gds-plugin[Graph Analytics plugin] -- runs GDS inside the AuraDB instance, sharing its memory and CPU.
 Existing GDS Cypher and Python code runs without changes, and there's no extra charge on top of the instance.
@@ -19,7 +19,7 @@ Both instances run in parallel until you delete the original, so you can switch 
 == What carries over and what changes
 
 Cloning creates a new instance with a copy of your data.
-Some things come with it, and some don't.
+Not everything carries over when you clone an instance, as described in the tables below.
 
 [cols="1,2", options="header"]
 |===
@@ -74,8 +74,9 @@ Console users who connect through xref:security/tool-auth.adoc[Tool authenticati
 Aura assigns them a predefined role on each instance, so they can connect to the new instance straight away.
 ====
 
-== Before you begin
+== Prerequisites
 
+Before you being, there are a few things you need to check:
 * *Neo4j version.* This tutorial assumes both instances run the latest Neo4j version.
 * *Instance size.* The Graph Analytics plugin requires an instance with at least 4 GB of memory.
 * *Network access for Aura Graph Analytics.* If you connect to Aura Graph Analytics from outside Aura, for example with the GDS Python client on your own infrastructure, allow outbound TCP traffic on port `8491`.
@@ -91,7 +92,7 @@ Connect either as the `neo4j` user, or through xref:security/tool-auth.adoc[tool
 Project Members and Viewers don't have the privileges to manage users. 
 
 Run each query on its own.
-User management commands run against the system database automatically, so you don't need to switch databases first.
+User management commands run against the `system` database automatically, so you don't need to switch databases first.
 
 .Generate user creation commands
 [source, cypher]
@@ -105,7 +106,7 @@ The filter skips the `neo4j` admin user.
 Console users who connect through tool authentication don't appear in `SHOW USERS`, so they don't need migrating.
 Usernames are wrapped in backticks, so names containing characters such as `.` or `-` recreate correctly.
 Every recreated user gets the temporary password `newpassword` and must change it on first login.
-Plan to update the credentials in any application that logs in as one of these users.
+Any application that logs in as one of these users needs to update the credentials.
 
 .Generate role assignment commands
 [source, cypher]
@@ -115,7 +116,7 @@ WHERE role <> 'PUBLIC' AND NOT role STARTS WITH 'console_' AND member IS NOT NUL
 RETURN 'GRANT ROLE `' + role + '` TO `' + member + '`;' AS output;
 ----
 
-Download both outputs as CSV and keep them for <<_recreate_custom_database_users>>.
+Download both outputs as CSV and keep them to <<_recreate_custom_database_users>>.
 
 If the first query returns no rows, you have no custom users and can skip that step.
 
@@ -123,7 +124,7 @@ If the first query returns no rows, you have no custom users and can skip that s
 
 . From the more menu *[...]* on the AuraDS instance, select *Clone to* > *New instance*.
 . Select *AuraDB Professional* and choose the size, cloud provider, and region.
-. Choose how to run GDS: enable the *Graph Analytics plugin*, or configure the instance to use *Aura Graph Analytics*.
+. Select how to run GDS: enable the *Graph Analytics plugin*, or configure the instance to use *Aura Graph Analytics*.
 . Select *Create instance*.
 . Save the new `neo4j` username and password, then select *Continue*.
 
@@ -143,7 +144,7 @@ Run the commands you generated earlier: first the `CREATE USER` commands, then t
 Run them one statement at a time.
 If you run a batch and one statement fails, the others may not be applied.
 
-Check the result:
+Verify the result:
 
 [source, cypher]
 ----
@@ -203,9 +204,9 @@ Once everything is running against the new instance, delete the AuraDS instance.
 [WARNING]
 ====
 Deleting an instance also deletes all of its snapshots, and the data can't be recovered.
-If you might need the original data later, take an xref:managing-instances/backup-restore-export.adoc#_on_demand[on-demand snapshot] and export it before deleting.
+If you need the original data later, take an xref:managing-instances/backup-restore-export.adoc#_on_demand[on-demand snapshot] and export it before deleting.
 ====
 
 Until you delete it, the original instance keeps running and is billed alongside the new one.
 
-See xref:managing-instances/instance-actions.adoc#_delete_an_instance[Delete an instance].
+See xref:managing-instances/instance-actions.adoc#_delete_an_instance[Delete an instance] for more information.
