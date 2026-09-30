@@ -1,51 +1,87 @@
-= Multiple databases (Preview feature)
+= Multiple databases 
 :description: This page describes multiple databases within an Aura instance and how to create and connect to a database.
 
 label:AuraDB-Business-Critical[]
 label:AuraDB-Virtual-Dedicated-Cloud[]
 
-[IMPORTANT]
-====
-The multiple database preview is governed by the link:https://neo4j.com/legal-terms/aura-feature-specific-terms[Experimental Service Terms] in your customer agreement with Neo4j.
-Updates about supported preview features will be added to link:https://neo4j-aura.canny.io/changelog[Canny].
-====
-
-AuraDB Business Critical and AuraDB Virtual Dedicated Cloud support multiple databases within an AuraDB instance.
+AuraDB Business Critical and Virtual Dedicated Cloud support multiple databases within an instance.
 You can create and manage databases using the Aura console or the Aura API.
 
-Each instance has its own compute and storage and the databases run within it.
-Databases are isolated, with separation of data.
+Each instance has its own compute and storage and the separate databases run within it.
 Creating and removing databases is faster than managing separate instances.
 And, you can scale within the same instance, reducing administrative overhead.
 
-Billing for multiple database enabled instances is the same as for single database instances. 
+Billing for instances with multiple databases enabled is the same as for single database instances.
 Usage is charged at your standard AuraDB GB-hour rate, regardless of the number of databases.
+
+== User and system databases
+
+An instance contains a `system` database and a default user database named `neo4j`. 
+The `system` database stores RBAC and credentials. 
+User databases store graph data. 
+When you enable multiple databases, you can add more user databases alongside `neo4j`.
+
+.Database selector for an instance with multiple databases
+[.shadow]
+image::multidb/multidb-neo4j-system.png[Database selector in a multiple database instance]
+
+[cols="1,2", options="header"]
+|===
+| Database in the screenshot | What it is
+
+| `neo4j`, `one`, `two`, `three`
+| The *user databases* that store graph data. `neo4j` is the default.
+
+| `system`
+| The `system` database that stores RBAC and credentials.
+|===
 
 == Limits (RAM and maximum databases)
 
-All databases share the instance’s compute and memory resources.
-By default a maximum number of 5 databases per GB of RAM can be provisioned.
-The maximum number of databases depends on the memory size (RAM) of the instance and there is an upper limit of 100 across all configurations.
+All databases share the instance's compute and memory resources. 
+By default, up to 5 databases per GB of RAM can be provisioned. 
+The maximum number of databases depends on the memory size (RAM) of the instance, with an upper limit of 100 for AuraDB Business Critical and 250 for AuraDB Virtual Dedicated Cloud.
 
-[cols="1,1", options="header"]
+[cols="1,1,1", options="header"]
 |===
-| Available instance memory | Maximum databases
+| Available instance memory | Maximum databases + 
+AuraDB Business Critical 
+| Maximum databases + 
+AuraDB Virtual Dedicated Cloud
 
 | 2GB
+| 10
 | 10
 
 | 4GB
 | 20
+| 20
 
 | 8GB
+| 40
 | 40
 
 | 16GB
 | 80
+| 80
 
-| 32GB and above
+| 32GB
 | 100
+| 160
+
+| 64GB and above
+| 100
+| 250
 |===
+
+[NOTE]
+====
+These limits are the maximum number of databases you can create, choose an instance size that fits your database count and workload, and scale up if you see resource pressure.
+====
+
+Each project can have up to 20 multiple database enabled instances by default. 
+This default applies to both AuraDB Business Critical and Virtual Dedicated Cloud, and helps keep performance and provisioning consistent as usage grows. 
+If you need more, contact Support with your project, region, and the number of databases you expect to run, and your request will be assessed.
 
 == Managing databases
 
@@ -58,10 +94,10 @@ All endpoints below now require your Organization ID and Project ID in the path,
 
 Standard guidance for creating API credentials applies, see xref:api/overview.adoc[Aura API -> Overview].
 
-MultiDB uses the beta version of the Aura API.
+Multiple databases use the beta version of the Aura API.
 Use link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[https://api.neo4j.io/v2beta1] as the base URL.
 
-=== Create a multi-database instance
+=== Create a multiple database instance
 
 [IMPORTANT]
 ====
@@ -94,7 +130,7 @@ curl -X POST "https://api.neo4j.io/v2beta1/organizations/$ORG_ID/projects/$PROJE
     "region": "europe-west1",
     "memory": "4GB",
     "storage": "8GB",
-    "name": "mymultidbtestinstance",
+    "name": "northwindinstance",
     "type": "business-critical",
     "cloud_provider": "gcp",
     "multi_database": true
@@ -110,7 +146,7 @@ curl -X POST "https://api.neo4j.io/v2beta1/organizations/$ORG_ID/projects/$PROJE
 Databases cannot be created using Cypher database management commands, only via API and Aura console.
 ====
 
-When a Multi-DB enabled instance is created, a default `neo4j` database is created automatically.
+When an instance with multiple databases enabled is created, a default user database named `neo4j` is also created automatically.
 It is not possible to delete this database.
 Databases contain a name and an automatically generated id.
 
@@ -197,9 +233,9 @@ DELETE /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databa
 
 == Connecting applications
 
-When connecting to a multi-database instance from an external client, specify the `database name` as part of the connection.
-The database name identifies which database to access.
-If no database name is provided, the connection cannot be established.
+When connecting to a multiple database instance from an external client, specify the `database name` for your session or query. 
+The database name identifies which database to access. 
+If no database name is provided, queries run against the default `neo4j` database. 
 This applies to drivers, the Query API, and other external sources.
 
 == Supported features
@@ -210,12 +246,16 @@ There are some things to consider when working with multiple databases:
 * xref:managing-instances/backup-restore-export.adoc#_multi_database_instances[Backup, export, and restore]: Take backups of individual databases. You can restore one database at a time.
 // or restore the whole instance.
 * xref:explore/introduction.adoc[Bloom and Query]: When connecting, select the target database using the connection bar.
-* xref:metrics/view-metrics.adoc#_multi_database_instances[Metrics] & xref:logging/query-log-analyzer.adoc[Logs]: Switch between databases using the Database dropdown in Metrics and see Database specific Query logs.
+* xref:metrics/view-metrics.adoc#_multi_database_instances[Metrics] and xref:logging/query-log-analyzer.adoc[Logs]: Switch between databases using the Database dropdown in Metrics and see Database specific Query logs. Includes xref:metrics/metrics-integration/introduction.adoc[Metrics Integration] and xref:logging/log-forwarding.adoc[Log Forwarding].
 * link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[Aura API]: See xref:managing-instances/multiple-databases.adoc#_api_requirements[API requirements]
 * xref:import/import.adoc#run-import[Import]: Select the instance and the target database when running an import.
 * xref:managing-instances/backup-restore-export.adoc#restore-backup[Restore]: Restore a database using Database Restore or drag and drop.
 * xref:security/index.adoc[Security & Networking]: xref:/security/ip-filtering.adoc[IP filtering], xref:security/secure-connections.adoc#_private_endpoints[Private endpoints] and xref:security/customer-managed-keys.adoc[Customer Managed Keys] (where available for the Aura tier)
 * xref:security/single-sign-on.adoc[Single Sign-On]: Authenticate users accessing the instance.
 
+[NOTE]
+====
+Updates about supported features will be added to link:https://neo4j-aura.canny.io/changelog[Canny].
+====
 
 
