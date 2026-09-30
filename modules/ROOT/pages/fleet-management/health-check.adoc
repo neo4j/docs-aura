@@ -1,0 +1,116 @@
+= Deployment health check
+:description: This page describes the health of a deployment & how to run a health check and interpret the results.
+:min-version: 2026.09.0
+
+A health check diagnoses your self-managed deployment for symptoms of sub-optimal operation, configuration issues and capacity issues. It also suggests possible configuration
+changes to improve the deployment's performance and reliability.
+
+Additionally, a health check can act as a self-service support tool, allowing you to diagnose and fix issues yourself before contacting support or opening a support case.
+
+A health check can be requested as part of a support case, or as a standalone request.
+
+If requested as part of a support case, the health check will be performed on the deployment and the results will be attached to the support case.
+
+== Prerequisites
+
+To run a health check, you need to have the following prerequisites:
+
+* A self-managed deployment monitored by Fleet Manager.
+* Deployment must be in running state.
+* Optional: `-Djdk.attach.allowAttachSelf=true` JVM option set on the Neo4j server.
+
+== How to run a deployment health check
+To run a health check, go to the *Health* tab on the deployment view page, or click the *Request new health check* button.
+
+image::deployment-check/health-check-request-new.png[Request new health check]
+
+A request modal will appear, asking you to confirm the request.
+
+image::deployment-check/health-check-request-modal.png[Request new health check modal]
+
+You can optionally attach a Support case ID to reference the health check in your support case.
+
+image::deployment-check/health-check-request-modal-support-case.png[Request new health check modal with support case ID]
+
+Once the request is submitted, you can track the status of the health check in the *Health* tab's history table.
+
+image::deployment-check/health-check-history.png[Health check history table]
+
+There are 2 ways to view the results of the health check:
+
+* Click the *Checkers* control at the top to view the results of the health check for each checker in the deployment.
+
+image::deployment-check/health-check-result-checkers.png[Health check results checkers]
+
+Clicking on a checker will open a details drawer with the results of the health check for that checker.
+
+image::deployment-check/health-check-checker-details-drawer.png[Health check results checker details]
+
+* Click the *Instances* control at the top to view the results of the health check for each instance in the deployment.
+
+image::deployment-check/health-check-result-instances.png[Health check results instances]
+
+Clicking on an instance will open a details accordion with the results of the health check for that instance.
+
+image::deployment-check/health-check-checker-details-accordion.png[Health check results checker details]
+
+[NOTE] 
+====
+Results are pre-filtered to show `Error` and `Warning` severity results only.
+
+Clearing the filter will show all results.
+
+You can search for specific checkers by name in the search bar.
+
+You can filter the results by severity or instance name.
+====
+
+== Interpreting the results
+
+Each checker verifies a specific aspect of the deployment's health.
+
+A checker's result has the following characteristics:
+
+* **Severity:** The severity of the condition that was detected.
+* **Summary:** A summary of the checker's purpose and what it verifies.
+* **Explanation:** A link to an external documentation page that explains the condition and how to fix it.
+* **Suggested action:** A suggested action to take to fix the issue.
+
+
+== Checkers
+
+[cols="2,10", header, options="autowidth"]
+|===
+| Check | Description
+
+|Databases online	|Verifies every database on the server is online; warns when non-system databases are offline and escalates when the system database itself is offline.
+|Disk space failures	|Scans the error log over the selected period for disk-space failures (out-of-disk-space and failed-preallocation events) and reports the count and most recent occurrence.
+|Out-of-memory events	|Scans the error log over the selected period for out-of-memory events in the Neo4j process.
+|Store consistency	|Scans the error log over the selected period for store-consistency failures (possible data corruption), reported per affected database with first/last occurrence.
+|Neo4j version known issues	|Checks the server's Neo4j version against a blocklist of releases with known critical issues.
+|Java runtime known issues	|Checks the server's Java runtime version against a blocklist of JVM builds with known critical issues.
+|Duplicate plugins	|Detects multiple copies of the same plugin (e.g. two APOC jars of different versions) installed in the server's plugins directory.
+|Plugin versions match across cluster	|Compares installed plugin versions across cluster members and reports mismatches attributed per instance.
+|Plugins installed on every instance	|Flags plugins that are installed elsewhere in the cluster but missing on this server (evaluated only with two or more cluster instances).
+|Supported filesystem	|Verifies databases store data on a supported filesystem (ext4/xfs on Linux, NTFS on Windows).
+|Recommended store format	|Flags databases still using a deprecated store format (aligned/standard) instead of the recommended block format; not applicable on Neo4j versions without block.
+|CPU sizing	|Verifies the server has at least the recommended 4 CPU cores.
+|Same OS across cluster	|Verifies all cluster members run the same operating system and version.
+|Memory settings configured	|Verifies heap and page cache sizes are explicitly configured rather than left to JVM/Neo4j defaults.
+|Heap min/max equal	|Verifies the initial heap size equals the maximum heap size, avoiding heap resize pauses.
+|Heap size vs compressed pointers	|Flags a maximum heap size in the 32–48 GB range where the JVM disables compressed pointers, wasting memory.
+|Transaction memory limits	|Verifies a bounded global transaction memory limit (dbms.memory.transaction.global_max_size) applies, so runaway transactions cannot exhaust the heap.
+|Transaction state on heap	|Verifies transaction state is configured to allocate on heap (dbms.tx_state.memory_allocation=ON_HEAP).
+|Swap usage	|Flags active swap usage (severe performance degradation) and, in a milder variant, swap that is configured but unused.
+|JVM --add-opens arguments	|Verifies the recommended JVM --add-opens arguments are configured on Neo4j versions that require them.
+Transaction & lock timeouts	Verifies dbms.transaction.timeout and dbms.lock.acquisition.timeout are configured.
+|Page cache sizing	|Verifies the configured page cache covers at least 10% of the total mapped store size across non-system databases.
+|Configuration consistent across cluster	|Compares configuration across cluster members and reports the specific keys that differ.
+|Discovery version consistent	|Verifies the discovery service version is consistent across all cluster members.
+|===
+
+== Request quota
+
+You can request up to 3 health checks per day.
+
+If you need to request more than 3 health checks, you can contact support to increase the quota.
