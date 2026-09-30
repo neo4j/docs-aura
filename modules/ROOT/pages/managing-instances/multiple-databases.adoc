@@ -25,18 +25,15 @@ When you enable multiple databases, you can add more user databases alongside `n
 [.shadow]
 image::multidb/multidb-neo4j-system.png[Database selector in a multiple database instance]
 
-[cols="1,3", options="header"]
+[cols="1,2", options="header"]
 |===
 | Database in the screenshot | What it is
 
-| `neo4j`
-| The default *user database*; stores graph data.
-
-| `one`, `two`, `three`
-| Additional *user databases*; also store graph data.
+| `neo4j`, `one`, `two`, `three`
+| The *user databases* that store graph data. `neo4j` is the default.
 
 | `system`
-| The *system database*; stores RBAC and credentials.
+| The *system database* that stores RBAC and credentials.
 |===
 
 == Limits (RAM and maximum databases)
