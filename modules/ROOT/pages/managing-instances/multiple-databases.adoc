@@ -1,4 +1,4 @@
-= Multiple databases (Preview feature)
+= Multiple databases 
 :description: This page describes multiple databases within an Aura instance and how to create and connect to a database.
 
 label:AuraDB-Business-Critical[]
@@ -45,7 +45,7 @@ AuraDB Virtual Dedicated Cloud
 
 | 32GB
 | 100
-| 100
+| 160
 
 | 64GB and above
 | 100
@@ -58,7 +58,8 @@ These limits are the maximum number of databases you can create, choose an insta
 ====
 
 Each project can have up to 20 multiple database enabled instances by default. 
-This limit is currently set across both AuraDB Business Critical and AuraDB Virtual Dedicated Cloud configurations, and helps keep performance and provisioning consistent as usage grows. If you need more, contact Support with your project, region, and the number of databases you expect to run, and we will assess the request.
+This default applies to both AuraDB Business Critical and Virtual Dedicated Cloud, and helps keep performance and provisioning consistent as usage grows. 
+If you need more, contact Support with your project, region, and the number of databases you expect to run, and we will assess the request.
 
 == Managing databases
 
@@ -210,9 +211,9 @@ DELETE /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databa
 
 == Connecting applications
 
-When connecting to a multi-database instance from an external client, specify the `database name` as part of the connection.
-The database name identifies which database to access.
-If no database name is provided, the connection cannot be established.
+When connecting to a multi-database instance from an external client, specify the `database name` for your session or query. 
+The database name identifies which database to access. 
+If no database name is provided, queries run against the default `neo4j` database. 
 This applies to drivers, the Query API, and other external sources.
 
 == Supported features
