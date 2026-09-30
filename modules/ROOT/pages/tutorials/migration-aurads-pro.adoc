@@ -16,7 +16,7 @@ You can switch between the two on the same instance later from the instance conf
 Migration works by cloning your AuraDS instance into a new AuraDB Professional instance.
 Both instances run in parallel until you delete the original, so you can switch your applications over on your own schedule, with no downtime.
 
-== What carries over and what changes
+== Differences between original and clone
 
 Cloning creates a new instance with a copy of your data.
 Not everything carries over when you clone an instance, as described in the tables below.
@@ -68,7 +68,7 @@ Snapshots of the original instance are removed when you delete it.
 [[_prerequisites]]
 == Prerequisites
 
-Before you being, there are a few things you need to check:
+Before you begin, there are a few things you need to check:
 
 * *Neo4j version:* This tutorial assumes both instances run the latest Neo4j version.
 * *Instance size:* The Graph Analytics plugin requires an instance with at least 4 GB of memory.
@@ -76,8 +76,8 @@ Before you being, there are a few things you need to check:
 See xref:security/ip-addresses.adoc[Aura IP addresses and ports].
 * *Connection inventory:* List everything that connects to the AuraDS instance: applications, scheduled jobs, notebooks, BI tools, and connectors.
 Each one needs the new URI, and some may need new credentials.
-* *Custom database users:* Clones don't copy users created with `CREATE USER`.
-Check whether you have any by running this query as an admin user on the AuraDS instance:
+* *Custom database users:* Cloning does *not* copy users created with `CREATE USER`.
+Check whether you have created any by running this query as an admin user on the AuraDS instance:
 +
 [source, cypher]
 ----
