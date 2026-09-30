@@ -90,22 +90,20 @@ If you've created your own database users, generate the commands to recreate the
 Connect either as the `neo4j` user, or through xref:security/tool-auth.adoc[tool authentication] with the *Project Admin* role.
 Project Members and Viewers don't have the privileges to manage users. 
 
-Switch to the system database, and run each query on its own.
-
-[source, cypher]
-----
-:use system
-----
+Run each query on its own.
+User management commands run against the system database automatically, so you don't need to switch databases first.
 
 .Generate user creation commands
 [source, cypher]
 ----
 SHOW USERS YIELD user, roles
 WHERE user <> 'neo4j' AND NOT any(r IN roles WHERE r STARTS WITH 'console_')
-RETURN 'CREATE USER ' + user + ' SET PASSWORD \'newpassword\' CHANGE REQUIRED;' AS output;
+RETURN 'CREATE USER `' + user + '` SET PASSWORD \'newpassword\' CHANGE REQUIRED;' AS output;
 ----
 
-The filter skips the `neo4j` admin user and any users managed through tool authentication.
+The filter skips the `neo4j` admin user.
+Console users who connect through tool authentication don't appear in `SHOW USERS`, so they don't need migrating.
+Usernames are wrapped in backticks, so names containing characters such as `.` or `-` recreate correctly.
 Every recreated user gets the temporary password `newpassword` and must change it on first login.
 Plan to update the credentials in any application that logs in as one of these users.
 
@@ -114,7 +112,7 @@ Plan to update the credentials in any application that logs in as one of these u
 ----
 SHOW ROLES WITH USERS YIELD member, role
 WHERE role <> 'PUBLIC' AND NOT role STARTS WITH 'console_' AND member IS NOT NULL AND member <> 'neo4j'
-RETURN 'GRANT ROLE ' + role + ' TO ' + member + ';' AS output;
+RETURN 'GRANT ROLE `' + role + '` TO `' + member + '`;' AS output;
 ----
 
 Download both outputs as CSV and keep them for <<_recreate_custom_database_users>>.
@@ -140,7 +138,7 @@ See xref:managing-instances/instance-actions.adoc#_clone_to_a_new_instance[Clone
 
 Connect to the new instance with admin access, either as `neo4j` with the credentials from the clone or through tool authentication as a Project Admin.
 
-Switch to the system database, and run the commands you generated earlier: first the `CREATE USER` commands, then the `GRANT ROLE` commands.
+Run the commands you generated earlier: first the `CREATE USER` commands, then the `GRANT ROLE` commands.
 
 Run them one statement at a time.
 If you run a batch and one statement fails, the others may not be applied.
