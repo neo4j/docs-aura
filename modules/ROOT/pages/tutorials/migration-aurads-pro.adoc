@@ -65,19 +65,32 @@ Retrain and store models in the destination you choose.
 Snapshots of the original instance are removed when you delete it.
 |===
 
+[[_prerequisites]]
 == Prerequisites
 
 Before you being, there are a few things you need to check:
-* *Neo4j version.* This tutorial assumes both instances run the latest Neo4j version.
-* *Instance size.* The Graph Analytics plugin requires an instance with at least 4 GB of memory.
-* *Network access for Aura Graph Analytics.* If you connect to Aura Graph Analytics from outside Aura, for example with the GDS Python client on your own infrastructure, allow outbound TCP traffic on port `8491`.
-See xref:security/ip-addresses.adoc[Aura IP addresses and ports].
-* *Connection inventory.* List everything that connects to the AuraDS instance: applications, scheduled jobs, notebooks, BI tools, and connectors.
-Each one needs the new URI, and some may need new credentials.
 
+* *Neo4j version:* This tutorial assumes both instances run the latest Neo4j version.
+* *Instance size:* The Graph Analytics plugin requires an instance with at least 4 GB of memory.
+* *Network access for Aura Graph Analytics:* If you connect to Aura Graph Analytics from outside Aura, for example with the GDS Python client on your own infrastructure, allow outbound TCP traffic on port `8491`.
+See xref:security/ip-addresses.adoc[Aura IP addresses and ports].
+* *Connection inventory:* List everything that connects to the AuraDS instance: applications, scheduled jobs, notebooks, BI tools, and connectors.
+Each one needs the new URI, and some may need new credentials.
+* *Custom database users:* Clones don't copy users created with `CREATE USER`.
+Check whether you have any by running this query as an admin user on the AuraDS instance:
++
+[source, cypher]
+----
+SHOW USERS YIELD user WHERE user <> 'neo4j' RETURN user;
+----
++
+If it returns any users, export them before you clone, as described in <<_export_custom_database_users>>.
+If it returns nothing, skip that section and the <<_recreate_custom_database_users>> step.
+
+[[_export_custom_database_users]]
 == Export custom database users
 
-If you've created your own database users, generate the commands to recreate them *before* you clone.
+If the check in <<_prerequisites>> found custom database users, generate the commands to recreate them *before* you clone.
 
 Connect either as the `neo4j` user, or through xref:security/tool-auth.adoc[tool authentication] with the *Project Admin* role.
 Project Members and Viewers don't have the privileges to manage users. 
@@ -108,8 +121,6 @@ RETURN 'GRANT ROLE `' + role + '` TO `' + member + '`;' AS output;
 ----
 
 Download both outputs as CSV and keep them to <<_recreate_custom_database_users>>.
-
-If the first query returns no rows, you have no custom users and can skip that step.
 
 == Clone to AuraDB Professional
 
