@@ -30,28 +30,41 @@ If any element is missing the green checkmark in the model, it will _not_ be inc
 == Run the import
 
 When you are happy with the model and the mapping is complete, the import can begin.
-But before starting the import, it is important to make sure Import is connected to the database.
-This is done in the dropdown on the connection banner located in the top center of the UI.
-If your instance contains xref:managing-instances/multiple-databases.adoc[multiple databases], you are prompted to select a target database before running the import.
+Use *Run import* to start the process.
 
 [.shadow]
-.Connection dropdown
-image::connection-dropdown.png[]
+.Import options
+image::import-options.png[width=600]
 
-The _Run import_ button shows the progress of the import when you press it.
-The import is done in batches and can be stopped at any time.
+Verify that the data source is correct, then you need to select which Aura instance to import to.
+If your instance contains xref:managing-instances/multiple-databases.adoc[multiple databases], you are prompted to select a target database before running the import.
 
-When the import stops, whether because it is complete or because it was cancelled, a summary is displayed.
+Depending on your data source, you have two options for import:
+
+* *Bulk import* (currently in *Preview*)
+* *Online import*
+
+Only *AWS S3*, *Azure Blob Storage and Data Lake Storage*, and *Google Cloud Storage* buckets using a non-public authentication method are supported for bulk import.
+
+[IMPORTANT]
+====
+Bulk import *stops* your database and *overwrites* any existing data.
+====
+
+Once you confirm the operation with *Run*, you are taken to the *Import jobs* tab, where you can see the status of the import, and once it's started, a progress bar.
+The import is done in batches and can be stopped at any time from the *[...]* menu on the import job.
+
+When the import stops, whether because it is complete or because it was cancelled, you can view a summary from the *[...]* menu.
 The summary contains information about the imported nodes and relationships, including time elapsed, the file size, the number of properties etc.
-The results summary also allows you to see the Cypher statement used to load a particular file.
-It is not advisable to copy and paste these statements, but seeing them can provide valuable insight into how constraints are created and how load statements are constructed.
+// The results summary also allows you to see the Cypher statement used to load a particular file.
+// It is not advisable to copy and paste these statements, but seeing them can provide valuable insight into how constraints are created and how load statements are constructed.
 
-For nodes, there are two statements, a _key statement_ and a _load statement_.
-The key statement is concerned with creating a constraint to ensure the uniqueness of the nodes.
-The load statement creates nodes for every item in the mapped file and adds the assigned properties from the data model.
+// For nodes, there are two statements, a _key statement_ and a _load statement_.
+// The key statement is concerned with creating a constraint to ensure the uniqueness of the nodes.
+// The load statement creates nodes for every item in the mapped file and adds the assigned properties from the data model.
 
-For relationships, there is only a load statement.
-It finds the start (source) and end (target) nodes and creates a relationship between them and sets the assigned (if any) properties to the relationship.
+// For relationships, there is only a load statement.
+// It finds the start (source) and end (target) nodes and creates a relationship between them and sets the assigned (if any) properties to the relationship.
 
 [[rerun-import]]
 ==  Re-run the import
