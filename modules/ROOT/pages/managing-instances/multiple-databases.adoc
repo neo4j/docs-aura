@@ -11,8 +11,33 @@ Each instance has its own compute and storage and the separate databases run wit
 Creating and removing databases is faster than managing separate instances.
 And, you can scale within the same instance, reducing administrative overhead.
 
-Billing for multiple database enabled instances is the same as for single database instances. 
+Billing for instances with multiple databases enabled is the same as for single database instances.
 Usage is charged at your standard AuraDB GB-hour rate, regardless of the number of databases.
+
+== User and system databases
+
+An instance contains a system database and a default user database named `neo4j`. 
+The `system` database stores RBAC and credentials. 
+User databases store graph data. 
+When you enable multiple databases, you can add more user databases alongside `neo4j`.
+
+.Database selector for an instance with multiple databases
+[.shadow]
+image::multidb/multidb-neo4j-system.png[Database selector in a multiple database instance]
+
+[cols="1,3", options="header"]
+|===
+| Database in the screenshot | What it is
+
+| `neo4j`
+| The default *user database*; stores graph data.
+
+| `one`, `two`, `three`
+| Additional *user databases*; also store graph data.
+
+| `system`
+| The *system database*; stores RBAC and credentials.
+|===
 
 == Limits (RAM and maximum databases)
 
@@ -59,7 +84,7 @@ These limits are the maximum number of databases you can create, choose an insta
 
 Each project can have up to 20 multiple database enabled instances by default. 
 This default applies to both AuraDB Business Critical and Virtual Dedicated Cloud, and helps keep performance and provisioning consistent as usage grows. 
-If you need more, contact Support with your project, region, and the number of databases you expect to run, and we will assess the request.
+If you need more, contact Support with your project, region, and the number of databases you expect to run, and your request will be assessed.
 
 == Managing databases
 
@@ -72,10 +97,10 @@ All endpoints below now require your Organization ID and Project ID in the path,
 
 Standard guidance for creating API credentials applies, see xref:api/overview.adoc[Aura API -> Overview].
 
-MultiDB uses the beta version of the Aura API.
+Multiple databases use the beta version of the Aura API.
 Use link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[https://api.neo4j.io/v2beta1] as the base URL.
 
-=== Create a multi-database instance
+=== Create a multiple database instance
 
 [IMPORTANT]
 ====
@@ -108,7 +133,7 @@ curl -X POST "https://api.neo4j.io/v2beta1/organizations/$ORG_ID/projects/$PROJE
     "region": "europe-west1",
     "memory": "4GB",
     "storage": "8GB",
-    "name": "mymultidbtestinstance",
+    "name": "northwindinstance",
     "type": "business-critical",
     "cloud_provider": "gcp",
     "multi_database": true
@@ -124,7 +149,7 @@ curl -X POST "https://api.neo4j.io/v2beta1/organizations/$ORG_ID/projects/$PROJE
 Databases cannot be created using Cypher database management commands, only via API and Aura console.
 ====
 
-When a multi-database enabled instance is created, a default `neo4j` database is created automatically.
+When an instance with multiple databases enabled is created, a default user database named `neo4j` is also created automatically.
 It is not possible to delete this database.
 Databases contain a name and an automatically generated id.
 
@@ -211,7 +236,7 @@ DELETE /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databa
 
 == Connecting applications
 
-When connecting to a multi-database instance from an external client, specify the `database name` for your session or query. 
+When connecting to a multiple database instance from an external client, specify the `database name` for your session or query. 
 The database name identifies which database to access. 
 If no database name is provided, queries run against the default `neo4j` database. 
 This applies to drivers, the Query API, and other external sources.
@@ -233,7 +258,7 @@ There are some things to consider when working with multiple databases:
 
 [NOTE]
 ====
-Updates about supported preview features will be added to link:https://neo4j-aura.canny.io/changelog[Canny].
+Updates about supported features will be added to link:https://neo4j-aura.canny.io/changelog[Canny].
 ====
 
 
