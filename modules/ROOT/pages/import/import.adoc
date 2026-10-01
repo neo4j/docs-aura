@@ -3,12 +3,12 @@
 = Run the import
 
 Once the files are provided, the data model complete, and all elements mapped, the import can be run.
-However, you can _preview_ your data at any time and make sure that everything is mapped the way you expect before you run the actual import.
+However, if you are streaming *local files*, you can preview your data and make sure that everything is mapped the way you expect before you run the actual import.
 
 [[preview]]
 == Preview
 
-The preview button is located next to the _Run import_ button and unlike running the import, the preview does *not* require an active connection.
+The preview button is located next to the *Run import* button and unlike running the import, the preview does *not* require an active connection.
 
 image::dropdown.png[width=300]
 
@@ -20,11 +20,11 @@ Since the preview does not actually import any data, it can be run iteratively u
 
 You can preview **all** or **selected** elements in your data.
 If your model is particularly complex, it can be beneficial to preview only parts of the data.
-To use this feature, select the parts of your model that you want to preview and _Preview selected_ from the dropdown.
+To use this feature, select the parts of your model that you want to preview and *Preview selected* from the dropdown.
 
-The preview shows a sample of either all or selected data that is mapped _correctly_ in the model.
+The preview shows a sample of either all or selected data that is mapped *correctly* in the model.
 Unlike the actual import, the preview can be run regardless of the completeness of the mapping.
-If any element is missing the green checkmark in the model, it will _not_ be included in the preview, but the preview can still be run.
+If any element is missing the green checkmark in the model, it will *not* be included in the preview, but the preview can still be run.
 
 [[run-import]]
 == Run the import
@@ -52,6 +52,7 @@ Bulk import *stops* your database and *overwrites* any existing data.
 ====
 
 Once you confirm the operation with *Run*, you are taken to the *Import jobs* tab, where you can see the status of the import, and once it's started, a progress bar.
+Note that bulk import does not show the progress bar. only the status.
 The import is done in batches and can be stopped at any time from the *[...]* menu on the import job.
 
 When the import stops, whether because it is complete or because it was cancelled, you can view a summary from the *[...]* menu.
@@ -69,10 +70,12 @@ The summary contains information about the imported nodes and relationships, inc
 [[rerun-import]]
 ==  Re-run the import
 
-The import process is idempotent since the `LOAD` statements use `MERGE` on ID.
+The *online import* process is idempotent since the `LOAD` statements use `MERGE` on ID.
 This means that if you run the import again, only new data is imported and no existing data is modified nor overwritten.
+Keep in mind that this is *not* the case for *bulk import*, where data is *overwritten* if you run the import again.
+
 Depending on the size of your data, re-running the import can take some time if you import the whole database again.
 To optimize this process, you can separate the new/amended data from the original and point Importer to the data source that contains the changes.
 This way, Importer doesn't have to parse data that is not going to be imported.
 
-Re-running the import works the same regardless of data source.
+Re-running the online import works the same regardless of data source.
