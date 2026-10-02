@@ -97,8 +97,8 @@ To create an SSO Configuration, either a Discovery URI or a combination of Issue
 
 . Select a *Connection method*:
 +
-* *Brokered*: Aura connects to your identity provider on your behalf. This method requires a client secret and can be used for Aura console (organization) and instance login.
-* *Direct*: Your instances connect to your identity provider directly, with no client secret. Only available for instance login.
+* *Brokered*: Aura connects to your identity provider on your behalf. This method requires a client secret and can be used for Aura console (organization) and instance login. During login, the IdP returns an ID token to Aura.
+* *Direct*: Your instances connect to your identity provider directly, with no client secret. Only available for instance login. During login, the IdP returns an access token to the instance.
 +
 The connection method cannot be changed after you create the SSO configuration.
 
@@ -108,7 +108,7 @@ The connection method cannot be changed after you create the SSO configuration.
 Entering the Discovery URI pre-fills the fields.
 If this is not known these fields can be completed manually.
 
-. If you have selected a *Direct* connection method, enter an *Audience*. The audience is required and must be a URL.
+. If you have selected a *Direct* connection method, enter an *Audience*.
 
 === Custom configuration settings (optional)
 
