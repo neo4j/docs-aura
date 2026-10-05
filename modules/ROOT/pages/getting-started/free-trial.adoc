@@ -1,0 +1,102 @@
+= Free trial
+:description: This page details the free trial in Neo4j Aura, how to set it up and what is included.
+
+The Aura free trial applies to either *AuraDB Professional* or *AuraDB Business Critical* and gives you access to xref:graph-analytics/index.adoc[Graph Analytics in Aura], xref:aura-agent.adoc[Aura Agent], link:https://neo4j.com/docs/virtual-graph/[Virtual Graph], and other products and features.
+The free trial grants you $150 in credits, valid for 14 days.
+Use the trial to explore the platform, prototype your application, and plan your workload for production.
+
+== Get started with the free trial
+
+. Create a link:https://console.neo4j.io/[Neo4j Aura] account
+. Complete the sign-up process, you will be prompted to start a 14-day free trial.
+Alternatively, you can start a free trial from the link:https://console.neo4j.io/instances/create[Instances page].
+
+Your free trial begins once the instance is created.
+
+== What is included in the free trial
+
+Your free trial includes:
+
+* 14 days and $150 in Aura credits, valid from the start of your trial.
+* *AuraDB Professional*: a production-grade, fully-managed graph database.
+* *AuraDB Business Critical*: high availability with multi-AZ architecture and 99.95% uptime SLA.
+* *Aura Graph Analytics*: run 65+ graph algorithms directly on your data.
+* Full access to all other Aura platform features, within the <<trial-limits>>.
+
+Your trial ends either after 14 days or when your $150 credits are fully consumed.
+You can check your remaining balance at any time in the link:https://console.neo4j.io/billing[Aura Billing page].
+
+
+[[trial-limits]]
+== Trial limits
+
+To prevent accidental overuse, the following limits are in place during the free trial:
+
+* AuraDB Professional/Business Critical:
+** Maximum number of *running* instances: 1
+** Maximum instance size: 4GB memory
+
+* Aura Graph Analytics
+** Maximum size: 8GB memory
+** Maximum concurrent sessions: 3
+
+* Aura Agent
+** Maximum number of external agents: 1
+
+* Virtual Graphs
+** Maximum instance size: 4GB memory
+** Maximum number of running instances: 1
+
+== Extend your trial
+
+If you need more time to evaluate Aura, you can extend your trial directly from teh Aura console.
+
+To extend your trial:
+
+. Log in to the link:https://console.neo4j.io/[Aura console]
+. Select *Extend trial* from the header and enter your credit card details.
+
+Your trial is extended by *seven additional days* and you receive an additional *$75 in Aura credits*.
+Your credit card will *not* be charged for any usage until your extended trial period ends or your remaining credits are consumed, whichever comes first.
+After that, your account automatically converts to <<pay-as-you-go>> billing.
+
+== Continue using Aura after you trial
+
+When you free trial ends, you can continue using Neo4j Aura in the following ways:
+
+[[pay-as-you-go]]
+=== Pay-as-you-go option
+
+The easiest way to continue to use Aura is to pay-as-you-go (PAYG).
+You are charged for active consumption based on the products you have deployed.
+Pricing details can be found at the link:https://neo4j.com/pricing/[Neo4j Pricing page].
+
+There are two ways to set up PAYG:
+
+* *Enter a credit card* in the link:https://console.neo4j.io/[Aura console].
+* *Subscribe to Neo4j via cloud marketplaces*.
+All marketplace listings are PAYG and allow you to consolidate Neo4j billing with your existing cloud spend, including any committed spend programs (such as AWS EDPs, Azure MACCs, or GCP CUDs):
+** link:https://aws.amazon.com/marketplace/pp/prodview-xd42uzj2v7dae[AWS Marketplace]
+** link:https://portal.azure.com/#view/Microsoft_Azure_Marketplace/GalleryItemDetailsBladeNopdl/id/neo4j.neo4j-aura[Azure Marketplace]
+** link:https://console.cloud.google.com/marketplace/product/neo4j-mp-public/neo4j-aura[GCP Marketplace]
+
+=== Prepaid option
+
+If you prefer predictable costs or have enterprise procurement requirements, contact the link:https://neo4j.com/contact-us/[Neo4j Sales team] to discuss a prepaid commitment plan.
+
+=== Continue with AuraDB Free
+
+If you are not ready to move to a paid plan, you can continue using AuraDB Free instead.
+AuraDB Free is a good starting point if you want to learn Cypher, follow tutorials, or explore graph concepts.
+The Free tier is available indefinitely, but has limitations compared to the paid plans.
+See the link:https://neo4j.com/pricing/[Neo4j Pricing page] for details.
+
+== Get help
+
+If you have questions during your trial, the following resources are available:
+
+* link:https://support.neo4j.com/[Support] - submit a support ticket for technical issues
+* xref:index.adoc[Documentation] - The full Neo4j Aura documentation
+* link:https://graphacademy.neo4j.com/[GraphAcademy] - Free online courses and certifications - start with Neo4j Fundamentals
+* link:https://community.neo4j.com/[Community forums] - Ask questions and get answers from the Neo4j community
+* link:https://discord.com/invite/neo4j[ Developer Discord] - Chat with Neo4j developers and community members in real time
