@@ -4,13 +4,13 @@ label:AuraDB-Business-Critical[]
 
 [IMPORTANT]
 ====
-This preview feature is governed by the link:https://neo4j.com/legal-terms/aura-feature-specific-terms[Experimental Service Terms] in your customer agreement with Neo4j. Updates about supported regions will be added to link:https://neo4j-aura.canny.io/changelog[Canny]
+This preview feature is governed by the link:https://neo4j.com/legal-terms/aura-feature-specific-terms[Experimental Service Terms] in your customer agreement with Neo4j. Updates about supported regions will be added to link:https://neo4j-aura.canny.io/changelog[Canny] and this documentation.
 ====
 
 AuraDB Business Critical supports Private Endpoints, allowing authorised users to establish a private, secure connection for direct access traffic between VPCs; typically an application VPC and the VPC where Aura instances are running. 
 This connection utilises the AWS PrivateLink feature, which ensures that scoped traffic traverses the cloud provider backbone network and is not exposed to the public internet when properly configured. 
 
-=== Business Critical & Virtual Dedicated Cloud differences
+== Business Critical & Virtual Dedicated Cloud differences
 
 With AuraDB Business Critical, at the project-level you assign private endpoints to individual instances. 
 It applies to the entire instance, including all databases in a multi-database instance.
@@ -18,7 +18,7 @@ It applies to the entire instance, including all databases in a multi-database i
 Instances within the same project can therefore use different traffic configurations. 
 This is a fundamental difference from the AuraDB Virtual Dedicated Cloud (VDC) feature where PrivateLink applies to every instance in the configured region.
 
-=== Private connection URI
+== Private connection URI
 
 Instances using Private Endpoints in AuraDB Business Critical get assigned a separate, private connection URI in the following format. 
 This provides a simple mechanism for ensuring that direct traffic is using the private connection.
@@ -29,7 +29,7 @@ This provides a simple mechanism for ensuring that direct traffic is using the p
 .Example
 `1q2w3e4r.pe.auradb.s-eu-west-1.neo4j.io`
 
-=== Regions
+== Regions
 
 At launch, private endpoints are available only for AWS in the following regions. 
 This will be expanded to include all regions where AuraDB Business Critical is available.
@@ -47,18 +47,15 @@ To avoid disrupting existing connections, direct public access remains enabled u
 
 Each instance can use one of the following traffic modes for governing direct traffic routing:
 
-Public::
-Connections use public access.
+* *Public*: Connections use public access.
 
-Hybrid::
-Direct connections can use public or private access. 
-* The private connection uses the private URI, and indirect access tools remain available. 
-* A shield icon appears with the tooltip _Private connection with public access enabled_. 
-* To allow direct connections only through the private endpoint, disable direct public access.
+* *Hybrid*: Direct connections can use public or private access. 
 
-Private-only::
-Direct connections must use private access. 
-Indirect access tools are unavailable.
+** The private connection uses the private URI, and indirect access tools remain available. 
+** A shield icon appears with the tooltip _Private connection with public access enabled_. 
+** To allow direct connections only through the private endpoint, disable direct public access.
+
+* *Private-only*: Direct connections must use private access. Indirect access tools are unavailable.
 
 == Access types
 
@@ -72,14 +69,17 @@ The instance cannot be reached through its public URI, regardless of the credent
 
 === Indirect access
 
-Tools with indirect access are not included in the scope of PrivateLink and their connection paths cannot be controlled using this feature. 
-Indirect tools require public access. 
-These connections will persist when the traffic mode for an instance has been set to private-only. 
-These tools connect over the public internet, encrypted with TLS 1.3, and can be secured with IP filtering where supported.
+Tools with indirect access are not within the scope of PrivateLink. 
+Their connection paths cannot be controlled through this feature. 
+These tools connect using public access, encrypted with TLS 1.3, and can be secured with IP filtering where supported. 
+
+Private-only mode does not prevent indirect tools from attempting to connect. 
+Depending on the tool, they may remain available or become unavailable. 
+Do not use indirect-access tools if you need to ensure that all access to your instance uses private connectivity.
 
 [IMPORTANT]
 ====
-Users wanting to completely prevent data from being accessible via public internet (including direct and indirect access patterns) should not use the indirect tools listed in the table below.
+If you need to prevent all data access over the public internet, including both direct and indirect access, do not use the indirect tools listed in the following table.
 ====
 
 [cols="3,1,2",options="header"]
@@ -142,7 +142,7 @@ Setting up a private endpoint requires one of the following roles:
 * Sign in to the Aura console and the AWS Management Console.
 * Ensure that the AWS VPC and the Aura instance are in the same region.
 
-=== Create a private endpoint (Aura)
+=== Create a private endpoint 
 
 . In the Aura console, select *Project settings* from the sidebar.
 . Select *Security & Networking* > *Private Endpoints*.
@@ -152,7 +152,7 @@ Setting up a private endpoint requires one of the following roles:
 . Wait for Aura to generate the *endpoint service name*.
 . Copy the *Endpoint service name*.
 
-=== Create a VPC endpoint (AWS)
+=== Create a VPC endpoint 
 
 . In the AWS Management Console, go to *VPC* and select *Endpoints*.
 . Select *Create endpoint*.
@@ -170,11 +170,11 @@ Setting up a private endpoint requires one of the following roles:
 === Connect the VPC endpoint to Aura
 
 . In the Aura console, select *Add endpoint*.
-. Paste the VPC endpoint ID copied from AWS, for example, vpce-012345abcdefg0123. Enter a display name.
+. Paste the VPC endpoint ID copied from AWS, for example, `vpce-012345abcdefg0123`. Enter a display name.
 . Select *Add endpoint* and wait for Aura to verify the connection (it could take up to 60 seconds).
 . The VPC and endpoint name appear under *Endpoints*.
 
-=== Assign the private endpoint to an instance (Aura)
+=== Assign the private endpoint to an instance 
 
 [NOTE]
 ====
@@ -186,24 +186,25 @@ The instance must be running. You cannot edit its private endpoint configuration
 . For *Assigned endpoints*, select the private endpoint.
 . Keep *Allow public traffic* selected to maintain public access to the instance.
 . Select *Save*.
-. The instance is now running in hybrid mode (still allowing public internet access). 
 
 The instance now operates in hybrid mode, with public access still enabled.
 
-=== Test the private connection
+=== Test the private connection 
 
-. To validate that tools and applications that are configured to use the private URI have access, go to *Instance details*, copy the *Private URI*.
+To validate that tools and applications that are configured to use the private URI have access:
+
+. In the Aura console, go to *Instance details*, copy the *Private URI*.
 . Take this Private URI and put it into a connection application string to force traffic over the private connection.
 . Connect to the instance using its private URI (for example, with an application driver).
-. Confirm that your applications and other direct connections remain connected.
+. Confirm that your applications and other direct connections configured with the private URI remain connected.
 . Test your usual database operations, including reading and writing data.
 
-=== Disable public access
+=== Disable public access 
 
 . After testing the private connection, return to the Aura console and go to *Project settings* > *Private Endpoints*.
-. Select the settings cog for the private endpoint configuration *in the relevant region.*
+. Select the *settings cog* for the private endpoint configuration _in the relevant region_.
 . Select *Configure instances*.
 . Clear *Allow public traffic*.
 
-After public access is disabled, an X appears next to Allow public traffic. 
+After public access is disabled, an X appears next to *Allow public traffic*. 
 Connections are then forced to use the private endpoint.
