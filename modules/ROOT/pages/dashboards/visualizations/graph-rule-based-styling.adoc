@@ -2,22 +2,21 @@
 
 Use rule-based styling to change the appearance of nodes and relationships.
  
-Style all matching nodes or relationships by stating what label the style should be applied on.
-Or, use a property and condition to style only a subset based on their properties.
+Style all matching nodes or relationships by selecting a label or relationship type.
+Or, use a property and condition to style only a matching subset.
 
 To add a rule, open the graph visualization's *Styling* settings:
 
 * Select the *Nodes* or *Relationships* tab.
 * Select *Add*.
 * For nodes choose the label, and for relationships choose the type, then configure the rules.
-* (Optional) You can add a condition to any rule to apply styling only to matching nodes or relationships. 
-* Select *Apply* to see the change in the graph.
+* (Optional) Select a property and condition to apply the rule only to matching nodes or relationships.
+* Select *Apply* and *Add* to see the change in the graph. (Select *Apply* to apply the rule to the graph. You could only select *Add* to add the rule for later without applying it.)
 * Select *Save* on the card to save your changes.
 
 When multiple rules match the same node or relationship, the rules are evaluated from top to bottom.
 Drag rules to change their order.
 
-You can add a condition to a rule so that the styling applies only to nodes or relationships whose selected property matches that condition. 
 The available conditions depend on the property type that is selected:
 
 Numeric properties::
@@ -66,7 +65,7 @@ MATCH (s:Supplier)-[r:SUPPLIES]->(p:Product)
 RETURN s, r, p
 ----
 
-First, create a base style for all `Product` nodes. 
+Create a base style for all `Product` nodes. 
 
 Select the label *Product* and leave *Property* and *Condition* empty, select *Color*, and choose a single red color.
 
@@ -75,9 +74,9 @@ image::dashboards/rule-based-styling/red-product-nodes.png[]
 
 === Color nodes by condition
 
-Then, create a second rule for `Product` nodes. Select the `unitsInStock` property, set the condition to *greater than*, and enter `10`. Set the color to black.
+Create a rule for `Product` nodes to color products with more than 10 units in stock black.
 
-Place this rule below the red base-style rule. Products with 10 or more units in stock are black; all other products remain red.
+Select the `unitsInStock` property, set the condition to *greater than*, enter `10`, and set the color to black.
 
 .Black product nodes
 image::dashboards/rule-based-styling/black-product-nodes.png[]
@@ -198,7 +197,7 @@ In this example, nodes with IDs from 1 to 10 use a color range: green for the mi
 The minimum and maximum values are automatically set from the query results.
 You could also add a midpoint color to create a three-color range.
 
-.Red-to-green color range
+.Green-to-red color range
 image::dashboards/rule-based-styling/red-to-green-arc.png[]
 
 === Size nodes by range
@@ -218,11 +217,19 @@ image::dashboards/rule-based-styling/size-red-to-green-arc.png[]
 
 === Color relationships by condition
 
+.Northwind order and product graph
+[source,cypher]
+----
+MATCH (o:Order)-[ordered:ORDERS]->(p:Product)
+RETURN o, ordered, p
+LIMIT 10
+----
+
 On the *Relationships* tab, create a rule for `ORDERS` relationships. 
-Select the `discount` property, set the condition to *does not equal* with a value of `0`, then set the relationship color to black.
+Select the `discount` property, set the condition to *does not equal* with a value of `0`, then set the relationship color to red.
 
 [.shadow]
-.Northwind orders with discounts shown as black arrows
+.Orders with discounts shown as red arrows
 image::dashboards/rule-based-styling/graph-orders-relationship.png[]
 
 == Show order quantities
