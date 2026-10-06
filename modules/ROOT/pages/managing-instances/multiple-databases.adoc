@@ -1,4 +1,4 @@
-= Multiple databases 
+= Multiple databases
 :description: This page describes multiple databases within an Aura instance and how to create and connect to a database.
 
 label:AuraDB-Business-Critical[]
@@ -16,9 +16,9 @@ Usage is charged at your standard AuraDB GB-hour rate, regardless of the number 
 
 == User and system databases
 
-An instance contains a `system` database and a default user database named `neo4j`. 
-The `system` database stores RBAC and credentials. 
-User databases store graph data. 
+An instance contains a `system` database and a default user database named `neo4j`.
+The `system` database stores RBAC and credentials.
+User databases store graph data.
 When you enable multiple databases, you can add more user databases alongside `neo4j`.
 
 .Database selector for an instance with multiple databases
@@ -38,15 +38,15 @@ image::multidb/multidb-neo4j-system.png[Database selector in a multiple database
 
 == Limits (RAM and maximum databases)
 
-All databases share the instance's compute and memory resources. 
-By default, up to 5 databases per GB of RAM can be provisioned. 
+All databases share the instance's compute and memory resources.
+By default, up to 5 databases per GB of RAM can be provisioned.
 The maximum number of databases depends on the memory size (RAM) of the instance, with an upper limit of 100 for AuraDB Business Critical and 250 for AuraDB Virtual Dedicated Cloud.
 
 [cols="1,1,1", options="header"]
 |===
-| Available instance memory | Maximum databases + 
-AuraDB Business Critical 
-| Maximum databases + 
+| Available instance memory | Maximum databases +
+AuraDB Business Critical
+| Maximum databases +
 AuraDB Virtual Dedicated Cloud
 
 | 2GB
@@ -79,8 +79,8 @@ AuraDB Virtual Dedicated Cloud
 These limits are the maximum number of databases you can create, choose an instance size that fits your database count and workload, and scale up if you see resource pressure.
 ====
 
-Each project can have up to 20 multiple database enabled instances by default. 
-This default applies to both AuraDB Business Critical and Virtual Dedicated Cloud, and helps keep performance and provisioning consistent as usage grows. 
+Each project can have up to 20 multiple database enabled instances by default.
+This default applies to both AuraDB Business Critical and Virtual Dedicated Cloud, and helps keep performance and provisioning consistent as usage grows.
 If you need more, contact Support with your project, region, and the number of databases you expect to run, and your request will be assessed.
 
 == Managing databases
@@ -233,9 +233,9 @@ DELETE /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databa
 
 == Connecting applications
 
-When connecting to a multiple database instance from an external client, specify the `database name` for your session or query. 
-The database name identifies which database to access. 
-If no database name is provided, queries run against the default `neo4j` database. 
+When connecting to a multiple database instance from an external client, specify the `database name` for your session or query.
+The database name identifies which database to access.
+If no database name is provided, queries run against the default `neo4j` database.
 This applies to drivers, the Query API, and other external sources.
 
 == Supported features
@@ -246,7 +246,7 @@ There are some things to consider when working with multiple databases:
 * xref:managing-instances/backup-restore-export.adoc#multi-db-instance-restore[Backup, export, and restore]: Either back up and restore databases individually or restore the whole instance to a restoration point.
 // or restore the whole instance.
 * xref:explore/introduction.adoc[Bloom and Query]: When connecting, select the target database using the connection bar.
-* xref:metrics/view-metrics.adoc#_multi_database_instances[Metrics] and xref:logging/query-log-analyzer.adoc[Logs]: Switch between databases using the Database dropdown in Metrics and see Database specific Query logs. Includes xref:metrics/metrics-integration/introduction.adoc[Metrics Integration] and xref:logging/log-forwarding.adoc[Log Forwarding].
+* xref:metrics/view-metrics.adoc#multi-db-instances[Metrics] and xref:logging/query-log-analyzer.adoc[Logs]: Switch between databases using the Database dropdown in Metrics and see Database specific Query logs. Includes xref:metrics/metrics-integration/introduction.adoc[Metrics Integration] and xref:logging/log-forwarding.adoc[Log Forwarding].
 * link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[Aura API]: See xref:managing-instances/multiple-databases.adoc#_api_requirements[API requirements]
 * xref:import/import.adoc#run-import[Import]: Select the instance and the target database when running an import.
 * xref:managing-instances/backup-restore-export.adoc#restore-backup[Restore]: Restore a database using Database Restore or drag and drop.
