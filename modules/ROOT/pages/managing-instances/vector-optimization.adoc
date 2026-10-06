@@ -42,51 +42,64 @@ To learn more about how to use vector indexes, see link:https://neo4j.com/docs/c
 The vector-optimized configuration is intended to support large vector workloads while providing consistent vector search performance.
 The table provides a safe maximum for logical full-precision vector data that can be searched with rescored binary for each instance size, and the equivalent number of 768-dimensional `FLOAT32` vectors.
 Logical full-precision vector data is calculated as `vector count x dimensions x 4 bytes`; it describes dataset capacity rather than the amount of memory occupied by the binary search representation.
+
+
 Select the largest available storage size to take full advantage of rescored binary vector search.
 
 [NOTE]
 ====
 The estimates assume one vector index of 768-dimensional `FLOAT32` vectors with binary quantization, rescoring, the default `vector.hnsw.m` value of `16`, and no additional properties for in-index filtering.
 Actual capacity also depends on the rest of the graph, other indexes, and the query workload.
+Allow additional capacity for graph data and ongoing writes.
+Query performance depends on concurrency and may be lower while the vector index warms up.
 ====
 
-.Rescored binary vector capacity
-[options="header", cols="1,1,2"]
+.Estimated rescored binary vector capacity
+[options="header", cols="1,1,2,2"]
 |===
-|Aura instance size (GB)
+|Aura instance memory (GB)
+|Required configured storage (GB)
 |Full-precision vector data (GB)
 |Million vectors (768 dimensions)
 
 |4
-|11.3
-|3.7
+|64
+|24.6
+|8
 
 |8
-|22.7
-|7.4
+|128
+|49.2
+|16
 
 |16
-|45.4
-|14.8
+|256
+|98.3
+|32
 
 |32
-|90.9
-|29.6
+|512
+|196.6
+|64
 
 |64
-|181.9
-|59.2
+|1,024
+|393.2
+|128
 
 |128
-|363.8
-|118.4
+|2,048
+|786.4
+|256
 
 |256
-|727.5
-|236.8
+|4,096
+|1,572.9
+|512
 
 |512
-|1,455
-|473.6
+|5,120
+|1,966.1
+|640
 
 |===
