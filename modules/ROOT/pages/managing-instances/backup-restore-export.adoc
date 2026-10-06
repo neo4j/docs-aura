@@ -19,6 +19,10 @@ You can find the *Snapshots* tab via *Inspect* in the more menu *[...]* on the i
 There are different kinds of snapshots taken at different intervals with different life cycles depending on your tier.
 See <<snapshot-details>> for more information.
 
+On instances with multiple user databases, *backups* of individual databases are listed in the *Backups* tab, which you find either directly in the same *[...]* menu or via *Inspect*.
+The dropdown allows you to select which user database to view.
+The same schedule as snapshots, as described above, applies to backups for the databases within an instance with multiple user databases.
+If you use the new *Instances explorer*, see xref:managing-instances/instances-explorer.adoc#aura-instances[Instances explorer] for details on where to find and take backups with this view.
 
 Aura stores the data securely in encrypted cloud storage buckets.
 Backups are stored in the same Cloud Service Provider and region as the instance they are associated with.
@@ -42,10 +46,12 @@ See <<snapshot-details>> further on for information about frequency, restorabili
 An *On Demand* snapshot is a snapshot that you manually trigger with the *Take snapshot* button.
 This type of snapshot is the only snapshot available for Free instances.
 
-For instances with multiple user databases, you can take manual backups in a similar fashion, using the *Take backup* button.
+For instances with multiple user databases, you can take manual backups in a similar fashion using the *Take backup* button.
 
 Both actions are performed from the *Snapshots* or *Backups* tab in the instance details.
 If you have multiple user databases, you select which database to back up from a dropdown.
+
+If you are using the new *Instances explorer*, see xref:managing-instances/instances-explorer.adoc#aura-instances[Instances explorer] for details on how to take database backups for instances with multiple user databases.
 
 == Snapshot/backup status
 
@@ -221,23 +227,25 @@ This is done from the *Databases* tab.
 Use the *[...]* menu on the database you want to restore, and select *Restore from file*.
 
 [[multi-db-instance-restore]]
-== Multi-database instance restore
+== Multiple database instance restore
 
 If your instance contains multiple databases, backups are managed at the database level rather than the instance level.
-As mentioned in the introduction, the concept of a snapshot cannot be applied to a multi-database instance.
-However, you can create a *restoration point* that triggers backups of all the databases in the instance.
-
-When you want to restore the instance to a previous state, you select a date and a time that you want to restore to and the available individual backups that match the specified timestamp are listed.
-You can select to *restore* or *clear* each individual user database, i.e. *not* the `system` database.
-
-
-From *Inspect > Backups* > use the *Select database* dropdown to select a database.
-All snapshot, restore, and export actions apply to the selected database.
+As mentioned in the introduction, the concept of a snapshot cannot be applied to a multiple database instance.
+However, you can create a *restore point* that triggers backups of all the databases in the instance.
+This is done from the *Backups* tab in the *Instance details* (available from the *[...]* menu), using the *Create Restore Point* button.
 
 [.shadow]
-.Multi-database backups
-image::multidb/multidb-backups.png[]
+.Multiple database backups
+image::multidb-backups.png[]
 
+To restore the instance to a previous state, navigate to *Restore Instance* from the *[...]* menu on the instance card.
+Select a date and a time that you want to restore to and the available individual backups that match the specified timestamp are listed.
+If a database has no available backup taken for the time selected, it will be cleared, so verify the *Action* in the table before restoring.
+Restoring an instance will *overwrite* existing data and you are therefore asked to confirm your intention before proceeding.
+
+[.shadow]
+.Restoration point
+image::restore-instance.png[width=400]
 
 [[neo4j-admin-upload]]
 == Upload an existing Neo4j database
