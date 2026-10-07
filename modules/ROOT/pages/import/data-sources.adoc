@@ -199,6 +199,7 @@ This is an optional section and collapsed by default.
 The supported delimiters are  `,`, `;`, `|`, `` ``, `:`, `\t` where the last represents the tab character.
 If you do not provide any array/vector delimiter, you effectively opt out of the type and will not get any arrays or vectors recommended.
 
+*AWS S3 is supported for bulk import.*
 
 == Azure Blobs and Data Lake Storage
 
@@ -252,6 +253,7 @@ This is an optional section and collapsed by default.
 The supported delimiters are  `,`, `;`, `|`, `` ``, `:`, `\t`, `\n`, where the latter two represent the tab character and new line, respectively.
 If you do not provide any array/vector delimiter, you effectively opt out of the type and will not get any arrays or vectors recommended.
 
+*Azure Blobs and Data Lake Storage are supported for bulk import.*
 
 [[data-source-gcs]]
 == Google Cloud Storage
@@ -273,3 +275,5 @@ If you import _CSV_ files and they contain lists or vectors inside the cells, yo
 This is an optional section and collapsed by default.
 The supported delimiters are  `,`, `;`, `|`, `` ``, `:`, `\t`, `\n`, where the latter two represent the tab character and new line, respectively.
 If you do not provide any array/vector delimiter, you effectively opt out of the type and will not get any arrays or vectors recommended.
+
+*Google Cloud Storage is supported for bulk import.*
