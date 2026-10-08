@@ -1,9 +1,9 @@
 = Deployment health check
-:description: This page describes the health of a deployment & how to run a health check and interpret the results.
+:description: This page describes the deployment health check feature & how to run a health check and interpret the results.
 :min-version: 2026.09.0
 
 A health check diagnoses your self-managed deployment for symptoms of sub-optimal operation, configuration issues and capacity issues. It also suggests possible configuration
-changes to improve the deployment's performance and reliability.
+changes to improve the deployment's performance and reliability. A health check consists of a set of checkers that are used to detect conditions that are indicative of issues.
 
 Additionally, a health check can act as a self-service support tool, allowing you to diagnose and fix issues yourself before contacting support or opening a support case.
 
@@ -20,11 +20,11 @@ To run a health check, you need to have the following prerequisites:
 * Optional: `-Djdk.attach.allowAttachSelf=true` JVM option set on the Neo4j server.
 
 == How to run a deployment health check
-To run a health check, go to the *Health* tab on the deployment view page, or click the *Request new health check* button.
+To run a health check, go to the *Health* tab on the deployment view page and then click the *Request new health check* button.
 
-image::deployment-check/health-check-request-new.png[Request new health check]
+image::deployment-check/health-check-request-first.png[Request new health check]
 
-A request modal will appear, asking you to confirm the request.
+A request modal will appear to confirm the request.
 
 image::deployment-check/health-check-request-modal.png[Request new health check modal]
 
@@ -32,27 +32,21 @@ You can optionally attach a Support case ID to reference the health check in you
 
 image::deployment-check/health-check-request-modal-support-case.png[Request new health check modal with support case ID]
 
-Once the request is submitted, you can track the status of the health check in the *Health* tab's history table.
+Once the request is submitted, you can track the status of the health check.
 
-image::deployment-check/health-check-history.png[Health check history table]
+image::deployment-check/health-check-in-progress.png[Health check in progress]
 
-There are 2 ways to view the results of the health check:
-
-* Click the *Checkers* control at the top to view the results of the health check for each checker in the deployment.
+Once the health check is completed, you can view the results of the health check for each checker in the table.
 
 image::deployment-check/health-check-result-checkers.png[Health check results checkers]
 
-Clicking on a checker will open a details drawer with the results of the health check for that checker.
+You can view the summary of the results of a checker by selecting the checker from the table.
 
 image::deployment-check/health-check-checker-details-drawer.png[Health check results checker details]
 
-* Click the *Instances* control at the top to view the results of the health check for each instance in the deployment.
+You can also view the historical results of health checks for the deployment.
 
-image::deployment-check/health-check-result-instances.png[Health check results instances]
-
-Clicking on an instance will open a details accordion with the results of the health check for that instance.
-
-image::deployment-check/health-check-checker-details-accordion.png[Health check results checker details]
+image::deployment-check/health-check-history.png[Health check history table]
 
 [NOTE] 
 ====
@@ -60,24 +54,22 @@ Results are pre-filtered to show `Error` and `Warning` severity results only.
 
 Clearing the filter will show all results.
 
-You can search for specific checkers by name in the search bar.
-
-You can filter the results by severity or instance name.
+You can filter the results by severity or instance or checker name.
 ====
 
 == Interpreting the results
 
 Each checker verifies a specific aspect of the deployment's health.
 
-A checker's result has the following characteristics:
+A checker's result is categorized into the following:
 
-* **Severity:** The severity of the condition that was detected.
-* **Summary:** A summary of the checker's purpose and what it verifies.
-* **Explanation:** A link to an external documentation page that explains the condition and how to fix it.
-* **Suggested action:** A suggested action to take to fix the issue.
+* **Status:** The status and severity of the condition checked by the checker.
+* **Description:** A description of the condition checked by the checker.
+* **Summary:** A summary of the checker's findings.
+* **Explanation:** A link to an external documentation page that explains the condition and how to fix it if needed.
+* **Action:** A suggested action to take to fix the issue detected by the checker.
 
-
-== Checkers
+== List of checkers
 
 [cols="2,10", header, options="autowidth"]
 |===
@@ -112,5 +104,3 @@ Transaction & lock timeouts	Verifies dbms.transaction.timeout and dbms.lock.acqu
 == Request quota
 
 You can request up to 3 health checks per day.
-
-If you need to request more than 3 health checks, you can contact support to increase the quota.
