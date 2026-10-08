@@ -3,15 +3,16 @@
 :description: This page describes how to backup, export, and restore your data from a snapshot as well as using `neo4j admin` to upload data.
 :page-aliases: auradb/managing-databases/backup-restore-export.adoc, aurads/managing-databases/backup-restore-export.adoc, aurads/managing-databases/importing-data/import-db, auradb/importing/import-database
 
-The data in your single-database Aura instance can be backed up, exported, and restored using snapshots.
+The data in your Aura instance can be backed up, exported, and restored using snapshots or backups.
 For instances containing multiple databases, this is done on a per-database basis.
 However, you can *restore a whole instance*, as described in <<multi-db-instance-restore>> below.
 
-A *snapshot* is a copy of the data in an *instance* at a specific point in time.
-This includes the `system` database, which contains your RBAC and credentials.
+A *snapshot* is a copy of the data in a single-database *instance* at a specific point in time.
+This includes both the user database and the `system` database, which contains your RBAC and credentials.
 
-A *backup* is a copy of the data in a *database* at a specific point in time and a snapshot of an instance consists of the backups of both the user database as well as the `system` database.
-As such, the snapshot concept does *not* apply to instances with *multiple user databases*.
+The concept of a snapshot does not apply to instances with multiple user databases.
+As mentioned above, such instances use *backups* for *each database*, including the `system` database.
+A *backup* is a copy of the data in a *database* at a specific point in time.
 
 The *Snapshots* tab within an Aura instance card shows a list of available snapshots.
 You can find the *Snapshots* tab via *Inspect* in the more menu *[...]* on the instance card.
@@ -22,7 +23,7 @@ See <<snapshot-details>> for more information.
 On instances with multiple user databases, *backups* of individual databases are listed in the *Backups* tab, which you find either directly in the same *[...]* menu or via *Inspect*.
 The dropdown allows you to select which user database to view.
 The same schedule as snapshots, as described above, applies to backups for the databases within an instance with multiple user databases.
-If you use the new *Instances explorer*, see xref:managing-instances/instances-explorer.adoc#aura-instances[Instances explorer] for details on where to find and take backups with this view.
+If you use the new *Instances explorer*, see xref:managing-instances/instances-explorer.adoc#aura-instances[Instances explorer] for details on where to find and take, and restore backups with this view.
 
 Aura stores the data securely in encrypted cloud storage buckets.
 Backups are stored in the same Cloud Service Provider and region as the instance they are associated with.
@@ -136,7 +137,7 @@ It is not possible to restore multiple databases within an instance at the same 
 
 
 [[snapshot-details]]
-== Snapshot details
+== Snapshot/backup details
 
 [cols="^,^,^,^,^,^,^",options="header"]
 |===
@@ -245,7 +246,7 @@ If a database has no available backup taken for the time selected, it will be cl
 Restoring an instance will *overwrite* existing data and you are therefore asked to confirm your intention before proceeding.
 
 [.shadow]
-.Restoration point
+.Restore point
 image::restore-instance.png[width=400]
 
 [[neo4j-admin-upload]]
