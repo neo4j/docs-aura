@@ -263,6 +263,7 @@ This command does not work if you have a network access configuration setup that
 Keep in mind that the database you want to upload may run a different version of Neo4j than your Aura instance.
 Additionally, your Neo4j Aura instance must be accessible from the machine running `neo4j-admin`.
 Otherwise, the upload will fail with SSL errors.
+If you are uploading to an instance with multiple user databases, you need to specify which database to upload to, or else the content will be uploaded to the instance's default database.
 
 For details on how to use the `neo4j-admin database upload` command, along with a full list of options and version compatibility, see link:{neo4j-docs-base-uri}/operations-manual/current/tools/neo4j-admin/upload-to-aura/[Operations Manual → Upload to Neo4j Aura].
 
