@@ -244,7 +244,7 @@ An evaluation asks your agent a fixed set of test questions and scores each answ
 
 Use agent evaluation before you promote an agent to production, after you change its prompt or tools, or whenever you want to check for regressions before relying on an agent's answers again.
 
-You can access agent evaluation from the *[...]* menu next to an agent, using *Agent evaluation*.
+You can access agent evaluation from *Agent evaluations* in the left-hand menu, which lists every evaluation in your project, or from the *[...]* menu next to an agent, using *Agent evaluation*, which opens the same list filtered to that agent.
 
 === Evaluation datasets
 
@@ -267,6 +267,9 @@ Specify the tool's name and the input you expect the agent to pass to it.
 
 An evaluation dataset can hold up to 50 questions.
 
+You can also use *Import JSON* on the authoring screen to load questions from a JSON file, for example one exported from another dataset.
+The file is validated on import, and any problems are reported per question.
+
 [TIP]
 ====
 If you use an LLM to help you draft an evaluation dataset, give it your agent's exported JSON definition (see <<import-export-agent>>) alongside your prompt, not just a description of the use case.
@@ -276,16 +279,15 @@ An LLM working from a general description alone tends to invent tool calls that 
 
 ==== Manage an evaluation dataset
 
-The *Evaluation datasets* page lists every dataset in your project, with its description, question count, and when it was last updated.
+The *Evaluation datasets* page lists every dataset in your project, with its description, question count, and when it was created and last updated.
 Select a dataset to show its questions.
 
-You can edit a dataset's name and description at any time.
-The questions are permanently read-only once a dataset is saved.
-Changing a question after it has been used in an evaluation would change what that evaluation's scores actually mean.
-If you need to edit the questions, use *Create from this* from the *[...]* on the dataset to start a new, separate dataset seeded with a copy of the same name, description, and questions.
+You can edit a dataset's name, description, and questions at any time.
+Every time you save changed questions, a new version of the dataset is created, and each evaluation records which version it ran against, so a past evaluation's results always reflect the questions it actually used.
+If you want to leave the current questions untouched instead, use *Duplicate* from the dataset's *[...]* menu to create a separate dataset with the same description and questions, named "Copy of" the original (with a number appended if that name is taken).
 The copy is independent from the moment it's created: editing or deleting one dataset never affects the other.
 
-There is no dataset version history, so editing a dataset's name or description changes that one copy going forward, it doesn't keep older copies around.
+From the dataset's *[...]* menu you can also export or copy it as JSON, which you can import again when creating a dataset.
 
 ==== Delete an evaluation dataset
 
@@ -297,15 +299,18 @@ If an evaluation using the dataset is still queued or in progress, you can't del
 *Run evaluation* has two tabs.
 
 * *Dataset*: pick an existing dataset or create a new one, as described above.
+If you create the dataset here, running the evaluation saves it so you can reuse it later.
 * *Metrics*: select which metrics to score this evaluation on.
 
 *Latency* is always measured and can't be turned off.
-The other metrics, *Accuracy*, *Relevance*, *Grounding*, and *Tool trajectory*, are opt-in checkboxes; select any combination of them for the evaluation.
+The other metrics, *Accuracy*, *Relevance*, *Grounding*, and *Tool trajectory*, are all selected by default; uncheck any you don't want.
 See <<agent-evaluation-metrics>> for more information on each metric.
+
+If you start a run from the project-wide evaluation history, you first pick which agent to evaluate.
 
 Once you start the evaluation with *Run evaluation*, it executes in the background.
 You can navigate away from the page, and the evaluation keeps going.
-An evaluation moves through these statuses: *Queued*, *Running*, and then one of *Succeeded*, *Failed*, or *Cancelled*.
+An evaluation moves through these statuses: *Queued*, *Running*, and then one of *Completed*, *Failed*, or *Cancelled*.
 If you have an agent evaluation page open when an evaluation finishes, you get a notification with a link straight to its results.
 
 You can cancel an evaluation while it's still queued or running, from its row menu on the evaluation history page.
@@ -314,8 +319,15 @@ A cancelled evaluation keeps whatever results it collected before you stopped it
 
 === Evaluation history
 
-The evaluation history page lists every evaluation for this agent: when it ran, its status, which dataset it used, its progress, and its average score for each metric it was run with.
+The evaluation history page lists every evaluation in your project: when it ran, which agent and dataset it used, its status, its progress, and its average score for each metric it was run with.
 Open any row to see that evaluation's full results.
+
+Use the filters to narrow the list by agent, dataset, or status, or search it by text.
+Your filters are kept in the page URL, so you can share or bookmark a filtered view.
+Above the list, a summary row shows how many evaluations are in the project, how many completed or failed, and how many need attention.
+If the project has more than 500 evaluations, only the most recent 500 are shown; use the filters to find older ones.
+
+Use *Export JSON* to download the filtered list, for example to chart evaluation trends outside the console.
 
 To evaluate the agent again with the same dataset and metrics, use *Run again* from a past evaluation's row menu or from its results page.
 
@@ -324,11 +336,14 @@ To evaluate the agent again with the same dataset and metrics, use *Run again* f
 If you open an evaluation from the evaluation history page you can view its results, with two tabs: *Overview* and *Questions*.
 
 *Overview* shows the total number of questions, how long the evaluation took, the average latency, and one average score card for each metric you selected for the evaluation.
+Hover the info icon on a metric card to see what the metric measures.
 If the evaluation has a metric averaging below the warning threshold, you also see a short insight card naming the worst-performing metric, so you know where to look first.
 If the evaluation itself failed, was cancelled, or had failing questions, you instead see a status banner describing that instead of the insight card.
 
 *Questions* lists every question in the evaluation, with its test question, expected answer, the agent's actual answer, the expected tools, its latency, and a column for each metric you selected.
+Use *Export JSON* to download the questions with their scores.
 Open a question to see its full detail, including the expected and actual tool calls side by side, each with the input it was called with.
+In the question detail view you can move between questions with the previous and next arrows, and export a single question as JSON.
 When the agent's tool call returned a result, you can expand an *Output* section to see the raw result the tool returned.
 In the question detail view, you can also switch the agent's answer between rendered and raw text; the table itself always shows the rendered version.
 Hover over a metric's score to see the reason behind it.
