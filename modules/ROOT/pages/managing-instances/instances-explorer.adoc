@@ -21,16 +21,17 @@ You can filter on:
 
 This panel is also where you can create new Aura instances, connect self-managed instances, or create Virtual Graphs.
 
+[[aura-instances]]
 == Aura instances
 
 Selecting an instance from the list on the left displays its details in the main frame.
 The first tab is *Overview* and this corresponds to the equivalent tab when you *Inspect* from the instance card in the classic view.
 See xref:managing-instances/instance-details.adoc[Instance details] for a closer description.
 
-If an instance has *multiple databases* enabled, a *databases* tab contains a table of the existing databases.
+If an instance has *multiple databases* enabled, a *Databases* tab contains a table of the existing databases.
 You can create additional databases from this tab.
 See xref:managing-instances/multiple-databases.adoc#_create_databases[Create databases] for more information.
-If you select a database on a multi-database instance, its details and options for backups and restore can be navigated in the main frame.
+If you select a database on a multiple database instance, its details and options for backups and restore can be navigated in the main frame.
 
 Under the *Snapshots* tab, you find available snapshots, as described in xref:managing-instances/instance-details.adoc#_snapshots[Snapshots].
 Note that the *Snapshots* tab is *not available* for multi-database instances, where backups are handled on a per-database basis, as described above.
@@ -51,6 +52,9 @@ See xref:managing-instances/custom-endpoints.adoc[Custom endpoints] for more inf
 Note that the *Security* tab is *not available* for AuraDB Free instances.
 
 In the *Settings* tab, you can *rename* your instance, xref:managing-instances/instance-details.adoc#_restore_from_backup_file[*clone*], and *delete* the instance.
+On instances with multiple user databases, the *Settings* tab also includes options for *restoring the instance* and creating a *restore point*.
+See xref:managing-instances/backup-restore-export.adoc#multi-db-instance-restore[Multiple database instance restore] for more information.
+
 
 Additionally, instance actions are available from the *[...]* menu in the top right corner of main frame.
 These are described in detail in xref:managing-instances/instance-actions.adoc[Instance actions].
