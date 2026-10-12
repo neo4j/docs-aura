@@ -47,10 +47,18 @@ You can also use the _Fit to screen_ button to fit all query results into the vi
 * Select a node or a relationship to view its properties.
 The nodes already have sensible captions assigned by the Query tool, which auto-selects a property from the property list to use as a caption.
 To change the look of your graph, see xref:query/operations.adoc#styling[].
-* Right-click a node to *expand* (see its neighbors), *dismiss* it from the visualization, or *unpin* it.
+* Right-click a node to bring up the *context menu*.
+From the context menu, you can *expand/collapse* the node, *dismiss* or *unpin* it, *explore* the graph with *Bloom*, and *show all relationships*.
+You can also undo context-menu actions, when applicable.
++
+[.shadow]
+.Context menu
+image::query-context-menu.png[width=300]
++
 If you double-click a node, you automatically expand it, and if you double-click it again, you undo the expansion.
 If you right-click a relationship, you can dismiss it.
-* Right-click in an empty spot allows you to show *all* relationships between elements in the result frame or to undo your last ation with the visualization.
+* Right-click in an empty spot brings up another *context menu*.
+This allows you to *explore* the graph with *Bloom*, *show all relationships*, and undo previous actions from the context menu, when applicable.
 * If you cannot see the whole graph or the results display too close together, you can adjust by moving the visual view and dragging nodes to rearrange them.
 
 The graph results also reports the query time, including the actual query execution time, latency, and deserialization costs.

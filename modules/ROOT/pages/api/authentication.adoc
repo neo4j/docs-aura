@@ -14,7 +14,7 @@ To create credentials in the Aura console go to the https://console.neo4j.io/acc
 
 * Go to your profile menu from the top right corner of your screen
 * Select *Account Settings*
-* Select the *Client credentials* tab
+* Select the *Client credentials* tab and *Aura API*
 * Select the *Create client credential* button
 * Enter a Client *Name*, and select *Create*.
 * *Save* the Client ID and Client Secret you are given in the resulting modal.
@@ -131,7 +131,7 @@ print(response.json())
 ----
 
 <1> The `access_token` returned here is what you will provide as the Bearer Token in the `Authorization` header of Aura API requests.
-<2> The value of `expires_in` is the token expiration time in seconds. 
+<2> The value of `expires_in` is the token expiration time in seconds.
 Once the token expires, the application must request a new one.
 
 ==== HTTP response codes
@@ -163,7 +163,7 @@ Once the token expires, the application must request a new one.
 
 === Excessive token requests
 
-Excessive token requests may cause inefficiencies or rate-limiting. 
+Excessive token requests may cause inefficiencies or rate-limiting.
 You can optimize your API usage by following these steps:
 
 * *Retrieve the token once per hour:* As tokens remain valid for an hour, reduce the frequency of token requests and reuse the same token for multiple API calls.
@@ -173,5 +173,5 @@ You can optimize your API usage by following these steps:
 === Token expiration
 
 Access tokens are temporary and expire after one hour.
-If you send a request to the Aura API using an expired token, you will receive a `403 Forbidden` response. 
+If you send a request to the Aura API using an expired token, you will receive a `403 Forbidden` response.
 To continue using the API, you must obtain a new token using the Aura API credentials.

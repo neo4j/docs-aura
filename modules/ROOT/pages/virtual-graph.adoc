@@ -1,0 +1,19 @@
+= Virtual Graph (Public Preview)
+
+Virtual Graph lets you build a virtual graph database that translates Cypher to SQL and sends queries to data lakehouses such as Databricks and Snowflake.
+
+Virtual Graph is embedded in the Neo4j infrastructure:
+
+* It is part of Neo4j Aura.
+* It neither moves nor extracts data from your data lakehouse.
+* It has full access to other Neo4j products and features such as Browser, Bloom, GDS, and Copilot.
+
+Virtualization makes the data found in data lakehouses immediately accessible.
+
+At a high level, Virtual Graph works in three main steps:
+
+. Connect to your data lakehouse.
+. Create a graph schema based on the tables found in the data.
+. Translate Cypher to optimized SQL queries and receive query results as graph data.
+
+See the link:https://neo4j.com/docs/virtual-graph/[Virtual Graph documentation] for more information.

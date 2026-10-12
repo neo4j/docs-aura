@@ -2,10 +2,7 @@
 :description: Share your dashboards with people in your project.
 
 You can share your dashboards with other users in your project.
-You can either invite individual users from your project or share your dashboard with everyone in the project.
-Filters allow others to configure parameter values.
-
-A shared dashboard grants VIEWER permission to the users you shared it with.
+Invite individual users from your project or share your dashboard with everyone in the project.
 
 Either use the more menu *[...]* of a dashboard in the **Dashboards** page and select **Share** or select **Share** at the top right when looking at a particular dashboard.
 
@@ -18,6 +15,24 @@ The **Share** dialog lets you invite more users by selecting email addresses fro
 ====
 The users you can invite are the same users you can find in the **Users** page under **Project**.
 ====
+
+You can grant users edit access as `Viewers` or `Editors`. Filters are a useful dashboard feature that allow `Viewers` to adjust parameter values.
+ 
+The permissions are outlined below:
+
+[cols="1,2", options="header"]
+|===
+|Role |Permission
+
+|Viewer
+|Read
+
+|Editor
+|Read, Update
+
+|Owner
+|Read, Update, Delete
+|===
 
 You can also toggle and grant **General access** to anyone in the project.
 If toggled, it takes precedence over the possibly more restrictive list of people with access.
