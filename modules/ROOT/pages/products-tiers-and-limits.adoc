@@ -1,9 +1,10 @@
-= Neo4j AuraDB Limits and Quotas
+= Neo4j AuraDB limits and quotas
 
-This document provides a comprehensive overview of the system limits, quotas, operational constraints and defaults for Neo4j AuraDB across its different service tiers. 
+This document provides an overview of the Neo4j AuraDB and Aura free trial limits regarding graph size and instance configurations. 
+It also outlines feature-specific limits across different tiers. 
 These limits are in place to ensure the stability, performance, and security of the managed service.
 
-== Service Tiers Overview
+== AuraDB tiers overview
 
 AuraDB is offered in four distinct tiers, each designed for different use cases, from learning and development to mission-critical enterprise applications.
 
@@ -12,182 +13,104 @@ AuraDB is offered in four distinct tiers, each designed for different use cases,
 * *AuraDB Business Critical:* A highly available, multi-node cluster for mission-critical workloads requiring a 99.95% uptime SLA.
 * *AuraDB Virtual Dedicated Cloud (VDC):* A single-tenant, dedicated environment offering maximum security, isolation, and customizable configurations.
 
-== Graph Size & Instance Limits
+== Graph size & instance configuration limits
 
-These limits define the scale of a single AuraDB instance based on its tier and configured size.
+These limits define the scale of an AuraDB instance based on its tier and configured size. 
+See xref:managing-instances/instance-details.adoc[Instance details] for the descriptions of the instance configurations.
 
-[cols="2,2,2,3",options="header"]
+[cols="^,^,^,^,^",options="header"]
 |===
 | Limit
 | AuraDB Free
 | AuraDB Professional
-| AuraDB Business Critical / AuraDB VDC
+| AuraDB Business Critical 
+| AuraDB VDC
 
 | Nodes
 | 200,000
-| Millions of nodes and relationships
+| Hundreds of Millions of nodes and relationships
+| Billions of nodes and relationships
 | Billions of nodes and relationships
 
 | Relationships
 | 400,000
-| Millions of nodes and relationships
+| Hundreds of Millions of nodes and relationships
+| Billions of nodes and relationships
 | Billions of nodes and relationships
 
 | Memory (RAM)
 | N/A
-| 1 GB  -  128 GB
-| 2 GB  -  1,952 GB* (GCP)
+| 1 GB  -  128GB
+| 2GB - 1,952GB footnote:higher[Higher available on request.] (GCP)
 
-2 GB  -  512 GB (AWS & Azure)
+2GB - 512GB footnote:higher[] (AWS & Azure)
+| 2GB - 1,952GB footnote:higher[] (GCP) 
+
+2GB - 512GB footnote:higher[] (AWS & Azure)
 
 | Storage
-| 1 GB
-| 2 GB  -  2,048 GB
-| 4 GB  -  5,120 GB (AWS & GCP)
+| 1GB
+| 2GB  -  2,048GB
+| 4GB  -  5,120GB (AWS & GCP)
 
-4 GB  -  2,048 GB (Azure)
+4GB - 2,048GB (Azure)
+| 4GB - 5,120GB (AWS & GCP) 
 
-| RAM/Disk ratio
+4GB - 2,048GB (Azure)
+
+| RAM/Disk Ratio
 | N/A
-2+^| Up to 1:16 max
+| Up to 1:16
+| Up to 1:16
+| Up to 1:16
 
+| vCPU footnote:2[Note that when using metrics-forwarding to get access to Neo4j's built-in metrics, you may see fluctuating values for CPU related series. This is because Aura's resource scheduling is dynamic at runtime, transparent to the underlying Neo4j process.]
+| N/A
+| 1 vCPU - 24 vCPU
+| 1 vCPU - 288 vCPU (GCP) 
+
+1 vCPU - 96 VCPU (AWS & Azure) 
+| 1 vCPU - 288 vCPU (GCP) 
+
+1 vCPU - 96 vCPU (AWS & Azure)
 |===
 
-_*Larger GCP instances from 744GB RAM are available on request_
+== Service level comparisons
 
-== Query, Connection and Transaction Limits
-
-These limits govern the execution of Cypher queries to ensure database stability. 
-
-[cols="2,2",options="header"]
+[cols="1,1,1,1,1", options="header"]
 |===
-| Transaction Limits | Default Value
+|Feature |AuraDB Free |AuraDB Professional |AuraDB Business Critical |AuraDB VDC
 
-| Max Concurrent Transactions
-| 1,000
+|Uptime SLA
+|None
+|None
+|99.95%
+|99.95%
 
-|===
+|Tenancy
+|Shared tenancy
+|Single tenancy
+|Single tenancy
+|Single tenancy with dedicated VPC and cloud project
 
-[cols="2,2",options="header"]
-|===
-| Page Cache Limits | Default Value
-
-| Query Cache Size
-| 51
-
-| Additional page cache warmup after restart
-| False
-
-
-| Page cache warmup profile interval
-| 1 minute
-
-| Checkpoint IOPS limit
-| 600
-
+|Highly available
+|No (zonal architecture)
+|No (zonal architecture)
+|Yes (regional architecture)
+|Yes (regional architecture)
 |===
 
-[cols="2,2",options="header"]
+== Aura free trial limits
+
+See xref:getting-started/free-tria.adoc#_trial-limits[Aura free trial limits] for more details.
+
+[cols="1,1", options="header"]
 |===
-| Max Transaction Memory Size Limits
-| Default Value
-
-| 1GB RAM instance
-| 200 MB
-
-| 2 GB RAM instance
-| 275 MB
-
-| 4 GB RAM instance
-| 1,597 MB
-
-| 8 GB RAM instance
-| 2,654 MB
-
-| 16 GB RAM instance
-| 4,154 MB
-
-| 24 GB RAM instance
-| 7,699 MB
-
-| 32 GB RAM instance
-| 11,244 MB
-
-| 48 GB RAM instance
-| 16,876 MB
-
-| 64 GB RAM instance
-| 22,508 MB
-
-| 128 GB  -  2 TB RAM instance
-| 28,508 MB
-|===
-
-== Data Import Limits
-
-These limits apply when loading data into AuraDB or performing administrative actions.
-
-[cols="2,2",options="header"]
-|===
-| Limit | Value
-
-| Restore from file on Aura Console
-| 4GB
-|===
-
-== Features, Backups, and SLAs
-
-This table compares key operational features and service level agreements across the tiers.
-
-[cols="1,1,1,1,1",options="header"]
-|===
-| Feature 
-| AuraDB Free 
-| AuraDB Professional 
-| AuraDB Business Critical 
-| AuraDB VDC
-
-| Uptime SLA
-| None
-| None
-| 99.95%
-| 99.95%
-
-| Backup Frequency
-| On-demand
-| Daily
-| Daily & Hourly
-| Hourly
-
-| Backup Retention
-| 1 backup at a time
-| 7 days
-| 30 days
-| 60 - 90 days
-
-| IP Filtering
-| None
-| None
-| 20 IP Ranges
-| 100 IP Ranges
-
-| Architecture
-| Zonal Database
-| Zonal Instance
-| Regional Cluster
-| Regional Cluster with Dedicated VPC
-|===
-
-== Aura Trial Limits
-
-These limits apply to Aura credit-based trials.
-
-[cols="2,2",options="header"]
-|===
-| Limit | Value
+|Limit
+|Value
 
 |Max number of non-free-tier active instances
-|2
+|1
 
 |Max instance size
 |4GB
@@ -198,6 +121,107 @@ These limits apply to Aura credit-based trials.
 |Aura Graph Analytics - Max concurrent number of sessions
 |3
 
-|Aura Agent - Max number of external agents
+|Aura Graph Analytics - Max session duration
+|1 day
+
+|Aura Agent - Max # of external agents
 |1
+|===
+
+== Feature limits
+
+These tables compare the differences of key features across the tiers.
+
+=== Backup
+
+See xref:managing-instances/backup-restore-export.adoc#snapshot-details[Snapshot/backup] details for more details.
+
+[cols="1,1,1,1,1", options="header"]
+|===
+|Feature
+|AuraDB Free
+|AuraDB Professional
+|AuraDB Business Critical
+|AuraDB VDC
+
+|Backup frequency
+|On-demand
+|Daily
+|Hourly
+|Hourly
+
+|Backup retention
+|1 backup at a time
+|7 days
+|30 days
+|60-90 days
+|===
+
+=== Aura Graph Analytics
+
+See xref:/graph-analytics/index.adoc#comparison[Aura deployment comparison] for more details.
+
+[cols="1,1,1,1,1", options="header"]
+|===
+|Limit
+|AuraDB Free
+|AuraDB Professional
+|AuraDB Business Critical
+|AuraDB VDC
+
+|Max session size
+|Up to 2GB
+|Up to 128GB
+|Up to 128GB
+|Up to 512GB
+
+|Max concurrent number of sessions
+|Up to 1
+|Up to 100
+|Up to 100
+|Up to 100
+
+|Max session duration
+|4 hours
+|7 days
+|7 days
+|7 days
+|===
+
+=== IP filtering
+
+See xref:/security/ip-filtering.adoc[IP filtering] for more details.
+
+[cols="1,1,1,1,1", options="header"]
+|===
+|Limit
+|AuraDB Free
+|AuraDB Professional
+|AuraDB Business Critical
+|AuraDB VDC
+
+|IP ranges
+|None
+|None
+|20 IP ranges
+|100 IP ranges
+|===
+
+=== Multiple databases per instance
+
+See xref:/managing-instances/multiple-databases.adoc#_limits_ram_and_maximum_databases[Limits (RAM and maximum databases)] for more details.
+
+[cols="1,1,1,1,1", options="header"]
+|===
+|Limit
+|AuraDB Free
+|AuraDB Professional
+|AuraDB Business Critical
+|AuraDB VDC
+
+|Max number of databases per instance
+|1
+|1
+|100
+|250
 |===
