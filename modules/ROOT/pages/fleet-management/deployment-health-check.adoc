@@ -1,52 +1,51 @@
 = Deployment health check
-:description: This page describes the deployment health check feature & how to run a health check and interpret the results.
+:description: This page describes the deployment health check feature & how to run a deployment health check and interpret the results.
 :min-version: 2026.09.0
 
-A health check diagnoses your self-managed deployment for symptoms of sub-optimal operation, configuration issues and capacity issues. It also suggests possible configuration
-changes to improve the deployment's performance and reliability. A health check consists of a set of checkers that are used to detect conditions that are indicative of issues.
+A deployment health check diagnoses your self-managed deployment for symptoms of sub-optimal operation, configuration issues and capacity issues. It also suggests possible configuration
+changes to improve the deployment's performance and reliability. A deployment health check consists of a set of checkers that are used to detect conditions that are indicative of issues.
 
-Additionally, a health check can act as a self-service support tool, allowing you to diagnose and fix issues yourself before contacting support or opening a support case.
+Additionally, a deployment health check can act as a self-service support tool, allowing you to diagnose and fix issues yourself before contacting support or opening a support case.
 
-A health check can be requested as part of a support case, or as a standalone request.
+A deployment health check can be requested as part of a support case, or as a standalone request.
 
-If requested as part of a support case, the health check will be performed on the deployment and the results will be attached to the support case.
+If requested as part of a support case, the deployment health check will be performed on the deployment and the results will be attached to the support case.
 
 == Prerequisites
 
-To run a health check, you need to have the following prerequisites:
+To run a deployment health check, you need to have the following prerequisites:
 
 * A self-managed deployment monitored by Fleet Manager.
 * Deployment must be in running state.
-* Optional: `-Djdk.attach.allowAttachSelf=true` JVM option set on the Neo4j server.
 
 == How to run a deployment health check
-To run a health check, go to the *Health* tab on the deployment view page and then click the *Request new health check* button.
+To run a deployment health check, go to the *Health* tab on the deployment view page and then click the *Request new health check* button.
 
-image::deployment-check/health-check-request-first.png[Request new health check]
+image::deployment-check/health-check-request-first.png[Request new deployment health check]
 
 A request modal will appear to confirm the request.
 
-image::deployment-check/health-check-request-modal.png[Request new health check modal]
+image::deployment-check/health-check-request-modal.png[Request new deployment health check modal]
 
-You can optionally attach a Support case ID to reference the health check in your support case.
+You can optionally attach a Support case ID to reference the deployment health check in your support case.
 
-image::deployment-check/health-check-request-modal-support-case.png[Request new health check modal with support case ID]
+image::deployment-check/health-check-request-modal-support-case.png[Request new deployment health check modal with support case ID]
 
-Once the request is submitted, you can track the status of the health check.
+Once the request is submitted, you can track the status of the deployment health check.
 
-image::deployment-check/health-check-in-progress.png[Health check in progress]
+image::deployment-check/health-check-in-progress.png[Deployment health check in progress]
 
-Once the health check is completed, you can view the results of the health check for each checker in the table.
+Once the deployment health check is completed, you can view the results of the deployment health check for each checker in the table.
 
-image::deployment-check/health-check-result-checkers.png[Health check results checkers]
+image::deployment-check/health-check-result-checkers.png[Deployment health check results checkers]
 
 You can view the summary of the results of a checker by selecting the checker from the table.
 
-image::deployment-check/health-check-checker-details-drawer.png[Health check results checker details]
+image::deployment-check/health-check-checker-details-drawer.png[Deployment health check results checker details]
 
-You can also view the historical results of health checks for the deployment.
+You can also view the historical results of deployment health checks for the deployment.
 
-image::deployment-check/health-check-history.png[Health check history table]
+image::deployment-check/health-check-history.png[Deployment health check history table]
 
 [NOTE] 
 ====
@@ -103,4 +102,4 @@ Transaction & lock timeouts	Verifies dbms.transaction.timeout and dbms.lock.acqu
 
 == Request quota
 
-You can request up to 3 health checks per day.
+You can request up to 3 deployment health checks per day.
