@@ -159,6 +159,7 @@ Aura Agent currently supports embeddings generated with the following text embed
 For more information about vectors and embeddings, see the link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#embeddings[Cypher Manual -> Vectors and embeddings in Neo4j] and link:{neo4j-docs-base-uri}/cypher-manual/current/indexes/semantic-indexes/vector-indexes/[Cypher Manual -> Vector indexes].
 
 You need to provide the name of your vector index and a value for *Top K*, i.e. the number of results you want the search to return.
+The *Top K* you set is the default; the agent can override it per question when the question calls for more or fewer results.
 
 To further process the similarity search results, check *Return connected graph data*.
 This lets you write a Cypher query that is appended to the vector search and runs as a single query, with `node` (the matched node) and `score` (the similarity score) already in scope.
@@ -376,6 +377,7 @@ The order the tools were called in doesn't matter, and calling the same tool mor
 Matching is exact for a Cypher Template call: its parameters have to match precisely to count.
 Text2Cypher and Similarity Search calls take a natural-language query instead of a fixed parameter, so an exact match is the exception, not the rule.
 When one isn't found, a judge LLM decides whether a differently worded query asks for the same thing, and counts it as a match if so.
+A Similarity Search call can also carry a *Top K*: if the expected call pins one, the actual call has to use the same value to match; if the expected call omits it, any value matches.
 Since agents lean on Text2Cypher and Similarity Search often, this judge LLM step is a routine part of scoring most trajectories, not a rare fallback.
 
 *Latency* is the wall-clock time the agent took to produce its complete answer for that question.
