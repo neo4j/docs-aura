@@ -199,6 +199,60 @@ The instance must be in a ‘running’ state. You cannot edit its private endpo
 
 The instance now operates in hybrid mode, with public access still enabled.
 
+=== Configure private DNS in Route 53
+
+For the Public Preview, the private URI does not resolve inside your VPC automatically. AWS cannot enable its private DNS option for this endpoint service, so you must create the DNS entry yourself in a Route 53 private hosted zone.
+
+. Before you start
+* The private endpoint is connected, and the instance is assigned to it (the previous step).
+* The instance's *Private URI* is shown in Instance details in the Aura console. For example, `1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io`.
+* Your VPC has *DNS resolution* and *DNS hostnames* enabled. In the AWS console, go to *VPC* > *Your VPCs*, select the VPC, then select *Actions* > *Edit VPC settings*.
+
+. Find the endpoint's IP addresses.
++
+[%loweralpha]
+.. In the AWS Management Console, go to *VPC* and select *Endpoints*.
+.. Select your Aura VPC endpoint.
+.. Open the *Subnets* tab.
+.. Copy the *IPv4 address* for each subnet. There is one per subnet you selected, for example, `10.0.1.47`, `10.0.2.244`, and `10.0.3.194`.
+
+. Create the private hosted zone.
++
+[%loweralpha]
+.. In the AWS Management Console, go to *Route 53* and select *Hosted zones*.
+.. Select *Create hosted zone*.
+.. For *Domain name*, enter the private URI without its first part (the instance ID). For `1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io`, enter `auradb.pe.s-eu-west-1.neo4j.io`.
+.. For *Type* select *Private hosted zone*.
+.. Under *VPCs to associate with the hosted zone*, select the AWS Region and the VPC that contains the endpoint.
+.. Select *Create hosted zone*.
+
+. Add the DNS record.
++
+[%loweralpha]
+.. In the new hosted zone, select *Create record*.
+.. For *Record name*, enter the instance ID only. For the example above, enter `1q2w3e4r`.
+.. For *Record type*, select *A*.
+.. For *Value*, enter the endpoint IP addresses you copied, one per line.
+.. For *TTL*, enter `60`.
+.. For *Routing policy*, keep *Simple routing*.
+.. Select *Create records*.
++
+Repeat this step for each additional instance that uses the same endpoint. 
+Each instance has its own ID.
+
+. Verify the DNS entry.
++
+[%loweralpha]
+.. From a host inside the VPC, run `nslookup` with the private URI. For example:
++
+[source,shell]
+----
+nslookup 1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io
+----
+.. Confirm that it returns the endpoint's private IP addresses. A public address, or no answer, means the zone is not associated with the VPC you are testing from, or the record is missing.
+
+A private hosted zone resolves only inside the VPCs associated with it. If your applications run in more than one VPC, associate the zone with each VPC.
+
 === Test the private connection 
 
 To validate that tools and applications that are configured to use the private URI have access:
@@ -212,7 +266,7 @@ To validate that tools and applications that are configured to use the private U
 === Disable public access 
 
 . After testing the private connection, return to the Aura console and go to *Project settings* > *Private Endpoints*.
-. Select the *settings cog* for the private endpoint configuration _in the relevant region_.
+. Select the *settings cog* for the private endpoint configuration in the relevant region.
 . Select *Configure instances routing*.
 . Disable *Allow public traffic* by unselecting the checkbox, then select *Save*.
 
