@@ -129,6 +129,12 @@ There are two different force-based layouts available:
 
 The difference between the two force-based layouts is most apparent when working with larger graphs.
 
+You can further define the layout for *force-based layout 1* to *cluster* nodes together based on a *property type* or *label*.
+Use the edit symbol and select how to cluster the nodes in the scene.
+
+[.shadow]
+image::clustered-layout.jpg[width=400]
+
 The *hierarchical* layout option from the layout menu located at the bottom right-hand corner of the scene, presents the nodes in the Scene in an hierarchical order instead.
 The nodes are then arranged by the directionality of their relationships, determined by the way relationship directions are set up in the database.
 When the hierarchical layout is activated, you can change the orientation with the edit-button directly to the right of the layout menu.
