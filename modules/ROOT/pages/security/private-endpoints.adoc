@@ -8,7 +8,7 @@ This preview feature is governed by the link:https://neo4j.com/legal-terms/aura-
 ====
 
 AuraDB Business Critical supports Private Endpoints, allowing authorised users to establish a private, secure connection for direct access traffic between VPCs; typically an application VPC and the VPC where Aura instances are running. 
-This connection utilises the AWS PrivateLink feature, which ensures that scoped traffic traverses the cloud provider backbone network and is not exposed to the public internet when properly configured. 
+This connection utilises AWS PrivateLink, which ensures that scoped traffic traverses the cloud provider backbone network and is not exposed to the public internet when properly configured. 
 
 
 .Figure 1. VPC connection to AuraDB Business Critical using AWS PrivateLink
@@ -31,12 +31,12 @@ This provides a simple mechanism for ensuring that direct traffic is using the p
 `{id}.{mode}.{feature}.{environment+region}.neo4j.io`
 
 .Example
-`1q2w3e4r.pe.auradb.s-eu-west-1.neo4j.io`
+`1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io`
 
 == Regions
 
-At launch, private endpoints are available only for AWS in the following regions. 
-This will be expanded to include all regions where AuraDB Business Critical is available.
+Private endpoints are available only for AWS in the following regions for the launch of Public Preview. 
+This will be expanded to include all regions where AuraDB Business Critical is available throughout the Preview.
 
 * `eu-west-1` (Ireland)
 * `eu-west-2` (London)
@@ -87,7 +87,7 @@ Private-only mode does not prevent indirect tools from attempting to connect.
 Depending on the tool, they may remain available or become unavailable. 
 Do not use indirect-access tools if you need to ensure that all access to your instance uses private connectivity.
 
-[IMPORTANT]
+[WARNING]
 ====
 If you need to prevent all data access over the public internet, including both direct and indirect access, do not use the indirect tools listed in the following table.
 ====
@@ -150,7 +150,7 @@ Setting up a private endpoint requires one of the following roles:
 === Prerequisites
 
 * Sign in to the Aura console and the AWS Management Console.
-* Ensure that the AWS VPC and the Aura instance are you want to work with are in the same region.
+* Ensure that the AWS VPC and the Aura instance you want to work with are in the same region.
 
 === Create a private endpoint 
 
