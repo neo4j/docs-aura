@@ -61,8 +61,8 @@ Each instance can use one of the following traffic modes for governing direct tr
 
 * *Hybrid*: Direct connections can use public or private access. Indirect access tools remain available.
 
-** The private connection uses the private URI, and indirect access tools remain available. 
-** A shield icon appears with the tooltip _Private connection with public access enabled_. 
+** A private connection is available through the private URI.
+** A shield icon appears with the tooltip “Private connection with public access enabled”.
 ** To allow connections only through the private endpoint, you must disable direct public access.
 
 * *Private-only*: Direct connections must use private access. Indirect access tools are out of scope.
@@ -264,7 +264,7 @@ To validate that tools and applications that are configured to use the private U
 
 . After testing the private connection, return to the Aura console and go to *Project settings* > *Private Endpoints*.
 . Select the *settings cog* for the private endpoint configuration in the relevant region.
-. Select *Configure instances routing*.
+. Select *Configure instance routing*.
 . Disable *Allow public traffic* by unselecting the checkbox, then select *Save*.
 
 After public access is disabled, an X appears next to *Allow public traffic*. 
