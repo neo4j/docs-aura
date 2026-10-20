@@ -68,6 +68,7 @@ The graph results also reports the query time, including the actual query execut
 === Table result frame
 
 The *Table* result view displays the result in a table format.
+You can search the table, use the *Graph chip* dropdown to change how the table is displayed, download the table, and/or copy the table.
 It also reports the query time, including the actual query execution time, latency, and deserialization costs.
 
 [.shadow]
@@ -94,39 +95,8 @@ For such queries, you can also toggle to view the results in a RAW format.
 .Plan view
 image::plan-view.png[]
 
-[[styling]]
-== Styling
 
-You can customize your graph query results directly in the result frame based on node labels and relationship types.
 
-[.shadow]
-.Query styling
-image::query-styling.png[width=800]
-
-If you select a node label in the *Results overview*, there are several styling options available:
-
-* Color -- set the color for nodes of the selected label.
-* Size  -- set the size for nodes of the selected label.
-* Caption -- set what should be displayed as the caption for nodes of the selected label.
-
-[.shadow]
-image::node-styling.png[width=400]
-
-If you select a relationship type in the *Results overview*, there are several styling options available:
-
-* Color -- set the color for relationships of the selected type.
-* Line width  -- set the line width for relationships of the selected type.
-* Caption -- set what should be displayed as the caption for relationships of the selected type.
-
-[.shadow]
-image::relationship-styling.png[width=350]
-
-For nodes with multiple labels, you can select which label should take priority.
-Use the arrows to get a list of available labels in your graph and order them as you like.
-Nodes with multiple labels are then styled according to the first label in the list.
-
-[.shadow]
-image::prioritize.png[width=600]
 
 [[query-parameters]]
 == Query parameters
