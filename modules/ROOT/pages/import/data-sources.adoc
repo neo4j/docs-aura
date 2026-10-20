@@ -194,6 +194,8 @@ The S3 Bucket Path can be copied directly from the Objects or Properties tab.
 See link:https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html[Manage access keys for IAM users] for how to generate these access keys.
 The permissions required for these access keys should be scoped to the buckets required for import and should include `s3:GetObject` for file contents and `s3:ListBucket`.
 
+If the bucket is publicly readable, select the *Public* credentials option instead. See <<data-source-public-access>> for the permissions needed.
+
 If you import _CSV_ files and they contain lists or vectors inside the cells, you can use the *Array and Vector configuration section* to set up your delimiters.
 This is an optional section and collapsed by default.
 The supported delimiters are  `,`, `;`, `|`, `` ``, `:`, `\t` where the last represents the tab character.
@@ -248,6 +250,8 @@ To retrieve *connection strings* for Azure storage, consult the guides from Micr
 
 To generate and receive the Tenant ID, Client ID, Client secret, and Account name for *Service Principal* credentials, consult the guide from Microsoft; link:https://learn.microsoft.com/en-us/entra/architecture/service-accounts-principal[Securing service principal in Microsoft Entra ID].
 
+If the container is publicly readable, select the *Public* credentials option instead. See <<data-source-public-access>> for the permissions needed.
+
 If you import _CSV_ files and they contain lists or vectors inside the cells, you can use the *Array and Vector configuration section* to set up your delimiters.
 This is an optional section and collapsed by default.
 The supported delimiters are  `,`, `;`, `|`, `` ``, `:`, `\t`, `\n`, where the latter two represent the tab character and new line, respectively.
@@ -271,9 +275,41 @@ Each file must be given a temporary table name, which is used to reference the f
 
 For Google service accounts with access to the cloud bucket, see the link:https://docs.cloud.google.com/storage/docs/authentication/managing-hmackeys[Google documentation] on how to create an HMAC key.
 
+If the bucket is publicly readable, select the *Public* credentials option instead. See <<data-source-public-access>> for the permissions needed.
+
 If you import _CSV_ files and they contain lists or vectors inside the cells, you can use the *Array and Vector configuration section* to set up your delimiters.
 This is an optional section and collapsed by default.
 The supported delimiters are  `,`, `;`, `|`, `` ``, `:`, `\t`, `\n`, where the latter two represent the tab character and new line, respectively.
 If you do not provide any array/vector delimiter, you effectively opt out of the type and will not get any arrays or vectors recommended.
 
 *Google Cloud Storage is supported for bulk import.*
+
+[[data-source-public-access]]
+== Public bucket access
+
+If your AWS S3, Azure Blobs and Data Lake Storage, or Google Cloud Storage bucket is publicly readable, you can select the *Public* credentials option for the data source.
+Whether a bucket is public depends on the permissions granted in the cloud provider, and the minimum requirements differ between the providers:
+
+* *AWS S3*: the bucket policy must allow anonymous `s3:GetObject` requests, which requires the bucket to be excluded from *Block Public Access*.
+See link:https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html#example-bucket-policies-anonymous-user[Granting read-only permission to a public anonymous user] and link:https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html[Blocking public access to your Amazon S3 storage].
+* *Azure Blobs and Data Lake Storage*: *Allow Blob anonymous access* must be enabled for the storage account, and the anonymous access level of the container must be set to *Blob* (blobs only) or *Container* (container and its blobs).
+See link:https://learn.microsoft.com/en-us/azure/storage/blobs/anonymous-read-access-configure[Configure anonymous read access for containers and blobs].
+* *Google Cloud Storage*: the `allUsers` principal must be granted the *Storage Object Viewer* (`roles/storage.objectViewer`) role on the bucket, provided that public access prevention does not apply to it.
+See link:https://docs.cloud.google.com/storage/docs/access-control/making-data-public[Make data public].
+
+It is good practice to verify that the bucket is public before you set up the data source, by making an unauthenticated HTTP request to one of the files:
+
+[source,bash]
+----
+curl -I https://<bucket-name>.s3.<region>.amazonaws.com/<key>
+curl -I https://<storage-account>.blob.core.windows.net/<container>/<file>
+curl -I https://storage.googleapis.com/<bucket-name>/<object>
+----
+
+A `200 OK` response means the file can be read without credentials, whereas a `403 Forbidden` response means that it cannot.
+
+[NOTE]
+====
+Publicly readable buckets can only be used with *online import*.
+Bulk import requires a bucket using a non-public authentication method, see xref:import/import.adoc[].
+====
