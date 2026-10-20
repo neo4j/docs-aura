@@ -184,8 +184,7 @@ Setting up a private endpoint requires one of the following roles:
 . Select *Add endpoint* and wait for Aura to verify the connection (this typically takes 30 - 60 seconds).
 . The VPC and endpoint name appear under *Endpoints*.
 
-=== Assign the private endpoint to an instance 
-
+=== Assign the private endpoint to an instance
 [NOTE]
 ====
 The instance must be in a ‘running’ state. You cannot edit its private endpoint configuration while another operation, such as resizing or cloning, is in progress.
@@ -201,57 +200,55 @@ The instance now operates in hybrid mode, with public access still enabled.
 
 === Configure private DNS in Route 53
 
-For the Public Preview, the private URI does not resolve inside your VPC automatically. AWS cannot enable its private DNS option for this endpoint service, so you must create the DNS entry yourself in a Route 53 private hosted zone.
+[NOTE]
+====
+The example below illustrates how to configure DNS for a given region. 
+In this example, it’s set up in `eu-west-1`.
+====
 
-. Before you start
-* The private endpoint is connected, and the instance is assigned to it (the previous step).
-* The instance's *Private URI* is shown in Instance details in the Aura console. For example, `1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io`.
-* Your VPC has *DNS resolution* and *DNS hostnames* enabled. In the AWS console, go to *VPC* > *Your VPCs*, select the VPC, then select *Actions* > *Edit VPC settings*.
+Aura instances assigned to a private endpoint receive a private URI that can be used to direct traffic over the private connection rather than public internet. 
+In order to resolve the private URI, the VPC containing the private endpoint must have a DNS record pointing to the private endpoint. 
 
-. Find the endpoint's IP addresses.
-+
-[%loweralpha]
-.. In the AWS Management Console, go to *VPC* and select *Endpoints*.
-.. Select your Aura VPC endpoint.
-.. Open the *Subnets* tab.
-.. Copy the *IPv4 address* for each subnet. There is one per subnet you selected, for example, `10.0.1.47`, `10.0.2.244`, and `10.0.3.194`.
+Aura does not automate the setup of this record automatically through the endpoint so it must be set up manually by users who need to create the DNS entry in a Route 53 private hosted zone.
 
-. Create the private hosted zone.
-+
-[%loweralpha]
-.. In the AWS Management Console, go to *Route 53* and select *Hosted zones*.
-.. Select *Create hosted zone*.
-.. For *Domain name*, enter the private URI without its first part (the instance ID). For `1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io`, enter `auradb.pe.s-eu-west-1.neo4j.io`.
-.. For *Type* select *Private hosted zone*.
-.. Under *VPCs to associate with the hosted zone*, select the AWS Region and the VPC that contains the endpoint.
-.. Select *Create hosted zone*.
+* Ensure *DNS resolution* and *DNS hostnames* are enabled for your VPC.
+* To enable these, go to the AWS console> VPC > Your VPCs > select the VPC > select Actions > Edit VPC settings.
 
-. Add the DNS record.
-+
-[%loweralpha]
-.. In the new hosted zone, select *Create record*.
-.. For *Record name*, enter the instance ID only. For the example above, enter `1q2w3e4r`.
-.. For *Record type*, select *A*.
-.. For *Value*, enter the endpoint IP addresses you copied, one per line.
-.. For *TTL*, enter `60`.
-.. For *Routing policy*, keep *Simple routing*.
-.. Select *Create records*.
-+
-Repeat this step for each additional instance that uses the same endpoint. 
-Each instance has its own ID.
+==== Find the endpoint’s IP addresses
 
-. Verify the DNS entry.
-+
-[%loweralpha]
-.. From a host inside the VPC, run `nslookup` with the private URI. For example:
-+
-[source,shell]
-----
-nslookup 1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io
-----
-.. Confirm that it returns the endpoint's private IP addresses. A public address, or no answer, means the zone is not associated with the VPC you are testing from, or the record is missing.
+. In the AWS Management Console, go to VPC and select *Endpoints*.
+. Select your Aura VPC endpoint.
+. Open the Subnets tab.
+. Copy the IPv4 address for each subnet. There is one per subnet you selected, for example `10.0.1.47`, `10.0.2.244`, and `10.0.3.194`.
 
-A private hosted zone resolves only inside the VPCs associated with it. If your applications run in more than one VPC, associate the zone with each VPC.
+==== Create the private hosted zone
+
+. In the AWS Management Console, go to Route 53 and select Hosted zones.
+. Select *Create hosted zone*.
+. For *Domain name*, enter the following `pe.s-eu-west-1.neo4j.io.`
+. For *Type* select *Private hosted zone*.
+. Under *VPCs to associate with the hosted zone*, select the AWS Region and the VPC that contains the endpoint.
+. Select *Create hosted zone*.	
+
+==== Add the DNS record
+
+. In the new hosted zone, select *Create record*.
+For *Record name*, enter the following `*.auradb.pe.s-eu-west-1.neo4j.io`
+. For *Record type*, select *A*.
+. For *Value*, enter the endpoint IP addresses you copied, one per line.
+. For *TTL*, use the default option e.g. `300 seconds`.
+. For *Routing policy*, keep *Simple routing*.
+. Select *Create records*.
+
+==== Verify the DNS entry
+
+. From a host inside the VPC, run `nslookup` with the private URI. 
+For example: `nslookup 1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io.`
+. Confirm it returns the endpoint’s private IP addresses. 
+
+A private hosted zone only resolves inside the VPCs it’s associated with. 
+If your applications run in more than one VPC, associate the zone with each VPC.
+
 
 === Test the private connection 
 
