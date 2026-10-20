@@ -1,18 +1,19 @@
 :description: This section describes the Legend panel in Bloom.
 
-[[legend-panel]]
+[[styling]]
 = Styling
 
 [.shadow]
-image::legend-panel-intro.png[width=400]
+image::bloom-styling.png[width=600]
 
-The styling drawer can be expanded using the  shows a list of all categories and relationship types available in the current Perspective, along with the style used to render their nodes and relationships respectively.
+The styling drawer can be expanded using the paintbrush icon on the left.
+The styling drawer displays the legend panel, a list of all categories and relationship types available in the current Perspective, along with the style used to render their nodes and relationships respectively.
 When the list contains many elements, you can use a filter to limit the legend to show only elements present in the scene, or find those not present in the scene, or search for an element of interest.
 Click on a category or relationship type in the legend to select all nodes or relationships of that type.
 A count shows the number of items of a type that are currently visible somewhere in the scene.
 Styles applied to nodes and relationships can also be changed from this legend panel.
 You have the flexibility to define the style for an entire category or relationship type, or use data-driven rules to apply styles to specific nodes or relationships.
-By using the arrow-button you can quickly collapse or expand the legend panel.
+You can quickly collapse or expand the styling drawer with the arrow.
 
 == Default styling
 
@@ -22,7 +23,7 @@ You can also customize the caption's font size, make it bold, italic, or underli
 The same options are available for relationship captions, except for bold, italic, and underline.
 
 [.shadow]
-image::captions.png[width=400]
+image::bloom-default-styling.jpg[width=400]
 
 For node categories, you can assign an icon to further differentiate the category.
 
@@ -30,28 +31,26 @@ In cases where a node has multiple labels mapped to different categories, the st
 See xref:explore/explore-perspectives/perspective-creation.adoc#perspective-categories[Categories] for more information.
 
 
-== Rule-based styling
+== Conditional styling
 
-Bloom allows you to set up rule-based styling based on the properties present in your graph.
-Rule availability and application varies by the type of a graph element and its available properties.
-Rule-based styling is supported for string, numeric and boolean properties.
+Bloom allows you to set up conditional styling based on the properties present in your graph.
+Condition availability and application varies by the type of a graph element and its available properties.
+Conditional styling is supported for string, numeric and boolean properties.
 Temporal properties are also supported, `Date`, `Time`, `LocalTime`, `DateTime`, and `LocalDateTime`.
 See xref:explore/explore-features/search-phrases-advanced.adoc#parameter-data-types[Parameter data types] for more information on temporal properties.
 
-There are three different modes for rule-based styling: _single_, _range_, and _unique values_.
+There are three different modes for conditional styling: *single*, *range*, and *unique values*.
 
 [discrete]
 === Single
 
 [.shadow]
-image::rule-based-styling-single.png[width=800]
+image::bloom-conditional-single.jpg[width=800]
 
 This allows you to set up a rule that applies one single color, size and/or caption based on a condition.
-For properties with numeric values, a histogram provides an overview of the values present in the current Scene.
-The slider lets you select a value and apply rule-based styling based on this.
 
-For example, as shown above, a rule defined on a `discontinued` property of a `Product` category only applies to `Product` nodes that have a `discontinued` value set to `true`.
-In this case, all affected nodes are presented in blue and have their `discontinued` value as their caption.
+For example, as shown above, a condition set on the `discontinued` property of a `Product` category only applies to `Product` nodes that have a `discontinued` value set to `true`.
+In this case, all nodes where the property `discontinued` equals `true` are displayed in red.
 
 If the property is a temporal type using timezones (`Time` and `DateTime`), you can base your styling on a selected timezone and translate all time values to that zone by checking the box _Translate timezones to_ and select a timezone.
 (Note that _Z_ indicates _Zulu timezone_, ie. GMT, time offset +00:00.)
@@ -70,10 +69,10 @@ If the selected property does not have a numerical value, the histogram is not a
 === Range
 
 [.shadow]
-image::rule-based-styling-range.png[width=800]
+image::bloom-conditional-range.jpg[width=600]
 
-For numeric properties, you can set up a rule that applies a range of colors or sizes to a range of values.
-In the image above, a _Range_-rule has been used to style nodes with the `unitPrice` integer property with a spectrum of colors from green to red, as well as size nodes from small to big.
+For numeric properties, you can set up a condition that applies a range of colors or sizes to a range of values.
+In the image above, a _Range_-condition has been used to style nodes with the `unitsInStock` integer property with a spectrum of colors from light green to dark green, as well as size nodes from small to big.
 
 For temporal properties using timezones (`Time` and `DateTime`), you have the same option to normalize to one timezone or to ignore timezones altogether as above with rules on a single value instead of a range of values.
 
@@ -81,7 +80,7 @@ For temporal properties using timezones (`Time` and `DateTime`), you have the sa
 === Unique values
 
 [.shadow]
-image::rule-based-styling-unique-values.png[width=800]
+image::bloom-conditional-unique.jpg[width=600]
 
 Activate this when you want to assign a unique color to each property value of a given property key.
 
