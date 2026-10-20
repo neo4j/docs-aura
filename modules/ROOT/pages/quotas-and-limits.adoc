@@ -87,11 +87,20 @@ See xref:managing-instances/instance-details.adoc[Instance details] for the desc
 |99.95%
 |99.95%
 
-|*Tenancy*
-|Shared tenancy
-|Single tenancy
-|Single tenancy
-|Single tenancy with dedicated VPC and cloud project
+|*Environment*
+|*Standard*
+
+Shared DBMS, logically separated
+|*Standard*
+
+Own DBMS and storage
+
+|*Standard*
+
+Own DBMS and storage
+|*Dedicated*
+
+Own DBMS and storage, in a dedicated VPC and cloud project
 
 |*Highly available*
 |No (zonal architecture)
