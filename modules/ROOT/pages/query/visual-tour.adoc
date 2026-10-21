@@ -64,6 +64,7 @@ You can:
 This drawer contains a list of your previously run queries, for your reference.
 Queries are kept here until you delete them and are not limited to the current instance.
 
+[[styling]]
 === Styling
 
 All available node labels and relationship types are listed in the styling drawer.
@@ -190,7 +191,7 @@ image::result-frame.png[width=600]
 
 Query supports different result frame views:
 
-* Graph -- Display the result as nodes and relationships and allow xref:query/operations.adoc#styling[styling] to be configured.
+* Graph -- Display the result as nodes and relationships and allow your configured xref:query/visual-tour.adoc#styling[styling] to be applied.
 * Table -- Display the result as JSON formatted rows.
 * RAW -- Display the submitted request, the Neo4j Server version and address, and the response.
 * Plan -- Display the execution plan for the query, with or without execution.
