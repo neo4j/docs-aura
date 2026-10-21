@@ -53,17 +53,17 @@ For example, as shown above, setting a condition on the discontinued property of
 In this case, all nodes where the property `discontinued` equals `true` are displayed in red.
 
 If the property is a temporal type using timezones (`Time` and `DateTime`), you can base your styling on a selected timezone and translate all time values to that zone by checking the box _Translate timezones to_ and select a timezone.
-(Note that _Z_ indicates _Zulu timezone_, ie. GMT, time offset +00:00.)
+(Note that _Z_ indicates _Zulu timezone_, i.e. GMT, time offset +00:00.)
 If you leave the box unchecked, timezones are ignored.
 
-[.shadow]
-image::rule-based-time.png[width=300]
+// [.shadow]
+// image::rule-based-time.png[width=300]
 
-[NOTE]
-====
-Histograms are only available for the single mode of rule-based styling and for properties with numerical values of either `integer`, `float`, or temporal types.
-If the selected property does not have a numerical value, the histogram is not available.
-====
+// [NOTE]
+// ====
+// Histograms are only available for the single mode of rule-based styling and for properties with numerical values of either `integer`, `float`, or temporal types.
+// If the selected property does not have a numerical value, the histogram is not available.
+// ====
 
 [discrete]
 === Range
