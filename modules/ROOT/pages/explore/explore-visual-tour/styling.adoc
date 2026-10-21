@@ -7,7 +7,7 @@
 image::bloom-styling.png[width=600]
 
 The styling drawer can be expanded using the paintbrush icon on the left.
-The styling drawer displays the legend panel, a list of all categories and relationship types available in the current Perspective, along with the style used to render their nodes and relationships respectively.
+The styling drawer displays the legend panel, which lists all categories and relationship types available in the current Perspective, along with the style used to render their nodes and relationships respectively.
 When the list contains many elements, you can use a filter to limit the legend to show only elements present in the scene, or find those not present in the scene, or search for an element of interest.
 Click on a category or relationship type in the legend to select all nodes or relationships of that type.
 A count shows the number of items of a type that are currently visible somewhere in the scene.
@@ -49,7 +49,7 @@ image::bloom-conditional-single.jpg[width=800]
 
 This allows you to set up a rule that applies one single color, size and/or caption based on a condition.
 
-For example, as shown above, a condition set on the `discontinued` property of a `Product` category only applies to `Product` nodes that have a `discontinued` value set to `true`.
+For example, as shown above, setting a condition on the discontinued property of a Product category applies only to Product nodes that have a `discontinued` value set to `true`.
 In this case, all nodes where the property `discontinued` equals `true` are displayed in red.
 
 If the property is a temporal type using timezones (`Time` and `DateTime`), you can base your styling on a selected timezone and translate all time values to that zone by checking the box _Translate timezones to_ and select a timezone.
