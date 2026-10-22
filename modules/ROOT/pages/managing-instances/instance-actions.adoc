@@ -185,7 +185,7 @@ The time it takes depends on the amount of data (and factors such as number of i
 You can clone from a Neo4j version 4 instance to an instance running the latest Neo4j version. 
 You cannot clone from latest Neo4j version to Neo4j version 4.
 
-Any instance settings (such as SSO settings) are not carried forward.
+Any settings that apply to the source instance, such as SSO, are not carried forward to the destination instance.
 
 If you want to export your RBAC settings, see the tutorial at https://neo4j.com/docs/aura/tutorials/upgrade/#_recreate_users_and_roles_in_neo4j_aura[recreate users and roles in Neo4j Aura].
 
