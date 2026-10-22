@@ -8,7 +8,7 @@ label:AuraDB-Business-Critical[]
 This preview feature is governed by the link:https://neo4j.com/legal-terms/aura-feature-specific-terms[Experimental Service Terms] in your customer agreement with Neo4j. Updates about supported regions will be added to link:https://neo4j-aura.canny.io/changelog[Canny].
 ====
 
-AuraDB Business Critical supports Private Endpoints, allowing authorized users to establish a private, secure connection for direct access traffic between VPCs; typically an application VPC and the VPC where Aura instances are running. 
+AuraDB supports Private Endpoints for the Business Critical tier, allowing authorized users to establish a private, secure connection for direct access traffic between VPCs; typically an application VPC and the VPC where Aura instances are running. 
 This connection utilizes AWS PrivateLink, which ensures that scoped traffic traverses the cloud provider backbone network and is not exposed to the public internet when properly configured. 
 
 
