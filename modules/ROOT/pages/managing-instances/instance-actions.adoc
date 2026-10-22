@@ -104,6 +104,7 @@ For more information, see the link:https://neo4j.com/docs/aura/platform/api/spec
 
 Deleting an instance removes all associated snapshots, so they cannot be used to backup and restore data. 
 
+Deleting an instance with multiple databases deletes all databases in the instance.
 
 [WARNING]
 ====
