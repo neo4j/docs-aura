@@ -1,0 +1,21 @@
+= Graph model
+:description: This page describes the graph model in Neo4j Graph Intelligence.
+
+To create the most useful knowledge graph, it is crucial to have the right graph model.
+The model describes your different nodes, their properties, and how they are related to each other.
+For more information on data modeling, see link:https://neo4j.com/docs/getting-started/data-modeling/[Get started -> Model data].
+
+To get started with a new model, either use the *Create graph model* button from the *Graph models* tab, or from the *Cloud data sources* tab, use the *[...]* menu on an existing source and *New graph model from data source*.
+Additionally, once you have connected a new data source, you have the option to create a model as well.
+
+If you already know what your model should look like, you *can* create it manually by using the tools available in the in the graph model page.
+
+[.shadow]
+.Create a model manually
+image::create-model.png[width=400]
+
+Additionally, you can *load* an existing model as well.
+
+But if you are unsure what type of model you need or want, Document Intelligence can generate one for you.
+
+You can use the *Generate model* button to have Document Intelligence do the work, but in order to make the model as useful as possible, it is recommended to add information about your usecase.
