@@ -18,8 +18,10 @@ A graph model is generated automatically where node labels, relationship types, 
 
 Once you have a satisfactory model of your knowledge graph, Document Intelligence extracts the data from your unstructured documents and creates a queryable graph.
 
-A conversational AI assistant is present during the entire process, you can use it to chat with your data before the import, iterate on the graph model, fine-tune it, and trigger the import job.
-Once the import is complete, you can use the AI assistant to talk to your data without having to write any Cypher queries.
+A conversational AI assistant is present during the entire process.
+With local data sources, you can use it to chat with your data even before generating a model.
+With all data sources, the assistant can trigger the schema generation, iterate on it, fine-tune it, and start the import job.
+Once the import is complete, and the assistant has access to your data, you can use it to talk to your data without having to write any Cypher queries.
 
 Document Intelligence supports _PDF_, _MD_, _DOCX_, _TXT_, _EPUB_ formats and can connect to cloud storage in either:
 
@@ -32,5 +34,5 @@ Additionally, you can also use files stored locally to build your knowledge grap
 [NOTE]
 ====
 Document Intelligence uses generative AI assistance and this usage can be disabled on the Organization level.
-See xref:visual-tour/index.adoc#org-settings[Visual tour -> Organization settings].
+See xref:visual-tour/index.adoc#org-settings[Organization settings].
 ====
