@@ -7,6 +7,17 @@
 :page-role: aura-db-professional aura-ds-professional aura-db-business-critical aura-ds-enterprise aura-db-dedicated
 
 
+[IMPORTANT]
+====
+Some regions are currently affected by cloud provider capacity constraints.
+Deployments in these regions may experience slower instance create, resize and resume times than normal.
+
+The following regions are affected:
+
+* GCP - us-central1 | Iowa
+
+====
+
 Aura supports the following regions based on your tier:
 
 include::partial$regions-generated.adoc[]
