@@ -1,5 +1,6 @@
 = Private Endpoints for Business Critical (Preview feature)
 
+
 label:AuraDB-Business-Critical[]
 
 [IMPORTANT]
@@ -7,8 +8,8 @@ label:AuraDB-Business-Critical[]
 This preview feature is governed by the link:https://neo4j.com/legal-terms/aura-feature-specific-terms[Experimental Service Terms] in your customer agreement with Neo4j. Updates about supported regions will be added to link:https://neo4j-aura.canny.io/changelog[Canny].
 ====
 
-AuraDB Business Critical supports Private Endpoints, allowing authorised users to establish a private, secure connection for direct access traffic between VPCs; typically an application VPC and the VPC where Aura instances are running. 
-This connection utilises AWS PrivateLink, which ensures that scoped traffic traverses the cloud provider backbone network and is not exposed to the public internet when properly configured. 
+AuraDB supports Private Endpoints for the Business Critical tier, allowing authorized users to establish a private, secure connection for direct access traffic between VPCs; typically an application VPC and the VPC where Aura instances are running. 
+This connection utilizes AWS PrivateLink, which ensures that scoped traffic traverses the cloud provider backbone network and is not exposed to the public internet when properly configured. 
 
 
 .Figure 1. VPC connection to AuraDB Business Critical using AWS PrivateLink
@@ -137,7 +138,7 @@ If you need to prevent all data access over the public internet, including both 
 |No
 |===
 
-== How to guide
+== How-to guide
 
 === Required roles
 
@@ -163,6 +164,11 @@ Setting up a private endpoint requires one of the following roles:
 . Copy the *Endpoint service name*.
 
 === Create a VPC endpoint 
+
+[NOTE]
+====
+This guidance is based on the information available at the time of writing and may not always reflect the current state of AWS PrivateLink.
+====
 
 . In the AWS Management Console, go to *VPC* and select *Endpoints*.
 . Select *Create endpoint*.
