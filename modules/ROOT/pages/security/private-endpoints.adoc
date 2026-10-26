@@ -141,9 +141,9 @@ If you need to prevent all data access over the public internet, including both 
 == How-to guide
 
 Note: This guide is a getting started example for trying out Private Endpoints, for example in a test or demonstration environment. 
-It is not a production-ready configuration and does not represent AWS or networking best practice. 
+It is not a production-ready configuration and may not represent AWS or networking best practice. 
 It may not comply with your organization’s networking and security policies. 
-Before using Private Endpoints in production, review each step, including the VPC endpoint type, subnets, security groups and DNS configuration and adapt it to your policies. 
+Before using Private Endpoints in production, review each step, including the subnets, security groups and DNS configuration and adapt it to your policies. 
 You are responsible for configuring and securing the resources in your own AWS account.
 
 === Required roles
@@ -260,12 +260,10 @@ A mistyped private URI therefore fails when you connect, not at the DNS lookup, 
 
 ==== Verify the DNS entry
 
-From a host inside the VPC,  look up the private URI with `nslookup`.
+From a host inside the VPC look up the private URI with `nslookup`.
 For example: `nslookup 1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io`
 
-If you’re using CloudShell, `nslookup` isn’t installed. Run this instead: `getent ahostsv4 1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io`
-
-Either way, the lookup should return the IP addresses of your endpoint.
+The lookup should return the IP addresses of your endpoint.
 
 A private hosted zone only resolves inside the VPCs it’s associated with. 
 If your applications run in more than one VPC, associate the zone with each VPC.
