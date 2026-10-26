@@ -1,5 +1,6 @@
 = Private Endpoints for Business Critical (Preview feature)
 
+
 label:AuraDB-Business-Critical[]
 
 [IMPORTANT]
@@ -7,8 +8,8 @@ label:AuraDB-Business-Critical[]
 This preview feature is governed by the link:https://neo4j.com/legal-terms/aura-feature-specific-terms[Experimental Service Terms] in your customer agreement with Neo4j. Updates about supported regions will be added to link:https://neo4j-aura.canny.io/changelog[Canny].
 ====
 
-AuraDB Business Critical supports Private Endpoints, allowing authorised users to establish a private, secure connection for direct access traffic between VPCs; typically an application VPC and the VPC where Aura instances are running. 
-This connection utilises AWS PrivateLink, which ensures that scoped traffic traverses the cloud provider backbone network and is not exposed to the public internet when properly configured. 
+AuraDB supports Private Endpoints for the Business Critical tier, allowing authorized users to establish a private, secure connection for direct access traffic between VPCs; typically an application VPC and the VPC where Aura instances are running. 
+This connection utilizes AWS PrivateLink, which ensures that scoped traffic traverses the cloud provider backbone network and is not exposed to the public internet when properly configured. 
 
 
 .Figure 1. VPC connection to AuraDB Business Critical using AWS PrivateLink
@@ -137,7 +138,13 @@ If you need to prevent all data access over the public internet, including both 
 |No
 |===
 
-== How to guide
+== How-to guide
+
+Note: This guide is a getting started example for trying out Private Endpoints, for example in a test or demonstration environment. 
+It is not a production-ready configuration and does not represent AWS or networking best practice. 
+It may not comply with your organization’s networking and security policies. 
+Before using Private Endpoints in production, review each step, including the VPC endpoint type, subnets, security groups and DNS configuration and adapt it to your policies. 
+You are responsible for configuring and securing the resources in your own AWS account.
 
 === Required roles
 
@@ -164,10 +171,15 @@ Setting up a private endpoint requires one of the following roles:
 
 === Create a VPC endpoint 
 
+[NOTE]
+====
+This guidance is based on the information available at the time of writing and may not always reflect the current state of AWS PrivateLink.
+====
+
 . In the AWS Management Console, go to *VPC* and select *Endpoints*.
 . Select *Create endpoint*.
 . Enter a name tag for the endpoint.
-. For *Type* select *PrivateLink Ready partner services*.
+. For *Type* select *Endpoint services that use NLBs and GWLBs*.
 . For *Service name*, paste the *Endpoint service name* copied from Aura.
 . Select *Verify Service*. When verification succeeds, AWS displays *Service name verified*.
 . Under *Network settings*, select the VPC containing the resources that will connect to Aura (it should be the default option).
@@ -224,9 +236,9 @@ Aura does not automate the setup of this record automatically through the endpoi
 
 ==== Create the private hosted zone
 
-. In the AWS Management Console, go to Route 53 and select Hosted zones.
+. In the AWS Management Console, go to *Route 53* and select *Hosted zones*.
 . Select *Create hosted zone*.
-. For *Domain name*, enter the following `pe.s-eu-west-1.neo4j.io.`
+. For *Domain name*, enter `pe.s-eu-west-1.neo4j.io`
 . For *Type* select *Private hosted zone*.
 . Under *VPCs to associate with the hosted zone*, select the AWS Region and the VPC that contains the endpoint.
 . Select *Create hosted zone*.	
@@ -234,7 +246,12 @@ Aura does not automate the setup of this record automatically through the endpoi
 ==== Add the DNS record
 
 . In the new hosted zone, select *Create record*.
-For *Record name*, enter the following `*.auradb.pe.s-eu-west-1.neo4j.io`
+. For *Record name*, enter `*.auradb` 
+
+Route 53 adds the zone name for you, so the full record name is `*.auradb.pe.s-eu-west-1.neo4j.io`
+
+.. The wildcard record answers for any ID under `auradb.pe.s-eu-west-1.neo4j.io` including IDs that don't exist. 
+A mistyped private URI therefore fails when you connect, not at the DNS lookup, so check the ID in your private URI.
 . For *Record type*, select *A*.
 . For *Value*, enter the endpoint IP addresses you copied, one per line.
 . For *TTL*, use the default option e.g. `300 seconds`.
@@ -243,13 +260,17 @@ For *Record name*, enter the following `*.auradb.pe.s-eu-west-1.neo4j.io`
 
 ==== Verify the DNS entry
 
-. From a host inside the VPC, run `nslookup` with the private URI. 
-For example: `nslookup 1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io.`
-. Confirm it returns the endpoint’s private IP addresses. 
+From a host inside the VPC,  look up the private URI with `nslookup`.
+For example: `nslookup 1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io`
+
+If you’re using CloudShell, `nslookup` isn’t installed. Run this instead: `getent ahostsv4 1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io`
+
+Either way, the lookup should return the IP addresses of your endpoint.
 
 A private hosted zone only resolves inside the VPCs it’s associated with. 
 If your applications run in more than one VPC, associate the zone with each VPC.
 
+If you list the record with the AWS CLI, Route 53 shows the wildcard as `\052`, for example `\052.auradb.pe.s-eu-west-1.neo4j.io`. This is normal.
 
 === Test the private connection 
 
