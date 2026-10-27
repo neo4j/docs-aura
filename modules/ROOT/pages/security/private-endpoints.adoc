@@ -186,7 +186,7 @@ Setting up a private endpoint requires one of the following roles:
 
 [NOTE]
 ====
-To edit its private endpoint, the instance must be running.
+To edit its private endpoint, the instance must be in a  `running` state.
 ====
 
 . Select *Configure instance routing*.
@@ -222,7 +222,7 @@ Aura does not automate the setup of this record automatically through the endpoi
 * Follow the AWS documentation for link:https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-creating.html[creating a private hosted zone].
 * For *Domain name* enter the regional suffix of the private URI. 
 For example `pe.s-eu-west-1.neo4j.io` 
-* For *VPCs to associate with the hosted zone* select the VPC that contains your VPC endpoint.	
+* For *VPCs to associate with the hosted zone* select the AWS Region and the VPC that contains the endpoint.
 
 ==== Add the DNS record
 
