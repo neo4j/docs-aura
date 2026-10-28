@@ -241,25 +241,40 @@ a| `action_id`
 | Instance Actions
 | An internal resume operation
 
-| DATA_SNAPSHOT_CREATE_ON_DEMAND
+| DATA_INSTANCE_SNAPSHOT_CREATE_ON_DEMAND
 | 0101
 | Data Management
-| An on-demand snapshot has been created
+| An on-demand instance snapshot has been created
 
-| DATA_SNAPSHOT_EXPORT
+| DATA_INSTANCE_SNAPSHOT_EXPORT
 | 0102
 | Data Management
-| A snapshot has been downloaded
+| An instance snapshot has been downloaded
 
-| DATA_SNAPSHOT_RESTORE
+| DATA_INSTANCE_SNAPSHOT_RESTORE
 | 0103
 | Data Management
-| A snapshot has been restored
+| An instance snapshot has been restored
 
-| DATA_BACKUP_RESTORE
+| DATA_DATABASE_BACKUP_RESTORE
 | 0104
 | Data Management
-| A backup has been restored
+| A database backup has been restored
+
+| DATA_DATABASE_BACKUP_CREATE_ON_DEMAND
+| 0105
+| Data Management
+| An on-demand database backup has been created
+
+| DATA_DATABASE_BACKUP_EXPORT
+| 0106
+| Data Management
+| A database backup has been downloaded
+
+| DATA_DATABASE_BACKUP_IMPORT
+| 0107
+| Data Management
+| A dump import upload URL has been generated
 
 | INVITE_CREATE
 | 0201
@@ -361,6 +376,11 @@ a| `action_id`
 | Security
 | A private endpoint configuration has been updated
 
+| TOOL_AUTH_UPDATE
+| 0314
+| Security
+| Seamless / tool authentication has been enabled or disabled
+
 | FLEET_MANAGER_CREATE
 | 0401
 | Fleet Manager
@@ -455,4 +475,14 @@ a| `action_id`
 | 0702
 | Billing Account Management
 | Project is linked to a billing account
+
+| DATA_DATABASE_CREATE
+| 0801
+| Database Actions
+| A new database has been created
+
+| DATA_DATABASE_DELETE
+| 0802
+| Database Actions
+| A database has been deleted
 |===
