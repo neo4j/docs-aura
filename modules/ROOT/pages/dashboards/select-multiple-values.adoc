@@ -1,0 +1,43 @@
+= Select multiple values
+
+When creating a filter, you can allow users to select more than one value using checkboxes.
+
+To enable this, select *Allow selecting multiple values* when you create the filter.
+
+This option is available for the following xref:dashboards/filter-types.adoc[filter types]:
+
+* Node property
+* Relationship property
+* Custom query
+
+Selected values are stored in a xref:dashboards/list-parameters.adoc[list parameter].
+
+== Example: Filter allowing selection of multiple regions
+
+select values → store them in a parameter → use them to control what dashboard content displays.
+
+For example, a dashboard user could select both `Northern` and `Southern` regions.
+
+1) *Add filter*
+
+* Set *Filter type* to `Node property`
+* Database: `neo4j` (choose the database you want to work with)
+* Label: `Region`
+* Property: `regionDescription`
+* Enable *Allow selecting multiple values*.
+
+. Under *Link parameter*, select *Existing parameter*.
+. Select `$region_regiondescription`.
+. Optional: Under *Default value*, select one or more regions to display when the dashboard opens.
+. Select *Save*.
+
+You can now select multiple values using the filter checkboxes:
+
+image::dashboards/region-define-filter.png[]
+
+The selected values are added to the linked parameter and listed in the parameter drawer. 
+You can then use the parameter in your dashboard queries.
+
+[.shadow]
+.Multi-select values in the parameter drawer
+image::dashboards/region-parameters-drawer.png[Regions parameters drawer]
