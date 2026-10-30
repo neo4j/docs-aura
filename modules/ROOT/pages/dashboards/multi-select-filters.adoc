@@ -1,0 +1,37 @@
+= Multi select filters
+
+When defining a filter, you can *allow selecting multiple values*.
+This option appears as a toggle. 
+When you allow selecting multiple values, users can select checkboxes to select values.
+This option is available for the following xref:dashboards/filter-types.adoc[filter types]:
+
+* Node property
+* Relationship property
+* Custom query
+
+Selected values are stored in a xref:dashboards/list-parameters.adoc[list parameter].
+These parameters are also viewable in the parameter drawer.
+
+[.shadow]
+.Allow selecting multiple values when defining a filter
+image::dashboards/region-define-filter.png[width=700]
+
+== Table actions 
+
+Multi select filters can also be used in combination with table actions.
+The row select actions writes the selected values to a list parameter that can be linked to a filter.
+
+For example, the row-select action in an employee table updates `$row`, and the *Filter by name* filter is also linked to the $row parameter. This means selecting a name via the table will add it to the filter, and selecting a name via the filter will add it to the table.
+
+To add on that, other cards can also use that parameter.
+For example, a new table could then also use the $row parameter to show some related data.
+
+For example, a user can select `Nancy` in an employee table or in a *Filter by name* filter. 
+A *Selected employee details* card can use the $row parameter to display Nancy's notes.
+
+[.shadow]
+.Multi select filters linked to tables
+image::dashboards/select-multiple-values/table-actions-and-filters.png[]
+
+
+
