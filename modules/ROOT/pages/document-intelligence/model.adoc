@@ -45,5 +45,8 @@ Additionally, you can ask the assistant to explain the model to you and use that
 
 When you are satisfied with your model, either tell the assistant to run the import, or use the button in the top right corner.
 
-Note that the assistant does *not* have *write access* to your data, so if anything needs updating in the model when the import is done, you have to use Cypher and the *Query* tool to actually make any changes to your data.
+[NOTE]
+====
+The assistant does *not* have *write access* to your data, so if anything needs updating in the model when the import is done, you have to use Cypher and the *Query* tool to actually make any changes to your data.
 Alternatively, you can ask the assistant to update the model, but you have to run the import again for any changes to take effect.
+====
