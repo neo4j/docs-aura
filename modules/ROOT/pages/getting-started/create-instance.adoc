@@ -19,6 +19,7 @@ For AuraDB, you need to select an option for xref:graph-analytics/index.adoc[Gra
 * *Plugin* - allows graph algorithms to run in the same instance as the database, sharing resources.
 
 You can optionally enable xref:managing-instances/instance-details.adoc[Vector optimization] to enhance performance for vector-based operations.
+Currently, vector optimization is not supported for instances with multiple databases.
 
 After selecting **Next**, your instance is created.
 A password is generated for the instance, ensure to either copy or download it, as it will **not** be recoverable after.
