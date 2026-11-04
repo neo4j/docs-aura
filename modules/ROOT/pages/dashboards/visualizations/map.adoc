@@ -20,11 +20,11 @@ For more info, see https://neo4j.com/docs/cypher-manual/current/values-and-types
 
 . Fallback `latitude` / `longitude` 
 +
-If no `Point` property is found, the visualization looks for properties named exactly `latitude` and `longitude`. Both must exist.
+If no `Point` property is found, the visualization looks for properties named exactly `latitude` and `longitude`. Both `latitude` and `longitude` must exist.
 
-. Fallback properties: `lat` / `long` 
+. Fallback properties: `lat` / `long` (or `lon`)
 +
-If the above are not found, properties named exactly `lat` and `long` are used. Again, both must exist.
+If the `latitude` / `longitude` are not found, properties named exactly `lat` and `long` are used. Both `lat` and `long` must exist.
 
 If more than one spatial property is detected, the property for node placement can be changed in **Settings**.
 Fallback properties (`latitude` / `longitude` and `lat` / `long`) are not configurable.
@@ -170,7 +170,8 @@ Adjust how your map looks by editing a few visual properties:
 * *Color:* Choose a color for each node label or relationship type.
 
 * *Size:* Set the size of your nodes, or the width of relationship lines. 
-Larger node sizes help captions show up more clearly.
+Larger node sizes help captions show up more clearly. 
+On a map, nodes remain the same size as you zoom. 
 
 * *Caption*: Choose which property to display as the label for nodes or relationships.
 Relationship captions appear along the connecting line.
@@ -178,3 +179,14 @@ Node captions appear only when there is enough space.
 If the node is too small, the label will not render.
 The default node size is the fourth item in the size selector.
 
+== Rule-based styling for maps
+
+Use rule-based styling to change the color, size, or caption of nodes.
+
+For example, using a link:https://github.com/neo4j-graph-examples/pole[crimes dataset], create a rule for `Location` nodes where `postcode` starts with `M24`, then set the color to red.
+
+[.shadow]
+.Rule-based styling for maps
+image::dashboards/visualizations/rule-based-styling-map.png[]
+
+For more ways to use styling rules, see xref:dashboards/visualizations/graph.adoc#_rule_based_styling_for_graphs[Rule-based styling for graphs]

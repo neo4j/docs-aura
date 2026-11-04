@@ -56,7 +56,7 @@ This optional setting in the configuration dialog is called role mapping.
 
 == SSO Administration
 
-To simplify administration, a single SSO configuration can be used for both the Aura Console and database instances by selecting the corresponding checkboxes during setup: *"Use as login for the Organization"* and *"Use as login method for instances within Projects in this Organization"*.
+To simplify administration, you can use a Brokered SSO configuration for both the Aura Console and database instances by selecting the corresponding checkboxes during setup: *"Use as login for the Organization"* and *"Use as login method for instances within Projects in this Organization"*.
 These settings serve as the default for all instances within a project.
 If you don't check any of the boxes, you can still add the configuration and apply it to organizations, projects and/or instances later.
 
@@ -95,11 +95,20 @@ To create an SSO Configuration, either a Discovery URI or a combination of Issue
 
 . Go to xref:visual-tour/index.adoc#_organizations[Organization settings] > *Security* > *Single Sign-On* to set up a new SSO configuration.
 
+. Select a *Connection method*:
++
+* *Brokered*: Aura connects to your identity provider on your behalf. This method requires a client secret and can be used for Aura console (organization) and instance login. 
+* *Direct*: Your instances connect to your identity provider directly, with no client secret. Only available for instance login. During login, the IdP returns an access token to the instance.
++
+The connection method cannot be changed after you create the SSO configuration.
+
 . The checkboxes *Use as a log in for the Organization* and *Use as login method for instances with projects in this Org* define whether SSO should be only on organization-level, only on instance-level, or both.
 
 . The required basic SSO configuration information can be retrieved from the IdP.
 Entering the Discovery URI pre-fills the fields.
 If this is not known these fields can be completed manually.
+
+. If you have selected a *Direct* connection method, enter an *Audience*.
 
 === Custom configuration settings (optional)
 

@@ -1,0 +1,214 @@
+= Migrate an AuraDS Professional instance to AuraDB Professional
+:description: This tutorial describes how to migrate a Neo4j AuraDS Professional instance to AuraDB Professional, with either the Graph Analytics plugin or Aura Graph Analytics.
+
+This tutorial describes how to move an AuraDS Professional instance to AuraDB Professional.
+
+On AuraDB Professional, you can run Graph Data Science (GDS) workloads in two ways:
+
+* xref:graph-analytics/alternative-deployments.adoc#aura-gds-plugin[Graph Analytics plugin] -- runs GDS inside the AuraDB instance, sharing its memory and CPU.
+Existing GDS Cypher and Python code runs without changes, and there's no extra charge on top of the instance.
+* xref:graph-analytics/aga.adoc[Aura Graph Analytics] -- runs GDS in separate, on-demand sessions, so analytics workloads don't compete with the database for resources.
+Sessions are billed separately, and your GDS code needs some changes, described in xref:graph-analytics/migrate-to-aga.adoc[Migrate to Aura Graph Analytics].
+
+See the xref:graph-analytics/index.adoc#comparison[Aura deployment comparison] for a side-by-side view.
+You can switch between the two on the same instance later from the instance configuration, so the choice you make during migration isn't final.
+
+Migration works by cloning your AuraDS instance into a new AuraDB Professional instance.
+Both instances run in parallel until you delete the original, so you can switch your applications over on your own schedule, with no downtime.
+
+== Differences between original and clone
+
+Cloning creates a new instance with a copy of your data.
+Not everything carries over when you clone an instance, as described in the tables below.
+
+[cols="1,2", options="header"]
+|===
+| Carries over
+| Details
+
+| Graph data
+| All nodes, relationships, and properties.
+
+| Indexes and constraints
+| Recreated on the new instance as part of the clone.
+|===
+
+[cols="1,2", options="header"]
+|===
+| Does not carry over
+| What to do
+
+| Instance ID and connection URI
+| The new instance has its own ID and URI.
+Update every application, driver, script, and integration that connects to the original instance.
+
+| Admin credentials
+| The new instance gets a new `neo4j` username and password, shown once when you create it.
+Save them straight away. They can't be recovered.
+
+| Custom database users
+| Users created with `CREATE USER` are not copied.
+Recreate them on the new instance, as described in <<_recreate_custom_database_users>>.
+
+| GDS graph projections
+| Projected graphs live in memory and are not copied.
+Re-project them on the new instance.
+
+| GDS models
+| Models held only in memory are not copied.
+Models saved with `gds.model.store` persist on disk, but may not carry over in a clone.
+If you move to Aura Graph Analytics, models in the database's model catalog aren't available in sessions at all, because sessions use a separate, project-level model store.
+Retrain and store models in the destination you choose.
+
+| Snapshots
+| The new instance starts with its own snapshot history.
+Snapshots of the original instance are removed when you delete it.
+|===
+
+[[_prerequisites]]
+== Prerequisites
+
+Before you begin, there are a few things you need to check:
+
+* *Neo4j version:* This tutorial assumes both instances run the latest Neo4j version.
+* *Instance size:* The Graph Analytics plugin requires an instance with at least 4 GB of memory.
+* *Network access for Aura Graph Analytics:* If you connect to Aura Graph Analytics from outside Aura, for example with the GDS Python client on your own infrastructure, allow outbound TCP traffic on port `8491`.
+See xref:security/ip-addresses.adoc[Aura IP addresses and ports].
+* *Connection inventory:* List everything that connects to the AuraDS instance: applications, scheduled jobs, notebooks, BI tools, and connectors.
+Each one needs the new URI, and some may need new credentials.
+* *Custom database users:* Cloning does *not* copy users created with `CREATE USER`.
+Check whether you have created any by running this query as an admin user on the AuraDS instance:
++
+[source, cypher]
+----
+SHOW USERS YIELD user WHERE user <> 'neo4j' RETURN user;
+----
++
+If it returns any users, export them before you clone, as described in <<_export_custom_database_users>>.
+If it returns nothing, skip that section and the <<_recreate_custom_database_users>> step.
+
+[[_export_custom_database_users]]
+== Export custom database users
+
+If the check in <<_prerequisites>> found custom database users, generate the commands to recreate them *before* you clone.
+
+Connect either as the `neo4j` user, or through xref:security/tool-auth.adoc[tool authentication] with the *Project Admin* role.
+Project Members and Viewers don't have the privileges to manage users. 
+
+Run each query on its own.
+User management commands run against the `system` database automatically, so you don't need to switch databases first.
+
+.Generate user creation commands
+[source, cypher]
+----
+SHOW USERS YIELD user, roles
+WHERE user <> 'neo4j' AND NOT any(r IN roles WHERE r STARTS WITH 'console_')
+RETURN 'CREATE USER `' + user + '` SET PASSWORD \'newpassword\' CHANGE REQUIRED;' AS output;
+----
+
+The filter skips the `neo4j` admin user.
+Console users who connect through tool authentication don't appear in `SHOW USERS`, so they don't need migrating.
+Usernames are wrapped in backticks, so names containing characters such as `.` or `-` recreate correctly.
+Every recreated user gets the temporary password `newpassword` and must change it on first login.
+Any application that logs in as one of these users needs to update the credentials.
+
+.Generate role assignment commands
+[source, cypher]
+----
+SHOW ROLES WITH USERS YIELD member, role
+WHERE role <> 'PUBLIC' AND NOT role STARTS WITH 'console_' AND member IS NOT NULL AND member <> 'neo4j'
+RETURN 'GRANT ROLE `' + role + '` TO `' + member + '`;' AS output;
+----
+
+Download both outputs as CSV and keep them to <<_recreate_custom_database_users>>.
+
+== Clone to AuraDB Professional
+
+. From the more menu *[...]* on the AuraDS instance, select *Clone to* > *New instance*.
+. Select *AuraDB Professional* and choose the size, cloud provider, and region.
+. Select how to run GDS: enable the *Graph Analytics plugin*, or configure the instance to use *Aura Graph Analytics*.
+. Select *Create instance*.
+. Save the new `neo4j` username and password, then select *Continue*.
+
+The new instance moves through several states, including *Loading*.
+It's ready to use when its status shows *Running*.
+Cloning time depends on the amount of data and the number of indexes and constraints.
+
+See xref:managing-instances/instance-actions.adoc#_clone_to_a_new_instance[Clone to a new instance] for more details.
+
+[[_recreate_custom_database_users]]
+== Recreate custom database users
+
+Connect to the new instance with admin access, either as `neo4j` with the credentials from the clone or through tool authentication as a Project Admin.
+
+Run the commands you generated earlier: first the `CREATE USER` commands, then the `GRANT ROLE` commands.
+
+Run them one statement at a time.
+If you run a batch and one statement fails, the others may not be applied.
+
+Verify the result:
+
+[source, cypher]
+----
+SHOW USERS YIELD user, roles, passwordChangeRequired;
+----
+
+== Recreate GDS graphs and models
+
+Projected graphs don't come across with the clone, and models may not either.
+
+* *Graph Analytics plugin:* Re-run your graph projections on the new instance.
+Your existing GDS procedure calls work unchanged.
+Run `CALL gds.model.list()` to see which models are present.
+Retrain any that are missing, then save them with `gds.model.store` so they persist across restarts.
+Stored models are unloaded when the instance restarts. Load them again with `gds.model.load` before use.
+* *Aura Graph Analytics:* Update your code to create sessions and use remote projections, as described in xref:graph-analytics/migrate-to-aga.adoc[Migrate to Aura Graph Analytics].
+Sessions use their own project-level model store, separate from the database's model catalog, so models you trained or stored on AuraDS aren't available in sessions.
+Retrain them in a session and store them there. Models stored this way are available to all sessions in the project.
+
+== Validate the new instance
+
+Before you switch any traffic, compare the two instances.
+Run these queries on both and check the results match.
+
+[source, cypher]
+----
+MATCH (n) RETURN count(n) AS nodes;
+----
+
+[source, cypher]
+----
+MATCH ()-[r]->() RETURN count(r) AS relationships;
+----
+
+[source, cypher]
+----
+SHOW INDEXES YIELD name, type, state, labelsOrTypes, properties;
+----
+
+[source, cypher]
+----
+SHOW CONSTRAINTS YIELD name, type, labelsOrTypes, properties;
+----
+
+Then run a representative set of your own queries and GDS workloads against the new instance.
+If you recreated custom users, log in as one of them to confirm access works.
+
+== Switch applications over
+
+Update each item in your connection inventory with the new connection URI and, where relevant, new credentials.
+Because the original instance keeps running, you can move applications one at a time and confirm each one works before moving the next.
+
+== Delete the original instance
+
+Once everything is running against the new instance, delete the AuraDS instance.
+
+[WARNING]
+====
+Deleting an instance also deletes all of its snapshots, and the data can't be recovered.
+If you need the original data later, take an xref:managing-instances/backup-restore-export.adoc#_on_demand[on-demand snapshot] and export it before deleting.
+====
+
+Until you delete it, the original instance keeps running and is billed alongside the new one.
+
+See xref:managing-instances/instance-actions.adoc#_delete_an_instance[Delete an instance] for more information.
