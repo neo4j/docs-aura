@@ -30,13 +30,13 @@ The following table summarizes the relationship between filters and parameters:
 
 |===
 
-=== Filters
+== Filters
 
 Think of a filter as a select component or a parameter setter with a UI that helps someone change the value of a parameter by typing or selecting values.
 Whatever value is in the filter input is passed to the parameter. 
 So, other people can interact with the dashboard without having to directly edit a Cypher query.
 
-=== Parameters
+== Parameters
 
 Dashboard parameters use the same concept as Cypher parameters.
 A parameterized query is a query in which placeholders are used and the parameter values are supplied at execution time.
