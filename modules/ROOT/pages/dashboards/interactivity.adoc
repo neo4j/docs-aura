@@ -5,9 +5,11 @@ When two people engage with the same dashboard, the subject remains the same, bu
 
 Filters and parameters support these different perspectives by letting each person choose what they want to explore.
 
-[.shadow]
-.Filters and parameters
-image::dashboards/filters-parameters.png[]
+The mental model is:
+
+* Filter → collects a value.
+* Parameter → stores the value.
+* Query → uses the value.
 
 The following table summarizes the relationship between filters and parameters:
 
@@ -31,34 +33,26 @@ The following table summarizes the relationship between filters and parameters:
 
 == Filters
 
-Think of a filter as a select component / a parameter setter with a UI that helps someone change the value of a parameter by typing or selecting values.
+Think of a filter as a select component or a parameter setter with a UI that helps someone change the value of a parameter by typing or selecting values.
 Whatever value is in the filter input is passed to the parameter. 
 So, other people can interact with the dashboard without having to directly edit a Cypher query.
 
 == Parameters
 
 Dashboard parameters use the same concept as Cypher parameters.
-The Neo4j Cypher manual says, “A parameterized query is a query in which placeholders are used for parameters and the parameter values are supplied at execution time.”
+A parameterized query is a query in which placeholders are used and the parameter values are supplied at execution time.
 
-You can view current parameter values in the parameter drawer.
+You can view parameter values in the parameter drawer.
 When configuring a filter, you can also view the parameter linked to that filter.
 
 == Example
 
 Imagine you’re searching for an employee in the Northwind dataset. 
-You enter or select "Anna" in a filter linked to the parameter $employeeName. 
-The parameter remains $employeeName; only its value changes. 
-The query then uses the supplied value:
+You select `Anna` in a filter linked to the parameter `$employeeName`. 
+The parameter remains `$employeeName` only its value changes. 
+The dashboard then uses that parameter in two places: the card title, so it reads Orders handled by Anne, and the card query, which returns Anne’s order count.  
+Choose a different employee and both update automatically.
 
-[source, Cypher]
-----
-MATCH (e:Employee)
-WHERE e.firstName = $employeeName
-RETURN e
-----
-
-The mental model is:
-
-* Filter → collects a value.
-* Parameter → stores the value.
-* Query → uses the value.
+[.shadow]
+.Filters and parameters
+image::dashboards/parameters-and-filters/interactivity.png[]
