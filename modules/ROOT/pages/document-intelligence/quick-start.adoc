@@ -42,6 +42,7 @@ You can add up to 20 documents.
 == Generate initial graph data model
 
 It is recommended to have a running instance for this step, but not strictly necessary until your run the import.
+You can pick an existing instance or create a new connection, but if you prefer generating the model without connecting to any instance, just use *Continue* without making any selection.
 Note that if your instance is an *AuraDB Professional* or *AuraDB Business Critical*, you need to have xref:security/tool-auth.adoc[Tool authentication with Aura user] enabled for your Project.
 Once your data source has been added, use *Create graph model* to move to the next step in the process.
 
@@ -108,6 +109,20 @@ To resolve, select the offending node or relationship to open the details panel 
 [.shadow]
 .Errors in model
 image::model-error.jpg[width=400]
+
+== Preview graph
+
+With *local data sources*, Document Intelligence can create a sample graph based on your model and data.
+This feature is meant to help you verify that things are connected the way you want.
+It is *not* a complete representation of your data and is *not* written to your database.
+You can ask the assistant to generate the preview for you, or you can use the *Graph preview* button located in the modelling tools.
+
+[.shadow]
+.Graph preview button
+image::graph-preview.png[width=300]
+
+To generate a preview, Document Intelligence needs access to your data, and at this stage, only local sources are available.
+Hence, this feature is not available for cloud data sources.
 
 == Run import
 

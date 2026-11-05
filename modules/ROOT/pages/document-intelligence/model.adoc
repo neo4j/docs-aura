@@ -1,0 +1,52 @@
+= Graph model
+:description: This page describes the graph model in Neo4j Graph Intelligence.
+
+To create the most useful knowledge graph, it is crucial to have the right graph model.
+The model describes your different nodes, their properties, and how they are related to each other.
+For more information on data modeling, see link:https://neo4j.com/docs/getting-started/data-modeling/[Get started -> Model data].
+
+To get started with a new model, either use the *Create graph model* button from the *Graph models* tab, or from the *Cloud data sources* tab, use the *[...]* menu on an existing source and *New graph model from data source*.
+Additionally, once you have connected a new data source, you have the option to create a model as well.
+
+If you already know what your model should look like, you *can* create it manually by using the tools available in the in the graph model page.
+
+[.shadow]
+.Create a model manually
+image::create-model.png[width=400]
+
+Additionally, you can *load* an existing model as well.
+
+But if you are unsure what type of model you need or want, Document Intelligence can generate one for you.
+
+You can use the *Generate model* button to have Document Intelligence do the work, but in order to make the model as useful as possible, it is recommended to add information about your use case.
+The more details, the better the model will be.
+
+For example, if you are creating a knowledge graph of a certain wizarding universe, you can tell the assistant:
+
+[source, prompt]
+----
+List the node labels (e.g., Character, House, Spell, Location, Creature, Object), their key properties, and the relationship types connecting them (e.g., BELONGS_TO, CASTS, LOCATED_IN, ALLY_OF, ENEMY_OF), including direction and cardinality where relevant.
+----
+
+*Generate model* to have Document Intelligence parse the content and propose a model.
+The generation can take a moment, but once it is done, the assistant summarizes the process and explains what has been created.
+
+[.shadow]
+.The assistant summarizes the generated model
+image::generated-model.png[width=800]
+
+It is important to review the model and make sure that it meets your needs.
+
+If anything is amiss, you can tell the assistant to amend the model.
+For example, if you notice that your model needs additional properties, ask the assistant to add them.
+Likewise, if you see that there are unnecessary entities in the model, tell the assistant to remove them.
+
+Additionally, you can ask the assistant to explain the model to you and use that as your starting point for ensuring that your model is appropriate.
+
+When you are satisfied with your model, either tell the assistant to run the import, or use the button in the top right corner.
+
+[NOTE]
+====
+The assistant does *not* have *write access* to your data, so if anything needs updating in the model when the import is done, you have to use Cypher and the *Query* tool to actually make any changes to your data.
+Alternatively, you can ask the assistant to update the model, but you have to run the import again for any changes to take effect.
+====
