@@ -105,6 +105,8 @@ You must enable multiple databases during instance creation.
 This setting cannot be changed later.
 ====
 
+Currently, vector optimization is not supported for instances with multiple databases.
+
 [.tabbed-example]
 ====
 [.include-with-Aura-console]
@@ -230,6 +232,11 @@ DELETE /organizations/{orgId}/projects/{projectId}/instances/{instanceId}/databa
 ----
 =====
 ====
+
+=== Delete instance
+
+Deleting an instance with multiple databases deletes all databases in the instance.
+See xref:managing-instances/instance-actions.adoc#_delete_an_instance[Delete an instance]
 
 == Connecting applications
 

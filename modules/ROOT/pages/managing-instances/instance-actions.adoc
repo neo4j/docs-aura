@@ -103,12 +103,12 @@ For more information, see the link:https://neo4j.com/docs/aura/platform/api/spec
 == Delete an instance
 
 Deleting an instance removes all associated snapshots, so they cannot be used to backup and restore data. 
-
+Deleting an instance with multiple databases deletes all databases in the instance.
 
 [WARNING]
 ====
-There is no way to recover data from a deleted Aura instance, including snapshots.
-If you need the data later, xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] before deleting the instance.
+Deleted Aura instance data, including snapshots, cannot be recovered.
+If you might need the data later take a backup, or xref:/managing-instances/backup-restore-export.adoc#_on_demand[take a snapshot] and export the snapshot before deleting the instance.
 ====
 
 [.tabbed-example]
@@ -185,6 +185,10 @@ The time it takes depends on the amount of data (and factors such as number of i
 You can clone from a Neo4j version 4 instance to an instance running the latest Neo4j version. 
 You cannot clone from latest Neo4j version to Neo4j version 4.
 
+Any settings that apply to the source instance, such as SSO, are not carried forward to the destination instance.
+
+If you want to export your RBAC settings, see the tutorial at xref:tutorials/upgrade.adoc#_recreate_users_and_roles_in_neo4j_aura[Recreate users and roles in Neo4j Aura].
+
 === Clone to a new instance
 
 Cloning to a new instance creates a new destination instance containing a duplicate of the source instance data.
@@ -222,8 +226,6 @@ Only instances with enough capacity for the cloned data are available for select
 . Select *Clone*.
 
 When all the steps are completed, the instance will show a *Running* state and is ready to be used.
-
-If you want to export your RBAC settings, see the tutorial at https://neo4j.com/docs/aura/tutorials/upgrade/#_recreate_users_and_roles_in_neo4j_aura[recreate users and roles in Neo4j Aura].
 
 == Upgrade an instance
 
