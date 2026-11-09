@@ -33,8 +33,11 @@ When you resume the instance, you can pick up where you left off.
 
 [NOTE]
 ====
-You cannot manually pause an AuraDB Free instance; they are paused automatically after 72 hours of inactivity.
+When you pause or resume an instance with multiple user databases, this affects *all* databases within the instance.
+It is *not* possible to pause or resume individual databases.
 ====
+
+You *cannot* manually pause an *AuraDB Free* instance; they are paused automatically after 72 hours of inactivity.
 
 When you pause an instance, Aura performs a backup operation behind the scenes.
 It can take a while to pause, depending on your instance size, because Aura is creating the backup.
@@ -50,7 +53,7 @@ You can pause an instance for up to 30 days, after which point Aura automaticall
 [.include-with-Aura-console]
 =====
 
-Use the *Pause* button on the instance card. 
+Use the *Pause* button on the instance card.
 A confirmation window opens.
 After confirming, the instance begins pausing, and a play button replaces the pause button.
 
@@ -72,7 +75,7 @@ For more information, see the link:https://neo4j.com/docs/aura/platform/api/spec
 // label:AuraDB-Enterprise[]
 // label:AuraDB-business-critical[]
 
-When you resume an instance, Aura restarts the instance and restores it from the backup. 
+When you resume an instance, Aura restarts the instance and restores it from the backup.
 After confirming, the instance begins resuming.
 Resuming the instance can take a few minutes to a few hours, depending on its size.
 
@@ -102,7 +105,7 @@ For more information, see the link:https://neo4j.com/docs/aura/platform/api/spec
 
 == Delete an instance
 
-Deleting an instance removes all associated snapshots, so they cannot be used to backup and restore data. 
+Deleting an instance removes all associated snapshots, so they cannot be used to backup and restore data.
 Deleting an instance with multiple databases deletes all databases in the instance.
 
 [WARNING]
@@ -182,7 +185,7 @@ Note that you have to use the Aura console to clone, it is not supported via Aur
 
 The time it takes depends on the amount of data (and factors such as number of indexes and constraints, or the capacity of the destination instance).
 
-You can clone from a Neo4j version 4 instance to an instance running the latest Neo4j version. 
+You can clone from a Neo4j version 4 instance to an instance running the latest Neo4j version.
 You cannot clone from latest Neo4j version to Neo4j version 4.
 
 Any settings that apply to the source instance, such as SSO, are not carried forward to the destination instance.
@@ -199,16 +202,16 @@ Cloning to a new instance creates a new destination instance containing a duplic
 
 [WARNING]
 ====
-Store the username and password securely. 
+Store the username and password securely.
 The credentials cannot be recovered.
 ====
 
 The destination instance progresses through states, including *Loading*.
-When cloning is complete, the status changes to *Running* and it is ready to use. 
+When cloning is complete, the status changes to *Running* and it is ready to use.
 
 === Clone to an existing instance
 
-The destination instance can be empty or contain data. 
+The destination instance can be empty or contain data.
 
 [WARNING]
 ====
@@ -229,7 +232,7 @@ When all the steps are completed, the instance will show a *Running* state and i
 
 == Upgrade an instance
 
-Different tiers serve different operational needs. 
+Different tiers serve different operational needs.
 Should your needs change, you can upgrade.
 Tiers and prices are described at https://neo4j.com/pricing/[Neo4j.com/pricing]
 
@@ -265,7 +268,7 @@ For more information, see the link:https://neo4j.com/docs/aura/platform/api/spec
 
 Admins can mark a database instance as `production` in AuraDB Virtual Dedicated Cloud and AuraDB Business Critical.
 
-When Neo4j updates the Aura Database version, instances marked as `production` are the last to receive the update. 
+When Neo4j updates the Aura Database version, instances marked as `production` are the last to receive the update.
 This gives customers time to monitor any potential impact on less critical instances first.
 
 In a standard Neo4j Aura Database version update, instances marked as `production` receive an update at least 48 hours after the update has completed on the preceding group of instances.
