@@ -3,19 +3,19 @@
 
 Aura Assistant is an in-console chat assistant that helps you get started with Neo4j Aura.
 
-You can use it to:
+Tasks you can use it for include:
 
-* Explore reference ontologies for industry use cases
-* Import sample data or your own data
-* Model and explore your graph
-* Help write Cypher queries
+* Exploring reference ontologies for industry use cases
+* Importing sample data or your own data
+* Modeling and explore your graph
+* Writing Cypher queries
 
 For Aura Assistant to be available, an xref:user-management.adoc#_organization_level_roles[organization admin] must enable *Generative AI assistance* under xref:visual-tour/index.adoc#org-settings[organization settings].
 
 
 Aura Assistant asks for your permission before performing an action, such as connecting to a database, inspecting the schema, or running a query.
 It connects to your Aura database as your user; it does not use its own user or a service account, so it has the same permissions as yourself. 
-If your user has write access, the connection supports write operations that are persisted.
+If you have write access, Aura Assistant can perform write operations that persist in your database.
 
 Each chat is a separate session. 
 Conversations and actions are not carried over to future sessions and are not retained by Neo4j.
