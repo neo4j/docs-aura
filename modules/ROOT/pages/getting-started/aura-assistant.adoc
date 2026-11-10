@@ -15,7 +15,6 @@ For Aura Assistant to be available, an xref:user-management.adoc#_organization_l
 
 Aura Assistant asks for your permission before performing an action, such as connecting to a database, inspecting the schema, or running a query.
 It connects to your Aura database as your user; it does not use its own user or a service account, so it has the same permissions as yourself. 
-If you have write access, Aura Assistant can perform write operations that persist in your database.
 
 Each chat is a separate session. 
 Conversations are not carried over to future sessions and are not retained by Neo4j.
