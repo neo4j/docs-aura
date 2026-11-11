@@ -47,6 +47,11 @@ This will be expanded to include all regions where AuraDB Business Critical is a
 * `us-east-2 | United States (Ohio)`
 * `us-west-2 | United States (Oregon)`
 
+[NOTE]
+====
+In AWS region `us-east-1`, Neo4j does not support the Availability Zone with ID `use1-az3` for private endpoints.
+====
+
 == Quotas
 
 * Enable up to 10 private endpoints in each region per Aura project.
