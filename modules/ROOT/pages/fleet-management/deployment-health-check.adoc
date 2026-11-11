@@ -1,6 +1,7 @@
 = Deployment health check
 :description: This page describes the deployment health check feature & how to run a deployment health check and interpret the results.
-:min-version: 2026.09.0
+:min-version: 2026.09.0 or 5.1.0
+:min-plugin-version: 1.3.0
 
 A deployment health check diagnoses your self-managed deployment for symptoms of sub-optimal operation, configuration issues and capacity issues. It also suggests possible configuration
 changes to improve the deployment's performance and reliability. A deployment health check consists of a set of checkers that are used to detect conditions that are indicative of issues.
@@ -17,6 +18,12 @@ To run a deployment health check, you need to have the following prerequisites:
 
 * A self-managed deployment monitored by Fleet Manager.
 * Deployment must be in running state.
+* Supported versions:
+** Major version `2026` - supported from `2026.09.0` and later.
+** Major version `2025` - supported from `2025.01.0` and later with Fleet management plugin version `1.3.0` and later.
+** Major version `5` - supported from `5.1.0` and later with Fleet management plugin version `1.3.0` and later.
+
+NOTE: For versions before `5.1.0`, deployment health check is not supported.
 
 == How to run a deployment health check
 To run a deployment health check, go to the *Health* tab on the deployment view page and then click the *Request new health check* button.
