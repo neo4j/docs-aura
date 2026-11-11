@@ -20,7 +20,7 @@ The events captured in the feed fall into the following categories:
 * *Privilege management* - Grants, revocations, role assignments.
 * *Instance actions* - Creation, alteration, deletion.
 * *Configuration changes* - Inserts, updates, deletes.
-* *System events* - Database pause/resume, backup creation/restore.
+* *System events* - Instance pause/resume, backup creation/restore.
 
 Note that the list of events that are captured will grow as more events are added in the future.
 
@@ -229,7 +229,7 @@ a| `action_id`
 | INSTANCE_INTERNAL_UPDATE
 | 0009
 | Instance Actions
-| An internal database update operation
+| An internal instance update operation
 
 | INSTANCE_INTERNAL_PAUSE
 | 0010
