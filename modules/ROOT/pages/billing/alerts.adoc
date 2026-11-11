@@ -1,0 +1,63 @@
+= Billing alerts
+
+== Required roles 
+
+Organization Owner and Organization Administrators can set up and manage custom spend and credit balance alerts directly in the Aura console.
+
+At the organization level, alerts are available to Organization Owner and Organization Admin.
+
+Notifications are automatically sent via email.
+
+== Billing alert types
+
+You can create the following alert types:
+
+*Consumption alert:* sends an alert when month-to-date consumption reaches the target amount, before any credits are applied.
+
+*Cost alert* sends an alert when month-to-date actual cost reaches the target amount. 
+This is the remaining amount due after any credits were applied, and reflects your actual financial exposure.
+
+*Credit balance alert* sends an alert when the remaining credit balance falls below a specified threshold. 
+This is independent from consumption or cost alerts.
+
+== Navigating to Alerts
+
+. Log in to the Aura console and select *Billing* from the main organization menu.
+. Select the *Alerts* tab.
+
+== Create a cost, consumption, or credit balance alert
+
+. Select *New Alert*.
+. Enter a name for the alert.
+. Select the funded *Billing Account* to monitor.
+. Choose an alert type:
++
+** *Consumption*
+** *Cost*
+** *Credit balance*
+. Set a start date and, optionally, an end date.
+. For consumption and cost alerts, enter a target amount in ACUs (Aura Consumption Units).
+. Optionally, add up to four additional thresholds as values or percentages.
+. Activate and save the alert.
+
+Notifications are sent by email to organization owners and administrators.
+
+== Editing and deactivating alerts
+
+From the *Alerts* dashboard, you can edit threshold values or toggle alerts between active and inactive states. 
+Deactivating an alert pauses notifications without removing the configuration.
+
+== How alerts work
+
+Neo4j Aura periodically monitors the billed usage, cost and credit balance. 
+Whenever the cost or credit balance reaches a defined threshold, an email notification is sent to the organization admins and owners.
+
+The alerts are not triggered immediately when a threshold is reached, as it can take up to 24 hours for the alert to be evaluated. 
+It is recommend to set the target amounts and thresholds proactively, below the amount that will actually affect you.
+
+Alerts are reset monthly after each invoicing cycle on the 1st of the month.
+
+== Limits
+
+Only one alert per type per billing account per type of alert is currently supported. 
+You can trigger the alert for up to 4 amount thresholds.
