@@ -256,7 +256,7 @@ There are some things to consider when working with multiple databases:
 * xref:metrics/view-metrics.adoc#multi-db-instances[Metrics] and xref:logging/query-log-analyzer.adoc[Logs]: Switch between databases using the Database dropdown in Metrics and see Database specific Query logs. Includes xref:metrics/metrics-integration/introduction.adoc[Metrics Integration] and xref:logging/log-forwarding.adoc[Log Forwarding].
 * link:https://neo4j.com/docs/aura/platform/api/specification/?urls.primaryName=Aura%20v2beta1[Aura API]: See xref:managing-instances/multiple-databases.adoc#_api_requirements[API requirements]
 * xref:import/import.adoc#run-import[Import]: Select the instance and the target database when running an import.
-* xref:managing-instances/backup-restore-export.adoc#restore-backup[Restore]: Restore a database using Database Restore or drag and drop.
+* xref:managing-instances/backup-restore-export.adoc#restore-backup[Restore]: Restore a database using Database Restore, drag and drop, or use xref:managing-instances/backup-restore-export.adoc#neo4j-admin-upload[`neo4j-admin database upload`].
 * xref:security/index.adoc[Security & Networking]: xref:/security/ip-filtering.adoc[IP filtering], xref:security/secure-connections.adoc#_private_endpoints[Private endpoints] and xref:security/customer-managed-keys.adoc[Customer Managed Keys] (where available for the Aura tier)
 * xref:security/single-sign-on.adoc[Single Sign-On]: Authenticate users accessing the instance.
 

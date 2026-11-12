@@ -18,61 +18,51 @@ AuraDB is offered in four distinct tiers, each designed for different use cases,
 These limits define the scale of an AuraDB instance based on its tier and configured size. 
 See xref:managing-instances/instance-details.adoc[Instance details] for the descriptions of the instance configurations.
 
-[cols="^,^,^,^,^",options="header"]
+[cols="^,^,^,^",options="header"]
 |===
 | Limit
 | AuraDB Free
 | AuraDB Professional
-| AuraDB Business Critical 
-| AuraDB VDC
+| AuraDB Business Critical / AuraDB VDC
 
 | *Nodes*
 | 200,000
-| Hundreds of Millions of nodes and relationships
-| Billions of nodes and relationships
+| Hundreds of millions of nodes and relationships
 | Billions of nodes and relationships
 
 | *Relationships*
 | 400,000
-| Hundreds of Millions of nodes and relationships
-| Billions of nodes and relationships
+| Hundreds of millions of nodes and relationships
 | Billions of nodes and relationships
 
 | *Memory (RAM)*
 | N/A
-| 1 GB  -  128GB
-| 2GB - 1,952GB footnote:higher[Higher available on request.] (GCP)
+| 1GB  -  128GB
+| 2GB - 2,048GB (AWS) footnote:higher[Evaluating AuraDB and need more? link:https://neo4j.com/contact-us/[Contact us]. Existing customers, link:https://support.neo4j.com/s/[contact Support].]
 
-2GB - 512GB footnote:higher[] (AWS & Azure)
-| 2GB - 1,952GB footnote:higher[] (GCP) 
+2GB-1,952GB (GCP) footnote:higher[]
 
-2GB - 512GB footnote:higher[] (AWS & Azure)
+2GB-512GB (Azure) footnote:higher[]
 
 | *Storage*
 | 1GB
-| 2GB  -  2,048GB
-| 4GB  -  5,120GB (AWS & GCP)
-
-4GB - 2,048GB (Azure)
-| 4GB - 5,120GB (AWS & GCP) 
-
-4GB - 2,048GB (Azure)
+| 2GB - 2,048GB footnote:higher[]
+| 4GB - 5,120GB footnote:higher[]
 
 | *RAM/Disk Ratio*
 | N/A
 | Up to 1:16
 | Up to 1:16
-| Up to 1:16
 
 | *vCPU* footnote:2[Note that when using metrics-forwarding to get access to Neo4j's built-in metrics, you may see fluctuating values for CPU related series. This is because Aura's resource scheduling is dynamic at runtime, transparent to the underlying Neo4j process.]
 | N/A
-| 1 vCPU - 24 vCPU
-| 1 vCPU - 288 vCPU (GCP) 
+| 1vCPU - 24vCPU
+| 1vCPU - 128vCPU (AWS) 
 
-1 vCPU - 96 VCPU (AWS & Azure) 
-| 1 vCPU - 288 vCPU (GCP) 
+1vCPU - 288vCPU (GCP) 
 
-1 vCPU - 96 vCPU (AWS & Azure)
+1vCPU - 96vCPU (Azure) 
+
 |===
 
 === AuraDB service level comparisons

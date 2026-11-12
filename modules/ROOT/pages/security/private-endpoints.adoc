@@ -39,10 +39,18 @@ This provides a simple mechanism for ensuring that direct traffic is using the p
 Private endpoints are available only for AWS in the following regions for the launch of Public Preview. 
 This will be expanded to include all regions where AuraDB Business Critical is available throughout the Preview.
 
-* `eu-west-1` (Ireland)
-* `eu-west-2` (London)
-* `eu-west-3` (Paris)
-* `eu-central-1` (Frankfurt)
+* `eu-west-1 | Ireland`
+* `eu-west-2 | United Kingdom (London)`
+* `eu-west-3 | France (Paris)`
+* `eu-central-1 | Germany (Frankfurt)`
+* `us-east-1 | United States (North Virginia)`
+* `us-east-2 | United States (Ohio)`
+* `us-west-2 | United States (Oregon)`
+
+[NOTE]
+====
+In AWS region `us-east-1`, Neo4j does not support the Availability Zone with ID `use1-az3` for private endpoints.
+====
 
 == Quotas
 
