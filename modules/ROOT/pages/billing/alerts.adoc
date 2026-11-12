@@ -1,11 +1,22 @@
 = Billing alerts
 
-At the organization level, alerts are available to Organization Owners and Organization Administrators.
-Notifications are automatically sent via email.
+Create an alert to receive an email notification when a selected billing account reaches an amount or threshold you define.
+Whenever the consumption, cost or credit balance reaches a defined threshold, an email alert is sent to Organization Owners and Organization Administrators.
+
+[IMPORTANT]
+====
+The alerts are not triggered immediately when a threshold is reached, as it can take up to 24 hours for the alert to be evaluated.
+It is recommended to set the target amounts and thresholds proactively, below the amount that will actually affect you. 
+====
+
+Alerts are reset monthly after each invoicing cycle on the 1st of the month.
+
+You can set up one alert per type per billing account per type of alert.
+Trigger the alert for up to 4 amount thresholds.
 
 == Required roles 
 
-Organization Owners and Organization Administrators can set up and manage custom spend and credit balance alerts directly in the Aura console.
+Organization Owners and Organization Administrators can set up alerts, receieve alerts, and manage custom spend and credit balance alerts directly in the Aura console. 
 
 == Billing alert types
 
@@ -18,27 +29,10 @@ This is the remaining amount due after any credits were applied, and reflects yo
 
 * *Credit balance* - Triggered when the remaining credit balance falls below a specified threshold. This is independent from consumption or cost alerts.
 
-== How alerts work
-
-Neo4j Aura periodically monitors the billed usage, cost and credit balance. 
-Whenever the cost or credit balance reaches a defined threshold, an email notification is sent to the organization admins and owners.
-
-[IMPORTANT]
-====
-The alerts are not triggered immediately when a threshold is reached, as it can take up to 24 hours for the alert to be evaluated. 
-====
-
-It is recommended to set the target amounts and thresholds proactively, below the amount that will actually affect you.
-
-Alerts are reset monthly after each invoicing cycle on the 1st of the month.
-
-== Navigating to Alerts
-
-. Log in to the Aura console and select *Billing* from the main organization menu.
-. Select the *Alerts* tab.
-
 == Create an alert
 
+. Go to *Billing* in the xref:visual-tour/index.adoc#org-settings[Organization settings].
+. Select the *Alerts* tab.
 . Select *New Alert*.
 . Enter a name for the alert.
 . Select the funded *Billing Account* to monitor.
@@ -57,7 +51,3 @@ Alerts are reset monthly after each invoicing cycle on the 1st of the month.
 From the *Alerts* dashboard, you can edit threshold values or toggle alerts between active and inactive states. 
 Deactivating an alert pauses notifications without removing the configuration.
 
-== Limits
-
-Only one alert per type per billing account per type of alert is currently supported. 
-You can trigger the alert for up to 4 amount thresholds.
