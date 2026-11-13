@@ -31,23 +31,22 @@ Deployment health check is not supported for versions before `5.1.0`.
 
 == How to run a deployment health check
 
-To run a deployment health check, go to the *Health* tab on the deployment view page and use the *Request new health check* button.
-
-image::deployment-check/health-check-request-first.png[Request new deployment health check]
+To run a deployment health check, go to the *Health* tab on the deployment view page and use the *Request new check* button.
 
 A request modal confirms the request.
+You can optionally attach a Support case ID to reference the deployment health check in your support case.
 
 image::deployment-check/health-check-request-modal.png[Request new deployment health check modal]
 
-You can optionally attach a Support case ID to reference the deployment health check in your support case.
-
-image::deployment-check/health-check-request-modal-support-case.png[Request new deployment health check modal with support case ID]
-
 Once the request is submitted, you can track the status of the deployment health check.
-
-image::deployment-check/health-check-in-progress.png[Deployment health check in progress]
-
 Once the deployment health check is completed, you can view the results of the deployment health check for each checker in the table.
+
+[NOTE] 
+====
+Results are pre-filtered to show `Error` and `Warning` severity results only.
+Clearing the filter shows all results.
+You can filter the results by severity or instance or checker name.
+====
 
 image::deployment-check/health-check-result-checkers.png[Deployment health check results checkers]
 
@@ -59,11 +58,10 @@ You can also view the historical results of deployment health checks for the dep
 
 image::deployment-check/health-check-history.png[Deployment health check history table]
 
-[NOTE] 
+[IMPORTANT]
 ====
-Results are pre-filtered to show `Error` and `Warning` severity results only.
-Clearing the filter shows all results.
-You can filter the results by severity or instance or checker name.
+Note that the historical results are only available for the last 30 days.
+You can copy the deployment health check ID from the `Check ID` column to reference the deployment health check in your support case or report any issues.
 ====
 
 == Interpreting the results
