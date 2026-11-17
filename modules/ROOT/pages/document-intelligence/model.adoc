@@ -21,12 +21,10 @@ But if you are unsure what type of model you need or want, Document Intelligence
 You can use the *Generate model* button to have Document Intelligence do the work, but in order to make the model as useful as possible, it is recommended to add information about your use case.
 The more details, the better the model will be.
 
-For example, if you are creating a knowledge graph of a certain wizarding universe, you can tell the assistant:
+For example, if you are creating a knowledge graph of a certain wizarding universe, you add a prompt:
 
-[source, prompt]
-----
-List the node labels (e.g., Character, House, Spell, Location, Creature, Object), their key properties, and the relationship types connecting them (e.g., BELONGS_TO, CASTS, LOCATED_IN, ALLY_OF, ENEMY_OF), including direction and cardinality where relevant.
-----
+_List the node labels (e.g., Character, House, Spell, Location, Creature, Object), their key properties, and the relationship types connecting them (e.g., BELONGS_TO, CASTS, LOCATED_IN, ALLY_OF, ENEMY_OF), including direction and cardinality where relevant._
+
 
 *Generate model* to have Document Intelligence parse the content and propose a model.
 The generation can take a moment, but once it is done, the assistant summarizes the process and explains what has been created.

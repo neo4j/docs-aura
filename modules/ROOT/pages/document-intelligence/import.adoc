@@ -31,14 +31,31 @@ Regardless of whether you use the Document Intelligence Agent to trigger the imp
 
 The process consists of the following high level steps:
 
-* *Document parsing* - text is extracted from your document(s)
-* *Document chunking* - each document is split into smaller pieces of text of a fixed size
-** *Chunk embedding* - each chunk's text is embedded using the gemini-embedding-001 model
-* *Entity and relation extraction* - for each chunk of text, entity and relation extraction is performed according to the provided graph model.
+*Document parsing* - text is extracted from your document(s).
+The underlying parser uses link:https://docling.ai/[Docling] with or without Object Character Recognition (OCR) and Vision-Language Models (VLM) to extract information from images.
+
+*Document chunking* - each document is split into smaller pieces of text of a fixed size.
+If the content is tabular, a table-aware splitter is used.
+*Chunk embedding* - each chunk's text is embedded using the gemini-embedding-001 model
+
+*Entity and relation extraction* - for each chunk of text, entity and relation extraction is performed according to the provided graph model.
 This means that only node labels and relationship types listed in the model are extracted.
-* *Entity resolution* - also known as *entity deduplication*.
-Using the *key* property defined in the graph model to deduplicate entities based on the lower-case value of said property.
-* *Import* - imports the documents as a graph.
+The current model for entity extraction is *Gemini 3.7*.
+
+*Entity resolution* - also known as *entity deduplication*.
+Using the *key* and *uniqueness* properties defined in the graph model to deduplicate entities based on the lower-case value of said property.
+The documents are first language-normalized, where titles, honorifics, legal entities, plural of words, etc. are handled, followed by other strategies to reduce false merges.
+That is followed by a fuzzy matching strategy where the user can set the threshold.
+
+[.shadow]
+.Set the threshold for fuzzy matching
+image::fuzzy-threshold.png[width=600]
+
+Additionally, incoming nodes are resolved against existing data.
+The Lucene-backed full-text index search retrieves similar candidate nodes from the database and the same strategy as described above is applied.
+If values conflict, existing data is prioritized,
+
+*Import* - imports the documents as a graph.
 
 == Lexical graph
 
@@ -53,14 +70,14 @@ image::graph-layers.png[width=800]
 
 The lexical graph consists of the following nodes and relationships:
 
-* `_ \_Document_ _` - a node that represents a single document in the data source.
+* `+++__Document__+++` - a node that represents a single document in the data source.
 It has a *path* property to identify it.
-* `_ \_Chunk_ \_` - a node that is a part of a document.
-It is linked to its source document via a `_ \_CHUNK_TO_DOCUMENT_ _` relationship.
-*  `_ \_NEXT_CHUNK_ _` - a relationship that links the different chunks together.
-* `_ \_NODE_TO_CHUNK_ _` - a relationship between *all* extracted entities and the chunk they are extracted from.
+* `+++__Chunk__+++` - a node that is a part of a document.
+It is linked to its source document via a `+++__CHUNK_TO_DOCUMENT__+++` relationship.
+*  `+++__NEXT_CHUNK__+++` - a relationship that links the different chunks together.
+* `+++__NODE_TO_CHUNK__+++` - a relationship between *all* extracted entities and the chunk they are extracted from.
 
-*All* entities extracted gets an `_ \_Entity_ _` label in addition to other labels.
+*All* entities extracted gets an `+++__Entity__+++` label in addition to other labels.
 
 
 
