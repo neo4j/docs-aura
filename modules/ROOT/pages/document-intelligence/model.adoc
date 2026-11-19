@@ -19,7 +19,7 @@ Additionally, you can *load* an existing model as well.
 But if you are unsure what type of model you need or want, Document Intelligence can generate one for you.
 
 You can use the *Generate model* button to have Document Intelligence do the work, but in order to make the model as useful as possible, it is recommended to add information about your use case.
-The more details, the better the model will be.
+The more details, the better the model will be for your use case.
 
 For example, if you are creating a knowledge graph of a certain wizarding universe, you add a prompt:
 
@@ -33,6 +33,7 @@ The generation can take a moment, but once it is done, the assistant summarizes 
 image::generated-model.png[width=800]
 
 It is important to review the model and make sure that it meets your needs.
+To test this, you can ask the assistant if the current model is able to answer a specific question about your data, for example: "Which wizards have used a given spell in the first book of the saga?".
 
 If anything is amiss, you can tell the assistant to amend the model.
 For example, if you notice that your model needs additional properties, ask the assistant to add them.

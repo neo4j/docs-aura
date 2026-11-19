@@ -1,15 +1,10 @@
 = Quick start
 :description: This page describes how to get started importing unstructured data into a running Neo4j Aura instance.
-:page-role: preview
 
 label:AuraDB-Free[]
 label:AuraDB-Professional[]
 label:AuraDB-Business-Critical[]
 
-[IMPORTANT]
-====
-This feature is in *preview* and is offered AS-IS and should only be used for internal development purposes and *not in production*.
-====
 
 In short, the process for importing unstructured data into a knowledge graph consists of five steps:
 
@@ -43,7 +38,7 @@ You can add up to 20 documents.
 
 It is recommended to have a running instance for this step, but not strictly necessary until your run the import.
 You can pick an existing instance or create a new connection, but if you prefer generating the model without connecting to any instance, just use *Continue* without making any selection.
-Note that if your instance is an *AuraDB Professional* or *AuraDB Business Critical*, you need to have xref:security/tool-auth.adoc[Tool authentication with Aura user] enabled for your Project.
+
 Once your data source has been added, use *Create graph model* to move to the next step in the process.
 
 If you have any additional context about your documents, you can add a prompt to describe the data.
@@ -114,7 +109,8 @@ image::model-error.jpg[width=400]
 
 With *local data sources*, Document Intelligence can create a sample graph based on your model and data.
 This feature is meant to help you verify that things are connected the way you want.
-It is *not* a complete representation of your data and is *not* written to your database.
+It is based on a sample of your local data and therefore it is *not* a complete representation of your data.
+The preview graph is *not* written to your database.
 You can ask the assistant to generate the preview for you, or you can use the *Graph preview* button located in the modelling tools.
 
 [.shadow]
