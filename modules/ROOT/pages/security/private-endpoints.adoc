@@ -1,5 +1,22 @@
 = Private Endpoints for Business Critical on AWS (Preview feature)
 
+It is just about connecting to an instance via a PrivateLink (in other words, a Private URI).
+
+In Aura, it is the normal client-to-database traffic, for example:
+
+* authentication and session setup
+* it’s Bolt and HTTP from your application or driver
+* Cypher queries or transactions sent to the database
+* query results and database responses returned to the application
+
+All data remains in Aura, stored/hosted in Aura.
+It’s just the connection path that the private endpoint/private service connect influces.
+
+This is where the direct access path wording in the docs becomes relevant - anything that connects directly to the Aura instance (Bolt/HTTP) that has its traffic path governed by private endpoints. 
+Any tools that connect via a 3rd party platform service (e.g. Aura Import Service) sit outside of the scope of this feature.
+
+With a private URI, that same encrypted traffic travels through AWS PrivateLink rather than the public internet. 
+The Aura instance and its graph data remain hosted by Neo4j; they are not moved into your VPC.
 
 label:AuraDB-Business-Critical[]
 
@@ -29,10 +46,13 @@ Instances using Private Endpoints in AuraDB Business Critical get assigned a sep
 This provides a simple mechanism for ensuring that direct traffic is using the private connection.
 
 .Reference structure
-`<id>.<mode>.<feature>.<environment+region>.neo4j.io`
+`<instanceId>.<auraTier>.<feature>.<environment+region>.neo4j.io`
 
 .Example
 `1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io`
+
+In this example, the *domain* is
+`pe.s-eu-west-1.neo4j.io` (This would be the name of the domain that you want to route traffic for if you were using the Ireland region)
 
 == Regions
 
@@ -70,6 +90,11 @@ Each instance can use one of the following traffic modes for governing direct tr
 * *Public*: Connections use public access.
 
 * *Hybrid*: Direct connections can use public or private access. Indirect access tools remain available.
+
+[NOTE]
+====
+Hybrid mode is only available when you first set up the feature - it's not really a mode you can get back to. It's a mode that is only ever triggered when you first set your instance up - to test the connection via public and private URI before you switch off the public access!
+====
 
 ** A private connection is available through the private URI.
 ** A shield icon appears with the tooltip “Private connection with public access enabled”.
@@ -226,7 +251,10 @@ Aura does not automate the setup of this record automatically through the endpoi
 . In the AWS Management Console, go to VPC and select *Endpoints*.
 . Select your Aura VPC endpoint.
 . Open the Subnets tab.
-. Copy the IPv4 address for each subnet. There is one per subnet you selected, for example `10.0.1.47`, `10.0.2.244`, and `10.0.3.194`.
+. Copy each subnet's IPv4 address. There is an IPv4 address per subnet you selected, for example +
+`10.0.1.47` +
+`10.0.2.244` +
+`10.0.3.194`
 
 ==== Create a private hosted zone in AWS
 
@@ -238,14 +266,12 @@ For example `pe.s-eu-west-1.neo4j.io`
 ==== Add the DNS record
 
 . In the new hosted zone, select *Create record*.
-. For *Record name*, enter `*.auradb` 
-
-Route 53 adds the zone name for you, so the full record name is `*.auradb.pe.s-eu-west-1.neo4j.io`
-
-.. The wildcard record answers for any ID under `auradb.pe.s-eu-west-1.neo4j.io` including IDs that don't exist. 
-A mistyped private URI therefore fails when you connect, not at the DNS lookup, so check the ID in your private URI.
+. For *Record name*, enter `*.auradb`* (Route 53 adds the zone name for you, so the full record name is `.auradb.pe.s-eu-west-1.neo4j.io`)
 . For *Record type*, select *A*.
-. For *Value*, enter the endpoint IP addresses you copied, one per line.
+. For *Value*, enter the (endpoint) *subnet IPv4  addresses* you copied earlier, one per line, for example +
+`10.0.1.47` +
+`10.0.2.244` +
+`10.0.3.194`
 . For *TTL*, use the default option e.g. `300 seconds`.
 . For *Routing policy*, keep *Simple routing*.
 . Select *Create records*.
@@ -257,10 +283,16 @@ For example: `nslookup 1q2w3e4r.auradb.pe.s-eu-west-1.neo4j.io`
 
 The lookup should return the IP addresses of your endpoint.
 
+[NOTE]
+====
+The wildcard record answers for any ID under `auradb.pe.s-eu-west-1.neo4j.io` including IDs that don't exist. 
+A mistyped private URI therefore fails when you connect, not at the DNS lookup, so check the ID in your private URI.
+
 A private hosted zone only resolves inside the VPCs it’s associated with. 
 If your applications run in more than one VPC, associate the zone with each VPC.
 
-If you list the record with the AWS CLI, Route 53 shows the wildcard as `\052`, for example `\052.auradb.pe.s-eu-west-1.neo4j.io`. This is normal.
+If you list the record with the AWS CLI, Route 53 shows the wildcard as `\052`, for example `\052.auradb.pe.s-eu-west-1.neo4j.io`.
+====
 
 === Test the private connection 
 
