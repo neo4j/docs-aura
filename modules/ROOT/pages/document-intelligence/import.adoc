@@ -45,9 +45,9 @@ This means that only node labels and relationship types listed in the model are 
 The current model for entity extraction is *Gemini 3.7*.
 
 *Entity resolution* - also known as *entity deduplication*.
-Using the *key* and *uniqueness* properties defined in the graph model to deduplicate entities based on the lower-case value of said property.
-The documents are first language-normalized, where titles, honorifics, legal entities, plural of words, etc. are handled, followed by other strategies to reduce false merges.
-That is followed by a fuzzy matching strategy where the user can set the threshold.
+This relies on the properties covered by the `UNIQUENESS` and `KEY` constraints defined in the graph model, which is why the quality and tuning of that model matters.
+Values of those properties are first normalized with language-aware rules (handling titles and honorifics, legal entity suffixes, and plural forms) and lower-cased, then compared using fuzzy matching.
+Pre-filtering strategies narrow the candidate pairs beforehand to reduce false merges, and the similarity threshold for merging entities can be set by the user from the UI.
 
 [.shadow]
 .Set the threshold for fuzzy matching

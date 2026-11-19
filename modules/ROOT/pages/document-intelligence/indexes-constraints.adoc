@@ -15,6 +15,11 @@ This feature is in *preview* and is offered AS-IS and should only be used for in
 When you generate a data model, constraints and corresponding indexes are created automatically to ensure the accuracy of data.
 They are found in the details panel and the tab is visible when a single node is selected in the data model panel.
 
+[NOTE]
+====
+The constraints *must* be consistent with the connected instance or else the import job will fail.
+====
+
 [.shadow]
 .Indexes and constraints
 image::docintel-index.jpg[]

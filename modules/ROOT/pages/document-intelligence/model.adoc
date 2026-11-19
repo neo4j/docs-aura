@@ -25,7 +25,6 @@ For example, if you are creating a knowledge graph of a certain wizarding univer
 
 _List the node labels (e.g., Character, House, Spell, Location, Creature, Object), their key properties, and the relationship types connecting them (e.g., BELONGS_TO, CASTS, LOCATED_IN, ALLY_OF, ENEMY_OF), including direction and cardinality where relevant._
 
-
 *Generate model* to have Document Intelligence parse the content and propose a model.
 The generation can take a moment, but once it is done, the assistant summarizes the process and explains what has been created.
 
@@ -40,6 +39,18 @@ For example, if you notice that your model needs additional properties, ask the 
 Likewise, if you see that there are unnecessary entities in the model, tell the assistant to remove them.
 
 Additionally, you can ask the assistant to explain the model to you and use that as your starting point for ensuring that your model is appropriate.
+
+== Labels, types, and properties
+
+If you select a node or relationship in the model and expand the *graph object details panel*, you can specify more details about the object, such as properties, constraints, and indexes.
+You can also add a description to the label, type, or property, where you can provide guidance to the tool.
+For example, for a *Creature*'s `name` property, you can say "Always extract names capitalized".
+
+Note that `VECTOR` and `LIST` properties are *not* supported.
+
+[.shadow]
+.Graph object details
+image::label-property-description.png[width=600]
 
 When you are satisfied with your model, either tell the assistant to run the import, or use the button in the top right corner.
 
