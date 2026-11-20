@@ -1,15 +1,10 @@
 = Quick start
 :description: This page describes how to get started importing unstructured data into a running Neo4j Aura instance.
-:page-role: preview
 
 label:AuraDB-Free[]
 label:AuraDB-Professional[]
 label:AuraDB-Business-Critical[]
 
-[IMPORTANT]
-====
-This feature is in *preview* and is offered AS-IS and should only be used for internal development purposes and *not in production*.
-====
 
 In short, the process for importing unstructured data into a knowledge graph consists of five steps:
 
@@ -42,7 +37,13 @@ You can add up to 20 documents.
 == Generate initial graph data model
 
 It is recommended to have a running instance for this step, but not strictly necessary until your run the import.
-Note that if your instance is an *AuraDB Professional* or *AuraDB Business Critical*, you need to have xref:security/tool-auth.adoc[Tool authentication with Aura user] enabled for your Project.
+You can pick an existing instance or create a new connection, but if you prefer generating the model without connecting to any instance, just use *Continue* without making any selection.
+
+[NOTE]
+====
+If you are targeting a non-empty instance, it is recommended to provide the instance details at this point to avoid conflicts with the existing graph model later.
+====
+
 Once your data source has been added, use *Create graph model* to move to the next step in the process.
 
 If you have any additional context about your documents, you can add a prompt to describe the data.
@@ -109,6 +110,21 @@ To resolve, select the offending node or relationship to open the details panel 
 .Errors in model
 image::model-error.jpg[width=400]
 
+== Preview graph
+
+With *local data sources*, Document Intelligence can create a sample graph based on your model and data.
+This feature is meant to help you verify that things are connected the way you want.
+It is based on a sample of your local data and therefore it is *not* a complete representation of your data.
+The preview graph is *not* written to your database.
+You can ask the assistant to generate the preview for you, or you can use the *Graph preview* button located in the modelling tools.
+
+[.shadow]
+.Graph preview button
+image::graph-preview.png[width=300]
+
+To generate a preview, Document Intelligence needs access to your data, and at this stage, only local sources are available.
+Hence, this feature is not available for cloud data sources.
+
 == Run import
 
 Once you are satisfied with your model and it is free of errors, you can run the import.
@@ -134,7 +150,7 @@ You can run the following command to visualize the data.
 CALL db.schema.visualization
 ----
 
-Note that there is some extra data in the model, `_ \_Chunk_ \_`, `_ \_Document_ \_`, and `_ \_Entity_ _` nodes and corresponding relationships.
+Note that there is some extra data in the model, `+++__Chunk__+++`, `+++__Document__+++`, and `+++__Entity__+++` nodes and corresponding relationships.
 See xref:document-intelligence/import.adoc#_lexical_graph[Lexical graph] for more information about this.
 
 

@@ -1,0 +1,35 @@
+= Troubleshooting
+:description: This page describes some common errors when using Neo4j Document Intelligence and how to resolve them.
+
+label:AuraDB-Free[]
+label:AuraDB-Professional[]
+label:AuraDB-Business-Critical[]
+
+The following are some common errors that may occur and their resolutions.
+
+[opts="header",cols="<,<,<,<"]
+|===
+| Error
+| When
+| Root cause
+| Solution
+
+| No valid files found for schema generation
+| When generating a graph model from a cloud data source.
+| Cloud data source does not contain any valid file in term of file type.
+| Add at least one valid file.
+
+| An error occurred during import:
+Schema is incompatible with the target graph's existing keys: node 'Product' is keyed on ['barcode'] in the target graph, but the schema keys it on ['name'] -- the import can't merge onto the existing data.
+Key 'Product' on ['barcode'] instead..
+| When triggering an import job against a non-empty database (contains data and/or constraints).
+| The constraints in the provided graph model are incompatible with the constraints in the database.
+| Fix the graph model before re-submitting the import.
+
+| The job failed because no entities were extracted from the data source.
+Please consider widening your schema or adding more data..
+| When triggering an import job.
+| No data was extracted because of schema not matching anything in the data, LLM not extracting what it should extract, or schema contains constraints that are hard to satisfy.
+This error is not triggered if all LLM calls fail since that is an internal error.
+| Add data that fits the schema or modify the schema to better match the data or relax some of the existence and key constraints in the schema.
+|===
