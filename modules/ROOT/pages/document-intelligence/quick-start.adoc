@@ -39,6 +39,11 @@ You can add up to 20 documents.
 It is recommended to have a running instance for this step, but not strictly necessary until your run the import.
 You can pick an existing instance or create a new connection, but if you prefer generating the model without connecting to any instance, just use *Continue* without making any selection.
 
+[NOTE]
+====
+If you are targeting a non-empty instance, it is recommended to provide the instance details at this point to avoid conflicts with the existing graph model later.
+====
+
 Once your data source has been added, use *Create graph model* to move to the next step in the process.
 
 If you have any additional context about your documents, you can add a prompt to describe the data.
