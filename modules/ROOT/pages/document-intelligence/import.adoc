@@ -40,7 +40,7 @@ Images are analyzed using a vLLM (the same used for extraction) and the descript
 See the tables in xref:document-intelligence/llms-regions.adoc#_llms_and_regions[LLMs and regions] for a full reference.
 
 *Entity and relation extraction* - for each chunk of text, entity and relation extraction is performed according to the provided graph model.
-This means that only node labels and relationship types listed in the model are extracted.
+This means that only node labels and relationship types listed in the graph model are extracted.
 The model for entity extraction depends on the target instance's cloud provider and region.
 See the tables in xref:document-intelligence/llms-regions.adoc#_llms_and_regions[LLMs and regions] for a full reference.
 
@@ -58,6 +58,8 @@ The Lucene-backed full-text index search retrieves similar candidate nodes from 
 If property values covered by a `KEY` or `UNIQUENESS` constraint conflict, existing data is prioritized.
 
 *Import* - imports the documents as a graph.
+Each import job is *limited to 100 chunks* per user/project.
+This is roughly equal to 200 pages.
 
 == Lexical graph
 
@@ -75,6 +77,7 @@ The lexical graph consists of the following nodes and relationships:
 * `+++__Document__+++` - a node that represents a single document in the data source.
 It has a *path* property to identify it.
 * `+++__Chunk__+++` - a node that is a part of a document.
+The *Chunk* nodes contain the text and embeddings.
 It is linked to its source document via a `+++__CHUNK_TO_DOCUMENT__+++` relationship.
 *  `+++__NEXT_CHUNK__+++` - a relationship that links the different chunks together.
 * `+++__NODE_TO_CHUNK__+++` - a relationship between *all* extracted entities and the chunk they are extracted from.

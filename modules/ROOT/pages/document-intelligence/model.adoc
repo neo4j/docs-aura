@@ -55,6 +55,11 @@ image::label-property-description.png[width=600]
 
 When you are satisfied with your model, either tell the assistant to run the import, or use the button in the top right corner.
 
+== Download model
+
+Additionally, you can download the model or GraphSchema as _JSON_ files.
+A downloaded model can be loaded at a later time and a GraphSchema can be used to import via API, as described in xref:document-intelligence/di-api.adoc[Document Intelligence public API].
+
 [NOTE]
 ====
 The assistant does *not* have *write access* to your data, so if anything needs updating in the model when the import is done, you have to use Cypher and the *Query* tool to actually make any changes to your data.
