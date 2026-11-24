@@ -36,13 +36,13 @@ A table-aware splitter is always used, regardless of whether the content is tabu
 Images are extracted during the parsing process and added as Chunk with `chunk_type="picture"`.
 Images are analyzed using a vLLM (the same used for extraction) and the description then follows the same process as normal text (entity extraction + resolution).
 
-*Chunk embedding* - each chunk's text is embedded
-//using the gemini-embedding-001 model
+*Chunk embedding* - each chunk's text is embedded using a model depending on the target instance's cloud provider and region.
+See the tables in xref:document-intelligence/llms-regions.adoc#_llms_and_regions[LLMs and regions] for a full reference.
 
 *Entity and relation extraction* - for each chunk of text, entity and relation extraction is performed according to the provided graph model.
 This means that only node labels and relationship types listed in the model are extracted.
-//The current model for entity extraction is *Gemini 3.7*.
-//Update when settled
+The model for entity extraction depends on the target instance's cloud provider and region.
+See the tables in xref:document-intelligence/llms-regions.adoc#_llms_and_regions[LLMs and regions] for a full reference.
 
 *Entity resolution* - also known as *entity deduplication*.
 This relies on the properties covered by the `UNIQUENESS` and `KEY` constraints defined in the graph model, which is why the quality and tuning of that model matters.

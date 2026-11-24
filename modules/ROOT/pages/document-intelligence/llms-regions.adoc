@@ -1,0 +1,149 @@
+= LLMs, regions, and permissions
+:description: This page lists models and embeddings used in different regions for the supported cloud providers.
+
+== LLMs and regions
+
+Document Intelligence uses different LLM models in different regions.
+All processing is done in the same cloud provider and in the closest region to the target instance, if the same region is not available.
+Only non-EU and non-US regions are routed to `global`.
+The following tables list which models are used for regions and endpoints, sorted by cloud provider.
+
+
+.GCP
+[opts="header",cols="<,<,<,<,<"]
+|===
+| Region
+| Endpoint
+| Chat
+| Batch
+| Embeddings
+
+| `europe-*`
+| eu
+| gemini-3.8-flash
+| gemini-3.8-flash
+| gemini-embedding-001
+
+| `us-*`
+| us
+| gemini-3.8-flash
+| gemini-3.8-flash
+| gemini-embedding-001
+
+| Rest of the world
+| global
+| gemini-3.8-flash
+| gemini-3.8-flash
+| gemini-embedding-001
+|===
+
+.AWS
+[opts="header",cols="<,<,<,<,<"]
+|===
+| Region
+| Endpoint
+| Chat
+| Batch
+| Embedding
+
+| `eu-*`
+| eu
+| anthropic.claude-haiku-5-5
+| anthropic.claude-sonnet-4-6
+| cohere.embed-v4:0
+
+| `us-\*`, `ca-*`
+| us
+| anthropic.claude-haiku-5-5
+| anthropic.claude-sonnet-4-6
+| cohere.embed-v4:0
+
+| `au-*`
+| au
+| anthropic.claude-haiku-5-5
+| anthropic.claude-sonnet-4-6
+| cohere.embed-v4:0
+
+| `nz-*`
+| au or global
+| anthropic.claude-haiku-5-5
+| anthropic.claude-sonnet-4-6
+| cohere.embed-v4:0
+
+| `jp-*`
+| jp
+| anthropic.claude-haiku-5-5
+| anthropic.claude-sonnet-4-6
+| cohere.embed-v4:0
+
+| Rest of the world (APAC)
+| global
+| anthropic.claude-haiku-5-5
+| anthropic.claude-sonnet-4-6
+| cohere.embed-v4:0
+|===
+
+.Azure
+[opts="header",cols="<,<,<,<,<"]
+|===
+| Region
+| Enpoint
+| Chat
+| Batch
+| Embeddings
+
+| `francecentral`, `westeurope`
+| same
+| gpt-6-lunaDataZoneStandard
+| gpt-4.1DataZoneBatch*
+| text-embedding-3-large DataZoneStandard
+
+| `eastus`, `westus`
+| same
+| gpt-6-lunaDataZoneStandard
+| gpt-5.4DataZoneBatch*
+| text-embedding-3-large DataZoneStandard
+
+| `koreacentral`
+| same
+| gpt-5.4-lunaDataZoneStandard
+| gpt-5.4DGlobalBatch* footnote:global[Routes to Global when no regional variable is available, outside of EU and US]
+| text-embedding-3-large DataZoneStandard
+
+| `brazilsouth`
+| same
+| gpt-5.4-lunaDataZoneStandardfootnote:global[]
+| gpt-5.4DGlobalBatch* footnote:global[]
+| text-embedding-3-large DataZoneStandardfootnote:global[]
+
+| `uksouth`
+| same
+| gpt-5.4-lunaDataZoneStandardfootnote:global[]
+| gpt-5.4DGlobalBatch* footnote:global[]
+| text-embedding-3-large DataZoneStandard
+|===
+
+== Permissions
+
+The workflow in Document Intelligence uses an internal service account to connect to your target instance.
+The service account has the required permissions for the job to run and these may escalate the permissions granted the user.
+This is the full list of permissions required for the service account:
+
+[source]
+----
+   - access: {}
+    - showConstraint: {}
+    - showIndex: {}
+    - indexManagement: {}
+    - match: {}
+    - executeProcedure:
+        names:
+          - "db.labels"
+          - "db.relationshipTypes"
+          - "db.schema.visualization"
+          - "db.schema.nodeTypeProperties"
+          - "db.schema.relTypeProperties"
+          - "apoc.meta.schema"
+          - "db.index.fulltext.queryNodes"
+
+----
