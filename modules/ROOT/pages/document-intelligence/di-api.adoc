@@ -111,7 +111,7 @@ Each entry has a `reason`, a `message`, and sometimes a `field`.
 Common errors on create:
 
 * `400` with `instance_requires_password`, `field: instance_id`: the instance is a free instance with a database password.
-* `403` with `enterprise_instance_not_supported`, `field: Instance_id`: the instance is an enterprise instance and importing to these is not supported.
+* `403` with `enterprise_instance_not_supported`, `field: Instance_id`: the instance is a Virtual Dedicated Cloud instance and importing to these is not supported.
 * `403` with `insufficient_permissions`: your role cannot create jobs.
 * `404` with `not_found`: the data source does not exist, or the instance is not in the project.
 
