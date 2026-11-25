@@ -34,7 +34,7 @@ The underlying parser uses link:https://docling.ai/[Docling] with or without Obj
 *Document chunking* - each document is split into smaller pieces of text of a fixed size.
 A table-aware splitter is always used, regardless of whether the content is tabular.
 Images are extracted during the parsing process and added as Chunk with `chunk_type="picture"`.
-Images are analyzed using a vLLM (the same used for extraction) and the description then follows the same process as normal text (entity extraction + resolution).
+Images are analyzed using a VLM (the same used for extraction) and the description then follows the same process as normal text (entity extraction + resolution).
 
 *Chunk embedding* - each chunk's text is embedded using a model depending on the target instance's cloud provider and region.
 See the tables in xref:document-intelligence/llms-regions.adoc#_llms_and_regions[LLMs and regions] for a full reference.
