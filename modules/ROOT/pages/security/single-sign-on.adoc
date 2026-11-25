@@ -6,7 +6,7 @@
 
 Single Sign-On (SSO) enables organization owners and organization admins to use your organization's identity provider (IdP) to authenticate users so they can access the Aura console and Aura instances.
 
-Aura supports SSO authentication and authorization using https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc[Microsoft Entra] and link:https://developer.okta.com/docs/guides/oin-sso-overview/[Okta] as IdPs, implementing the OpenID Connect (OIDC) protocol.
+Aura supports SSO authentication and authorization with a range of identity providers (IdPs) that implement OpenID Connect (OIDC), such as Microsoft Entra ID, Okta, Auth0, Ping Identity, IBM Verify and more. link:https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc[Microsoft Entra ID] has a dedicated configuration option to accommodate its specific requirements; Other compatible providers use the general OIDC option.
 
 As the service provider, Neo4j Aura redirects authentication requests to the configured IdP using the OpenID Connect (OIDC) protocol.
 Aura also supports authenticating with Google as the identity provider.
@@ -277,7 +277,7 @@ For more information, see link:https://auth0.com/docs/get-started/apis/scopes/op
 
 .. Or, select both.
 
-. For IdP Type select *Okta*.
+. For IdP Type select *OIDC*.
 
 . For Client ID enter the Okta *Client ID*.
 
