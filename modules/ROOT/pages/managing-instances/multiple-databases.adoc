@@ -240,6 +240,10 @@ See xref:managing-instances/instance-actions.adoc#_delete_an_instance[Delete an 
 
 == Connecting applications
 
+All databases within an Aura instance share the instance-level credentials, including connection strings and passwords.
+Authentication is always at the instance level. 
+Authorization (RBAC) controls which databases a user has access to.
+
 When connecting to a multiple database instance from an external client, specify the `database name` for your session or query.
 The database name identifies which database to access.
 If no database name is provided, queries run against the default `neo4j` database.
