@@ -98,34 +98,39 @@ The following tables list which models are used for regions and endpoints, sorte
 
 | `francecentral`, `westeurope`
 | same
-| gpt-6-lunaDataZoneStandard
-| gpt-4.1DataZoneBatch*
+| gpt-6-luna DataZoneStandard
+| gpt-4.1 DataZoneBatch
 | text-embedding-3-large DataZoneStandard
 
-| `eastus`, `westus`
+| `eastus`, `westus3`
 | same
-| gpt-6-lunaDataZoneStandard
-| gpt-5.4DataZoneBatch*
+| gpt-6-luna DataZoneStandard
+| gpt-4.1 DataZoneBatch
 | text-embedding-3-large DataZoneStandard
 
 | `koreacentral`
 | same
-| gpt-5.4-lunaDataZoneStandard
-| gpt-5.4DGlobalBatch* footnote:global[Routes to Global when no regional variable is available, outside of EU and US]
+| gpt-5.4 DataZoneStandard
+| gpt-4.1 GlobalBatch footnote:global[Routes to Global when no regional variable is available, outside of EU and US]
 | text-embedding-3-large DataZoneStandard
 
 | `brazilsouth`
 | same
-| gpt-5.4-lunaDataZoneStandardfootnote:global[]
-| gpt-5.4DGlobalBatch* footnote:global[]
-| text-embedding-3-large DataZoneStandardfootnote:global[]
+| gpt-6-luna DataZoneStandard footnote:global[]
+| gpt-4.1 GlobalBatch* footnote:global[]
+| text-embedding-3-large DataZoneStandard footnote:global[]
 
 | `uksouth`
 | same
-| gpt-5.4-lunaDataZoneStandardfootnote:global[]
-| gpt-5.4DGlobalBatch* footnote:global[]
+| gpt-6-luna DataZoneStandard footnote:global[]
+| gpt-4.1 GlobalBatch* footnote:global[]
 | text-embedding-3-large DataZoneStandard
 |===
+
+[NOTE]
+====
+`centralindia`, `centralmexico`, and `westus2` have *no models deployed*.
+====
 
 == Permissions
 
