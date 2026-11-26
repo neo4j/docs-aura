@@ -91,7 +91,7 @@ The following tables list which models are used for regions and endpoints, sorte
 [opts="header",cols="<,<,<,<,<"]
 |===
 | Region
-| Enpoint
+| Endpoint
 | Chat
 | Batch
 | Embeddings
@@ -116,20 +116,20 @@ The following tables list which models are used for regions and endpoints, sorte
 
 | `brazilsouth`
 | same
-| gpt-6-luna DataZoneStandard footnote:global[]
-| gpt-4.1 GlobalBatch* footnote:global[]
-| text-embedding-3-large DataZoneStandard footnote:global[]
+| gpt-6-luna GlobalStandard footnote:global[]
+| gpt-4.1 GlobalBatch footnote:global[]
+| text-embedding-3-large GlobalStandard footnote:global[]
 
 | `uksouth`
 | same
-| gpt-6-luna DataZoneStandard footnote:global[]
-| gpt-4.1 GlobalBatch* footnote:global[]
-| text-embedding-3-large DataZoneStandard
+| gpt-6-luna GlobalStandard footnote:global[]
+| gpt-4.1 GlobalBatch footnote:global[]
+| text-embedding-3-large Standard
 |===
 
 [NOTE]
 ====
-`centralindia`, `centralmexico`, and `westus2` have *no models deployed*.
+`centralindia`, `mexicocentral`, and `westus2` have *no models deployed*.
 ====
 
 == Permissions
