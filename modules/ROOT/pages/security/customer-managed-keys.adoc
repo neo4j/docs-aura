@@ -120,6 +120,9 @@ To enable automatic key rotation in the AWS KMS, tick the *Key rotation* checkbo
 
 == Azure keys
 
+Aura supports Azure Key Vault and Azure Key Vault Managed HSM.
+If you want HSM-backed keys use Azure Key Vault Managed HSM rather than Azure Dedicated HSM, which is being retired.
+
 === Create an Azure key vault
 
 Create a Key Vault in the Azure portal ensuring the region matches your Aura database instance region.
