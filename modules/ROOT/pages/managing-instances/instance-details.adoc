@@ -70,6 +70,40 @@ See xref:managing-instances/vector-optimization.adoc[Vector optimization] for mo
 See xref:graph-analytics/index.adoc#aura-gds-plugin[Graph Analytics plugin] for more information.
 |===
 
+== Instance status
+
+The status of an instance is shown on the instance card and is also available through the API.
+The following statuses are possible:
+
+.Instance status
+[opts=header,cols="1,1"]
+|===
+| Status
+| Description
+
+| Running
+| The instance is online and ready to accept connections and Cypher queries.
+
+| Updating
+| A change to the instance's configuration is in progress, such as a secondary count change.
+
+| Resizing
+| A change to memory or storage is in progress.
+
+| Overwriting
+| The instance's data is being replaced, for example by a clone to an existing instance.
+The instance is *not* available during this process, but returns to *Running* when the load completes.
+
+| Loading data
+| Data is being loaded into the instance, for example when a clone destination is populated, or restore from file.
+
+| Loading failed
+| The last data load did not succeed. The instance is running normally.
+
+| Upgrading
+| A tier upgrade is in progress, for example from Professional to Business Critical.
+|===
+
 == Snapshots
 
 The data in your instance can be backed up, exported, and restored using snapshots.
