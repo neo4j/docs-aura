@@ -1,21 +1,18 @@
 = Import
 :description: This page describes how to run the import in Neo4j Document Intelligence.
-:page-role: preview
+
 
 label:AuraDB-Free[]
 label:AuraDB-Professional[]
 label:AuraDB-Business-Critical[]
-
-[IMPORTANT]
-====
-This feature is in *preview* and is offered AS-IS and should only be used for internal development purposes and *not in production*.
-====
 
 Once you have added your source documents, generated a model, refined it, and fixed any errors, you can run the import.
 However, if you want to see what your graph will look like, you can generate a preview from the tool bar on the bottom of the *model panel*.
 The preview is generated from a random sample of your data and will therefore look slightly different from your final graph, but it can give insights and provide an overview of your data.
 
 Once the import job is complete, you can use the Document Intelligence Agent to talk to your data directly in natural language.
+
+Note that it is *not* possible to run *concurrent import jobs* targeting the same instance.
 
 You can also use the xref:query/introduction.adoc[*Query*] and xref:explore/introduction.adoc[*Bloom*] tools to interact.
 
@@ -31,14 +28,38 @@ Regardless of whether you use the Document Intelligence Agent to trigger the imp
 
 The process consists of the following high level steps:
 
-* *Document parsing* - text is extracted from your document(s)
-* *Document chunking* - each document is split into smaller pieces of text of a fixed size
-** *Chunk embedding* - each chunk's text is embedded using the gemini-embedding-001 model
-* *Entity and relation extraction* - for each chunk of text, entity and relation extraction is performed according to the provided graph model.
-This means that only node labels and relationship types listed in the model are extracted.
-* *Entity resolution* - also known as *entity deduplication*.
-Using the *key* property defined in the graph model to deduplicate entities based on the lower-case value of said property.
-* *Import* - imports the documents as a graph.
+*Document parsing* - text is extracted from your document(s).
+The underlying parser uses link:https://docling.ai/[Docling] with or without Object Character Recognition (OCR) and Vision-Language Models (VLM) to extract information from images.
+
+*Document chunking* - each document is split into smaller pieces of text of a fixed size.
+A table-aware splitter is always used, regardless of whether the content is tabular.
+Images are extracted during the parsing process and added as Chunk with `chunk_type="picture"`.
+Images are analyzed using a VLM (the same used for extraction) and the description then follows the same process as normal text (entity extraction + resolution).
+
+*Chunk embedding* - each chunk's text is embedded using a model depending on the target instance's cloud provider and region.
+See the tables in xref:document-intelligence/llms-regions.adoc#_llms_and_regions[LLMs and regions] for a full reference.
+
+*Entity and relation extraction* - for each chunk of text, entity and relation extraction is performed according to the provided graph model.
+This means that only node labels and relationship types listed in the graph model are extracted.
+The model for entity extraction depends on the target instance's cloud provider and region.
+See the tables in xref:document-intelligence/llms-regions.adoc#_llms_and_regions[LLMs and regions] for a full reference.
+
+*Entity resolution* - also known as *entity deduplication*.
+This relies on the properties covered by the `UNIQUENESS` and `KEY` constraints defined in the graph model, which is why the quality and tuning of that model matters.
+Values of those properties are first normalized with language-aware rules (handling titles and honorifics, legal entity suffixes, and plural forms) and lower-cased, then compared using fuzzy matching.
+Pre-filtering strategies narrow the candidate pairs beforehand to reduce false merges, and the similarity threshold for merging entities can be set by the user from the UI.
+
+[.shadow]
+.Set the threshold for fuzzy matching
+image::fuzzy-threshold.png[width=600]
+
+Additionally, incoming nodes are resolved against existing data.
+The Lucene-backed full-text index search retrieves similar candidate nodes from the database and the same strategy as described above is applied.
+If property values covered by a `KEY` or `UNIQUENESS` constraint conflict, existing data is prioritized.
+
+*Import* - imports the documents as a graph.
+Each import job is *limited to 100 chunks* per user/project.
+This is roughly equal to 200 pages.
 
 == Lexical graph
 
@@ -53,14 +74,15 @@ image::graph-layers.png[width=800]
 
 The lexical graph consists of the following nodes and relationships:
 
-* `_ \_Document_ _` - a node that represents a single document in the data source.
+* `+++__Document__+++` - a node that represents a single document in the data source.
 It has a *path* property to identify it.
-* `_ \_Chunk_ \_` - a node that is a part of a document.
-It is linked to its source document via a `_ \_CHUNK_TO_DOCUMENT_ _` relationship.
-*  `_ \_NEXT_CHUNK_ _` - a relationship that links the different chunks together.
-* `_ \_NODE_TO_CHUNK_ _` - a relationship between *all* extracted entities and the chunk they are extracted from.
+* `+++__Chunk__+++` - a node that is a part of a document.
+The *Chunk* nodes contain the text and embeddings.
+It is linked to its source document via a `+++__CHUNK_TO_DOCUMENT__+++` relationship.
+*  `+++__NEXT_CHUNK__+++` - a relationship that links the different chunks together.
+* `+++__NODE_TO_CHUNK__+++` - a relationship between *all* extracted entities and the chunk they are extracted from.
 
-*All* entities extracted gets an `\_Entity_` label in addition to other labels.
+*All* entities extracted gets an `+++__Entity__+++` label in addition to other labels.
 
 
 

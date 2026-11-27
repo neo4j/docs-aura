@@ -1,0 +1,122 @@
+= Document Intelligence public API
+:description: This page describes how to get started with Document Intelligence using Neo4j Aura API.
+
+//label:AuraDB-Free[]
+label:AuraDB-Professional[]
+label:AuraDB-Business-Critical[]
+
+[IMPORTANT]
+====
+The Aura API endpoints for Document Intelligence (`unstructured-import-jobs`) are available in version `v2beta2`, and as such, may change or be removed without notice.
+They are not recommended for production use.
+====
+
+Using the Aura API v2beta2, you can start an import from a script or CLI.
+This loads documents from a data source into an AuraDB instance, using a graph schema that you provide.
+The API returns once the import is accepted and then you can poll the operation until it finishes.
+
+== Prerequisites
+
+* A *data source*, created in the Aura console.
+The API cannot create data sources in this version.
+* A *graph schema*, such as a GraphSchema _JSON_ (which you can create and export in the console, see xref:document-intelligence/model.adoc#_download_model[Download model]).
+* An AuraDB instance within the same project.
+Note that Aura Free instances requiring a database password are *not currently supported*.
+* An API key for a user with either a *member* or *admin* role.
+The viewer role can read jobs but *not* create them.
+See xref:api/authentication.adoc#_creating_credentials[Creating credentials] for information on how to obtain the key.
+Make sure you copy the client ID and the secret, since the latter is shown only once.
+
+== Get a token
+
+Use your API key to get an access token.
+You also need the Organization ID and the Project ID.
+You can find the Organization ID in the Organization settings and the Project ID under *Projects* at the Organization level in the console.
+
+[source,shell]
+----
+export JWT=$(curl -s --request POST 'https://api.neo4j.io/oauth/token' \
+  --user "$CLIENT_ID:$CLIENT_SECRET" \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'grant_type=client_credentials' | jq -r .access_token)
+----
+
+== Start an import
+
+[source,shell]
+----
+curl -s -X POST \
+  "https://api.neo4j.io/v2beta1/organizations/<org_id>/projects/<project_id>/unstructured-import-jobs" \
+  -H "Authorization: Bearer $JWT" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "data_source_id": "<data-source-uuid>",
+    "instance_id": "<instance-id>",
+    "schema": {
+      "node_types": [
+        {"label": "Person", "properties": [{"name": "name", "type": "STRING"}]}
+      ],
+      "relationship_types": [{"label": "FOLLOWS"}],
+      "patterns": [{"source": "Person", "relationship": "FOLLOWS", "target": "Person"}],
+      "constraints": [{"type": "KEY", "node_type": "Person", "property_names": ["name"]}]
+    }
+  }'
+----
+
+A successful request returns `202` with `data.operation_id`.
+In this phase, the operation ID is the same as the job ID.
+
+An invalid schema still returns `202`.
+The import then fails and the reason is available in the job's status.
+
+== Poll the operation
+
+[source,shell]
+----
+curl -s \
+  "https://api.neo4j.io/v2beta1/organizations/<org_id>/projects/<project_id>/unstructured-import-jobs/<job_id>/operations/<job_id>" \
+  -H "Authorization: Bearer $JWT"
+----
+
+The `status` moves through `pending`, `in_progress`, to `completed`, `failed`, or `cancelled`.
+A failed import still returns `200`.
+The reason is in the `errors` field of the response.
+
+`progress` holds `current_step` (`extraction` or `import`), `current_step_number`, and `total_steps` (always `2`).
+It is absent while the status is `pending`.
+
+== Read the job
+
+Once the load operation finishes, the job includes the node and relationship counts.
+
+[source,shell]
+----
+curl -s \
+  "https://api.neo4j.io/v2beta1/organizations/<org_id>/projects/<project_id>/unstructured-import-jobs/<job_id>" \
+  -H "Authorization: Bearer $JWT"
+----
+
+The `links.resource` and `links.operation` values in the create response points at `https://api.neo4j.io` so you can follow them directly.
+
+== Limits
+
+* Each user can start a maximum of 4 imports per minute.
+Exceeding this limit returns a `429` with `rate_limited`.
+* Each user can have a maximum of five concurrent import jobs, and each project a maximum of 25.
+Exceeding this limit returns a `429` with `rate_limited`.
+* Each request body is capped at 1 MiB.
+Larger request bodies return `413` with `request_too_large`.
+
+== Errors
+
+Failed requests return a `4xx` or `5xx` status, with no `data` and an `errors` array.
+Each entry has a `reason`, a `message`, and sometimes a `field`.
+
+Common errors on create:
+
+* `400` with `instance_requires_password`, `field: instance_id`: the instance is a free instance with a database password.
+* `403` with `enterprise_instance_not_supported`, `field: Instance_id`: the instance is a Virtual Dedicated Cloud instance and importing to these is not supported.
+* `403` with `insufficient_permissions`: your role cannot create jobs.
+* `404` with `not_found`: the data source does not exist, or the instance is not in the project.
+
+An import can also fail with: `no_documents_found`, `invalid_schema`, `storage_permission_denied`, `invalid_credentials`, and `internal_error`, which all are self-explanatory.
