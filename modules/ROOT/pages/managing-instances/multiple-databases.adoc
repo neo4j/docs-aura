@@ -14,6 +14,9 @@ And, you can scale within the same instance, reducing administrative overhead.
 Billing for instances with multiple databases enabled is the same as for single database instances.
 Usage is charged at your standard AuraDB GB-hour rate, regardless of the number of databases.
 
+All databases within an Aura instance share the instance-level credentials, including the connection string and password.
+Authentication is at the instance level. 
+
 == User and system databases
 
 An instance contains a `system` database and a default user database named `neo4j`.
@@ -239,7 +242,7 @@ Deleting an instance with multiple databases deletes all databases in the instan
 See xref:managing-instances/instance-actions.adoc#_delete_an_instance[Delete an instance]
 
 == Connecting applications
-
+ 
 When connecting to a multiple database instance from an external client, specify the `database name` for your session or query.
 The database name identifies which database to access.
 If no database name is provided, queries run against the default `neo4j` database.
