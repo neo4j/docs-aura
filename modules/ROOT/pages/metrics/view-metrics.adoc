@@ -98,6 +98,12 @@ Metrics in the Detail view for a new Aura instance may take time to appear becau
 
 The chart on the _Resources_ tab shows the allocated store size metric for the selected database either as a percentage of the available storage assigned for the database or as absolute values.
 
+[NOTE]
+====
+Aura will go into a `read-only` state if the storage exceeds storage limits.
+See xref:managing-instances/instance-resources.adoc#_storage[Storage -> Disk usage] for more information.
+====
+
 === Database tab
 
 The _Database_ tab provides a chart that shows the store size and the portion of the allocated space that the database is actively utilizing.
